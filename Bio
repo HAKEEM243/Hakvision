@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Découvrez la bio de Merveil Hakeem Dianzenza, jeune auteur congolais, fondateur de Hakvision">
+  <meta name="keywords" content="Merveil Hakeem Dianzenza, Hakvision, afrofuturisme, spiritualité africaine, auteur congolais">
+  <meta name="author" content="Merveil Hakeem Dianzenza">
+  <title>Bio | Hakvision</title>
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #FFD700;
+      font-size: 2.8em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <h1>À propos de moi</h1>
+  <p>Je suis un jeune auteur congolais, passionné par l’afrofuturisme, la spiritualité africaine et le journalisme engagé. À travers le projet <strong>Hakvision</strong>, je souhaite redonner une voix forte et libre à l’Afrique, tout en construisant une vision technologique profondément enracinée dans notre héritage culturel et ancestral.</p>
+
+  <p>Je n’ai pas grandi dans une famille riche, mais j’ai toujours eu de grandes idées et une détermination sans faille. Ce site est ma vitrine, mon espace de création et de partage.</p>
+
+  <p>Vous y trouverez mon roman <em>Katiopa</em>, et bientôt d’autres livres, magazines et projets éditoriaux. J’y présente aussi mes maillots en cours de confection — inspirés par notre identité africaine — ainsi qu’une puce technologique innovante, symbole de l’Afrique du futur que j’imagine.</p>
+
+  <p><em>Hakvision</em>, c’est bien plus qu’un site : c’est une vision. La mienne. La nôtre.</p>
+
+  <footer>
+    &copy; 2025 Merveil Hakeem Dianzenza — Tous droits réservés.
+  </footer>
+</body>
+</html>
