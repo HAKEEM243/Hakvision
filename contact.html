@@ -1,89 +1,102 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contactez-moi</title>
   <style>
     body {
-      background-color: #111;
+      background-color: #0d0d0d;
       font-family: 'Segoe UI', sans-serif;
       color: white;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
       min-height: 100vh;
       margin: 0;
-      padding: 0;
     }
+
     h1 {
       color: #FFD700;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      text-shadow: 0 0 15px #FFD700;
     }
+
     form {
-      background-color: #1e1e1e;
+      background-color: #1a1a1a;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 20px #FFD700;
+      box-shadow: 0 0 30px #FFD700;
       width: 90%;
       max-width: 500px;
+      display: flex;
+      flex-direction: column;
     }
+
     label {
-      display: block;
-      margin-top: 15px;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
+      font-weight: bold;
     }
+
     input, textarea {
-      width: 100%;
-      padding: 10px;
+      padding: 12px;
+      margin-bottom: 20px;
       border: none;
       border-radius: 5px;
-      margin-bottom: 10px;
+      font-size: 1em;
     }
+
     button {
       background-color: #FFD700;
       color: black;
-      padding: 12px 20px;
+      font-weight: bold;
+      padding: 12px;
       border: none;
       border-radius: 5px;
-      font-weight: bold;
       cursor: pointer;
-      width: 100%;
-      margin-top: 10px;
+      transition: background-color 0.3s;
     }
+
     button:hover {
-      background-color: #e6b800;
+      background-color: #e6c200;
     }
+
     .infos {
       margin-top: 30px;
-      color: #aaa;
       text-align: center;
+      font-size: 0.9em;
     }
+
     .infos a {
       color: #FFD700;
       text-decoration: none;
+      font-weight: bold;
+    }
+
+    .infos a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <h1>Contactez-moi</h1>
-  <form action="https://formspree.io/f/myzebnql" method="POST">
-    <label for="name">Nom :</label>
-    <input type="text" name="name" id="name" required>
+  <form action="https://formspree.io/f/myzebnql" method="POST" onsubmit="setTimeout(function(){ window.location.href='merci.html'; }, 100); return true;">
+    <label for="nom">Nom :</label>
+    <input type="text" id="nom" name="nom" required>
 
     <label for="email">Email :</label>
-    <input type="email" name="email" id="email" required>
+    <input type="email" id="email" name="email" required>
 
     <label for="message">Message :</label>
-    <textarea name="message" id="message" rows="6" required></textarea>
+    <textarea id="message" name="message" rows="6" required></textarea>
 
     <button type="submit">Envoyer</button>
   </form>
 
   <div class="infos">
-    Email : <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a><br>
-    Instagram : <a href="https://instagram.com/hakaymrv243" target="_blank">@hakaymrv243</a>
+    <p>Email : <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a></p>
+    <p>Instagram : <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a></p>
   </div>
 </body>
 </html>
