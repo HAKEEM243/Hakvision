@@ -12,61 +12,79 @@
       box-sizing: border-box;
     }
     body {
-      background: url('fond-hakvision.jpg') no-repeat center center fixed;
-      background-size: cover;
       font-family: Arial, sans-serif;
+      background: url('fond-leopard.png') no-repeat center center fixed;
+      background-size: cover;
       color: white;
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 20px;
     }
     h1 {
       font-size: 3em;
-      margin-bottom: 0.3em;
-      text-shadow: 2px 2px 5px black;
+      margin-top: 40px;
     }
     h2 {
-      font-size: 1.2em;
-      margin-bottom: 2em;
-      color: #ccc;
-      text-shadow: 1px 1px 2px black;
+      font-weight: 300;
+      margin-top: 10px;
+      margin-bottom: 30px;
+      font-size: 1.3em;
     }
-    .nav {
+    .main-buttons {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-      margin-bottom: 2em;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
     }
-    .nav a {
+    .main-buttons a {
       background-color: #FFD700;
       color: black;
-      font-weight: bold;
-      padding: 0.7em 1.5em;
-      border-radius: 8px;
+      padding: 12px 20px;
       text-decoration: none;
-      transition: all 0.3s ease;
+      font-weight: bold;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-    .nav a:hover {
-      background-color: #e6b800;
-      transform: scale(1.05);
+    .main-buttons a:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #FFD700;
+    }
+    .big-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 40px 0;
+    }
+    .big-buttons a {
+      background-color: black;
+      border: 2px solid #FFD700;
+      color: #FFD700;
+      padding: 15px 25px;
+      text-decoration: none;
+      font-size: 1.2em;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: all 0.3s;
+    }
+    .big-buttons a:hover {
+      background-color: #FFD700;
+      color: black;
     }
     footer {
-      margin-top: 3em;
+      margin-top: 40px;
       font-size: 0.9em;
-      color: #ccc;
-      text-shadow: 1px 1px 2px black;
     }
     footer a {
       color: #FFD700;
       text-decoration: none;
     }
-    @media screen and (max-width: 600px) {
+    @media (max-width: 600px) {
       h1 {
-        font-size: 2.2em;
+        font-size: 2em;
       }
-      .nav a {
-        padding: 0.6em 1.2em;
-        font-size: 0.9em;
+      .main-buttons, .big-buttons {
+        flex-direction: column;
       }
     }
   </style>
@@ -75,17 +93,25 @@
   <h1>Hakvision</h1>
   <h2>Les projets innovants de demain</h2>
 
-  <div class="nav">
-    <a href="katiopa.html">Katiopa</a>
-    <a href="okapiplay.html">OkapiPlay</a>
-    <a href="maillots.html">Maillots</a>
-    <a href="bio.html">Bio</a>
+  <div class="main-buttons">
+    <a href="#">Katiopa</a>
+    <a href="#">OkapiPlay</a>
+    <a href="#">Maillots</a>
+    <a href="#">Bio</a>
     <a href="contact.html">Contact</a>
   </div>
 
+  <div class="big-buttons">
+    <a href="#">KATIOPA</a>
+    <a href="#">OKAPIPLAY</a>
+    <a href="#">MAILLOTS</a>
+  </div>
+
   <footer>
-    <p>Email : <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a> | Instagram : <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a></p>
-    <p>&copy; 2025 Merveil Hakeem Dianzenza</p>
+    Email : <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a> |
+    Instagram : <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a>
+    <br>
+    &copy; 2025 Merveil Hakeem Dianzenza
   </footer>
 </body>
 </html>
