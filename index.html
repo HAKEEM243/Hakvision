@@ -1,131 +1,107 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hakvision</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: url('fond_hakvision.png') no-repeat center center fixed;
       background-size: cover;
-      color: white;
+      color: #fff;
+      text-align: center;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      height: 100vh;
-      text-align: center;
-      position: relative;
+      animation: fadeIn 1s ease-in;
     }
 
-    .overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 0;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      animation: fadeInUp 1s ease-in-out;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     h1 {
-      font-size: 3rem;
-      color: #FFD700;
-      margin-bottom: 10px;
+      font-size: 3em;
+      margin-bottom: 0.5em;
+      animation: roar 2s ease-in-out;
     }
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
+    @keyframes roar {
+      0% { transform: scale(1); opacity: 0; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
     }
 
-    .btn-container {
+    h2 {
+      font-weight: 300;
+      font-size: 1.5em;
+      margin-bottom: 2em;
+    }
+
+    .buttons {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
       justify-content: center;
-      margin-bottom: 25px;
+      gap: 1em;
     }
 
-    .btn {
-      background-color: #FFD700;
-      color: black;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 25px;
-      font-size: 1rem;
-      cursor: pointer;
+    .buttons a {
+      background-color: #fdd400;
+      color: #000;
       text-decoration: none;
-      transition: transform 0.3s ease, background-color 0.3s ease;
+      padding: 0.8em 1.5em;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: all 0.3s ease-in-out;
     }
 
-    .btn:hover {
-      background-color: #e6c200;
+    .buttons a:hover {
+      background-color: #e6b800;
       transform: scale(1.05);
     }
 
     footer {
-      font-size: 0.9rem;
-      margin-top: 25px;
+      margin-top: 3em;
+      font-size: 0.9em;
     }
 
-    a {
-      color: #FFD700;
+    footer a {
+      color: #fdd400;
       text-decoration: none;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      .btn {
-        font-size: 0.9rem;
-        padding: 10px 20px;
-      }
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2em; }
+      h2 { font-size: 1.2em; }
+      .buttons a { padding: 0.6em 1.2em; }
     }
   </style>
 </head>
 <body>
-  <div class="overlay"></div>
-  <div class="content">
-    <h1>Hakvision</h1>
-    <p>Les projets innovants de demain</p>
+  <h1>Hakvision</h1>
+  <h2>Les projets innovants de demain</h2>
 
-    <div class="btn-container">
-      <a href="katiopa.html" class="btn">Katiopa</a>
-      <a href="okapiplay.html" class="btn">OkapiPlay</a>
-      <a href="maillots.html" class="btn">Maillots</a>
-      <a href="bio.html" class="btn">Bio</a>
-      <a href="contact.html" class="btn">Contact</a>
-    </div>
-
-    <p>Email : <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a> |
-       Instagram : <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a>
-    </p>
-
-    <footer>
-      © 2025 Merveil Hakeem Dianzenza
-    </footer>
+  <div class="buttons">
+    <a href="katiopa.html">Katiopa</a>
+    <a href="okapiplay.html">OkapiPlay</a>
+    <a href="maillots.html">Maillots</a>
+    <a href="bio.html">Bio</a>
+    <a href="contact.html">Contact</a>
   </div>
+
+  <footer>
+    <p>Email : <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a> | Instagram : <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a></p>
+    <p>&copy; 2025 Merveil Hakeem Dianzenza</p>
+  </footer>
 </body>
 </html>
