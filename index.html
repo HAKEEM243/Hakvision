@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hakvision</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
     * {
       margin: 0;
@@ -12,72 +12,61 @@
       box-sizing: border-box;
     }
     body {
-      background: url("fond_hakvision.png") no-repeat center center fixed;
+      background: url('fond-hakvision.jpg') no-repeat center center fixed;
       background-size: cover;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      color: white;
       text-align: center;
-      padding: 20px;
+      padding: 2rem 1rem;
     }
     h1 {
-      font-size: 3rem;
-      text-shadow: 2px 2px 4px #000;
-      animation: fadeIn 2s ease-in-out;
+      font-size: 3em;
+      margin-bottom: 0.3em;
+      text-shadow: 2px 2px 5px black;
     }
     h2 {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      color: #ddd;
+      font-size: 1.2em;
+      margin-bottom: 2em;
+      color: #ccc;
+      text-shadow: 1px 1px 2px black;
     }
-    .buttons, .bas-buttons {
+    .nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin: 20px 0;
-      gap: 15px;
+      gap: 1rem;
+      margin-bottom: 2em;
     }
-    .buttons a, .bas-buttons a {
-      padding: 12px 25px;
-      background-color: #ffd700;
-      color: #000;
-      text-decoration: none;
-      border-radius: 10px;
+    .nav a {
+      background-color: #FFD700;
+      color: black;
       font-weight: bold;
-      transition: transform 0.3s, background-color 0.3s;
+      padding: 0.7em 1.5em;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s ease;
     }
-    .buttons a:hover, .bas-buttons a:hover {
-      background-color: #ffa500;
-      transform: scale(1.1);
+    .nav a:hover {
+      background-color: #e6b800;
+      transform: scale(1.05);
     }
     footer {
-      margin-top: auto;
-      font-size: 0.9rem;
+      margin-top: 3em;
+      font-size: 0.9em;
       color: #ccc;
-      text-align: center;
+      text-shadow: 1px 1px 2px black;
     }
     footer a {
-      color: #ffd700;
+      color: #FFD700;
       text-decoration: none;
     }
-    footer a:hover {
-      text-decoration: underline;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @media (max-width: 600px) {
+    @media screen and (max-width: 600px) {
       h1 {
-        font-size: 2.2rem;
+        font-size: 2.2em;
       }
-      .buttons a, .bas-buttons a {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+      .nav a {
+        padding: 0.6em 1.2em;
+        font-size: 0.9em;
       }
     }
   </style>
@@ -86,7 +75,7 @@
   <h1>Hakvision</h1>
   <h2>Les projets innovants de demain</h2>
 
-  <div class="buttons">
+  <div class="nav">
     <a href="katiopa.html">Katiopa</a>
     <a href="okapiplay.html">OkapiPlay</a>
     <a href="maillots.html">Maillots</a>
@@ -98,11 +87,5 @@
     <p>Email : <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a> | Instagram : <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a></p>
     <p>&copy; 2025 Merveil Hakeem Dianzenza</p>
   </footer>
-
-  <div class="bas-buttons">
-    <a href="katiopa.html">KATIOPA</a>
-    <a href="okapiplay.html">OKAPIPLAY</a>
-    <a href="maillots.html">MAILLOTS</a>
-  </div>
 </body>
 </html>
