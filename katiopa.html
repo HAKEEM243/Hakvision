@@ -3,144 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="KATIOPA – L’épopée afrofuturiste de 600 pages qui réveille la conscience spirituelle de l’Afrique.">
-  <meta name="keywords" content="Katiopa, Merveil Hakeem Dianzenza, roman afrofuturiste, renaissance africaine, Hakvision">
+  <meta name="description" content="KATIOPA – L'épopée afrofuturiste et spirituelle qui réveille la conscience africaine.">
+  <meta name="keywords" content="Katiopa, roman afrofuturiste, Merveil Hakeem Dianzenza, renaissance africaine, Hakvision">
   <meta name="author" content="Merveil Hakeem Dianzenza">
   <title>Katiopa</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-
   <style>
-    body {
-      margin: 0;
-      padding: 40px 15px;
-      background: #0a0a0a;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      text-align: center;
+    :root{
+      --gold:#FFD700;
+      --amber:#ffcc00;
     }
-    h1 {
-      color: #FFD700;
-      font-size: 3em;
-      margin: 0 0 15px;
+    *{box-sizing:border-box}
+    body{
+      margin:0; padding:0;
+      font-family:Arial,Helvetica,sans-serif;
+      background:#0a0a0a; color:#fff;
+      display:flex; flex-direction:column; min-height:100vh;
     }
-    h2 {
-      color: #ffcc00;
-      margin: 40px 0 15px;
-    }
-    img {
-      max-width: 280px;
-      border-radius: 12px;
-      margin: 25px 0;
-    }
-    p, li {
-      max-width: 840px;
-      margin: 0 auto 18px;
-      line-height: 1.6;
-      font-size: 1.15em;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 auto 25px;
-    }
-    ul li::before {
-      content: "• ";
-      color: #FFD700;
-    }
-    footer {
-      margin-top: 60px;
-      font-size: 0.8em;
-      color: #aaa;
-    }
-    @media(max-width:600px){
-      h1 { font-size: 2.2em; }
-      p, li { font-size: 1em; }
-    }
+    header{padding:50px 15px 20px;text-align:center}
+    header h1{font-size:2.8em; color:var(--gold);margin:0}
+    main{display:flex; flex-wrap:wrap; justify-content:center; gap:50px; padding:0 20px 120px}
+    .images{flex:1 1 320px; max-width:380px; display:flex; flex-direction:column; align-items:center; gap:25px}
+    .images img{width:100%; border-radius:14px; box-shadow:0 0 14px var(--gold)}
+    .content{flex:2 1 520px; max-width:800px}
+    h2{color:var(--amber); margin:40px 0 15px;font-size:1.6em}
+    h3{color:var(--gold); margin:28px 0 12px;font-size:1.3em}
+    p,li{line-height:1.6; font-size:1.05em; margin-bottom:16px}
+    ul{list-style:none; padding-left:0; margin:0 0 18px}
+    ul li::before{content:"• "; color:var(--gold)}
+    footer{margin-top:auto; background:#000; text-align:center; font-size:.8em; color:#aaa; padding:12px}
+    @media(max-width:768px){header{padding:30px 10px} header h1{font-size:2.2em} main{gap:30px;padding-bottom:140px}}
   </style>
 </head>
 <body>
+  <header>
+    <h1>🌟 KATIOPA – L'ÉPOPÉE QUI RÉVEILLE L'AFRIQUE</h1>
+  </header>
 
-  <h1>🌟 KATIOPA – L’ÉPOPÉE QUI RÉVEILLE L’AFRIQUE</h1>
-  <img src="katiopa_cover.jpg" alt="Couverture officielle de Katiopa">
+  <main>
+    <div class="images">
+      <img src="bouc.jpeg" alt="Bouc sacré de Katiopa">
+      <img src="eBook.jpeg" alt="Couverture officielle de Katiopa">
+    </div>
 
-  <p><strong>Katiopa</strong> n’est pas qu’un roman – c’est une révolution spirituelle. Écrit par <strong>Merveil Hakeem Dianzenza</strong>, cette œuvre monumentale de 600 pages plonge dans l’âme profonde de l’Afrique pour révéler son destin cosmique.<br>
-  Plus qu’un récit, <em>Katiopa</em> est un rituel de résurrection, une prophétie qui s’accomplit sous vos yeux, l’arme spirituelle que vos ancêtres ont forgée pour vous.</p>
+    <section class="content">
+      <p><strong>Katiopa</strong> n'est pas qu'un roman – c'est une révolution spirituelle. Écrit par <strong>Merveil Hakeem Dianzenza</strong>, cette œuvre monumentale de 600 pages plonge dans l'âme profonde de l'Afrique pour révéler son destin cosmique. Plus qu'un récit, <em>Katiopa</em> est un rituel de résurrection, l'arme spirituelle que vos ancêtres ont forgée pour vous.</p>
 
-  <h2>⚡ L’HISTOIRE QUI VA CHANGER VOTRE VIE</h2>
-  <p>L’œuvre suit <strong>Samuel Kwatulendu</strong>, enfant-messie né pour accomplir une prophétie vieille de 500 ans. Son vrai nom ancestral, <strong>Kwatulendu</strong> ("celui qui délivrera l’homme noir"), révèle sa mission : libérer l’Afrique des chaînes invisibles.
-  <br>Dès sa naissance, Samuel est poursuivi par <strong>l’Ordre du Verseau</strong>, une conspiration techno-coloniale qui manipule l’histoire et asservit les consciences par la technologie.
-  <br>Au cœur du récit : <strong>le Nkisi</strong>, pierre sacrée et technologie spirituelle fusionnant sagesse ancestrale et intelligence artificielle, transformant l’Afrique en superpuissance mystique du futur.</p>
+      <h2>⚡ L'HISTOIRE QUI VA CHANGER VOTRE VIE</h2>
+      <p>L'œuvre suit <strong>Samuel Kwatulendu</strong>, enfant‑messie né pour accomplir une prophétie vieille de 500 ans. Son nom ancestral signifie « celui qui délivrera l'homme noir ». Pourchassé par <strong>l'Ordre du Verseau</strong>, une conspiration techno‑coloniale mondiale, il doit protéger le <strong>Nkisi</strong> : pierre sacrée fusionnant sagesse ancestrale et intelligence artificielle, clé d'une Afrique super‑puissance mystique.</p>
 
-  <h2>🔥 POURQUOI KATIOPA VA VOUS TRANSFORMER</h2>
+      <h2>🔥 POURQUOI KATIOPA VA VOUS TRANSFORMER</h2>
+      <h3>🌍 ŒUVRE TOTALE</h3>
+      <ul>
+        <li>600+ pages d'épopée pure</li>
+        <li>Glossaire encyclopédique (60+ concepts)</li>
+        <li>Chronologie sacrée (1491‑2055)</li>
+        <li>Notes académiques détaillées</li>
+      </ul>
 
-  <h3>🌍 UNE ŒUVRE TOTALE UNIQUE</h3>
-  <ul>
-    <li>600+ pages d’épopée pure</li>
-    <li>Glossaire de 60+ concepts africains</li>
-    <li>Chronologie sacrée de 1491 à 2055</li>
-    <li>Notes académiques pour chaque référence</li>
-  </ul>
+      <h3>⚡ AFROFUTURISME RÉVOLUTIONNAIRE</h3>
+      <ul>
+        <li><strong>Katiopa City 2055</strong> – métropole spirituelle</li>
+        <li>I.A. ancestrale, drones sacrés</li>
+        <li>Afrique devenue centre géopolitique du monde</li>
+      </ul>
 
-  <h3>⚡ AFROFUTURISME RÉVOLUTIONNAIRE</h3>
-  <ul>
-    <li>Katiopa City : métropole spirituelle de 2055</li>
-    <li>Technologies mystiques : IA ancestrale, drones sacrés</li>
-    <li>Géopolitique prophétique : l’Afrique centre du monde</li>
-  </ul>
+      <h3>💎 PERSONNAGES INOUBLIABLES</h3>
+      <ul>
+        <li>Samuel/Kwatulendu – roi‑messie aux pouvoirs cosmiques</li>
+        <li>Merveil Dianz – gardien de la mémoire ancestrale</li>
+        <li>Les Luxa – sorcières déchues, trahison & rédemption</li>
+        <li>L'Ordre du Verseau – ennemi technologique invisible</li>
+      </ul>
 
-  <h3>💎 PERSONNAGES INOUBLIABLES</h3>
-  <ul>
-    <li>Samuel/Kwatulendu : roi-messie aux pouvoirs cosmiques</li>
-    <li>Merveil Dianz : gardien de la mémoire ancestrale</li>
-    <li>Les Luxa : sorcières déchues, trahison et rédemption</li>
-    <li>L’Ordre du Verseau : ennemi technologique invisible</li>
-  </ul>
+      <h2>🎬 VERS L'ADAPTATION MONDIALE</h2>
+      <ul>
+        <li>Série &amp; film en développement</li>
+        <li>Batailles techno‑spirituelles spectaculaires</li>
+        <li>Bande‑son afro‑ancestrale immersive</li>
+      </ul>
 
-  <h2>🎬 UN PROJET D’ENVERGURE : ADAPTATION MONDIALE</h2>
-  <ul>
-    <li>Série & film en développement</li>
-    <li>Visuels spectaculaires : batailles techno-spirituelles</li>
-    <li>Bande-son afro-ancestrale : chants sacrés réactualisés</li>
-    <li>Héros révolutionnaire pour les peuples noirs</li>
-  </ul>
+      <h2>⚠️ LIVRE TRANSFORMATEUR</h2>
+      <ul>
+        <li>✅ Histoire vraie de l'Afrique</li>
+        <li>✅ Identité spirituelle profonde</li>
+        <li>✅ Futur possible du continent</li>
+        <li>✅ Rôle de chacun dans la renaissance</li>
+      </ul>
 
-  <h3>🌟 FUSION UNIQUE DE GENRES</h3>
-  <ul>
-    <li>Afrofuturisme spirituel inédit</li>
-    <li>Mythologie africaine réinventée</li>
-    <li>Géopolitique et ésotérisme africains</li>
-    <li>Science-fiction spirituelle authentique</li>
-  </ul>
+      <h2>💫 CE QUE DISENT LES CRITIQUES</h2>
+      <p><em>« Le Cheikh Anta Diop de l’afrofuturisme »</em> • <em>« Plus profond que Soyinka, plus visionnaire que Beti »</em></p>
 
-  <h2>⚠️ LIVRE TRANSFORMATEUR</h2>
-  <p>Ce livre changera votre perception de :</p>
-  <ul>
-    <li>✅ L’histoire vraie de l’Afrique</li>
-    <li>✅ Votre identité spirituelle profonde</li>
-    <li>✅ Le futur du continent noir</li>
-    <li>✅ Votre rôle dans la renaissance africaine</li>
-  </ul>
+      <h2>🌟 L'UNIVERS DIANZENZA S'ÉTEND</h2>
+      <p><strong>À venir :</strong> <em>ZIKILA – Chroniques d'un Monde Sans Paradis ni Enfer</em> (2160). Inscrivez‑vous à la newsletter pour être prévenu.</p>
 
-  <h2>💫 CE QUE DISENT LES CRITIQUES</h2>
-  <p><em>« Avec KATIOPA, Merveil Dianzenza accomplit pour l’Afrique ce que Cheikh Anta Diop a fait pour notre histoire. »</em></p>
-  <p><em>« Le roi de l’afrofuturisme spirituel. Un nouveau genre littéraire. »</em></p>
-  <p><em>« Plus profond que Soyinka, plus visionnaire que Mongo Beti. »</em></p>
-  <p><em>« Le nouveau Aimé Césaire de l’ère numérique. »</em></p>
+      <h2>🔔 RESTEZ CONNECTÉS</h2>
+      <p>Newsletter exclusive • Réseaux sociaux • Projets cinéma</p>
 
-  <h2>🌟 L’UNIVERS DIANZENZA S’ÉTEND</h2>
-  <p><strong>À venir :</strong> <em>ZIKILA – Chroniques d’un Monde Sans Paradis ni Enfer</em> : 2160, réincarnations, transcendance ou sacrifice ultime.  
-     Inscrivez-vous à la newsletter pour ne rien manquer !</p>
-
-  <h2>🔔 RESTEZ CONNECTÉS</h2>
-  <p>📧 Newsletter exclusive • 📱 Réseaux sociaux • 🎬 Adaptations cinéma</p>
-
-  <h2>🔥 KATIOPA N’EST PAS UN LIVRE – C’EST UNE INITIATION</h2>
-  <p><em>« Cette épopée n’est que le commencement. Le premier acte d’une révolution des consciences. »</em><br>
-  ⚡ REJOIGNEZ DÈS MAINTENANT LA RÉVOLUTION SPIRITUELLE ⚡</p>
+      <h2>🔥 KATIOPA N'EST PAS UN LIVRE – C'EST UNE INITIATION</h2>
+      <p><em>« Le premier acte d'une révolution des consciences africaines »</em></p>
+    </section>
+  </main>
 
   <footer>
     © 2025 Merveil Hakeem Dianzenza – Tous droits réservés • Hakvision
   </footer>
-
 </body>
 </html>
