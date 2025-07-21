@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #004225, #ffd700); /* Vert foncé > Jaune */
+      background: linear-gradient(to right, #004225, #ffd700);
       color: #000;
     }
 
@@ -24,6 +24,11 @@
 
     .book-header {
       text-align: center;
+    }
+
+    .book-header a {
+      display: inline-block;
+      text-decoration: none;
     }
 
     .book-header img {
@@ -81,13 +86,27 @@
       margin-top: 45px;
       color: #444;
     }
+
+    .back-link {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .back-link a {
+      color: #004225;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 <body>
 
   <div class="container">
     <div class="book-header">
-      <img src="IMG_1109.jpeg" alt="Couverture du livre KATIØPA">
+      <a href="https://buy.stripe.com/paiement-final-lien-live-ici">
+        <img src="IMG_1109.jpeg" alt="Couverture du livre KATIØPA">
+      </a>
       <h1>KATIØPA – La Prophétie Noire</h1>
       <p>Le roman afrofuturiste de la renaissance africaine</p>
     </div>
@@ -107,7 +126,11 @@
       </p>
     </div>
 
-    <a class="buy-button" href="https://buy.stripe.com/test_7sY9ASbjI3Zt4pw71a3cc00">📖 Acheter maintenant – 15€</a>
+    <a class="buy-button" href="https://buy.stripe.com/paiement-final-lien-live-ici">📖 Acheter maintenant – 14,99€</a>
+
+    <div class="back-link">
+      <p><a href="index.html">← Retour à l’accueil</a></p>
+    </div>
 
     <footer>
       © 2025 Merveil Hakeem Dianzenza – Tous droits réservés
