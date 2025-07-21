@@ -7,19 +7,18 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #004225, #ffd700);
-      color: #000;
+      background: linear-gradient(to bottom, #fffbea, #f5d547);
+      color: #111;
     }
 
     .container {
       max-width: 900px;
       margin: 40px auto;
       padding: 40px 30px;
-      background: #fff;
+      background: #ffffff;
       border-radius: 14px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.25);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
     }
 
     .book-header {
@@ -30,54 +29,78 @@
       max-width: 320px;
       width: 100%;
       height: auto;
-      margin-bottom: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 18px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
     }
 
     .book-header h1 {
-      font-size: 2.6em;
+      font-size: 2.4em;
       color: #004225;
       margin-bottom: 10px;
     }
 
     .book-header p {
       font-size: 1.25em;
-      color: #333;
-      margin-bottom: 30px;
+      color: #222;
     }
 
     .description {
       font-size: 1.1em;
       line-height: 1.7;
-      color: #111;
-      margin-bottom: 40px;
+      margin: 30px 0;
     }
 
-    .buy-button {
-      display: block;
-      width: 100%;
-      max-width: 320px;
-      margin: 0 auto;
+    .buy-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .buy-button-payhip {
       background: #ffd700;
       color: #000;
-      text-align: center;
-      padding: 16px 20px;
-      font-size: 1.25em;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 1.15em;
       font-weight: bold;
       text-decoration: none;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       transition: background 0.3s ease;
     }
 
-    .buy-button:hover {
-      background: #e6c200;
+    .buy-button-payhip:hover {
+      background: #e6c100;
+    }
+
+    .buy-button-stripe {
+      border: 2px solid #004225;
+      color: #004225;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-decoration: none;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+
+    .buy-button-stripe:hover {
+      background: #004225;
+      color: #fff;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 0.95em;
+      color: #aa0000;
+      text-align: center;
     }
 
     .back-link {
       text-align: center;
-      margin-top: 40px;
+      margin-top: 35px;
     }
 
     .back-link a {
@@ -98,27 +121,25 @@
 
   <div class="container">
     <div class="book-header">
-      <img src="IMG_1109.jpeg" alt="Couverture du livre KATIØPA">
+      <img src="IMG_1109.jpeg" alt="Couverture de KATIØPA" />
       <h1>KATIØPA – La Prophétie Noire</h1>
       <p>Le roman afrofuturiste de la renaissance africaine</p>
     </div>
 
     <div class="description">
-      <p><strong>634 pages – Format PDF Premium – 15 Annexes sacrées</strong></p>
-      <p>
-        De la chute mystique du Kongo à l’éveil de toute l’Afrique, suivez l’ascension de Samuel/Kwatulendu, l’enfant-léopard porteur des trois dons divins. 
-        Un récit où science sacrée, mémoire ancestrale et insurrection poétique s’unissent face au Nouvel Ordre Mondial.
-      </p>
-      <p>
-        <strong>KATIØPA</strong> n’est pas un roman : c’est un acte de renaissance. Avec un glossaire trilingue (français, lingala, kikongo), des cartes spirituelles, et 15 annexes documentées, 
-        ce livre vous plonge dans la guerre du souvenir et la victoire de l’âme africaine.
-      </p>
-      <p>
-        📄 Téléchargement immédiat du fichier PDF en haute qualité après paiement sécurisé via Payhip (carte ou PayPal).
-      </p>
+      <p><strong>📖 634 pages – Format PDF Premium – 15 Annexes sacrées</strong></p>
+      <p>De la chute mystique du Kongo à l’éveil de toute l’Afrique, suivez l’ascension de Samuel/Kwatulendu, l’enfant-léopard porteur des trois dons divins.</p>
+      <p><strong>KATIØPA</strong> n’est pas un roman : c’est un acte de mémoire et de libération. Avec un glossaire trilingue, des cartes spirituelles et 15 annexes documentées, ce livre plonge dans la guerre du souvenir et la victoire de l’âme africaine face au Nouvel Ordre Mondial.</p>
     </div>
 
-    <a class="buy-button" href="https://payhip.com/b/MuQHP" target="_blank">Acheter maintenant – 14,99€</a>
+    <div class="buy-buttons">
+      <a class="buy-button-payhip" href="https://payhip.com/b/MuQHP" target="_blank">🔒 Acheter via Payhip – 14,99€ (PDF immédiat)</a>
+
+      <a class="buy-button-stripe" href="https://buy.stripe.com/00g7u51mAeuO7KM8wC" target="_blank">Acheter via Stripe (Apple Pay, Carte...)</a>
+      <div class="note">
+        ⚠️ Si vous choisissez Stripe, le fichier PDF vous sera envoyé manuellement sous 24 heures.
+      </div>
+    </div>
 
     <div class="back-link">
       <p><a href="index.html">← Retour à l’accueil</a></p>
