@@ -1,157 +1,202 @@
-<a <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakvision</title>
-  <link rel="icon" href="favicon.png" type="image/png" />
-
-  <!-- Balise de vérification Google Search Console -->
-  <meta name="google-site-verification" content="8bWrSFFo4VxnjvrhcObCCdACG1ku25BrafNQu7bS0oE" />
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6XM4DKJ4D"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-B6XM4DKJ4D');
-  </script>
-
+  <meta name="description" content="Les livres de Merveil Hakeem Dianzenza – KATIØPA, DIAKU, KAMERUN 1945, DOUBLE IDENTITÉ, ZIKILA">
+  <meta name="keywords" content="Katiopa, Diaku, Kamerun 1945, Double Identité, Zikila, afrofuturisme, Merveil Hakeem Dianzenza, roman africain, géopolitique, spiritualité, Ubuntu, réincarnation">
+  <title>Mes Livres – Hakvision</title>
   <style>
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     body {
       margin: 0;
-      padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: url('FBF33DCF-F94A-4E5A-81C2-8830A8F73947.png') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
+      background: linear-gradient(to bottom, #fffbea, #f0d20d);
+      color: #111;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 40px 30px;
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    }
+    .book-header {
+      text-align: center;
+      background: linear-gradient(to right, #ffe681, #fff);
+      padding: 30px 20px;
+      border-radius: 12px;
+      margin-bottom: 40px;
+    }
+    .book-header img {
+      max-width: 300px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.3);
+    }
+    .book-header h1 {
+      font-size: 2.5em;
+      color: #004225;
+      margin-bottom: 10px;
+    }
+    .book-header p {
+      font-size: 1.2em;
+      color: #333;
+    }
+    .description {
+      font-size: 1.1em;
+      line-height: 1.7;
+      margin: 30px 0;
+      color: #111;
+    }
+    .buy-buttons {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      position: relative;
-    }
-
-    .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
-      z-index: 0;
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-      animation: fadeInUp 1s ease-in-out;
-      padding: 20px;
-      backdrop-filter: brightness(1.1);
-    }
-
-    h1 {
-      font-size: 3rem;
-      color: #FFD700;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      color: #eee;
-    }
-
-    .btn-container {
-      display: flex;
-      flex-wrap: wrap;
       gap: 15px;
-      justify-content: center;
-      margin-bottom: 25px;
     }
-
-    .btn {
-      background-color: #FFD700;
-      color: black;
+    .buy-button-payhip {
+      background: #ffd700;
+      color: #000;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 1.15em;
       font-weight: bold;
-      border: none;
-      border-radius: 12px;
-      padding: 12px 25px;
-      font-size: 1rem;
-      cursor: pointer;
       text-decoration: none;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease, background-color 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background 0.3s ease;
     }
-
-    .btn:hover {
-      background-color: #e6c200;
-      transform: scale(1.05);
+    .buy-button-payhip:hover {
+      background: #e6c200;
     }
-
+    .buy-button-stripe {
+      border: 2px solid #004225;
+      color: #004225;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-decoration: none;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    .buy-button-stripe:hover {
+      background: #004225;
+      color: #fff;
+    }
+    .note {
+      margin-top: 10px;
+      font-size: 0.95em;
+      color: #aa0000;
+      text-align: center;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 35px;
+    }
+    .back-link a {
+      color: #004225;
+      font-weight: bold;
+      text-decoration: underline;
+    }
     footer {
-      font-size: 0.9rem;
-      margin-top: 40px;
-      color: #ccc;
-    }
-
-    .copyright {
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-top: 8px;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-
-      .btn {
-        font-size: 0.9rem;
-        padding: 10px 20px;
-      }
-
-      p {
-        font-size: 1rem;
-      }
+      text-align: center;
+      font-size: 0.95em;
+      margin-top: 45px;
+      color: #444;
     }
   </style>
 </head>
 <body>
-  <div class="overlay"></div>
 
-  <div class="content">
-    <h1>Hakvision</h1>
-    <p>Les projets innovants de demain</p>
-
-    <div class="btn-container">
-      <a href="katiopa.html" class="btn">Katiopa</a>
-      <a href="okapiplay.html" class="btn">OkapiPlay</a>
-      <a href="livre.html" class="btn">Mes livres</a>
-      <a href="bio.html" class="btn">Bio</a>
-      <a href="contact.html" class="btn">Contact</a>
+  <!-- KATIØPA -->
+  <div class="container">
+    <div class="book-header">
+      <img src="IMG_1109.jpeg" alt="Couverture de KATIØPA" />
+      <h1>KATIØPA – La Prophétie Noire</h1>
+      <p>Le roman afrofuturiste de la renaissance africaine</p>
     </div>
-
-    <footer>
-      © 2025 Merveil Hakeem Dianzenza<br>
-      <div class="copyright">
-        Tous droits réservés | Contenu protégé par les lois internationales sur la propriété intellectuelle.
+    <div class="description">
+      <p><strong>📖 634 pages – Format PDF Premium – 15 Annexes sacrées</strong></p>
+      <p>De la chute mystique du Kongo à l’éveil de toute l’Afrique, suivez l’ascension de Samuel/Kwatulendu, l’enfant-léopard porteur des trois dons divins.</p>
+      <p><strong>KATIØPA</strong> n’est pas un roman : c’est un acte de mémoire, une guerre spirituelle contre l’effacement de l’Afrique. Avec un glossaire trilingue (français, lingala, kikongo), des cartes sacrées et 15 annexes puissantes, ce livre vous plonge dans une épopée technospirituelle hors du commun.</p>
+    </div>
+    <div class="buy-buttons">
+      <a class="buy-button-payhip" href="https://payhip.com/b/MuQHP" target="_blank">🔒 Acheter via Payhip – 14,99€ (PDF immédiat)</a>
+      <a class="buy-button-stripe" href="https://buy.stripe.com/8x2eVcahd8nu4U4cbK5kk00" target="_blank">Acheter via Stripe (Apple Pay, Carte...)</a>
+      <div class="note">
+        ⚠️ Paiement Stripe : le fichier PDF vous sera envoyé manuellement par e-mail sous 24h maximum.
       </div>
-    </footer>
+    </div>
   </div>
+
+  <!-- DIAKU -->
+  <div class="container">
+    <div class="book-header">
+      <img src="https://raw.githubusercontent.com/HAKEEM243/Hakvision/d88663b70f35feb12c0049ffa57a706a2258c168/638050CD-C46D-4EAD-8938-1F9EB2EF34AA.png" alt="Couverture de DIAKU – L'Antidote Vivant" />
+      <h1>DIAKU – L’ANTIDOTE VIVANT</h1>
+      <p><em>En préparation</em></p>
+    </div>
+    <div class="description">
+      <p><strong>📘 Le Congolais qui unit les deux Corées</strong></p>
+      <p>Et si la paix entre la Corée du Nord et la Corée du Sud venait… d’un jeune homme du Congo ?</p>
+      <p>Dans un monde traversé par les pandémies et les trahisons géopolitiques, un antidote inconnu émerge d’Afrique centrale. Son porteur, un Congolais discret, fuit les laboratoires occidentaux et traverse l’Asie jusqu’à Pyongyang…</p>
+      <p><strong>Diaku</strong> est une épopée afrofuturiste où l’Afrique réconcilie l’Orient, guérit l’Occident, et rappelle au monde que l’espoir peut venir d’en bas.</p>
+    </div>
+  </div>
+
+  <!-- KAMERUN 1945 -->
+  <div class="container">
+    <div class="book-header">
+      <img src="https://raw.githubusercontent.com/HAKEEM243/Hakvision/9fd7ae1880802271105f09265bb8e5496c55f5a5/C9C7BEAD-1102-47B3-A444-D54AE4266330.png" alt="Couverture de Kamerun 1945 – Le Projet Oblivion" />
+      <h1>KAMERUN 1945 – Le Projet Oblivion</h1>
+      <p><em>En préparation</em></p>
+    </div>
+    <div class="description">
+      <p><strong>🕯 Une uchronie brutale et inédite</strong></p>
+      <p>Et si Hitler avait décidé de faire de l’Afrique son terrain d’extermination ?</p>
+      <p>Des expérimentations nécromantiques au Cameroun aux camps d’effacement spirituel au Congo, l’Allemagne nazie bâtit un empire transhumain. Mais une mémoire ancestrale se réveille…</p>
+      <p><em>Kamerun 1945</em> est une relecture glaçante de l’histoire, où l’Afrique refuse de disparaître.</p>
+    </div>
+  </div>
+
+  <!-- DOUBLE IDENTITÉ -->
+  <div class="container">
+    <div class="book-header">
+      <img src="https://raw.githubusercontent.com/HAKEEM243/Hakvision/ad82f32f59f904d666788533f16ac9aac3ecf3b7/BD0F90BE-92E0-492D-89B7-BFC36C64B1DD.png" alt="Couverture de Double Identité – La Révolution Ubuntu" />
+      <h1>DOUBLE IDENTITÉ – LA RÉVOLUTION UBUNTU</h1>
+      <p><em>En préparation</em></p>
+    </div>
+    <div class="description">
+      <p><strong>🧠 Deux sœurs. Deux visages. Une guerre contre l'Europe raciste.</strong></p>
+      <p>Luxembourg, 2045. Deux jumelles congolaises créent une IA nommée MANDELA et une invention appelée Ubuntu, capable de rendre noir ou blanc n’importe quel visage. Une arme contre l’apartheid algorithmique…</p>
+      <p><em>Double Identité</em> est une insurrection littéraire, un cri digital venu d’Afrique.</p>
+    </div>
+  </div>
+
+  <!-- ZIKILA -->
+  <div class="container">
+    <div class="book-header">
+      <img src="https://raw.githubusercontent.com/HAKEEM243/Hakvision/4fe37ac07541d320a06481eaad1cc7a46f7a6a21/IMG_6629.jpeg" alt="Couverture de ZIKILA – Les 17 Vies d’Hakeem" />
+      <h1>ZIKILA – LES 17 VIES D’HAKEEM</h1>
+      <p><em>En préparation</em></p>
+    </div>
+    <div class="description">
+      <p><strong>🌀 Un roman sur la mémoire interdite, la résurrection et la destinée</strong></p>
+      <p>Dans un monde sans enfer ni paradis, chaque être humain vit 17 vies mais n’en garde aucun souvenir. Jusqu’au jour où Hakeem, un jeune garçon afrodescendant, se réveille avec la mémoire de toutes ses existences passées…</p>
+      <p>Entre sociétés secrètes, cosmogonie africaine et guerre des âmes, <strong>ZIKILA</strong> est un récit mystique, politique et poétique sur la réincarnation, la révolte et la quête de justice spirituelle.</p>
+    </div>
+  </div>
+
+  <div class="back-link">
+    <p><a href="index.html">← Retour à l’accueil</a></p>
+  </div>
+
+  <footer>
+    © 2025 Merveil Hakeem Dianzenza – Tous droits réservés
+  </footer>
+
 </body>
 </html>
