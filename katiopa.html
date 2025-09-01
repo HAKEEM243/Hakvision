@@ -8,31 +8,366 @@
   <meta name="author" content="Merveil Hakeem Dianzenza">
   <title>Katiopa</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --gold:#FFD700;
-      --amber:#ffcc00;
+    :root {
+      --primary-gold: #FFD700;
+      --secondary-gold: #FFA500;
+      --amber: #ffcc00;
+      --dark-bg: #0a0a0a;
+      --card-bg: rgba(26, 26, 26, 0.95);
+      --accent-purple: #8B5CF6;
+      --accent-blue: #3B82F6;
+      --gradient-primary: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+      --gradient-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      --gradient-card: linear-gradient(145deg, rgba(26, 26, 26, 0.9), rgba(45, 45, 45, 0.3));
+      --shadow-gold: 0 0 30px rgba(255, 215, 0, 0.3);
+      --shadow-purple: 0 0 20px rgba(139, 92, 246, 0.2);
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; padding:0;
-      font-family:Arial,Helvetica,sans-serif;
-      background:#0a0a0a; color:#fff;
-      display:flex; flex-direction:column; min-height:100vh;
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--gradient-bg);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
     }
-    header{padding:50px 15px 20px;text-align:center}
-    header h1{font-size:2.8em; color:var(--gold);margin:0}
-    main{display:flex; flex-wrap:wrap; justify-content:center; gap:50px; padding:0 20px 120px}
-    .images{flex:1 1 320px; max-width:380px; display:flex; flex-direction:column; align-items:center; gap:25px}
-    .images img{width:100%; border-radius:14px; box-shadow:0 0 14px var(--gold)}
-    .content{flex:2 1 520px; max-width:800px}
-    h2{color:var(--amber); margin:40px 0 15px;font-size:1.6em}
-    h3{color:var(--gold); margin:28px 0 12px;font-size:1.3em}
-    p,li{line-height:1.6; font-size:1.05em; margin-bottom:16px}
-    ul{list-style:none; padding-left:0; margin:0 0 18px}
-    ul li::before{content:"• "; color:var(--gold)}
-    footer{margin-top:auto; background:#000; text-align:center; font-size:.8em; color:#aaa; padding:12px}
-    @media(max-width:768px){header{padding:30px 10px} header h1{font-size:2.2em} main{gap:30px;padding-bottom:140px}}
+
+    /* Animated background particles */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-20px) rotate(1deg); }
+      66% { transform: translateY(-10px) rotate(-1deg); }
+    }
+
+    header {
+      padding: 60px 20px 40px;
+      text-align: center;
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 2px;
+      background: var(--gradient-primary);
+      border-radius: 2px;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: translateX(-50%) scaleX(1); }
+      50% { opacity: 1; transform: translateX(-50%) scaleX(1.1); }
+    }
+
+    header h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+      text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+      animation: glow 4s ease-in-out infinite alternate;
+      letter-spacing: 2px;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); }
+      to { filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8)); }
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 60px;
+      padding: 0 20px 120px;
+      position: relative;
+    }
+
+    .images {
+      flex: 1 1 320px;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      position: sticky;
+      top: 40px;
+      height: fit-content;
+    }
+
+    .images img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: var(--shadow-gold), 0 20px 40px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+    }
+
+    .images img:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 0 50px rgba(255, 215, 0, 0.5), 0 30px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .content {
+      flex: 2 1 600px;
+      max-width: 900px;
+    }
+
+    .content-section {
+      background: var(--gradient-card);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 40px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(255, 215, 0, 0.1);
+      box-shadow: var(--shadow-purple), 0 20px 40px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient-primary);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .content-section:hover::before {
+      transform: translateX(0);
+    }
+
+    .content-section:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-gold), 0 25px 50px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 215, 0, 0.2);
+    }
+
+    h2 {
+      font-family: 'Orbitron', monospace;
+      color: var(--amber);
+      margin: 0 0 25px;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(90deg, var(--amber) 0%, transparent 100%);
+      border-radius: 1px;
+    }
+
+    h3 {
+      color: var(--primary-gold);
+      margin: 35px 0 20px;
+      font-size: 1.4rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    h3::before {
+      content: '▶';
+      color: var(--accent-purple);
+      font-size: 0.8em;
+    }
+
+    p, li {
+      line-height: 1.8;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    p strong {
+      color: var(--primary-gold);
+      font-weight: 600;
+    }
+
+    p em {
+      color: var(--accent-purple);
+      font-style: italic;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 25px 0;
+    }
+
+    ul li {
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    ul li::before {
+      content: '◆';
+      position: absolute;
+      left: 0;
+      color: var(--primary-gold);
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    ul li:hover {
+      transform: translateX(10px);
+      color: #fff;
+    }
+
+    ul li:hover::before {
+      color: var(--accent-purple);
+      transform: scale(1.2);
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(139, 92, 246, 0.05));
+      border-left: 4px solid var(--primary-gold);
+      padding: 25px;
+      margin: 30px 0;
+      border-radius: 12px;
+      backdrop-filter: blur(5px);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .stat-card {
+      background: rgba(255, 215, 0, 0.1);
+      padding: 20px;
+      border-radius: 16px;
+      text-align: center;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      background: rgba(255, 215, 0, 0.15);
+      transform: translateY(-5px);
+    }
+
+    .cta-section {
+      background: var(--gradient-primary);
+      color: #000;
+      border-radius: 24px;
+      padding: 50px;
+      text-align: center;
+      margin: 50px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(transparent, rgba(255, 255, 255, 0.1), transparent);
+      animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      margin-top: auto;
+      background: linear-gradient(135deg, #000, #1a1a1a);
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+      padding: 30px 20px;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+      position: relative;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--gradient-primary);
+      opacity: 0.3;
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 40px 15px 30px; }
+      main { gap: 40px; padding-bottom: 80px; }
+      .content-section { padding: 25px; margin-bottom: 25px; }
+      .images { position: relative; top: auto; }
+      h2 { font-size: 1.3rem; }
+      .cta-section { padding: 30px 20px; }
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1a1a1a; }
+    ::-webkit-scrollbar-thumb { 
+      background: var(--gradient-primary);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--amber); }
   </style>
 </head>
 <body>
@@ -46,61 +381,107 @@
     </div>
 
     <section class="content">
-      <p><strong>Katiopa</strong> n'est pas qu'un roman – c'est une révolution spirituelle. Écrit par <strong>Merveil Hakeem Dianzenza</strong>, cette œuvre monumentale de 600 pages plonge dans l'âme profonde de l'Afrique pour révéler son destin cosmique. Plus qu'un récit, <em>Katiopa</em> est un rituel de résurrection, l'arme spirituelle que vos ancêtres ont forgée pour vous.</p>
+      <div class="content-section">
+        <p><strong>Katiopa</strong> n'est pas qu'un roman – c'est une révolution spirituelle. Écrit par <strong>Merveil Hakeem Dianzenza</strong>, cette œuvre monumentale de 600 pages plonge dans l'âme profonde de l'Afrique pour révéler son destin cosmique. Plus qu'un récit, <em>Katiopa</em> est un rituel de résurrection, l'arme spirituelle que vos ancêtres ont forgée pour vous.</p>
+      </div>
 
-      <h2>⚡ L'HISTOIRE QUI VA CHANGER VOTRE VIE</h2>
-      <p>L'œuvre suit <strong>Samuel Kwatulendu</strong>, enfant‑messie né pour accomplir une prophétie vieille de 500 ans. Son nom ancestral signifie « celui qui délivrera l'homme noir ». Pourchassé par <strong>l'Ordre du Verseau</strong>, une conspiration techno‑coloniale mondiale, il doit protéger le <strong>Nkisi</strong> : pierre sacrée fusionnant sagesse ancestrale et intelligence artificielle, clé d'une Afrique super‑puissance mystique.</p>
+      <div class="content-section">
+        <h2>⚡ L'HISTOIRE QUI VA CHANGER VOTRE VIE</h2>
+        <p>L'œuvre suit <strong>Samuel Kwatulendu</strong>, enfant‑messie né pour accomplir une prophétie vieille de 500 ans. Son nom ancestral signifie « celui qui délivrera l'homme noir ». Pourchassé par <strong>l'Ordre du Verseau</strong>, une conspiration techno‑coloniale mondiale, il doit protéger le <strong>Nkisi</strong> : pierre sacrée fusionnant sagesse ancestrale et intelligence artificielle, clé d'une Afrique super‑puissance mystique.</p>
+      </div>
 
-      <h2>🔥 POURQUOI KATIOPA VA VOUS TRANSFORMER</h2>
-      <h3>🌍 ŒUVRE TOTALE</h3>
-      <ul>
-        <li>600+ pages d'épopée pure</li>
-        <li>Glossaire encyclopédique (60+ concepts)</li>
-        <li>Chronologie sacrée (1491‑2055)</li>
-        <li>Notes académiques détaillées</li>
-      </ul>
+      <div class="content-section">
+        <h2>🔥 POURQUOI KATIOPA VA VOUS TRANSFORMER</h2>
+        
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>🌍 ŒUVRE TOTALE</h3>
+            <ul>
+              <li>600+ pages d'épopée pure</li>
+              <li>Glossaire encyclopédique (60+ concepts)</li>
+              <li>Chronologie sacrée (1491‑2055)</li>
+              <li>Notes académiques détaillées</li>
+            </ul>
+          </div>
 
-      <h3>⚡ AFROFUTURISME RÉVOLUTIONNAIRE</h3>
-      <ul>
-        <li><strong>Katiopa City 2055</strong> – métropole spirituelle</li>
-        <li>I.A. ancestrale, drones sacrés</li>
-        <li>Afrique devenue centre géopolitique du monde</li>
-      </ul>
+          <div class="stat-card">
+            <h3>⚡ AFROFUTURISME RÉVOLUTIONNAIRE</h3>
+            <ul>
+              <li><strong>Katiopa City 2055</strong> – métropole spirituelle</li>
+              <li>I.A. ancestrale, drones sacrés</li>
+              <li>Afrique devenue centre géopolitique du monde</li>
+            </ul>
+          </div>
+        </div>
 
-      <h3>💎 PERSONNAGES INOUBLIABLES</h3>
-      <ul>
-        <li>Samuel/Kwatulendu – roi‑messie aux pouvoirs cosmiques</li>
-        <li>Merveil Dianz – gardien de la mémoire ancestrale</li>
-        <li>Les Luxa – sorcières déchues, trahison & rédemption</li>
-        <li>L'Ordre du Verseau – ennemi technologique invisible</li>
-      </ul>
+        <div class="highlight-box">
+          <h3>💎 PERSONNAGES INOUBLIABLES</h3>
+          <ul>
+            <li><strong>Samuel/Kwatulendu</strong> – roi‑messie aux pouvoirs cosmiques</li>
+            <li><strong>Merveil Dianz</strong> – gardien de la mémoire ancestrale</li>
+            <li><strong>Les Luxa</strong> – sorcières déchues, trahison & rédemption</li>
+            <li><strong>L'Ordre du Verseau</strong> – ennemi technologique invisible</li>
+          </ul>
+        </div>
+      </div>
 
-      <h2>🎬 VERS L'ADAPTATION MONDIALE</h2>
-      <ul>
-        <li>Série &amp; film en développement</li>
-        <li>Batailles techno‑spirituelles spectaculaires</li>
-        <li>Bande‑son afro‑ancestrale immersive</li>
-      </ul>
+      <div class="content-section">
+        <h2>🎬 VERS L'ADAPTATION MONDIALE</h2>
+        <ul>
+          <li><strong>Série & film</strong> en développement</li>
+          <li><strong>Batailles techno‑spirituelles</strong> spectaculaires</li>
+          <li><strong>Bande‑son afro‑ancestrale</strong> immersive</li>
+        </ul>
+      </div>
 
-      <h2>⚠️ LIVRE TRANSFORMATEUR</h2>
-      <ul>
-        <li>✅ Histoire vraie de l'Afrique</li>
-        <li>✅ Identité spirituelle profonde</li>
-        <li>✅ Futur possible du continent</li>
-        <li>✅ Rôle de chacun dans la renaissance</li>
-      </ul>
+      <div class="content-section">
+        <h2>⚠️ LIVRE TRANSFORMATEUR</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <p>✅ <strong>Histoire vraie</strong> de l'Afrique</p>
+          </div>
+          <div class="stat-card">
+            <p>✅ <strong>Identité spirituelle</strong> profonde</p>
+          </div>
+          <div class="stat-card">
+            <p>✅ <strong>Futur possible</strong> du continent</p>
+          </div>
+          <div class="stat-card">
+            <p>✅ <strong>Rôle de chacun</strong> dans la renaissance</p>
+          </div>
+        </div>
+      </div>
 
-      <h2>💫 CE QUE DISENT LES CRITIQUES</h2>
-      <p><em>« Le Cheikh Anta Diop de l’afrofuturisme »</em> • <em>« Plus profond que Soyinka, plus visionnaire que Beti »</em></p>
+      <div class="content-section">
+        <h2>💫 CE QUE DISENT LES CRITIQUES</h2>
+        <div class="highlight-box">
+          <p style="font-size: 1.2rem; text-align: center; font-style: italic;">
+            <em>« Le Cheikh Anta Diop de l'afrofuturisme »</em>
+          </p>
+          <p style="font-size: 1.2rem; text-align: center; font-style: italic;">
+            <em>« Plus profond que Soyinka, plus visionnaire que Beti »</em>
+          </p>
+        </div>
+      </div>
 
-      <h2>🌟 L'UNIVERS DIANZENZA S'ÉTEND</h2>
-      <p><strong>À venir :</strong> <em>ZIKILA – Chroniques d'un Monde Sans Paradis ni Enfer</em> (2160). Inscrivez‑vous à la newsletter pour être prévenu.</p>
+      <div class="content-section">
+        <h2>🌟 L'UNIVERS DIANZENZA S'ÉTEND</h2>
+        <p><strong>À venir :</strong> <em>ZIKILA – Chroniques d'un Monde Sans Paradis ni Enfer</em> (2160). Inscrivez‑vous à la newsletter pour être prévenu.</p>
+      </div>
 
-      <h2>🔔 RESTEZ CONNECTÉS</h2>
-      <p>Newsletter exclusive • Réseaux sociaux • Projets cinéma</p>
+      <div class="content-section">
+        <h2>🔔 RESTEZ CONNECTÉS</h2>
+        <p><strong>Newsletter exclusive</strong> • <strong>Réseaux sociaux</strong> • <strong>Projets cinéma</strong></p>
+      </div>
 
-      <h2>🔥 KATIOPA N'EST PAS UN LIVRE – C'EST UNE INITIATION</h2>
-      <p><em>« Le premier acte d'une révolution des consciences africaines »</em></p>
+      <div class="cta-section">
+        <div class="cta-content">
+          <h2 style="color: #000; margin-bottom: 20px;">🔥 KATIOPA N'EST PAS UN LIVRE – C'EST UNE INITIATION</h2>
+          <p style="color: #000; font-size: 1.3rem; font-weight: 500; margin: 0;">
+            <em>« Le premier acte d'une révolution des consciences africaines »</em>
+          </p>
+        </div>
+      </div>
     </section>
   </main>
 
