@@ -871,15 +871,15 @@ animation: pulse 3s infinite ease-in-out;
         <div class="stat-label">Pages</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number" style="color: #006633;">2023-2024</div>
+        <div class="stat-number" style="color: #006633;" data-no-animation="true">2023-2024</div>
         <div class="stat-label">Période</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number" style="color: #006633;">Analyse</div>
+        <div class="stat-number" style="color: #006633;" data-no-animation="true">Analyse</div>
         <div class="stat-label">Politique</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number" style="color: #006633;">Gratuit</div>
+        <div class="stat-number" style="color: #006633;" data-no-animation="true">Gratuit</div>
         <div class="stat-label">PDF</div>
       </div>
     </div>
@@ -1410,7 +1410,8 @@ animation: pulse 3s infinite ease-in-out;
           if (entry.isIntersecting) {
             const element = entry.target;
             const text = element.textContent;
-            if (!isNaN(parseInt(text))) {
+            // Ne pas animer si l'attribut data-no-animation est présent
+            if (!element.hasAttribute('data-no-animation') && !isNaN(parseInt(text))) {
               animateCounter(element, parseInt(text));
             }
           }
