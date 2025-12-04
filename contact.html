@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contactez-moi</title>
+  
+  <!-- Style Premium + Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style-premium.css">
+  
   <style>
     body {
       background-color: #0d0d0d;
@@ -80,6 +85,52 @@
   </style>
 </head>
 <body>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Breaking News Ticker -->
+  <div class="breaking-news">
+    <div class="breaking-news-content">
+      <span class="breaking-label">🔴 ACTUALITÉS</span>
+      <span class="breaking-text">KATIØPA disponible • Papa Masambukidi Roi Divin • Un Écrivain à Kinshasa • L'ŒIL sur Amazon • 8 livres publiés</span>
+    </div>
+  </div>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <span class="live-badge">● LIVE</span>
+        <span>📅 Mercredi 4 décembre 2025</span>
+      </div>
+      <div class="social-links-top">
+        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="press-header">
+    <div class="press-header-content">
+      <div class="press-logo">
+        <h1>📧 HAKVISION</h1>
+      </div>
+      <nav class="press-nav">
+        <a href="index.html">Accueil</a>
+        <a href="livres.html">Livres</a>
+        <a href="bio.html">Biographie</a>
+        <a href="katiopa.html">Katiopa</a>
+        <a href="press.html">Presse</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+    </div>
+  </header>
+
   <h1>Contactez-moi</h1>
   <form action="https://formspree.io/f/myzebnql" method="POST" onsubmit="setTimeout(function(){ window.location.href='merci.html'; }, 100); return true;">
     <label for="nom">Nom :</label>
@@ -98,5 +149,8 @@
     <p>Email : <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a></p>
     <p>Instagram : <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a></p>
   </div>
+
+  <!-- JavaScript Premium -->
+  <script src="hakvision-premium.js"></script>
 </body>
 </html>
