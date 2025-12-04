@@ -674,25 +674,27 @@
 </head>
 <body>
 
-  <!-- Header Presse -->
-  <header class="press-header">
-    <div class="press-header-content">
-      <div class="press-logo">
-        <h1>Hakvision Press</h1>
-      </div>
-      <nav class="press-nav">
-        <a href="index.html">Accueil</a>
-        <a href="livres.html">Livres</a>
-        <a href="bio.html">Biographie</a>
-        <a href="contact.html">Contact</a>
-      </nav>
+  <!-- Header Presse avec bannière cliquable améliorée -->
+  <header class="press-header" style="padding: 0; background: transparent; border: none; box-shadow: none;">
+    <div style="position: relative; width: 100%; max-width: 1400px; margin: 0 auto;">
+      <img src="hakvision_press_banner_v2.jpg" alt="Hakvision Press - Banner avec Okapi, Drapeau Congolais et Couronne Royale" usemap="#banner-map" style="width: 100%; height: auto; display: block;">
+      
+      <!-- Image map pour rendre les zones cliquables (Navigation professionnelle) -->
+      <map name="banner-map">
+        <!-- ACCUEIL - Zone cliquable en bas à gauche -->
+        <area shape="rect" coords="200,400,450,480" href="index.html" alt="Accueil" title="Accueil - Hakvision">
+        
+        <!-- LIVRES - Zone cliquable en bas au centre-gauche -->
+        <area shape="rect" coords="600,400,850,480" href="livres.html" alt="Livres" title="Mes Livres - Collection Complète">
+        
+        <!-- BIOGRAPHIE - Zone cliquable en bas au centre-droit -->
+        <area shape="rect" coords="200,520,450,600" href="bio.html" alt="Biographie" title="Biographie - Merveil Hakeem Dianzenza">
+        
+        <!-- CONTACT - Zone cliquable en bas à droite -->
+        <area shape="rect" coords="600,520,850,600" href="contact.html" alt="Contact" title="Contact Presse">
+      </map>
     </div>
   </header>
-
-  <!-- Bannière Hakvision Press -->
-  <div style="width: 100%; max-width: 1400px; margin: 0 auto; overflow: hidden;">
-    <img src="hakvision_press_banner.jpg" alt="Hakvision Press - Espace presse officiel Merveil Hakeem Dianzenza" style="width: 100%; height: auto; display: block; border-radius: 0 0 12px 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
-  </div>
 
   <!-- Hero Article - À la Une -->
   <section class="hero-section fade-in">
