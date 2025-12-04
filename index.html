@@ -96,6 +96,10 @@
   <!-- Balise de vérification Google Search Console -->
   <meta name="google-site-verification" content="IZbSWYA8B5I-Yb4ACcQ8ig88aN-e3FgUVseNa8L014A" />
 
+  <!-- Style Premium + Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style-premium.css">
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B6XM4DKJ4D"></script>
   <script>
@@ -117,20 +121,26 @@
       }
     }
 
-    body {
+    body.home-page {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: url('FBF33DCF-F94A-4E5A-81C2-8830A8F73947.png') no-repeat center center fixed;
-      background-size: cover;
+      background: url('FBF33DCF-F94A-4E5A-81C2-8830A8F73947.png') no-repeat center center fixed !important;
+      background-size: cover !important;
       color: white;
+      display: block;
+      text-align: center;
+      position: relative;
+      min-height: 100vh;
+    }
+    
+    .home-hero {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      text-align: center;
-      position: relative;
+      min-height: calc(100vh - 200px);
+      padding: 40px 20px;
     }
 
     .overlay {
@@ -218,10 +228,39 @@
     }
   </style>
 </head>
-<body>
+<body class="home-page">
+  
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Breaking News Ticker -->
+  <div class="breaking-news">
+    <div class="breaking-news-content">
+      <span class="breaking-label">🔴 ACTUALITÉS</span>
+      <span class="breaking-text">KATIØPA disponible • Papa Masambukidi Roi Divin • Un Écrivain à Kinshasa • L'ŒIL sur Amazon • 8 livres publiés</span>
+    </div>
+  </div>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <span class="live-badge">● LIVE</span>
+        <span>📅 Mercredi 4 décembre 2025</span>
+      </div>
+      <div class="social-links-top">
+        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
   <div class="overlay"></div>
 
-  <div class="content">
+  <div class="content home-hero">
     <h1>Hakvision</h1>
     <p>Les projets innovants de demain</p>
 
@@ -241,5 +280,8 @@
       </div>
     </footer>
   </div>
+
+  <!-- JavaScript Premium -->
+  <script src="hakvision-premium.js"></script>
 </body>
 </html>
