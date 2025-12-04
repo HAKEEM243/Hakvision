@@ -94,6 +94,9 @@
   
   <title>Espace Presse — Merveil Hakeem Dianzenza | Hakvision</title>
   
+  <!-- Font Awesome pour icônes sociales -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <style>
     * {
       margin: 0;
@@ -103,9 +106,102 @@
 
     body {
       font-family: 'Georgia', 'Times New Roman', serif;
-      background: #f8f8f8;
+      background: #f5f5f5;
       color: #1a1a1a;
       line-height: 1.8;
+    }
+
+    /* Breaking News Ticker (style BFM TV) */
+    .breaking-news {
+      background: #e74c3c;
+      color: white;
+      padding: 12px 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .breaking-news-content {
+      display: flex;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .breaking-label {
+      background: #c0392b;
+      padding: 8px 20px;
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 0.9em;
+      letter-spacing: 1px;
+      margin-right: 20px;
+      flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+
+    .breaking-text {
+      font-weight: 600;
+      font-size: 1em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Top Info Bar (style Le Monde) */
+    .top-bar {
+      background: #1a1a1a;
+      color: #999;
+      padding: 10px 0;
+      font-size: 0.85em;
+      border-bottom: 1px solid #333;
+    }
+
+    .top-bar-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .live-badge {
+      background: #e74c3c;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 3px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8em;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50%, 100% { opacity: 1; }
+      25%, 75% { opacity: 0.5; }
+    }
+
+    .social-links-top {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-links-top a {
+      color: #999;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+    }
+
+    .social-links-top a:hover {
+      color: #facc15;
     }
 
     /* Header moderne style journal */
@@ -169,15 +265,29 @@
       color: #1a1a1a;
     }
 
-    /* Hero Section - À la Une */
-    .hero-section {
+    /* Container principal avec sidebar (style Le Monde) */
+    .main-container {
       max-width: 1400px;
       margin: 40px auto;
       padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 40px;
+    }
+
+    .main-content {
+      min-width: 0;
+    }
+
+    /* Hero Section - À la Une */
+    .hero-section {
+      margin-bottom: 40px;
     }
 
     .hero-label {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: #e74c3c;
       color: white;
       padding: 8px 20px;
@@ -187,6 +297,183 @@
       letter-spacing: 1px;
       margin-bottom: 20px;
       box-shadow: 0 2px 10px rgba(231, 76, 60, 0.3);
+      animation: slideInLeft 0.6s ease-out;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Boutons de partage social */
+    .social-share {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9em;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .share-btn.facebook {
+      background: #1877f2;
+      color: white;
+    }
+
+    .share-btn.twitter {
+      background: #1da1f2;
+      color: white;
+    }
+
+    .share-btn.linkedin {
+      background: #0077b5;
+      color: white;
+    }
+
+    .share-btn.whatsapp {
+      background: #25d366;
+      color: white;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Sidebar (style Le Monde/Le Parisien) */
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+
+    .sidebar-widget {
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    }
+
+    .sidebar-widget h3 {
+      font-size: 1.4em;
+      font-weight: 900;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #facc15;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    .sidebar-article {
+      padding: 15px 0;
+      border-bottom: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-article:last-child {
+      border-bottom: none;
+    }
+
+    .sidebar-article:hover {
+      background: #fafafa;
+      padding-left: 10px;
+    }
+
+    .sidebar-article h4 {
+      font-size: 1.05em;
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .sidebar-article p {
+      font-size: 0.85em;
+      color: #666;
+    }
+
+    /* Newsletter Widget (style L'Équipe) */
+    .newsletter-widget {
+      background: linear-gradient(135deg, #facc15 0%, #f39c12 100%);
+      color: #1a1a1a;
+    }
+
+    .newsletter-widget h3 {
+      color: #1a1a1a;
+      border-bottom-color: #1a1a1a;
+    }
+
+    .newsletter-form input {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #1a1a1a;
+      border-radius: 5px;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+
+    .newsletter-form button {
+      width: 100%;
+      padding: 12px;
+      background: #1a1a1a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: 700;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-form button:hover {
+      background: #2d2d2d;
+      transform: translateY(-2px);
+    }
+
+    /* Stats Widget */
+    .stats-widget {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 15px;
+      background: #fafafa;
+      border-radius: 5px;
+    }
+
+    .stat-number {
+      font-size: 2em;
+      font-weight: 900;
+      color: #facc15;
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.85em;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .hero-article {
@@ -608,8 +895,72 @@
       color: #999;
     }
 
+    /* Badge "Nouveau" pour articles récents */
+    .badge-new {
+      display: inline-block;
+      background: #e74c3c;
+      color: white;
+      padding: 4px 10px;
+      border-radius: 3px;
+      font-size: 0.75em;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-left: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    /* Effet parallax sur images hero */
+    .parallax-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .parallax-wrapper img {
+      transition: transform 0.3s ease-out;
+    }
+
+    .parallax-wrapper:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Loading skeleton pour contenu */
+    .skeleton {
+      animation: skeleton-loading 1s linear infinite alternate;
+    }
+
+    @keyframes skeleton-loading {
+      0% {
+        background-color: hsl(200, 20%, 80%);
+      }
+      100% {
+        background-color: hsl(200, 20%, 95%);
+      }
+    }
+
+    /* Scroll Progress Bar (style médias) */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: #facc15;
+      z-index: 9999;
+      transition: width 0.1s ease;
+    }
+
     /* Responsive */
     @media (max-width: 1024px) {
+      .main-container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
       .hero-article {
         grid-template-columns: 1fr;
       }
@@ -628,6 +979,16 @@
     }
 
     @media (max-width: 768px) {
+      .breaking-news-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+
       .press-logo h1 {
         font-size: 2em;
       }
@@ -657,6 +1018,15 @@
         width: 100%;
         height: 300px;
       }
+
+      .social-share {
+        flex-direction: column;
+      }
+
+      .share-btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
     /* Animations */
@@ -677,6 +1047,34 @@
   </style>
 </head>
 <body>
+
+  <!-- Progress Bar (scroll indicator) -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Breaking News Ticker (style BFM TV) -->
+  <div class="breaking-news">
+    <div class="breaking-news-content">
+      <span class="breaking-label">🔴 BREAKING NEWS</span>
+      <span class="breaking-text">Papa Masambukidi intronisé Roi Divin du Bassin du Congo • Merveil Hakeem Dianzenza publie "Un Écrivain à Kinshasa" • Nouveau livre "L'ŒIL" disponible sur Amazon</span>
+    </div>
+  </div>
+
+  <!-- Top Bar (style Le Monde) -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <span class="live-badge">● LIVE</span>
+        <span>📅 Mercredi 4 décembre 2025</span>
+      </div>
+      <div class="social-links-top">
+        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
 
   <!-- Header Presse avec bannière cliquable CSS -->
   <header class="press-header" style="padding: 0; background: transparent; border: none; box-shadow: none;">
@@ -730,9 +1128,15 @@
     </div>
   </header>
 
-  <!-- Hero Article - À la Une -->
-  <section class="hero-section fade-in">
-    <span class="hero-label">🔥 À LA UNE</span>
+  <!-- Container principal avec sidebar -->
+  <div class="main-container">
+    
+    <!-- Contenu principal -->
+    <div class="main-content">
+      
+      <!-- Hero Article - À la Une -->
+      <section class="hero-section fade-in">
+        <span class="hero-label">🔥 À LA UNE<span class="badge-new">NOUVEAU</span></span>
     <article class="hero-article">
       <div class="hero-image">
         <img src="masambukidi_ceremonie_1.jpg" alt="Cérémonie d'intronisation de Papa Masambukidi - Roi Divin du Bassin du Congo">
@@ -749,6 +1153,22 @@
           Une cérémonie spirituelle et traditionnelle d'une portée historique majeure a marqué l'intronisation de Sa Majesté Samuel Masambukidi II comme Roi Divin du Bassin du Congo. L'événement, qui a réuni autorités coutumières, rois africains et dignitaires spirituels, symbolise la renaissance des valeurs ancestrales et l'unité culturelle du Congo.
         </p>
         <a href="#ceremonie-masambukidi" class="read-more">Lire l'article complet →</a>
+        
+        <!-- Boutons de partage social -->
+        <div class="social-share">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://hakvision243.blog/press.html" target="_blank" class="share-btn facebook">
+            <i class="fab fa-facebook-f"></i> Partager
+          </a>
+          <a href="https://twitter.com/intent/tweet?url=https://hakvision243.blog/press.html&text=Papa%20Masambukidi%20intronis%C3%A9%20Roi%20Divin%20du%20Bassin%20du%20Congo" target="_blank" class="share-btn twitter">
+            <i class="fab fa-twitter"></i> Twitter
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://hakvision243.blog/press.html" target="_blank" class="share-btn linkedin">
+            <i class="fab fa-linkedin-in"></i> LinkedIn
+          </a>
+          <a href="https://api.whatsapp.com/send?text=Papa%20Masambukidi%20Roi%20Divin%20-%20https://hakvision243.blog/press.html" target="_blank" class="share-btn whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
       </div>
     </article>
   </section>
@@ -1103,6 +1523,97 @@
     </div>
   </section>
 
+    </div>
+    <!-- Fin du contenu principal -->
+
+    <!-- Sidebar (style Le Monde / Le Parisien) -->
+    <aside class="sidebar">
+      
+      <!-- Widget Newsletter (style L'Équipe) -->
+      <div class="sidebar-widget newsletter-widget">
+        <h3>📧 Newsletter</h3>
+        <p style="margin-bottom: 15px; font-weight: 600;">Recevez les dernières actualités de Merveil Hakeem Dianzenza</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Merci pour votre inscription ! Vous recevrez bientôt nos actualités.');">
+          <input type="email" placeholder="Votre email" required>
+          <button type="submit">S'abonner</button>
+        </form>
+      </div>
+
+      <!-- Widget Statistiques -->
+      <div class="sidebar-widget">
+        <h3>📊 En Chiffres</h3>
+        <div class="stats-widget">
+          <div class="stat-item">
+            <span class="stat-number">8</span>
+            <span class="stat-label">Livres</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">634</span>
+            <span class="stat-label">Pages KATIOPA</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">5</span>
+            <span class="stat-label">Actualités</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">2025</span>
+            <span class="stat-label">Année</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Widget Dernières Actualités -->
+      <div class="sidebar-widget">
+        <h3>🔥 À Ne Pas Manquer</h3>
+        
+        <div class="sidebar-article">
+          <h4>📚 L'ŒIL - Philosophie Africaine</h4>
+          <p>🕐 12 nov. 2025 • Kulala Pasco Ntumba</p>
+        </div>
+
+        <div class="sidebar-article">
+          <h4>✈️ Un Écrivain à Kinshasa</h4>
+          <p>🕐 Nov. 2025 • Retour aux sources</p>
+        </div>
+
+        <div class="sidebar-article">
+          <h4>👑 Roi Divin du Congo</h4>
+          <p>🕐 30 oct. 2025 • Cérémonie historique</p>
+        </div>
+
+        <div class="sidebar-article">
+          <h4>📖 KATIØPA - Afrofuturisme</h4>
+          <p>🕐 Août 2025 • Roman 634 pages</p>
+        </div>
+
+        <div class="sidebar-article">
+          <h4>🎙️ Interview Jukebox Mind</h4>
+          <p>🕐 Avril 2025 • Vision littéraire</p>
+        </div>
+      </div>
+
+      <!-- Widget Réseaux Sociaux -->
+      <div class="sidebar-widget">
+        <h3>🌐 Suivez-nous</h3>
+        <div class="social-share" style="flex-direction: column; gap: 10px;">
+          <a href="https://www.amazon.fr/KATIOPA-PROPH%C3%89TIE-CONTRE-NOUVEL-MONDIAL/dp/B0FK2YHPP7" target="_blank" class="share-btn" style="background: #FF9900; color: white; justify-content: center;">
+            <i class="fab fa-amazon"></i> Amazon
+          </a>
+          <a href="https://payhip.com/b/MuQHP" target="_blank" class="share-btn" style="background: #5c7cfa; color: white; justify-content: center;">
+            <i class="fas fa-book"></i> Payhip
+          </a>
+          <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="share-btn whatsapp" style="justify-content: center;">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </aside>
+    <!-- Fin sidebar -->
+
+  </div>
+  <!-- Fin main-container -->
+
   <!-- Footer -->
   <footer>
     <div class="footer-content">
@@ -1145,6 +1656,14 @@
       });
     });
 
+    // Progress Bar (scroll indicator)
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
     // Fade in animation on scroll
     const observerOptions = {
       threshold: 0.1,
@@ -1159,8 +1678,54 @@
       });
     }, observerOptions);
 
-    document.querySelectorAll('.article-card, .sidebar-section').forEach(el => {
+    document.querySelectorAll('.article-card, .sidebar-section, .sidebar-widget').forEach(el => {
       observer.observe(el);
+    });
+
+    // Breaking News Ticker Animation
+    const breakingText = document.querySelector('.breaking-text');
+    if (breakingText) {
+      const text = breakingText.textContent;
+      breakingText.innerHTML = `<span>${text}</span><span style="margin-left: 100px;">${text}</span>`;
+      
+      let position = 0;
+      setInterval(() => {
+        position -= 1;
+        if (Math.abs(position) > breakingText.scrollWidth / 2) {
+          position = 0;
+        }
+        breakingText.style.transform = `translateX(${position}px)`;
+      }, 30);
+    }
+
+    // Lazy loading images
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.src = img.dataset.src;
+            img.classList.add('loaded');
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
+
+    // Social share tracking (analytics)
+    document.querySelectorAll('.share-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const platform = this.classList.contains('facebook') ? 'Facebook' :
+                        this.classList.contains('twitter') ? 'Twitter' :
+                        this.classList.contains('linkedin') ? 'LinkedIn' :
+                        this.classList.contains('whatsapp') ? 'WhatsApp' : 'Unknown';
+        console.log('Shared on:', platform);
+        // Ici vous pouvez ajouter Google Analytics tracking
+      });
     });
   </script>
 
