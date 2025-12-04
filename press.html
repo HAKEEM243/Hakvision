@@ -1076,55 +1076,25 @@
     </div>
   </div>
 
-  <!-- Header Presse avec bannière cliquable CSS -->
-  <header class="press-header" style="padding: 0; background: transparent; border: none; box-shadow: none;">
-    <div style="position: relative; width: 100%; max-width: 1400px; margin: 0 auto;">
-      <img src="hakvision_press_banner_v2.jpg" alt="Hakvision Press - Banner avec Okapi, Drapeau Congolais et Couronne Royale" style="width: 100%; height: auto; display: block;">
-      
-      <!-- Liens overlay positionnés au-dessus de l'image -->
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-        
-        <!-- ACCUEIL - En bas à gauche (ligne 1, colonne 1) -->
-        <a href="index.html" 
-           style="position: absolute; left: 15%; bottom: 25%; width: 18%; height: 12%; 
-                  background: transparent; cursor: pointer; z-index: 10; 
-                  border: 2px solid transparent; transition: all 0.3s ease;"
-           onmouseover="this.style.border='2px solid rgba(250, 204, 21, 0.7)'; this.style.background='rgba(250, 204, 21, 0.1)'"
-           onmouseout="this.style.border='2px solid transparent'; this.style.background='transparent'"
-           title="Accueil">
-        </a>
-        
-        <!-- LIVRES - En bas au centre (ligne 1, colonne 2) -->
-        <a href="livres.html" 
-           style="position: absolute; left: 44%; bottom: 25%; width: 18%; height: 12%; 
-                  background: transparent; cursor: pointer; z-index: 10; 
-                  border: 2px solid transparent; transition: all 0.3s ease;"
-           onmouseover="this.style.border='2px solid rgba(250, 204, 21, 0.7)'; this.style.background='rgba(250, 204, 21, 0.1)'"
-           onmouseout="this.style.border='2px solid transparent'; this.style.background='transparent'"
-           title="Mes Livres">
-        </a>
-        
-        <!-- BIOGRAPHIE - En bas à gauche (ligne 2, colonne 1) -->
-        <a href="bio.html" 
-           style="position: absolute; left: 15%; bottom: 10%; width: 18%; height: 12%; 
-                  background: transparent; cursor: pointer; z-index: 10; 
-                  border: 2px solid transparent; transition: all 0.3s ease;"
-           onmouseover="this.style.border='2px solid rgba(250, 204, 21, 0.7)'; this.style.background='rgba(250, 204, 21, 0.1)'"
-           onmouseout="this.style.border='2px solid transparent'; this.style.background='transparent'"
-           title="Biographie">
-        </a>
-        
-        <!-- CONTACT - En bas à droite (ligne 2, colonne 2) -->
-        <a href="contact.html" 
-           style="position: absolute; left: 44%; bottom: 10%; width: 18%; height: 12%; 
-                  background: transparent; cursor: pointer; z-index: 10; 
-                  border: 2px solid transparent; transition: all 0.3s ease;"
-           onmouseover="this.style.border='2px solid rgba(250, 204, 21, 0.7)'; this.style.background='rgba(250, 204, 21, 0.1)'"
-           onmouseout="this.style.border='2px solid transparent'; this.style.background='transparent'"
-           title="Contact">
-        </a>
-        
+  <!-- Bannière Image (décorative) -->
+  <div style="width: 100%; background: #000; text-align: center; padding: 20px 0;">
+    <img src="hakvision_press_banner_v2.jpg" alt="Hakvision Press - Banner avec Okapi, Drapeau Congolais et Couronne Royale" style="max-width: 100%; height: auto; display: inline-block; max-height: 400px; object-fit: contain;">
+  </div>
+
+  <!-- Header Navigation Principal (fonctionne partout) -->
+  <header class="press-header">
+    <div class="press-header-content">
+      <div class="press-logo">
+        <h1>📰 HAKVISION PRESS</h1>
       </div>
+      <nav class="press-nav">
+        <a href="index.html">🏠 Accueil</a>
+        <a href="livres.html">📚 Livres</a>
+        <a href="bio.html">👤 Biographie</a>
+        <a href="katiopa.html">✨ Katiopa</a>
+        <a href="press.html" class="active">📰 Presse</a>
+        <a href="contact.html">📧 Contact</a>
+      </nav>
     </div>
   </header>
 
