@@ -22,7 +22,7 @@ Allow: /*.webp
 Allow: /*.pdf
 
 # Sitemap
-Sitemap: https://hakvision.com/sitemap.xml
+Sitemap: https://hakvision243.blog/sitemap.xml
 
 # Crawl-delay (optionnel, pour éviter la surcharge)
 Crawl-delay: 1
