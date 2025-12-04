@@ -1,0 +1,42 @@
+# Robots.txt pour Hakvision - Merveil Hakeem Dianzenza
+# Site web officiel de l'écrivain afrofuturiste congolais
+
+User-agent: *
+Allow: /
+
+# Pages principales à indexer en priorité
+Allow: /index.html
+Allow: /press.html
+Allow: /livres.html
+Allow: /katiopa.html
+Allow: /bio.html
+Allow: /contact.html
+
+# Images à indexer
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.webp
+
+# Documents PDF
+Allow: /*.pdf
+
+# Sitemap
+Sitemap: https://hakvision.com/sitemap.xml
+
+# Crawl-delay (optionnel, pour éviter la surcharge)
+Crawl-delay: 1
+
+# User agents spécifiques
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Indexation mobile prioritaire
+User-agent: Googlebot-Mobile
+Allow: /

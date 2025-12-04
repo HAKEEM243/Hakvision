@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Page d'accueil -->
+  <url>
+    <loc>https://hakvision.com/</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Page Presse -->
+  <url>
+    <loc>https://hakvision.com/press.html</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hakvision.com/masambukidi_ceremonie_1.jpg</image:loc>
+      <image:title>Cérémonie Papa Masambukidi Roi Divin du Bassin du Congo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hakvision.com/merveil_interview_portrait.jpg</image:loc>
+      <image:title>Merveil Hakeem Dianzenza Portrait</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Page Livres -->
+  <url>
+    <loc>https://hakvision.com/livres.html</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hakvision.com/katiopa_cover_hq.jpg</image:loc>
+      <image:title>KATIOPA La Prophétie Noire Merveil Hakeem Dianzenza</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hakvision.com/un_ecrivain_kinshasa_cover_1.jpg</image:loc>
+      <image:title>Un Écrivain à Kinshasa Merveil Hakeem Dianzenza</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://hakvision.com/papa_masambukidi_cover.jpg</image:loc>
+      <image:title>Papa Masambukidi Biographie</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Page Katiopa -->
+  <url>
+    <loc>https://hakvision.com/katiopa.html</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Page Biographie -->
+  <url>
+    <loc>https://hakvision.com/bio.html</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Page Contact -->
+  <url>
+    <loc>https://hakvision.com/contact.html</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Page OkapiPlay -->
+  <url>
+    <loc>https://hakvision.com/okapiplay.html</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+</urlset>
