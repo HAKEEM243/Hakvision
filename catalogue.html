@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Catalogue complet des œuvres de Merveil Hakeem Dianzenza - KATIOPA, Papa Masambukidi, Un Écrivain à Kinshasa, et plus encore. Découvrez chaque livre en détail.">
+  <meta name="keywords" content="catalogue livres, Merveil Hakeem Dianzenza, KATIOPA, Papa Masambukidi, afrofuturisme, littérature congolaise">
+  <meta name="author" content="Merveil Hakeem Dianzenza">
+  <title>Catalogue - Œuvres Complètes | Merveil Hakeem Dianzenza</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Style Premium -->
+  <link rel="stylesheet" href="style-premium.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Hero Header */
+    .catalogue-hero {
+      text-align: center;
+      padding: 120px 20px 60px;
+      background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(26,26,46,0.95) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .catalogue-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .catalogue-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5em;
+      font-weight: 900;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .catalogue-subtitle {
+      font-size: 1.3em;
+      color: #ccc;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .catalogue-stats {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin-top: 30px;
+      position: relative;
+      z-index: 2;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5em;
+      font-weight: 900;
+      color: #FFD700;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .stat-label {
+      font-size: 0.9em;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Books Grid */
+    .books-container {
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .book-entry {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 215, 0, 0.1);
+      border-radius: 20px;
+      padding: 50px;
+      margin-bottom: 60px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-entry:hover {
+      background: rgba(255, 215, 0, 0.05);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.2);
+    }
+
+    .book-entry::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(180deg, #FFD700, #FFA500);
+    }
+
+    .book-header {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      margin-bottom: 30px;
+      align-items: start;
+    }
+
+    .book-cover {
+      position: relative;
+    }
+
+    .book-cover img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .book-entry:hover .book-cover img {
+      transform: scale(1.05);
+    }
+
+    .book-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #FFD700;
+      color: #000;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85em;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .book-main-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2em;
+      color: #FFD700;
+      margin-bottom: 15px;
+    }
+
+    .book-meta {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95em;
+      color: #999;
+    }
+
+    .meta-item i {
+      color: #FFD700;
+    }
+
+    .book-description {
+      font-size: 1.1em;
+      line-height: 1.8;
+      color: #ccc;
+      margin-bottom: 25px;
+    }
+
+    .book-tags {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .tag {
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      color: #FFD700;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 0.85em;
+    }
+
+    /* Excerpt Section */
+    .book-excerpt {
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 4px solid #FFD700;
+      padding: 25px;
+      margin: 25px 0;
+      border-radius: 10px;
+    }
+
+    .book-excerpt h3 {
+      color: #FFD700;
+      font-size: 1.3em;
+      margin-bottom: 15px;
+    }
+
+    .book-excerpt p {
+      font-style: italic;
+      color: #ccc;
+      line-height: 1.8;
+    }
+
+    /* Purchase Buttons */
+    .purchase-section {
+      margin-top: 30px;
+    }
+
+    .purchase-section h3 {
+      color: #FFD700;
+      font-size: 1.2em;
+      margin-bottom: 15px;
+    }
+
+    .purchase-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-buy {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #000;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .btn-buy:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid #FFD700;
+      color: #FFD700;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 215, 0, 0.1);
+    }
+
+    /* Special Sections */
+    .special-mention {
+      background: #fff9e6;
+      color: #333;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      border-left: 4px solid #FFD700;
+    }
+
+    .special-mention h4 {
+      color: #d97706;
+      margin-bottom: 10px;
+    }
+
+    /* Video Section */
+    .video-section {
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    .video-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      background: #ff0000;
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    }
+
+    .video-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(255, 0, 0, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .catalogue-hero h1 {
+        font-size: 2.5em;
+      }
+
+      .book-entry {
+        padding: 30px 20px;
+      }
+
+      .book-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .book-cover {
+        margin: 0 auto;
+        max-width: 250px;
+      }
+
+      .book-meta {
+        justify-content: center;
+      }
+
+      .purchase-buttons {
+        justify-content: center;
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+      background: rgba(0, 0, 0, 0.3);
+      margin-top: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Breaking News Ticker -->
+  <div class="breaking-news">
+    <div class="breaking-news-content">
+      <span class="breaking-label">🔴 ACTUALITÉS</span>
+      <span class="breaking-text">KATIØPA 634 pages disponible • Papa Masambukidi Roi Divin • Voyage à Kinshasa Octobre 2025 • 8 livres publiés • Catalogue complet en ligne</span>
+    </div>
+  </div>
+
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-content">
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <span class="live-badge">● LIVE</span>
+        <span>📅 Jeudi 5 décembre 2025</span>
+      </div>
+      <div class="social-links-top">
+        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="press-header">
+    <div class="press-header-content">
+      <div class="press-logo">
+        <h1>📚 HAKVISION</h1>
+      </div>
+      <nav class="press-nav">
+        <a href="index.html">Accueil</a>
+        <a href="livres.html">Livres</a>
+        <a href="catalogue.html" class="active">Catalogue</a>
+        <a href="bio.html">Biographie</a>
+        <a href="press.html">Presse</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="catalogue-hero">
+    <h1>📖 CATALOGUE COMPLET</h1>
+    <p class="catalogue-subtitle">Découvrez l'intégralité des œuvres de Merveil Hakeem Dianzenza</p>
+    
+    <div class="catalogue-stats">
+      <div class="stat-item">
+        <div class="stat-number">8</div>
+        <div class="stat-label">Livres Publiés</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">634</div>
+        <div class="stat-label">Pages KATIØPA</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Genres</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Books Container -->
+  <div class="books-container">
+
+    <!-- LIVRE 1: KATIOPA -->
+    <article class="book-entry" id="katiopa">
+      <div class="book-header">
+        <div class="book-cover">
+          <img src="katiopa_cover_hq.jpg" alt="KATIØPA - La Prophétie Noire">
+          <div class="book-badge">⭐ Best-seller</div>
+        </div>
+        
+        <div class="book-main-info">
+          <h2>KATIØPA – La Prophétie Noire</h2>
+          
+          <div class="book-meta">
+            <span class="meta-item"><i class="fas fa-book"></i> 634 pages</span>
+            <span class="meta-item"><i class="fas fa-calendar"></i> Août 2025</span>
+            <span class="meta-item"><i class="fas fa-tag"></i> 10,49 EUR</span>
+            <span class="meta-item"><i class="fas fa-globe"></i> Français</span>
+          </div>
+
+          <div class="book-tags">
+            <span class="tag">Afrofuturisme</span>
+            <span class="tag">Fiction Politique</span>
+            <span class="tag">Spiritualité</span>
+            <span class="tag">Mysticisme</span>
+          </div>
+
+          <p class="book-description">
+            <strong>Le roman-fleuve qui ressuscite l'âme africaine.</strong> KATIØPA est bien plus qu'une fiction : c'est une insurrection mystique, un rituel de résurrection collective pour briser l'amnésie organisée qui pèse sur l'Afrique. À travers 634 pages d'une intensité spirituelle rare, ce roman mêle afrofuturisme, géopolitique et révélations ésotériques pour offrir une vision prophétique de la renaissance africaine.
+          </p>
+
+          <p class="book-description">
+            Samuel, le héros, est habité par l'amour et la colère face à l'histoire et aux injustices subies par l'Afrique. Son parcours initiatique le mène des profondeurs de la souffrance congolaise aux dimensions cachées de la conscience africaine. Un voyage qui bouleverse, éveille et transforme.
+          </p>
+        </div>
+      </div>
+
+      <div class="book-excerpt">
+        <h3>📝 À propos de l'œuvre</h3>
+        <p>
+          « KATIØPA n'est pas un simple roman. C'est une arme spirituelle forgée pour réveiller un continent endormi. Chaque page est un fragment de mémoire perdue qui revient. Chaque personnage est un ancêtre qui ressuscite. » — Merveil Hakeem Dianzenza
+        </p>
+      </div>
+
+      <div class="purchase-section">
+        <h3>🛒 Commander KATIØPA</h3>
+        <div class="purchase-buttons">
+          <a href="https://payhip.com/b/MuQHP" target="_blank" class="btn-buy">
+            <i class="fas fa-shopping-cart"></i> Acheter sur Payhip (10,49 EUR)
+          </a>
+          <a href="katiopa.html" class="btn-buy btn-secondary">
+            <i class="fas fa-info-circle"></i> En savoir plus
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- LIVRE 2: PAPA MASAMBUKIDI -->
+    <article class="book-entry" id="papa-masambukidi">
+      <div class="book-header">
+        <div class="book-cover">
+          <img src="papa_masambukidi_cover.jpg" alt="Papa Masambukidi - Héritage, luttes et vision">
+          <div class="book-badge">🏆 Biographie</div>
+        </div>
+        
+        <div class="book-main-info">
+          <h2>Papa Masambukidi – Héritage, luttes et vision d'un guide spirituel africain</h2>
+          
+          <div class="book-meta">
+            <span class="meta-item"><i class="fas fa-calendar"></i> Octobre 2025</span>
+            <span class="meta-item"><i class="fas fa-globe"></i> Français</span>
+            <span class="meta-item"><i class="fas fa-crown"></i> Biographie officielle</span>
+          </div>
+
+          <div class="book-tags">
+            <span class="tag">Biographie</span>
+            <span class="tag">Spiritualité Africaine</span>
+            <span class="tag">Histoire Congolaise</span>
+            <span class="tag">Guide Spirituel</span>
+          </div>
+
+          <p class="book-description">
+            <strong>La biographie officielle du Roi Divin du Bassin du Congo.</strong> Écrite par son chargé de protocole, cette œuvre retrace le parcours exceptionnel de Papa Samuel Masambukidi II : de ses premières révélations spirituelles à son intronisation historique le 30 octobre 2025 à Kinshasa, en passant par ses combats pour la dignité africaine et la préservation des valeurs ancestrales.
+          </p>
+
+          <p class="book-description">
+            Un témoignage unique qui offre un regard privilégié sur l'homme derrière le guide spirituel, ses luttes, sa vision et son héritage pour les générations futures. Un livre indispensable pour comprendre la renaissance spirituelle du Congo.
+          </p>
+        </div>
+      </div>
+
+      <div class="special-mention">
+        <h4>🎥 Vidéo Exclusive</h4>
+        <p>Découvrez la présentation officielle de ce livre lors de la cérémonie d'intronisation à Kinshasa le 30 octobre 2025.</p>
+      </div>
+
+      <div class="video-section">
+        <a href="https://www.youtube.com/watch?v=nOCw6mP1LFA" target="_blank" class="video-button">
+          <i class="fab fa-youtube"></i> Voir la vidéo sur YouTube
+        </a>
+      </div>
+
+      <div class="purchase-section">
+        <h3>🛒 Commander Papa Masambukidi</h3>
+        <div class="purchase-buttons">
+          <a href="https://www.amazon.fr/dp/B0FVSRSFBY" target="_blank" class="btn-buy">
+            <i class="fab fa-amazon"></i> Acheter sur Amazon
+          </a>
+          <a href="https://www.blurb.fr/b/12571535" target="_blank" class="btn-buy">
+            <i class="fas fa-book"></i> Commander sur Blurb
+          </a>
+          <a href="https://www.ebay.com/itm/366012388499" target="_blank" class="btn-buy btn-secondary">
+            <i class="fab fa-ebay"></i> Voir sur eBay
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- LIVRE 3: UN ÉCRIVAIN À KINSHASA -->
+    <article class="book-entry" id="ecrivain-kinshasa">
+      <div class="book-header">
+        <div class="book-cover">
+          <img src="ecrivain_kinshasa_cover.jpg" alt="Un Écrivain à Kinshasa">
+          <div class="book-badge">✍️ Autobio</div>
+        </div>
+        
+        <div class="book-main-info">
+          <h2>Un Écrivain à Kinshasa – Chroniques d'un Retour aux Sources</h2>
+          
+          <div class="book-meta">
+            <span class="meta-item"><i class="fas fa-book"></i> 78 pages</span>
+            <span class="meta-item"><i class="fas fa-calendar"></i> Novembre 2025</span>
+            <span class="meta-item"><i class="fas fa-globe"></i> Français</span>
+          </div>
+
+          <div class="book-tags">
+            <span class="tag">Autobiographie</span>
+            <span class="tag">Chroniques</span>
+            <span class="tag">Identité</span>
+            <span class="tag">Exil & Racines</span>
+          </div>
+
+          <p class="book-description">
+            <strong>Les chroniques intimes d'un voyage initiatique.</strong> Entre exil parisien et racines congolaises, ce récit autobiographique retrace le retour aux sources d'un écrivain afrofuturiste en quête d'identité. Un témoignage poignant sur la double conscience, la fracture existentielle et la réconciliation avec ses origines.
+          </p>
+
+          <p class="book-description">
+            À travers des anecdotes personnelles, des réflexions profondes et des rencontres marquantes à Kinshasa, Merveil Hakeem Dianzenza partage son parcours unique entre deux mondes, deux cultures, deux réalités. Un livre essentiel pour tous ceux qui vivent l'exil.
+          </p>
+        </div>
+      </div>
+
+      <div class="book-excerpt">
+        <h3>📝 Extrait</h3>
+        <p>
+          « Dans les rues de Kinshasa, j'ai retrouvé des fragments de moi-même que Paris avait effacés. Chaque coin de rue était une mémoire qui ressuscitait, chaque visage un miroir qui reflétait qui je suis vraiment. »
+        </p>
+      </div>
+
+      <div class="purchase-section">
+        <h3>🛒 Commander Un Écrivain à Kinshasa</h3>
+        <div class="purchase-buttons">
+          <a href="https://www.amazon.fr/ÉCRIVAIN-KINSHASA-Chroniques-Retour-Sources/dp/B0G395KMWX" target="_blank" class="btn-buy">
+            <i class="fab fa-amazon"></i> Acheter sur Amazon
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- LIVRE 4: L'ŒIL -->
+    <article class="book-entry" id="loeil">
+      <div class="book-header">
+        <div class="book-cover">
+          <img src="oeil_cover.jpg" alt="L'ŒIL">
+          <div class="book-badge">🎬 Réalisation</div>
+        </div>
+        
+        <div class="book-main-info">
+          <h2>L'ŒIL</h2>
+          
+          <div class="book-meta">
+            <span class="meta-item"><i class="fas fa-calendar"></i> Novembre 2025</span>
+            <span class="meta-item"><i class="fas fa-user"></i> Auteur: Kulala Ntumba Pasco</span>
+            <span class="meta-item"><i class="fas fa-wrench"></i> Réalisation éditoriale</span>
+          </div>
+
+          <div class="book-tags">
+            <span class="tag">Psychologie</span>
+            <span class="tag">Développement Personnel</span>
+            <span class="tag">Philosophie</span>
+          </div>
+
+          <p class="book-description">
+            <strong>Réalisation éditoriale (mise en page et publication)</strong> du livre de Kulala Ntumba Pasco. Une déconstruction méthodique des concepts qui régissent nos vies : la connaissance, le mental, les émotions.
+          </p>
+
+          <p class="book-description">
+            L'ŒIL vous invite à regarder au-delà des apparences, à questionner vos certitudes et à découvrir les mécanismes invisibles qui influencent votre perception du monde. Un ouvrage transformateur pour ceux qui cherchent à comprendre la nature profonde de l'existence.
+          </p>
+        </div>
+      </div>
+
+      <div class="special-mention">
+        <h4>ℹ️ Rôle de Merveil Hakeem Dianzenza</h4>
+        <p><strong>Réalisation éditoriale :</strong> Mise en page professionnelle, correction, structuration et publication du manuscrit de Kulala Ntumba Pasco.</p>
+      </div>
+
+      <div class="purchase-section">
+        <h3>🛒 Commander L'ŒIL</h3>
+        <div class="purchase-buttons">
+          <a href="https://www.amazon.com.mx/Loeil-Merveil-Hakeem-Dianzenza/dp/B0G1YHFXP7" target="_blank" class="btn-buy">
+            <i class="fab fa-amazon"></i> Acheter sur Amazon
+          </a>
+          <a href="https://bookshop.org/p/books/l-oeil-merveil-hakeem-dianzenza/23480156" target="_blank" class="btn-buy">
+            <i class="fas fa-book"></i> Voir sur Bookshop
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- LIVRE 5: CONGO DES MARTYRS -->
+    <article class="book-entry" id="congo-martyrs">
+      <div class="book-header">
+        <div class="book-cover">
+          <img src="congo_martyrs_cover.jpg" alt="Congo des Martyrs">
+          <div class="book-badge">📜 Essai</div>
+        </div>
+        
+        <div class="book-main-info">
+          <h2>Congo des Martyrs</h2>
+          
+          <div class="book-meta">
+            <span class="meta-item"><i class="fas fa-calendar"></i> 2025</span>
+            <span class="meta-item"><i class="fas fa-globe"></i> Français</span>
+          </div>
+
+          <div class="book-tags">
+            <span class="tag">Essai Historique</span>
+            <span class="tag">Histoire du Congo</span>
+            <span class="tag">Devoir de Mémoire</span>
+            <span class="tag">Héros Oubliés</span>
+          </div>
+
+          <p class="book-description">
+            <strong>Une plongée dans l'histoire douloureuse du Congo et de ses héros oubliés.</strong> Cet essai historique rend hommage aux martyrs congolais, ces figures trop souvent effacées de l'histoire officielle, qui ont sacrifié leur vie pour la liberté, la dignité et l'indépendance de leur pays.
+          </p>
+
+          <p class="book-description">
+            De Lumumba aux combattants anonymes, des femmes violées aux enfants soldats, ce livre est un cri de mémoire et de justice. Un devoir de mémoire pour que les générations futures n'oublient jamais le prix payé pour la liberté.
+          </p>
+        </div>
+      </div>
+
+      <div class="book-excerpt">
+        <h3>📝 Message de l'auteur</h3>
+        <p>
+          « Ce livre n'est pas seulement une chronique du passé. C'est un acte de résistance contre l'oubli, un hommage aux âmes brisées qui ont porté le fardeau de notre histoire collective. »
+        </p>
+      </div>
+
+      <div class="purchase-section">
+        <h3>🛒 Commander Congo des Martyrs</h3>
+        <div class="purchase-buttons">
+          <a href="https://hakvision243.blog/contact.html" class="btn-buy btn-secondary">
+            <i class="fas fa-envelope"></i> Me contacter pour acheter
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- LIVRE 6: POLITIQUE MAGAZINE RDC -->
+    <article class="book-entry" id="politique-magazine">
+      <div class="book-header">
+        <div class="book-cover">
+          <img src="politique_magazine_rdc_cover.jpg" alt="Politique Magazine RDC 2023-2024">
+          <div class="book-badge">🆓 Gratuit</div>
+        </div>
+        
+        <div class="book-main-info">
+          <h2>Politique Magazine RDC 2023-2024</h2>
+          
+          <div class="book-meta">
+            <span class="meta-item"><i class="fas fa-book"></i> 48 pages</span>
+            <span class="meta-item"><i class="fas fa-calendar"></i> 2024</span>
+            <span class="meta-item"><i class="fas fa-tag"></i> Gratuit</span>
+            <span class="meta-item"><i class="fas fa-globe"></i> Français</span>
+          </div>
+
+          <div class="book-tags">
+            <span class="tag">Magazine</span>
+            <span class="tag">Politique Congolaise</span>
+            <span class="tag">Analyse</span>
+            <span class="tag">RDC</span>
+          </div>
+
+          <p class="book-description">
+            <strong>Rétrospective de la vie politique congolaise.</strong> Ce magazine gratuit de 48 pages offre une analyse approfondie des enjeux politiques, économiques et sociaux de la République Démocratique du Congo sur la période 2023-2024.
+          </p>
+
+          <p class="book-description">
+            Des élections aux défis de la gouvernance, des conflits à l'Est aux opportunités économiques, ce magazine pose la question essentielle : <strong>"La politique en RDC est-elle à revoir ?"</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="purchase-section">
+        <h3>📥 Télécharger le Magazine (Gratuit)</h3>
+        <div class="purchase-buttons">
+          <a href="https://www.blurb.fr/b/12237944-la-politique-en-rdc-est-elle-revoir" target="_blank" class="btn-buy">
+            <i class="fas fa-download"></i> Voir sur Blurb (Gratuit)
+          </a>
+          <a href="magazine_congo_2023-2024.pdf" target="_blank" class="btn-buy btn-secondary">
+            <i class="fas fa-file-pdf"></i> Télécharger le PDF
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- LIVRE 7: ZIKILA (En préparation) -->
+    <article class="book-entry" id="zikila">
+      <div class="book-header">
+        <div class="book-cover">
+          <img src="zikila_cover_placeholder.jpg" alt="ZIKILA - L'épopée des 17 réincarnations">
+          <div class="book-badge">⏳ À venir</div>
+        </div>
+        
+        <div class="book-main-info">
+          <h2>ZIKILA – L'épopée des 17 réincarnations</h2>
+          
+          <div class="book-meta">
+            <span class="meta-item"><i class="fas fa-calendar"></i> En préparation</span>
+            <span class="meta-item"><i class="fas fa-globe"></i> Français</span>
+          </div>
+
+          <div class="book-tags">
+            <span class="tag">Afrofuturisme</span>
+            <span class="tag">Épopée Spirituelle</span>
+            <span class="tag">Réincarnation</span>
+            <span class="tag">Saga</span>
+          </div>
+
+          <p class="book-description">
+            <strong>L'épopée spirituelle des 17 réincarnations.</strong> ZIKILA promet d'être un voyage extraordinaire à travers les âges et les dimensions de l'âme africaine. Une saga afrofuturiste qui explore les cycles de vie, de mort et de renaissance à travers 17 incarnations différentes.
+          </p>
+
+          <p class="book-description">
+            De l'Égypte ancienne au Congo contemporain, des royaumes oubliés aux futurs possibles, ZIKILA tissera une fresque épique où spiritualité ancestrale et science-fiction se rencontrent pour créer une mythologie africaine du XXIe siècle.
+          </p>
+        </div>
+      </div>
+
+      <div class="special-mention">
+        <h4>📅 Sortie prévue</h4>
+        <p>Ce livre est actuellement en cours d'écriture. Restez connecté pour être informé de sa sortie !</p>
+      </div>
+
+      <div class="purchase-section">
+        <h3>🔔 Être notifié de la sortie</h3>
+        <div class="purchase-buttons">
+          <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="btn-buy">
+            <i class="fab fa-whatsapp"></i> Rejoindre le WhatsApp Channel
+          </a>
+          <a href="mailto:arenalse22@gmail.com?subject=Notification ZIKILA" class="btn-buy btn-secondary">
+            <i class="fas fa-envelope"></i> Me contacter
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- LIVRE 8: RÉINCARNATION (En préparation) -->
+    <article class="book-entry" id="reincarnation">
+      <div class="book-header">
+        <div class="book-cover">
+          <img src="reincarnation_cover_placeholder.jpg" alt="Réincarnation">
+          <div class="book-badge">⏳ À venir</div>
+        </div>
+        
+        <div class="book-main-info">
+          <h2>Réincarnation</h2>
+          
+          <div class="book-meta">
+            <span class="meta-item"><i class="fas fa-calendar"></i> En préparation</span>
+            <span class="meta-item"><i class="fas fa-globe"></i> Français</span>
+          </div>
+
+          <div class="book-tags">
+            <span class="tag">Afrofuturisme</span>
+            <span class="tag">Roman Spirituel</span>
+            <span class="tag">Congo</span>
+            <span class="tag">Mysticisme</span>
+          </div>
+
+          <p class="book-description">
+            <strong>Un nouveau voyage spirituel ancré au Congo.</strong> Réincarnation poursuivra l'exploration de l'univers mystique de l'afrofuturisme congolais initié avec KATIØPA. Un roman qui plongera encore plus profondément dans les dimensions cachées de la conscience africaine.
+          </p>
+
+          <p class="book-description">
+            Entre passé ancestral et futur prophétique, ce livre promet d'être une expérience littéraire immersive où les frontières entre réel et spirituel, entre vie et mort, entre passé et futur s'effacent pour révéler la véritable nature de l'existence.
+          </p>
+        </div>
+      </div>
+
+      <div class="book-excerpt">
+        <h3>📝 Vision de l'auteur</h3>
+        <p>
+          « Réincarnation sera le chaînon manquant entre KATIØPA et ZIKILA. Un pont entre les mondes, une clé pour comprendre les cycles infinis de l'âme africaine. »
+        </p>
+      </div>
+
+      <div class="purchase-section">
+        <h3>🔔 Être notifié de la sortie</h3>
+        <div class="purchase-buttons">
+          <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="btn-buy">
+            <i class="fab fa-whatsapp"></i> Rejoindre le WhatsApp Channel
+          </a>
+          <a href="mailto:arenalse22@gmail.com?subject=Notification Réincarnation" class="btn-buy btn-secondary">
+            <i class="fas fa-envelope"></i> Me contacter
+          </a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Merveil Hakeem Dianzenza – Tous droits réservés • Hakvision</p>
+    <p style="margin-top: 10px;">
+      <a href="index.html" style="color: #666; text-decoration: none; margin: 0 10px;">Accueil</a> •
+      <a href="livres.html" style="color: #666; text-decoration: none; margin: 0 10px;">Livres</a> •
+      <a href="bio.html" style="color: #666; text-decoration: none; margin: 0 10px;">Biographie</a> •
+      <a href="press.html" style="color: #666; text-decoration: none; margin: 0 10px;">Presse</a> •
+      <a href="contact.html" style="color: #666; text-decoration: none; margin: 0 10px;">Contact</a>
+    </p>
+  </footer>
+
+  <!-- JavaScript Premium -->
+  <script src="hakvision-premium.js"></script>
+
+</body>
+</html>
