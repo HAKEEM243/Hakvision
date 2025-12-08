@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription Confirmée ! | Prix Littéraires Africains</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Particules dorées en arrière-plan */
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .confirmation-container {
+      position: relative;
+      z-index: 10;
+      max-width: 700px;
+      margin: 40px 20px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(26,26,46,0.9) 100%);
+      border: 3px solid rgba(255, 215, 0, 0.5);
+      border-radius: 30px;
+      padding: 60px 40px;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(255, 215, 0, 0.3);
+      animation: fadeInScale 0.8s ease-out;
+    }
+    
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.9) translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+    
+    .success-icon {
+      font-size: 5em;
+      color: #FFD700;
+      margin-bottom: 30px;
+      animation: bounceIn 1s ease-out, pulse-glow 2s ease-in-out infinite;
+    }
+    
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      }
+      50% {
+        text-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+      }
+    }
+    
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8em;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+    
+    .subtitle {
+      font-size: 1.3em;
+      color: #ccc;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    
+    .info-box {
+      background: rgba(255, 215, 0, 0.1);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 40px 0;
+      text-align: left;
+    }
+    
+    .info-box h3 {
+      color: #FFD700;
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .info-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .info-box li {
+      color: #fff;
+      font-size: 1.1em;
+      margin: 15px 0;
+      padding-left: 30px;
+      position: relative;
+      line-height: 1.6;
+    }
+    
+    .info-box li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #FFD700;
+      font-weight: 700;
+      font-size: 1.3em;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #000;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      border: 3px solid #FFD700;
+      color: #FFD700;
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(255, 215, 0, 0.1);
+      transform: translateY(-5px);
+    }
+    
+    .countdown-timer {
+      margin-top: 40px;
+      padding: 25px;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
+      border-radius: 20px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+    }
+    
+    .countdown-timer p {
+      font-size: 1.2em;
+      color: #FFD700;
+      font-weight: 600;
+    }
+    
+    @media (max-width: 768px) {
+      .confirmation-container {
+        padding: 40px 25px;
+      }
+      
+      h1 {
+        font-size: 2.2em;
+      }
+      
+      .subtitle {
+        font-size: 1.1em;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-canvas"></canvas>
+  
+  <div class="confirmation-container">
+    <div class="success-icon">
+      <i class="fas fa-check-circle"></i>
+    </div>
+    
+    <h1>🎉 Inscription Confirmée !</h1>
+    
+    <p class="subtitle">
+      Merci d'avoir manifesté votre intérêt pour les <strong style="color: #FFD700;">Prix Masambukidi Award</strong> et <strong style="color: #FFD700;">Prix Dianzenza</strong> !
+    </p>
+    
+    <div class="info-box">
+      <h3><i class="fas fa-envelope-open-text"></i> Prochaines Étapes</h3>
+      <ul>
+        <li>Vous recevrez un <strong>email de confirmation</strong> à l'adresse indiquée</li>
+        <li>Nous vous tiendrons informé(e) du <strong>lancement officiel</strong> en mars 2025</li>
+        <li>Vous serez parmi les <strong>premiers à candidater</strong> dès l'ouverture</li>
+        <li>Rejoignez notre <strong>canal WhatsApp</strong> pour ne rien manquer</li>
+      </ul>
+    </div>
+    
+    <div class="countdown-timer">
+      <p>📅 <strong>Lancement prévu :</strong> Janvier - Mars 2025</p>
+    </div>
+    
+    <div class="cta-buttons">
+      <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="btn btn-primary">
+        <i class="fab fa-whatsapp"></i>
+        <span>Rejoindre le Canal WhatsApp</span>
+      </a>
+      
+      <a href="prix-litteraires.html" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i>
+        <span>Retour aux Prix</span>
+      </a>
+    </div>
+    
+    <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255, 215, 0, 0.2);">
+      <p style="color: #999; font-size: 0.95em;">
+        Une question ? Contactez-nous : 
+        <a href="mailto:arenalse22@gmail.com" style="color: #FFD700; text-decoration: none; font-weight: 600;">arenalse22@gmail.com</a>
+      </p>
+    </div>
+  </div>
+  
+  <script>
+    // Golden Particles Animation
+    class GoldenParticles {
+      constructor() {
+        this.canvas = document.getElementById('particles-canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.particleCount = 60;
+        
+        this.setupCanvas();
+        this.createParticles();
+        this.animate();
+        
+        window.addEventListener('resize', () => this.setupCanvas());
+      }
+      
+      setupCanvas() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+      }
+      
+      createParticles() {
+        this.particles = [];
+        for (let i = 0; i < this.particleCount; i++) {
+          this.particles.push({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            size: Math.random() * 3 + 1,
+            speedX: Math.random() * 0.5 - 0.25,
+            speedY: Math.random() * -1 - 0.5,
+            opacity: Math.random() * 0.5 + 0.3,
+            twinkle: Math.random() * Math.PI * 2,
+            twinkleSpeed: Math.random() * 0.05 + 0.02
+          });
+        }
+      }
+      
+      animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        this.particles.forEach(particle => {
+          particle.x += particle.speedX;
+          particle.y += particle.speedY;
+          particle.twinkle += particle.twinkleSpeed;
+          
+          if (particle.x < 0) particle.x = this.canvas.width;
+          if (particle.x > this.canvas.width) particle.x = 0;
+          if (particle.y < 0) particle.y = this.canvas.height;
+          
+          const twinkleOpacity = particle.opacity * (0.5 + Math.sin(particle.twinkle) * 0.5);
+          
+          this.ctx.beginPath();
+          this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          
+          const gradient = this.ctx.createRadialGradient(
+            particle.x, particle.y, 0,
+            particle.x, particle.y, particle.size * 3
+          );
+          gradient.addColorStop(0, `rgba(255, 215, 0, ${twinkleOpacity})`);
+          gradient.addColorStop(0.5, `rgba(255, 165, 0, ${twinkleOpacity * 0.5})`);
+          gradient.addColorStop(1, 'rgba(255, 215, 0, 0)');
+          
+          this.ctx.fillStyle = gradient;
+          this.ctx.fill();
+        });
+        
+        requestAnimationFrame(() => this.animate());
+      }
+    }
+    
+    // Initialize particles when page loads
+    window.addEventListener('DOMContentLoaded', () => {
+      new GoldenParticles();
+    });
+  </script>
+</body>
+</html>
