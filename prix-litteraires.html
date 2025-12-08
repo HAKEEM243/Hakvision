@@ -789,6 +789,76 @@
         flex-direction: column;
       }
     }
+
+    /* ============ BURGER MENU FIX ============ */
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      z-index: 1001;
+    }
+
+    .burger div {
+      width: 28px;
+      height: 3px;
+      background: #FFD700;
+      transition: all 0.3s ease;
+      border-radius: 3px;
+    }
+
+    /* Mobile Menu Responsive */
+    @media (max-width: 968px) {
+      .nav-links {
+        position: fixed;
+        right: -100%;
+        top: 70px;
+        flex-direction: column !important;
+        background: rgba(0, 0, 0, 0.98) !important;
+        width: 280px !important;
+        height: calc(100vh - 70px) !important;
+        padding: 30px 20px !important;
+        gap: 15px !important;
+        transition: right 0.4s ease !important;
+        border-left: 2px solid rgba(255, 215, 0, 0.3) !important;
+        align-items: flex-start !important;
+        overflow-y: auto !important;
+        z-index: 999 !important;
+      }
+
+      .nav-links.active {
+        right: 0 !important;
+      }
+
+      .nav-links li {
+        width: 100% !important;
+      }
+
+      .nav-links li a {
+        width: 100% !important;
+        padding: 12px 15px !important;
+        font-size: 1.05em !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+      }
+
+      .burger {
+        display: flex !important;
+      }
+
+      .burger.active .line1 {
+        transform: rotate(-45deg) translate(-6px, 6px);
+      }
+
+      .burger.active .line2 {
+        opacity: 0;
+      }
+
+      .burger.active .line3 {
+        transform: rotate(45deg) translate(-6px, -6px);
+      }
+    }
   </style>
 </head>
 
@@ -846,30 +916,36 @@
       
       <h1>Prix Littéraires Africains</h1>
       
-      <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin: 40px 0;">
+      <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin: 40px 0;">
         <div style="text-align: center;">
-          <i class="fas fa-crown" style="font-size: 3em; color: #FFD700; margin-bottom: 15px; display: block;"></i>
-          <h2 style="font-size: 2em; color: #FFD700; font-family: 'Playfair Display', serif; margin-bottom: 10px;">Prix Masambukidi Award</h2>
-          <p style="color: #ccc; font-size: 1.1em;">En l'honneur de Papa Samuel Masambukidi</p>
-          <p style="color: #999; font-size: 0.95em; margin-top: 5px;">Roi Divin du Bassin du Congo</p>
+          <i class="fas fa-crown" style="font-size: 2.5em; color: #FFD700; margin-bottom: 12px; display: block;"></i>
+          <h2 style="font-size: 1.6em; color: #FFD700; font-family: 'Playfair Display', serif; margin-bottom: 8px;">Prix Masambukidi Award</h2>
+          <p style="color: #ccc; font-size: 0.95em;">Papa Samuel Masambukidi</p>
         </div>
         
-        <div style="font-size: 3em; color: #FFD700; display: flex; align-items: center;">•</div>
+        <div style="font-size: 2.5em; color: #FFD700; display: flex; align-items: center;">•</div>
         
         <div style="text-align: center;">
-          <i class="fas fa-rocket" style="font-size: 3em; color: #FFD700; margin-bottom: 15px; display: block;"></i>
-          <h2 style="font-size: 2em; color: #FFD700; font-family: 'Playfair Display', serif; margin-bottom: 10px;">Prix Dianzenza</h2>
-          <p style="color: #ccc; font-size: 1.1em;">Par Merveil Hakeem Dianzenza</p>
-          <p style="color: #999; font-size: 0.95em; margin-top: 5px;">Auteur de KATIØPA (634 pages)</p>
+          <i class="fas fa-rocket" style="font-size: 2.5em; color: #FFD700; margin-bottom: 12px; display: block;"></i>
+          <h2 style="font-size: 1.6em; color: #FFD700; font-family: 'Playfair Display', serif; margin-bottom: 8px;">Prix Dianzenza</h2>
+          <p style="color: #ccc; font-size: 0.95em;">Merveil Hakeem Dianzenza</p>
+        </div>
+        
+        <div style="font-size: 2.5em; color: #FFD700; display: flex; align-items: center;">•</div>
+        
+        <div style="text-align: center;">
+          <i class="fas fa-venus" style="font-size: 2.5em; color: #FFD700; margin-bottom: 12px; display: block;"></i>
+          <h2 style="font-size: 1.6em; color: #FFD700; font-family: 'Playfair Display', serif; margin-bottom: 8px;">Excellence Féminine</h2>
+          <p style="color: #ccc; font-size: 0.95em;">Femmes Écrivaines d'Afrique</p>
         </div>
       </div>
       
       <p class="prix-subtitle">Récompenser l'Excellence Littéraire Africaine</p>
       <p class="prix-description">
-        Deux prix prestigieux pour célébrer les voix qui transforment la littérature africaine, 
+        Trois prix prestigieux pour célébrer les voix qui transforment la littérature africaine, 
         les plumes qui réinventent le continent, et les récits qui unissent les générations. 
-        <strong style="color: #FFD700;">De la spiritualité ancestrale à l'afrofuturisme visionnaire</strong>, 
-        nous honorons l'innovation, la créativité et l'excellence dans la littérature de langue française.
+        <strong style="color: #FFD700;">De la spiritualité ancestrale à l'afrofuturisme visionnaire, en passant par l'excellence féminine</strong>, 
+        nous honorons l'innovation, la créativité et l'excellence dans la littérature africaine et francophone.
       </p>
       
       <!-- CTA immédiat -->
@@ -969,7 +1045,8 @@
             <option value="" style="background: #1a1a2e; color: #ccc;">Choisissez un prix...</option>
             <option value="masambukidi" style="background: #1a1a2e; color: #fff;">Prix Masambukidi Award</option>
             <option value="dianzenza" style="background: #1a1a2e; color: #fff;">Prix Dianzenza</option>
-            <option value="les-deux" style="background: #1a1a2e; color: #fff;">Les deux prix</option>
+            <option value="feminin" style="background: #1a1a2e; color: #fff;">Prix de l'Excellence Féminine Africaine</option>
+            <option value="tous" style="background: #1a1a2e; color: #fff;">Tous les prix</option>
           </select>
         </div>
         
@@ -1100,6 +1177,60 @@
                 <span>WhatsApp Channel</span>
               </a>
               <a href="mailto:arenalse22@gmail.com?subject=Info Prix Dianzenza" class="btn-cta btn-secondary">
+                <i class="fas fa-envelope"></i>
+                <span>Me contacter</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Prix de l'Excellence Féminine Africaine -->
+      <article class="prix-card" id="prix-feminin">
+        <div class="prix-card-content">
+          <span class="prix-badge"><i class="fas fa-hourglass-half"></i> Bientôt disponible</span>
+          <i class="fas fa-venus prix-icon-large"></i>
+          <h2>Prix de l'Excellence Féminine Africaine</h2>
+          <h3>Honorer les voix des femmes écrivaines d'Afrique et de la diaspora</h3>
+          
+          <p>
+            Le <span class="highlight-text">Prix de l'Excellence Féminine Africaine</span> célèbre les plumes féminines 
+            qui façonnent la littérature africaine contemporaine. Ce prix récompense les femmes autrices 
+            dont les œuvres incarnent le courage, l'innovation et la vision féminine du continent et de sa diaspora. 
+            De la fiction à l'essai, du roman au témoignage, nous honorons les voix qui transforment 
+            et enrichissent le paysage littéraire africain.
+          </p>
+
+          <div class="prix-details">
+            <div class="detail-item">
+              <h4><i class="fas fa-star"></i> Catégories</h4>
+              <p>Roman • Nouvelle • Essai • Poésie • Témoignage • Fiction • Non-fiction</p>
+            </div>
+            <div class="detail-item">
+              <h4><i class="fas fa-globe-africa"></i> Zone géographique</h4>
+              <p>Afrique entière • Diaspora africaine mondiale (Europe, Amériques, Asie, Océanie)</p>
+            </div>
+            <div class="detail-item">
+              <h4><i class="fas fa-heart"></i> Valeurs</h4>
+              <p>Excellence littéraire • Innovation • Voix féminine • Émancipation • Vision • Créativité</p>
+            </div>
+          </div>
+
+          <div class="coming-soon-section">
+            <div class="coming-soon-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Lancement à venir</h3>
+            <p>
+              Les détails complets du Prix de l'Excellence Féminine Africaine (règlement, jury, dotation, calendrier) 
+              seront annoncés prochainement. Soyez parmi les premières informées !
+            </p>
+            <div class="cta-buttons">
+              <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="btn-cta">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp Channel</span>
+              </a>
+              <a href="mailto:arenalse22@gmail.com?subject=Info Prix Excellence Féminine" class="btn-cta btn-secondary">
                 <i class="fas fa-envelope"></i>
                 <span>Me contacter</span>
               </a>

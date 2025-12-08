@@ -1,0 +1,572 @@
+/* ============================================
+   PRIX LITTÉRAIRES - Ultra Premium Design
+   ============================================ */
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #000000;
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ============ NAVIGATION ============ */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+nav {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo a {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8em;
+  font-weight: 900;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95em;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border-radius: 8px;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+  color: #FFD700;
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.nav-links li a i {
+  font-size: 1.1em;
+}
+
+/* Burger Menu */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.burger div {
+  width: 28px;
+  height: 3px;
+  background: #FFD700;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+}
+
+/* Mobile Menu */
+@media (max-width: 968px) {
+  .nav-links {
+    position: fixed;
+    right: -100%;
+    top: 70px;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.98);
+    width: 280px;
+    height: calc(100vh - 70px);
+    padding: 30px 20px;
+    gap: 15px;
+    transition: right 0.4s ease;
+    border-left: 2px solid rgba(255, 215, 0, 0.3);
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links li a {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1.05em;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  .burger.active .line1 {
+    transform: rotate(-45deg) translate(-6px, 6px);
+  }
+
+  .burger.active .line2 {
+    opacity: 0;
+  }
+
+  .burger.active .line3 {
+    transform: rotate(45deg) translate(-6px, -6px);
+  }
+}
+
+/* ============ BREAKING NEWS ============ */
+.breaking-news {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #000;
+  padding: 12px 0;
+  overflow: hidden;
+  position: relative;
+  margin-top: 70px;
+}
+
+.breaking-label {
+  background: #000;
+  color: #FFD700;
+  padding: 6px 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+  margin-right: 15px;
+  border-radius: 5px;
+}
+
+.breaking-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  animation: scroll 20s linear infinite;
+  padding: 0 20px;
+}
+
+.breaking-text {
+  font-weight: 700;
+  font-size: 0.95em;
+  white-space: nowrap;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============ HERO BANNER ============ */
+.prix-banner {
+  position: relative;
+  height: 500px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #0a0a0a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.prix-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('prix-hero-africa-trophies.jpg') center/cover no-repeat;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+.prix-banner-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 1000px;
+}
+
+.prix-banner h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4em;
+  font-weight: 900;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+}
+
+.prix-banner p {
+  font-size: 1.5em;
+  color: #ccc;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.prix-banner-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 40px;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #000;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.2em;
+  box-shadow: 0 10px 40px rgba(255, 215, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.prix-banner-cta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(255, 215, 0, 0.6);
+}
+
+/* ============ TIMELINE ============ */
+.timeline-section {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 60px 30px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 140, 0, 0.02) 100%);
+  border-radius: 30px;
+  border: 2px solid rgba(255, 215, 0, 0.2);
+}
+
+.timeline-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5em;
+  text-align: center;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 50px;
+}
+
+.timeline-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.timeline-step {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+  padding: 30px 20px;
+  background: rgba(255, 215, 0, 0.08);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.timeline-step:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+}
+
+.timeline-step.active {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #000;
+  font-weight: 700;
+}
+
+.timeline-step h3 {
+  font-size: 1.5em;
+  color: #FFD700;
+  margin-bottom: 10px;
+}
+
+.timeline-step.active h3 {
+  color: #000;
+}
+
+.timeline-arrow {
+  font-size: 2em;
+  color: #FFD700;
+}
+
+/* ============ PRIX CARDS ============ */
+.prix-grid {
+  max-width: 1400px;
+  margin: 80px auto;
+  padding: 0 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+}
+
+.prix-card {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(10, 10, 10, 0.9) 100%);
+  border: 3px solid rgba(255, 215, 0, 0.3);
+  border-radius: 30px;
+  padding: 50px 40px;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.prix-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+  animation: rotate-slow 15s linear infinite;
+  z-index: 1;
+}
+
+.prix-card-content {
+  position: relative;
+  z-index: 10;
+}
+
+.prix-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(255, 215, 0, 0.4);
+  border-color: #FFD700;
+}
+
+.prix-icon {
+  font-size: 4em;
+  color: #FFD700;
+  margin-bottom: 25px;
+  display: block;
+  filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+  animation: float 3s ease-in-out infinite;
+}
+
+.prix-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2em;
+  color: #FFD700;
+  margin-bottom: 15px;
+}
+
+.prix-card h3 {
+  font-size: 1.2em;
+  color: #ccc;
+  margin-bottom: 25px;
+  font-weight: 400;
+}
+
+.prix-card p {
+  color: #aaa;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.prix-badge {
+  display: inline-block;
+  padding: 8px 20px;
+  background: rgba(255, 215, 0, 0.2);
+  border: 2px solid #FFD700;
+  border-radius: 25px;
+  color: #FFD700;
+  font-weight: 700;
+  font-size: 0.9em;
+  margin-bottom: 25px;
+}
+
+.prix-details {
+  text-align: left;
+  margin-top: 30px;
+}
+
+.detail-item {
+  margin-bottom: 20px;
+  padding: 20px;
+  background: rgba(255, 215, 0, 0.05);
+  border-left: 3px solid #FFD700;
+  border-radius: 10px;
+}
+
+.detail-item h4 {
+  color: #FFD700;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-item p {
+  color: #ccc;
+  margin: 0;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ============ FORMULAIRE ============ */
+.form-section {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);
+  border: 3px solid rgba(255, 215, 0, 0.3);
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.form-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5em;
+  text-align: center;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
+.form-section p {
+  text-align: center;
+  color: #ccc;
+  font-size: 1.1em;
+  margin-bottom: 40px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  color: #FFD700;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.05em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 15px;
+  color: #fff;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #FFD700;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+.form-group select option {
+  background: #1a1a2e;
+  color: #fff;
+}
+
+.form-submit {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #000;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.2em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.form-submit:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6);
+}
+
+.form-note {
+  text-align: center;
+  color: #999;
+  font-size: 0.9em;
+  margin-top: 25px;
+}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 768px) {
+  .prix-banner h1 {
+    font-size: 2.5em;
+  }
+
+  .prix-banner p {
+    font-size: 1.2em;
+  }
+
+  .timeline-steps {
+    flex-direction: column;
+  }
+
+  .timeline-arrow {
+    transform: rotate(90deg);
+  }
+
+  .prix-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
+
+  .form-section {
+    padding: 40px 25px;
+  }
+}
