@@ -3,10 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Prix Littéraires Merveil Hakeem Dianzenza | Prix Masambukidi Award & Prix Dianzenza. Récompenser l'excellence littéraire africaine et francophone.">
-  <meta name="keywords" content="prix littéraire, Prix Masambukidi, Prix Dianzenza, littérature africaine, concours littéraire, afrofuturisme">
+  
+  <!-- SEO Optimisé pour Google -->
+  <title>Prix Masambukidi Award & Prix Dianzenza | Prix Littéraires Africains 2025</title>
+  <meta name="description" content="Prix Masambukidi Award en l'honneur de Papa Samuel Masambukidi, Roi Divin du Congo. Prix Dianzenza par Merveil Hakeem Dianzenza pour l'afrofuturisme. Deux prix littéraires prestigieux pour récompenser l'excellence de la littérature africaine francophone.">
+  <meta name="keywords" content="Prix Masambukidi Award, Prix Dianzenza, Merveil Hakeem Dianzenza, Papa Samuel Masambukidi, Papa Masambukidi Roi Divin, prix littéraire africain, prix littérature Congo, prix afrofuturisme, concours littéraire africain, littérature congolaise, prix spiritualité africaine, prix innovation littéraire, KATIOPA, prix Bassin du Congo, prix diaspora africaine">
   <meta name="author" content="Merveil Hakeem Dianzenza">
-  <title>Prix Littéraires | Merveil Hakeem Dianzenza</title>
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hakvision243.blog/prix-litteraires.html">
+  <meta property="og:title" content="Prix Masambukidi Award & Prix Dianzenza | Prix Littéraires Africains">
+  <meta property="og:description" content="Deux prix littéraires prestigieux : Prix Masambukidi Award (Papa Samuel Masambukidi) et Prix Dianzenza (Merveil Hakeem Dianzenza) pour célébrer l'excellence littéraire africaine.">
+  <meta property="og:image" content="https://hakvision243.blog/prix-social-share.jpg">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://hakvision243.blog/prix-litteraires.html">
+  <meta property="twitter:title" content="Prix Masambukidi Award & Prix Dianzenza | Prix Littéraires Africains">
+  <meta property="twitter:description" content="Deux prix littéraires prestigieux pour récompenser l'excellence de la littérature africaine francophone.">
+  <meta property="twitter:image" content="https://hakvision243.blog/prix-social-share.jpg">
+  
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LiteraryEvent",
+    "name": "Prix Masambukidi Award & Prix Dianzenza",
+    "description": "Deux prix littéraires prestigieux pour récompenser l'excellence de la littérature africaine et francophone",
+    "organizer": {
+      "@type": "Person",
+      "name": "Merveil Hakeem Dianzenza",
+      "url": "https://hakvision243.blog",
+      "sameAs": [
+        "https://hakvision243.blog/bio.html"
+      ]
+    },
+    "about": [
+      {
+        "@type": "Award",
+        "name": "Prix Masambukidi Award",
+        "description": "Prix littéraire en l'honneur de Papa Samuel Masambukidi, Roi Divin du Bassin du Congo",
+        "category": "Littérature africaine - Spiritualité et traditions"
+      },
+      {
+        "@type": "Award",
+        "name": "Prix Dianzenza",
+        "description": "Prix littéraire pour l'innovation et l'afrofuturisme par Merveil Hakeem Dianzenza",
+        "category": "Littérature africaine - Afrofuturisme et innovation"
+      }
+    ],
+    "location": {
+      "@type": "Place",
+      "name": "Afrique et Diaspora",
+      "address": "Congo, Angola, France, États-Unis, Monde"
+    }
+  }
+  </script>
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -32,25 +85,56 @@
       overflow-x: hidden;
     }
 
-    /* Hero Header - Ultra Premium */
+    /* Hero Header - Ultra Premium avec Background Épique */
     .prix-hero {
       text-align: center;
-      padding: 160px 20px 100px;
-      background: radial-gradient(ellipse at top, rgba(255, 215, 0, 0.15) 0%, rgba(10,10,10,0.95) 50%),
-                  linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      padding: 180px 20px 120px;
+      background: 
+        radial-gradient(ellipse at top, rgba(255, 215, 0, 0.2) 0%, transparent 60%),
+        linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
       position: relative;
       overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
+    /* Africa Map Background */
     .prix-hero::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 700px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpath d='M50,10 L55,15 L58,20 L62,22 L65,25 L68,30 L70,35 L72,42 L73,50 L72,58 L70,65 L68,72 L65,78 L62,85 L58,92 L54,98 L50,102 L46,98 L42,92 L38,85 L35,78 L32,72 L30,65 L28,58 L27,50 L28,42 L30,35 L32,30 L35,25 L38,22 L42,20 L45,15 Z' fill='none' stroke='%23FFD700' stroke-width='0.5' opacity='0.15'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.3;
+      animation: pulse-map 8s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes pulse-map {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.4; }
+    }
+
+    /* Rotating Golden Glow */
+    .prix-hero::after {
       content: '';
       position: absolute;
       top: -50%;
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 50%);
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
       animation: rotate-slow 30s linear infinite;
+      z-index: 0;
     }
 
     @keyframes rotate-slow {
@@ -575,17 +659,63 @@
 
   <!-- Hero Section -->
   <section class="prix-hero">
-    <div class="trophy-container">
-      <div class="trophy-glow"></div>
-      <i class="fas fa-trophy icon-trophy"></i>
+    
+    <!-- Trophées décoratifs des deux côtés -->
+    <div style="position: absolute; left: 5%; top: 50%; transform: translateY(-50%); opacity: 0.3; font-size: 8em; color: #FFD700; animation: float 4s ease-in-out infinite; z-index: 1;">
+      <i class="fas fa-trophy"></i>
     </div>
-    <h1>Prix Littéraires</h1>
-    <p class="prix-subtitle">Récompenser l'Excellence Littéraire</p>
-    <p class="prix-description">
-      Célébrer les voix qui transforment la littérature, les plumes qui réinventent l'Afrique, 
-      les récits qui unissent les continents. Deux prix prestigieux pour honorer 
-      l'innovation, la créativité et l'excellence dans la littérature de langue française.
-    </p>
+    <div style="position: absolute; right: 5%; top: 50%; transform: translateY(-50%); opacity: 0.3; font-size: 8em; color: #FFD700; animation: float 4s ease-in-out infinite 2s; z-index: 1;">
+      <i class="fas fa-trophy"></i>
+    </div>
+    
+    <!-- Contenu principal du Hero -->
+    <div style="position: relative; z-index: 2; max-width: 1100px;">
+      <div class="trophy-container">
+        <div class="trophy-glow"></div>
+        <i class="fas fa-trophy icon-trophy"></i>
+      </div>
+      
+      <h1>Prix Littéraires Africains</h1>
+      
+      <div style="display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin: 40px 0;">
+        <div style="text-align: center;">
+          <i class="fas fa-crown" style="font-size: 3em; color: #FFD700; margin-bottom: 15px; display: block;"></i>
+          <h2 style="font-size: 2em; color: #FFD700; font-family: 'Playfair Display', serif; margin-bottom: 10px;">Prix Masambukidi Award</h2>
+          <p style="color: #ccc; font-size: 1.1em;">En l'honneur de Papa Samuel Masambukidi</p>
+          <p style="color: #999; font-size: 0.95em; margin-top: 5px;">Roi Divin du Bassin du Congo</p>
+        </div>
+        
+        <div style="font-size: 3em; color: #FFD700; display: flex; align-items: center;">•</div>
+        
+        <div style="text-align: center;">
+          <i class="fas fa-rocket" style="font-size: 3em; color: #FFD700; margin-bottom: 15px; display: block;"></i>
+          <h2 style="font-size: 2em; color: #FFD700; font-family: 'Playfair Display', serif; margin-bottom: 10px;">Prix Dianzenza</h2>
+          <p style="color: #ccc; font-size: 1.1em;">Par Merveil Hakeem Dianzenza</p>
+          <p style="color: #999; font-size: 0.95em; margin-top: 5px;">Auteur de KATIØPA (634 pages)</p>
+        </div>
+      </div>
+      
+      <p class="prix-subtitle">Récompenser l'Excellence Littéraire Africaine</p>
+      <p class="prix-description">
+        Deux prix prestigieux pour célébrer les voix qui transforment la littérature africaine, 
+        les plumes qui réinventent le continent, et les récits qui unissent les générations. 
+        <strong style="color: #FFD700;">De la spiritualité ancestrale à l'afrofuturisme visionnaire</strong>, 
+        nous honorons l'innovation, la créativité et l'excellence dans la littérature de langue française.
+      </p>
+      
+      <!-- CTA immédiat -->
+      <div style="margin-top: 50px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" style="display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #000; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1.2em; box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5); transition: all 0.3s ease;">
+          <i class="fab fa-whatsapp" style="font-size: 1.4em;"></i>
+          <span>Rejoindre la communauté</span>
+        </a>
+        <a href="#masambukidi" style="display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; background: transparent; border: 3px solid #FFD700; color: #FFD700; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1.2em; transition: all 0.3s ease;">
+          <i class="fas fa-arrow-down" style="font-size: 1.2em;"></i>
+          <span>Découvrir les prix</span>
+        </a>
+      </div>
+    </div>
+    
   </section>
 
   <!-- Main Content -->
@@ -611,7 +741,7 @@
     <div class="prix-grid">
 
       <!-- Prix Masambukidi Award -->
-      <article class="prix-card">
+      <article class="prix-card" id="masambukidi">
         <div class="prix-card-content">
           <span class="prix-badge"><i class="fas fa-hourglass-half"></i> Bientôt disponible</span>
           <i class="fas fa-crown prix-icon-large"></i>
