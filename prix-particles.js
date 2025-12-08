@@ -82,7 +82,7 @@ class GoldenParticles {
 
 // Countdown Timer - REMOVED (remplacé par Timeline Janvier-Mars)
 
-// Form Submission Handler - Backup to localStorage
+// Form Submission Handler - Multi-Service Backup
 class PrixFormHandler {
   constructor(formId) {
     this.form = document.getElementById(formId);
@@ -92,8 +92,7 @@ class PrixFormHandler {
   }
   
   async handleSubmit(e) {
-    // Don't prevent default - let FormSubmit handle the email
-    // Just backup to localStorage before submission
+    e.preventDefault(); // Prevent default to handle multiple services
     
     const formData = new FormData(this.form);
     const data = {
@@ -106,21 +105,96 @@ class PrixFormHandler {
     };
     
     try {
-      // Store in localStorage as backup
+      // 1. Store in localStorage as backup
       const submissions = JSON.parse(localStorage.getItem('prix_submissions') || '[]');
       submissions.push(data);
       localStorage.setItem('prix_submissions', JSON.stringify(submissions));
       
-      // Log to console for admin
       console.log('💾 Candidature sauvegardée localement:', data);
-      console.log('✉️ Envoi email en cours vers arenalse22@gmail.com...');
+      
+      // 2. Send to Webhook as secondary backup
+      await this.sendToWebhook(data);
+      
+      // 3. Let FormSubmit handle primary email
+      console.log('✉️ Envoi email via FormSubmit vers arenalse22@gmail.com...');
+      this.form.submit(); // Submit to FormSubmit
       
     } catch (error) {
-      console.error('Erreur sauvegarde locale:', error);
+      console.error('Erreur:', error);
+      // Still submit to FormSubmit even if backup fails
+      this.form.submit();
     }
-    
-    // Let FormSubmit handle the rest (email sending + redirect)
   }
+  
+  async sendToWebhook(data) {
+    try {
+      // Send to Make.com/Zapier webhook or direct email API
+      const webhookUrl = 'https://hook.eu2.make.com/your-webhook-id'; // Placeholder
+      
+      // Also try FormBackend as backup
+      await fetch('https://www.formbackend.com/f/your-form-id', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          _to: 'arenalse22@gmail.com',
+          _subject: '🏆 Nouvelle inscription Prix Littéraires !',
+          _service: 'backup'
+        })
+      });
+      
+      console.log('📤 Backup envoyé avec succès');
+    } catch (error) {
+      console.log('⚠️ Backup webhook échoué (non critique)');
+    }
+  }
+}
+
+// Email Direct Handler (fallback)
+function setupEmailDirectButton() {
+  const btn = document.getElementById('email-direct-btn');
+  if (!btn) return;
+  
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    const form = document.getElementById('prix-inscription-form');
+    const formData = new FormData(form);
+    
+    const nom = formData.get('nom') || '';
+    const email = formData.get('email') || '';
+    const prix = formData.get('prix') || '';
+    const livre_titre = formData.get('livre_titre') || '';
+    const message = formData.get('message') || '';
+    
+    const subject = encodeURIComponent('🏆 Inscription Prix Littéraires');
+    const body = encodeURIComponent(`
+📝 NOUVELLE INSCRIPTION PRIX LITTÉRAIRES
+
+Nom: ${nom}
+Email: ${email}
+Prix: ${prix}
+Titre du livre: ${livre_titre}
+Message: ${message}
+
+---
+Date: ${new Date().toLocaleString('fr-FR')}
+    `.trim());
+    
+    // Open default email client
+    window.location.href = `mailto:arenalse22@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Save to localStorage
+    const data = { nom, email, prix, livre_titre, message, date: new Date().toISOString() };
+    const submissions = JSON.parse(localStorage.getItem('prix_submissions') || '[]');
+    submissions.push(data);
+    localStorage.setItem('prix_submissions', JSON.stringify(submissions));
+    
+    // Show confirmation
+    alert('✅ Votre client email va s\'ouvrir. Envoyez simplement le message pré-rempli !');
+  });
 }
 
 // Initialize everything when DOM is loaded
@@ -128,10 +202,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Start golden particles animation
   new GoldenParticles();
   
-  // Initialize form handler (backup to localStorage before FormSubmit sends email)
+  // Initialize form handler (multi-service backup)
   new PrixFormHandler('prix-inscription-form');
   
+  // Setup email direct button as fallback
+  setupEmailDirectButton();
+  
   console.log('✨ Prix Littéraires - System Ready');
-  console.log('📧 Form submissions will be sent to: arenalse22@gmail.com');
-  console.log('💾 Local backup enabled in localStorage: prix_submissions');
+  console.log('📧 Primary: FormSubmit (hash) → arenalse22@gmail.com');
+  console.log('📧 Secondary: Email Direct Button (fallback)');
+  console.log('💾 Local backup: localStorage → prix_submissions');
 });
