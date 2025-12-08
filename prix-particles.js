@@ -82,7 +82,7 @@ class GoldenParticles {
 
 // Countdown Timer - REMOVED (remplacé par Timeline Janvier-Mars)
 
-// Form Submission Handler - Email Direct Garanti
+// Form Submission Handler - GetForm.io (Simple & Reliable)
 class PrixFormHandler {
   constructor(formId) {
     this.form = document.getElementById(formId);
@@ -91,8 +91,8 @@ class PrixFormHandler {
     }
   }
   
-  async handleSubmit(e) {
-    e.preventDefault();
+  handleSubmit(e) {
+    // Don't prevent default - let GetForm handle everything
     
     const formData = new FormData(this.form);
     const data = {
@@ -104,85 +104,20 @@ class PrixFormHandler {
       date: new Date().toISOString()
     };
     
-    // Validation
-    if (!data.nom || !data.email || !data.prix) {
-      alert('⚠️ Veuillez remplir tous les champs obligatoires');
-      return;
-    }
-    
+    // Save to localStorage as backup
     try {
-      // 1. Save to localStorage
       const submissions = JSON.parse(localStorage.getItem('prix_submissions') || '[]');
       submissions.push(data);
       localStorage.setItem('prix_submissions', JSON.stringify(submissions));
       
-      console.log('💾 Candidature sauvegardée:', data);
-      
-      // 2. Try FormSubmit with correct email
-      const success = await this.sendViaFormSubmit(data);
-      
-      if (success) {
-        console.log('✅ Email envoyé avec succès');
-        window.location.href = 'prix-merci.html';
-      } else {
-        // Fallback: Open email client
-        this.openEmailClient(data);
-      }
-      
+      console.log('✅ Candidature sauvegardée:', data);
+      console.log('📧 Envoi via GetForm.io vers: arenalse22@gmail.com');
+      console.log('🔄 Redirection automatique après envoi...');
     } catch (error) {
-      console.error('Erreur:', error);
-      // Fallback guaranteed
-      this.openEmailClient(data);
+      console.error('Erreur localStorage:', error);
     }
-  }
-  
-  async sendViaFormSubmit(data) {
-    try {
-      const response = await fetch('https://formsubmit.co/arenalse22@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          nom: data.nom,
-          email: data.email,
-          prix: data.prix,
-          livre_titre: data.livre_titre,
-          message: data.message,
-          _subject: '🏆 Nouvelle inscription Prix Littéraires !',
-          _template: 'table',
-          _captcha: false
-        })
-      });
-      
-      return response.ok;
-    } catch (error) {
-      console.log('FormSubmit failed, using fallback');
-      return false;
-    }
-  }
-  
-  openEmailClient(data) {
-    const subject = encodeURIComponent('🏆 Inscription Prix Littéraires');
-    const body = encodeURIComponent(`
-📝 NOUVELLE INSCRIPTION
-
-Nom: ${data.nom}
-Email: ${data.email}
-Prix: ${data.prix}
-Titre: ${data.livre_titre || 'Non spécifié'}
-Message: ${data.message || 'Aucun'}
-
-Date: ${new Date().toLocaleString('fr-FR')}
-    `.trim());
     
-    window.location.href = `mailto:arenalse22@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Show confirmation after 2 seconds
-    setTimeout(() => {
-      window.location.href = 'prix-merci.html';
-    }, 2000);
+    // GetForm will handle the email sending and redirect
   }
 }
 
