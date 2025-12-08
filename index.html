@@ -233,29 +233,6 @@
   <!-- Progress Bar -->
   <div class="progress-bar" id="progressBar"></div>
 
-  <!-- Header Navigation -->
-  <header>
-    <nav>
-      <div class="logo">
-        <a href="index.html">HAKVISION</a>
-      </div>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active"><i class="fas fa-home"></i> Accueil</a></li>
-        <li><a href="livres.html"><i class="fas fa-book"></i> Livres</a></li>
-        <li><a href="catalogue.html"><i class="fas fa-list"></i> Catalogue</a></li>
-        <li><a href="bio.html"><i class="fas fa-user"></i> Biographie</a></li>
-        <li><a href="prix-litteraires.html"><i class="fas fa-trophy"></i> Prix Littéraires</a></li>
-        <li><a href="press.html"><i class="fas fa-newspaper"></i> Presse</a></li>
-        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
-      </ul>
-      <div class="burger" id="burger-menu">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-      </div>
-    </nav>
-  </header>
-
   <!-- Breaking News Ticker -->
   <div class="breaking-news">
     <div class="breaking-news-content">
@@ -308,25 +285,6 @@
   <script src="hakvision-premium.js"></script>
   
   <!-- Menu Mobile Script -->
-  <script>
-    // Toggle menu mobile
-    const burger = document.getElementById('burger-menu');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (burger && navLinks) {
-      burger.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-active');
-        burger.classList.toggle('toggle');
-      });
-      
-      // Fermer menu au clic sur un lien
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.classList.remove('nav-active');
-          burger.classList.toggle('toggle');
-        });
-      });
-    }
-  </script>
+
 </body>
 </html>
