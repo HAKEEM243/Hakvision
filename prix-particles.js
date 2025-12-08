@@ -82,7 +82,7 @@ class GoldenParticles {
 
 // Countdown Timer - REMOVED (remplacé par Timeline Janvier-Mars)
 
-// Form Submission Handler - Multi-Service Backup
+// Form Submission Handler - Email Direct Garanti
 class PrixFormHandler {
   constructor(formId) {
     this.form = document.getElementById(formId);
@@ -92,7 +92,7 @@ class PrixFormHandler {
   }
   
   async handleSubmit(e) {
-    e.preventDefault(); // Prevent default to handle multiple services
+    e.preventDefault();
     
     const formData = new FormData(this.form);
     const data = {
@@ -104,51 +104,85 @@ class PrixFormHandler {
       date: new Date().toISOString()
     };
     
+    // Validation
+    if (!data.nom || !data.email || !data.prix) {
+      alert('⚠️ Veuillez remplir tous les champs obligatoires');
+      return;
+    }
+    
     try {
-      // 1. Store in localStorage as backup
+      // 1. Save to localStorage
       const submissions = JSON.parse(localStorage.getItem('prix_submissions') || '[]');
       submissions.push(data);
       localStorage.setItem('prix_submissions', JSON.stringify(submissions));
       
-      console.log('💾 Candidature sauvegardée localement:', data);
+      console.log('💾 Candidature sauvegardée:', data);
       
-      // 2. Send to Webhook as secondary backup
-      await this.sendToWebhook(data);
+      // 2. Try FormSubmit with correct email
+      const success = await this.sendViaFormSubmit(data);
       
-      // 3. Let FormSubmit handle primary email
-      console.log('✉️ Envoi email via FormSubmit vers arenalse22@gmail.com...');
-      this.form.submit(); // Submit to FormSubmit
+      if (success) {
+        console.log('✅ Email envoyé avec succès');
+        window.location.href = 'prix-merci.html';
+      } else {
+        // Fallback: Open email client
+        this.openEmailClient(data);
+      }
       
     } catch (error) {
       console.error('Erreur:', error);
-      // Still submit to FormSubmit even if backup fails
-      this.form.submit();
+      // Fallback guaranteed
+      this.openEmailClient(data);
     }
   }
   
-  async sendToWebhook(data) {
+  async sendViaFormSubmit(data) {
     try {
-      // Send to Make.com/Zapier webhook or direct email API
-      const webhookUrl = 'https://hook.eu2.make.com/your-webhook-id'; // Placeholder
-      
-      // Also try FormBackend as backup
-      await fetch('https://www.formbackend.com/f/your-form-id', {
+      const response = await fetch('https://formsubmit.co/arenalse22@gmail.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
         body: JSON.stringify({
-          ...data,
-          _to: 'arenalse22@gmail.com',
+          nom: data.nom,
+          email: data.email,
+          prix: data.prix,
+          livre_titre: data.livre_titre,
+          message: data.message,
           _subject: '🏆 Nouvelle inscription Prix Littéraires !',
-          _service: 'backup'
+          _template: 'table',
+          _captcha: false
         })
       });
       
-      console.log('📤 Backup envoyé avec succès');
+      return response.ok;
     } catch (error) {
-      console.log('⚠️ Backup webhook échoué (non critique)');
+      console.log('FormSubmit failed, using fallback');
+      return false;
     }
+  }
+  
+  openEmailClient(data) {
+    const subject = encodeURIComponent('🏆 Inscription Prix Littéraires');
+    const body = encodeURIComponent(`
+📝 NOUVELLE INSCRIPTION
+
+Nom: ${data.nom}
+Email: ${data.email}
+Prix: ${data.prix}
+Titre: ${data.livre_titre || 'Non spécifié'}
+Message: ${data.message || 'Aucun'}
+
+Date: ${new Date().toLocaleString('fr-FR')}
+    `.trim());
+    
+    window.location.href = `mailto:arenalse22@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Show confirmation after 2 seconds
+    setTimeout(() => {
+      window.location.href = 'prix-merci.html';
+    }, 2000);
   }
 }
 
