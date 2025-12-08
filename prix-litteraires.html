@@ -566,6 +566,85 @@
     }
 
     /* Responsive */
+
+    /* Countdown Styles */
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .countdown-item {
+      background: rgba(255, 215, 0, 0.1);
+      border: 3px solid #FFD700;
+      border-radius: 20px;
+      padding: 25px 30px;
+      min-width: 120px;
+      transition: all 0.3s ease;
+    }
+    
+    .countdown-item:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.5);
+      background: rgba(255, 215, 0, 0.2);
+    }
+    
+    .countdown-value {
+      font-size: 3.5em;
+      font-weight: 900;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    
+    .countdown-label {
+      font-size: 1.1em;
+      color: #FFD700;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    .countdown-separator {
+      font-size: 3em;
+      color: #FFD700;
+      font-weight: 900;
+    }
+    
+    .countdown-expired {
+      font-size: 2.5em;
+      color: #FFD700;
+      font-weight: 900;
+      animation: pulse-icon 1.5s ease-in-out infinite;
+    }
+    
+    /* Form Messages */
+    .form-message {
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      font-size: 1.1em;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .form-message-success {
+      background: rgba(46, 213, 115, 0.15);
+      border: 2px solid #2ed573;
+      color: #2ed573;
+    }
+    
+    .form-message-error {
+      background: rgba(255, 71, 87, 0.15);
+      border: 2px solid #ff4757;
+      color: #ff4757;
+    }
+
     @media (max-width: 768px) {
       .prix-hero h1 {
         font-size: 2.8em;
@@ -726,6 +805,61 @@
       </p>
     </section>
 
+
+    <!-- Countdown Section Spectaculaire -->
+    <section style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%); border-radius: 30px; padding: 60px 30px; margin: 80px 0; text-align: center; border: 3px solid rgba(255, 215, 0, 0.3); box-shadow: 0 20px 60px rgba(255, 215, 0, 0.2); position: relative; overflow: hidden;">
+      <div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%); animation: rotate-slow 20s linear infinite;"></div>
+      <div style="position: relative; z-index: 2;">
+        <h2 style="font-family: 'Playfair Display', serif; font-size: 3em; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; font-weight: 900;">⏰ Lancement Officiel Dans</h2>
+        <div id="countdown-timer" style="margin: 40px 0;"></div>
+        <p style="font-size: 1.3em; color: #ccc; margin-top: 30px; line-height: 1.8;">Ne manquez pas cette opportunité historique de faire partie des premiers lauréats !</p>
+      </div>
+    </section>
+
+    <!-- Formulaire Inscription Premium -->
+    <section style="background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(26,26,46,0.8) 100%); border-radius: 30px; padding: 60px 40px; margin: 80px 0; border: 3px solid rgba(255, 215, 0, 0.3); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);">
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 3em; text-align: center; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; font-weight: 900;">📝 Manifestez Votre Intérêt</h2>
+      <p style="text-align: center; font-size: 1.2em; color: #ccc; margin-bottom: 50px; line-height: 1.8;">Soyez parmi les premiers informés du lancement officiel et réservez votre place pour candidater</p>
+      
+      <form id="prix-inscription-form" style="max-width: 700px; margin: 0 auto;">
+        <div style="margin-bottom: 25px;">
+          <label style="display: block; color: #FFD700; font-weight: 600; margin-bottom: 10px; font-size: 1.1em;">Nom Complet *</label>
+          <input type="text" name="nom" required style="width: 100%; padding: 15px 20px; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; color: #fff; font-size: 1.05em; transition: all 0.3s ease;" onfocus="this.style.borderColor='#FFD700'; this.style.background='rgba(255, 255, 255, 0.1)'" onblur="this.style.borderColor='rgba(255, 215, 0, 0.3)'; this.style.background='rgba(255, 255, 255, 0.05)'">
+        </div>
+        
+        <div style="margin-bottom: 25px;">
+          <label style="display: block; color: #FFD700; font-weight: 600; margin-bottom: 10px; font-size: 1.1em;">Email *</label>
+          <input type="email" name="email" required style="width: 100%; padding: 15px 20px; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; color: #fff; font-size: 1.05em; transition: all 0.3s ease;" onfocus="this.style.borderColor='#FFD700'; this.style.background='rgba(255, 255, 255, 0.1)'" onblur="this.style.borderColor='rgba(255, 215, 0, 0.3)'; this.style.background='rgba(255, 255, 255, 0.05)'">
+        </div>
+        
+        <div style="margin-bottom: 25px;">
+          <label style="display: block; color: #FFD700; font-weight: 600; margin-bottom: 10px; font-size: 1.1em;">Prix qui vous intéresse *</label>
+          <select name="prix" required style="width: 100%; padding: 15px 20px; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; color: #fff; font-size: 1.05em; transition: all 0.3s ease; cursor: pointer;" onfocus="this.style.borderColor='#FFD700'; this.style.background='rgba(255, 255, 255, 0.1)'" onblur="this.style.borderColor='rgba(255, 215, 0, 0.3)'; this.style.background='rgba(255, 255, 255, 0.05)'">
+            <option value="" style="background: #1a1a2e; color: #ccc;">Choisissez un prix...</option>
+            <option value="masambukidi" style="background: #1a1a2e; color: #fff;">Prix Masambukidi Award</option>
+            <option value="dianzenza" style="background: #1a1a2e; color: #fff;">Prix Dianzenza</option>
+            <option value="les-deux" style="background: #1a1a2e; color: #fff;">Les deux prix</option>
+          </select>
+        </div>
+        
+        <div style="margin-bottom: 25px;">
+          <label style="display: block; color: #FFD700; font-weight: 600; margin-bottom: 10px; font-size: 1.1em;">Titre de votre livre</label>
+          <input type="text" name="livre_titre" style="width: 100%; padding: 15px 20px; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; color: #fff; font-size: 1.05em; transition: all 0.3s ease;" onfocus="this.style.borderColor='#FFD700'; this.style.background='rgba(255, 255, 255, 0.1)'" onblur="this.style.borderColor='rgba(255, 215, 0, 0.3)'; this.style.background='rgba(255, 255, 255, 0.05)'">
+        </div>
+        
+        <div style="margin-bottom: 30px;">
+          <label style="display: block; color: #FFD700; font-weight: 600; margin-bottom: 10px; font-size: 1.1em;">Message (optionnel)</label>
+          <textarea name="message" rows="4" style="width: 100%; padding: 15px 20px; background: rgba(255, 255, 255, 0.05); border: 2px solid rgba(255, 215, 0, 0.3); border-radius: 15px; color: #fff; font-size: 1.05em; transition: all 0.3s ease; resize: vertical;" onfocus="this.style.borderColor='#FFD700'; this.style.background='rgba(255, 255, 255, 0.1)'" onblur="this.style.borderColor='rgba(255, 215, 0, 0.3)'; this.style.background='rgba(255, 255, 255, 0.05)'"></textarea>
+        </div>
+        
+        <button type="submit" style="width: 100%; padding: 20px; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); color: #000; border: none; border-radius: 50px; font-size: 1.3em; font-weight: 700; cursor: pointer; transition: all 0.4s ease; box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4); position: relative; overflow: hidden;" onmouseover="this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 15px 40px rgba(255, 215, 0, 0.6)'" onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 10px 30px rgba(255, 215, 0, 0.4)'">
+          <i class="fas fa-paper-plane"></i> Manifester Mon Intérêt
+        </button>
+      </form>
+      
+      <p style="text-align: center; color: #999; margin-top: 30px; font-size: 0.95em;">🔒 Vos données sont sécurisées et ne seront utilisées que pour vous informer du lancement</p>
+    </section>
+
     <!-- Prix Grid -->
     <div class="prix-grid">
 
@@ -878,6 +1012,10 @@
 
   <!-- JavaScript Premium -->
   <script src="hakvision-premium.js"></script>
+
+
+  <!-- Particles and Countdown Script -->
+  <script src="prix-particles.js"></script>
 
 </body>
 </html>
