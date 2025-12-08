@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prix Littéraires Merveil Hakeem Dianzenza - Prix Masambukidi Award & Prix Dianzenza. Récompenser l'excellence littéraire africaine et francophone.">
+  <meta name="keywords" content="prix littéraire, Prix Masambukidi, Prix Dianzenza, littérature africaine, concours littéraire, afrofuturisme">
+  <meta name="author" content="Merveil Hakeem Dianzenza">
+  <title>Prix Littéraires | Merveil Hakeem Dianzenza</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Style Premium -->
+  <link rel="stylesheet" href="style-premium.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Hero Header */
+    .prix-hero {
+      text-align: center;
+      padding: 140px 20px 80px;
+      background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(26,26,46,0.95) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .prix-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.12) 0%, transparent 70%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .prix-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4em;
+      font-weight: 900;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prix-hero .icon-trophy {
+      font-size: 4em;
+      color: #FFD700;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .prix-subtitle {
+      font-size: 1.5em;
+      color: #ccc;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prix-description {
+      font-size: 1.2em;
+      color: #aaa;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      position: relative;
+      z-index: 2;
+      line-height: 1.8;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+
+    /* Prix Card */
+    .prix-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 2px solid rgba(255, 215, 0, 0.2);
+      border-radius: 20px;
+      padding: 50px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .prix-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .prix-card:hover {
+      border-color: rgba(255, 215, 0, 0.5);
+      box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .prix-card-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .prix-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #000;
+      padding: 10px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9em;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .prix-badge.coming-soon {
+      background: linear-gradient(135deg, #666 0%, #999 100%);
+      color: #fff;
+    }
+
+    .prix-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5em;
+      color: #FFD700;
+      margin-bottom: 15px;
+      font-weight: 900;
+    }
+
+    .prix-card h3 {
+      font-size: 1.3em;
+      color: #FFA500;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+
+    .prix-card p {
+      font-size: 1.15em;
+      color: #ccc;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .prix-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .detail-item {
+      background: rgba(255, 215, 0, 0.05);
+      border-left: 4px solid #FFD700;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .detail-item h4 {
+      color: #FFD700;
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .detail-item p {
+      color: #ccc;
+      font-size: 1em;
+      margin: 0;
+    }
+
+    /* Coming Soon Section */
+    .coming-soon-section {
+      text-align: center;
+      padding: 40px;
+      background: rgba(255, 215, 0, 0.03);
+      border-radius: 15px;
+      margin-top: 30px;
+    }
+
+    .coming-soon-section h3 {
+      color: #FFD700;
+      font-size: 2em;
+      margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .coming-soon-section p {
+      color: #aaa;
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .coming-soon-icon {
+      font-size: 3em;
+      color: #FFD700;
+      margin-bottom: 20px;
+      animation: pulse-icon 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-icon {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* CTA Buttons */
+    .cta-buttons {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 35px;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #000;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid #FFD700;
+      color: #FFD700;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 215, 0, 0.1);
+    }
+
+    /* Vision Section */
+    .vision-section {
+      background: rgba(255, 215, 0, 0.05);
+      border-left: 5px solid #FFD700;
+      padding: 40px;
+      border-radius: 15px;
+      margin: 60px 0;
+    }
+
+    .vision-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5em;
+      color: #FFD700;
+      margin-bottom: 25px;
+    }
+
+    .vision-section p {
+      font-size: 1.2em;
+      color: #ccc;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 30px;
+      color: #666;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #666;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #FFD700;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .prix-hero h1 {
+        font-size: 2.5em;
+      }
+
+      .prix-hero .icon-trophy {
+        font-size: 3em;
+      }
+
+      .prix-card {
+        padding: 30px 20px;
+      }
+
+      .prix-card h2 {
+        font-size: 2em;
+      }
+
+      .prix-details {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html">HAKVISION</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+        <li><a href="livres.html"><i class="fas fa-book"></i> Livres</a></li>
+        <li><a href="catalogue.html"><i class="fas fa-list"></i> Catalogue</a></li>
+        <li><a href="bio.html"><i class="fas fa-user"></i> Biographie</a></li>
+        <li><a href="prix-litteraires.html" class="active"><i class="fas fa-trophy"></i> Prix Littéraires</a></li>
+        <li><a href="press.html"><i class="fas fa-newspaper"></i> Presse</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breaking News Ticker -->
+  <div class="breaking-news">
+    <div class="breaking-label">⚡ ACTUALITÉS</div>
+    <div class="breaking-content">
+      <span class="breaking-text">Prix Masambukidi Award & Prix Dianzenza • Bientôt disponibles • Récompenser l'excellence littéraire africaine • Restez connectés</span>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="prix-hero">
+    <div class="icon-trophy">
+      <i class="fas fa-trophy"></i>
+    </div>
+    <h1>Prix Littéraires</h1>
+    <p class="prix-subtitle">Récompenser l'Excellence Littéraire Africaine et Francophone</p>
+    <p class="prix-description">
+      Célébrer les voix qui transforment la littérature, les plumes qui réinventent l'Afrique, 
+      les récits qui unissent les continents. Les Prix Littéraires Merveil Hakeem Dianzenza 
+      honoreront bientôt l'innovation, la créativité et l'excellence dans la littérature de langue française.
+    </p>
+  </section>
+
+  <!-- Main Content -->
+  <div class="container">
+
+    <!-- Vision Section -->
+    <section class="vision-section">
+      <h2><i class="fas fa-lightbulb"></i> Notre Vision</h2>
+      <p>
+        La littérature africaine et francophone regorge de talents exceptionnels, de voix uniques 
+        qui méritent d'être reconnues, célébrées et amplifiées. Les Prix Littéraires que nous lançons 
+        visent à créer un espace de reconnaissance pour ces créateurs qui osent repousser les frontières 
+        de l'imaginaire, questionner le présent et rêver l'avenir.
+      </p>
+      <p>
+        De l'afrofuturisme à l'histoire, du thriller à la poésie, de la biographie au roman graphique, 
+        nous souhaitons honorer toutes les formes d'excellence littéraire qui portent la voix du continent 
+        et de la diaspora africaine.
+      </p>
+    </section>
+
+    <!-- Prix Masambukidi Award -->
+    <article class="prix-card">
+      <div class="prix-card-content">
+        <span class="prix-badge coming-soon">🕐 En attente - Bientôt disponible</span>
+        <h2>🏆 Prix Masambukidi Award</h2>
+        <h3>En l'honneur de Papa Samuel Masambukidi, Roi Divin du Bassin du Congo</h3>
+        
+        <p>
+          Le <strong>Prix Masambukidi Award</strong> rendra hommage aux œuvres littéraires qui célèbrent 
+          la spiritualité africaine, les traditions ancestrales et la sagesse des guides spirituels. 
+          Ce prix récompensera les écrivains qui, à travers leurs récits, perpétuent la mémoire 
+          des héritages sacrés et des leaders qui ont façonné l'identité spirituelle du continent.
+        </p>
+
+        <div class="prix-details">
+          <div class="detail-item">
+            <h4><i class="fas fa-star"></i> Catégories</h4>
+            <p>Biographie spirituelle, Roman historique, Essai traditionnel, Témoignage</p>
+          </div>
+          <div class="detail-item">
+            <h4><i class="fas fa-globe-africa"></i> Zone géographique</h4>
+            <p>Bassin du Congo et Afrique centrale (RDC, Congo-Brazzaville, Gabon, Cameroun, RCA)</p>
+          </div>
+          <div class="detail-item">
+            <h4><i class="fas fa-heart"></i> Valeurs</h4>
+            <p>Spiritualité, Tradition, Héritage, Sagesse ancestrale, Mémoire collective</p>
+          </div>
+        </div>
+
+        <div class="coming-soon-section">
+          <div class="coming-soon-icon">
+            <i class="fas fa-hourglass-half"></i>
+          </div>
+          <h3>Lancement à venir</h3>
+          <p>
+            Les détails complets du Prix Masambukidi Award — règlement, jury, dotation, calendrier — 
+            seront annoncés prochainement. Restez connecté pour ne rien manquer !
+          </p>
+          <div class="cta-buttons">
+            <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="btn-cta">
+              <i class="fab fa-whatsapp"></i> Rejoindre le WhatsApp Channel
+            </a>
+            <a href="mailto:arenalse22@gmail.com?subject=Info Prix Masambukidi" class="btn-cta btn-secondary">
+              <i class="fas fa-envelope"></i> Me contacter
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Prix Dianzenza -->
+    <article class="prix-card">
+      <div class="prix-card-content">
+        <span class="prix-badge coming-soon">🕐 En attente - Bientôt disponible</span>
+        <h2>🏆 Prix Dianzenza</h2>
+        <h3>Récompenser l'Innovation Littéraire et l'Afrofuturisme</h3>
+        
+        <p>
+          Le <strong>Prix Dianzenza</strong> célébrera les œuvres qui osent repousser les frontières 
+          de l'imaginaire africain. Afrofuturisme, science-fiction, uchronie, dystopie, fantasy : 
+          ce prix récompensera les écrivains qui réinventent l'Afrique à travers des récits audacieux, 
+          visionnaires et profondément innovants.
+        </p>
+
+        <div class="prix-details">
+          <div class="detail-item">
+            <h4><i class="fas fa-rocket"></i> Catégories</h4>
+            <p>Afrofuturisme, Science-fiction, Fantasy africaine, Uchronie, Dystopie, Thriller futuriste</p>
+          </div>
+          <div class="detail-item">
+            <h4><i class="fas fa-globe"></i> Zone géographique</h4>
+            <p>Afrique et diaspora africaine mondiale (Europe, Amérique, Asie, Caraïbes)</p>
+          </div>
+          <div class="detail-item">
+            <h4><i class="fas fa-brain"></i> Valeurs</h4>
+            <p>Innovation narrative, Créativité, Réinvention identitaire, Vision du futur africain</p>
+          </div>
+        </div>
+
+        <div class="coming-soon-section">
+          <div class="coming-soon-icon">
+            <i class="fas fa-hourglass-half"></i>
+          </div>
+          <h3>Lancement à venir</h3>
+          <p>
+            Les détails complets du Prix Dianzenza — règlement, jury, dotation, calendrier — 
+            seront annoncés prochainement. Inscrivez-vous pour être informé en priorité !
+          </p>
+          <div class="cta-buttons">
+            <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="btn-cta">
+              <i class="fab fa-whatsapp"></i> Rejoindre le WhatsApp Channel
+            </a>
+            <a href="mailto:arenalse22@gmail.com?subject=Info Prix Dianzenza" class="btn-cta btn-secondary">
+              <i class="fas fa-envelope"></i> Me contacter
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Final CTA Section -->
+    <section class="vision-section" style="text-align: center;">
+      <h2>📢 Restez Informé</h2>
+      <p>
+        Vous êtes écrivain, éditeur, passionné de littérature africaine ? 
+        Rejoignez notre communauté pour être informé en priorité du lancement officiel des Prix Littéraires.
+      </p>
+      <div class="cta-buttons">
+        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="btn-cta">
+          <i class="fab fa-whatsapp"></i> WhatsApp Channel
+        </a>
+        <a href="mailto:arenalse22@gmail.com" class="btn-cta btn-secondary">
+          <i class="fas fa-envelope"></i> Contact Direct
+        </a>
+        <a href="bio.html" class="btn-cta btn-secondary">
+          <i class="fas fa-user"></i> En savoir plus sur l'auteur
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Merveil Hakeem Dianzenza – Tous droits réservés • Hakvision</p>
+    <p style="margin-top: 10px;">
+      <a href="index.html">Accueil</a> •
+      <a href="livres.html">Livres</a> •
+      <a href="catalogue.html">Catalogue</a> •
+      <a href="bio.html">Biographie</a> •
+      <a href="prix-litteraires.html">Prix Littéraires</a> •
+      <a href="press.html">Presse</a> •
+      <a href="contact.html">Contact</a>
+    </p>
+  </footer>
+
+  <!-- JavaScript Premium -->
+  <script src="hakvision-premium.js"></script>
+
+</body>
+</html>
