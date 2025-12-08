@@ -80,56 +80,9 @@ class GoldenParticles {
   }
 }
 
-// Countdown Timer Spectaculaire
-class CountdownTimer {
-  constructor(targetDate, elementId) {
-    this.targetDate = new Date(targetDate).getTime();
-    this.element = document.getElementById(elementId);
-    this.update();
-    setInterval(() => this.update(), 1000);
-  }
-  
-  update() {
-    const now = new Date().getTime();
-    const distance = this.targetDate - now;
-    
-    if (distance < 0) {
-      this.element.innerHTML = '<div class="countdown-expired">🎉 LANCEMENT OFFICIEL ! 🎉</div>';
-      return;
-    }
-    
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    this.element.innerHTML = `
-      <div class="countdown-container">
-        <div class="countdown-item">
-          <div class="countdown-value">${days}</div>
-          <div class="countdown-label">Jours</div>
-        </div>
-        <div class="countdown-separator">:</div>
-        <div class="countdown-item">
-          <div class="countdown-value">${hours.toString().padStart(2, '0')}</div>
-          <div class="countdown-label">Heures</div>
-        </div>
-        <div class="countdown-separator">:</div>
-        <div class="countdown-item">
-          <div class="countdown-value">${minutes.toString().padStart(2, '0')}</div>
-          <div class="countdown-label">Minutes</div>
-        </div>
-        <div class="countdown-separator">:</div>
-        <div class="countdown-item">
-          <div class="countdown-value">${seconds.toString().padStart(2, '0')}</div>
-          <div class="countdown-label">Secondes</div>
-        </div>
-      </div>
-    `;
-  }
-}
+// Countdown Timer - REMOVED (remplacé par Timeline Janvier-Mars)
 
-// Form Submission Handler
+// Form Submission Handler - Backup to localStorage
 class PrixFormHandler {
   constructor(formId) {
     this.form = document.getElementById(formId);
@@ -139,7 +92,8 @@ class PrixFormHandler {
   }
   
   async handleSubmit(e) {
-    e.preventDefault();
+    // Don't prevent default - let FormSubmit handle the email
+    // Just backup to localStorage before submission
     
     const formData = new FormData(this.form);
     const data = {
@@ -151,58 +105,33 @@ class PrixFormHandler {
       date: new Date().toISOString()
     };
     
-    // Show loading
-    const submitBtn = this.form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
-    submitBtn.disabled = true;
-    
     try {
       // Store in localStorage as backup
       const submissions = JSON.parse(localStorage.getItem('prix_submissions') || '[]');
       submissions.push(data);
       localStorage.setItem('prix_submissions', JSON.stringify(submissions));
       
-      // Show success message
-      this.showMessage('success', '🎉 Votre candidature a été enregistrée avec succès ! Nous vous contacterons bientôt.');
-      this.form.reset();
-      
       // Log to console for admin
-      console.log('Nouvelle candidature enregistrée:', data);
+      console.log('💾 Candidature sauvegardée localement:', data);
+      console.log('✉️ Envoi email en cours vers arenalse22@gmail.com...');
       
     } catch (error) {
-      this.showMessage('error', '❌ Une erreur est survenue. Veuillez réessayer ou nous contacter par email.');
-      console.error('Erreur:', error);
-    } finally {
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
+      console.error('Erreur sauvegarde locale:', error);
     }
-  }
-  
-  showMessage(type, message) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `form-message form-message-${type}`;
-    messageDiv.innerHTML = message;
     
-    this.form.insertAdjacentElement('beforebegin', messageDiv);
-    
-    setTimeout(() => {
-      messageDiv.style.opacity = '0';
-      setTimeout(() => messageDiv.remove(), 300);
-    }, 5000);
+    // Let FormSubmit handle the rest (email sending + redirect)
   }
 }
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-  // Start particles
+  // Start golden particles animation
   new GoldenParticles();
   
-  // Start countdown (set target date to 90 days from now)
-  const launchDate = new Date();
-  launchDate.setDate(launchDate.getDate() + 90);
-  new CountdownTimer(launchDate, 'countdown-timer');
-  
-  // Initialize form handler
+  // Initialize form handler (backup to localStorage before FormSubmit sends email)
   new PrixFormHandler('prix-inscription-form');
+  
+  console.log('✨ Prix Littéraires - System Ready');
+  console.log('📧 Form submissions will be sent to: arenalse22@gmail.com');
+  console.log('💾 Local backup enabled in localStorage: prix_submissions');
 });
