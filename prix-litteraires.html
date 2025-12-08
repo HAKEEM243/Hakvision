@@ -85,16 +85,13 @@
       overflow-x: hidden;
     }
 
-    /* Hero Header - Ultra Premium avec Image Épique */
+    /* Hero Header - Ultra Premium */
     .prix-hero {
       text-align: center;
-      padding: 180px 20px 120px;
-      background: 
-        linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.85) 100%),
-        url('prix-hero-africa-trophies.jpg') center center / cover no-repeat;
+      padding: 80px 20px 80px;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
       position: relative;
       overflow: hidden;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -652,11 +649,16 @@
     </div>
   </div>
 
+  <!-- Image Bannière Épique -->
+  <div style="width: 100%; margin-top: 80px; position: relative; overflow: hidden;">
+    <img src="prix-hero-africa-trophies.jpg" alt="Prix Masambukidi Award et Prix Dianzenza - Carte d'Afrique et Trophées" style="width: 100%; height: auto; display: block; max-height: 500px; object-fit: cover; object-position: center;">
+  </div>
+
   <!-- Hero Section -->
-  <section class="prix-hero">
+  <section class="prix-hero" style="min-height: auto; padding: 80px 20px 80px;">
     
     <!-- Contenu principal du Hero -->
-    <div style="position: relative; z-index: 10; max-width: 1100px; text-shadow: 0 2px 20px rgba(0,0,0,0.8);">
+    <div style="position: relative; z-index: 10; max-width: 1100px;">
       <div class="trophy-container">
         <div class="trophy-glow"></div>
         <i class="fas fa-trophy icon-trophy"></i>
