@@ -1,51 +1,82 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Merci pour votre message !</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #FFD700;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-    }
-
-    a {
-      background-color: #FFD700;
-      color: black;
-      padding: 12px 25px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    a:hover {
-      background-color: #e6c200;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Merci | Hakvision</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style-premium.css">
 </head>
-<body>
-  <h1>Merci pour votre message !</h1>
-  <p>Je vous répondrai dès que possible. À très bientôt sur Hakvision.</p>
-  <a href="index.html">Retour à l'accueil</a>
+<body class="site-body">
+  <div class="site-shell">
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="breaking-news">
+      <div class="breaking-news-content">
+        <span class="breaking-label">🔴 ACTUALITÉS</span>
+        <span class="breaking-text">Merci pour votre message — Hakvision revient vite | Prix littéraires ouverts | Nouveautés KATIØPA</span>
+      </div>
+    </div>
+
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <span class="live-badge">● LIVE</span>
+          <span>📅 Mercredi 4 décembre 2025</span>
+        </div>
+        <div class="social-links-top">
+          <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <header class="global-header">
+      <div class="header-inner">
+        <div class="brand-stack">
+          <div class="brand-mark">HV</div>
+          <div class="brand-text">
+            <p class="eyebrow">Merveil Hakeem Dianzenza</p>
+            <h1>Hakvision</h1>
+          </div>
+        </div>
+        <nav class="global-nav">
+          <a href="index.html">Accueil</a>
+          <a href="catalogue.html">Catalogue</a>
+          <a href="livres.html">Livres</a>
+          <a href="bio.html">Bio</a>
+          <a href="press.html">Press</a>
+          <a href="okapiplay.html">OkapiPlay</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <a class="nav-cta" href="prix-litteraires.html">Prix littéraires</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="halo"></div>
+        <div class="hero-grid">
+          <div>
+            <span class="kicker">Merci</span>
+            <h1>Votre message a été reçu.</h1>
+            <p class="lead">L'équipe Hakvision vous répond très vite pour concrétiser vos idées, partenariats ou demandes média.</p>
+            <div class="cta-group">
+              <a class="btn primary" href="index.html">Retour à l'accueil</a>
+              <a class="btn ghost" href="livres.html">Découvrir les livres</a>
+            </div>
+          </div>
+          <div class="hero-visual-card">
+            <img src="katiopa_cover_hq.jpg" alt="Univers Hakvision" loading="lazy">
+            <p class="media-caption">Hakvision rassemble littérature, médias et prix littéraires panafricains.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="hakvision-premium.js"></script>
 </body>
 </html>
