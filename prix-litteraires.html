@@ -7,7 +7,7 @@
 
   <!-- SEO Optimisé pour Google -->
   <title>Prix Masambukidi Award & Prix Dianzenza | Prix Littéraires Africains 2026.</title>
-  <meta name="description" content="Prix Masambukidi Award en l'honneur de Papa Samuel Masambukidi, Roi Divin du Congo. Prix Dianzenza par Merveil Hakeem Dianzenza pour l'afrofuturisme. Deux prix littéraires prestigieux pour récompenser l'excellence de la littérature africaine francophone.">
+  <meta name="description" content="Prix Masambukidi Award et Prix Dianzenza – édition inaugurale 2026. Candidatures dès janvier, remise prévue à Kinshasa début mars. Deux prix littéraires pour célébrer l'excellence africaine et congolaise.">
   <meta name="keywords" content="Prix Masambukidi Award, Prix Dianzenza, Merveil Hakeem Dianzenza, Papa Samuel Masambukidi, Papa Masambukidi Roi Divin, prix littéraire africain, prix littérature Congo, prix afrofuturisme, concours littéraire africain, littérature congolaise, prix spiritualité africaine, prix innovation littéraire, KATIOPA, prix Bassin du Congo, prix diaspora africaine">
   <meta name="author" content="Merveil Hakeem Dianzenza">
   
@@ -33,7 +33,9 @@
     "@context": "https://schema.org",
     "@type": "LiteraryEvent",
     "name": "Prix Masambukidi Award & Prix Dianzenza",
-    "description": "Deux prix littéraires prestigieux pour récompenser l'excellence de la littérature africaine et francophone",
+    "description": "Deux prix littéraires prestigieux pour récompenser l'excellence de la littérature africaine et francophone, première édition en 2026 avec cérémonie à Kinshasa début mars",
+    "startDate": "2026-01-15",
+    "endDate": "2026-03-07",
     "url": "https://hakvision.com/prix-litteraires.html",
     "organizer": {
       "@type": "Person",
@@ -59,8 +61,8 @@
     ],
     "location": {
       "@type": "Place",
-      "name": "Afrique et Diaspora",
-      "address": "Congo, Angola, France, États-Unis, Monde"
+      "name": "Kinshasa, République Démocratique du Congo",
+      "address": "Kinshasa, RDC"
     }
   }
   </script>
@@ -98,7 +100,7 @@
     }
 
     body {
-      background: #0a0a0a;
+      background: linear-gradient(135deg, rgba(10, 10, 10, 0.94), rgba(26, 26, 46, 0.94));
       font-family: 'Inter', sans-serif;
       color: #fff;
       line-height: 1.6;
@@ -1000,6 +1002,105 @@
       font-weight: 900;
       animation: pulse-icon 1.5s ease-in-out infinite;
     }
+
+    /* Navigation premium */
+    header nav {
+      max-width: 1200px;
+      margin: 22px auto 10px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky;
+      top: 12px;
+      z-index: 1100;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      color: #f8fafc;
+      text-decoration: none;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.25);
+      color: #FFD700;
+    }
+
+    .logo a {
+      color: #FFD700;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+
+    /* Podium Kinshasa */
+    .podium-kinshasa {
+      margin: 90px auto 60px;
+      max-width: 1100px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(26,26,46,0.95));
+      border-radius: 28px;
+      padding: 40px;
+      border: 2px solid rgba(255, 215, 0, 0.35);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .podium-kinshasa::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.12), transparent 45%),
+                  radial-gradient(circle at 80% 0%, rgba(249, 115, 22, 0.12), transparent 40%);
+      pointer-events: none;
+    }
+
+    .podium-kinshasa h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4em;
+      margin-bottom: 12px;
+      color: #FFD700;
+    }
+
+    .podium-kinshasa p {
+      color: #e5e7eb;
+      max-width: 760px;
+      line-height: 1.8;
+    }
+
+    .podium-kinshasa img {
+      width: 100%;
+      border-radius: 18px;
+      margin-top: 22px;
+      border: 1px solid rgba(255, 215, 0, 0.28);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+      object-fit: cover;
+    }
     
     /* Form Messages */
     .form-message {
@@ -1181,15 +1282,6 @@
     </div>
   </div>
 
-  <!-- Image Bannière Épique Ultra Premium -->
-  <div class="prix-banner-container">
-    <img src="prix-hero-banner-premium.jpg" alt="Prix Masambukidi Award et Prix Dianzenza - Cérémonie Prestigieuse" class="prix-banner-image">
-    <div class="prix-banner-overlay">
-<h1 class="prix-banner-title">Prix Littéraires Africains 2026</h1>
-      <p class="prix-banner-subtitle">Récompenser l'Excellence Littéraire</p>
-    </div>
-  </div>
-
   <!-- Hero Section -->
   <section class="prix-hero" style="min-height: auto; padding: 80px 20px 80px;">
     
@@ -1226,7 +1318,7 @@
         </div>
       </div>
       
-      <p class="prix-subtitle">Célébrer l'Excellence Littéraire Congolaise et Africaine</p>
+      <p class="prix-subtitle">Première édition 2026 – Célébrer l'Excellence Littéraire Congolaise et Africaine</p>
       
       <!-- Citation Inspirante -->
       <div style="max-width: 900px; margin: 40px auto; padding: 40px 30px; background: rgba(255, 215, 0, 0.08); border-left: 5px solid #FFD700; border-radius: 15px;">
@@ -1239,11 +1331,11 @@
       </div>
       
       <p class="prix-description">
-        Trois prix prestigieux pour célébrer l'intelligence, la créativité et l'excellence congolaises et africaines. 
-        <strong style="color: #FFD700;">Prix Masambukidi et Prix Dianzenza : réservés aux auteurs congolais (RDC, Congo-Brazzaville et diaspora mondiale)</strong> 
+        Trois prix prestigieux pour célébrer l'intelligence, la créativité et l'excellence congolaises et africaines.
+        <strong style="color: #FFD700;">Prix Masambukidi et Prix Dianzenza : réservés aux auteurs congolais (RDC, Congo-Brazzaville et diaspora mondiale)</strong>
         pour démontrer que les Congolais excellent dans la littérature, la pensée et l'innovation.
-        <strong style="color: #FFD700;">Prix de l'Excellence Féminine : ouvert à toute l'Afrique et sa diaspora</strong> 
-        pour honorer les voix féminines qui transforment le continent.
+        <strong style="color: #FFD700;">Prix de l'Excellence Féminine : ouvert à toute l'Afrique et sa diaspora</strong>
+        pour honorer les voix féminines qui transforment le continent. Lancement des candidatures en janvier 2026 et remise prévue à Kinshasa début mars.
       </p>
       
       <!-- CTA immédiat -->
@@ -1294,8 +1386,8 @@
 
         <div class="fact-card">
           <div class="fact-icon"><i class="fas fa-calendar-check"></i></div>
-          <div class="fact-title">Ouverture 2026</div>
-          <p>Pré-inscription, annonces officielles et cérémonie seront révélées progressivement. Rejoignez la communauté pour recevoir les dates clés.</p>
+          <div class="fact-title">Calendrier 2026</div>
+          <p>Ouverture des candidatures le 15 janvier, constitution du jury en février, remise des prix à Kinshasa au début du mois de mars.</p>
           <div class="fact-tags">
             <span class="fact-tag">Calendrier</span>
             <span class="fact-tag">Cérémonie</span>
@@ -1312,6 +1404,39 @@
             <span class="fact-tag">Essai</span>
             <span class="fact-tag">Poésie</span>
           </div>
+        </div>
+      </div>
+
+      <div class="section-heading" style="margin-top: 50px;">
+        <span class="eyebrow"><i class="fas fa-list-check"></i> Prérequis 2026</span>
+        <h2>Ce qu'il faut préparer avant l'ouverture de janvier</h2>
+        <p>Première édition des prix Masambukidi et Dianzenza : préparez un dossier solide pour janvier 2026 afin d'être prêt pour la remise à Kinshasa début mars.</p>
+      </div>
+
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <h3><i class="fas fa-file-alt"></i> Dossier littéraire</h3>
+          <ul>
+            <li><span class="pillar-bullet"></span>Manuscrit complet ou 3 chapitres + synopsis (PDF ou lien de lecture sécurisé).</li>
+            <li><span class="pillar-bullet"></span>Résumé de 1 200 caractères et mots-clés thématiques.</li>
+            <li><span class="pillar-bullet"></span>Extrait de 5 pages pour la lecture rapide du jury.</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <h3><i class="fas fa-user-check"></i> Profil & ancrage</h3>
+          <ul>
+            <li><span class="pillar-bullet"></span>Biographie courte (80-120 mots) et photo auteur HD.</li>
+            <li><span class="pillar-bullet"></span>Coordonnées vérifiées + ville de résidence (priorité Kinshasa, Brazzaville, diaspora).</li>
+            <li><span class="pillar-bullet"></span>Engagement à participer à la remise de début mars 2026 à Kinshasa.</li>
+          </ul>
+        </div>
+        <div class="pillar-card">
+          <h3><i class="fas fa-award"></i> Critères de sélection</h3>
+          <ul>
+            <li><span class="pillar-bullet"></span>Originalité et profondeur du propos (afrofuturisme, héritage, innovation).</li>
+            <li><span class="pillar-bullet"></span>Contribution à la valorisation des cultures congolaises et africaines.</li>
+            <li><span class="pillar-bullet"></span>Respect du calendrier : candidature dès janvier 2026, disponibilité pour mars.</li>
+          </ul>
         </div>
       </div>
 
@@ -1666,7 +1791,7 @@
     <section class="vision-section" style="text-align: center;">
       <h2>📢 Restez Informé</h2>
       <p>
-        Vous êtes écrivain, éditeur, passionné de littérature africaine ? 
+        Vous êtes écrivain, éditeur, passionné de littérature africaine ?
         Rejoignez notre communauté pour être informé en priorité du lancement officiel des Prix Littéraires.
       </p>
       <div class="cta-buttons">
@@ -1683,6 +1808,12 @@
           <span>En savoir plus</span>
         </a>
       </div>
+    </section>
+
+    <section class="podium-kinshasa">
+      <h3>Podium Kinshasa 2026</h3>
+      <p>Trois trophées afrodescendants pour la première édition, remis à Kinshasa début mars 2026. Une célébration ancrée au Congo, pensée pour honorer les plumes noires qui font vibrer le continent et sa diaspora.</p>
+      <img src="prix-hero-africa-trophies.jpg" alt="Podium congolais avec trois trophées dorés pour la première édition 2026" loading="lazy">
     </section>
 
   </div>
