@@ -109,6 +109,48 @@ if (newsletterForm) {
   });
 }
 
+// ============ CONTACT FORM (FORMSPREE + MAILTO) ============
+const contactForm = document.querySelector('[data-contact-form]');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = contactForm.querySelector('.form-status');
+    if (status) {
+      status.style.display = 'block';
+      status.classList.remove('error');
+      status.textContent = 'Envoi en cours...';
+    }
+
+    const formData = new FormData(contactForm);
+    const payload = Object.fromEntries(formData.entries());
+    const fallbackMail = `mailto:arenalse22@gmail.com?subject=Contact%20Hakvision&body=${encodeURIComponent(`Nom : ${payload.nom}\nEmail : ${payload.email}\nObjet : ${payload.objet}\nMessage : ${payload.message}`)}`;
+
+    try {
+      const response = await fetch(contactForm.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: formData
+      });
+
+      if (response.ok) {
+        if (status) {
+          status.textContent = 'Merci ! Votre demande est bien arrivée. Nous répondons sous 48h.';
+          status.classList.remove('error');
+        }
+        setTimeout(() => window.location.href = 'merci.html', 600);
+      } else {
+        throw new Error('Erreur Formspree');
+      }
+    } catch (error) {
+      if (status) {
+        status.textContent = 'Problème réseau. Cliquez pour ouvrir votre email et nous écrire directement.';
+        status.classList.add('error');
+      }
+      window.location.href = fallbackMail;
+    }
+  });
+}
+
 // ============ ACTIVE NAVIGATION HIGHLIGHT ============
 const currentPage = window.location.pathname.split('/').pop();
 document.querySelectorAll('.press-nav a').forEach(link => {

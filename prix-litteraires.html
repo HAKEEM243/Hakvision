@@ -1000,6 +1000,105 @@
       font-weight: 900;
       animation: pulse-icon 1.5s ease-in-out infinite;
     }
+
+    /* Navigation premium */
+    header nav {
+      max-width: 1200px;
+      margin: 22px auto 10px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky;
+      top: 12px;
+      z-index: 1100;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      list-style: none;
+    }
+
+    .nav-links li a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      color: #f8fafc;
+      text-decoration: none;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+      border-color: rgba(255, 215, 0, 0.4);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.25);
+      color: #FFD700;
+    }
+
+    .logo a {
+      color: #FFD700;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+
+    /* VIP Trophy Lounge */
+    .vip-lounge {
+      margin: 90px auto 60px;
+      max-width: 1100px;
+      background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(26,26,46,0.95));
+      border-radius: 28px;
+      padding: 40px;
+      border: 2px solid rgba(255, 215, 0, 0.35);
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .vip-lounge::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(255, 215, 0, 0.12), transparent 45%),
+                  radial-gradient(circle at 80% 0%, rgba(249, 115, 22, 0.12), transparent 40%);
+      pointer-events: none;
+    }
+
+    .vip-lounge h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4em;
+      margin-bottom: 12px;
+      color: #FFD700;
+    }
+
+    .vip-lounge p {
+      color: #e5e7eb;
+      max-width: 760px;
+      line-height: 1.8;
+    }
+
+    .vip-lounge img {
+      width: 100%;
+      border-radius: 18px;
+      margin-top: 22px;
+      border: 1px solid rgba(255, 215, 0, 0.28);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+      object-fit: cover;
+    }
     
     /* Form Messages */
     .form-message {
@@ -1666,7 +1765,7 @@
     <section class="vision-section" style="text-align: center;">
       <h2>📢 Restez Informé</h2>
       <p>
-        Vous êtes écrivain, éditeur, passionné de littérature africaine ? 
+        Vous êtes écrivain, éditeur, passionné de littérature africaine ?
         Rejoignez notre communauté pour être informé en priorité du lancement officiel des Prix Littéraires.
       </p>
       <div class="cta-buttons">
@@ -1683,6 +1782,12 @@
           <span>En savoir plus</span>
         </a>
       </div>
+    </section>
+
+    <section class="vip-lounge">
+      <h3>Salon VIP des trophées</h3>
+      <p>Un podium immersif dédié aux auteurs noirs qui illuminent la littérature africaine. Trois trophées attendent leurs lauréats dans un lounge doré où la diaspora et le continent se retrouvent pour célébrer l'excellence.</p>
+      <img src="prix-hero-africa-trophies.jpg" alt="Salon VIP avec trois trophées dorés réservés aux talents noirs" loading="lazy">
     </section>
 
   </div>
