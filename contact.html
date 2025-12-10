@@ -3,152 +3,136 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contactez-moi</title>
-  
+  <title>Contact | Hakvision</title>
+
   <!-- Style Premium + Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style-premium.css">
-  
-  <style>
-    body {
-      background-color: #0d0d0d;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-
-    h1 {
-      color: #FFD700;
-      margin-bottom: 30px;
-      text-shadow: 0 0 15px #FFD700;
-    }
-
-    form {
-      background-color: #1a1a1a;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 30px #FFD700;
-      width: 90%;
-      max-width: 500px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    label {
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    input, textarea {
-      padding: 12px;
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1em;
-    }
-
-    button {
-      background-color: #FFD700;
-      color: black;
-      font-weight: bold;
-      padding: 12px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #e6c200;
-    }
-
-    .infos {
-      margin-top: 30px;
-      text-align: center;
-      font-size: 0.9em;
-    }
-
-    .infos a {
-      color: #FFD700;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .infos a:hover {
-      text-decoration: underline;
-    }
-  </style>
 </head>
-<body>
+<body class="site-body">
+  <div class="site-shell">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
 
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progressBar"></div>
-
-  <!-- Breaking News Ticker -->
-  <div class="breaking-news">
-    <div class="breaking-news-content">
-      <span class="breaking-label">🔴 ACTUALITÉS</span>
-      <span class="breaking-text">KATIØPA disponible • Papa Masambukidi Roi Divin • Un Écrivain à Kinshasa • L'ŒIL sur Amazon • 8 livres publiés</span>
-    </div>
-  </div>
-
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="top-bar-content">
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <span class="live-badge">● LIVE</span>
-        <span>📅 Mercredi 4 décembre 2025</span>
-      </div>
-      <div class="social-links-top">
-        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <!-- Breaking News Ticker -->
+    <div class="breaking-news">
+      <div class="breaking-news-content">
+        <span class="breaking-label">🔴 ACTUALITÉS</span>
+        <span class="breaking-text">KATIØPA • Papa Masambukidi Roi Divin • Un Écrivain à Kinshasa • L'ŒIL sur Amazon • Prix Masambukidi & Dianzenza en tournée</span>
       </div>
     </div>
-  </div>
 
-  <!-- Header Navigation -->
-  <header class="press-header">
-    <div class="press-header-content">
-      <div class="press-logo">
-        <h1>📧 HAKVISION</h1>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <span class="live-badge">● LIVE</span>
+          <span>📅 Mercredi 4 décembre 2025</span>
+        </div>
+        <div class="social-links-top">
+          <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
       </div>
-      <nav class="press-nav">
-        <a href="index.html">Accueil</a>
-        <a href="livres.html">Livres</a>
-        <a href="bio.html">Biographie</a>
-        <a href="catalogue.html">Catalogue</a>
-        <a href="prix-litteraires.html">Prix Littéraires</a>
-        <a href="press.html">Presse</a>
-        <a href="contact.html" class="active">Contact</a>
-      </nav>
     </div>
-  </header>
 
-  <h1>Contactez-moi</h1>
-  <form action="https://formspree.io/f/myzebnql" method="POST" onsubmit="setTimeout(function(){ window.location.href='merci.html'; }, 100); return true;">
-    <label for="nom">Nom :</label>
-    <input type="text" id="nom" name="nom" required>
+    <!-- Global Header -->
+    <header class="global-header">
+      <div class="header-inner">
+        <div class="brand-stack">
+          <div class="brand-mark">HV</div>
+          <div class="brand-text">
+            <p class="eyebrow">Merveil Hakeem Dianzenza</p>
+            <h1>Hakvision</h1>
+          </div>
+        </div>
+        <nav class="global-nav">
+          <a href="index.html">Accueil</a>
+          <a href="livres.html">Livres</a>
+          <a href="catalogue.html">Catalogue</a>
+          <a href="bio.html">Biographie</a>
+          <a href="prix-litteraires.html">Prix Littéraires</a>
+          <a href="press.html">Presse</a>
+          <a href="okapiplay.html">OkapiPlay</a>
+          <a href="contact.html" class="active">Contact</a>
+        </nav>
+        <a class="nav-cta" href="prix-litteraires.html">Voir les Prix</a>
+      </div>
+    </header>
 
-    <label for="email">Email :</label>
-    <input type="email" id="email" name="email" required>
+    <main>
+      <section class="page-hero">
+        <div class="halo"></div>
+        <div class="hero-grid">
+          <div>
+            <span class="kicker">Contact</span>
+            <h1>Planifions une collaboration, une interview ou une dédicace.</h1>
+            <p class="lead">Une équipe réactive pour les projets médias, les partenariats culturels et les invitations à parler d'afrofuturisme, de littérature et de spiritualité panafricaine.</p>
+            <div class="hero-meta">
+              <div class="chip">Réponse sous 48h</div>
+              <div class="chip">Canal WhatsApp disponible</div>
+              <div class="chip">Bookings Europe & Afrique</div>
+            </div>
+          </div>
+          <div class="hero-visual-card">
+            <img src="merveil_photo_officielle.jpg" alt="Portrait presse de Merveil Hakeem Dianzenza" loading="lazy">
+            <p class="media-caption">Presse, festivals, clubs de lecture : Hakvision répond avec précision.</p>
+          </div>
+        </div>
+      </section>
 
-    <label for="message">Message :</label>
-    <textarea id="message" name="message" rows="6" required></textarea>
+      <section class="page-section">
+        <div class="site-grid dual-columns">
+          <div class="form-card">
+            <h3 style="margin-top:0;">Écrivez-moi</h3>
+            <form class="contact-form" data-contact-form action="https://formspree.io/f/myzebnql" method="POST">
+              <input type="hidden" name="_subject" value="Nouvelle demande Hakvision">
+              <label for="nom">Nom complet</label>
+              <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
 
-    <button type="submit">Envoyer</button>
-  </form>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Votre email professionnel" required>
 
-  <div class="infos">
-    <p>Email : <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a></p>
-    <p>Instagram : <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a></p>
+              <label for="objet">Objet</label>
+              <select id="objet" name="objet">
+                <option>Intervention / conférence</option>
+                <option>Interview média</option>
+                <option>Partenariat culturel</option>
+                <option>Commande / droits</option>
+                <option>Autre demande</option>
+              </select>
+
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Partagez votre besoin et vos dates" required></textarea>
+
+              <button type="submit">Envoyer ma demande</button>
+              <div class="form-status" aria-live="polite">Merci ! Votre demande est envoyée. Vous recevrez une copie dans votre boîte mail.</div>
+            </form>
+          </div>
+
+          <div class="content-panel">
+            <div class="pill-tag"><i class="fa-solid fa-wifi"></i> Liens rapides</div>
+            <h4>Accès direct</h4>
+            <div class="stacked-list" style="margin: 12px 0 20px;">
+              <div class="stacked-item"><strong>WhatsApp :</strong> <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">Canal Hakvision</a></div>
+              <div class="stacked-item"><strong>Email :</strong> <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a></div>
+              <div class="stacked-item"><strong>Instagram :</strong> <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a></div>
+              <div class="stacked-item"><strong>Press kit :</strong> <a href="press.html">Dossier & visuels</a></div>
+            </div>
+            <h4>Ce que nous préparons</h4>
+            <ul>
+              <li>Salons du livre, cérémonies Prix Masambukidi & Dianzenza</li>
+              <li>Plateaux TV/radio autour de l'afrofuturisme</li>
+              <li>Masterclass d'écriture et résidences</li>
+              <li>Sessions de dédicace et rencontres clubs de lecture</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
   </div>
 
   <!-- JavaScript Premium -->
