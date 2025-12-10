@@ -689,6 +689,33 @@ body.site-body {
   font-weight: 700;
 }
 
+.flash-rail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+  margin: 18px 0 10px;
+}
+
+.flash-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(250, 204, 21, 0.24);
+  color: #e2e8f0;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.flash-pill .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #facc15;
+  box-shadow: 0 0 0 6px rgba(250, 204, 21, 0.14);
+}
+
 .hero-label {
   display: inline-flex;
   align-items: center;
@@ -1212,6 +1239,58 @@ body.home-page .overlay {
   color: #e2e8f0;
 }
 
+.awards-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 26px;
+  padding: 34px;
+  border-radius: 26px;
+  background: linear-gradient(120deg, rgba(250, 204, 21, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(250, 204, 21, 0.18);
+  align-items: center;
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.28);
+}
+
+.awards-text .pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.awards-visual {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+}
+
+.awards-visual img {
+  width: 100%;
+  display: block;
+  height: 100%;
+  object-fit: cover;
+}
+
+.awards-overlay {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  right: 16px;
+  padding: 14px;
+  border-radius: 14px;
+  background: linear-gradient(120deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  display: grid;
+  gap: 8px;
+}
+
+.pill.soft {
+  background: rgba(250, 204, 21, 0.16);
+}
+
 .home-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1304,6 +1383,34 @@ body.home-page .overlay {
 .book-body h4 {
   margin: 0;
   color: #facc15;
+}
+
+.home-spotlight .spotlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.spotlight-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 18px;
+  display: grid;
+  gap: 10px;
+  color: #e2e8f0;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.28);
+}
+
+.spotlight-card .chip {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(250, 204, 21, 0.14);
+  color: #facc15;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .home-highlight {
