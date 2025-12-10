@@ -40,7 +40,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Observer tous les éléments avec animations
-document.querySelectorAll('.article-card, .sidebar-widget, .hero-section, .book-card').forEach(el => {
+document.querySelectorAll('.article-card, .sidebar-widget, .hero-section, .book-card, .home-feature-card, .home-highlight').forEach(el => {
   observer.observe(el);
 });
 
