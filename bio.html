@@ -530,35 +530,31 @@
     }
   </style>
 </head>
-<body>
+<body class="site-shell">
 
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progressBar"></div>
+  <div class="site-progress" id="siteProgress"></div>
 
-  <!-- Breaking News Ticker -->
-  <div class="breaking-news">
-    <div class="breaking-news-content">
-      <span class="breaking-label">🔴 ACTUALITÉS</span>
-      <span class="breaking-text">KATIØPA 634 pages disponible • Papa Masambukidi Roi Divin • Voyage à Kinshasa Octobre 2025 • L'ŒIL Réalisation éditoriale • 13 livres au catalogue • DIAKU & KAMERUN 1945 à venir</span>
-    </div>
-  </div>
-
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="top-bar-content">
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <span class="live-badge">● LIVE</span>
-        <span>📅 Mercredi 4 décembre 2025</span>
+  <header class="global-header">
+    <div class="inner">
+      <div class="header-left">
+        <span class="brand-mark">Hakvision</span>
+        <span class="brand-subtitle">Biographie & œuvres de Merveil Hakeem</span>
       </div>
-      <div class="social-links-top">
-        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <nav class="global-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="livres.html">Livres</a>
+        <a href="prix-litteraires.html">Prix</a>
+        <a href="press.html">Presse</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn-ghost" href="bio.html" aria-current="page"><i class="fa-solid fa-user"></i> Bio</a>
+        <a class="btn-solid" href="https://wa.me/243971641232" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
-  </div>
+  </header>
+
+  <main class="page-shell">
 
   <!-- Header Navigation -->
   <header class="press-header">
@@ -852,14 +848,45 @@
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 Merveil Hakeem Dianzenza – Tous droits réservés • Hakvision</p>
-    <p style="margin-top: 10px; font-size: 0.9em;">
-      <a href="press.html" style="color: #666; text-decoration: none;">Presse</a> • 
-      <a href="contact.html" style="color: #666; text-decoration: none;">Contact</a> • 
-      <a href="livres.html" style="color: #666; text-decoration: none;">Livres</a>
-    </p>
+  </main>
+
+  <footer class="global-footer">
+    <div class="inner">
+      <div class="footer-block">
+        <h4>Hakvision</h4>
+        <p>Le parcours de Merveil Hakeem Dianzenza, ses racines et ses inspirations afrofuturistes à partager avec vos lecteurs.</p>
+      </div>
+      <div class="footer-block">
+        <h4>Pages clés</h4>
+        <ul class="footer-links">
+          <li><a href="livres.html">Livres</a></li>
+          <li><a href="prix-litteraires.html">Prix 2026</a></li>
+          <li><a href="press.html">Presse</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-block">
+        <h4>Coordonnées</h4>
+        <p><i class="fa-solid fa-envelope"></i> contact@hakvision.com</p>
+        <p><i class="fa-solid fa-phone"></i> +243 971 641 232</p>
+        <p><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/243971641232" target="_blank" rel="noopener">WhatsApp</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Hakvision – Biographie officielle.</span>
+      <span>Partage autorisé avec mention de la source.</span>
+    </div>
   </footer>
+
+  <script>
+    const progress = document.getElementById('siteProgress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (scrollTop / height) * 100;
+      progress.style.width = scrolled + '%';
+    });
+  </script>
 
   <!-- JavaScript Premium -->
   <script src="hakvision-premium.js"></script>

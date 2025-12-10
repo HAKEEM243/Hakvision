@@ -228,64 +228,124 @@
     }
   </style>
 </head>
-<body class="home-page">
-  
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progressBar"></div>
+<body class="home-page site-shell">
 
-  <!-- Breaking News Ticker -->
-  <div class="breaking-news">
-    <div class="breaking-news-content">
-      <span class="breaking-label">🔴 ACTUALITÉS</span>
-      <span class="breaking-text">KATIØPA disponible • Papa Masambukidi Roi Divin • Un Écrivain à Kinshasa • L'ŒIL sur Amazon • 13 livres au catalogue • DIAKU & KAMERUN 1945 à venir • Prix Masambukidi Award & Prix Dianzenza bientôt !</span>
-    </div>
-  </div>
+  <div class="site-progress" id="siteProgress"></div>
 
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="top-bar-content">
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <span class="live-badge">● LIVE</span>
-        <span>📅 Mercredi 4 décembre 2025</span>
+  <header class="global-header">
+    <div class="inner">
+      <div class="header-left">
+        <span class="brand-mark">Hakvision</span>
+        <span class="brand-subtitle">Littérature, prix et innovation africaine</span>
       </div>
-      <div class="social-links-top">
-        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <nav class="global-nav" aria-label="Navigation principale">
+        <a href="index.html" class="active">Accueil</a>
+        <a href="livres.html">Livres</a>
+        <a href="prix-litteraires.html">Prix</a>
+        <a href="press.html">Presse</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn-ghost" href="bio.html"><i class="fa-solid fa-user"></i> Bio</a>
+        <a class="btn-solid" href="https://wa.me/243971641232" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="overlay"></div>
+  <main class="page-shell">
+    <div class="section-block" style="position: relative; overflow: hidden; padding: 0;">
+      <div class="overlay"></div>
+      <div class="content home-hero">
+        <h1>Hakvision</h1>
+        <p>Les projets innovants de demain</p>
 
-  <div class="content home-hero">
-    <h1>Hakvision</h1>
-    <p>Les projets innovants de demain</p>
-
-    <div class="btn-container">
-      <a href="catalogue.html" class="btn">Catalogue</a>
-      <a href="okapiplay.html" class="btn">OkapiPlay</a>
-      <a href="livres.html" class="btn">Mes livres</a>
-      <a href="bio.html" class="btn">Bio</a>
-      <a href="contact.html" class="btn">Contact</a>
-      <a href="press.html" class="btn">Press</a> 
+        <div class="btn-container">
+          <a href="catalogue.html" class="btn">Catalogue</a>
+          <a href="okapiplay.html" class="btn">OkapiPlay</a>
+          <a href="livres.html" class="btn">Mes livres</a>
+          <a href="bio.html" class="btn">Bio</a>
+          <a href="contact.html" class="btn">Contact</a>
+          <a href="press.html" class="btn">Press</a>
           <a href="prix-litteraires.html" class="btn">Prix littéraires</a>
-      
+        </div>
+      </div>
     </div>
 
-    <footer>
-      © 2025 Merveil Hakeem Dianzenza<br>
-      <div class="copyright">
-        Tous droits réservés | Contenu protégé par les lois internationales sur la propriété intellectuelle.j
+    <section class="section-block">
+      <div class="section-headline">
+        <span class="badge-pill">Actualités</span>
+        <div>
+          <div class="section-kicker">Linéaire des lancements</div>
+          <div class="section-title-main">Romans, prix et calendrier 2026</div>
+        </div>
       </div>
-    </footer>
-  </div>
+      <p class="section-lead">Retrouvez en un coup d'œil les piliers de l'univers Hakvision : les ouvrages phares, les prix littéraires et les rendez-vous pour suivre l'actualité.</p>
+      <div class="card-grid">
+        <div class="info-card">
+          <h3>Catalogue</h3>
+          <p>Accès direct aux romans, essais et manifestes afrofuturistes déjà disponibles ou en précommande.</p>
+          <a class="btn-ghost" href="catalogue.html">Voir le catalogue</a>
+        </div>
+        <div class="info-card">
+          <h3>Prix littéraires</h3>
+          <p>Synthèse des prix 2026, conditions d'éligibilité, formulaires et calendrier des annonces.</p>
+          <a class="btn-ghost" href="prix-litteraires.html">Découvrir les prix</a>
+        </div>
+        <div class="info-card">
+          <h3>Presse & médias</h3>
+          <p>Dossiers, communiqués et ressources premium pour les journalistes et partenaires culturels.</p>
+          <a class="btn-ghost" href="press.html">Accéder au press kit</a>
+        </div>
+        <div class="info-card">
+          <h3>Contact direct</h3>
+          <p>Une question ou une collaboration ? Écrivez-nous ou prenez rendez-vous en ligne.</p>
+          <a class="btn-ghost" href="contact.html">Échanger</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="global-footer">
+    <div class="inner">
+      <div class="footer-block">
+        <h4>Hakvision</h4>
+        <p>Maison d'auteur dédiée à l'afrofuturisme, aux prix littéraires et aux récits qui relient culture, innovation et spiritualité.</p>
+      </div>
+      <div class="footer-block">
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="livres.html">Livres</a></li>
+          <li><a href="prix-litteraires.html">Prix 2026</a></li>
+          <li><a href="press.html">Presse</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-block">
+        <h4>Contact direct</h4>
+        <p><i class="fa-solid fa-envelope"></i> contact@hakvision.com</p>
+        <p><i class="fa-solid fa-phone"></i> +243 971 641 232</p>
+        <p><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/243971641232" target="_blank" rel="noopener">Canal WhatsApp</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Hakvision – Tous droits réservés.</span>
+      <span>Contenu protégé par les lois internationales sur la propriété intellectuelle.</span>
+    </div>
+  </footer>
+
+  <script>
+    const progress = document.getElementById('siteProgress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (scrollTop / height) * 100;
+      progress.style.width = scrolled + '%';
+    });
+  </script>
 
   <!-- JavaScript Premium -->
   <script src="hakvision-premium.js"></script>
-  
+
   <!-- Menu Mobile Script -->
 
 </body>

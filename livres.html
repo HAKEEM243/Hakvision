@@ -729,55 +729,32 @@ animation: pulse 3s infinite ease-in-out;
     }
   </style>
 </head>
-<body>
+<body id="top" class="site-shell">
 
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progressBar"></div>
+  <div class="site-progress" id="siteProgress"></div>
 
-  <!-- Breaking News Ticker -->
-  <div class="breaking-news">
-    <div class="breaking-news-content">
-      <span class="breaking-label">🔴 ACTUALITÉS</span>
-      <span class="breaking-text">KATIØPA disponible • Papa Masambukidi Roi Divin • Un Écrivain à Kinshasa • L'ŒIL sur Amazon • 13 livres au catalogue • DIAKU & KAMERUN 1945 à venir • Collection complète en ligne</span>
-    </div>
-  </div>
-
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="top-bar-content">
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <span class="live-badge">● LIVE</span>
-        <span>📅 Mercredi 4 décembre 2025</span>
+  <header class="global-header">
+    <div class="inner">
+      <div class="header-left">
+        <span class="brand-mark">Hakvision</span>
+        <span class="brand-subtitle">Collection, prix & culture africaine</span>
       </div>
-      <div class="social-links-top">
-        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Header Navigation -->
-  <header class="press-header">
-    <div class="press-header-content">
-      <div class="press-logo">
-        <h1>📚 HAKVISION</h1>
-      </div>
-      <nav class="press-nav">
+      <nav class="global-nav" aria-label="Navigation principale">
         <a href="index.html">Accueil</a>
         <a href="livres.html" class="active">Livres</a>
-        <a href="bio.html">Biographie</a>
-        <a href="catalogue.html">Catalogue</a>
-        <a href="prix-litteraires.html">Prix Littéraires</a>
+        <a href="prix-litteraires.html">Prix</a>
         <a href="press.html">Presse</a>
         <a href="contact.html">Contact</a>
       </nav>
+      <div class="header-actions">
+        <a class="btn-ghost" href="bio.html"><i class="fa-solid fa-user"></i> Bio</a>
+        <a class="btn-solid" href="https://wa.me/243971641232" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
     </div>
   </header>
 
-  <!-- Navigation sticky -->
+  <main class="page-shell">
+    <!-- Navigation sticky -->
   <nav class="sticky-nav" id="stickyNav">
     <div class="nav-content">
       <div class="nav-title">📚 Mes Livres</div>
@@ -1499,6 +1476,46 @@ animation: pulse 3s infinite ease-in-out;
         const img = new Image();
         img.src = url;
       });
+    });
+  </script>
+
+  </main>
+
+  <footer class="global-footer">
+    <div class="inner">
+      <div class="footer-block">
+        <h4>Hakvision</h4>
+        <p>Une collection d'œuvres afrofuturistes et politiques portée par Merveil Hakeem Dianzenza, avec un accès direct aux manuscrits primés.</p>
+      </div>
+      <div class="footer-block">
+        <h4>Explorer</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="livres.html">Livres</a></li>
+          <li><a href="prix-litteraires.html">Prix 2026</a></li>
+          <li><a href="press.html">Presse</a></li>
+        </ul>
+      </div>
+      <div class="footer-block">
+        <h4>Contact direct</h4>
+        <p><i class="fa-solid fa-envelope"></i> contact@hakvision.com</p>
+        <p><i class="fa-solid fa-phone"></i> +243 971 641 232</p>
+        <p><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/243971641232" target="_blank" rel="noopener">WhatsApp</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Hakvision – Collection littéraire.</span>
+      <span>Politique de protection : œuvres et contenus réservés.</span>
+    </div>
+  </footer>
+
+  <script>
+    const progress = document.getElementById('siteProgress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (scrollTop / height) * 100;
+      progress.style.width = scrolled + '%';
     });
   </script>
 

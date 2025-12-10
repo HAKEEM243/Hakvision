@@ -1046,38 +1046,33 @@
     }
   </style>
 </head>
-<body>
+<body class="site-shell">
 
-  <!-- Progress Bar (scroll indicator) -->
-  <div class="progress-bar" id="progressBar"></div>
+  <div class="site-progress" id="siteProgress"></div>
 
-  <!-- Breaking News Ticker (style BFM TV) -->
-  <div class="breaking-news">
-    <div class="breaking-news-content">
-      <span class="breaking-label">🔴 BREAKING NEWS</span>
-      <span class="breaking-text">Papa Masambukidi intronisé Roi Divin du Bassin du Congo • Merveil Hakeem Dianzenza publie "Un Écrivain à Kinshasa" • Nouveau livre "L'ŒIL" disponible sur Amazon</span>
-    </div>
-  </div>
-
-  <!-- Top Bar (style Le Monde) -->
-  <div class="top-bar">
-    <div class="top-bar-content">
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <span class="live-badge">● LIVE</span>
-        <span>📅 Mercredi 4 décembre 2025</span>
+  <header class="global-header">
+    <div class="inner">
+      <div class="header-left">
+        <span class="brand-mark">Hakvision</span>
+        <span class="brand-subtitle">Press kit, médias & communiqués</span>
       </div>
-      <div class="social-links-top">
-        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <nav class="global-nav" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="livres.html">Livres</a>
+        <a href="prix-litteraires.html">Prix</a>
+        <a href="press.html" class="active">Presse</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn-ghost" href="bio.html"><i class="fa-solid fa-user"></i> Bio</a>
+        <a class="btn-solid" href="https://wa.me/243971641232" target="_blank" rel="noopener">WhatsApp</a>
       </div>
     </div>
-  </div>
+  </header>
 
+  <main class="page-shell">
   <!-- Bannière Image (décorative) -->
-  <div style="width: 100%; background: #000; text-align: center; padding: 20px 0;">
+  <div style="width: 100%; background: #000; text-align: center; padding: 20px 0; border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.18);">
     <img src="hakvision_press_banner_v2.jpg" alt="Hakvision Press - Banner avec Okapi, Drapeau Congolais et Couronne Royale" style="max-width: 100%; height: auto; display: inline-block; max-height: 400px; object-fit: contain;">
   </div>
 
@@ -1596,38 +1591,48 @@
   </div>
   <!-- Fin main-container -->
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Hakvision</h3>
-        <p>Espace presse officiel de Merveil Hakeem Dianzenza, écrivain afrofuturiste franco-congolais.</p>
+    <!-- Footer -->
+    <footer class="global-footer">
+      <div class="inner">
+        <div class="footer-block">
+          <h4>Hakvision</h4>
+          <p>Espace presse officiel avec communiqués, dossiers et visuels pour vos articles ou reportages.</p>
+        </div>
+        <div class="footer-block">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="livres.html">Livres</a></li>
+            <li><a href="prix-litteraires.html">Prix 2026</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-block">
+          <h4>Contact Presse</h4>
+          <p><i class="fa-solid fa-envelope"></i> contact@hakvision.com</p>
+          <p><i class="fa-solid fa-phone"></i> +243 971 641 232</p>
+          <p><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/243971641232" target="_blank" rel="noopener">WhatsApp</a></p>
+        </div>
       </div>
-      <div class="footer-section">
-        <h3>Navigation</h3>
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="livres.html">Mes Livres</a></li>
-          <li><a href="bio.html">Biographie</a></li>
-          <li><a href="catalogue.html">Catalogue</a>
-        <a href="prix-litteraires.html">Prix Littéraires</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+      <div class="footer-bottom">
+        <span>© 2025 Hakvision Press – Média officiel.</span>
+        <span>Dossiers fournis sur demande pour les rédactions.</span>
       </div>
-      <div class="footer-section">
-        <h3>Suivez l'actualité</h3>
-        <ul>
-          <li><a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">Chaîne WhatsApp</a></li>
-          <li><a href="https://www.amazon.fr/KATIOPA-PROPH%C3%89TIE-CONTRE-NOUVEL-MONDIAL/dp/B0FK2YHPP7" target="_blank">Amazon</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 Merveil Hakeem Dianzenza — Tous droits réservés | Hakvision Press</p>
-    </div>
-  </footer>
+    </footer>
+
+  </main>
 
   <script>
+    const progress = document.getElementById('siteProgress');
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (scrollTop / height) * 100;
+      progress.style.width = scrolled + '%';
+    });
+  </script>
+
+    <script>
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
