@@ -82,68 +82,10 @@
     
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #001a0d 0%, #0a0a0a 50%, #001a0d 100%);
+      background: #0a0a0a;
       color: #ffffff;
       line-height: 1.6;
       overflow-x: hidden;
-    }
-    
-    /* Navigation Bar - Simple et élégante */
-    .nav-bar {
-      background: rgba(0, 26, 13, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid rgba(34, 139, 34, 0.3);
-    }
-    
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4em;
-      font-weight: 900;
-      background: linear-gradient(135deg, #FFD700 0%, #32CD32 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 25px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    
-    .nav-links a {
-      color: #32CD32;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      font-size: 0.9em;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    .nav-links a:hover {
-      color: #FFD700;
-      transform: translateY(-2px);
-    }
-    
-    .btn-home {
-      background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
-      color: #fff;
-      padding: 10px 25px;
-      border-radius: 50px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-home:hover {
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(50, 205, 50, 0.5);
     }
     
     /* Animations */
@@ -170,22 +112,22 @@
     
     @keyframes pulse-glow {
       0%, 100% {
-        box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6), 0 0 80px rgba(50, 205, 50, 0.3);
+        box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3);
         transform: scale(1);
       }
       50% {
-        box-shadow: 0 20px 80px rgba(255, 215, 0, 0.8), 0 0 120px rgba(50, 205, 50, 0.5);
+        box-shadow: 0 20px 80px rgba(255, 215, 0, 0.8), 0 0 120px rgba(255, 215, 0, 0.5);
         transform: scale(1.02);
       }
     }
     
-    @keyframes pulse-glow-green {
+    @keyframes pulse-glow-purple {
       0%, 100% {
-        box-shadow: 0 15px 60px rgba(50, 205, 50, 0.6), 0 0 80px rgba(50, 205, 50, 0.3);
+        box-shadow: 0 15px 60px rgba(138, 43, 226, 0.6), 0 0 80px rgba(138, 43, 226, 0.3);
         transform: scale(1);
       }
       50% {
-        box-shadow: 0 20px 80px rgba(50, 205, 50, 0.8), 0 0 120px rgba(50, 205, 50, 0.5);
+        box-shadow: 0 20px 80px rgba(138, 43, 226, 0.8), 0 0 120px rgba(138, 43, 226, 0.5);
         transform: scale(1.02);
       }
     }
@@ -199,17 +141,21 @@
       }
     }
     
-    /* Hero Section Divine - Sans bannière fixe */
+    /* Hero Section Divine */
     .divine-hero {
       position: relative;
-      min-height: 70vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: 
-        linear-gradient(135deg, rgba(0, 26, 13, 0.9) 0%, rgba(10, 10, 10, 0.85) 50%, rgba(0, 50, 0, 0.9) 100%);
+        linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 46, 0.95) 50%, rgba(10, 10, 10, 0.95) 100%),
+        url('papa_masambukidi_couronne.jpg');
+      background-size: cover, cover;
+      background-position: center, center;
+      background-attachment: fixed;
       overflow: hidden;
-      padding: 80px 20px 40px;
+      padding: 40px 20px;
     }
     
     .divine-hero::before {
@@ -220,10 +166,21 @@
       width: 100%;
       height: 100%;
       background: 
-        radial-gradient(circle at 20% 50%, rgba(50, 205, 50, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 50% 20%, rgba(34, 139, 34, 0.12) 0%, transparent 60%);
+        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.12) 0%, transparent 60%);
       animation: shine 8s ease-in-out infinite;
+    }
+    
+    .divine-hero::after {
+      content: '👑';
+      position: absolute;
+      font-size: 120px;
+      top: 10%;
+      right: 10%;
+      animation: floatAnimation 6s ease-in-out infinite;
+      opacity: 0.2;
+      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
     }
     
     .hero-content {
@@ -236,8 +193,8 @@
     
     .divine-badge {
       display: inline-block;
-      background: linear-gradient(135deg, rgba(50, 205, 50, 0.2), rgba(255, 215, 0, 0.2));
-      border: 2px solid #32CD32;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(138, 43, 226, 0.2));
+      border: 2px solid #FFD700;
       padding: 12px 30px;
       border-radius: 50px;
       font-weight: 700;
@@ -250,19 +207,19 @@
     
     .main-title {
       font-family: 'Playfair Display', serif;
-      font-size: 4em;
+      font-size: 5em;
       font-weight: 900;
-      background: linear-gradient(135deg, #FFD700 0%, #32CD32 50%, #FFD700 100%);
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 20px;
       line-height: 1.2;
-      text-shadow: 0 0 80px rgba(50, 205, 50, 0.5);
+      text-shadow: 0 0 80px rgba(255, 215, 0, 0.5);
     }
     
     .sub-title {
-      font-size: 1.5em;
-      color: #32CD32;
+      font-size: 1.8em;
+      color: #8A2BE2;
       margin-bottom: 40px;
       font-weight: 300;
       letter-spacing: 3px;
@@ -280,7 +237,7 @@
     /* Section Dual Missions */
     .dual-missions {
       max-width: 1600px;
-      margin: 60px auto;
+      margin: 100px auto;
       padding: 0 20px;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -288,10 +245,10 @@
     }
     
     .mission-card {
-      background: linear-gradient(135deg, rgba(50, 205, 50, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(138, 43, 226, 0.05) 100%);
       border-radius: 30px;
       padding: 60px 40px;
-      border: 2px solid rgba(50, 205, 50, 0.2);
+      border: 2px solid rgba(255, 215, 0, 0.2);
       transition: all 0.5s ease;
       position: relative;
       overflow: hidden;
@@ -304,7 +261,7 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(50, 205, 50, 0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
       opacity: 0;
       transition: opacity 0.5s ease;
     }
@@ -315,8 +272,8 @@
     
     .mission-card:hover {
       transform: translateY(-10px) scale(1.02);
-      border-color: #32CD32;
-      box-shadow: 0 30px 80px rgba(50, 205, 50, 0.3);
+      border-color: #FFD700;
+      box-shadow: 0 30px 80px rgba(255, 215, 0, 0.3);
     }
     
     .mission-icon {
@@ -336,7 +293,7 @@
     
     .mission-subtitle {
       font-size: 1.3em;
-      color: #32CD32;
+      color: #8A2BE2;
       margin-bottom: 30px;
       font-weight: 600;
       text-transform: uppercase;
@@ -356,10 +313,10 @@
       font-size: 3.5em;
       font-weight: 900;
       text-align: center;
-      background: linear-gradient(135deg, #FFD700 0%, #32CD32 100%);
+      background: linear-gradient(135deg, #FFD700 0%, #8A2BE2 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin: 80px 0 60px;
+      margin: 100px 0 60px;
       position: relative;
       padding-bottom: 30px;
     }
@@ -372,7 +329,7 @@
       transform: translateX(-50%);
       width: 200px;
       height: 4px;
-      background: linear-gradient(90deg, transparent, #FFD700, #32CD32, transparent);
+      background: linear-gradient(90deg, transparent, #FFD700, #8A2BE2, transparent);
     }
     
     /* Video Grid */
@@ -386,17 +343,17 @@
     }
     
     .video-card {
-      background: rgba(0, 26, 13, 0.3);
+      background: rgba(255, 255, 255, 0.03);
       border-radius: 20px;
       overflow: hidden;
-      border: 1px solid rgba(50, 205, 50, 0.2);
+      border: 1px solid rgba(255, 215, 0, 0.2);
       transition: all 0.4s ease;
     }
     
     .video-card:hover {
       transform: translateY(-8px);
-      border-color: #32CD32;
-      box-shadow: 0 20px 60px rgba(50, 205, 50, 0.3);
+      border-color: #FFD700;
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
     }
     
     .video-thumbnail {
@@ -446,15 +403,15 @@
       overflow: hidden;
       border-radius: 20px;
       height: 350px;
-      border: 2px solid rgba(50, 205, 50, 0.2);
+      border: 2px solid rgba(255, 215, 0, 0.2);
       transition: all 0.4s ease;
       cursor: pointer;
     }
     
     .photo-item:hover {
       transform: scale(1.05);
-      border-color: #32CD32;
-      box-shadow: 0 20px 60px rgba(50, 205, 50, 0.4);
+      border-color: #FFD700;
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
     }
     
     .photo-item img {
@@ -500,10 +457,10 @@
     }
     
     .book-card {
-      background: linear-gradient(135deg, rgba(50, 205, 50, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(138, 43, 226, 0.05) 100%);
       border-radius: 25px;
       padding: 40px;
-      border: 2px solid rgba(50, 205, 50, 0.2);
+      border: 2px solid rgba(255, 215, 0, 0.2);
       transition: all 0.4s ease;
       display: flex;
       flex-direction: column;
@@ -513,8 +470,8 @@
     
     .book-card:hover {
       transform: translateY(-10px);
-      border-color: #32CD32;
-      box-shadow: 0 25px 70px rgba(50, 205, 50, 0.3);
+      border-color: #FFD700;
+      box-shadow: 0 25px 70px rgba(255, 215, 0, 0.3);
     }
     
     .book-cover {
@@ -541,7 +498,7 @@
     
     .book-author {
       font-size: 1.1em;
-      color: #32CD32;
+      color: #8A2BE2;
       margin-bottom: 20px;
       font-weight: 600;
     }
@@ -555,8 +512,8 @@
     
     .book-link {
       display: inline-block;
-      background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
-      color: #fff;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #000;
       padding: 15px 40px;
       border-radius: 50px;
       font-weight: 700;
@@ -568,19 +525,98 @@
     }
     
     .book-link:hover {
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(50, 205, 50, 0.5);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
     }
     
-
+    /* Timeline */
+    .timeline-section {
+      max-width: 1200px;
+      margin: 0 auto 100px;
+      padding: 0 20px;
+    }
+    
+    .timeline {
+      position: relative;
+      padding: 40px 0;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #FFD700, #8A2BE2, #FFD700);
+    }
+    
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 80px;
+      position: relative;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-content {
+      order: -1;
+    }
+    
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 30px;
+      transform: translateX(-50%);
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #FFD700;
+      border: 5px solid #0a0a0a;
+      box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.3);
+      z-index: 10;
+    }
+    
+    .timeline-content {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(138, 43, 226, 0.08) 100%);
+      border-radius: 20px;
+      padding: 40px;
+      border: 2px solid rgba(255, 215, 0, 0.2);
+      transition: all 0.4s ease;
+    }
+    
+    .timeline-content:hover {
+      transform: scale(1.03);
+      border-color: #FFD700;
+      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+    }
+    
+    .timeline-date {
+      font-size: 1.5em;
+      font-weight: 900;
+      color: #FFD700;
+      margin-bottom: 15px;
+    }
+    
+    .timeline-title {
+      font-size: 1.4em;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+    
+    .timeline-text {
+      color: #cccccc;
+      line-height: 1.7;
+      font-size: 1.05em;
+    }
     
     /* CTA Section */
     .cta-section {
       text-align: center;
-      padding: 80px 20px;
-      background: linear-gradient(135deg, rgba(50, 205, 50, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
-      margin: 80px 0;
+      padding: 100px 20px;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(138, 43, 226, 0.1) 100%);
+      margin: 100px 0;
     }
     
     .cta-buttons {
@@ -595,8 +631,8 @@
       display: inline-flex;
       align-items: center;
       gap: 15px;
-      background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
-      color: #fff;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #000;
       padding: 20px 50px;
       border-radius: 50px;
       font-weight: 700;
@@ -608,21 +644,18 @@
     }
     
     .cta-button:hover {
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
       transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 50px rgba(50, 205, 50, 0.5);
+      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.5);
     }
     
     .cta-button.secondary {
       background: transparent;
-      border: 2px solid #32CD32;
-      color: #32CD32;
+      border: 2px solid #FFD700;
+      color: #FFD700;
     }
     
     .cta-button.secondary:hover {
-      background: rgba(50, 205, 50, 0.1);
-      border-color: #FFD700;
-      color: #FFD700;
+      background: rgba(255, 215, 0, 0.1);
     }
     
     /* Footer */
@@ -630,7 +663,7 @@
       background: #000;
       padding: 60px 20px 30px;
       text-align: center;
-      border-top: 2px solid rgba(50, 205, 50, 0.3);
+      border-top: 2px solid rgba(255, 215, 0, 0.3);
     }
     
     .footer-text {
@@ -648,14 +681,14 @@
     }
     
     .footer-links a {
-      color: #32CD32;
+      color: #FFD700;
       text-decoration: none;
       font-weight: 600;
       transition: all 0.3s ease;
     }
     
     .footer-links a:hover {
-      color: #FFD700;
+      color: #FFA500;
       text-decoration: underline;
     }
     
@@ -725,18 +758,6 @@
 </head>
 <body>
 
-  <!-- Navigation Bar -->
-  <nav class="nav-bar">
-    <div class="nav-logo">Papa Masambukidi & Kulala Pasco</div>
-    <div class="nav-links">
-      <a href="index.html" class="btn-home"><i class="fas fa-home"></i> Retour Accueil</a>
-      <a href="livres.html">Livres</a>
-      <a href="bio.html">Biographie</a>
-      <a href="press.html">Presse</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </nav>
-
   <!-- Hero Section -->
   <section class="divine-hero">
     <div class="hero-content">
@@ -756,7 +777,7 @@
     <!-- Mission Royale -->
     <div class="mission-card">
       <div style="text-align: center; margin-bottom: 30px;">
-        <img src="papa_masambukidi_couronne.jpg" alt="Papa Samuel Masambukidi - Roi Divin avec Couronne Royale" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 6px solid #FFD700; box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6), 0 0 80px rgba(50, 205, 50, 0.3); animation: pulse-glow 3s ease-in-out infinite;">
+        <img src="papa_masambukidi_couronne.jpg" alt="Papa Samuel Masambukidi - Roi Divin avec Couronne Royale" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 6px solid #FFD700; box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); animation: pulse-glow 3s ease-in-out infinite;">
       </div>
       <span class="mission-icon">👑</span>
       <h2 class="mission-title">PAPA MASAMBUKIDI</h2>
@@ -777,7 +798,7 @@
     <!-- Mission Sacerdotale -->
     <div class="mission-card">
       <div style="text-align: center; margin-bottom: 30px;">
-        <img src="kulala_ntumba_pasco_photo.jpg" alt="Kulala Ntumba Pasco - Guide Spirituel" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 6px solid #32CD32; box-shadow: 0 15px 60px rgba(50, 205, 50, 0.6), 0 0 80px rgba(50, 205, 50, 0.3); animation: pulse-glow-green 3s ease-in-out infinite;">
+        <img src="kulala_ntumba_pasco_photo.jpg" alt="Kulala Ntumba Pasco - Guide Spirituel" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 6px solid #8A2BE2; box-shadow: 0 15px 60px rgba(138, 43, 226, 0.6), 0 0 80px rgba(138, 43, 226, 0.3); animation: pulse-glow-purple 3s ease-in-out infinite;">
       </div>
       <span class="mission-icon">✝️</span>
       <h2 class="mission-title">KULALA NTUMBA PASCO</h2>
@@ -806,52 +827,6 @@
       </p>
     </div>
   </section>
-  
-  <!-- Section Papa Samy - Le Père Fondateur -->
-  <h2 class="section-title">🕊️ Le Père Fondateur : Papa Samy</h2>
-  <div class="books-section">
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <div class="mission-card" style="margin-bottom: 40px; text-align: center;">
-        <div style="margin-bottom: 30px;">
-          <img src="papa_samy_kulala_kwamakanda.jpg" alt="Papa Samuel Nitufuidi Kulala Kwamakanda I - Papa Samy" style="width: 320px; height: auto; border-radius: 20px; border: 6px solid #FFD700; box-shadow: 0 20px 80px rgba(255, 215, 0, 0.7), 0 0 100px rgba(50, 205, 50, 0.4);">
-        </div>
-        <span class="mission-icon" style="font-size: 6em;">✨</span>
-        <h3 class="book-title" style="font-size: 2.5em; margin-bottom: 20px;">Papa Samuel Nitufuidi Kulala Kwamakanda I</h3>
-        <p class="book-author" style="font-size: 1.4em; margin-bottom: 30px;">"Papa Samy" - Le Père Divin Fondateur</p>
-        <p class="book-description" style="text-align: left; font-size: 1.2em; line-height: 1.9;">
-          <strong>Papa Samuel Nitufuidi Kulala Kwamakanda I</strong>, appelé affectueusement <strong>"Papa Samy"</strong>, 
-          est le <strong>père fondateur</strong> et guide spirituel originel de la lignée Masambukidi. Il a posé les fondations 
-          spirituelles et doctrinales qui continuent d'éclairer des millions de croyants à travers le Congo et au-delà.
-        </p>
-        <p class="book-description" style="text-align: left; font-size: 1.2em; line-height: 1.9;">
-          En <strong>1988</strong>, Papa Samy a fondé l'<strong>Église Lumière du Christ au Congo (ELUCCO)</strong>, une institution 
-          spirituelle majeure qui célèbre aujourd'hui <strong>37 ans d'existence</strong>. Son enseignement profond, ses visions prophétiques 
-          et son dévouement absolu ont fait de lui une figure légendaire de la spiritualité africaine.
-        </p>
-        <p class="book-description" style="text-align: left; font-size: 1.2em; line-height: 1.9;">
-          Papa Samy a <strong>disparu physiquement le 28 avril 1999</strong>, laissant un héritage spirituel immense. 
-          Sa vision continue à travers son fils <strong>Papa Samuel Masambukidi II</strong>, qui perpétue la mission royale et spirituelle, 
-          et à travers <strong>Kulala Ntumba Pasco</strong>, porteur de la mission sacerdotale. 
-        </p>
-        <p class="book-description" style="text-align: left; font-size: 1.2em; line-height: 1.9;">
-          <strong style="color: #FFD700;">"Papa Samy incarne la source de la lumière divine qui continue d'éclairer le Bassin du Congo. 
-          Il est l'ancêtre spirituel, le fondateur de la nouvelle voie, le père de tous ceux qui cherchent la vérité."</strong>
-        </p>
-        <div style="margin-top: 40px; padding: 30px; background: rgba(50, 205, 50, 0.1); border-radius: 20px; border: 2px solid #32CD32;">
-          <h4 style="color: #FFD700; font-size: 1.8em; margin-bottom: 20px;">📜 Héritage de Papa Samy</h4>
-          <ul style="text-align: left; font-size: 1.1em; line-height: 2; color: #e0e0e0;">
-            <li><strong>1988</strong> : Fondation de l'ELUCCO (37 ans d'existence)</li>
-            <li><strong>Enseignements divins</strong> transmis à des milliers de disciples</li>
-            <li><strong>Visions prophétiques</strong> sur l'avenir spirituel du Congo</li>
-            <li><strong>Fondation d'écoles, hôpitaux, plantations</strong> pour servir le peuple</li>
-            <li><strong>Père de Papa Masambukidi II</strong> (mission royale)</li>
-            <li><strong>Inspiration de Kulala Ntumba Pasco</strong> (mission sacerdotale)</li>
-            <li><strong>28 avril 1999</strong> : Disparition physique, mais présence spirituelle éternelle</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Videos Section -->
   <h2 class="section-title">🎬 Vidéos & Témoignages</h2>
@@ -915,86 +890,6 @@
         <p class="video-description">Interview exclusive et discussion spirituelle avec le Roi Divin</p>
       </div>
     </div>
-    
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <iframe src="https://www.youtube.com/embed/fRET76mg5Z8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="video-info">
-        <h3 class="video-title">Message du dimanche 09 Mars 2025 - Culte Solennel</h3>
-        <p class="video-description">Culte solennel par S.E PAPA SAMUEL MASAMBUKIDI - Enseignement divin du 9 mars 2025</p>
-      </div>
-    </div>
-    
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <iframe src="https://www.youtube.com/embed/ztcKv-6T2wE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="video-info">
-        <h3 class="video-title">Parole Révélatrice - 1er Janvier 2025 à Paris</h3>
-        <p class="video-description">Parole révélatrice de Papa Masambukidi prononcée le 1er janvier 2025 à Paris - Message prophétique du Nouvel An</p>
-      </div>
-    </div>
-    
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <iframe src="https://www.youtube.com/embed/eaGuS9hG73A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="video-info">
-        <h3 class="video-title">Conférence Partie 2 - 2 Juin 2024</h3>
-        <p class="video-description">Conférence 2ème Partie du 2 juin 2024 avec Papa Masambukidi sur la spiritualité et son rôle en RDC</p>
-      </div>
-    </div>
-    
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <iframe src="https://www.youtube.com/embed/Pn3t_8K2-OM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="video-info">
-        <h3 class="video-title">Message à Miongo - 30 Octobre 2024</h3>
-        <p class="video-description">Message de S.E SAMUEL MASAMBUKIDI à Miongo le 30 octobre 2024</p>
-      </div>
-    </div>
-    
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <iframe src="https://www.youtube.com/embed/WzNGR5imWUI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="video-info">
-        <h3 class="video-title">LA BIBLE Partie 2 - Enseignement Profond</h3>
-        <p class="video-description">Papa Samuel Masambukidi parle de LA BIBLE partie 2 - Suivez et réfléchissez sur les vérités bibliques</p>
-      </div>
-    </div>
-    
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <iframe src="https://www.youtube.com/embed/Qs8-lkkXeJs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="video-info">
-        <h3 class="video-title">HISTOIRE MASAMBUKIDI - 28.04.1999</h3>
-        <p class="video-description">Histoire de Masambukidi : Disparition physique de Papa Nitumfuidi Masambukidi Kulala Kwamakanda (Papa Samy) le 28 avril 1999</p>
-      </div>
-    </div>
-    
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <iframe src="https://www.youtube.com/embed/RRH_mCQo5Dw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="video-info">
-        <h3 class="video-title">The Congolese Spirituality - Interview 2015</h3>
-        <p class="video-description">Interview with S.E Samuel Masambukidi on Congolese Spirituality - B-one TV Congo 2015</p>
-      </div>
-    </div>
-    
-    <div class="video-card">
-      <div class="video-thumbnail">
-        <iframe src="https://www.youtube.com/embed/tN0Ubh1icxI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <div class="video-info">
-        <h3 class="video-title">Djo K reçoit Papa Masambukidi</h3>
-        <p class="video-description">Djo K reçoit son éminence Samuel NITUFWIDI MASAMBUKIDI, chef de l'Église Lumière du Christ au Congo</p>
-      </div>
-    </div>
   </div>
 
   <!-- Photo Gallery -->
@@ -1033,11 +928,6 @@
     <div class="photo-item">
       <img src="kulala_ntumba_pasco_photo.jpg" alt="Kulala Ntumba Pasco - Portrait Officiel">
       <div class="photo-caption">Kulala Ntumba Pasco - Guide Spirituel et Philosophe</div>
-    </div>
-    
-    <div class="photo-item">
-      <img src="papa_samy_kulala_kwamakanda.jpg" alt="Papa Samy - Samuel Nitufuidi Kulala Kwamakanda I">
-      <div class="photo-caption">Papa Samy - Le Père Fondateur (1988-1999)</div>
     </div>
   </div>
 
@@ -1090,124 +980,6 @@
           <i class="fas fa-book"></i> Acheter le livre
         </a>
       </div>
-      
-      <!-- Nouvelle Vérité -->
-      <div class="book-card">
-        <h3 class="book-title">Nouvelle Vérité - Tome 1</h3>
-        <p class="book-author">Par Samuel Masambukidi</p>
-        <p class="book-description">
-          <strong>Premier tome d'une trilogie spirituelle révolutionnaire.</strong> Papa Samuel Masambukidi partage sa vision prophétique 
-          et ses enseignements divins. Ce premier volume du MASAMBUKIDISME pose les fondations d'une nouvelle compréhension spirituelle 
-          pour l'Afrique et le monde. Une œuvre majeure qui reflète ses intérêts spirituels profonds et sa mission divine.
-        </p>
-        <a href="https://www.amazon.fr/Nouvelle-V%C3%A9rit%C3%A9-1-Samuel-Masambukidi/dp/2491041006" target="_blank" class="book-link">
-          <i class="fab fa-amazon"></i> Acheter sur Amazon
-        </a>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Music & Albums Section -->
-  <h2 class="section-title">🎵 Musique & Albums Spirituels</h2>
-  <div class="books-section">
-    <div class="books-grid">
-      <div class="book-card">
-        <h3 class="book-title">Album MOKILI</h3>
-        <p class="book-author">Papa Samuel Masambukidi</p>
-        <p class="book-description">
-          Album spirituel majeur avec le clip emblématique <strong>"NZADI YA MOYO"</strong> (La Rivière du Cœur). 
-          Une œuvre musicale profonde qui célèbre les traditions congolaises et la spiritualité du Bassin du Congo. 
-          Les chants sacrés de Papa Masambukidi touchent l'âme et élèvent l'esprit.
-        </p>
-        <a href="https://www.youtube.com/watch?v=XFqUhtVazuE" target="_blank" class="book-link">
-          <i class="fab fa-youtube"></i> Voir le Clip
-        </a>
-      </div>
-      
-      <div class="book-card">
-        <h3 class="book-title">Album Vérité</h3>
-        <p class="book-author">Papa Samuel Masambukidi</p>
-        <p class="book-description">
-          Album spirituel puissant avec les titres <strong>"Vérité"</strong> (clip officiel) et <strong>"Mu Lusambulu"</strong>. 
-          Ces chants prophétiques révèlent les vérités divines et appellent à l'éveil spirituel des peuples d'Afrique. 
-          Une musique sacrée qui transforme et élève les consciences.
-        </p>
-        <a href="https://www.youtube.com/watch?v=ayAfDgNqnhI" target="_blank" class="book-link">
-          <i class="fab fa-youtube"></i> Clip Officiel "Vérité"
-        </a>
-      </div>
-      
-      <div class="book-card">
-        <h3 class="book-title">Mu Lusambulu</h3>
-        <p class="book-author">Album Vérité - Papa Masambukidi</p>
-        <p class="book-description">
-          <strong>"Mu Lusambulu"</strong> - Chant spirituel profond de l'album Vérité. Une mélodie sacrée qui invite 
-          à la méditation et à la connexion avec les ancêtres. Ce titre illustre la richesse de la musique spirituelle congolaise 
-          et la profondeur des enseignements de Papa Masambukidi.
-        </p>
-        <a href="https://www.youtube.com/watch?v=T0Ny444Tldg" target="_blank" class="book-link">
-          <i class="fab fa-youtube"></i> Écouter
-        </a>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Achievements Section -->
-  <h2 class="section-title">🏆 Réalisations & Œuvres Concrètes</h2>
-  <div class="books-section">
-    <div style="max-width: 1000px; margin: 0 auto;">
-      <div class="mission-card" style="margin-bottom: 40px;">
-        <span class="mission-icon">⛪</span>
-        <h3 class="book-title" style="font-size: 2em; margin-bottom: 20px;">Église Lumière du Christ au Congo (ELUCCO)</h3>
-        <p class="book-description" style="text-align: left; font-size: 1.15em; line-height: 1.9;">
-          Papa Samuel Masambukidi est le <strong>représentant spirituel et chef de l'Église Lumière du Christ au Congo (ELUCCO)</strong>, 
-          une institution spirituelle majeure comptant <strong>37 ans d'existence</strong> (fondée en 1988). L'ELUCCO célèbre son héritage 
-          sous le signe de l'installation d'un État de droit en RDC et continue d'éclairer les âmes congolaises par ses enseignements divins.
-        </p>
-      </div>
-      
-      <div class="mission-card" style="margin-bottom: 40px;">
-        <span class="mission-icon">🏫</span>
-        <h3 class="book-title" style="font-size: 2em; margin-bottom: 20px;">Écoles & Éducation</h3>
-        <p class="book-description" style="text-align: left; font-size: 1.15em; line-height: 1.9;">
-          Papa Masambukidi a fondé et soutenu de <strong>nombreuses écoles</strong> à travers le Congo, offrant l'éducation 
-          aux enfants défavorisés et transmettant les valeurs spirituelles ancestrales aux nouvelles générations. 
-          Son engagement pour l'éducation transforme des milliers de vies chaque année.
-        </p>
-      </div>
-      
-      <div class="mission-card" style="margin-bottom: 40px;">
-        <span class="mission-icon">🏥</span>
-        <h3 class="book-title" style="font-size: 2em; margin-bottom: 20px;">Hôpitaux & Santé</h3>
-        <p class="book-description" style="text-align: left; font-size: 1.15em; line-height: 1.9;">
-          Des <strong>centres de santé et hôpitaux</strong> ont été établis grâce à Papa Masambukidi pour soigner les malades 
-          et apporter le réconfort spirituel aux souffrants. Sa vision holistique combine guérison physique et spirituelle, 
-          reflétant la mission divine de servir l'humanité avec compassion.
-        </p>
-      </div>
-      
-      <div class="mission-card" style="margin-bottom: 40px;">
-        <span class="mission-icon">🌾</span>
-        <h3 class="book-title" style="font-size: 2em; margin-bottom: 20px;">Plantations & Agriculture</h3>
-        <p class="book-description" style="text-align: left; font-size: 1.15em; line-height: 1.9;">
-          Papa Masambukidi a développé des <strong>plantations agricoles</strong> pour nourrir les communautés et promouvoir 
-          l'autosuffisance alimentaire. Ces projets agricoles incarnent sa vision d'un Congo prospère, indépendant et fidèle 
-          à sa terre ancestrale. L'agriculture devient ainsi un acte spirituel de reconnexion avec la terre mère.
-        </p>
-      </div>
-      
-      <div class="mission-card" style="margin-bottom: 40px;">
-        <span class="mission-icon">📺</span>
-        <h3 class="book-title" style="font-size: 2em; margin-bottom: 20px;">Médias & Communication</h3>
-        <p class="book-description" style="text-align: left; font-size: 1.15em; line-height: 1.9;">
-          À travers les <strong>médias modernes</strong> (YouTube, réseaux sociaux, publications), Papa Masambukidi diffuse 
-          ses enseignements divins à des millions de personnes. Sa <strong>chaîne YouTube officielle</strong> rassemble une large 
-          communauté de disciples et croyants. Les médias deviennent des instruments de lumière pour propager la vérité divine.
-        </p>
-        <a href="https://www.youtube.com/channel/UCVFGly8HDFtvllsEziNKRng" target="_blank" class="book-link" style="margin-top: 20px;">
-          <i class="fab fa-youtube"></i> Chaîne YouTube Officielle
-        </a>
-      </div>
     </div>
   </div>
 
@@ -1233,58 +1005,4 @@
       <!-- Biographie Kulala Ntumba Pasco -->
       <div class="book-card" style="grid-column: span 1;">
         <div style="text-align: center; margin-bottom: 20px;">
-          <img src="kulala_ntumba_pasco_photo.jpg" alt="Kulala Ntumba Pasco" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #8A2BE2;">
-        </div>
-        <h3 class="book-title" style="font-size: 1.8em;">Kulala Ntumba Pasco</h3>
-        <p class="book-author" style="margin-bottom: 25px;">Guide Spirituel & Philosophe</p>
-        <p class="book-description" style="text-align: left;">
-          <strong>Né le 20 octobre</strong> à Kinshasa, RDC, originaire du Congo central, Mundibu. Diplômé en biologie-chimie et formé en interprétation musicale au centre Masambukidi. <strong>Philosophe, auteur et guide spirituel</strong>, sa mission principale est de <strong>promouvoir l'illumination de l'être congolais et africain</strong>. Son œuvre majeure "L'ŒIL" déconstruit les illusions mentales pour révéler la vérité divine. Il éveille les consciences et libère les âmes des chaînes de l'ego.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <h2 class="section-title" style="margin-bottom: 30px;">Suivre les Enseignements Divins</h2>
-    <p class="divine-description" style="margin-bottom: 40px;">
-      Rejoignez la communauté spirituelle et recevez les enseignements de Papa Masambukidi et Kulala Ntumba Pasco
-    </p>
-    <div class="cta-buttons">
-      <a href="https://www.youtube.com/channel/UCVFGly8HDFtvllsEziNKRng" target="_blank" class="cta-button">
-        <i class="fab fa-youtube"></i> Chaîne YouTube Officielle
-      </a>
-      <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="cta-button">
-        <i class="fab fa-whatsapp"></i> Canal WhatsApp
-      </a>
-      <a href="press.html" class="cta-button secondary">
-        <i class="fas fa-newspaper"></i> Voir dans la Presse
-      </a>
-      <a href="index.html" class="cta-button secondary">
-        <i class="fas fa-home"></i> Retour Accueil
-      </a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p class="footer-text" style="font-size: 1.2em; font-weight: 700; color: #FFD700;">
-      Papa Samuel Masambukidi & Kulala Ntumba Pasco<br>
-      <span style="color: #8A2BE2; font-size: 0.9em;">Deux Missions Divines • Une Lumière pour l'Afrique</span>
-    </p>
-    <p class="footer-text">&copy; 2025 Hakvision - Tous droits réservés</p>
-    <div class="footer-links">
-      <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
-      <a href="livres.html"><i class="fas fa-book"></i> Livres</a>
-      <a href="bio.html"><i class="fas fa-user"></i> Biographie</a>
-      <a href="catalogue.html"><i class="fas fa-list"></i> Catalogue</a>
-      <a href="prix-litteraires.html"><i class="fas fa-trophy"></i> Prix Littéraires</a>
-      <a href="press.html"><i class="fas fa-newspaper"></i> Presse</a>
-      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
-      <a href="masambukidi-kulala.html" style="color: #FFD700; font-weight: 900;"><i class="fas fa-crown"></i> Page Divine</a>
-    </div>
-  </footer>
-
-</body>
-</html>
     
