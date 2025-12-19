@@ -110,6 +110,37 @@
       50% { transform: translateY(-20px); }
     }
     
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 20px 80px rgba(255, 215, 0, 0.8), 0 0 120px rgba(255, 215, 0, 0.5);
+        transform: scale(1.02);
+      }
+    }
+    
+    @keyframes pulse-glow-purple {
+      0%, 100% {
+        box-shadow: 0 15px 60px rgba(138, 43, 226, 0.6), 0 0 80px rgba(138, 43, 226, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 20px 80px rgba(138, 43, 226, 0.8), 0 0 120px rgba(138, 43, 226, 0.5);
+        transform: scale(1.02);
+      }
+    }
+    
+    @keyframes gradient-shift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+    
     /* Hero Section Divine */
     .divine-hero {
       position: relative;
@@ -117,7 +148,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+      background: 
+        linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 46, 0.95) 50%, rgba(10, 10, 10, 0.95) 100%),
+        url('papa_masambukidi_couronne.jpg');
+      background-size: cover, cover;
+      background-position: center, center;
+      background-attachment: fixed;
       overflow: hidden;
       padding: 40px 20px;
     }
@@ -130,20 +166,21 @@
       width: 100%;
       height: 100%;
       background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.08) 0%, transparent 60%);
+        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.12) 0%, transparent 60%);
       animation: shine 8s ease-in-out infinite;
     }
     
     .divine-hero::after {
-      content: '✨';
+      content: '👑';
       position: absolute;
-      font-size: 100px;
+      font-size: 120px;
       top: 10%;
       right: 10%;
       animation: floatAnimation 6s ease-in-out infinite;
-      opacity: 0.3;
+      opacity: 0.2;
+      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
     }
     
     .hero-content {
@@ -740,7 +777,7 @@
     <!-- Mission Royale -->
     <div class="mission-card">
       <div style="text-align: center; margin-bottom: 30px;">
-        <img src="masambukidi_ceremonie_1.jpg" alt="Papa Samuel Masambukidi - Roi Divin" style="width: 250px; height: 250px; border-radius: 50%; object-fit: cover; border: 5px solid #FFD700; box-shadow: 0 10px 40px rgba(255, 215, 0, 0.5);">
+        <img src="papa_masambukidi_couronne.jpg" alt="Papa Samuel Masambukidi - Roi Divin avec Couronne Royale" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 6px solid #FFD700; box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); animation: pulse-glow 3s ease-in-out infinite;">
       </div>
       <span class="mission-icon">👑</span>
       <h2 class="mission-title">PAPA MASAMBUKIDI</h2>
@@ -761,7 +798,7 @@
     <!-- Mission Sacerdotale -->
     <div class="mission-card">
       <div style="text-align: center; margin-bottom: 30px;">
-        <img src="kulala_ntumba_pasco_photo.jpg" alt="Kulala Ntumba Pasco - Guide Spirituel" style="width: 250px; height: 250px; border-radius: 50%; object-fit: cover; border: 5px solid #8A2BE2; box-shadow: 0 10px 40px rgba(138, 43, 226, 0.5);">
+        <img src="kulala_ntumba_pasco_photo.jpg" alt="Kulala Ntumba Pasco - Guide Spirituel" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 6px solid #8A2BE2; box-shadow: 0 15px 60px rgba(138, 43, 226, 0.6), 0 0 80px rgba(138, 43, 226, 0.3); animation: pulse-glow-purple 3s ease-in-out infinite;">
       </div>
       <span class="mission-icon">✝️</span>
       <h2 class="mission-title">KULALA NTUMBA PASCO</h2>
