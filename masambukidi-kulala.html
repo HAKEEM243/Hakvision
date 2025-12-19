@@ -88,6 +88,68 @@
       overflow-x: hidden;
     }
     
+    /* Navigation Bar */
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+    }
+    
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5em;
+      font-weight: 900;
+      background: linear-gradient(135deg, #FFD700 0%, #8A2BE2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .nav-links a {
+      color: #FFD700;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-size: 0.95em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .nav-links a:hover {
+      color: #FFA500;
+      transform: translateY(-2px);
+    }
+    
+    .btn-home {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      color: #000;
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-home:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+    }
+    
     /* Animations */
     @keyframes fadeInUp {
       from {
@@ -145,6 +207,7 @@
     .divine-hero {
       position: relative;
       min-height: 100vh;
+      margin-top: 80px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -758,6 +821,18 @@
 </head>
 <body>
 
+  <!-- Navigation Bar -->
+  <nav class="nav-bar">
+    <div class="nav-logo">Papa Masambukidi & Kulala Pasco</div>
+    <div class="nav-links">
+      <a href="index.html" class="btn-home"><i class="fas fa-home"></i> Retour Accueil</a>
+      <a href="livres.html">Livres</a>
+      <a href="bio.html">Biographie</a>
+      <a href="press.html">Presse</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
   <!-- Hero Section -->
   <section class="divine-hero">
     <div class="hero-content">
@@ -980,6 +1055,124 @@
           <i class="fas fa-book"></i> Acheter le livre
         </a>
       </div>
+      
+      <!-- Nouvelle Vérité -->
+      <div class="book-card">
+        <h3 class="book-title">Nouvelle Vérité - Tome 1</h3>
+        <p class="book-author">Par Samuel Masambukidi</p>
+        <p class="book-description">
+          <strong>Premier tome d'une trilogie spirituelle révolutionnaire.</strong> Papa Samuel Masambukidi partage sa vision prophétique 
+          et ses enseignements divins. Ce premier volume du MASAMBUKIDISME pose les fondations d'une nouvelle compréhension spirituelle 
+          pour l'Afrique et le monde. Une œuvre majeure qui reflète ses intérêts spirituels profonds et sa mission divine.
+        </p>
+        <a href="https://www.amazon.fr/Nouvelle-V%C3%A9rit%C3%A9-1-Samuel-Masambukidi/dp/2491041006" target="_blank" class="book-link">
+          <i class="fab fa-amazon"></i> Acheter sur Amazon
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Music & Albums Section -->
+  <h2 class="section-title">🎵 Musique & Albums Spirituels</h2>
+  <div class="books-section">
+    <div class="books-grid">
+      <div class="book-card">
+        <h3 class="book-title">Album MOKILI</h3>
+        <p class="book-author">Papa Samuel Masambukidi</p>
+        <p class="book-description">
+          Album spirituel majeur avec le clip emblématique <strong>"NZADI YA MOYO"</strong> (La Rivière du Cœur). 
+          Une œuvre musicale profonde qui célèbre les traditions congolaises et la spiritualité du Bassin du Congo. 
+          Les chants sacrés de Papa Masambukidi touchent l'âme et élèvent l'esprit.
+        </p>
+        <a href="https://www.youtube.com/watch?v=XFqUhtVazuE" target="_blank" class="book-link">
+          <i class="fab fa-youtube"></i> Voir le Clip
+        </a>
+      </div>
+      
+      <div class="book-card">
+        <h3 class="book-title">Album Vérité</h3>
+        <p class="book-author">Papa Samuel Masambukidi</p>
+        <p class="book-description">
+          Album spirituel puissant avec les titres <strong>"Vérité"</strong> (clip officiel) et <strong>"Mu Lusambulu"</strong>. 
+          Ces chants prophétiques révèlent les vérités divines et appellent à l'éveil spirituel des peuples d'Afrique. 
+          Une musique sacrée qui transforme et élève les consciences.
+        </p>
+        <a href="https://www.youtube.com/watch?v=ayAfDgNqnhI" target="_blank" class="book-link">
+          <i class="fab fa-youtube"></i> Clip Officiel "Vérité"
+        </a>
+      </div>
+      
+      <div class="book-card">
+        <h3 class="book-title">Mu Lusambulu</h3>
+        <p class="book-author">Album Vérité - Papa Masambukidi</p>
+        <p class="book-description">
+          <strong>"Mu Lusambulu"</strong> - Chant spirituel profond de l'album Vérité. Une mélodie sacrée qui invite 
+          à la méditation et à la connexion avec les ancêtres. Ce titre illustre la richesse de la musique spirituelle congolaise 
+          et la profondeur des enseignements de Papa Masambukidi.
+        </p>
+        <a href="https://www.youtube.com/watch?v=T0Ny444Tldg" target="_blank" class="book-link">
+          <i class="fab fa-youtube"></i> Écouter
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Achievements Section -->
+  <h2 class="section-title">🏆 Réalisations & Œuvres Concrètes</h2>
+  <div class="books-section">
+    <div style="max-width: 1000px; margin: 0 auto;">
+      <div class="mission-card" style="margin-bottom: 40px;">
+        <span class="mission-icon">⛪</span>
+        <h3 class="book-title" style="font-size: 2em; margin-bottom: 20px;">Église Lumière du Christ au Congo (ELUCCO)</h3>
+        <p class="book-description" style="text-align: left; font-size: 1.15em; line-height: 1.9;">
+          Papa Samuel Masambukidi est le <strong>représentant spirituel et chef de l'Église Lumière du Christ au Congo (ELUCCO)</strong>, 
+          une institution spirituelle majeure comptant <strong>37 ans d'existence</strong> (fondée en 1988). L'ELUCCO célèbre son héritage 
+          sous le signe de l'installation d'un État de droit en RDC et continue d'éclairer les âmes congolaises par ses enseignements divins.
+        </p>
+      </div>
+      
+      <div class="mission-card" style="margin-bottom: 40px;">
+        <span class="mission-icon">🏫</span>
+        <h3 class="book-title" style="font-size: 2em; margin-bottom: 20px;">Écoles & Éducation</h3>
+        <p class="book-description" style="text-align: left; font-size: 1.15em; line-height: 1.9;">
+          Papa Masambukidi a fondé et soutenu de <strong>nombreuses écoles</strong> à travers le Congo, offrant l'éducation 
+          aux enfants défavorisés et transmettant les valeurs spirituelles ancestrales aux nouvelles générations. 
+          Son engagement pour l'éducation transforme des milliers de vies chaque année.
+        </p>
+      </div>
+      
+      <div class="mission-card" style="margin-bottom: 40px;">
+        <span class="mission-icon">🏥</span>
+        <h3 class="book-title" style="font-size: 2em; margin-bottom: 20px;">Hôpitaux & Santé</h3>
+        <p class="book-description" style="text-align: left; font-size: 1.15em; line-height: 1.9;">
+          Des <strong>centres de santé et hôpitaux</strong> ont été établis grâce à Papa Masambukidi pour soigner les malades 
+          et apporter le réconfort spirituel aux souffrants. Sa vision holistique combine guérison physique et spirituelle, 
+          reflétant la mission divine de servir l'humanité avec compassion.
+        </p>
+      </div>
+      
+      <div class="mission-card" style="margin-bottom: 40px;">
+        <span class="mission-icon">🌾</span>
+        <h3 class="book-title" style="font-size: 2em; margin-bottom: 20px;">Plantations & Agriculture</h3>
+        <p class="book-description" style="text-align: left; font-size: 1.15em; line-height: 1.9;">
+          Papa Masambukidi a développé des <strong>plantations agricoles</strong> pour nourrir les communautés et promouvoir 
+          l'autosuffisance alimentaire. Ces projets agricoles incarnent sa vision d'un Congo prospère, indépendant et fidèle 
+          à sa terre ancestrale. L'agriculture devient ainsi un acte spirituel de reconnexion avec la terre mère.
+        </p>
+      </div>
+      
+      <div class="mission-card" style="margin-bottom: 40px;">
+        <span class="mission-icon">📺</span>
+        <h3 class="book-title" style="font-size: 2em; margin-bottom: 20px;">Médias & Communication</h3>
+        <p class="book-description" style="text-align: left; font-size: 1.15em; line-height: 1.9;">
+          À travers les <strong>médias modernes</strong> (YouTube, réseaux sociaux, publications), Papa Masambukidi diffuse 
+          ses enseignements divins à des millions de personnes. Sa <strong>chaîne YouTube officielle</strong> rassemble une large 
+          communauté de disciples et croyants. Les médias deviennent des instruments de lumière pour propager la vérité divine.
+        </p>
+        <a href="https://www.youtube.com/channel/UCVFGly8HDFtvllsEziNKRng" target="_blank" class="book-link" style="margin-top: 20px;">
+          <i class="fab fa-youtube"></i> Chaîne YouTube Officielle
+        </a>
+      </div>
     </div>
   </div>
 
@@ -1005,4 +1198,154 @@
       <!-- Biographie Kulala Ntumba Pasco -->
       <div class="book-card" style="grid-column: span 1;">
         <div style="text-align: center; margin-bottom: 20px;">
+          <img src="kulala_ntumba_pasco_photo.jpg" alt="Kulala Ntumba Pasco" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #8A2BE2;">
+        </div>
+        <h3 class="book-title" style="font-size: 1.8em;">Kulala Ntumba Pasco</h3>
+        <p class="book-author" style="margin-bottom: 25px;">Guide Spirituel & Philosophe</p>
+        <p class="book-description" style="text-align: left;">
+          <strong>Né le 20 octobre</strong> à Kinshasa, RDC, originaire du Congo central, Mundibu. Diplômé en biologie-chimie et formé en interprétation musicale au centre Masambukidi. <strong>Philosophe, auteur et guide spirituel</strong>, sa mission principale est de <strong>promouvoir l'illumination de l'être congolais et africain</strong>. Son œuvre majeure "L'ŒIL" déconstruit les illusions mentales pour révéler la vérité divine. Il éveille les consciences et libère les âmes des chaînes de l'ego.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chronologie Section -->
+  <h2 class="section-title">📅 Chronologie Divine</h2>
+  <div class="timeline-section">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">1988</div>
+          <h3 class="timeline-title">Fondation de l'ELUCCO</h3>
+          <p class="timeline-text">Création de l'Église Lumière du Christ au Congo (ELUCCO) par Papa Samuel Masambukidi, marquant le début d'une mission spirituelle de 37 ans.</p>
+        </div>
+        <div></div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div></div>
+        <div class="timeline-content">
+          <div class="timeline-date">20 Octobre</div>
+          <h3 class="timeline-title">Naissance de Kulala Ntumba Pasco</h3>
+          <p class="timeline-text">Naissance de Papa Kulala à Kinshasa, RDC, originaire du Congo central, Mundibu. Le guide spirituel de la mission sacerdotale vient au monde.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">Publication</div>
+          <h3 class="timeline-title">Nouvelle Vérité - Tome 1</h3>
+          <p class="timeline-text">Publication du premier tome de la trilogie spirituelle révolutionnaire par Papa Samuel Masambukidi, fondement du MASAMBUKIDISME.</p>
+        </div>
+        <div></div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div></div>
+        <div class="timeline-content">
+          <div class="timeline-date">Albums</div>
+          <h3 class="timeline-title">Albums Spirituels MOKILI & Vérité</h3>
+          <p class="timeline-text">Sortie des albums sacrés avec les clips "NZADI YA MOYO", "Vérité" et "Mu Lusambulu". La musique spirituelle de Papa Masambukidi touche les cœurs.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">Octobre 2025</div>
+          <h3 class="timeline-title">Biographie Papa Masambukidi</h3>
+          <p class="timeline-text">Publication de la biographie officielle "Papa Masambukidi - Héritage, luttes et vision" par Merveil Hakeem Dianzenza (46 pages).</p>
+        </div>
+        <div></div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div></div>
+        <div class="timeline-content">
+          <div class="timeline-date">30 Octobre 2025</div>
+          <h3 class="timeline-title">Intronisation Royale</h3>
+          <p class="timeline-text">Cérémonie historique d'intronisation de Papa Samuel Masambukidi comme Roi Divin du Bassin du Congo à Kinshasa, en présence de rois africains et autorités coutumières.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">2 Novembre 2025</div>
+          <h3 class="timeline-title">Premier Culte à Miongo</h3>
+          <p class="timeline-text">Premier culte solennel de Sa Majesté Papa Masambukidi à Miongo, Terre Sainte, avec les Rois d'Afrique. Installation des rois à la terre sacrée.</p>
+        </div>
+        <div></div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div></div>
+        <div class="timeline-content">
+          <div class="timeline-date">12 Novembre 2025</div>
+          <h3 class="timeline-title">Publication de L'ŒIL</h3>
+          <p class="timeline-text">Sortie du livre philosophique "L'ŒIL" par Kulala Ntumba Pasco (60 pages). Un manifeste spirituel radical sur l'illumination de l'être africain.</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="timeline-date">6 Mars 2025</div>
+          <h3 class="timeline-title">Festivités & Témoignages</h3>
+          <p class="timeline-text">Grande festivité en l'honneur de Papa Masambukidi avec messages, témoignages et explications sur l'origine de la royauté Masambukidi.</p>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2 class="section-title" style="margin-bottom: 30px;">Suivre les Enseignements Divins</h2>
+    <p class="divine-description" style="margin-bottom: 40px;">
+      Rejoignez la communauté spirituelle et recevez les enseignements de Papa Masambukidi et Kulala Ntumba Pasco
+    </p>
+    <div class="cta-buttons">
+      <a href="https://www.youtube.com/channel/UCVFGly8HDFtvllsEziNKRng" target="_blank" class="cta-button">
+        <i class="fab fa-youtube"></i> Chaîne YouTube Officielle
+      </a>
+      <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="cta-button">
+        <i class="fab fa-whatsapp"></i> Canal WhatsApp
+      </a>
+      <a href="press.html" class="cta-button secondary">
+        <i class="fas fa-newspaper"></i> Voir dans la Presse
+      </a>
+      <a href="index.html" class="cta-button secondary">
+        <i class="fas fa-home"></i> Retour Accueil
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-text" style="font-size: 1.2em; font-weight: 700; color: #FFD700;">
+      Papa Samuel Masambukidi & Kulala Ntumba Pasco<br>
+      <span style="color: #8A2BE2; font-size: 0.9em;">Deux Missions Divines • Une Lumière pour l'Afrique</span>
+    </p>
+    <p class="footer-text">&copy; 2025 Hakvision - Tous droits réservés</p>
+    <div class="footer-links">
+      <a href="index.html"><i class="fas fa-home"></i> Accueil</a>
+      <a href="livres.html"><i class="fas fa-book"></i> Livres</a>
+      <a href="bio.html"><i class="fas fa-user"></i> Biographie</a>
+      <a href="catalogue.html"><i class="fas fa-list"></i> Catalogue</a>
+      <a href="prix-litteraires.html"><i class="fas fa-trophy"></i> Prix Littéraires</a>
+      <a href="press.html"><i class="fas fa-newspaper"></i> Presse</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="masambukidi-kulala.html" style="color: #FFD700; font-weight: 900;"><i class="fas fa-crown"></i> Page Divine</a>
+    </div>
+  </footer>
+
+</body>
+</html>
     
