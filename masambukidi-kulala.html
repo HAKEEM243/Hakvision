@@ -82,62 +82,57 @@
     
     body {
       font-family: 'Inter', sans-serif;
-      background: #0a0a0a;
+      background: linear-gradient(135deg, #001a0d 0%, #0a0a0a 50%, #001a0d 100%);
       color: #ffffff;
       line-height: 1.6;
       overflow-x: hidden;
     }
     
-    /* Navigation Bar */
+    /* Navigation Bar - Simple et élégante */
     .nav-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      background: rgba(0, 0, 0, 0.95);
+      background: rgba(0, 26, 13, 0.95);
       backdrop-filter: blur(10px);
-      padding: 20px 40px;
+      padding: 15px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
-      border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+      border-bottom: 2px solid rgba(34, 139, 34, 0.3);
     }
     
     .nav-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5em;
+      font-size: 1.4em;
       font-weight: 900;
-      background: linear-gradient(135deg, #FFD700 0%, #8A2BE2 100%);
+      background: linear-gradient(135deg, #FFD700 0%, #32CD32 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 25px;
       align-items: center;
       flex-wrap: wrap;
     }
     
     .nav-links a {
-      color: #FFD700;
+      color: #32CD32;
       text-decoration: none;
       font-weight: 600;
       transition: all 0.3s ease;
-      font-size: 0.95em;
+      font-size: 0.9em;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
     
     .nav-links a:hover {
-      color: #FFA500;
+      color: #FFD700;
       transform: translateY(-2px);
     }
     
     .btn-home {
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      color: #000;
+      background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
+      color: #fff;
       padding: 10px 25px;
       border-radius: 50px;
       font-weight: 700;
@@ -146,8 +141,9 @@
     }
     
     .btn-home:hover {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+      box-shadow: 0 10px 30px rgba(50, 205, 50, 0.5);
     }
     
     /* Animations */
@@ -174,22 +170,22 @@
     
     @keyframes pulse-glow {
       0%, 100% {
-        box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3);
+        box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6), 0 0 80px rgba(50, 205, 50, 0.3);
         transform: scale(1);
       }
       50% {
-        box-shadow: 0 20px 80px rgba(255, 215, 0, 0.8), 0 0 120px rgba(255, 215, 0, 0.5);
+        box-shadow: 0 20px 80px rgba(255, 215, 0, 0.8), 0 0 120px rgba(50, 205, 50, 0.5);
         transform: scale(1.02);
       }
     }
     
-    @keyframes pulse-glow-purple {
+    @keyframes pulse-glow-green {
       0%, 100% {
-        box-shadow: 0 15px 60px rgba(138, 43, 226, 0.6), 0 0 80px rgba(138, 43, 226, 0.3);
+        box-shadow: 0 15px 60px rgba(50, 205, 50, 0.6), 0 0 80px rgba(50, 205, 50, 0.3);
         transform: scale(1);
       }
       50% {
-        box-shadow: 0 20px 80px rgba(138, 43, 226, 0.8), 0 0 120px rgba(138, 43, 226, 0.5);
+        box-shadow: 0 20px 80px rgba(50, 205, 50, 0.8), 0 0 120px rgba(50, 205, 50, 0.5);
         transform: scale(1.02);
       }
     }
@@ -203,22 +199,17 @@
       }
     }
     
-    /* Hero Section Divine */
+    /* Hero Section Divine - Sans bannière fixe */
     .divine-hero {
       position: relative;
-      min-height: 100vh;
-      margin-top: 80px;
+      min-height: 70vh;
       display: flex;
       align-items: center;
       justify-content: center;
       background: 
-        linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 46, 0.95) 50%, rgba(10, 10, 10, 0.95) 100%),
-        url('papa_masambukidi_couronne.jpg');
-      background-size: cover, cover;
-      background-position: center, center;
-      background-attachment: fixed;
+        linear-gradient(135deg, rgba(0, 26, 13, 0.9) 0%, rgba(10, 10, 10, 0.85) 50%, rgba(0, 50, 0, 0.9) 100%);
       overflow: hidden;
-      padding: 40px 20px;
+      padding: 80px 20px 40px;
     }
     
     .divine-hero::before {
@@ -229,21 +220,10 @@
       width: 100%;
       height: 100%;
       background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 50% 20%, rgba(255, 215, 0, 0.12) 0%, transparent 60%);
+        radial-gradient(circle at 20% 50%, rgba(50, 205, 50, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 20%, rgba(34, 139, 34, 0.12) 0%, transparent 60%);
       animation: shine 8s ease-in-out infinite;
-    }
-    
-    .divine-hero::after {
-      content: '👑';
-      position: absolute;
-      font-size: 120px;
-      top: 10%;
-      right: 10%;
-      animation: floatAnimation 6s ease-in-out infinite;
-      opacity: 0.2;
-      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
     }
     
     .hero-content {
@@ -256,8 +236,8 @@
     
     .divine-badge {
       display: inline-block;
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(138, 43, 226, 0.2));
-      border: 2px solid #FFD700;
+      background: linear-gradient(135deg, rgba(50, 205, 50, 0.2), rgba(255, 215, 0, 0.2));
+      border: 2px solid #32CD32;
       padding: 12px 30px;
       border-radius: 50px;
       font-weight: 700;
@@ -270,19 +250,19 @@
     
     .main-title {
       font-family: 'Playfair Display', serif;
-      font-size: 5em;
+      font-size: 4em;
       font-weight: 900;
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+      background: linear-gradient(135deg, #FFD700 0%, #32CD32 50%, #FFD700 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 20px;
       line-height: 1.2;
-      text-shadow: 0 0 80px rgba(255, 215, 0, 0.5);
+      text-shadow: 0 0 80px rgba(50, 205, 50, 0.5);
     }
     
     .sub-title {
-      font-size: 1.8em;
-      color: #8A2BE2;
+      font-size: 1.5em;
+      color: #32CD32;
       margin-bottom: 40px;
       font-weight: 300;
       letter-spacing: 3px;
@@ -300,7 +280,7 @@
     /* Section Dual Missions */
     .dual-missions {
       max-width: 1600px;
-      margin: 100px auto;
+      margin: 60px auto;
       padding: 0 20px;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -308,10 +288,10 @@
     }
     
     .mission-card {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(138, 43, 226, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(50, 205, 50, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
       border-radius: 30px;
       padding: 60px 40px;
-      border: 2px solid rgba(255, 215, 0, 0.2);
+      border: 2px solid rgba(50, 205, 50, 0.2);
       transition: all 0.5s ease;
       position: relative;
       overflow: hidden;
@@ -324,7 +304,7 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(50, 205, 50, 0.1) 0%, transparent 70%);
       opacity: 0;
       transition: opacity 0.5s ease;
     }
@@ -335,8 +315,8 @@
     
     .mission-card:hover {
       transform: translateY(-10px) scale(1.02);
-      border-color: #FFD700;
-      box-shadow: 0 30px 80px rgba(255, 215, 0, 0.3);
+      border-color: #32CD32;
+      box-shadow: 0 30px 80px rgba(50, 205, 50, 0.3);
     }
     
     .mission-icon {
@@ -356,7 +336,7 @@
     
     .mission-subtitle {
       font-size: 1.3em;
-      color: #8A2BE2;
+      color: #32CD32;
       margin-bottom: 30px;
       font-weight: 600;
       text-transform: uppercase;
@@ -376,10 +356,10 @@
       font-size: 3.5em;
       font-weight: 900;
       text-align: center;
-      background: linear-gradient(135deg, #FFD700 0%, #8A2BE2 100%);
+      background: linear-gradient(135deg, #FFD700 0%, #32CD32 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin: 100px 0 60px;
+      margin: 80px 0 60px;
       position: relative;
       padding-bottom: 30px;
     }
@@ -392,7 +372,7 @@
       transform: translateX(-50%);
       width: 200px;
       height: 4px;
-      background: linear-gradient(90deg, transparent, #FFD700, #8A2BE2, transparent);
+      background: linear-gradient(90deg, transparent, #FFD700, #32CD32, transparent);
     }
     
     /* Video Grid */
@@ -406,17 +386,17 @@
     }
     
     .video-card {
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(0, 26, 13, 0.3);
       border-radius: 20px;
       overflow: hidden;
-      border: 1px solid rgba(255, 215, 0, 0.2);
+      border: 1px solid rgba(50, 205, 50, 0.2);
       transition: all 0.4s ease;
     }
     
     .video-card:hover {
       transform: translateY(-8px);
-      border-color: #FFD700;
-      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+      border-color: #32CD32;
+      box-shadow: 0 20px 60px rgba(50, 205, 50, 0.3);
     }
     
     .video-thumbnail {
@@ -466,15 +446,15 @@
       overflow: hidden;
       border-radius: 20px;
       height: 350px;
-      border: 2px solid rgba(255, 215, 0, 0.2);
+      border: 2px solid rgba(50, 205, 50, 0.2);
       transition: all 0.4s ease;
       cursor: pointer;
     }
     
     .photo-item:hover {
       transform: scale(1.05);
-      border-color: #FFD700;
-      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+      border-color: #32CD32;
+      box-shadow: 0 20px 60px rgba(50, 205, 50, 0.4);
     }
     
     .photo-item img {
@@ -520,10 +500,10 @@
     }
     
     .book-card {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(138, 43, 226, 0.05) 100%);
+      background: linear-gradient(135deg, rgba(50, 205, 50, 0.05) 0%, rgba(255, 215, 0, 0.05) 100%);
       border-radius: 25px;
       padding: 40px;
-      border: 2px solid rgba(255, 215, 0, 0.2);
+      border: 2px solid rgba(50, 205, 50, 0.2);
       transition: all 0.4s ease;
       display: flex;
       flex-direction: column;
@@ -533,8 +513,8 @@
     
     .book-card:hover {
       transform: translateY(-10px);
-      border-color: #FFD700;
-      box-shadow: 0 25px 70px rgba(255, 215, 0, 0.3);
+      border-color: #32CD32;
+      box-shadow: 0 25px 70px rgba(50, 205, 50, 0.3);
     }
     
     .book-cover {
@@ -561,7 +541,7 @@
     
     .book-author {
       font-size: 1.1em;
-      color: #8A2BE2;
+      color: #32CD32;
       margin-bottom: 20px;
       font-weight: 600;
     }
@@ -575,8 +555,8 @@
     
     .book-link {
       display: inline-block;
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      color: #000;
+      background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
+      color: #fff;
       padding: 15px 40px;
       border-radius: 50px;
       font-weight: 700;
@@ -588,98 +568,19 @@
     }
     
     .book-link:hover {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
       transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+      box-shadow: 0 10px 30px rgba(50, 205, 50, 0.5);
     }
     
-    /* Timeline */
-    .timeline-section {
-      max-width: 1200px;
-      margin: 0 auto 100px;
-      padding: 0 20px;
-    }
-    
-    .timeline {
-      position: relative;
-      padding: 40px 0;
-    }
-    
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, #FFD700, #8A2BE2, #FFD700);
-    }
-    
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      margin-bottom: 80px;
-      position: relative;
-    }
-    
-    .timeline-item:nth-child(even) .timeline-content {
-      order: -1;
-    }
-    
-    .timeline-dot {
-      position: absolute;
-      left: 50%;
-      top: 30px;
-      transform: translateX(-50%);
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      background: #FFD700;
-      border: 5px solid #0a0a0a;
-      box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.3);
-      z-index: 10;
-    }
-    
-    .timeline-content {
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(138, 43, 226, 0.08) 100%);
-      border-radius: 20px;
-      padding: 40px;
-      border: 2px solid rgba(255, 215, 0, 0.2);
-      transition: all 0.4s ease;
-    }
-    
-    .timeline-content:hover {
-      transform: scale(1.03);
-      border-color: #FFD700;
-      box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
-    }
-    
-    .timeline-date {
-      font-size: 1.5em;
-      font-weight: 900;
-      color: #FFD700;
-      margin-bottom: 15px;
-    }
-    
-    .timeline-title {
-      font-size: 1.4em;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 15px;
-    }
-    
-    .timeline-text {
-      color: #cccccc;
-      line-height: 1.7;
-      font-size: 1.05em;
-    }
+
     
     /* CTA Section */
     .cta-section {
       text-align: center;
-      padding: 100px 20px;
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(138, 43, 226, 0.1) 100%);
-      margin: 100px 0;
+      padding: 80px 20px;
+      background: linear-gradient(135deg, rgba(50, 205, 50, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+      margin: 80px 0;
     }
     
     .cta-buttons {
@@ -694,8 +595,8 @@
       display: inline-flex;
       align-items: center;
       gap: 15px;
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      color: #000;
+      background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
+      color: #fff;
       padding: 20px 50px;
       border-radius: 50px;
       font-weight: 700;
@@ -707,18 +608,21 @@
     }
     
     .cta-button:hover {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
       transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 15px 50px rgba(255, 215, 0, 0.5);
+      box-shadow: 0 15px 50px rgba(50, 205, 50, 0.5);
     }
     
     .cta-button.secondary {
       background: transparent;
-      border: 2px solid #FFD700;
-      color: #FFD700;
+      border: 2px solid #32CD32;
+      color: #32CD32;
     }
     
     .cta-button.secondary:hover {
-      background: rgba(255, 215, 0, 0.1);
+      background: rgba(50, 205, 50, 0.1);
+      border-color: #FFD700;
+      color: #FFD700;
     }
     
     /* Footer */
@@ -726,7 +630,7 @@
       background: #000;
       padding: 60px 20px 30px;
       text-align: center;
-      border-top: 2px solid rgba(255, 215, 0, 0.3);
+      border-top: 2px solid rgba(50, 205, 50, 0.3);
     }
     
     .footer-text {
@@ -744,14 +648,14 @@
     }
     
     .footer-links a {
-      color: #FFD700;
+      color: #32CD32;
       text-decoration: none;
       font-weight: 600;
       transition: all 0.3s ease;
     }
     
     .footer-links a:hover {
-      color: #FFA500;
+      color: #FFD700;
       text-decoration: underline;
     }
     
@@ -852,7 +756,7 @@
     <!-- Mission Royale -->
     <div class="mission-card">
       <div style="text-align: center; margin-bottom: 30px;">
-        <img src="papa_masambukidi_couronne.jpg" alt="Papa Samuel Masambukidi - Roi Divin avec Couronne Royale" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 6px solid #FFD700; box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6), 0 0 80px rgba(255, 215, 0, 0.3); animation: pulse-glow 3s ease-in-out infinite;">
+        <img src="papa_masambukidi_couronne.jpg" alt="Papa Samuel Masambukidi - Roi Divin avec Couronne Royale" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 6px solid #FFD700; box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6), 0 0 80px rgba(50, 205, 50, 0.3); animation: pulse-glow 3s ease-in-out infinite;">
       </div>
       <span class="mission-icon">👑</span>
       <h2 class="mission-title">PAPA MASAMBUKIDI</h2>
@@ -873,7 +777,7 @@
     <!-- Mission Sacerdotale -->
     <div class="mission-card">
       <div style="text-align: center; margin-bottom: 30px;">
-        <img src="kulala_ntumba_pasco_photo.jpg" alt="Kulala Ntumba Pasco - Guide Spirituel" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 6px solid #8A2BE2; box-shadow: 0 15px 60px rgba(138, 43, 226, 0.6), 0 0 80px rgba(138, 43, 226, 0.3); animation: pulse-glow-purple 3s ease-in-out infinite;">
+        <img src="kulala_ntumba_pasco_photo.jpg" alt="Kulala Ntumba Pasco - Guide Spirituel" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 6px solid #32CD32; box-shadow: 0 15px 60px rgba(50, 205, 50, 0.6), 0 0 80px rgba(50, 205, 50, 0.3); animation: pulse-glow-green 3s ease-in-out infinite;">
       </div>
       <span class="mission-icon">✝️</span>
       <h2 class="mission-title">KULALA NTUMBA PASCO</h2>
@@ -1205,102 +1109,6 @@
         <p class="book-description" style="text-align: left;">
           <strong>Né le 20 octobre</strong> à Kinshasa, RDC, originaire du Congo central, Mundibu. Diplômé en biologie-chimie et formé en interprétation musicale au centre Masambukidi. <strong>Philosophe, auteur et guide spirituel</strong>, sa mission principale est de <strong>promouvoir l'illumination de l'être congolais et africain</strong>. Son œuvre majeure "L'ŒIL" déconstruit les illusions mentales pour révéler la vérité divine. Il éveille les consciences et libère les âmes des chaînes de l'ego.
         </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Chronologie Section -->
-  <h2 class="section-title">📅 Chronologie Divine</h2>
-  <div class="timeline-section">
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">1988</div>
-          <h3 class="timeline-title">Fondation de l'ELUCCO</h3>
-          <p class="timeline-text">Création de l'Église Lumière du Christ au Congo (ELUCCO) par Papa Samuel Masambukidi, marquant le début d'une mission spirituelle de 37 ans.</p>
-        </div>
-        <div></div>
-      </div>
-      
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div></div>
-        <div class="timeline-content">
-          <div class="timeline-date">20 Octobre</div>
-          <h3 class="timeline-title">Naissance de Kulala Ntumba Pasco</h3>
-          <p class="timeline-text">Naissance de Papa Kulala à Kinshasa, RDC, originaire du Congo central, Mundibu. Le guide spirituel de la mission sacerdotale vient au monde.</p>
-        </div>
-      </div>
-      
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">Publication</div>
-          <h3 class="timeline-title">Nouvelle Vérité - Tome 1</h3>
-          <p class="timeline-text">Publication du premier tome de la trilogie spirituelle révolutionnaire par Papa Samuel Masambukidi, fondement du MASAMBUKIDISME.</p>
-        </div>
-        <div></div>
-      </div>
-      
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div></div>
-        <div class="timeline-content">
-          <div class="timeline-date">Albums</div>
-          <h3 class="timeline-title">Albums Spirituels MOKILI & Vérité</h3>
-          <p class="timeline-text">Sortie des albums sacrés avec les clips "NZADI YA MOYO", "Vérité" et "Mu Lusambulu". La musique spirituelle de Papa Masambukidi touche les cœurs.</p>
-        </div>
-      </div>
-      
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">Octobre 2025</div>
-          <h3 class="timeline-title">Biographie Papa Masambukidi</h3>
-          <p class="timeline-text">Publication de la biographie officielle "Papa Masambukidi - Héritage, luttes et vision" par Merveil Hakeem Dianzenza (46 pages).</p>
-        </div>
-        <div></div>
-      </div>
-      
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div></div>
-        <div class="timeline-content">
-          <div class="timeline-date">30 Octobre 2025</div>
-          <h3 class="timeline-title">Intronisation Royale</h3>
-          <p class="timeline-text">Cérémonie historique d'intronisation de Papa Samuel Masambukidi comme Roi Divin du Bassin du Congo à Kinshasa, en présence de rois africains et autorités coutumières.</p>
-        </div>
-      </div>
-      
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">2 Novembre 2025</div>
-          <h3 class="timeline-title">Premier Culte à Miongo</h3>
-          <p class="timeline-text">Premier culte solennel de Sa Majesté Papa Masambukidi à Miongo, Terre Sainte, avec les Rois d'Afrique. Installation des rois à la terre sacrée.</p>
-        </div>
-        <div></div>
-      </div>
-      
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div></div>
-        <div class="timeline-content">
-          <div class="timeline-date">12 Novembre 2025</div>
-          <h3 class="timeline-title">Publication de L'ŒIL</h3>
-          <p class="timeline-text">Sortie du livre philosophique "L'ŒIL" par Kulala Ntumba Pasco (60 pages). Un manifeste spirituel radical sur l'illumination de l'être africain.</p>
-        </div>
-      </div>
-      
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="timeline-date">6 Mars 2025</div>
-          <h3 class="timeline-title">Festivités & Témoignages</h3>
-          <p class="timeline-text">Grande festivité en l'honneur de Papa Masambukidi avec messages, témoignages et explications sur l'origine de la royauté Masambukidi.</p>
-        </div>
-        <div></div>
       </div>
     </div>
   </div>
