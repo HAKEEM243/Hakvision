@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | Hakvision</title>
-
-  <!-- Style Premium + Font Awesome -->
+  <title>Contact | Hakvision — Merveil Hakeem Dianzenza</title>
+  <meta name="description" content="Contactez Merveil Hakeem Dianzenza pour des interviews, interventions, partenariats culturels ou commandes. Réponse sous 48h. Europe & Afrique." />
+  <meta name="author" content="Merveil Hakeem Dianzenza" />
+  <link rel="canonical" href="https://hakvision243.blog/contact.html" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Font Awesome + Style Premium -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style-premium.css">
 </head>
@@ -18,7 +21,7 @@
     <div class="breaking-news">
       <div class="breaking-news-content">
         <span class="breaking-label">🔴 ACTUALITÉS</span>
-        <span class="breaking-text">KATIØPA • Papa Masambukidi Roi Divin • Un Écrivain à Kinshasa • Prix Masambukidi & Dianzenza en tournée</span>
+        <span class="breaking-text">KATIØPA • Papa Masambukidi Roi Divin • Un Écrivain à Kinshasa • Prix Masambukidi & Dianzenza 2026 en tournée</span>
       </div>
     </div>
 
@@ -27,12 +30,12 @@
       <div class="top-bar-content">
         <div style="display: flex; align-items: center; gap: 15px;">
           <span class="live-badge">● LIVE</span>
-          <span>📅 Mercredi 4 décembre 2025</span>
+          <span id="dateDisplay">📅 2026 — Hakvision Editions</span>
         </div>
         <div class="social-links-top">
           <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.instagram.com/hakaymrv243_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
           <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
@@ -42,14 +45,15 @@
     <!-- Global Header -->
     <header class="global-header">
       <div class="header-inner">
-        <div class="brand-stack">
+        <a href="index.html" class="brand-stack" style="text-decoration:none;">
           <div class="brand-mark">HV</div>
           <div class="brand-text">
             <p class="eyebrow">Merveil Hakeem Dianzenza</p>
             <h1>Hakvision</h1>
           </div>
-        </div>
-        <nav class="global-nav">
+        </a>
+        <button class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i> Menu</button>
+        <nav class="global-nav" id="globalNav">
           <a href="index.html">Accueil</a>
           <a href="livres.html">Livres</a>
           <a href="catalogue.html">Catalogue</a>
@@ -64,17 +68,18 @@
     </header>
 
     <main>
+      <!-- Hero -->
       <section class="page-hero">
         <div class="halo"></div>
         <div class="hero-grid">
           <div>
-            <span class="kicker">Contact</span>
+            <span class="kicker"><i class="fa-solid fa-envelope-open-text"></i> Contact</span>
             <h1>Planifions une collaboration, une interview ou une dédicace.</h1>
             <p class="lead">Une équipe réactive pour les projets médias, les partenariats culturels et les invitations à parler d'afrofuturisme, de littérature et de spiritualité panafricaine.</p>
             <div class="hero-meta">
-              <div class="chip">Réponse sous 48h</div>
-              <div class="chip">Canal WhatsApp disponible</div>
-              <div class="chip">Bookings Europe & Afrique</div>
+              <div class="chip"><i class="fa-solid fa-clock"></i> Réponse sous 48h</div>
+              <div class="chip"><i class="fab fa-whatsapp"></i> Canal WhatsApp disponible</div>
+              <div class="chip"><i class="fa-solid fa-globe"></i> Bookings Europe & Afrique</div>
             </div>
           </div>
           <div class="hero-visual-card">
@@ -84,12 +89,14 @@
         </div>
       </section>
 
+      <!-- Formulaire + Infos -->
       <section class="page-section">
         <div class="site-grid dual-columns">
           <div class="form-card">
-            <h3 style="margin-top:0;">Écrivez-moi</h3>
+            <h3 style="margin-top:0; color:#facc15; margin-bottom:20px;"><i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i>Écrivez-moi</h3>
             <form class="contact-form" data-contact-form action="https://formspree.io/f/myzebnql" method="POST">
               <input type="hidden" name="_subject" value="Nouvelle demande Hakvision">
+
               <label for="nom">Nom complet</label>
               <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
 
@@ -108,31 +115,100 @@
               <label for="message">Message</label>
               <textarea id="message" name="message" rows="6" placeholder="Partagez votre besoin et vos dates" required></textarea>
 
-              <button type="submit">Envoyer ma demande</button>
+              <button type="submit"><i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i>Envoyer ma demande</button>
               <div class="form-status" aria-live="polite">Merci ! Votre demande est envoyée. Vous recevrez une copie dans votre boîte mail.</div>
             </form>
           </div>
 
           <div class="content-panel">
-            <div class="pill-tag"><i class="fa-solid fa-wifi"></i> Liens rapides</div>
+            <div class="pill-tag" style="margin-bottom:16px;"><i class="fa-solid fa-wifi"></i> Liens rapides</div>
             <h4>Accès direct</h4>
-            <div class="stacked-list" style="margin: 12px 0 20px;">
-              <div class="stacked-item"><strong>WhatsApp :</strong> <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">Canal Hakvision</a></div>
-              <div class="stacked-item"><strong>Email :</strong> <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a></div>
-              <div class="stacked-item"><strong>Instagram :</strong> <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a></div>
-              <div class="stacked-item"><strong>Press kit :</strong> <a href="press.html">Dossier & visuels</a></div>
+            <div class="stacked-list" style="margin: 12px 0 24px;">
+              <div class="stacked-item">
+                <i class="fab fa-whatsapp" style="color:#25d366; margin-right:8px;"></i>
+                <strong>WhatsApp :</strong> <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">Canal Hakvision</a>
+              </div>
+              <div class="stacked-item">
+                <i class="fa-solid fa-envelope" style="color:#facc15; margin-right:8px;"></i>
+                <strong>Email :</strong> <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a>
+              </div>
+              <div class="stacked-item">
+                <i class="fab fa-instagram" style="color:#e1306c; margin-right:8px;"></i>
+                <strong>Instagram :</strong> <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a>
+              </div>
+              <div class="stacked-item">
+                <i class="fa-solid fa-folder-open" style="color:#facc15; margin-right:8px;"></i>
+                <strong>Press kit :</strong> <a href="press.html">Dossier & visuels</a>
+              </div>
             </div>
-            <h4>Ce que nous préparons</h4>
-            <ul>
+
+            <h4 style="margin-bottom:12px;">Ce que nous préparons</h4>
+            <ul style="padding-left:18px; color:#94a3b8; display:grid; gap:10px;">
               <li>Salons du livre, cérémonies Prix Masambukidi & Dianzenza</li>
               <li>Plateaux TV/radio autour de l'afrofuturisme</li>
               <li>Masterclass d'écriture et résidences</li>
               <li>Sessions de dédicace et rencontres clubs de lecture</li>
             </ul>
+
+            <div style="margin-top:24px; padding:16px 20px; background:rgba(250,204,21,0.08); border:1px solid rgba(250,204,21,0.25); border-radius:14px;">
+              <p style="color:#facc15; font-weight:800; margin:0 0 8px;"><i class="fa-solid fa-bolt"></i> Réponse garantie sous 48h</p>
+              <p style="color:#94a3b8; margin:0; font-size:0.92rem;">Pour les demandes urgentes, privilégiez le canal WhatsApp ou l'email direct.</p>
+            </div>
           </div>
         </div>
       </section>
     </main>
+
+    <!-- Global Footer -->
+    <footer class="global-footer">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">
+              <div class="brand-mark">HV</div>
+              <h3>Hakvision</h3>
+            </a>
+            <p>Œuvres littéraires, innovations culturelles et initiatives panafricaines conçues par Merveil Hakeem Dianzenza.</p>
+            <div class="footer-socials">
+              <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/hakaymrv243_" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank"><i class="fab fa-amazon"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Œuvres</h4>
+            <ul>
+              <li><a href="livres.html">Livres</a></li>
+              <li><a href="catalogue.html">Catalogue complet</a></li>
+              <li><a href="katiopa.html">KATIØPA</a></li>
+              <li><a href="papa-masambukidi.html">Papa Masambukidi</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Hakvision</h4>
+            <ul>
+              <li><a href="bio.html">Biographie</a></li>
+              <li><a href="press.html">Presse</a></li>
+              <li><a href="okapiplay.html">OkapiPlay</a></li>
+              <li><a href="prix-litteraires.html">Prix Littéraires</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="contact.html">Nous écrire</a></li>
+              <li><a href="mailto:arenalse22@gmail.com">Email direct</a></li>
+              <li><a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">WhatsApp</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© 2026 Merveil Hakeem Dianzenza — Tous droits réservés</p>
+          <span class="footer-badge"><i class="fa-solid fa-star"></i> Hakvision Editions</span>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <!-- JavaScript Premium -->

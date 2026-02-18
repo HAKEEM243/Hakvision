@@ -3,853 +3,349 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Né en Côte d'Ivoire, élevé en France et partagé entre Paris et Kinshasa, Merveil Hakeem Dianzenza signe KATIOPA (634 pages), Un Écrivain à Kinshasa et la biographie officielle de Papa Masambukidi. Chroniqueur de l'intronisation d'octobre 2025, il prépare la première édition 2026 des Prix Masambukidi et Dianzenza, remise à Kinshasa début mars." />
+  <meta name="description" content="Né en Côte d'Ivoire, élevé en France et partagé entre Paris et Kinshasa, Merveil Hakeem Dianzenza signe KATIOPA (634 pages), Un Écrivain à Kinshasa et la biographie officielle de Papa Masambukidi." />
   <meta name="keywords" content="Merveil Hakeem Dianzenza, biographie, écrivain congolais, KATIOPA, afrofuturisme, Papa Masambukidi, littérature africaine" />
   <meta name="author" content="Merveil Hakeem Dianzenza" />
-  <title>Merveil Hakeem Dianzenza - Écrivain Afrofuturiste | Biographie Officielle</title>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Style Premium + Font Awesome -->
+  <title>Biographie Officielle | Merveil Hakeem Dianzenza — Hakvision</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style-premium.css">
-  
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      background: linear-gradient(135deg, rgba(10,10,10,0.94) 0%, rgba(26,26,46,0.94) 100%);
-      font-family: 'Inter', sans-serif;
-      color: #fff;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* Hero Section avec Photo */
-    .hero-bio {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 100px 20px 60px;
-      background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(26,26,46,0.95) 100%);
-      overflow: hidden;
-    }
-
-    .hero-bio::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 204, 0, 0.08) 0%, transparent 50%);
-      animation: pulse 8s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; }
-      50% { opacity: 1; }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 60px;
-      align-items: center;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Photo Container */
-    .photo-container {
-      position: relative;
-      animation: slideInLeft 1s ease-out;
-    }
-
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .photo-wrapper {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 
-        0 20px 60px rgba(255, 215, 0, 0.3),
-        0 0 0 1px rgba(255, 215, 0, 0.1);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-    }
-
-    .photo-wrapper:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 
-        0 30px 80px rgba(255, 215, 0, 0.4),
-        0 0 0 2px rgba(255, 215, 0, 0.2);
-    }
-
-    .photo-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: brightness(1.05) contrast(1.1);
-    }
-
-    .photo-badge {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(255, 215, 0, 0.95);
-      color: #000;
-      padding: 12px 24px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.9em;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-      animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    /* Info Section */
-    .info-container {
-      animation: slideInRight 1s ease-out;
-    }
-
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .name-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5em;
-      font-weight: 900;
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
-      line-height: 1.2;
-      text-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
-    }
-
-    .subtitle {
-      font-size: 1.3em;
-      color: #FFD700;
-      margin-bottom: 30px;
-      font-weight: 300;
-      letter-spacing: 1px;
-    }
-
-    .bio-intro {
-      font-size: 1.1em;
-      line-height: 1.8;
-      color: #e0e0e0;
-      margin-bottom: 40px;
-      text-align: justify;
-    }
-
-    .highlight {
-      color: #FFD700;
-      font-weight: 600;
-    }
-
-    /* Stats Section */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin: 40px 0;
-    }
-
-    .stat-box {
-      background: rgba(255, 215, 0, 0.05);
-      border: 1px solid rgba(255, 215, 0, 0.2);
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-
-    .stat-box:hover {
-      background: rgba(255, 215, 0, 0.1);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
-    }
-
-    .stat-number {
-      font-size: 2.5em;
-      font-weight: 900;
-      color: #FFD700;
-      font-family: 'Playfair Display', serif;
-    }
-
-    .stat-label {
-      font-size: 0.9em;
-      color: #ccc;
-      margin-top: 5px;
-    }
-
-    /* CTA Buttons */
-    .cta-buttons {
-      display: flex;
-      gap: 20px;
-      margin-top: 30px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary, .btn-secondary {
-      padding: 15px 35px;
-      border-radius: 50px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1em;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      color: #000;
-      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 30px rgba(255, 215, 0, 0.6);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      border: 2px solid #FFD700;
-      color: #FFD700;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 215, 0, 0.1);
-      transform: translateY(-3px);
-    }
-
-    /* Content Section */
-    .content-section {
-      max-width: 1200px;
-      margin: 80px auto;
-      padding: 0 20px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5em;
-      font-weight: 900;
-      color: #FFD700;
-      margin-bottom: 40px;
-      text-align: center;
-      position: relative;
-      padding-bottom: 20px;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, #FFD700, transparent);
-    }
-
-    /* Books Grid */
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .book-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 215, 0, 0.1);
-      border-radius: 15px;
-      padding: 30px;
-      transition: all 0.3s ease;
-    }
-
-    .book-card:hover {
-      background: rgba(255, 215, 0, 0.05);
-      transform: translateY(-5px);
-      box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
-    }
-
-    .book-number {
-      font-size: 3em;
-      font-weight: 900;
-      color: rgba(255, 215, 0, 0.2);
-      font-family: 'Playfair Display', serif;
-      line-height: 1;
-    }
-
-    .book-title {
-      font-size: 1.3em;
-      font-weight: 700;
-      color: #FFD700;
-      margin: 15px 0 10px;
-    }
-
-    .book-meta {
-      font-size: 0.9em;
-      color: #999;
-      margin-bottom: 15px;
-    }
-
-    .book-description {
-      font-size: 1em;
-      color: #ccc;
-      line-height: 1.6;
-    }
-
-    /* Timeline */
-    .timeline {
-      position: relative;
-      padding: 40px 0;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 100%;
-      background: linear-gradient(180deg, transparent, #FFD700, transparent);
-    }
-
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 60px;
-      position: relative;
-    }
-
-    .timeline-item:nth-child(even) .timeline-content {
-      order: -1;
-    }
-
-    .timeline-content {
-      background: rgba(255, 215, 0, 0.05);
-      border: 1px solid rgba(255, 215, 0, 0.2);
-      border-radius: 15px;
-      padding: 30px;
-      transition: all 0.3s ease;
-    }
-
-    .timeline-content:hover {
-      background: rgba(255, 215, 0, 0.1);
-      transform: scale(1.02);
-    }
-
-    .timeline-date {
-      font-size: 1.5em;
-      font-weight: 700;
-      color: #FFD700;
-      margin-bottom: 10px;
-    }
-
-    .timeline-title {
-      font-size: 1.2em;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .timeline-description {
-      color: #ccc;
-      line-height: 1.6;
-    }
-
-    /* Quote Section */
-    .quote-section {
-      background: rgba(255, 215, 0, 0.05);
-      border-left: 5px solid #FFD700;
-      padding: 40px;
-      margin: 60px 0;
-      border-radius: 10px;
-    }
-
-    .quote-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8em;
-      font-style: italic;
-      color: #FFD700;
-      line-height: 1.5;
-      text-align: center;
-    }
-
-    .quote-author {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 1.1em;
-      color: #999;
-    }
-
-    /* Responsive */
-    @media (max-width: 968px) {
-      .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .name-title {
-        font-size: 2.5em;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .timeline::before {
-        left: 0;
-      }
-
-      .timeline-item {
-        grid-template-columns: 1fr;
-      }
-
-      .timeline-item:nth-child(even) .timeline-content {
-        order: 0;
-      }
-
-      .cta-buttons {
-        justify-content: center;
-      }
-
-      .bio-intro {
-        text-align: left;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .name-title {
-        font-size: 2em;
-      }
-
-      .subtitle {
-        font-size: 1em;
-      }
-
-      .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-      }
-
-      .books-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .quote-text {
-        font-size: 1.3em;
-      }
-    }
-
-    /* Social Links */
-    .social-links {
-      display: flex;
-      gap: 15px;
-      margin-top: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .social-link {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: rgba(255, 215, 0, 0.1);
-      border: 1px solid rgba(255, 215, 0, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #FFD700;
-      font-size: 1.2em;
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-
-    .social-link:hover {
-      background: #FFD700;
-      color: #000;
-      transform: translateY(-5px);
-      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #666;
-      background: rgba(0, 0, 0, 0.3);
-      margin-top: 80px;
-    }
-  </style>
 </head>
-<body>
+<body class="site-body">
+  <div class="site-shell">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
 
-  <!-- Progress Bar -->
-  <div class="progress-bar" id="progressBar"></div>
-
-  <!-- Breaking News Ticker -->
-  <div class="breaking-news">
-    <div class="breaking-news-content">
-      <span class="breaking-label">🔴 ACTUALITÉS</span>
-      <span class="breaking-text">KATIØPA 634 pages disponible • Papa Masambukidi Roi Divin • Voyage à Kinshasa Octobre 2025 • 13 livres au catalogue • DIAKU & KAMERUN 1945 à venir</span>
-    </div>
-  </div>
-
-  <!-- Top Bar -->
-  <div class="top-bar">
-    <div class="top-bar-content">
-      <div style="display: flex; align-items: center; gap: 15px;">
-        <span class="live-badge">● LIVE</span>
-        <span>📅 Mercredi 4 décembre 2025</span>
-      </div>
-      <div class="social-links-top">
-        <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <!-- Breaking News Ticker -->
+    <div class="breaking-news">
+      <div class="breaking-news-content">
+        <span class="breaking-label">🔴 ACTUALITÉS</span>
+        <span class="breaking-text">KATIØPA 634 pages disponible • Papa Masambukidi Roi Divin • Voyage à Kinshasa Octobre 2025 • 13 livres au catalogue • DIAKU & KAMERUN 1945 à venir</span>
       </div>
     </div>
-  </div>
 
-  <!-- Header Navigation -->
-  <header class="press-header">
-    <div class="press-header-content">
-      <div class="press-logo">
-        <h1>📖 HAKVISION</h1>
-      </div>
-      <nav class="press-nav">
-        <a href="index.html">Accueil</a>
-        <a href="livres.html">Livres</a>
-        <a href="bio.html" class="active">Biographie</a>
-        <a href="catalogue.html">Catalogue</a>
-        <a href="prix-litteraires.html">Prix Littéraires</a>
-        <a href="press.html">Presse</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero-bio">
-    <div class="hero-content">
-      <div class="photo-container">
-        <div class="photo-wrapper">
-          <img src="merveil_photo_officielle.jpg" alt="Merveil Hakeem Dianzenza - Écrivain Afrofuturiste">
-          <div class="photo-badge">📚 13 LIVRES AU CATALOGUE</div>
+    <!-- Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-content">
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <span class="live-badge">● LIVE</span>
+          <span>📅 2026 — Hakvision Editions</span>
+        </div>
+        <div class="social-links-top">
+          <a href="https://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/" target="_blank" title="Twitter/X"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/hakaymrv243_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
+    </div>
 
-      <div class="info-container">
-        <h1 class="name-title">MERVEIL HAKEEM DIANZENZA</h1>
-        <p class="subtitle">Écrivain Afrofuturiste Franco-Congolais | Réalisateur</p>
-        
-        <p class="bio-intro">
-          Né en <span class="highlight">Côte d'Ivoire</span>, élevé en <span class="highlight">France</span> et partagé entre <span class="highlight">Paris</span> et <span class="highlight">Kinshasa</span>, Merveil Hakeem Dianzenza est l'écrivain, journaliste et réalisateur qui a bâti le roman-fleuve <span class="highlight">KATIØPA</span> (634 pages), <em>Un Écrivain à Kinshasa</em> et la biographie officielle de <span class="highlight">Papa Masambukidi</span>. Chroniqueur de l'intronisation d'octobre 2025 du Roi Divin du Bassin du Congo, il prépare la première édition <span class="highlight">2026</span> des Prix <span class="highlight">Masambukidi</span> et <span class="highlight">Dianzenza</span>, avec une remise prévue à Kinshasa début mars pour célébrer les plumes noires du continent.
-        </p>
-
-        <p class="bio-intro">
-          Porté par une ambition tenace, il rêve de voir le <span class="highlight">Congo</span> rayonner de ses propres richesses, moderne et prospère, où chaque vie trouve sa place. Il aspire aussi à une reconnaissance mondiale pour son engagement en faveur du dialogue et de la réconciliation, jusqu'à conquérir un <span class="highlight">Prix Nobel de la Paix</span>. Enfin, il nourrit le désir d'explorer la <span class="highlight">Corée du Nord</span>, pour comprendre ce territoire rarement accessible et y bâtir des ponts culturels. Ces horizons alimentent son œuvre et éclairent sa trajectoire littéraire.
-        </p>
-
-        <div class="stats-grid">
-          <div class="stat-box">
-            <div class="stat-number">13</div>
-            <div class="stat-label">Livres au Catalogue</div>
+    <!-- Global Header -->
+    <header class="global-header">
+      <div class="header-inner">
+        <a href="index.html" class="brand-stack" style="text-decoration:none;">
+          <div class="brand-mark">HV</div>
+          <div class="brand-text">
+            <p class="eyebrow">Merveil Hakeem Dianzenza</p>
+            <h1>Hakvision</h1>
           </div>
-          <div class="stat-box">
-            <div class="stat-number">634</div>
-            <div class="stat-label">Pages KATIØPA</div>
+        </a>
+        <button class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i> Menu</button>
+        <nav class="global-nav" id="globalNav">
+          <a href="index.html">Accueil</a>
+          <a href="livres.html">Livres</a>
+          <a href="catalogue.html">Catalogue</a>
+          <a href="bio.html" class="active">Biographie</a>
+          <a href="prix-litteraires.html">Prix Littéraires</a>
+          <a href="press.html">Presse</a>
+          <a href="okapiplay.html">OkapiPlay</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <a class="nav-cta" href="prix-litteraires.html">Voir les Prix</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Biographie -->
+      <section class="page-hero">
+        <div class="halo"></div>
+        <div class="hero-grid">
+          <div>
+            <span class="kicker"><i class="fa-solid fa-user-pen"></i> Biographie Officielle</span>
+            <h1>Merveil Hakeem Dianzenza</h1>
+            <p class="lead">Écrivain afrofuturiste franco-congolais, réalisateur et fondateur d'Hakvision. Né en Côte d'Ivoire, élevé en France, partagé entre Paris et Kinshasa. Auteur de 13 œuvres, bâtisseur d'une vision panafricaine audacieuse.</p>
+            <div class="hero-meta">
+              <div class="chip"><i class="fa-solid fa-book"></i> 13 Titres publiés</div>
+              <div class="chip"><i class="fa-solid fa-globe-africa"></i> Paris · Kinshasa</div>
+              <div class="chip"><i class="fa-solid fa-trophy"></i> Prix 2026</div>
+            </div>
+            <div class="cta-group" style="margin-top:20px;">
+              <a class="btn primary" href="livres.html"><i class="fas fa-book"></i> Découvrir mes livres</a>
+              <a class="btn ghost" href="contact.html"><i class="fas fa-envelope"></i> Me contacter</a>
+              <a class="btn link" href="catalogue.html">Voir le catalogue complet</a>
+            </div>
           </div>
-          <div class="stat-box">
-            <div class="stat-number">∞</div>
-            <div class="stat-label">Vision</div>
+          <div class="hero-visual-card">
+            <img src="merveil_photo_officielle.jpg" alt="Portrait officiel de Merveil Hakeem Dianzenza" loading="lazy">
+            <p class="media-caption">Merveil Hakeem Dianzenza, écrivain afrofuturiste — Paris / Kinshasa, 2025.</p>
           </div>
         </div>
+      </section>
 
-        <div class="cta-buttons">
-          <a href="livres.html" class="btn-primary">
-            <i class="fas fa-book"></i> Découvrir mes livres
-          </a>
-          <a href="mailto:arenalse22@gmail.com" class="btn-secondary">
-            <i class="fas fa-envelope"></i> Me contacter
-          </a>
+      <!-- Stats strip -->
+      <section class="page-section" style="padding-top:0; padding-bottom:0;">
+        <div class="site-grid">
+          <div class="stat-strip">
+            <div class="stat-item">
+              <span class="stat-number">13</span>
+              <span class="stat-label">Livres au catalogue</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">634</span>
+              <span class="stat-label">Pages de KATIØPA</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">3</span>
+              <span class="stat-label">Univers narratifs</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">2026</span>
+              <span class="stat-label">Première édition des Prix</span>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div class="social-links">
-          <a href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank" class="social-link" title="Amazon">
-            <i class="fab fa-amazon"></i>
-          </a>
-          <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="social-link" title="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a href="https://www.facebook.com/" target="_blank" class="social-link" title="Facebook">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="https://www.instagram.com/" target="_blank" class="social-link" title="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
+      <!-- Présentation & Vision -->
+      <section class="page-section">
+        <div class="site-grid dual-columns">
+          <div class="content-panel">
+            <div class="pill-tag"><i class="fa-solid fa-feather-pointed"></i> Portrait</div>
+            <h4>Un écrivain entre deux mondes</h4>
+            <p>Né en <strong style="color:#facc15;">Côte d'Ivoire</strong>, élevé en <strong style="color:#facc15;">France</strong> et partagé entre <strong style="color:#facc15;">Paris</strong> et <strong style="color:#facc15;">Kinshasa</strong>, Merveil Hakeem Dianzenza est l'écrivain, journaliste et réalisateur qui a bâti le roman-fleuve <strong style="color:#facc15;">KATIØPA</strong> (634 pages), <em>Un Écrivain à Kinshasa</em> et la biographie officielle de <strong style="color:#facc15;">Papa Masambukidi</strong>.</p>
+            <p style="margin-top:14px;">Chroniqueur de l'intronisation d'octobre 2025 du Roi Divin du Bassin du Congo, il prépare la première édition <strong style="color:#facc15;">2026</strong> des Prix <strong style="color:#facc15;">Masambukidi</strong> et <strong style="color:#facc15;">Dianzenza</strong>, avec une remise prévue à Kinshasa début mars pour célébrer les plumes noires du continent.</p>
+          </div>
+          <div class="content-panel">
+            <div class="pill-tag"><i class="fa-solid fa-eye"></i> Vision</div>
+            <h4>Hakvision : bâtir le futur africain</h4>
+            <p>Porté par une ambition tenace, il rêve de voir le <strong style="color:#facc15;">Congo</strong> rayonner de ses propres richesses, moderne et prospère. Son projet <strong style="color:#facc15;">Hakvision</strong> incarne une vision technologique enracinée dans les valeurs africaines.</p>
+            <p style="margin-top:14px;">Une plateforme pour redonner une voix puissante au continent, mêlant <strong style="color:#facc15;">littérature, spiritualité et innovation</strong>. Il nourrit le désir d'explorer des territoires rares et d'y bâtir des ponts culturels durables.</p>
+            <div class="cta-group" style="margin-top:18px;">
+              <a class="btn primary" href="okapiplay.html">OkapiPlay</a>
+              <a class="btn ghost" href="prix-litteraires.html">Les Prix 2026</a>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
-  <!-- Quote Section -->
-  <div class="content-section">
-    <div class="quote-section">
-      <p class="quote-text">
-        « Nous ne sommes pas les descendants d'esclaves. Nous sommes les héritiers de royaumes oubliés. Et il est temps que le monde s'en souvienne. »
-      </p>
-      <p class="quote-author">— Merveil Hakeem Dianzenza</p>
-    </div>
-  </div>
+      <!-- Citation -->
+      <section class="page-section" style="padding-top:0; padding-bottom:0;">
+        <div class="site-grid">
+          <div class="quote-block">
+            <p>« Nous ne sommes pas les descendants d'esclaves. Nous sommes les héritiers de royaumes oubliés. Et il est temps que le monde s'en souvienne. »</p>
+            <cite>— Merveil Hakeem Dianzenza</cite>
+          </div>
+        </div>
+      </section>
 
-  <!-- Books Section -->
-  <section class="content-section">
-    <h2 class="section-title">📚 ŒUVRES PUBLIÉES 2025</h2>
-    
-    <div class="books-grid">
-      <div class="book-card">
-        <div class="book-number">01</div>
-        <h3 class="book-title">KATIØPA – La Prophétie Noire</h3>
-        <p class="book-meta">Roman afrofuturiste • 634 pages • Payhip • 10,49 EUR</p>
-        <p class="book-description">
-          Le roman qui ressuscite l'âme africaine. Une insurrection mystique pour le réveil spirituel du continent, 
-          mêlant spiritualité ancestrale, géopolitique et révélations ésotériques.
-        </p>
-      </div>
+      <!-- Œuvres publiées -->
+      <section class="page-section">
+        <div class="site-grid">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Bibliographie</p>
+              <h3>Œuvres publiées 2025</h3>
+            </div>
+            <a class="btn ghost" href="catalogue.html">Voir tout le catalogue</a>
+          </div>
 
-      <div class="book-card">
-        <div class="book-number">02</div>
-        <h3 class="book-title">Un Écrivain à Kinshasa</h3>
-        <p class="book-meta">Récit autobiographique • 78 pages • Amazon • Novembre 2025</p>
-        <p class="book-description">
-          Chroniques d'un retour aux sources. Les chroniques intimes d'un voyage initiatique 
-          entre exil parisien et racines congolaises.
-        </p>
-      </div>
+          <div style="display: grid; gap: 18px;">
+            <div class="book-card-full">
+              <img src="katiopa_cover_hq.jpg" alt="Couverture KATIØPA" loading="lazy">
+              <div class="book-info">
+                <h3>KATIØPA — La Prophétie Noire</h3>
+                <div class="book-meta">
+                  <span>Roman afrofuturiste</span>
+                  <span>634 pages</span>
+                  <span>10,49 EUR</span>
+                  <span>Payhip</span>
+                </div>
+                <p>Le roman qui ressuscite l'âme africaine. Une insurrection mystique pour le réveil spirituel du continent, mêlant spiritualité ancestrale, géopolitique et révélations ésotériques. Familles royales, guerres spirituelles, Renaissance du continent.</p>
+                <div class="book-cta">
+                  <a class="btn primary" href="https://payhip.com/b/MuQHP" target="_blank"><i class="fa-solid fa-cart-shopping"></i> Acheter</a>
+                  <a class="btn ghost" href="katiopa.html">En savoir plus</a>
+                </div>
+              </div>
+            </div>
 
-      <div class="book-card">
-        <div class="book-number">03</div>
-        <h3 class="book-title">Papa Masambukidi</h3>
-        <p class="book-meta">Biographie officielle • Amazon, Blurb, eBay • Octobre 2025</p>
-        <p class="book-description">
-          Héritage, luttes et vision d'un guide spirituel africain. La vie et les combats 
-          du Roi Divin du Bassin du Congo, racontés par son chargé de protocole.
-        </p>
-      </div>
+            <div class="book-card-full">
+              <img src="un_ecrivain_kinshasa_cover_2.jpg" alt="Un Écrivain à Kinshasa" loading="lazy">
+              <div class="book-info">
+                <h3>Un Écrivain à Kinshasa</h3>
+                <div class="book-meta">
+                  <span>Récit autobiographique</span>
+                  <span>78 pages</span>
+                  <span>Amazon</span>
+                  <span>Novembre 2025</span>
+                </div>
+                <p>Chroniques d'un retour aux sources. Les chroniques intimes d'un voyage initiatique entre exil parisien et racines congolaises. Un récit d'une sincérité bouleversante.</p>
+                <div class="book-cta">
+                  <a class="btn primary" href="https://www.amazon.fr/ÉCRIVAIN-KINSHASA-Chroniques-Retour-Sources/dp/B0G395KMWX" target="_blank"><i class="fab fa-amazon"></i> Amazon</a>
+                  <a class="btn ghost" href="livres.html">Détails</a>
+                </div>
+              </div>
+            </div>
 
+            <div class="book-card-full">
+              <img src="papa_masambukidi_cover.jpg" alt="Papa Masambukidi" loading="lazy">
+              <div class="book-info">
+                <h3>Papa Masambukidi — Héritage, luttes et vision</h3>
+                <div class="book-meta">
+                  <span>Biographie officielle</span>
+                  <span>46 pages</span>
+                  <span>Amazon · Blurb</span>
+                  <span>Octobre 2025</span>
+                </div>
+                <p>La vie et les combats du Roi Divin du Bassin du Congo, racontés par son chargé de protocole. Un témoignage unique sur la lignée Masambukidi, guide spirituel africain de notre temps.</p>
+                <div class="book-cta">
+                  <a class="btn primary" href="https://www.amazon.fr/dp/B0FVSRSFBY" target="_blank"><i class="fab fa-amazon"></i> Amazon</a>
+                  <a class="btn ghost" href="papa-masambukidi.html">La lignée</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div class="book-card">
-        <div class="book-number">05</div>
-        <h3 class="book-title">Congo des Martyrs</h3>
-        <p class="book-meta">Essai historique • 2025</p>
-        <p class="book-description">
-          Une plongée dans l'histoire douloureuse du Congo et de ses héros oubliés. 
-          Un devoir de mémoire pour les générations futures.
-        </p>
-      </div>
+      <!-- Timeline événements -->
+      <section class="page-section alt">
+        <div class="site-grid">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Parcours</p>
+              <h3>Événements majeurs 2025</h3>
+            </div>
+          </div>
+          <div class="timeline">
+            <div class="event">
+              <p style="color:#facc15; font-weight:800; margin:0 0 4px;">30 Octobre 2025</p>
+              <strong style="color:#f8fafc;">Voyage à Kinshasa — Intronisation de Papa Masambukidi</strong>
+              <p style="margin-top:8px; color:#94a3b8;">Présent en tant qu'auteur de la biographie officielle et chargé de protocole lors de la cérémonie historique d'intronisation de Papa Samuel Masambukidi en tant que Roi Divin du Bassin du Congo.</p>
+              <a href="https://www.youtube.com/watch?v=nOCw6mP1LFA" target="_blank" class="card-link" style="margin-top:8px; display:inline-block;"><i class="fab fa-youtube"></i> Voir la vidéo YouTube</a>
+            </div>
+            <div class="event">
+              <p style="color:#facc15; font-weight:800; margin:0 0 4px;">17 Août 2025</p>
+              <strong style="color:#f8fafc;">Jour du Livre à Kinshasa</strong>
+              <p style="margin-top:8px; color:#94a3b8;">Présentation officielle de KATIOPA et Papa Masambukidi à la communauté Masambukidi. Un événement majeur pour la littérature congolaise.</p>
+            </div>
+            <div class="event">
+              <p style="color:#facc15; font-weight:800; margin:0 0 4px;">Avril 2025</p>
+              <strong style="color:#f8fafc;">Interview Jukebox Mind</strong>
+              <p style="margin-top:8px; color:#94a3b8;">Entretien approfondi sur KATIOPA et l'afrofuturisme spirituel : vision, inspirations et avenir de la littérature africaine.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div class="book-card">
-        <div class="book-number">06</div>
-        <h3 class="book-title">Politique Magazine RDC 2023-2024</h3>
-        <p class="book-meta">Magazine • 48 pages • Blurb • Gratuit</p>
-        <p class="book-description">
-          Rétrospective de la vie politique congolaise. 
-          Une analyse des enjeux et défis de la RDC contemporaine.
-        </p>
-      </div>
+      <!-- Projets en cours -->
+      <section class="page-section">
+        <div class="site-grid">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Horizon</p>
+              <h3>Projets en cours</h3>
+            </div>
+          </div>
+          <div class="feature-grid">
+            <div class="award-card">
+              <div class="award-icon">🎮</div>
+              <h4>OkapiPlay</h4>
+              <p>Plateforme de divertissement africain innovante. Interface cerveau-jeu conçue par Hakvision pour révolutionner le gaming panafricain.</p>
+              <a class="card-link" href="okapiplay.html" style="display:inline-block; margin-top:10px;">En savoir plus →</a>
+            </div>
+            <div class="award-card">
+              <div class="award-icon">🎬</div>
+              <h4>Série Animée KATIØPA</h4>
+              <p>Adaptation audiovisuelle en développement. L'épopée afrofuturiste prend vie à l'écran dans une production panafricaine ambitieuse.</p>
+            </div>
+            <div class="award-card">
+              <div class="award-icon">🏆</div>
+              <h4>Prix Masambukidi & Dianzenza</h4>
+              <p>Première édition 2026 à Kinshasa. Deux prix littéraires pour célébrer l'excellence des écrivains afrodescendants.</p>
+              <a class="card-link" href="prix-litteraires.html" style="display:inline-block; margin-top:10px;">Candidater →</a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <div class="book-card">
-        <div class="book-number">07</div>
-        <h3 class="book-title">ZIKILA</h3>
-        <p class="book-meta">Roman afrofuturiste • En préparation</p>
-        <p class="book-description">
-          L'épopée des 17 réincarnations. Un voyage spirituel à travers les âges 
-          et les dimensions de l'âme africaine.
-        </p>
-      </div>
+      <!-- CTA final -->
+      <section class="page-section alt">
+        <div class="site-grid" style="text-align:center; max-width:700px; margin:0 auto;">
+          <p class="eyebrow" style="text-align:center;">Restez connecté</p>
+          <h3 style="font-size:2rem; color:#facc15; margin:10px 0 16px;">Rejoignez la révolution littéraire africaine</h3>
+          <p style="color:#94a3b8; margin-bottom:24px;">Suivez les actualités Hakvision, les lancements de livres et les événements culturels depuis votre mobile.</p>
+          <div class="cta-group" style="justify-content:center;">
+            <a class="btn primary" href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank"><i class="fab fa-amazon"></i> Page Amazon Auteur</a>
+            <a class="btn ghost" href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank"><i class="fab fa-whatsapp"></i> Canal WhatsApp</a>
+            <a class="btn ghost" href="press.html">Espace Presse</a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-      <div class="book-card">
-        <div class="book-number">08</div>
-        <h3 class="book-title">Réincarnation</h3>
-        <p class="book-meta">Roman afrofuturiste • En préparation</p>
-        <p class="book-description">
-          Un nouveau voyage spirituel ancré au Congo. 
-          La suite de l'univers mystique de l'afrofuturisme congolais.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Timeline Section -->
-  <section class="content-section">
-    <h2 class="section-title">🌍 ÉVÉNEMENTS MAJEURS 2025</h2>
-    
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <div class="timeline-date">🗓️ 30 Octobre 2025</div>
-          <h3 class="timeline-title">Voyage à Kinshasa - Intronisation de Papa Masambukidi</h3>
-          <p class="timeline-description">
-            <strong>Merveil Hakeem Dianzenza s'est rendu à Kinshasa</strong> pour assister à la cérémonie historique d'intronisation 
-            de Papa Samuel Masambukidi en tant que <strong>Roi Divin du Bassin du Congo</strong>. 
-            Présent en tant qu'auteur de la biographie officielle, chargé de protocole et témoin de cet événement spirituel majeur 
-            qui a fait vibrer la capitale congolaise.<br><br>
-            <strong>🎥 Présentation officielle des livres KATIOPA et Papa Masambukidi à la communauté Masambukidi :</strong><br>
-            <a href="https://www.youtube.com/watch?v=nOCw6mP1LFA" target="_blank" style="color: #FFD700; text-decoration: none; font-weight: 600;">
-              ▶️ Voir la vidéo sur YouTube
+    <!-- Global Footer -->
+    <footer class="global-footer">
+      <div class="footer-inner">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a href="index.html" class="footer-logo">
+              <div class="brand-mark">HV</div>
+              <h3>Hakvision</h3>
             </a>
-          </p>
-        </div>
-        <div></div>
-      </div>
-
-      <div class="timeline-item">
-        <div></div>
-        <div class="timeline-content">
-          <div class="timeline-date">📚 17 Août 2025</div>
-          <h3 class="timeline-title">Jour du Livre à Kinshasa</h3>
-          <p class="timeline-description">
-            Présentation officielle de KATIOPA et Papa Masambukidi à la communauté Masambukidi. 
-            Un événement majeur pour la littérature congolaise.
-          </p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-content">
-          <div class="timeline-date">🎙️ Avril 2025</div>
-          <h3 class="timeline-title">Interview Jukebox Mind</h3>
-          <p class="timeline-description">
-            Entretien approfondi sur KATIOPA et l'afrofuturisme spirituel. 
-            Une discussion sur la vision, les inspirations et l'avenir de la littérature africaine.
-          </p>
-        </div>
-        <div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mission Section -->
-  <section class="content-section">
-    <h2 class="section-title">✍️ MISSION & VISION</h2>
-    
-    <div style="background: rgba(255, 215, 0, 0.05); border-radius: 20px; padding: 50px; margin-top: 40px; border: 1px solid rgba(255, 215, 0, 0.1);">
-      <p style="font-size: 1.2em; line-height: 1.8; color: #e0e0e0; text-align: center; max-width: 900px; margin: 0 auto;">
-        <strong style="color: #FFD700;">Merveil Hakeem Dianzenza</strong> ne se contente pas d'écrire des histoires. 
-        Il <span class="highlight">guérit par les mots</span>. Ses romans sont des <span class="highlight">rituels de résurrection collective</span>, 
-        des armes spirituelles forgées pour briser l'amnésie organisée qui pèse sur l'Afrique.
-      </p>
-      
-      <p style="font-size: 1.2em; line-height: 1.8; color: #e0e0e0; text-align: center; max-width: 900px; margin: 30px auto 0;">
-        Son projet <strong style="color: #FFD700;">Hakvision</strong> incarne une vision technologique enracinée dans les valeurs 
-        et ancêtres africains. Une plateforme pour redonner une voix puissante au continent, 
-        mêlant <span class="highlight">littérature, spiritualité et innovation</span>.
-      </p>
-
-      <div style="margin-top: 50px; text-align: center;">
-        <h3 style="color: #FFD700; font-size: 1.5em; margin-bottom: 20px;">🎬 Projets en cours</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;">
-          <div style="background: rgba(255, 215, 0, 0.1); padding: 25px; border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.2);">
-            <div style="font-size: 2em; margin-bottom: 10px;">🎮</div>
-            <h4 style="color: #FFD700; margin-bottom: 10px;">OkapiPlay</h4>
-            <p style="color: #ccc; font-size: 0.95em;">Plateforme de divertissement africain innovante</p>
+            <p>Œuvres littéraires, innovations culturelles et initiatives panafricaines conçues par Merveil Hakeem Dianzenza.</p>
+            <div class="footer-socials">
+              <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://www.instagram.com/hakaymrv243_" target="_blank"><i class="fab fa-instagram"></i></a>
+              <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank"><i class="fab fa-amazon"></i></a>
+            </div>
           </div>
-          <div style="background: rgba(255, 215, 0, 0.1); padding: 25px; border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.2);">
-            <div style="font-size: 2em; margin-bottom: 10px;">🎬</div>
-            <h4 style="color: #FFD700; margin-bottom: 10px;">Série Animée KATIOPA</h4>
-            <p style="color: #ccc; font-size: 0.95em;">Adaptation audiovisuelle en développement</p>
+          <div class="footer-col">
+            <h4>Œuvres</h4>
+            <ul>
+              <li><a href="livres.html">Livres</a></li>
+              <li><a href="catalogue.html">Catalogue complet</a></li>
+              <li><a href="katiopa.html">KATIØPA</a></li>
+              <li><a href="papa-masambukidi.html">Papa Masambukidi</a></li>
+            </ul>
           </div>
-          <div style="background: rgba(255, 215, 0, 0.1); padding: 25px; border-radius: 15px; border: 1px solid rgba(255, 215, 0, 0.2);">
-            <div style="font-size: 2em; margin-bottom: 10px;">📖</div>
-            <h4 style="color: #FFD700; margin-bottom: 10px;">Annexes Sacrées</h4>
-            <p style="color: #ccc; font-size: 0.95em;">Extensions de l'univers afrofuturiste</p>
+          <div class="footer-col">
+            <h4>Hakvision</h4>
+            <ul>
+              <li><a href="bio.html">Biographie</a></li>
+              <li><a href="press.html">Presse</a></li>
+              <li><a href="okapiplay.html">OkapiPlay</a></li>
+              <li><a href="prix-litteraires.html">Prix Littéraires</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="contact.html">Nous écrire</a></li>
+              <li><a href="mailto:arenalse22@gmail.com">Email direct</a></li>
+              <li><a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">WhatsApp</a></li>
+            </ul>
           </div>
         </div>
+        <div class="footer-bottom">
+          <p>© 2026 Merveil Hakeem Dianzenza — Tous droits réservés</p>
+          <span class="footer-badge"><i class="fa-solid fa-star"></i> Hakvision Editions</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </footer>
+  </div>
 
-  <!-- Final CTA -->
-  <section class="content-section" style="text-align: center; margin-bottom: 80px;">
-    <h2 class="section-title">🔗 RESTEZ CONNECTÉ</h2>
-    
-    <p style="font-size: 1.2em; color: #ccc; margin: 30px 0;">
-      Rejoignez la révolution littéraire africaine
-    </p>
-    
-    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin: 40px 0;">
-      <a href="https://hakvision243.blog" class="btn-primary" style="text-decoration: none;">
-        <i class="fas fa-globe"></i> Site Officiel
-      </a>
-      <a href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank" class="btn-secondary" style="text-decoration: none;">
-        <i class="fab fa-amazon"></i> Amazon Auteur
-      </a>
-      <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" class="btn-secondary" style="text-decoration: none;">
-        <i class="fab fa-whatsapp"></i> WhatsApp Channel
-      </a>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2025 Merveil Hakeem Dianzenza – Tous droits réservés • Hakvision</p>
-    <p style="margin-top: 10px; font-size: 0.9em;">
-      <a href="press.html" style="color: #666; text-decoration: none;">Presse</a> • 
-      <a href="contact.html" style="color: #666; text-decoration: none;">Contact</a> • 
-      <a href="livres.html" style="color: #666; text-decoration: none;">Livres</a>
-    </p>
-  </footer>
-
-  <!-- JavaScript Premium -->
   <script src="hakvision-premium.js"></script>
 </body>
 </html>

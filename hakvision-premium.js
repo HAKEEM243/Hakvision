@@ -153,12 +153,43 @@ if (contactForm) {
 
 // ============ ACTIVE NAVIGATION HIGHLIGHT ============
 const currentPage = window.location.pathname.split('/').pop();
-document.querySelectorAll('.press-nav a').forEach(link => {
+document.querySelectorAll('.press-nav a, .global-nav a').forEach(link => {
   const linkPage = link.getAttribute('href');
   if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
     link.classList.add('active');
   }
 });
+
+// ============ HAMBURGER NAV MOBILE ============
+const navToggle = document.getElementById('navToggle');
+const globalNav = document.getElementById('globalNav');
+if (navToggle && globalNav) {
+  navToggle.addEventListener('click', () => {
+    globalNav.classList.toggle('open');
+    const icon = navToggle.querySelector('i');
+    if (globalNav.classList.contains('open')) {
+      icon.className = 'fa-solid fa-xmark';
+    } else {
+      icon.className = 'fa-solid fa-bars';
+    }
+  });
+  // Fermer le menu au clic sur un lien
+  globalNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      globalNav.classList.remove('open');
+      const icon = navToggle.querySelector('i');
+      if (icon) icon.className = 'fa-solid fa-bars';
+    });
+  });
+  // Fermer au clic en dehors
+  document.addEventListener('click', (e) => {
+    if (!navToggle.contains(e.target) && !globalNav.contains(e.target)) {
+      globalNav.classList.remove('open');
+      const icon = navToggle.querySelector('i');
+      if (icon) icon.className = 'fa-solid fa-bars';
+    }
+  });
+}
 
 // ============ DYNAMIC DATE IN TOP BAR ============
 const dateElement = document.querySelector('.top-bar-content span:not(.live-badge)');
