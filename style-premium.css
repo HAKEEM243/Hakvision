@@ -1511,3 +1511,490 @@ body.home-page .overlay {
     font-size: 2rem;
   }
 }
+
+/* ============================================
+   HAKVISION — GLOBAL FOOTER
+   ============================================ */
+.global-footer {
+  background: rgba(5, 6, 12, 0.98);
+  border-top: 1px solid rgba(250, 204, 21, 0.15);
+  padding: 60px 0 36px;
+  margin-top: 80px;
+}
+
+.global-footer .footer-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 48px;
+}
+
+.footer-brand .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  text-decoration: none;
+}
+
+.footer-brand .brand-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #facc15, #f97316);
+  color: #0b0b10;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.footer-brand h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #facc15;
+  letter-spacing: -0.3px;
+}
+
+.footer-brand p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 0 0 18px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-socials a {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #94a3b8;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.footer-socials a:hover {
+  background: #facc15;
+  color: #0b0b10;
+  border-color: #facc15;
+}
+
+.footer-col h4 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #facc15;
+  margin: 0 0 16px;
+  font-weight: 800;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.footer-col ul li a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #facc15;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  flex-wrap: wrap;
+}
+
+.footer-bottom p {
+  color: #475569;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.footer-bottom .footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(250,204,21,0.08);
+  border: 1px solid rgba(250,204,21,0.2);
+  color: #facc15;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ============================================
+   HAKVISION — MOBILE NAV HAMBURGER
+   ============================================ */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 860px) {
+  .nav-toggle { display: flex; align-items: center; gap: 6px; }
+  .global-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(6, 8, 16, 0.97);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 16px 24px 20px;
+    flex-direction: column;
+    gap: 6px;
+    backdrop-filter: blur(16px);
+  }
+  .global-nav.open { display: flex; }
+  .global-nav a {
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+  .nav-cta { display: none; }
+
+  /* Home page nav mobile */
+  .home-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(5, 6, 10, 0.97);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 16px 24px 20px;
+    flex-direction: column;
+    gap: 6px;
+    backdrop-filter: blur(16px);
+    z-index: 10;
+  }
+  .home-nav.open { display: flex; }
+  .home-nav a {
+    border-radius: 10px;
+    padding: 12px 16px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.03);
+  }
+  .home-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* ============================================
+   HAKVISION — PAGE HERO (variantes)
+   ============================================ */
+.page-hero.slim {
+  padding: 80px 0 50px;
+}
+
+.page-hero .hero-grid.full {
+  grid-template-columns: 1fr;
+  max-width: 860px;
+  text-align: center;
+}
+
+.page-hero .hero-grid.full .hero-meta {
+  justify-content: center;
+}
+
+/* ============================================
+   HAKVISION — BOOK CARD ENHANCED
+   ============================================ */
+.book-card-full {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 28px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  align-items: start;
+  transition: border-color 0.3s ease;
+}
+
+.book-card-full:hover {
+  border-color: rgba(250,204,21,0.3);
+}
+
+.book-card-full img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+.book-card-full .book-info h3 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  color: #facc15;
+}
+
+.book-card-full .book-info p {
+  color: #cbd5e1;
+  margin-bottom: 14px;
+}
+
+.book-card-full .book-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.book-card-full .book-meta span {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.book-card-full .book-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .book-card-full {
+    grid-template-columns: 1fr;
+  }
+  .book-card-full img {
+    max-width: 200px;
+  }
+}
+
+/* ============================================
+   HAKVISION — AWARD CARD
+   ============================================ */
+.award-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(250,204,21,0.15);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.award-card:hover {
+  border-color: rgba(250,204,21,0.4);
+  transform: translateY(-4px);
+}
+
+.award-card .award-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #facc15, #f97316);
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 28px rgba(250,204,21,0.28);
+}
+
+.award-card h4 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  color: #facc15;
+}
+
+.award-card p {
+  color: #94a3b8;
+  font-size: 0.97rem;
+}
+
+/* ============================================
+   HAKVISION — STAT STRIP
+   ============================================ */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 28px 32px;
+  background: linear-gradient(120deg, rgba(250,204,21,0.07), rgba(255,255,255,0.02));
+  border: 1px solid rgba(250,204,21,0.15);
+  border-radius: 20px;
+  margin: 20px 0;
+}
+
+.stat-strip .stat-item {
+  text-align: center;
+  padding: 12px;
+  background: transparent;
+  border-radius: 0;
+}
+
+.stat-strip .stat-number {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #facc15;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-strip .stat-label {
+  color: #94a3b8;
+  font-size: 0.88rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* ============================================
+   HAKVISION — PRESS ARTICLE CARD
+   ============================================ */
+.press-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.28);
+}
+
+.press-card:hover {
+  border-color: rgba(250,204,21,0.25);
+  transform: translateY(-3px);
+}
+
+.press-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.press-card .press-card-body {
+  padding: 20px;
+}
+
+.press-card .press-tag {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(250,204,21,0.12);
+  color: #facc15;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.press-card h4 {
+  margin: 0 0 8px;
+  color: #f8fafc;
+  font-size: 1.05rem;
+}
+
+.press-card p {
+  color: #94a3b8;
+  font-size: 0.92rem;
+}
+
+/* ============================================
+   HAKVISION — PAGE-SECTION ALT (fond clair)
+   ============================================ */
+.page-section.alt {
+  background: rgba(250,204,21,0.04);
+  border-top: 1px solid rgba(250,204,21,0.1);
+  border-bottom: 1px solid rgba(250,204,21,0.1);
+}
+
+/* ============================================
+   HAKVISION — QUOTE BLOCK
+   ============================================ */
+.quote-block {
+  padding: 28px 32px;
+  border-left: 4px solid #facc15;
+  background: rgba(250,204,21,0.06);
+  border-radius: 0 16px 16px 0;
+  margin: 20px 0;
+}
+
+.quote-block p {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #e2e8f0;
+  margin: 0 0 10px;
+}
+
+.quote-block cite {
+  color: #facc15;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ============================================
+   HAKVISION — PAGE HERO RESPONSIVE
+   ============================================ */
+@media (max-width: 860px) {
+  .page-hero .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .page-hero h1, .page-hero h2 {
+    font-size: 2rem;
+  }
+  .page-hero {
+    padding: 80px 0 50px;
+  }
+}
