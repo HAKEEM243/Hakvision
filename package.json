@@ -1,0 +1,13 @@
+{
+  "name": "masambukidi-protection-system",
+  "version": "3.0.0",
+  "description": "Système de Protection Numérique Officiel — Sa Majesté Samuel Nitufuidi Kulala Kwamakanda (Masambukidi)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

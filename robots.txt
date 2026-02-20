@@ -1,15 +1,42 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://hakvision243.blog/sitemap.xml
-
-# Pages importantes à indexer en priorité
-Allow: /prix-litteraires.html
+# ═══ PRIORITÉS D'INDEXATION ═══
+# Protection officielle Sa Majesté Masambukidi — PRIORITÉ MAXIMALE
+Allow: /protection.html
+Allow: /papa-masambukidi.html
+Allow: /communique-papa-masambukidi.html
 Allow: /bio.html
+Allow: /prix-litteraires.html
 Allow: /catalogue.html
 Allow: /livres.html
 Allow: /press.html
+Allow: /katiopa.html
+Allow: /contact.html
 
-# Crawl-delay pour éviter la surcharge
+# ═══ PROTÉGER LES DONNÉES SENSIBLES ═══
+Disallow: /data/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.backup$
+
+# ═══ SITEMAP ═══
+Sitemap: https://hakvision243.blog/sitemap.xml
+
+# ═══ CRAWL DELAY ═══
 Crawl-delay: 1
+
+# ═══ GOOGLEBOT PRIORITÉ ═══
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# ═══ BINGBOT ═══
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# ═══ NOTE LÉGALE ═══
+# Ce site est la propriété officielle de Sa Majesté Samuel Nitufuidi Kulala Kwamakanda (Masambukidi)
+# Toute reproduction non autorisée est interdite et poursuivie
+# Contact: hakvision243.blog/contact.html

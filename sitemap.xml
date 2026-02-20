@@ -1,57 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- ── PRIORITÉ MAXIMALE ── -->
   <url>
     <loc>https://hakvision243.blog/</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Sa Majesté Masambukidi — PROTECTION OFFICIELLE -->
+  <url>
+    <loc>https://hakvision243.blog/protection.html</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Page officielle Sa Majesté Masambukidi -->
+  <url>
+    <loc>https://hakvision243.blog/papa-masambukidi.html</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Biographie -->
   <url>
     <loc>https://hakvision243.blog/bio.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Livres -->
   <url>
     <loc>https://hakvision243.blog/livres.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Catalogue -->
   <url>
     <loc>https://hakvision243.blog/catalogue.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://hakvision243.blog/prix-litteraires.html</loc>
-    <lastmod>2025-12-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://hakvision243.blog/press.html</loc>
-    <lastmod>2025-12-18</lastmod>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Prix littéraires -->
   <url>
-    <loc>https://hakvision243.blog/masambukidi-kulala.html</loc>
-    <lastmod>2025-12-18</lastmod>
+    <loc>https://hakvision243.blog/prix-litteraires.html</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Presse -->
+  <url>
+    <loc>https://hakvision243.blog/press.html</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Communiqué Masambukidi -->
+  <url>
+    <loc>https://hakvision243.blog/communique-papa-masambukidi.html</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Contact -->
   <url>
     <loc>https://hakvision243.blog/contact.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Katiopa -->
   <url>
-    <loc>https://hakvision243.blog/nouveau-site.html</loc>
-    <lastmod>2025-12-08</lastmod>
+    <loc>https://hakvision243.blog/katiopa.html</loc>
+    <lastmod>2026-02-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
+
 </urlset>
