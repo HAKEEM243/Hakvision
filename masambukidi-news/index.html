@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ELUCCO - Eglise Lumière du Christ au Congo Masambukidiste - Actualités officielles, calendrier, vidéos">
+    <meta name="theme-color" content="#D4AF37">
+    <title>🔱 ELUCCO Masambukidi — Actualités Officielles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="elucco_logo_officiel.png">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold2: #FFD700;
+            --dark: #050d06;
+            --green1: #0a1a0c;
+            --green2: #122016;
+            --green3: #1a3020;
+            --text: #f5f0e8;
+            --red: #8B0000;
+            --gradient-gold: linear-gradient(135deg, #C8A02A 0%, #FFD700 50%, #C8A02A 100%);
+            --gradient-bg: linear-gradient(160deg, #050d06 0%, #0a1a0c 40%, #1a3020 70%, #0a1a0c 100%);
+            --card: rgba(10,26,12,0.8);
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family:'Cormorant Garamond',serif; background:var(--gradient-bg); color:var(--text); overflow-x:hidden; min-height:100vh; }
+
+        /* ===== LOADER ===== */
+        #loader { position:fixed; inset:0; background:#050d06; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.5rem; transition:opacity 0.6s; }
+        #loader.out { opacity:0; pointer-events:none; }
+        .ld-logo { width:120px; height:120px; border-radius:50%; border:3px solid var(--gold); object-fit:contain; animation:ld-pulse 1.5s ease-in-out infinite; }
+        .ld-title { font-family:'Cinzel',serif; color:var(--gold); font-size:1.4rem; letter-spacing:4px; text-align:center; }
+        .ld-bar { width:220px; height:4px; background:rgba(212,175,55,0.2); border-radius:4px; overflow:hidden; }
+        .ld-fill { height:100%; background:var(--gradient-gold); animation:ld-load 1.8s ease-in-out infinite; }
+        @keyframes ld-pulse { 0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(212,175,55,0)} 50%{transform:scale(1.06);box-shadow:0 0 30px 8px rgba(212,175,55,0.3)} }
+        @keyframes ld-load { 0%{width:0} 100%{width:100%} }
+
+        /* ===== BANDEROLE 6 MARS ===== */
+        #banderole-6mars {
+            background: linear-gradient(135deg, #006400 0%, #008000 30%, #228B22 60%, #006400 100%);
+            border-top: 3px solid var(--gold);
+            border-bottom: 3px solid var(--gold);
+            padding: 1rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: band-glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes band-glow { from{box-shadow:0 0 15px rgba(0,128,0,0.5)} to{box-shadow:0 0 40px rgba(255,215,0,0.5)} }
+        #banderole-6mars::before {
+            content:'';
+            position:absolute; inset:0;
+            background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='2' fill='rgba(255,215,0,0.15)'/%3E%3C/svg%3E") repeat;
+            pointer-events:none;
+        }
+        .band-text {
+            font-family:'Cinzel',serif;
+            font-size:clamp(0.9rem,3vw,1.4rem);
+            font-weight:900;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255,215,0,0.8), 2px 2px 4px rgba(0,0,0,0.8);
+            letter-spacing:2px;
+            line-height:1.5;
+            position:relative;
+        }
+        .band-hearts { font-size:1.6rem; vertical-align:middle; animation:heart-beat 1s ease-in-out infinite; }
+        @keyframes heart-beat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.3)} }
+
+        /* ===== HEADER ===== */
+        header {
+            background:rgba(5,13,6,0.97);
+            backdrop-filter:blur(20px);
+            padding:0.8rem 1.5rem;
+            position:sticky; top:0; z-index:1000;
+            border-bottom:2px solid var(--gold);
+            box-shadow:0 4px 30px rgba(0,0,0,0.8);
+        }
+        .hdr { max-width:1400px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
+        .hdr-logos { display:flex; align-items:center; gap:0.7rem; }
+        .hdr-logos img { height:48px; width:48px; object-fit:contain; }
+        .hdr-logos img.round { border-radius:50%; border:2px solid var(--gold); }
+        .hdr-title { display:flex; flex-direction:column; }
+        .hdr-title h1 { font-family:'Cinzel',serif; color:var(--gold); font-size:1.2rem; line-height:1.1; }
+        .hdr-title span { font-size:0.75rem; color:rgba(245,240,232,0.55); font-style:italic; }
+        nav { display:flex; align-items:center; gap:0.4rem; flex-wrap:wrap; }
+        .nb { background:none; border:none; color:var(--text); font-family:'Cinzel',serif; font-size:0.82rem; padding:0.45rem 0.8rem; border-radius:8px; cursor:pointer; transition:all 0.3s; text-decoration:none; white-space:nowrap; }
+        .nb:hover,.nb.active { background:rgba(212,175,55,0.15); color:var(--gold); }
+        .nb-protect { background:var(--gradient-gold)!important; color:var(--dark)!important; font-weight:700; border-radius:50px; }
+        .nb-protect:hover { transform:scale(1.05); box-shadow:0 4px 15px rgba(212,175,55,0.4); }
+
+        /* ===== TICKER ===== */
+        .ticker { background:rgba(212,175,55,0.1); border-bottom:1px solid rgba(212,175,55,0.25); padding:0.5rem 0; overflow:hidden; }
+        .ticker-in { display:flex; align-items:center; }
+        .tick-lbl { background:var(--gradient-gold); color:var(--dark); font-family:'Cinzel',serif; font-size:0.75rem; font-weight:700; padding:0.3rem 1rem; white-space:nowrap; flex-shrink:0; border-radius:0 4px 4px 0; margin-right:1rem; }
+        .tick-track { overflow:hidden; flex:1; }
+        .tick-txt { display:flex; gap:5rem; animation:tick 40s linear infinite; white-space:nowrap; }
+        .tick-txt span { color:var(--gold); font-size:0.9rem; }
+        .tick-txt span::before { content:'🔱 '; }
+        @keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height:420px; position:relative;
+            background:linear-gradient(180deg,rgba(5,13,6,0) 0%,rgba(5,13,6,0.9) 100%),
+            url('papa_masambukidi_couronne.jpg') center/cover no-repeat;
+            display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+            padding:3rem 2rem; text-align:center; overflow:hidden;
+        }
+        .hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center top,rgba(212,175,55,0.12) 0%,transparent 65%); }
+        .hero-badge { display:inline-block; background:var(--gradient-gold); color:var(--dark); font-family:'Cinzel',serif; font-size:0.75rem; font-weight:700; letter-spacing:3px; padding:0.35rem 1.4rem; border-radius:30px; margin-bottom:1rem; text-transform:uppercase; }
+        .hero-title { font-family:'Cinzel',serif; font-size:clamp(1.8rem,5vw,4rem); color:var(--gold); text-shadow:0 0 40px rgba(212,175,55,0.6),2px 2px 8px rgba(0,0,0,0.9); line-height:1.1; margin-bottom:0.6rem; position:relative; }
+        .hero-sub { font-size:clamp(0.95rem,2.5vw,1.25rem); color:rgba(245,240,232,0.82); font-style:italic; margin-bottom:1.5rem; position:relative; }
+        .hero-btns { display:flex; gap:0.8rem; flex-wrap:wrap; justify-content:center; position:relative; }
+        .hbtn { padding:0.85rem 1.8rem; border-radius:50px; font-family:'Cinzel',serif; font-size:0.9rem; font-weight:700; cursor:pointer; border:none; text-decoration:none; transition:all 0.3s; }
+        .hbtn-gold { background:var(--gradient-gold); color:var(--dark); }
+        .hbtn-gold:hover { transform:translateY(-3px); box-shadow:0 8px 25px rgba(212,175,55,0.5); }
+        .hbtn-out { background:transparent; color:var(--gold); border:2px solid var(--gold); }
+        .hbtn-out:hover { background:rgba(212,175,55,0.15); transform:translateY(-3px); }
+
+        /* ===== MAIN ===== */
+        .wrap { max-width:1400px; margin:0 auto; padding:2rem 1.5rem; }
+
+        /* ===== STATS ===== */
+        .stats { display:flex; gap:1rem; flex-wrap:wrap; margin:1.5rem 0; }
+        .stat { flex:1; min-width:110px; background:var(--card); border:1px solid rgba(212,175,55,0.2); border-radius:12px; padding:1rem; text-align:center; }
+        .stat-n { font-family:'Cinzel',serif; font-size:1.5rem; color:var(--gold); display:block; }
+        .stat-l { font-size:0.8rem; color:rgba(245,240,232,0.55); }
+
+        /* ===== PROTECTION BANNER ===== */
+        .prot-band {
+            background:linear-gradient(135deg,rgba(139,0,0,0.18) 0%,rgba(10,26,12,0.9) 50%,rgba(139,0,0,0.18) 100%);
+            border:1px solid rgba(212,175,55,0.4); border-radius:14px; padding:1.5rem 2rem;
+            margin:1.5rem 0; display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;
+        }
+        .prot-icon { font-size:3rem; flex-shrink:0; }
+        .prot-body { flex:1; min-width:180px; }
+        .prot-title { font-family:'Cinzel',serif; color:var(--gold); font-size:1.1rem; margin-bottom:0.4rem; }
+        .prot-txt { color:rgba(245,240,232,0.8); font-size:0.95rem; line-height:1.5; }
+        .prot-btn { display:inline-block; background:var(--gradient-gold); color:var(--dark); font-family:'Cinzel',serif; font-weight:700; padding:0.8rem 1.8rem; border-radius:50px; text-decoration:none; transition:all 0.3s; white-space:nowrap; font-size:0.9rem; }
+        .prot-btn:hover { transform:translateY(-3px); box-shadow:0 8px 25px rgba(212,175,55,0.5); }
+
+        /* ===== SECTION HEADER ===== */
+        .sh { display:flex; align-items:center; gap:0.8rem; margin-bottom:1.5rem; padding-bottom:0.7rem; border-bottom:2px solid rgba(212,175,55,0.25); }
+        .sh-icon { width:42px; height:42px; background:var(--gradient-gold); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; color:var(--dark); flex-shrink:0; }
+        .sh-title { font-family:'Cinzel',serif; font-size:1.4rem; color:var(--gold); }
+        .sh-sub { font-size:0.85rem; color:rgba(245,240,232,0.55); }
+
+        /* ===== TABS ===== */
+        .tabs { display:flex; gap:0.5rem; margin-bottom:2rem; flex-wrap:wrap; }
+        .tp { background:var(--card); border:1px solid rgba(212,175,55,0.2); color:var(--text); font-family:'Cinzel',serif; font-size:0.82rem; padding:0.55rem 1.2rem; border-radius:50px; cursor:pointer; transition:all 0.3s; display:flex; align-items:center; gap:0.4rem; }
+        .tp:hover { border-color:var(--gold); color:var(--gold); }
+        .tp.active { background:var(--gradient-gold); color:var(--dark); border-color:transparent; font-weight:700; }
+        .panel { display:none; }
+        .panel.active { display:block; }
+
+        /* ===== CALENDRIER ===== */
+        .calendar-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.2rem; margin-bottom:2rem; }
+        .cal-card {
+            background:var(--card); border-radius:14px; overflow:hidden;
+            border:1px solid rgba(212,175,55,0.2); transition:all 0.35s; position:relative;
+        }
+        .cal-card:hover { transform:translateY(-5px); border-color:var(--gold); box-shadow:0 15px 40px rgba(212,175,55,0.2); }
+        .cal-card.today-active {
+            border-color:var(--gold2)!important;
+            box-shadow:0 0 30px rgba(255,215,0,0.4), 0 0 60px rgba(255,215,0,0.2)!important;
+            animation:today-glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes today-glow { from{box-shadow:0 0 20px rgba(255,215,0,0.4)} to{box-shadow:0 0 50px rgba(255,215,0,0.7),0 0 80px rgba(0,255,0,0.2)} }
+        .cal-header { padding:1rem 1.2rem 0.8rem; border-bottom:1px solid rgba(212,175,55,0.2); display:flex; align-items:center; gap:0.7rem; }
+        .cal-date-badge {
+            background:var(--gradient-gold); color:var(--dark); font-family:'Cinzel',serif;
+            font-size:0.75rem; font-weight:700; padding:0.3rem 0.8rem; border-radius:20px; letter-spacing:1px; white-space:nowrap;
+        }
+        .cal-today-badge { background:linear-gradient(135deg,#00c851,#00a844); color:white; font-family:'Cinzel',serif; font-size:0.7rem; font-weight:700; padding:0.25rem 0.7rem; border-radius:20px; letter-spacing:1px; animation:pulse-badge 1s infinite; }
+        @keyframes pulse-badge { 0%,100%{opacity:1} 50%{opacity:0.7} }
+        .cal-body { padding:1rem 1.2rem 1.2rem; }
+        .cal-emoji { font-size:2rem; display:block; margin-bottom:0.5rem; }
+        .cal-name { font-family:'Cinzel',serif; color:var(--gold); font-size:1rem; margin-bottom:0.4rem; line-height:1.3; }
+        .cal-desc { font-size:0.9rem; color:rgba(245,240,232,0.7); line-height:1.5; }
+        .cal-countdown { margin-top:0.8rem; padding-top:0.7rem; border-top:1px solid rgba(212,175,55,0.15); font-size:0.82rem; color:rgba(212,175,55,0.8); display:flex; align-items:center; gap:0.4rem; }
+
+        /* ===== LIEUX DE CULTE ===== */
+        .lieux-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:1.5rem; margin-bottom:2rem; }
+        .lieu-card { background:var(--card); border-radius:14px; border:1px solid rgba(212,175,55,0.2); overflow:hidden; transition:all 0.35s; }
+        .lieu-card:hover { transform:translateY(-5px); border-color:var(--gold); box-shadow:0 15px 40px rgba(212,175,55,0.15); }
+        .lieu-flag { font-size:3rem; display:block; text-align:center; padding:1.2rem 1rem 0.5rem; }
+        .lieu-body { padding:0 1.2rem 1.4rem; }
+        .lieu-city { font-family:'Cinzel',serif; color:var(--gold); font-size:1.2rem; margin-bottom:0.5rem; text-align:center; }
+        .lieu-addr { display:flex; align-items:flex-start; gap:0.4rem; color:rgba(245,240,232,0.75); font-size:0.9rem; line-height:1.5; margin-bottom:0.8rem; }
+        .lieu-horaires { background:rgba(212,175,55,0.08); border-radius:8px; padding:0.8rem; }
+        .lieu-hor-title { font-family:'Cinzel',serif; color:var(--gold); font-size:0.8rem; margin-bottom:0.4rem; }
+        .lieu-hor-row { display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; padding:0.2rem 0; border-bottom:1px solid rgba(212,175,55,0.1); }
+        .lieu-hor-row:last-child { border-bottom:none; }
+        .lieu-day { color:rgba(245,240,232,0.7); }
+        .lieu-time { color:var(--gold); font-weight:600; }
+
+        /* ===== BIOGRAPHIES ===== */
+        .bio-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:2rem; margin-bottom:2rem; }
+        .bio-card { background:var(--card); border-radius:16px; border:1px solid rgba(212,175,55,0.25); overflow:hidden; transition:all 0.35s; }
+        .bio-card:hover { transform:translateY(-5px); border-color:var(--gold); box-shadow:0 20px 50px rgba(212,175,55,0.2); }
+        .bio-img-wrap { position:relative; height:300px; overflow:hidden; }
+        .bio-img-wrap img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; transition:transform 0.5s; }
+        .bio-card:hover .bio-img-wrap img { transform:scale(1.05); }
+        .bio-img-overlay { position:absolute; inset:0; background:linear-gradient(0deg,rgba(5,13,6,0.9) 0%,transparent 50%); }
+        .bio-badge { position:absolute; top:1rem; left:1rem; background:var(--gradient-gold); color:var(--dark); font-family:'Cinzel',serif; font-size:0.65rem; font-weight:700; padding:0.25rem 0.8rem; border-radius:20px; letter-spacing:1px; }
+        .bio-body { padding:1.5rem; }
+        .bio-name { font-family:'Cinzel',serif; color:var(--gold); font-size:1.3rem; margin-bottom:0.3rem; line-height:1.2; }
+        .bio-role { font-size:0.85rem; color:rgba(212,175,55,0.7); font-style:italic; margin-bottom:1rem; }
+        .bio-dates { display:flex; flex-direction:column; gap:0.3rem; margin-bottom:1rem; }
+        .bio-date-row { display:flex; align-items:center; gap:0.5rem; font-size:0.88rem; color:rgba(245,240,232,0.75); }
+        .bio-date-row i { color:var(--gold); width:16px; flex-shrink:0; }
+        .bio-desc { font-size:0.95rem; color:rgba(245,240,232,0.8); line-height:1.6; }
+
+        /* ===== NEWS GRID ===== */
+        .news-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:1.8rem; margin-bottom:2rem; }
+        .nc { background:var(--card); border-radius:14px; overflow:hidden; border:1px solid rgba(212,175,55,0.2); transition:all 0.35s; position:relative; }
+        .nc:hover { transform:translateY(-5px); border-color:var(--gold); box-shadow:0 20px 50px rgba(212,175,55,0.2); }
+        .nc-badge { position:absolute; top:0.8rem; left:0.8rem; background:var(--gradient-gold); color:var(--dark); font-family:'Cinzel',serif; font-size:0.62rem; font-weight:700; padding:0.22rem 0.7rem; border-radius:20px; z-index:2; }
+        .yt-wrap { position:relative; height:220px; cursor:pointer; overflow:hidden; }
+        .yt-wrap img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
+        .nc:hover .yt-wrap img { transform:scale(1.04); }
+        .yt-over { position:absolute; inset:0; background:rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; transition:background 0.3s; }
+        .yt-over:hover { background:rgba(0,0,0,0.5); }
+        .yt-btn { width:64px; height:44px; background:#FF0000; border-radius:10px; display:flex; align-items:center; justify-content:center; transition:transform 0.3s; }
+        .yt-over:hover .yt-btn { transform:scale(1.12); }
+        .yt-btn svg { width:22px; fill:white; }
+        .img-wrap { height:220px; overflow:hidden; }
+        .img-wrap img { width:100%; height:100%; object-fit:cover; cursor:pointer; transition:transform 0.4s; }
+        .nc:hover .img-wrap img { transform:scale(1.04); }
+        .nc-body { padding:1.2rem; }
+        .nc-meta { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.7rem; flex-wrap:wrap; }
+        .src-yt { background:#FF0000; color:white; }
+        .src-fb { background:#1877F2; color:white; }
+        .src-ig { background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color:white; }
+        .src-web { background:rgba(212,175,55,0.2); color:var(--gold); }
+        .src-badge { display:inline-flex; align-items:center; gap:0.25rem; font-size:0.72rem; padding:0.18rem 0.55rem; border-radius:4px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
+        .nc-date { font-size:0.78rem; color:rgba(245,240,232,0.5); display:flex; align-items:center; gap:0.3rem; }
+        .nc-title { font-family:'Cinzel',serif; font-size:1.05rem; color:var(--gold); line-height:1.35; margin-bottom:0.6rem; }
+        .nc-desc { font-size:0.92rem; color:rgba(245,240,232,0.78); line-height:1.55; margin-bottom:0.8rem; }
+        .nc-link { display:inline-flex; align-items:center; gap:0.35rem; color:var(--gold); font-size:0.85rem; font-weight:600; text-decoration:none; border-bottom:1px solid rgba(212,175,55,0.3); transition:all 0.3s; }
+        .nc-link:hover { border-color:var(--gold); }
+        .card-acts { display:flex; align-items:center; gap:0.8rem; padding-top:0.8rem; border-top:1px solid rgba(212,175,55,0.12); margin-top:0.8rem; }
+        .act-btn { background:none; border:none; cursor:pointer; display:flex; align-items:center; gap:0.35rem; color:rgba(245,240,232,0.55); font-size:0.85rem; font-family:'Cormorant Garamond',serif; padding:0.35rem 0.6rem; border-radius:6px; transition:all 0.3s; }
+        .act-btn:hover { color:var(--gold); background:rgba(212,175,55,0.1); }
+        .act-btn.liked { color:#ff6b6b; }
+        .cmt-section { margin-top:0.8rem; padding-top:0.8rem; border-top:1px solid rgba(212,175,55,0.1); }
+        .cmt-section.hidden { display:none; }
+        .cmt-form { display:flex; gap:0.4rem; margin-bottom:0.6rem; }
+        .cmt-inp { flex:1; background:rgba(5,13,6,0.6); border:1px solid rgba(212,175,55,0.25); border-radius:7px; padding:0.55rem 0.8rem; color:var(--text); font-family:'Cormorant Garamond',serif; font-size:0.9rem; }
+        .cmt-inp:focus { outline:none; border-color:var(--gold); }
+        .cmt-send { background:var(--gradient-gold); border:none; border-radius:7px; padding:0.55rem 0.9rem; color:var(--dark); cursor:pointer; transition:all 0.3s; }
+        .cmt-send:hover { transform:scale(1.08); }
+        .cmt-list { display:flex; flex-direction:column; gap:0.5rem; max-height:200px; overflow-y:auto; }
+        .cmt-item { background:rgba(5,13,6,0.4); padding:0.6rem 0.8rem; border-radius:7px; border-left:3px solid var(--gold); }
+        .cmt-author { color:var(--gold); font-weight:700; font-size:0.85rem; }
+        .cmt-text { color:rgba(245,240,232,0.82); font-size:0.87rem; line-height:1.4; }
+        .cmt-time { color:rgba(245,240,232,0.4); font-size:0.72rem; margin-top:0.2rem; }
+
+        /* ===== GALERIE ===== */
+        .gal-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem; }
+        .gal-item { position:relative; border-radius:12px; overflow:hidden; cursor:pointer; border:2px solid rgba(212,175,55,0.25); aspect-ratio:1; transition:all 0.35s; }
+        .gal-item:hover { border-color:var(--gold); transform:scale(1.04); box-shadow:0 10px 30px rgba(212,175,55,0.35); }
+        .gal-item img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s; }
+        .gal-item:hover img { transform:scale(1.08); }
+        .gal-ov { position:absolute; inset:0; background:linear-gradient(0deg,rgba(5,13,6,0.75) 0%,transparent 55%); opacity:0; transition:opacity 0.3s; display:flex; align-items:flex-end; padding:0.8rem; }
+        .gal-item:hover .gal-ov { opacity:1; }
+        .gal-cap { color:var(--gold); font-family:'Cinzel',serif; font-size:0.8rem; }
+
+        /* ===== RÉSEAUX SOCIAUX ===== */
+        .social-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem; margin-bottom:2rem; }
+        .soc-card { display:flex; flex-direction:column; align-items:center; gap:0.7rem; padding:1.4rem 1rem; border-radius:12px; text-decoration:none; transition:all 0.3s; }
+        .soc-yt { background:rgba(255,0,0,0.12); border:1px solid rgba(255,0,0,0.3); }
+        .soc-fb { background:rgba(24,119,242,0.12); border:1px solid rgba(24,119,242,0.3); }
+        .soc-ig { background:rgba(188,24,136,0.12); border:1px solid rgba(188,24,136,0.3); }
+        .soc-tw { background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); }
+        .soc-tt { background:rgba(0,0,0,0.3); border:1px solid rgba(105,201,208,0.3); }
+        .soc-card:hover { transform:translateY(-4px); }
+        .soc-yt:hover { box-shadow:0 8px 25px rgba(255,0,0,0.25); }
+        .soc-fb:hover { box-shadow:0 8px 25px rgba(24,119,242,0.25); }
+        .soc-ig:hover { box-shadow:0 8px 25px rgba(188,24,136,0.25); }
+        .soc-tw:hover { box-shadow:0 8px 25px rgba(255,255,255,0.1); }
+        .soc-tt:hover { box-shadow:0 8px 25px rgba(105,201,208,0.25); }
+        .soc-icon { font-size:2.2rem; }
+        .soc-name { font-family:'Cinzel',serif; color:var(--text); font-size:0.82rem; text-align:center; line-height:1.3; }
+        .soc-count { font-size:0.75rem; color:rgba(245,240,232,0.5); }
+
+        /* ===== RAYONNEMENT ===== */
+        .ray-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1rem; margin-bottom:1rem; }
+        .ray-card { background:var(--card); border-radius:12px; border:1px solid rgba(212,175,55,0.2); padding:1.2rem; text-align:center; transition:all 0.3s; }
+        .ray-card:hover { border-color:var(--gold); transform:translateY(-3px); }
+        .ray-flag { font-size:2rem; margin-bottom:0.5rem; }
+        .ray-region { font-family:'Cinzel',serif; color:var(--gold); font-size:0.85rem; margin-bottom:0.3rem; }
+        .ray-cities { font-size:0.82rem; color:rgba(245,240,232,0.65); line-height:1.5; }
+        .ray-quote { background:rgba(212,175,55,0.08); border:1px solid rgba(212,175,55,0.25); border-radius:12px; padding:1.5rem 2rem; text-align:center; margin:1.5rem 0; font-style:italic; font-size:1.05rem; color:rgba(245,240,232,0.85); line-height:1.7; }
+        .ray-quote span { display:block; color:var(--gold); font-family:'Cinzel',serif; font-size:0.9rem; margin-top:0.7rem; font-style:normal; }
+
+        /* ===== ADD FORM ===== */
+        .add-form { background:rgba(10,26,12,0.97); border:2px solid var(--gold); border-radius:14px; padding:1.8rem; max-width:650px; margin:1.5rem auto; }
+        .add-form.hidden { display:none; }
+        .af-title { font-family:'Cinzel',serif; color:var(--gold); font-size:1.25rem; margin-bottom:1.2rem; }
+        .af-row { margin-bottom:1rem; }
+        .af-label { display:block; color:var(--gold); font-size:0.9rem; font-weight:600; margin-bottom:0.35rem; }
+        .af-ctrl { width:100%; background:rgba(5,13,6,0.6); border:1px solid rgba(212,175,55,0.3); border-radius:8px; padding:0.75rem 0.9rem; color:var(--text); font-family:'Cormorant Garamond',serif; font-size:0.95rem; }
+        .af-ctrl:focus { outline:none; border-color:var(--gold); }
+        .af-ta { min-height:90px; resize:vertical; }
+        .af-btns { display:flex; gap:0.8rem; justify-content:flex-end; }
+        .btn-g { background:var(--gradient-gold); border:none; color:var(--dark); padding:0.75rem 1.8rem; border-radius:8px; font-weight:700; font-size:0.95rem; cursor:pointer; transition:all 0.3s; }
+        .btn-g:hover { transform:scale(1.05); box-shadow:0 4px 15px rgba(212,175,55,0.4); }
+        .btn-c { background:rgba(212,175,55,0.15); border:1px solid rgba(212,175,55,0.3); color:var(--text); padding:0.75rem 1.8rem; border-radius:8px; font-size:0.95rem; cursor:pointer; transition:all 0.3s; }
+        .btn-c:hover { background:rgba(212,175,55,0.25); }
+
+        /* ===== MODALS ===== */
+        .vmod { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.96); z-index:3000; align-items:center; justify-content:center; padding:1.5rem; }
+        .vmod.open { display:flex; }
+        .vmod-inner { position:relative; width:100%; max-width:860px; }
+        .vmod-x { position:absolute; top:-42px; right:0; background:var(--gold); border:none; width:36px; height:36px; border-radius:50%; font-size:1.3rem; color:var(--dark); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.3s; }
+        .vmod-x:hover { transform:rotate(90deg); }
+        .vmod-resp { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; border:3px solid var(--gold); }
+        .vmod-resp iframe { position:absolute; top:0; left:0; width:100%; height:100%; }
+        .lbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.97); z-index:2500; align-items:center; justify-content:center; padding:1.2rem; }
+        .lbox.open { display:flex; }
+        .lbox-inner { position:relative; max-width:95vw; max-height:90vh; }
+        .lbox img { max-width:100%; max-height:85vh; border-radius:10px; border:3px solid var(--gold); display:block; }
+        .lbox-x { position:absolute; top:-42px; right:0; background:var(--gold); border:none; width:36px; height:36px; border-radius:50%; font-size:1.3rem; color:var(--dark); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:transform 0.3s; }
+        .lbox-x:hover { transform:rotate(90deg); }
+        .lbox-cap { text-align:center; color:var(--gold); font-family:'Cinzel',serif; font-size:0.95rem; margin-top:0.7rem; }
+
+        /* ===== NOTIFICATION TOAST ===== */
+        .toast { position:fixed; bottom:5rem; left:50%; transform:translateX(-50%) translateY(20px); background:var(--gradient-gold); color:var(--dark); padding:0.75rem 1.8rem; border-radius:50px; font-weight:700; font-size:0.9rem; z-index:2000; opacity:0; transition:all 0.35s; pointer-events:none; }
+        .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+        /* ===== NOTIF SYSTEME ===== */
+        .notif-banner { position:fixed; top:0; left:0; right:0; z-index:5000; background:linear-gradient(135deg,#006400,#008B00); border-bottom:3px solid var(--gold); padding:1rem 1.5rem; display:none; align-items:center; gap:1rem; box-shadow:0 4px 20px rgba(0,0,0,0.8); flex-wrap:wrap; }
+        .notif-banner.show { display:flex; }
+        .notif-banner-icon { font-size:1.8rem; }
+        .notif-banner-body { flex:1; min-width:180px; }
+        .notif-banner-title { font-family:'Cinzel',serif; color:var(--gold2); font-size:1rem; margin-bottom:0.2rem; }
+        .notif-banner-msg { font-size:0.9rem; color:rgba(245,240,232,0.9); }
+        .notif-banner-x { background:rgba(255,255,255,0.15); border:none; color:white; width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+        /* ===== FAB ===== */
+        .fab { position:fixed; bottom:1.8rem; right:1.8rem; width:56px; height:56px; background:var(--gradient-gold); border:none; border-radius:50%; font-size:1.5rem; color:var(--dark); cursor:pointer; box-shadow:0 6px 20px rgba(212,175,55,0.5); z-index:1000; transition:all 0.3s; display:flex; align-items:center; justify-content:center; }
+        .fab:hover { transform:scale(1.12) rotate(90deg); }
+
+        /* ===== FOOTER ===== */
+        footer { background:rgba(5,13,6,0.98); border-top:2px solid rgba(212,175,55,0.3); padding:2.5rem 1.5rem; text-align:center; margin-top:4rem; }
+        .ft-logos { display:flex; align-items:center; justify-content:center; gap:1.2rem; margin-bottom:1rem; flex-wrap:wrap; }
+        .ft-logos img { height:55px; width:55px; object-fit:contain; }
+        .ft-logos img.r { border-radius:50%; border:2px solid var(--gold); }
+        .ft-title { font-family:'Cinzel',serif; color:var(--gold); font-size:1.2rem; margin-bottom:0.3rem; }
+        .ft-sub { font-size:0.85rem; color:rgba(245,240,232,0.5); font-style:italic; margin-bottom:1rem; }
+        .ft-links { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; margin-bottom:1rem; }
+        .ft-link { color:rgba(245,240,232,0.55); text-decoration:none; font-size:0.85rem; transition:color 0.3s; }
+        .ft-link:hover { color:var(--gold); }
+        .ft-copy { font-size:0.8rem; color:rgba(245,240,232,0.35); }
+
+        /* ===== FADE-IN ===== */
+        .fi { opacity:0; transform:translateY(18px); transition:opacity 0.5s,transform 0.5s; }
+        .fi.vis { opacity:1; transform:translateY(0); }
+
+        /* ===== RESPONSIVE ===== */
+        @media(max-width:768px) {
+            .hdr { gap:0.6rem; }
+            nav { justify-content:center; }
+            .hero { min-height:300px; }
+            .news-grid,.calendar-grid,.lieux-grid,.bio-grid { grid-template-columns:1fr; }
+            .gal-grid { grid-template-columns:repeat(2,1fr); }
+            .prot-band { flex-direction:column; text-align:center; }
+            .hero-btns { flex-direction:column; align-items:center; }
+        }
+        @media(max-width:480px) { .gal-grid { grid-template-columns:1fr; } .social-grid { grid-template-columns:repeat(2,1fr); } }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width:8px; } ::-webkit-scrollbar-track { background:var(--dark); } ::-webkit-scrollbar-thumb { background:var(--gold); border-radius:4px; } ::-webkit-scrollbar-thumb:hover { background:var(--gold2); }
+    </style>
+</head>
+<body>
+
+<!-- NOTIFICATION BANNER -->
+<div class="notif-banner" id="notif-sys-banner">
+    <div class="notif-banner-icon" id="notif-icon">🔱</div>
+    <div class="notif-banner-body">
+        <div class="notif-banner-title" id="notif-title">Rappel ELUCCO</div>
+        <div class="notif-banner-msg" id="notif-msg">Message important de la communauté</div>
+    </div>
+    <button class="notif-banner-x" onclick="document.getElementById('notif-sys-banner').classList.remove('show')">✕</button>
+</div>
+
+<!-- LOADER -->
+<div id="loader">
+    <img class="ld-logo" src="elucco_logo_officiel.png" alt="ELUCCO">
+    <div class="ld-title">E.L.U.C.CO</div>
+    <div style="font-size:0.8rem;color:rgba(212,175,55,0.6);letter-spacing:2px;text-align:center;">Eglise Lumière du Christ au Congo</div>
+    <div class="ld-bar"><div class="ld-fill"></div></div>
+</div>
+
+<!-- BANDEROLE 6 MARS -->
+<div id="banderole-6mars">
+    <div class="band-text">
+        <span class="band-hearts">💚</span>
+        VIVE LE 6 MARS À TOUTE LA COMMUNAUTÉ MASAMBUKIDISTE DANS LE MONDE ENTIER !
+        <span class="band-hearts">💛</span>
+        <br>
+        <span style="font-size:clamp(0.75rem,2vw,1rem);font-weight:400;letter-spacing:1px;">🎂 Naissance de Papa Samy Masambukidi — Fondateur d'ELUCCO • 6 Mars 1958</span>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header>
+    <div class="hdr">
+        <div class="hdr-logos">
+            <img src="elucco_logo_officiel.png" alt="ELUCCO Logo">
+            <img src="masambukidi_armoiries.png" alt="Armoiries Royales">
+            <div class="hdr-title">
+                <h1>ELUCCO MASAMBUKIDI</h1>
+                <span>Eglise Lumière du Christ au Congo</span>
+            </div>
+        </div>
+        <nav>
+            <button class="nb active" onclick="showTab('actualites',this)"><i class="fas fa-newspaper"></i> Actualités</button>
+            <button class="nb" onclick="showTab('calendrier',this)"><i class="fas fa-calendar-alt"></i> Calendrier</button>
+            <button class="nb" onclick="showTab('videos',this)"><i class="fab fa-youtube"></i> Vidéos</button>
+            <button class="nb" onclick="showTab('galerie',this)"><i class="fas fa-images"></i> Galerie</button>
+            <button class="nb" onclick="showTab('culte',this)"><i class="fas fa-church"></i> Cultes</button>
+            <button class="nb" onclick="showTab('reseaux',this)"><i class="fas fa-share-alt"></i> Réseaux</button>
+            <a href="https://masambukidi-protection.pages.dev/" target="_blank" class="nb nb-protect"><i class="fas fa-shield-alt"></i> Protection</a>
+        </nav>
+    </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker">
+    <div class="ticker-in">
+        <div class="tick-lbl">🔱 EN DIRECT</div>
+        <div class="tick-track">
+            <div class="tick-txt">
+                <span>VIVE LE 6 MARS — Naissance de Papa Samy Masambukidi 1958</span>
+                <span>Sa Majesté Masambukidi Samuel 1er — Roi Divin du Bassin du Congo</span>
+                <span>Audience Royale du 19 Février 2026 à Miongo, Terre Sainte</span>
+                <span>Culte Paris — 47 Bd de la Muette, Garges-lès-Gonesse — Dimanche 15h30</span>
+                <span>Culte Kinshasa — Avenue Mbandaka n°40, Kimbanseke — Dimanche 9h30</span>
+                <span>Intronisation Historique du 30 Octobre 2025 à Kinshasa</span>
+                <span>ELUCCO rayonne dans 5 continents — Congo, Paris, New York, Tokyo...</span>
+                <span>VIVE LE 6 MARS — Naissance de Papa Samy Masambukidi 1958</span>
+                <span>Sa Majesté Masambukidi Samuel 1er — Roi Divin du Bassin du Congo</span>
+                <span>Audience Royale du 19 Février 2026 à Miongo, Terre Sainte</span>
+                <span>Culte Paris — 47 Bd de la Muette, Garges-lès-Gonesse — Dimanche 15h30</span>
+                <span>Culte Kinshasa — Avenue Mbandaka n°40, Kimbanseke — Dimanche 9h30</span>
+                <span>Intronisation Historique du 30 Octobre 2025 à Kinshasa</span>
+                <span>ELUCCO rayonne dans 5 continents — Congo, Paris, New York, Tokyo...</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="top">
+    <div class="hero-badge">E.L.U.C.CO — Masambukidiste</div>
+    <h1 class="hero-title">Sa Majesté Masambukidi<br>Samuel 1<sup>er</sup></h1>
+    <p class="hero-sub">Roi Divin du Bassin du Congo · Être Divin</p>
+    <div class="hero-btns">
+        <button class="hbtn hbtn-gold" onclick="document.getElementById('main').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-newspaper"></i> Actualités
+        </button>
+        <button class="hbtn hbtn-out" onclick="showTab('calendrier',null);document.getElementById('main').scrollIntoView({behavior:'smooth'})">
+            <i class="fas fa-calendar-alt"></i> Calendrier
+        </button>
+        <a href="https://masambukidi-protection.pages.dev/" target="_blank" class="hbtn hbtn-out">
+            <i class="fas fa-shield-alt"></i> Protection
+        </a>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="wrap" id="main">
+
+    <!-- STATS -->
+    <div class="stats fi">
+        <div class="stat"><span class="stat-n">1958</span><span class="stat-l">Naissance Papa Samy</span></div>
+        <div class="stat"><span class="stat-n">30 Oct</span><span class="stat-l">Intronisation 2025</span></div>
+        <div class="stat"><span class="stat-n">24.8K</span><span class="stat-l">Abonnés YouTube</span></div>
+        <div class="stat"><span class="stat-n">5🌍</span><span class="stat-l">Continents ELUCCO</span></div>
+    </div>
+
+    <!-- PROTECTION BANNER -->
+    <div class="prot-band fi">
+        <div class="prot-icon">⚖️</div>
+        <div class="prot-body">
+            <h3 class="prot-title">Protection Officielle des Droits de Sa Majesté</h3>
+            <p class="prot-txt">Toute utilisation du nom <strong style="color:var(--gold)">"Masambukidi"</strong>, "Papa Masambukidi Samuel", "Sa Majesté Masambukidi I", "Nitufuidi", "Kulala" ou "Kwamakanda" sans autorisation écrite préalable constitue une violation des droits. Contact: masambukidiste1983@gmail.com</p>
+        </div>
+        <a href="https://masambukidi-protection.pages.dev/" target="_blank" class="prot-btn"><i class="fas fa-shield-alt"></i> Site de Protection</a>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tp active" id="tp-actualites" onclick="showTab('actualites',this)"><i class="fas fa-newspaper"></i> Actualités</button>
+        <button class="tp" id="tp-calendrier" onclick="showTab('calendrier',this)"><i class="fas fa-calendar-alt"></i> Calendrier</button>
+        <button class="tp" id="tp-videos" onclick="showTab('videos',this)"><i class="fab fa-youtube"></i> Vidéos</button>
+        <button class="tp" id="tp-galerie" onclick="showTab('galerie',this)"><i class="fas fa-images"></i> Galerie</button>
+        <button class="tp" id="tp-culte" onclick="showTab('culte',this)"><i class="fas fa-church"></i> Lieux de Culte</button>
+        <button class="tp" id="tp-reseaux" onclick="showTab('reseaux',this)"><i class="fas fa-share-alt"></i> Réseaux</button>
+    </div>
+
+    <!-- ADD FORM -->
+    <div id="add-form" class="add-form hidden">
+        <h3 class="af-title">➕ Ajouter une actualité</h3>
+        <form id="news-form">
+            <div class="af-row"><label class="af-label">Titre *</label><input type="text" class="af-ctrl" id="f-title" required></div>
+            <div class="af-row"><label class="af-label">Description *</label><textarea class="af-ctrl af-ta" id="f-desc" required></textarea></div>
+            <div class="af-row"><label class="af-label">Type</label>
+                <select class="af-ctrl" id="f-type"><option value="image">Image</option><option value="youtube">YouTube</option><option value="link">Lien</option></select>
+            </div>
+            <div class="af-row"><label class="af-label">URL média / YouTube / image</label><input type="url" class="af-ctrl" id="f-url" placeholder="https://..."></div>
+            <div class="af-row"><label class="af-label">Source</label>
+                <select class="af-ctrl" id="f-source"><option value="web">Web</option><option value="youtube">YouTube</option><option value="facebook">Facebook</option><option value="instagram">Instagram</option></select>
+            </div>
+            <div class="af-btns">
+                <button type="button" class="btn-c" id="cancel-btn">Annuler</button>
+                <button type="submit" class="btn-g">Publier</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ===== PANEL: ACTUALITÉS ===== -->
+    <div class="panel active" id="panel-actualites">
+        <div class="sh"><div class="sh-icon"><i class="fas fa-newspaper"></i></div><div><div class="sh-title">Dernières Actualités</div><div class="sh-sub">Toutes les nouvelles officielles 2025/2026</div></div></div>
+        <div id="news-grid" class="news-grid"></div>
+    </div>
+
+    <!-- ===== PANEL: CALENDRIER ===== -->
+    <div class="panel" id="panel-calendrier">
+        <div class="sh"><div class="sh-icon"><i class="fas fa-calendar-alt"></i></div><div><div class="sh-title">Calendrier Sacré</div><div class="sh-sub">Dates importantes de la Communauté Masambukidiste</div></div></div>
+        <div class="calendar-grid" id="calendar-grid"></div>
+
+        <!-- BIOGRAPHIES -->
+        <div class="sh" style="margin-top:2rem"><div class="sh-icon"><i class="fas fa-crown"></i></div><div><div class="sh-title">Êtres Divins</div><div class="sh-sub">Papa Samy Masambukidi & Sa Majesté Samuel 1er</div></div></div>
+        <div class="bio-grid">
+            <!-- Papa Samy -->
+            <div class="bio-card fi">
+                <div class="bio-img-wrap">
+                    <img src="papa_samy_fondateur_jeune.jpg" alt="Papa Samy Masambukidi">
+                    <div class="bio-img-overlay"></div>
+                    <div class="bio-badge">PÈRE FONDATEUR ELUCCO</div>
+                </div>
+                <div class="bio-body">
+                    <h3 class="bio-name">Papa Samy Masambukidi</h3>
+                    <div class="bio-role">Être Divin Fondateur d'ELUCCO</div>
+                    <div class="bio-dates">
+                        <div class="bio-date-row"><i class="fas fa-birthday-cake"></i> Né le 6 Mars 1958</div>
+                        <div class="bio-date-row"><i class="fas fa-dove"></i> Disparition le 28 Avril 1999</div>
+                        <div class="bio-date-row"><i class="fas fa-church"></i> 30 Octobre — Commencement sacerdotal</div>
+                    </div>
+                    <p class="bio-desc">Papa Samy Masambukidi, fondateur d'ELUCCO (Eglise Lumière du Christ au Congo), était un être divin dont la mission sacrée a marqué l'histoire spirituelle. Son message de paix, d'amour et de lumière continue d'illuminer les fidèles à travers le monde. Le 30 Octobre marque le commencement de son œuvre sacerdotale qui perdure à travers ses disciples.</p>
+                </div>
+            </div>
+            <!-- Sa Majesté -->
+            <div class="bio-card fi">
+                <div class="bio-img-wrap">
+                    <img src="papa_masambukidi_couronne.jpg" alt="Sa Majesté Masambukidi Samuel 1er">
+                    <div class="bio-img-overlay"></div>
+                    <div class="bio-badge">SA MAJESTÉ MASAMBUKIDI I</div>
+                </div>
+                <div class="bio-body">
+                    <h3 class="bio-name">Sa Majesté Masambukidi I</h3>
+                    <div class="bio-role">Être Divin · Roi Divin du Bassin du Congo</div>
+                    <div class="bio-dates">
+                        <div class="bio-date-row"><i class="fas fa-birthday-cake"></i> Né le 30 Juillet</div>
+                        <div class="bio-date-row"><i class="fas fa-crown"></i> Intronisé le 30 Octobre 2025</div>
+                    </div>
+                    <p class="bio-desc">Sa Majesté Masambukidi I, être divin et réincarnation de Papa Samy Masambukidi, perpétue la mission divine avec sagesse et dévotion. Intronisé le 30 Octobre 2025 à Kinshasa, il marque une nouvelle ère pour la communauté Masambukidi. Sous son règne, ELUCCO continue d'étendre son rayonnement mondial, unifiant les fidèles dans la foi et la fraternité.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PANEL: VIDÉOS ===== -->
+    <div class="panel" id="panel-videos">
+        <div class="sh"><div class="sh-icon" style="background:linear-gradient(135deg,#FF0000,#cc0000)"><i class="fab fa-youtube" style="color:white"></i></div><div><div class="sh-title">Vidéos Officielles</div><div class="sh-sub">Chaîne MASAMBUKIDI RTMAS OFFICIEL — 24.8K abonnés</div></div></div>
+        <div id="videos-grid" class="news-grid"></div>
+    </div>
+
+    <!-- ===== PANEL: GALERIE ===== -->
+    <div class="panel" id="panel-galerie">
+        <div class="sh"><div class="sh-icon"><i class="fas fa-crown"></i></div><div><div class="sh-title">Galerie Royale</div><div class="sh-sub">Photos officielles de Sa Majesté & Papa Samy</div></div></div>
+        <div class="gal-grid" id="gal-grid"></div>
+    </div>
+
+    <!-- ===== PANEL: LIEUX DE CULTE ===== -->
+    <div class="panel" id="panel-culte">
+        <div class="sh"><div class="sh-icon"><i class="fas fa-church"></i></div><div><div class="sh-title">Lieux de Culte</div><div class="sh-sub">Temples ELUCCO — Horaires des cultes</div></div></div>
+        <div class="lieux-grid">
+            <!-- Paris -->
+            <div class="lieu-card fi">
+                <div class="lieu-flag">🇫🇷</div>
+                <div class="lieu-body">
+                    <div class="lieu-city">Paris — France</div>
+                    <div class="lieu-addr"><i class="fas fa-map-marker-alt" style="color:var(--gold);flex-shrink:0;margin-top:3px"></i><span>47 Boulevard de la Muette<br>95140 Garges-lès-Gonesse<br>France</span></div>
+                    <div class="lieu-horaires">
+                        <div class="lieu-hor-title">📅 Horaires des Cultes</div>
+                        <div class="lieu-hor-row"><span class="lieu-day">Dimanche</span><span class="lieu-time">15h30</span></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Kinshasa -->
+            <div class="lieu-card fi">
+                <div class="lieu-flag">🇨🇩</div>
+                <div class="lieu-body">
+                    <div class="lieu-city">Kinshasa — RDC</div>
+                    <div class="lieu-addr"><i class="fas fa-map-marker-alt" style="color:var(--gold);flex-shrink:0;margin-top:3px"></i><span>Avenue Mbandaka n°40<br>Kimbanseke, Tshangu<br>République Démocratique du Congo</span></div>
+                    <div class="lieu-horaires">
+                        <div class="lieu-hor-title">📅 Horaires des Cultes</div>
+                        <div class="lieu-hor-row"><span class="lieu-day">Dimanche</span><span class="lieu-time">9h30</span></div>
+                        <div class="lieu-hor-row"><span class="lieu-day">Mercredi</span><span class="lieu-time">16h00</span></div>
+                        <div class="lieu-hor-row"><span class="lieu-day">Vendredi</span><span class="lieu-time">16h00</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RAYONNEMENT -->
+        <div class="sh" style="margin-top:2rem"><div class="sh-icon"><i class="fas fa-globe"></i></div><div><div class="sh-title">🌍 Rayonnement Mondial</div><div class="sh-sub">ELUCCO présent sur 5 continents</div></div></div>
+        <div class="ray-grid">
+            <div class="ray-card fi"><div class="ray-flag">🇨🇩</div><div class="ray-region">AFRIQUE</div><div class="ray-cities">Congo (RDC), Angola, Congo Brazza</div></div>
+            <div class="ray-card fi"><div class="ray-flag">🇫🇷</div><div class="ray-region">EUROPE</div><div class="ray-cities">Paris, Bruxelles, Londres, Genève</div></div>
+            <div class="ray-card fi"><div class="ray-flag">🇺🇸</div><div class="ray-region">AMÉRIQUE</div><div class="ray-cities">New York, Montréal</div></div>
+            <div class="ray-card fi"><div class="ray-flag">🇯🇵</div><div class="ray-region">ASIE</div><div class="ray-cities">Japon, Chine, Inde</div></div>
+            <div class="ray-card fi"><div class="ray-flag">🇦🇺</div><div class="ray-region">OCÉANIE</div><div class="ray-cities">Australie, Nouvelle-Zélande</div></div>
+        </div>
+        <div class="ray-quote fi">
+            "Chaque Masambukidi, où qu'il soit dans le monde, est relié à la source divine du Congo"
+            <span>— Papa Samy Masambukidi, Fondateur d'ELUCCO</span>
+        </div>
+    </div>
+
+    <!-- ===== PANEL: RÉSEAUX ===== -->
+    <div class="panel" id="panel-reseaux">
+        <div class="sh"><div class="sh-icon"><i class="fas fa-share-alt"></i></div><div><div class="sh-title">Réseaux Sociaux Officiels</div><div class="sh-sub">Suivez Sa Majesté sur toutes les plateformes</div></div></div>
+        <div class="social-grid">
+            <a href="https://youtube.com/@masambukidirtmasofficiel2016?si=PpBcRyldWlNsvvHj" target="_blank" class="soc-card soc-yt">
+                <div class="soc-icon">▶️</div><div class="soc-name">MASAMBUKIDI RTMAS OFFICIEL</div><div class="soc-count">24.8K abonnés</div>
+            </a>
+            <a href="https://youtube.com/@masambukidirtmasofficiel2016?si=PpBcRyldWlNsvvHj" target="_blank" class="soc-card soc-yt">
+                <div class="soc-icon">▶️</div><div class="soc-name">Papa Samuel Masambukidi Officiel</div><div class="soc-count">Chaîne officielle</div>
+            </a>
+            <a href="https://www.facebook.com/masambukidi" target="_blank" class="soc-card soc-fb">
+                <div class="soc-icon">📘</div><div class="soc-name">Département Jeunesse Masambukidi</div><div class="soc-count">Facebook officiel</div>
+            </a>
+            <a href="https://www.facebook.com/100063885199823" target="_blank" class="soc-card soc-fb">
+                <div class="soc-icon">📘</div><div class="soc-name">Masambukidi News</div><div class="soc-count">Page d'actualités</div>
+            </a>
+            <a href="https://x.com/masambukidi4?s=21&t=ZwJ5QkzXXzUbRf3CQpcVpA" target="_blank" class="soc-card soc-tw">
+                <div class="soc-icon">🐦</div><div class="soc-name">@masambukidi4</div><div class="soc-count">X (Twitter) Officiel</div>
+            </a>
+            <a href="https://www.tiktok.com/@masambukidiofficielle6?_r=1&_t=ZN-93o3GgfLgkY" target="_blank" class="soc-card soc-tt">
+                <div class="soc-icon">🎵</div><div class="soc-name">@masambukidiofficielle6</div><div class="soc-count">TikTok Officiel</div>
+            </a>
+        </div>
+        <div class="prot-band" style="margin-top:1.5rem">
+            <div class="prot-icon">🛡️</div>
+            <div class="prot-body">
+                <h3 class="prot-title">Site Officiel de Protection Juridique</h3>
+                <p class="prot-txt">Toute utilisation non autorisée du nom et de l'image de Sa Majesté fera l'objet de poursuites judiciaires.</p>
+            </div>
+            <a href="https://masambukidi-protection.pages.dev/" target="_blank" class="prot-btn"><i class="fas fa-external-link-alt"></i> Visiter</a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="ft-logos">
+        <img src="elucco_logo_officiel.png" alt="ELUCCO">
+        <img src="masambukidi_armoiries.png" alt="Armoiries">
+        <img src="papa_masambukidi_couronne.jpg" alt="Sa Majesté" class="r">
+    </div>
+    <div class="ft-title">E.L.U.C.CO — Masambukidiste</div>
+    <div class="ft-sub">Eglise Lumière du Christ au Congo · Sa Majesté Masambukidi Samuel 1er</div>
+    <div class="ft-links">
+        <a href="https://youtube.com/@masambukidirtmasofficiel2016?si=PpBcRyldWlNsvvHj" target="_blank" class="ft-link"><i class="fab fa-youtube"></i> YouTube</a>
+        <a href="https://www.facebook.com/masambukidi" target="_blank" class="ft-link"><i class="fab fa-facebook"></i> Facebook</a>
+        <a href="https://x.com/masambukidi4?s=21&t=ZwJ5QkzXXzUbRf3CQpcVpA" target="_blank" class="ft-link"><i class="fab fa-twitter"></i> Twitter/X</a>
+        <a href="https://www.tiktok.com/@masambukidiofficielle6?_r=1&_t=ZN-93o3GgfLgkY" target="_blank" class="ft-link"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a href="https://masambukidi-protection.pages.dev/" target="_blank" class="ft-link"><i class="fas fa-shield-alt"></i> Protection</a>
+        <a href="mailto:masambukidiste1983@gmail.com" class="ft-link"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+    <div class="ft-copy">© 2026 ELUCCO Masambukidi — Tous droits réservés · Développé avec ❤️</div>
+</footer>
+
+<!-- FAB -->
+<button class="fab" id="fab-btn" title="Ajouter une actualité"><i class="fas fa-plus"></i></button>
+
+<!-- VIDEO MODAL -->
+<div class="vmod" id="vmod" onclick="closeVid(event)">
+    <div class="vmod-inner">
+        <button class="vmod-x" onclick="closeVid({target:'x'})">&times;</button>
+        <div class="vmod-resp"><iframe id="yt-frame" src="" frameborder="0" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>
+    </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lbox" id="lbox" onclick="closeLbox(event)">
+    <div class="lbox-inner">
+        <button class="lbox-x" onclick="closeLbox({target:'x'})">&times;</button>
+        <img id="lbox-img" src="" alt="">
+        <div class="lbox-cap" id="lbox-cap"></div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===================================================
+// DATES IMPORTANTES
+// ===================================================
+const DATES_IMPORTANTES = [
+    {
+        id:'d1', month:1, day:11,
+        emoji:'⛪', badge:'11 JANVIER',
+        name:'Date Importante ELUCCO', color:'#D4AF37',
+        desc:'Journée importante pour la communauté ELUCCO Masambukidiste.'
+    },
+    {
+        id:'d2', month:3, day:6,
+        emoji:'🎂', badge:'6 MARS',
+        name:'Naissance de Papa Samy Masambukidi',
+        desc:'Naissance du Père Fondateur d\'ELUCCO, Papa Samy Masambukidi, le 6 Mars 1958. Journée de célébration mondiale pour toute la communauté Masambukidiste.', color:'#00c851'
+    },
+    {
+        id:'d3', month:4, day:28,
+        emoji:'🕊️', badge:'28 AVRIL',
+        name:'Disparition de Papa Samy Masambukidi',
+        desc:'Le 28 Avril 1999, Papa Samy Masambukidi, Être Divin et fondateur d\'ELUCCO, a quitté ce monde. Journée de recueillement et de prières pour toute la communauté.', color:'#8B0000'
+    },
+    {
+        id:'d4', month:7, day:30,
+        emoji:'👑', badge:'30 JUILLET',
+        name:'Naissance de Sa Majesté Samuel I',
+        desc:'Naissance de Sa Majesté Masambukidi Samuel 1er, Être Divin et Roi Divin du Bassin du Congo. Journée de célébration royale.', color:'#D4AF37'
+    },
+    {
+        id:'d5', month:10, day:20,
+        emoji:'✨', badge:'20 OCTOBRE',
+        name:'Date Importante ELUCCO',
+        desc:'Journée importante pour la communauté ELUCCO Masambukidiste. Moment sacré dans le calendrier liturgique.', color:'#D4AF37'
+    },
+    {
+        id:'d6', month:10, day:30,
+        emoji:'⭐', badge:'30 OCTOBRE',
+        name:'Commencement de l\'Œuvre Sacerdotale de Papa Samy',
+        desc:'Le 30 Octobre marque le commencement de la partie sacerdotale de Papa Samy Masambukidi — le début de l\'œuvre divine qui donna naissance à ELUCCO.', color:'#8B4513'
+    },
+    {
+        id:'d7', month:10, day:30, year:2025,
+        emoji:'🔱', badge:'30 OCTOBRE 2025',
+        name:'Intronisation de Sa Majesté Samuel I',
+        desc:'Événement historique ! Le 30 Octobre 2025, Sa Majesté Masambukidi Samuel 1er est intronisé Roi Divin du Bassin du Congo à Kinshasa. Un moment prophétique pour toute la communauté mondiale.', color:'#FFD700', special:true
+    }
+];
+
+// ===================================================
+// NEWS OFFICIELLES
+// ===================================================
+const NEWS_OFFICIELLES = [
+    { id:'n1', title:"Vive le 06 Mars 2026 — Célébration Royale", desc:"Dansons ku mbengua ntadi avec Papa Masambukidi Samuel notre Roi. Grande célébration pour l'anniversaire du Père Fondateur.", date:"2026-03-06", source:"youtube", ytId:"inpRzkJT_w8", badge:"MARS 2026", link:"https://www.youtube.com/watch?v=inpRzkJT_w8" },
+    { id:'n2', title:"Culte du 1er Mars 2026 au Temple Central", desc:"DIRECT : Culte solennel au Temple Central de la Communauté Masambukidi. Abonnez-vous à la chaîne officielle.", date:"2026-03-01", source:"youtube", ytId:"4x-O7A8VgUQ", badge:"DIRECT", link:"https://www.youtube.com/watch?v=4x-O7A8VgUQ" },
+    { id:'n3', title:"Audience Royale — Jeudi 19 Février 2026", desc:"Sa Majesté le Roi Masambukidi Premier a accordé une audience royale à Miongo. Orientations sur la discipline, les valeurs traditionnelles et l'unité.", date:"2026-02-20", source:"facebook", img:"papa_masambukidi_couronne.jpg", badge:"AUDIENCE ROYALE", link:"https://www.facebook.com/masambukidi/posts/audience-royale-jeudi-19-f%C3%A9vrier-2026sa-majest%C3%A9-le-roi-masambukidi-premier-a-acc/901877462587306/" },
+    { id:'n4', title:"Intégralité de l'Audience Royale du 19 Février", desc:"Regardez l'intégralité de la première audience royale de Sa Majesté Masambukidi Premier — un moment historique.", date:"2026-02-27", source:"youtube", ytId:"0FPaNunCb5g", badge:"VIDÉO OFFICIELLE", link:"https://www.youtube.com/watch?v=0FPaNunCb5g" },
+    { id:'n5', title:"Enseignement du 01 Février 2026", desc:"5.3K vues — Grand enseignement de Sa Majesté Masambukidi 1er sur la royauté divine et les valeurs du peuple Kongo.", date:"2026-02-06", source:"youtube", ytId:"kKZs_4PdJX8", badge:"ENSEIGNEMENT", link:"https://www.youtube.com/watch?v=kKZs_4PdJX8" },
+    { id:'n6', title:"Intronisation Historique — 30 Octobre 2025", desc:"Le 30 octobre 2025, Kinshasa a vu s'accomplir une prophétie ancienne : l'intronisation de Papa Samuel Masambukidi, Roi Divin du Bassin du Congo.", date:"2025-11-01", source:"facebook", img:"papa_masambukidi_intronisation_2021.jpg", badge:"ÉVÉNEMENT HISTORIQUE", link:"https://www.facebook.com/Artistamboka/videos/un-nuit-un-tr%C3%B4ne-un-peuple/1387323356068899/" },
+    { id:'n7', title:"Sa Majesté Masambukidi Samuel 1er — Roi Kongo", desc:"Intronisation et couronnement officiel comme Roi du Bassin du Congo. La province du Kongo Central remet ses attributs ancestraux.", date:"2025-10-31", source:"youtube", ytId:"ln-PIfsBddM", badge:"COURONNEMENT", link:"https://www.youtube.com/watch?v=ln-PIfsBddM" },
+    { id:'n8', title:"Audience avec le Roi de Machina — Soudan", desc:"Sa Majesté reçoit le Roi Bashir Albishir Bujard, Émir de Machina. Un échange diplomatique royal de haute importance.", date:"2025-11-05", source:"facebook", img:"masambukidi_ceremonie_1.jpg", badge:"DIPLOMATIE", link:"https://www.facebook.com/100063885199823/posts/rdc-le-mardi-4-novembre-2025-sa-majest%C3%A9-masambukidi-samuel-1er-roi-divin-du-bass/1295309939275167/" },
+    { id:'n9', title:"Message du 20 Juillet 2025 au Temple Central", desc:"Message de Papa Masambukidi du dimanche 20 juillet 2025. Un appel à la sincérité et à l'authenticité spirituelle.", date:"2025-07-21", source:"facebook", img:"masambukidi_ceremonie_2.jpg", badge:"MESSAGE", link:"https://www.facebook.com/masambukidi/posts/message-de-papa-masambukidi-du-dimanche-20-juillet-2025-au-temple-central-de-la-/731795069595547/" },
+    { id:'n10', title:"Parole Révélatrice — 1er Janvier 2025 à Paris", desc:"Message prophétique du 1er janvier 2025 à Paris. 7.6K vues sur YouTube.", date:"2025-01-01", source:"youtube", ytId:"ztcKv-6T2wE", badge:"PROPHÉTIE", link:"https://www.youtube.com/watch?v=ztcKv-6T2wE" }
+];
+
+const VIDEOS = [
+    { id:'v1', ytId:"inpRzkJT_w8", title:"Vive le 06 Mars 2026", views:"1.6K", date:"2026-03-06" },
+    { id:'v2', ytId:"4x-O7A8VgUQ", title:"Culte du 01 Mars 2026 — DIRECT", views:"LIVE", date:"2026-03-01" },
+    { id:'v3', ytId:"0FPaNunCb5g", title:"Audience Royale du 19 Février 2026", views:"131", date:"2026-02-27" },
+    { id:'v4', ytId:"kKZs_4PdJX8", title:"Enseignement du 01 Février 2026", views:"5.3K", date:"2026-02-06" },
+    { id:'v5', ytId:"STrUJJibrWE", title:"THE CONGO BASIN: Message of King Samuel Masambukidi", views:"6.3K", date:"2025-10-31" },
+    { id:'v6', ytId:"ln-PIfsBddM", title:"Sa Majesté Samuel Masambukidi 1er Roi Kongo", views:"1.4K", date:"2025-10-31" },
+    { id:'v7', ytId:"fRET76mg5Z8", title:"Message Culte Solennel 09 Mars 2025", views:"4.3K", date:"2025-03-25" },
+    { id:'v8', ytId:"ztcKv-6T2wE", title:"Parole Révélatrice — 1er Janvier 2025 à Paris", views:"7.6K", date:"2025-01-01" },
+    { id:'v9', ytId:"Qs8-lkkXeJs", title:"Une Vie de Passion et des Mystères — 28 Avril 2025", views:"Populaire", date:"2025-04-25" },
+    { id:'v10', ytId:"34svIRivQiE", title:"Le Pouvoir Politique de Masambukidi — Fév 2025", views:"2.6K", date:"2025-02-02" }
+];
+
+const GALLERY = [
+    {file:'papa_samy_fondateur_jeune.jpg', cap:'Papa Samy Masambukidi — Père Fondateur'},
+    {file:'sa_majeste_samuel_6_couronnement.jpg', cap:'Couronnement Royal'},
+    {file:'sa_majeste_samuel_1.jpg', cap:'Sa Majesté Samuel 1er'},
+    {file:'sa_majeste_samuel_2.jpg', cap:'Portrait Officiel'},
+    {file:'sa_majeste_samuel_3.jpg', cap:'Cérémonie Royale'},
+    {file:'sa_majeste_samuel_4.jpg', cap:'Moments Royaux'},
+    {file:'sa_majeste_samuel_5.jpg', cap:'Sa Majesté en prière'},
+    {file:'papa_masambukidi_couronne.jpg', cap:'Portrait Couronné'},
+    {file:'papa_masambukidi_cover.jpg', cap:'Photo de Couverture'},
+    {file:'papa_masambukidi_ambassadeur_paix.jpg', cap:'Ambassadeur de Paix'},
+    {file:'papa_masambukidi_intronisation_2021.jpg', cap:'Intronisation 2021'},
+    {file:'papa_masambukidi_ii_portrait.jpg', cap:'Papa Masambukidi II'},
+    {file:'papa_masambukidi_parcours_photo.jpg', cap:'Parcours Royal'},
+    {file:'papa_masambukidi_predication_2020.jpg', cap:'Prédication 2020'},
+    {file:'papa_samy_masambukidi_1_fondateur.jpg', cap:'Papa Samy — Fondateur'},
+    {file:'papa_samy_photo_officielle.jpg', cap:'Photo Officielle'},
+    {file:'papa_samy_kulala_kwamakanda.jpg', cap:'Kulala Kwamakanda'},
+    {file:'masambukidi_ceremonie_1.jpg', cap:'Cérémonie Historique'},
+    {file:'masambukidi_ceremonie_2.jpg', cap:'Cérémonie 2'},
+    {file:'masambukidi_ceremonie_3.jpg', cap:'Cérémonie 3'}
+];
+
+// ===================================================
+// STORAGE
+// ===================================================
+const K = {C:'mbs_custom', L:'mbs_likes', CO:'mbs_comments'};
+const getCustom=()=>{ try{return JSON.parse(localStorage.getItem(K.C)||'[]')}catch{return[]} };
+const saveCustom=a=>localStorage.setItem(K.C,JSON.stringify(a));
+const getLikes=id=>{ try{return(JSON.parse(localStorage.getItem(K.L)||'{}'))[id]||0}catch{return 0} };
+const isLiked=id=>!!localStorage.getItem('mbs_lk_'+id);
+function toggleLike(id){
+    const k='mbs_lk_'+id, ls=JSON.parse(localStorage.getItem(K.L)||'{}');
+    if(localStorage.getItem(k)){ls[id]=Math.max(0,(ls[id]||1)-1);localStorage.removeItem(k);}
+    else{ls[id]=(ls[id]||0)+1;localStorage.setItem(k,'1');}
+    localStorage.setItem(K.L,JSON.stringify(ls));
+}
+const getCmts=id=>{ try{return(JSON.parse(localStorage.getItem(K.CO)||'{}'))[id]||[]}catch{return[]} };
+function addCmt(id,txt){
+    const all=JSON.parse(localStorage.getItem(K.CO)||'{}');
+    if(!all[id])all[id]=[];
+    const c={id:Date.now(),txt,author:'Fidèle',date:new Date().toISOString()};
+    all[id].push(c); localStorage.setItem(K.CO,JSON.stringify(all)); return c;
+}
+
+// ===================================================
+// UTILS
+// ===================================================
+function ago(d){
+    const s=Math.floor((Date.now()-new Date(d))/1000);
+    if(s<60)return"À l'instant";
+    if(s<3600)return`Il y a ${Math.floor(s/60)} min`;
+    if(s<86400)return`Il y a ${Math.floor(s/3600)}h`;
+    if(s<604800)return`Il y a ${Math.floor(s/86400)}j`;
+    return new Date(d).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+}
+function ytThumb(id){return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;}
+function srcBadge(s){
+    const m={youtube:'<span class="src-badge src-yt"><i class="fab fa-youtube"></i> YouTube</span>',facebook:'<span class="src-badge src-fb"><i class="fab fa-facebook-f"></i> Facebook</span>',instagram:'<span class="src-badge src-ig"><i class="fab fa-instagram"></i> Instagram</span>',web:'<span class="src-badge src-web"><i class="fas fa-globe"></i> Web</span>'};
+    return m[s]||m.web;
+}
+function cmtsHTML(id){
+    return getCmts(id).map(c=>`<div class="cmt-item"><div class="cmt-author"><i class="fas fa-user-circle"></i> ${c.author}</div><div class="cmt-text">${c.txt}</div><div class="cmt-time">${ago(c.date)}</div></div>`).join('');
+}
+function actionsHTML(id){
+    const lk=isLiked(id), cnt=getLikes(id), cc=getCmts(id).length;
+    return `<div class="card-acts">
+        <button class="act-btn ${lk?'liked':''}" onclick="doLike('${id}',this)"><i class="${lk?'fas':'far'} fa-heart"></i> ${cnt}</button>
+        <button class="act-btn" onclick="toggleCmt('${id}')"><i class="far fa-comment"></i> ${cc}</button>
+    </div>
+    <div class="cmt-section hidden" id="cmt-${id}">
+        <div class="cmt-form"><input class="cmt-inp" placeholder="Votre commentaire..." id="ci-${id}"><button class="cmt-send" onclick="doCmt('${id}')"><i class="fas fa-paper-plane"></i></button></div>
+        <div class="cmt-list">${cmtsHTML(id)}</div>
+    </div>`;
+}
+
+// ===================================================
+// RENDER NEWS
+// ===================================================
+function renderNews(){
+    const custom=getCustom().map(n=>({...n,isCustom:true}));
+    const all=[...custom,...NEWS_OFFICIELLES].sort((a,b)=>new Date(b.date)-new Date(a.date));
+    document.getElementById('news-grid').innerHTML=all.map(item=>{
+        let media='';
+        if(item.ytId){
+            media=`<div class="yt-wrap" onclick="openVid('${item.ytId}')"><img src="${ytThumb(item.ytId)}" alt="${item.title}" loading="lazy"><div class="yt-over"><div class="yt-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="white"/></svg></div></div></div>`;
+        }else if(item.img||item.mediaUrl){
+            const src=item.img||item.mediaUrl;
+            media=`<div class="img-wrap"><img src="${src}" alt="${item.title}" loading="lazy" onclick="openLbox('${src}','${item.title}')"></div>`;
+        }
+        const lnk=item.link||(item.ytId?`https://www.youtube.com/watch?v=${item.ytId}`:'#');
+        return `<div class="nc fi">
+            ${item.badge?`<div class="nc-badge">${item.badge}</div>`:''}
+            ${media}
+            <div class="nc-body">
+                <div class="nc-meta">${srcBadge(item.source)}<span class="nc-date"><i class="far fa-clock"></i> ${ago(item.date)}</span></div>
+                <h3 class="nc-title">${item.title}</h3>
+                <p class="nc-desc">${item.desc||item.description||''}</p>
+                ${lnk!='#'?`<a href="${lnk}" target="_blank" class="nc-link"><i class="fas fa-external-link-alt"></i> Voir l'article</a>`:''}
+                ${actionsHTML(item.id)}
+            </div>
+        </div>`;
+    }).join('');
+    observeFi();
+}
+
+// ===================================================
+// RENDER CALENDRIER
+// ===================================================
+function renderCalendrier(){
+    const now=new Date();
+    const todayM=now.getMonth()+1, todayD=now.getDate();
+    document.getElementById('calendar-grid').innerHTML=DATES_IMPORTANTES.map(d=>{
+        const isToday=(d.month===todayM && d.day===todayD);
+        const diff=daysUntil(d.month,d.day);
+        const ctd=isToday?'today-active':'';
+        return `<div class="cal-card fi ${ctd}">
+            <div class="cal-header">
+                <div class="cal-date-badge" style="${d.color?`background:${d.color};color:${d.color==='#FFD700'?'#050d06':'white'}`:''}">📅 ${d.badge}</div>
+                ${isToday?'<div class="cal-today-badge">🎉 AUJOURD\'HUI</div>':''}
+            </div>
+            <div class="cal-body">
+                <span class="cal-emoji">${d.emoji}</span>
+                <div class="cal-name">${d.name}</div>
+                <p class="cal-desc">${d.desc}</p>
+                <div class="cal-countdown">
+                    ${isToday
+                        ? '<i class="fas fa-star" style="color:var(--gold2)"></i> <strong style="color:var(--gold2)">C\'est aujourd\'hui ! 🎉</strong>'
+                        : diff===0
+                            ? '<i class="fas fa-star" style="color:var(--gold2)"></i> Aujourd\'hui !'
+                            : `<i class="far fa-clock"></i> Dans ${diff} jour${diff>1?'s':''}`
+                    }
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+    observeFi();
+}
+
+function daysUntil(m,d){
+    const now=new Date();
+    let target=new Date(now.getFullYear(),m-1,d);
+    if(target<now && !(target.getMonth()===now.getMonth()&&target.getDate()===now.getDate())) target=new Date(now.getFullYear()+1,m-1,d);
+    const diff=Math.round((target-now)/(1000*60*60*24));
+    return diff<0?0:diff;
+}
+
+// ===================================================
+// RENDER VIDEOS
+// ===================================================
+function renderVideos(){
+    document.getElementById('videos-grid').innerHTML=VIDEOS.map(v=>`
+        <div class="nc fi">
+            <div class="nc-badge">${v.views} vues</div>
+            <div class="yt-wrap" onclick="openVid('${v.ytId}')">
+                <img src="${ytThumb(v.ytId)}" alt="${v.title}" loading="lazy">
+                <div class="yt-over"><div class="yt-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="white"/></svg></div></div>
+            </div>
+            <div class="nc-body">
+                <div class="nc-meta"><span class="src-badge src-yt"><i class="fab fa-youtube"></i> YouTube</span><span class="nc-date"><i class="far fa-clock"></i> ${ago(v.date)}</span></div>
+                <h3 class="nc-title">${v.title}</h3>
+                <a href="https://www.youtube.com/watch?v=${v.ytId}" target="_blank" class="nc-link"><i class="fab fa-youtube"></i> Voir sur YouTube</a>
+                ${actionsHTML(v.id)}
+            </div>
+        </div>`).join('');
+    observeFi();
+}
+
+// ===================================================
+// RENDER GALLERY
+// ===================================================
+function renderGallery(){
+    document.getElementById('gal-grid').innerHTML=GALLERY.map(g=>`
+        <div class="gal-item fi" onclick="openLbox('${g.file}','${g.cap}')">
+            <img src="${g.file}" alt="${g.cap}" loading="lazy">
+            <div class="gal-ov"><div class="gal-cap"><i class="fas fa-expand-alt"></i> ${g.cap}</div></div>
+        </div>`).join('');
+    observeFi();
+}
+
+// ===================================================
+// TABS
+// ===================================================
+function showTab(name, btn){
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+name).classList.add('active');
+    document.querySelectorAll('.tp').forEach(b=>b.classList.remove('active'));
+    const tp=document.getElementById('tp-'+name);
+    if(tp)tp.classList.add('active');
+    document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+    if(btn&&btn.classList&&btn.classList.contains('nb'))btn.classList.add('active');
+}
+
+// ===================================================
+// ACTIONS
+// ===================================================
+function doLike(id,btn){
+    toggleLike(id);
+    const lk=isLiked(id), cnt=getLikes(id);
+    btn.className=`act-btn ${lk?'liked':''}`;
+    btn.innerHTML=`<i class="${lk?'fas':'far'} fa-heart"></i> ${cnt}`;
+    showToast(lk?'❤️ Aimé !':'💔 Retiré');
+}
+function toggleCmt(id){document.getElementById('cmt-'+id).classList.toggle('hidden');}
+function doCmt(id){
+    const inp=document.getElementById('ci-'+id);
+    const txt=inp.value.trim(); if(!txt)return;
+    const c=addCmt(id,txt); inp.value='';
+    const list=document.querySelector(`#cmt-${id} .cmt-list`);
+    list.innerHTML+=`<div class="cmt-item"><div class="cmt-author"><i class="fas fa-user-circle"></i> ${c.author}</div><div class="cmt-text">${c.txt}</div><div class="cmt-time">À l'instant</div></div>`;
+    list.scrollTop=list.scrollHeight; showToast('💬 Commentaire ajouté !');
+}
+
+// ===================================================
+// MODALS
+// ===================================================
+function openVid(ytId){
+    document.getElementById('yt-frame').src=`https://www.youtube.com/embed/${ytId}?autoplay=1`;
+    document.getElementById('vmod').classList.add('open');
+    document.body.style.overflow='hidden';
+}
+function closeVid(e){
+    if(e&&e.target&&e.target!==document.getElementById('vmod')&&e.target!=='x')return;
+    document.getElementById('yt-frame').src='';
+    document.getElementById('vmod').classList.remove('open');
+    document.body.style.overflow='';
+}
+function openLbox(src,cap){
+    document.getElementById('lbox-img').src=src;
+    document.getElementById('lbox-cap').textContent=cap||'';
+    document.getElementById('lbox').classList.add('open');
+    document.body.style.overflow='hidden';
+}
+function closeLbox(e){
+    if(e&&e.target&&e.target!==document.getElementById('lbox')&&e.target!=='x')return;
+    document.getElementById('lbox').classList.remove('open');
+    document.body.style.overflow='';
+}
+
+// ===================================================
+// ADD FORM
+// ===================================================
+document.getElementById('fab-btn').addEventListener('click',()=>{
+    const f=document.getElementById('add-form');
+    f.classList.toggle('hidden');
+    if(!f.classList.contains('hidden'))f.scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('cancel-btn').addEventListener('click',()=>{
+    document.getElementById('add-form').classList.add('hidden');
+    document.getElementById('news-form').reset();
+});
+document.getElementById('news-form').addEventListener('submit',e=>{
+    e.preventDefault();
+    const title=document.getElementById('f-title').value.trim();
+    const desc=document.getElementById('f-desc').value.trim();
+    const type=document.getElementById('f-type').value;
+    const url=document.getElementById('f-url').value.trim();
+    const source=document.getElementById('f-source').value;
+    let item={id:'c_'+Date.now(),title,desc,date:new Date().toISOString(),source};
+    if(type==='youtube'&&url){const m=url.match(/(?:v=|youtu\.be\/)([^&\s]+)/);if(m)item.ytId=m[1];}
+    else if(url){item.img=url;item.link=url;}
+    const arr=getCustom(); arr.unshift(item); saveCustom(arr);
+    renderNews();
+    document.getElementById('add-form').classList.add('hidden');
+    document.getElementById('news-form').reset();
+    showToast('✅ Actualité publiée !');
+});
+
+// ===================================================
+// FADE-IN
+// ===================================================
+function observeFi(){
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:0.08});
+    document.querySelectorAll('.fi:not(.vis)').forEach(el=>obs.observe(el));
+}
+
+// ===================================================
+// TOAST
+// ===================================================
+function showToast(msg){
+    const el=document.getElementById('toast');
+    el.textContent=msg; el.classList.add('show');
+    setTimeout(()=>el.classList.remove('show'),2500);
+}
+
+// ===================================================
+// NOTIFICATIONS INTELLIGENTES
+// ===================================================
+function checkNotifications(){
+    const now=new Date();
+    const m=now.getMonth()+1, d=now.getDate(), dow=now.getDay();
+    const h=now.getHours();
+    let notif=null;
+
+    // Aujourd'hui = date importante
+    for(const date of DATES_IMPORTANTES){
+        if(date.month===m && date.day===d){
+            notif={icon:date.emoji, title:`🎉 Aujourd'hui — ${date.badge}`, msg:date.name};
+            break;
+        }
+    }
+
+    // Demain = date importante
+    if(!notif){
+        const tom=new Date(now); tom.setDate(tom.getDate()+1);
+        const tm=tom.getMonth()+1, td=tom.getDate();
+        for(const date of DATES_IMPORTANTES){
+            if(date.month===tm && date.day===td){
+                notif={icon:'⏰', title:`Rappel — Demain : ${date.badge}`, msg:date.name};
+                break;
+            }
+        }
+    }
+
+    // Rappel culte Paris — Dimanche (dow=0) à h>=13
+    if(!notif && dow===0 && h>=13 && h<=15){
+        notif={icon:'⛪', title:'Culte Paris ce soir !', msg:'Dimanche 15h30 — 47 Bd de la Muette, Garges-lès-Gonesse'};
+    }
+
+    // Rappel culte Kinshasa — Dimanche matin
+    if(!notif && dow===0 && h>=7 && h<=9){
+        notif={icon:'⛪', title:'Culte Kinshasa ce matin !', msg:'Dimanche 9h30 — Avenue Mbandaka n°40, Kimbanseke'};
+    }
+
+    // Rappel culte Kinshasa — Mercredi (dow=3)
+    if(!notif && dow===3 && h>=14 && h<=16){
+        notif={icon:'⛪', title:'Culte Kinshasa cet après-midi !', msg:'Mercredi 16h00 — Avenue Mbandaka n°40, Kimbanseke'};
+    }
+
+    // Rappel culte Kinshasa — Vendredi (dow=5)
+    if(!notif && dow===5 && h>=14 && h<=16){
+        notif={icon:'⛪', title:'Culte Kinshasa cet après-midi !', msg:'Vendredi 16h00 — Avenue Mbandaka n°40, Kimbanseke'};
+    }
+
+    if(notif){
+        const shown=sessionStorage.getItem('notif_shown');
+        if(!shown){
+            document.getElementById('notif-icon').textContent=notif.icon;
+            document.getElementById('notif-title').textContent=notif.title;
+            document.getElementById('notif-msg').textContent=notif.msg;
+            document.getElementById('notif-sys-banner').classList.add('show');
+            sessionStorage.setItem('notif_shown','1');
+            setTimeout(()=>document.getElementById('notif-sys-banner').classList.remove('show'),8000);
+        }
+    }
+
+    // Demande permission notifications navigateur
+    if('Notification' in window && Notification.permission==='default'){
+        setTimeout(()=>Notification.requestPermission(),3000);
+    }
+    if('Notification' in window && Notification.permission==='granted' && notif){
+        try{new Notification(notif.title,{body:notif.msg,icon:'elucco_logo_officiel.png'});}catch(e){}
+    }
+}
+
+// ===================================================
+// KEYBOARD ESC
+// ===================================================
+document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){closeVid({target:document.getElementById('vmod')});closeLbox({target:document.getElementById('lbox')});}
+});
+
+// ===================================================
+// INIT
+// ===================================================
+window.addEventListener('DOMContentLoaded',()=>{
+    renderNews();
+    renderCalendrier();
+    renderVideos();
+    renderGallery();
+    observeFi();
+    checkNotifications();
+
+    // Masquer loader
+    setTimeout(()=>{
+        document.getElementById('loader').classList.add('out');
+        setTimeout(()=>document.getElementById('loader').remove(),700);
+    },1400);
+});
+</script>
+</body>
+</html>
