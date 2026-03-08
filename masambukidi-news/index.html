@@ -515,6 +515,7 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
 .badge-video{background:rgba(255,0,0,0.85);color:white}
 .badge-news{background:rgba(201,168,76,0.9);color:var(--dark)}
 .badge-royal{background:linear-gradient(135deg,#2d7d2d,#4caf50);color:white}
+.badge-gallery{background:linear-gradient(135deg,#7d2d7d,#b04cb0);color:white}
 .news-play-btn{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   background:rgba(0,0,0,0.3);opacity:0;transition:opacity 0.3s;
@@ -707,6 +708,20 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
   transition:all 0.3s;font-family:var(--font-ui);
 }
 .gallery-item:hover .gallery-caption{opacity:1;transform:translateY(0)}
+/* Gallery post-to-news button */
+.gallery-post-btn{
+  position:absolute;top:10px;right:10px;
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(201,168,76,0.85);
+  color:var(--dark);font-size:0.85rem;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(0.8);
+  transition:all 0.25s ease;
+  z-index:3;box-shadow:0 2px 10px rgba(0,0,0,0.4);
+  border:none;cursor:pointer;
+}
+.gallery-item:hover .gallery-post-btn{opacity:1;transform:scale(1)}
+.gallery-post-btn:hover{background:var(--gold-light);transform:scale(1.1)!important;box-shadow:0 4px 20px rgba(201,168,76,0.5)}
 
 /* Lightbox */
 #lightbox{
@@ -1281,6 +1296,24 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
   <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)"><i class="fas fa-chevron-right"></i></button>
 </div>
 
+<!-- WELCOME MODAL (pour nouveaux visiteurs) -->
+<div id="welcome-modal" style="display:none;position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;">
+  <div style="background:linear-gradient(135deg,#0d1a0d 0%,#0a0a1a 60%,#1a1000 100%);border:1px solid rgba(201,168,76,0.4);border-radius:24px;padding:40px 36px;max-width:480px;width:90%;text-align:center;box-shadow:0 0 60px rgba(201,168,76,0.2),0 20px 80px rgba(0,0,0,0.8);animation:zoomIn 0.4s ease;position:relative">
+    <div style="position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 20px rgba(201,168,76,0.5)">✦</div>
+    <img src="elucco_logo_officiel.png" alt="ELUCCO" style="width:70px;height:70px;object-fit:contain;margin:10px auto 16px;filter:drop-shadow(0 0 20px rgba(201,168,76,0.5));display:block">
+    <h2 style="font-family:var(--font-title);color:var(--gold);font-size:1.6rem;letter-spacing:4px;margin-bottom:8px">ELUCCO</h2>
+    <div style="color:rgba(255,255,255,0.5);font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px">Eglise Lumiere du Christ au Congo</div>
+    <div style="width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 20px"></div>
+    <p id="welcome-modal-greeting" style="color:var(--white);font-size:1.1rem;font-style:italic;line-height:1.7;margin-bottom:10px">Bienvenue, Masambukidiste !</p>
+    <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.6;margin-bottom:24px">Vous visitez le site officiel de <strong style="color:var(--gold)">Sa Majeste Masambukidi Samuel I</strong>, Roi Divin du Bassin du Kongo.</p>
+    <div id="welcome-modal-date-msg" style="background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:12px 16px;margin-bottom:24px;color:var(--gold);font-size:0.85rem;display:none"></div>
+    <button onclick="closeWelcomeModal()" style="width:100%;padding:14px;border-radius:50px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--dark);font-family:var(--font-ui);font-weight:700;font-size:0.85rem;letter-spacing:2px;cursor:pointer;border:none;transition:all 0.2s;box-shadow:0 4px 20px rgba(201,168,76,0.4)">
+      ENTRER SUR LE SITE ✦
+    </button>
+    <p style="color:rgba(255,255,255,0.2);font-size:0.7rem;margin-top:12px">Ce message s'affiche une fois par jour</p>
+  </div>
+</div>
+
 <!-- INSTALL BANNER -->
 <div id="install-banner">
   <img src="elucco_logo_officiel.png" alt="ELUCCO" class="install-logo">
@@ -1462,7 +1495,12 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
     <div class="tab-panel" id="tab-galerie">
       <div class="section-header" style="margin-bottom:30px">
         <span class="section-eyebrow">Galerie Officielle</span>
-        <p style="color:rgba(255,255,255,0.5);font-size:0.9rem">Photos officielles de Sa Majeste et des ceremonies</p>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.9rem">Photos officielles de Sa Majeste et des ceremonies — Cliquez sur une photo pour l'agrandir ou la partager dans les actualites</p>
+      </div>
+      <!-- Gallery notification -->
+      <div id="gallery-notif" style="background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05));border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 20px;margin-bottom:24px;align-items:center;gap:12px;animation:fadeInUp 0.4s ease;display:none">
+        <i class="fas fa-images" style="color:var(--gold);font-size:1.2rem;flex-shrink:0"></i>
+        <span style="color:rgba(255,255,255,0.8);font-size:0.85rem"><strong style="color:var(--gold)">Nouveau !</strong> Cliquez sur l'icone <i class="fas fa-share-nodes" style="color:var(--gold)"></i> sur chaque photo pour la publier dans les Actualites.</span>
       </div>
       <div class="gallery-masonry" id="gallery-grid"></div>
     </div>
@@ -1694,14 +1732,21 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
 
   <!-- SUBSCRIPTION -->
   <div class="subscribe-section fade-in">
+    <div style="text-align:center;margin-bottom:10px">
+      <span style="font-size:2rem">✉️</span>
+    </div>
     <h2 class="sub-title">Restez Connecte a ELUCCO</h2>
-    <p class="sub-desc">Inscrivez-vous pour recevoir les actualites, les rappels de culte et les notifications des dates sacrees directement dans votre boite mail.</p>
+    <p class="sub-desc">Inscrivez-vous pour recevoir un <strong style="color:var(--gold)">email de bienvenue personnalise</strong>, les actualites, les rappels de culte et les notifications des dates sacrees directement dans votre boite mail.</p>
+    <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;margin-bottom:20px;text-align:center"><i class="fas fa-shield-alt" style="color:var(--gold)"></i> Vos donnees sont protegees. Desinscription possible a tout moment.</p>
     <form class="sub-form" onsubmit="handleSubscribe(event)">
-      <input type="text" class="sub-input" id="sub-firstname" placeholder="Votre prenom (optionnel)">
-      <input type="email" class="sub-input" id="sub-email" placeholder="Votre adresse email" required>
-      <button type="submit" class="sub-btn"><i class="fas fa-paper-plane"></i> S'abonner</button>
+      <input type="text" class="sub-input" id="sub-firstname" placeholder="Votre prenom (ex: Jean-Pierre)">
+      <input type="email" class="sub-input" id="sub-email" placeholder="Votre adresse email *" required>
+      <button type="submit" class="sub-btn"><i class="fas fa-paper-plane"></i> Recevoir mon email de bienvenue</button>
     </form>
     <div class="sub-status" id="sub-status"></div>
+    <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;text-align:center;margin-top:14px">
+      <i class="fas fa-envelope" style="color:var(--gold)"></i> Apres inscription, vous recevrez : <strong style="color:rgba(255,255,255,0.5)">"Bienvenue a toi, [prenom] Masambukidiste !"</strong> avec les dates sacrees, les horaires de culte et le lien vers le site.
+    </p>
   </div>
 </div>
 
@@ -1824,22 +1869,88 @@ function initSplash(){
     checkMarchBanner();
     checkNotifPermission();
     checkFeastNotifications();
+    setTimeout(showWelcomeModal,800);
   },3000);
 }
 
 /* ═══════════════════════════════════════════════
    MARCH BANNER
 ═══════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════
+   DATE-SPECIFIC BANNERS
+═══════════════════════════════════════════════ */
+const DATE_BANNERS = [
+  {
+    id:'banner-mars6',
+    check:(m,d)=>m===3&&d>=5&&d<=8,
+    html:`<div class="march-hearts">✦ 🌿 ✦</div>
+    <div class="march-title">VIVE LE 6 MARS — BONNE FETE A TOUTE LA COMMUNAUTE MASAMBUKIDISTE DANS LE MONDE ENTIER !</div>
+    <div class="march-sub">Naissance de Papa Samy Masambukidi — Etre Divin Fondateur d'ELUCCO &middot; 6 Mars 1958</div>`,
+    style:'background:linear-gradient(270deg,#0d2a0d,#1a4a1a,#2d7d2d,#1a4a1a,#0d2a0d);border-bottom:2px solid #c9a84c;border-top:2px solid #c9a84c;'
+  },
+  {
+    id:'banner-juillet30',
+    check:(m,d)=>m===7&&d>=28&&d<=31,
+    html:`<div class="march-hearts">👑 ✦ 👑</div>
+    <div class="march-title">VIVE SA MAJESTE ! BONNE FETE D'ANNIVERSAIRE A SA MAJESTE MASAMBUKIDI SAMUEL I !</div>
+    <div class="march-sub">Naissance de Sa Majeste Samuel I — Roi Divin du Bassin du Kongo &middot; 30 Juillet</div>`,
+    style:'background:linear-gradient(270deg,#2a0d0d,#4a1a1a,#7d2d2d,#4a1a1a,#2a0d0d);border-bottom:2px solid #f0d060;border-top:2px solid #f0d060;'
+  },
+  {
+    id:'banner-octobre20',
+    check:(m,d)=>m===10&&d>=19&&d<=21,
+    html:`<div class="march-hearts">✦ 🙏 ✦</div>
+    <div class="march-title">VIVE LE 20 OCTOBRE — DATE SACREE ELUCCO !</div>
+    <div class="march-sub">Date importante de l'Eglise Lumiere du Christ au Congo</div>`,
+    style:'background:linear-gradient(270deg,#0d1a2a,#1a2a4a,#2a3d7d,#1a2a4a,#0d1a2a);border-bottom:2px solid #c9a84c;border-top:2px solid #c9a84c;'
+  },
+  {
+    id:'banner-octobre30',
+    check:(m,d)=>m===10&&d>=28&&d<=31,
+    html:`<div class="march-hearts">👑 ✦ 🎺</div>
+    <div class="march-title">VIVE LE 30 OCTOBRE — ANNIVERSAIRE DE L'INTRONISATION DE SA MAJESTE !</div>
+    <div class="march-sub">Debut de l'Oeuvre Sacerdotale — Intronisation de Sa Majeste Masambukidi Samuel I &middot; 2025</div>`,
+    style:'background:linear-gradient(270deg,#2a1a00,#4a3000,#7d5000,#4a3000,#2a1a00);border-bottom:2px solid #f0d060;border-top:2px solid #f0d060;'
+  },
+  {
+    id:'banner-janvier11',
+    check:(m,d)=>m===1&&d>=10&&d<=12,
+    html:`<div class="march-hearts">✦ ✝ ✦</div>
+    <div class="march-title">VIVE LE 11 JANVIER — DATE SACREE ELUCCO !</div>
+    <div class="march-sub">Date sainte de l'Eglise Lumiere du Christ au Congo</div>`,
+    style:'background:linear-gradient(270deg,#0d0d2a,#1a1a4a,#2d2d7d,#1a1a4a,#0d0d2a);border-bottom:2px solid #c9a84c;border-top:2px solid #c9a84c;'
+  },
+];
+
 function checkMarchBanner(){
   const now=new Date();
   const m=now.getMonth()+1;
   const d=now.getDate();
-  const banner=document.getElementById('march-banner');
-  if(!banner) return;
-  // Show on March 5, 6, 7 (around the celebration)
-  if(m===3 && (d>=5 && d<=7)){
-    banner.classList.add('show');
-    createParticles();
+  // Remove any existing banners first
+  document.querySelectorAll('.date-banner-dynamic').forEach(b=>b.remove());
+  // Find the matching banner
+  const matched=DATE_BANNERS.find(b=>b.check(m,d));
+  if(matched){
+    // Also show the original march banner if it's the march one
+    const origBanner=document.getElementById('march-banner');
+    if(origBanner && m===3 && d>=5 && d<=8){
+      origBanner.classList.add('show');
+      createParticles();
+    } else {
+      // Create a new dynamic banner before notif-bar
+      const bannerEl=document.createElement('div');
+      bannerEl.className='date-banner-dynamic show';
+      bannerEl.id=matched.id;
+      bannerEl.style.cssText=`position:relative;${matched.style}padding:16px 20px;text-align:center;overflow:hidden;z-index:200;animation:slideDown 0.6s ease,marchBanner 4s ease infinite;background-size:400% 400%;`;
+      bannerEl.innerHTML=matched.html+'<div class="march-particles" id="dynamic-particles"></div>';
+      const notifBar=document.getElementById('notif-bar');
+      if(notifBar) notifBar.parentNode.insertBefore(bannerEl,notifBar);
+      else document.body.prepend(bannerEl);
+      createParticles();
+    }
+  } else if(m===3 && d>=5 && d<=8){
+    const banner=document.getElementById('march-banner');
+    if(banner){banner.classList.add('show');createParticles();}
   }
 }
 
@@ -1857,6 +1968,46 @@ function createParticles(){
     p.style.animationDuration=(2+Math.random()*3)+'s';
     container.appendChild(p);
   }
+}
+
+/* ═══════════════════════════════════════════════
+   WELCOME MODAL
+═══════════════════════════════════════════════ */
+function showWelcomeModal(){
+  const lastSeen=getLS('elucco_welcome_seen','');
+  const today=new Date().toDateString();
+  if(lastSeen===today) return;
+  const modal=document.getElementById('welcome-modal');
+  if(!modal) return;
+  const hour=new Date().getHours();
+  let greeting='Bienvenue, Masambukidiste !';
+  if(hour<6) greeting='Bonne nuit, Masambukidiste ! 🌙';
+  else if(hour<12) greeting='Bonjour, Masambukidiste ! 🌞';
+  else if(hour<18) greeting='Bon apres-midi, Masambukidiste ! 🌝';
+  else greeting='Bonsoir, Masambukidiste ! 🌚';
+  const greetEl=document.getElementById('welcome-modal-greeting');
+  if(greetEl) greetEl.textContent=greeting;
+  const splashText=document.getElementById('splash-welcome-text');
+  if(splashText) splashText.textContent=greeting;
+  const now=new Date();const m=now.getMonth()+1;const d=now.getDate();
+  const dateMsg=document.getElementById('welcome-modal-date-msg');
+  let specialMsg='';
+  if(m===3&&d===6) specialMsg='✨ Aujourd\'hui est le 6 Mars — Anniversaire de Papa Samy Masambukidi ! Joyeuse fete a toute la communaute !';
+  else if(m===7&&d===30) specialMsg='👑 Joyeux anniversaire a Sa Majeste Masambukidi Samuel I ! Vive le Roi Divin !';
+  else if(m===10&&d===30) specialMsg='🎺 Vive l\'anniversaire de l\'Intronisation de Sa Majeste ! Loue soit le Seigneur !';
+  else if(m===10&&d===20) specialMsg='✨ Aujourd\'hui est une date sacree pour ELUCCO. Que la benediction soit sur vous !';
+  else if(m===1&&d===11) specialMsg='✝ Nous celebrons aujourd\'hui une date sainte d\'ELUCCO. Soyez benis !';
+  if(specialMsg&&dateMsg){dateMsg.textContent=specialMsg;dateMsg.style.display='block';}
+  modal.style.display='flex';
+}
+
+function closeWelcomeModal(){
+  const modal=document.getElementById('welcome-modal');
+  if(modal){
+    modal.style.opacity='0';modal.style.transition='opacity 0.4s ease';
+    setTimeout(()=>{modal.style.display='none';modal.style.opacity='';},400);
+  }
+  setLS('elucco_welcome_seen',new Date().toDateString());
 }
 
 /* ═══════════════════════════════════════════════
@@ -1930,9 +2081,9 @@ function renderNewsCard(item){
   const liked=getLS('liked_'+item.id,false);
   const thumbSrc=item.youtubeId
     ?`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`
-    :(item.img||'sa_majeste_trone_1.jpg');
-  const badgeClass=item.badge==='video'?'badge-video':item.badge==='royal'?'badge-royal':'badge-news';
-  const badgeLabel=item.badge==='video'?'Video':item.badge==='royal'?'Royal':'Actualite';
+    :(item.img||item.image||'sa_majeste_trone_1.jpg');
+  const badgeClass=item.badge==='video'?'badge-video':item.badge==='royal'?'badge-royal':item.fromGallery?'badge-gallery':'badge-news';
+  const badgeLabel=item.badge==='video'?'Video':item.badge==='royal'?'Royal':item.fromGallery?'Galerie':'Actualite';
   const watchBtn=item.youtubeId
     ?`<a href="https://www.youtube.com/watch?v=${item.youtubeId}" target="_blank" class="news-watch-btn"><i class="fab fa-youtube"></i> Regarder</a>`
     :'';
@@ -2075,17 +2226,56 @@ let lightboxIndex=0;
 function renderGallery(){
   const grid=document.getElementById('gallery-grid');
   if(!grid) return;
-  grid.innerHTML=GALLERY.map((item,i)=>`
-    <div class="gallery-item" onclick="openLightbox(${i})">
-      <img src="${item.src}" class="gallery-img" alt="${item.caption}" loading="lazy" onerror="this.parentElement.style.display='none'">
-      <div class="gallery-overlay">
+  // Show gallery notification hint
+  const notif=document.getElementById('gallery-notif');
+  if(notif) notif.style.display='flex';  grid.innerHTML=GALLERY.map((item,i)=>`
+    <div class="gallery-item" style="position:relative">
+      <img src="${item.src}" class="gallery-img" alt="${item.caption}" loading="lazy" onerror="this.parentElement.style.display='none'" onclick="openLightbox(${i})">
+      <div class="gallery-overlay" onclick="openLightbox(${i})">
         <div class="gallery-caption">${item.caption}</div>
       </div>
+      <button class="gallery-post-btn" onclick="postGalleryToNews(${i},event)" title="Publier dans les Actualites">
+        <i class="fas fa-share-nodes"></i>
+      </button>
     </div>`).join('');
 }
 
-function openLightbox(i){
-  lightboxIndex=i;
+/* ═══════════════════════════════════════════════
+   POST GALLERY IMAGE TO NEWS
+═══════════════════════════════════════════════ */
+function postGalleryToNews(idx, event){
+  event.stopPropagation();
+  const item = GALLERY[idx];
+  if(!item) return;
+  // Check if already posted
+  const posts = getLS('elucco_posts',[]);
+  const alreadyPosted = posts.some(p=>p.image===item.src && p.fromGallery);
+  if(alreadyPosted){
+    showToast('Cette photo est deja publiee dans les Actualites !','info');
+    return;
+  }
+  // Create a post from the gallery image
+  const newPost = {
+    id: 'gallery_'+Date.now(),
+    type: 'photo',
+    badge: 'royal',
+    title: item.caption,
+    desc: 'Extrait de la Galerie Officielle ELUCCO — Photo de Sa Majeste Masambukidi Samuel I.',
+    image: item.src,
+    date: new Date().toLocaleDateString('fr-FR'),
+    likes: 0,
+    comments: [],
+    fromGallery: true,
+  };
+  posts.unshift(newPost);
+  setLS('elucco_posts', posts);
+  renderNews();
+  showToast('Photo publiee dans les Actualites !','success');
+  // Switch to news tab to show it
+  setTimeout(()=>showTab('actualites'),600);
+}
+
+function openLightbox(i){  lightboxIndex=i;
   const lb=document.getElementById('lightbox');
   const img=document.getElementById('lightbox-img');
   if(!lb||!img) return;
@@ -2207,10 +2397,12 @@ async function handleSubscribe(e){
     const data=await resp.json();
     if(data.success){
       if(status){
-        status.textContent='Merci ! Un email de bienvenue vous a ete envoye. Verifiez votre boite mail (et vos spams).';
+        status.innerHTML='<i class="fas fa-check-circle" style="color:#4caf50;margin-right:6px"></i>Bienvenue '+
+          (firstName||'Masambukidiste')+'! Votre email de bienvenue a ete envoye a '+email+
+          '. Verifiez votre boite mail (et le dossier spam si necessaire).';
         status.className='sub-status success';
       }
-      showToast('Inscription reussie ! Email de bienvenue envoye.','success');
+      showToast('Bienvenue a toi, Masambukidiste ! Email de bienvenue envoye.','success');
       document.getElementById('sub-email').value='';
       if(document.getElementById('sub-firstname')) document.getElementById('sub-firstname').value='';
     } else {
