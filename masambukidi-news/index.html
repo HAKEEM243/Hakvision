@@ -533,7 +533,9 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
   font-family:var(--font-title);font-size:1rem;font-weight:600;
   color:var(--white);margin-bottom:10px;line-height:1.4;
 }
-.news-desc{font-size:0.88rem;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:16px}
+.news-desc{font-size:0.88rem;color:rgba(255,255,255,0.55);line-height:1.6;margin-bottom:16px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.news-desc.expanded{-webkit-line-clamp:unset;display:block}
+.read-more-btn{font-size:0.75rem;color:var(--gold);background:none;border:none;cursor:pointer;padding:0;margin-bottom:12px;font-family:var(--font-ui);font-weight:600;letter-spacing:0.5px;}
 .news-footer{
   display:flex;align-items:center;justify-content:space-between;
   padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);
@@ -1673,7 +1675,7 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
 
   <!-- QUOTE -->
   <div class="quote-section fade-in">
-    <blockquote>La lumiere du Christ illumine chaque coin du bassin du Kongo. Par la grace divine, ELUCCO porte ce flambeau sacre a travers les generations.</blockquote>
+    <blockquote>La lumiere <strong>MASAMBUKIDI</strong> illumine chaque coin du bassin du Kongo.</blockquote>
     <div class="quote-author">Papa Samy Masambukidi &mdash; Fondateur d'ELUCCO</div>
   </div>
 
@@ -1831,22 +1833,33 @@ const VIDEOS = [
 const GALLERY = [
   {src:'sa_majeste_trone_1.jpg',caption:'Sa Majeste sur le trone royal'},
   {src:'sa_majeste_trone_2.jpg',caption:'Sa Majeste — Portrait officiel'},
+  {src:'sa_majeste_samuel_6_couronnement.jpg',caption:'Couronnement de Sa Majeste — 30 Oct 2025'},
   {src:'sa_majeste_predication.jpg',caption:'Predication de Sa Majeste'},
   {src:'sa_majeste_debout.jpg',caption:'Sa Majeste en habit sacerdotal'},
+  {src:'sa_majeste_baton_leve.jpg',caption:'Benediction royale — Le baton leve'},
+  {src:'sa_majeste_benediction.jpg',caption:'Sa Majeste en meditation'},
   {src:'sa_majeste_procession_1.jpg',caption:'Procession royale'},
   {src:'sa_majeste_procession_2.jpg',caption:'Procession — Vue d\'ensemble'},
   {src:'sa_majeste_procession_3.jpg',caption:'Marche sur le tapis royal'},
-  {src:'sa_majeste_baton_leve.jpg',caption:'Benediction royale — Le baton leve'},
-  {src:'sa_majeste_benediction.jpg',caption:'Sa Majeste en meditation'},
-  {src:'sa_majeste_samuel_6_couronnement.jpg',caption:'Couronnement de Sa Majeste'},
-  {src:'papa_masambukidi_couronne.jpg',caption:'Papa Masambukidi — Fondateur'},
+  {src:'sa_majeste_samuel_1.jpg',caption:'Sa Majeste Masambukidi Samuel I'},
+  {src:'sa_majeste_samuel_2.jpg',caption:'Sa Majeste — Ceremonie'},
+  {src:'sa_majeste_samuel_3.jpg',caption:'Sa Majeste — Portrait royal'},
+  {src:'sa_majeste_samuel_4.jpg',caption:'Sa Majeste en tenue royale'},
+  {src:'sa_majeste_samuel_5.jpg',caption:'Sa Majeste — Benediction'},
+  {src:'papa_samy_masambukidi_1_fondateur.jpg',caption:'Papa Samy Masambukidi — Fondateur ELUCCO'},
+  {src:'papa_samy_fondateur_jeune.jpg',caption:'Papa Samy — Le Fondateur jeune'},
+  {src:'papa_samy_photo_officielle.jpg',caption:'Papa Samy — Photo officielle'},
+  {src:'papa_samy_kulala_kwamakanda.jpg',caption:'Papa Samy Kulala Kwamakanda'},
+  {src:'papa_masambukidi_couronne.jpg',caption:'Papa Masambukidi couronné — Fondateur'},
+  {src:'papa_masambukidi_ii_portrait.jpg',caption:'Papa Masambukidi II — Portrait'},
+  {src:'papa_masambukidi_ambassadeur_paix.jpg',caption:'Papa Masambukidi — Ambassadeur de Paix'},
+  {src:'papa_masambukidi_cover.jpg',caption:'Papa Masambukidi — Photo de couverture'},
+  {src:'papa_masambukidi_parcours_photo.jpg',caption:'Papa Masambukidi — Parcours'},
+  {src:'papa_masambukidi_intronisation_2021.jpg',caption:'Intronisation 2021'},
+  {src:'papa_masambukidi_predication_2020.jpg',caption:'Predication 2020'},
   {src:'masambukidi_ceremonie_1.jpg',caption:'Ceremonie officielle ELUCCO'},
   {src:'masambukidi_ceremonie_2.jpg',caption:'Ceremonie ELUCCO'},
   {src:'masambukidi_ceremonie_3.jpg',caption:'Rassemblement ELUCCO'},
-  {src:'papa_masambukidi_intronisation_2021.jpg',caption:'Intronisation 2021'},
-  {src:'papa_masambukidi_predication_2020.jpg',caption:'Predication 2020'},
-  {src:'papa_samy_fondateur_jeune.jpg',caption:'Papa Samy — Le Fondateur'},
-  {src:'papa_samy_masambukidi_1_fondateur.jpg',caption:'Papa Samy Masambukidi'},
 ];
 
 /* ═══════════════════════════════════════════════
@@ -2052,25 +2065,50 @@ function renderNews(){
   const grid=document.getElementById('news-grid');
   if(!grid) return;
   const adminPosts=getLS('elucco_posts',[]);
-  // Featured from new images
+
+  // ─── SEULS 3 ARTICLES EN ACTUALITES ──────────────────────────────
+  // 1. Photo officielle du Roi avec l'article du 6 Mars (depuis le couronnement)
+  // 2. Vidéo musicale : Vive le 06 Mars 2026
+  // 3. Vidéo : Premier Culte (Direct)
+  // Le reste va en Galerie ou Vidéos
   const featuredItems=[
-    {id:'feat_1',type:'actualite',badge:'royal',title:'Intronisation Royale — 30 Octobre 2025',date:'30 Octobre 2025',views:'12 400',
-     img:'sa_majeste_trone_2.jpg',
-     desc:'Sa Majeste Masambukidi Samuel I, Roi Divin du Bassin du Kongo, a ete officiellement intronise le 30 Octobre 2025 lors d\'une ceremonie grandiose a Kinshasa.'},
-    {id:'feat_2',type:'video',badge:'video',youtubeId:'inpRzkJT_w8',title:'Vive le 06 Mars 2026 — Celebration Mondiale',date:'6 Mars 2026',views:'1 600',
-     desc:'Celebrons ensemble la naissance de notre Fondateur divin Papa Samy Masambukidi. Toute la communaute Masambukidiste est invitee a cette commemoration mondiale.'},
-    {id:'feat_3',type:'actualite',badge:'royal',title:'Procession Royale — Ceremonie Officielle',date:'25 Mars 2025',views:'6 700',
-     img:'sa_majeste_procession_3.jpg',
-     desc:'Sa Majeste Masambukidi Samuel I marchant sur le tapis rouge lors de la grande ceremonie officielle de l\'ELUCCO.'},
-    {id:'feat_4',type:'video',badge:'video',youtubeId:'kKZs_4PdJX8',title:'Enseignement Royal — 01 Fevrier 2026',date:'1 Fevrier 2026',views:'5 300',
-     desc:'Precieux enseignement de Sa Majeste Masambukidi Samuel I lors du culte du 1er Fevrier 2026. Message fort et lumineux pour la communaute.'},
-    {id:'feat_5',type:'actualite',badge:'royal',title:'Sa Majeste en Predication — Le Verbe Sacre',date:'2026',views:'9 200',
-     img:'sa_majeste_predication.jpg',
-     desc:'Sa Majeste prononce le Verbe Sacre lors d\'un culte exceptionnel. La parole divine portee par le Roi Divin du Bassin du Kongo.'},
-    {id:'feat_6',type:'actualite',badge:'news',title:'ELUCCO Rayonne sur les 5 Continents',date:'2026',views:'4 800',
-     img:'sa_majeste_baton_leve.jpg',
-     desc:'La mission d\'ELUCCO s\'etend a travers le monde. De l\'Afrique a l\'Europe, de l\'Amerique a l\'Asie, la lumiere du Christ brille partout.'},
+    {
+      id:'feat_1',
+      type:'actualite',
+      badge:'royal',
+      title:'6 Mars — La Naissance Royale et Divine de Papa Samuel Nitufuidi Masambukidi',
+      date:'6 Mars 1958 · Kinkole-Miongo, Kinshasa',
+      views:'18 200',
+      img:'papa_samy_masambukidi_1_fondateur.jpg',
+      desc:'Depuis le couronnement de Sa Majeste Masambukidi Samuel I le 30 Octobre 2025, la communaute mondiale celebre avec une ferveur renouvelee la naissance de son Pere Fondateur : Samuel Nitufuidi Masambukidi Kulala Kwamakanda, dit Papa Samy. '
+           +'Ne le 6 Mars 1958 a Kinkole-Miongo (Kinshasa, RDC), cet Etre Divin n\'est pas venu sur terre par hasard. '
+           +'Sa venue fut entouree de mysteres prophetiques et de signes celestes, attestant d\'une mission royale et divine unique, tracee de toute eternite pour le salut du Bassin du Kongo et du monde entier. '
+           +'Fondateur de l\'Eglise Lumiere du Christ au Congo (ELUCCO), il a porte un flambeau sacre que perpetue aujourd\'hui Sa Majeste, son successeur divin. '
+           +'Vive le 6 Mars ! Vive Papa Samy Masambukidi !'
+    },
+    {
+      id:'feat_2',
+      type:'video',
+      badge:'video',
+      youtubeId:'inpRzkJT_w8',
+      title:'Vive le 06 Mars 2026 — Celebration Mondiale',
+      date:'6 Mars 2026',
+      views:'1 600',
+      desc:'Celebrons ensemble la naissance de notre Pere Fondateur divin Papa Samy Masambukidi. Toute la communaute Masambukidiste mondiale est invitee a cette commemoration. Vive le 6 Mars !'
+    },
+    {
+      id:'feat_3',
+      type:'video',
+      badge:'video',
+      youtubeId:'4x-O7A8VgUQ',
+      title:'Direct : Premier Culte du 01 Mars 2026 — Temple Central de Kinshasa',
+      date:'1 Mars 2026',
+      views:'3 400',
+      desc:'Retransmission en direct du premier culte du mois de Mars 2026 au Temple Central de Kinshasa, sous la presidence de Sa Majeste Masambukidi Samuel I.'
+    },
   ];
+
+  // Priorite aux posts admin (galerie postee dans actualites), puis les 3 featured
   const allItems=[...adminPosts.map(p=>({...p,isAdmin:true})),...featuredItems];
   grid.innerHTML=allItems.map(item=>renderNewsCard(item)).join('');
 }
@@ -2102,7 +2140,8 @@ function renderNewsCard(item){
         ${item.views?`<span class="news-views"><i class="fas fa-eye"></i>${item.views} vues</span>`:''}
       </div>
       <div class="news-title">${item.title}</div>
-      <div class="news-desc">${item.desc||''}</div>
+      <div class="news-desc" id="desc-${item.id}">${item.desc||''}</div>
+      ${item.desc && item.desc.length>200?`<button class="read-more-btn" onclick="toggleReadMore('${item.id}',this)">Lire la suite <i class='fas fa-chevron-down'></i></button>`:''}
       <div class="news-footer">
         <div style="display:flex;gap:8px">
           <button class="like-btn ${liked?'liked':''}" onclick="toggleLike('${item.id}',this)">
@@ -2126,8 +2165,19 @@ function renderNewsCard(item){
   </div>`;
 }
 
-function renderComments(id){
-  const comments=getLS('comments_'+id,[]);
+function toggleReadMore(id,btn){
+  const desc=document.getElementById('desc-'+id);
+  if(!desc) return;
+  if(desc.classList.contains('expanded')){
+    desc.classList.remove('expanded');
+    btn.innerHTML="Lire la suite <i class='fas fa-chevron-down'></i>";
+  } else {
+    desc.classList.add('expanded');
+    btn.innerHTML="Reduire <i class='fas fa-chevron-up'></i>";
+  }
+}
+
+function renderComments(id){  const comments=getLS('comments_'+id,[]);
   if(!comments.length) return '<div style="color:rgba(255,255,255,0.3);font-size:0.8rem;text-align:center;padding:8px">Soyez le premier a commenter</div>';
   return comments.map(c=>`
     <div class="comment-item">
