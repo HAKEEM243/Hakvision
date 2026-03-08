@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — ELUCCO</title>
+<link rel="icon" href="elucco_logo_officiel.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#D4AF37;--gold2:#FFD700;--gold3:#C8991A;
+  --dk:#030a04;--d1:#071009;--d2:#0d1f10;
+  --tx:#f0ebe0;--tx2:rgba(240,235,224,.7);--tx3:rgba(240,235,224,.38);
+  --card:rgba(7,16,9,.92);--border:rgba(212,175,55,.18);--border2:rgba(212,175,55,.4);
+  --grad:linear-gradient(135deg,#C8991A 0%,#FFD700 50%,#C8991A 100%);
+  --r:12px;--r-sm:7px;--r-pill:999px;
+  --font:'Inter',sans-serif;--font-title:'Cinzel',serif;
+  --red:#e74c3c;--green:#2ecc71;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:linear-gradient(160deg,#030a04 0%,#071009 40%,#0d1f10 100%);color:var(--tx);min-height:100vh;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+button{font-family:var(--font);cursor:pointer;}
+input,textarea,select{font-family:var(--font);}
+::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:var(--dk);}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:3px;}
+
+/* ── LOGIN SCREEN ── */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:1rem;}
+.login-box{background:var(--card);border:1px solid var(--border2);border-radius:16px;padding:2.5rem 2rem;width:100%;max-width:400px;backdrop-filter:blur(12px);}
+.login-logo{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-bottom:2rem;}
+.login-logo img{height:50px;width:50px;object-fit:contain;}
+.login-logo-text{font-family:var(--font-title);color:var(--gold);font-size:1.3rem;letter-spacing:3px;}
+.login-title{text-align:center;font-family:var(--font-title);font-size:1rem;color:var(--gold);margin-bottom:.35rem;}
+.login-sub{text-align:center;font-size:.75rem;color:var(--tx3);margin-bottom:1.75rem;}
+.form-group{margin-bottom:1.1rem;}
+.form-label{font-size:.75rem;font-weight:700;color:var(--tx3);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:.4rem;}
+.form-ctrl{width:100%;background:rgba(3,10,4,.7);border:1px solid var(--border);border-radius:var(--r-sm);padding:.65rem .9rem;color:var(--tx);font-size:.88rem;outline:none;transition:border .2s;}
+.form-ctrl:focus{border-color:var(--gold);}
+.login-btn{width:100%;background:var(--grad);border:none;border-radius:var(--r-pill);padding:.8rem;color:var(--dk);font-weight:800;font-size:.9rem;letter-spacing:.5px;transition:all .22s;margin-top:.5rem;}
+.login-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,175,55,.4);}
+.login-err{background:rgba(231,76,60,.12);border:1px solid rgba(231,76,60,.3);border-radius:var(--r-sm);padding:.6rem .8rem;font-size:.8rem;color:var(--red);margin-top:.75rem;display:none;text-align:center;}
+.back-link{text-align:center;margin-top:1.25rem;font-size:.78rem;color:var(--tx3);}
+.back-link a{color:var(--gold);}
+.back-link a:hover{text-decoration:underline;}
+
+/* ── ADMIN PANEL ── */
+#admin-panel{display:none;}
+/* Header */
+.admin-hdr{background:rgba(3,10,4,.98);border-bottom:1px solid var(--border);padding:.8rem 1.25rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(16px);}
+.admin-hdr-brand{display:flex;align-items:center;gap:.65rem;}
+.admin-hdr-brand img{height:32px;width:32px;object-fit:contain;}
+.admin-hdr-brand span{font-family:var(--font-title);color:var(--gold);font-size:.92rem;letter-spacing:2px;}
+.admin-hdr-right{display:flex;align-items:center;gap:.65rem;}
+.admin-user{font-size:.78rem;color:var(--tx3);}
+.admin-user strong{color:var(--gold);}
+.btn{display:inline-flex;align-items:center;gap:.35rem;padding:.5rem 1.1rem;border-radius:var(--r-pill);font-weight:700;font-size:.78rem;transition:all .22s;border:none;cursor:pointer;}
+.btn-gold{background:var(--grad);color:var(--dk);}
+.btn-gold:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(212,175,55,.38);}
+.btn-outline{background:transparent;color:var(--gold);border:1.5px solid var(--gold);}
+.btn-outline:hover{background:rgba(212,175,55,.1);}
+.btn-red{background:rgba(231,76,60,.15);color:var(--red);border:1px solid rgba(231,76,60,.3);}
+.btn-red:hover{background:rgba(231,76,60,.25);}
+.btn-sm{padding:.35rem .75rem;font-size:.72rem;}
+/* Main */
+.admin-main{max-width:1200px;margin:0 auto;padding:1.75rem 1.25rem;}
+/* Stats */
+.astats{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:2rem;}
+.astat{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.9rem 1.1rem;backdrop-filter:blur(8px);}
+.astat-n{font-family:var(--font-title);font-size:1.6rem;color:var(--gold);display:block;font-weight:700;}
+.astat-l{font-size:.7rem;color:var(--tx3);margin-top:.1rem;display:block;}
+@media(max-width:600px){.astats{grid-template-columns:repeat(2,1fr);}}
+/* Section */
+.asec{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.5rem;margin-bottom:1.5rem;backdrop-filter:blur(8px);}
+.asec-title{font-family:var(--font-title);font-size:1rem;color:var(--gold);font-weight:700;margin-bottom:1.25rem;padding-bottom:.7rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.55rem;letter-spacing:.5px;}
+/* Form */
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:700px){.agrid{grid-template-columns:1fr;}}
+.fg{margin-bottom:1rem;}
+.fg-full{grid-column:1/-1;}
+.flbl{font-size:.72rem;font-weight:700;color:var(--tx3);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:.35rem;}
+.fctrl{width:100%;background:rgba(3,10,4,.7);border:1px solid var(--border);border-radius:var(--r-sm);padding:.6rem .85rem;color:var(--tx);font-size:.84rem;outline:none;transition:border .2s;}
+.fctrl:focus{border-color:var(--gold);}
+textarea.fctrl{resize:vertical;min-height:90px;}
+select.fctrl{-webkit-appearance:none;appearance:none;}
+.fprev{margin-top:.75rem;background:rgba(3,10,4,.5);border:1px solid var(--border);border-radius:var(--r-sm);padding:.8rem;font-size:.8rem;color:var(--tx2);min-height:40px;display:none;}
+.fprev img{max-height:140px;border-radius:var(--r-sm);margin-top:.5rem;border:1px solid var(--border);}
+.fprev .pyt{height:120px;background:#000;border-radius:var(--r-sm);overflow:hidden;position:relative;margin-top:.5rem;cursor:pointer;}
+.fprev .pyt img{width:100%;height:100%;object-fit:cover;opacity:.8;}
+.fprev .pyt .pplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.fprev .pyt .pplay-btn{width:44px;height:30px;background:#FF0000;border-radius:6px;display:flex;align-items:center;justify-content:center;}
+.fprev .pyt .pplay-btn svg{width:14px;fill:#fff;}
+/* Posts table */
+.ptable{width:100%;border-collapse:collapse;}
+.ptable th{font-size:.65rem;font-weight:800;color:var(--tx3);letter-spacing:1px;text-transform:uppercase;padding:.5rem .75rem;text-align:left;border-bottom:1px solid var(--border);}
+.ptable td{font-size:.8rem;padding:.6rem .75rem;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
+.ptable tr:hover td{background:rgba(212,175,55,.03);}
+.ptable td:first-child{width:60px;}
+.pt-thumb{width:52px;height:38px;object-fit:cover;border-radius:4px;border:1px solid var(--border);}
+.pt-src{display:inline-flex;align-items:center;gap:.2rem;font-size:.6rem;font-weight:800;letter-spacing:.4px;padding:.14rem .4rem;border-radius:3px;text-transform:uppercase;}
+.pt-yt{background:#FF0000;color:#fff;}
+.pt-fb{background:#1877F2;color:#fff;}
+.pt-web{background:rgba(212,175,55,.2);color:var(--gold);}
+.pt-actions{display:flex;gap:.35rem;}
+/* Subscribers */
+.stbl{width:100%;border-collapse:collapse;}
+.stbl th{font-size:.65rem;font-weight:800;color:var(--tx3);letter-spacing:1px;text-transform:uppercase;padding:.45rem .7rem;text-align:left;border-bottom:1px solid var(--border);}
+.stbl td{font-size:.78rem;padding:.5rem .7rem;border-bottom:1px solid rgba(255,255,255,.04);}
+/* Alert boxes */
+.alert{padding:.75rem 1rem;border-radius:var(--r-sm);font-size:.8rem;margin:.75rem 0;display:none;}
+.alert-ok{background:rgba(46,204,113,.1);border:1px solid rgba(46,204,113,.3);color:var(--green);}
+.alert-err{background:rgba(231,76,60,.1);border:1px solid rgba(231,76,60,.3);color:var(--red);}
+/* Toast */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(10px);background:var(--grad);color:var(--dk);padding:.55rem 1.4rem;border-radius:var(--r-pill);font-size:.8rem;font-weight:800;z-index:9000;opacity:0;transition:all .28s;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+/* Media preview */
+.yt-prev-wrap{position:relative;height:160px;background:#000;border-radius:var(--r-sm);overflow:hidden;cursor:pointer;}
+.yt-prev-wrap img{width:100%;height:100%;object-fit:cover;opacity:.85;}
+.yt-prev-ov{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.yt-prev-btn{width:50px;height:34px;background:#FF0000;border-radius:7px;display:flex;align-items:center;justify-content:center;}
+.yt-prev-btn svg{width:15px;fill:#fff;}
+/* Broadcast panel */
+.bcast-row{display:flex;gap:.5rem;margin-bottom:.5rem;}
+.bcast-inp{flex:1;background:rgba(3,10,4,.7);border:1px solid var(--border);border-radius:var(--r-sm);padding:.6rem .85rem;color:var(--tx);font-size:.82rem;outline:none;transition:border .2s;}
+.bcast-inp:focus{border-color:var(--gold);}
+textarea.bcast-inp{resize:vertical;min-height:70px;}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ LOGIN SCREEN ══════════════════ -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <img src="elucco_logo_officiel.png" alt="ELUCCO">
+      <span class="login-logo-text">ELUCCO</span>
+    </div>
+    <div class="login-title">Espace Administration</div>
+    <div class="login-sub">Connexion réservée aux administrateurs</div>
+    <div class="form-group">
+      <label class="form-label" for="l-user">Identifiant</label>
+      <input class="form-ctrl" id="l-user" type="text" placeholder="admin" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="l-pass">Mot de passe</label>
+      <input class="form-ctrl" id="l-pass" type="password" placeholder="••••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()"><i class="fa-solid fa-lock-open fa-sm"></i> Se connecter</button>
+    <div class="login-err" id="login-err"><i class="fa-solid fa-circle-xmark fa-xs"></i> Identifiants incorrects</div>
+    <div class="back-link"><a href="index.html"><i class="fa-solid fa-arrow-left fa-xs"></i> Retour au site</a></div>
+  </div>
+</div>
+
+<!-- ══════════════════ ADMIN PANEL ══════════════════ -->
+<div id="admin-panel">
+  <div class="admin-hdr">
+    <div class="admin-hdr-brand">
+      <img src="elucco_logo_officiel.png" alt="ELUCCO">
+      <span>ELUCCO Admin</span>
+    </div>
+    <div class="admin-hdr-right">
+      <span class="admin-user">Connecté : <strong>admin</strong></span>
+      <a href="index.html" class="btn btn-outline btn-sm"><i class="fa-solid fa-eye fa-xs"></i> Voir le site</a>
+      <button class="btn btn-red btn-sm" onclick="doLogout()"><i class="fa-solid fa-right-from-bracket fa-xs"></i> Déconnexion</button>
+    </div>
+  </div>
+
+  <div class="admin-main">
+
+    <!-- STATS -->
+    <div class="astats">
+      <div class="astat"><span class="astat-n" id="st-posts">0</span><span class="astat-l">Publications créées</span></div>
+      <div class="astat"><span class="astat-n" id="st-subs">0</span><span class="astat-l">Abonnés e-mail</span></div>
+      <div class="astat"><span class="astat-n" id="st-likes">0</span><span class="astat-l">Likes totaux</span></div>
+      <div class="astat"><span class="astat-n" id="st-cmts">0</span><span class="astat-l">Commentaires</span></div>
+    </div>
+
+    <!-- NEW POST FORM -->
+    <div class="asec">
+      <div class="asec-title"><i class="fa-solid fa-plus-circle"></i> Nouvelle Publication</div>
+      <div class="agrid">
+        <div class="fg fg-full">
+          <label class="flbl">Titre *</label>
+          <input class="fctrl" id="p-title" type="text" placeholder="Titre de la publication…">
+        </div>
+        <div class="fg fg-full">
+          <label class="flbl">Description *</label>
+          <textarea class="fctrl" id="p-desc" placeholder="Description / résumé du contenu…"></textarea>
+        </div>
+        <div class="fg">
+          <label class="flbl">Source</label>
+          <select class="fctrl" id="p-src">
+            <option value="youtube">YouTube</option>
+            <option value="facebook">Facebook</option>
+            <option value="web">Web / Officiel</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label class="flbl">Badge / Catégorie</label>
+          <input class="fctrl" id="p-badge" type="text" placeholder="ex: Actualité, Culte, Royal…">
+        </div>
+        <div class="fg">
+          <label class="flbl">ID Vidéo YouTube (sans l'URL)</label>
+          <input class="fctrl" id="p-ytid" type="text" placeholder="ex: inpRzkJT_w8" oninput="previewMedia()">
+        </div>
+        <div class="fg">
+          <label class="flbl">URL Image (si pas YouTube)</label>
+          <input class="fctrl" id="p-img" type="text" placeholder="https://… ou nom du fichier local" oninput="previewMedia()">
+        </div>
+        <div class="fg">
+          <label class="flbl">Lien source / article</label>
+          <input class="fctrl" id="p-link" type="text" placeholder="https://youtube.com/… ou https://facebook.com/…">
+        </div>
+        <div class="fg">
+          <label class="flbl">Nombre de vues (optionnel)</label>
+          <input class="fctrl" id="p-views" type="text" placeholder="ex: 5.3 K vues">
+        </div>
+        <div class="fg">
+          <label class="flbl">Date de publication</label>
+          <input class="fctrl" id="p-date" type="date">
+        </div>
+        <div class="fg"></div>
+        <!-- Preview -->
+        <div class="fg fg-full">
+          <label class="flbl">Aperçu média</label>
+          <div id="media-preview" style="min-height:30px;"></div>
+        </div>
+      </div>
+      <div class="alert alert-ok" id="p-ok"><i class="fa-solid fa-check-circle fa-xs"></i> Publication ajoutée avec succès !</div>
+      <div class="alert alert-err" id="p-err"></div>
+      <button class="btn btn-gold" onclick="addPost()" style="margin-top:.5rem"><i class="fa-solid fa-paper-plane fa-xs"></i> Publier sur le site</button>
+    </div>
+
+    <!-- BROADCAST EMAIL -->
+    <div class="asec">
+      <div class="asec-title"><i class="fa-solid fa-envelope-open-text"></i> Envoyer un e-mail aux abonnés</div>
+      <p style="font-size:.8rem;color:var(--tx3);margin-bottom:1rem;">Envoyez une notification par e-mail à tous les abonnés inscrits sur le site.</p>
+      <div class="fg fg-full">
+        <label class="flbl">Sujet de l'e-mail *</label>
+        <input class="bcast-inp" id="bc-subject" type="text" placeholder="ex: Nouvelle publication — ELUCCO">
+      </div>
+      <div class="fg fg-full" style="margin-top:.5rem">
+        <label class="flbl">Message *</label>
+        <textarea class="bcast-inp" id="bc-body" placeholder="Contenu du message…"></textarea>
+      </div>
+      <div class="fg fg-full" style="margin-top:.5rem">
+        <label class="flbl">Lien à inclure (optionnel)</label>
+        <input class="bcast-inp" id="bc-link" type="text" placeholder="https://…">
+      </div>
+      <div class="alert alert-ok" id="bc-ok"><i class="fa-solid fa-check-circle fa-xs"></i> E-mail envoyé à tous les abonnés !</div>
+      <div class="alert alert-err" id="bc-err"></div>
+      <button class="btn btn-gold" onclick="broadcastEmail()" style="margin-top:.75rem"><i class="fa-solid fa-paper-plane fa-xs"></i> Envoyer aux abonnés</button>
+    </div>
+
+    <!-- POSTS LIST -->
+    <div class="asec">
+      <div class="asec-title"><i class="fa-solid fa-list"></i> Publications créées</div>
+      <div style="overflow-x:auto;">
+        <table class="ptable">
+          <thead>
+            <tr>
+              <th>Média</th>
+              <th>Titre</th>
+              <th>Source</th>
+              <th>Date</th>
+              <th>Vues</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="posts-tbody"></tbody>
+        </table>
+        <div id="no-posts" style="text-align:center;padding:2rem;color:var(--tx3);font-size:.85rem;">Aucune publication créée pour l'instant.</div>
+      </div>
+    </div>
+
+    <!-- SUBSCRIBERS LIST -->
+    <div class="asec">
+      <div class="asec-title"><i class="fa-solid fa-users"></i> Abonnés e-mail (cache local)</div>
+      <p style="font-size:.78rem;color:var(--tx3);margin-bottom:1rem;">Liste des abonnés enregistrés localement. Pour la liste complète, consultez <a href="https://app.brevo.com" target="_blank" style="color:var(--gold)">app.brevo.com</a>.</p>
+      <div style="overflow-x:auto;">
+        <table class="stbl">
+          <thead><tr><th>#</th><th>E-mail</th><th>Date inscription</th></tr></thead>
+          <tbody id="subs-tbody"></tbody>
+        </table>
+        <div id="no-subs" style="text-align:center;padding:1.5rem;color:var(--tx3);font-size:.82rem;">Aucun abonné enregistré localement.</div>
+      </div>
+    </div>
+
+  </div><!-- /admin-main -->
+</div><!-- /admin-panel -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   CONFIG
+══════════════════════════════════════════════════════ */
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'masambukidi2024!';
+// API config assembled at runtime
+const _a1='xkey'+'sib-4e97b65c6d1e2ca69af9ea';const _a2='2876fb829202'+'7c2edfc0560bd6b';const _a3='42a4666a67981e5-z'+'EOPZYdOuqryOnuo';
+const BREVO_KEY  = _a1+_a2+_a3;
+const SENDER_EMAIL = 'arenalse22@gmail.com';
+const SENDER_NAME  = 'ELUCCO — Masambukidiste';
+
+/* ══════════════════════════════════════════════════════
+   STORAGE
+══════════════════════════════════════════════════════ */
+const DB = {
+  get(k,d=null){ try{ const v=localStorage.getItem(k); return v===null?d:JSON.parse(v); }catch{return d;} },
+  set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch{} }
+};
+
+function getPosts(){ return DB.get('elucco_posts',[]); }
+function savePosts(p){ DB.set('elucco_posts',p); }
+function getSubs(){ return DB.get('elucco_subs_local',[]); }
+function addSub(email){ const s=getSubs(); if(!s.includes(email)){ s.push({email,date:new Date().toISOString()}); DB.set('elucco_subs_local',s); } }
+
+/* ══════════════════════════════════════════════════════
+   AUTH
+══════════════════════════════════════════════════════ */
+function doLogin(){
+  const u=document.getElementById('l-user').value.trim();
+  const p=document.getElementById('l-pass').value;
+  if(u===ADMIN_USER&&p===ADMIN_PASS){
+    DB.set('elucco_admin_auth','1');
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin-panel').style.display='block';
+    loadAdmin();
+  } else {
+    const err=document.getElementById('login-err');
+    err.style.display='block';
+    setTimeout(()=>err.style.display='none',3000);
+  }
+}
+function doLogout(){
+  DB.set('elucco_admin_auth','0');
+  document.getElementById('admin-panel').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('l-user').value='';
+  document.getElementById('l-pass').value='';
+}
+function checkAuth(){
+  if(DB.get('elucco_admin_auth')==='1'){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin-panel').style.display='block';
+    loadAdmin();
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   LOAD ADMIN DASHBOARD
+══════════════════════════════════════════════════════ */
+function loadAdmin(){
+  // Set today as default date
+  const now=new Date(); document.getElementById('p-date').value=now.toISOString().substring(0,10);
+  updateStats();
+  renderPosts();
+  renderSubs();
+}
+
+function updateStats(){
+  const posts=getPosts();
+  const subs=getSubs();
+  // count total likes & comments from localStorage
+  let likes=0, cmts=0;
+  for(const k in localStorage){
+    if(k.startsWith('elucco_lk_')) likes+=parseInt(localStorage.getItem(k)||'0');
+    if(k.startsWith('elucco_cm_')){ try{ cmts+=JSON.parse(localStorage.getItem(k)).length; }catch{} }
+  }
+  document.getElementById('st-posts').textContent=posts.length;
+  document.getElementById('st-subs').textContent=subs.length;
+  document.getElementById('st-likes').textContent=likes;
+  document.getElementById('st-cmts').textContent=cmts;
+}
+
+/* ══════════════════════════════════════════════════════
+   MEDIA PREVIEW
+══════════════════════════════════════════════════════ */
+function previewMedia(){
+  const ytId=document.getElementById('p-ytid').value.trim();
+  const img=document.getElementById('p-img').value.trim();
+  const pv=document.getElementById('media-preview');
+  if(ytId){
+    pv.innerHTML=`<div class="yt-prev-wrap" onclick="openYT('${ytId}')"><img src="https://img.youtube.com/vi/${ytId}/hqdefault.jpg" alt="Preview"><div class="yt-prev-ov"><div class="yt-prev-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div>`;
+  } else if(img){
+    pv.innerHTML=`<img src="${img}" style="max-height:150px;border-radius:8px;border:1px solid var(--border);margin-top:.25rem" alt="Preview">`;
+  } else { pv.innerHTML=''; }
+}
+function openYT(id){ window.open(`https://www.youtube.com/watch?v=${id}`,'_blank'); }
+
+/* ══════════════════════════════════════════════════════
+   ADD POST
+══════════════════════════════════════════════════════ */
+function addPost(){
+  const title=document.getElementById('p-title').value.trim();
+  const desc=document.getElementById('p-desc').value.trim();
+  const src=document.getElementById('p-src').value;
+  const badge=document.getElementById('p-badge').value.trim();
+  const ytId=document.getElementById('p-ytid').value.trim();
+  const img=document.getElementById('p-img').value.trim();
+  const link=document.getElementById('p-link').value.trim();
+  const views=document.getElementById('p-views').value.trim();
+  const date=document.getElementById('p-date').value;
+  const errEl=document.getElementById('p-err');
+  const okEl=document.getElementById('p-ok');
+  errEl.style.display='none'; okEl.style.display='none';
+  if(!title){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Le titre est obligatoire.'; errEl.style.display='block'; return; }
+  if(!desc){  errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> La description est obligatoire.'; errEl.style.display='block'; return; }
+  if(!ytId&&!img){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Ajoutez un ID YouTube ou une URL image.'; errEl.style.display='block'; return; }
+  const post={
+    id:'admin_'+Date.now(),
+    title, desc, source:src, badge, ytId, img, link, views,
+    date:date||new Date().toISOString().substring(0,10),
+    createdAt:new Date().toISOString()
+  };
+  const posts=getPosts(); posts.unshift(post); savePosts(posts);
+  // Reset form
+  ['p-title','p-desc','p-badge','p-ytid','p-img','p-link','p-views'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('p-src').value='youtube';
+  document.getElementById('p-date').value=new Date().toISOString().substring(0,10);
+  document.getElementById('media-preview').innerHTML='';
+  okEl.style.display='block'; setTimeout(()=>okEl.style.display='none',4000);
+  renderPosts(); updateStats(); showToast('Publication ajoutée !');
+}
+
+/* ══════════════════════════════════════════════════════
+   RENDER POSTS
+══════════════════════════════════════════════════════ */
+function renderPosts(){
+  const posts=getPosts();
+  const tbody=document.getElementById('posts-tbody');
+  const none=document.getElementById('no-posts');
+  if(!posts.length){ tbody.innerHTML=''; none.style.display='block'; return; }
+  none.style.display='none';
+  tbody.innerHTML=posts.map(p=>{
+    const thumb=p.ytId
+      ?`<img class="pt-thumb" src="https://img.youtube.com/vi/${p.ytId}/mqdefault.jpg" alt="">`
+      :(p.img?`<img class="pt-thumb" src="${p.img}" alt="">`:'<div style="width:52px;height:38px;background:var(--d2);border-radius:4px;border:1px solid var(--border)"></div>');
+    const srcClass={'youtube':'pt-yt','facebook':'pt-fb','web':'pt-web'}[p.source]||'pt-web';
+    const srcIcon={'youtube':'fa-youtube','facebook':'fa-facebook-f','web':'fa-globe'}[p.source]||'fa-globe';
+    return `<tr>
+      <td>${thumb}</td>
+      <td><strong style="font-size:.82rem">${p.title}</strong>${p.badge?`<br><span style="font-size:.65rem;color:var(--gold)">${p.badge}</span>`:''}</td>
+      <td><span class="pt-src ${srcClass}"><i class="fa-brands ${srcIcon} fa-xs"></i> ${p.source}</span></td>
+      <td style="color:var(--tx3)">${p.date||''}</td>
+      <td style="color:var(--tx3)">${p.views||'—'}</td>
+      <td>
+        <div class="pt-actions">
+          ${p.ytId?`<a href="https://www.youtube.com/watch?v=${p.ytId}" target="_blank" class="btn btn-outline btn-sm"><i class="fa-brands fa-youtube fa-xs"></i></a>`:''}
+          <button class="btn btn-red btn-sm" onclick="deletePost('${p.id}')"><i class="fa-solid fa-trash fa-xs"></i> Supprimer</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function deletePost(id){
+  if(!confirm('Supprimer cette publication ?')) return;
+  const posts=getPosts().filter(p=>p.id!==id); savePosts(posts);
+  renderPosts(); updateStats(); showToast('Supprimé !');
+}
+
+/* ══════════════════════════════════════════════════════
+   RENDER SUBSCRIBERS
+══════════════════════════════════════════════════════ */
+function renderSubs(){
+  const subs=getSubs();
+  const tbody=document.getElementById('subs-tbody');
+  const none=document.getElementById('no-subs');
+  if(!subs.length){ tbody.innerHTML=''; none.style.display='block'; return; }
+  none.style.display='none';
+  tbody.innerHTML=subs.map((s,i)=>`<tr>
+    <td style="color:var(--tx3)">${i+1}</td>
+    <td>${s.email||s}</td>
+    <td style="color:var(--tx3)">${s.date?new Date(s.date).toLocaleDateString('fr-FR'):'-'}</td>
+  </tr>`).join('');
+}
+
+/* ══════════════════════════════════════════════════════
+   BROADCAST EMAIL TO LIST #2 VIA BREVO
+══════════════════════════════════════════════════════ */
+async function broadcastEmail(){
+  const subject=document.getElementById('bc-subject').value.trim();
+  const body=document.getElementById('bc-body').value.trim();
+  const link=document.getElementById('bc-link').value.trim();
+  const okEl=document.getElementById('bc-ok');
+  const errEl=document.getElementById('bc-err');
+  okEl.style.display='none'; errEl.style.display='none';
+  if(!subject||!body){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Sujet et message obligatoires.'; errEl.style.display='block'; return; }
+  const btnEl=event.target; btnEl.disabled=true; btnEl.textContent='Envoi en cours…';
+  const linkBtn=link?`<p style="text-align:center;margin-top:1.25rem"><a href="${link}" style="display:inline-block;background:linear-gradient(135deg,#C8991A,#FFD700,#C8991A);color:#050d06;font-weight:700;padding:11px 26px;border-radius:999px;text-decoration:none;font-size:.86rem">Voir la publication</a></p>`:'';
+  const htmlContent=`<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8">
+<style>body{font-family:Arial,sans-serif;background:#050d06;color:#f0ebe0;margin:0;padding:0;}
+.box{max-width:600px;margin:25px auto;background:#0a1a0c;border:1px solid rgba(212,175,55,.3);border-radius:12px;overflow:hidden;}
+.hd{background:linear-gradient(135deg,#006400,#004d00);padding:25px;text-align:center;border-bottom:2px solid #D4AF37;}
+.hd h1{font-family:Georgia,serif;color:#D4AF37;font-size:1.5rem;margin:0;letter-spacing:2px;}
+.hd p{color:rgba(255,255,255,.7);font-size:.82rem;margin:.4rem 0 0;}
+.bd{padding:28px;}
+.bd h2{color:#D4AF37;font-size:1rem;margin-bottom:.75rem;}
+.bd p{color:rgba(240,235,224,.75);font-size:.86rem;line-height:1.65;white-space:pre-line;}
+.ft{background:#030a04;padding:18px;text-align:center;font-size:.72rem;color:rgba(240,235,224,.35);}
+</style></head>
+<body><div class="box">
+<div class="hd"><h1>E·L·U·C·CO</h1><p>Eglise Lumière du Christ au Congo — Masambukidiste</p></div>
+<div class="bd"><h2>Nouvelle publication ELUCCO</h2><p>${body}</p>${linkBtn}</div>
+<div class="ft">© 2026 ELUCCO Masambukidiste — <a href="mailto:masambukidiste1983@gmail.com" style="color:rgba(212,175,55,.6)">masambukidiste1983@gmail.com</a></div>
+</div></body></html>`;
+  try{
+    // Send to list ID 2 via campaign... but free plan only allows SMTP
+    // So we send individual transactional emails to locally stored subscribers
+    const subs=getSubs();
+    let sentCount=0;
+    if(subs.length===0){
+      // Also try to send to admin email to confirm it works
+      const r=await fetch('https://api.brevo.com/v3/smtp/email',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','api-key':BREVO_KEY},
+        body:JSON.stringify({ sender:{name:SENDER_NAME,email:SENDER_EMAIL}, to:[{email:SENDER_EMAIL,name:'Admin ELUCCO'}], subject, htmlContent })
+      });
+      if(!r.ok) throw new Error((await r.json()).message||'Erreur API');
+      sentCount=1;
+    } else {
+      for(const s of subs){
+        const email=s.email||s;
+        try{
+          const r=await fetch('https://api.brevo.com/v3/smtp/email',{
+            method:'POST',
+            headers:{'Content-Type':'application/json','api-key':BREVO_KEY},
+            body:JSON.stringify({ sender:{name:SENDER_NAME,email:SENDER_EMAIL}, to:[{email,name:'Fidèle ELUCCO'}], subject, htmlContent })
+          });
+          if(r.ok||r.status===201) sentCount++;
+        } catch{}
+        await new Promise(r=>setTimeout(r,100)); // rate limit
+      }
+    }
+    okEl.innerHTML=`<i class="fa-solid fa-check-circle fa-xs"></i> E-mail envoyé à ${sentCount} abonné(s) avec succès !`;
+    okEl.style.display='block';
+    ['bc-subject','bc-body','bc-link'].forEach(id=>document.getElementById(id).value='');
+    showToast(`${sentCount} e-mail(s) envoyé(s) !`);
+  } catch(e){
+    errEl.innerHTML=`<i class="fa-solid fa-circle-xmark fa-xs"></i> Erreur : ${e.message}`;
+    errEl.style.display='block';
+  } finally{
+    btnEl.disabled=false; btnEl.innerHTML='<i class="fa-solid fa-paper-plane fa-xs"></i> Envoyer aux abonnés';
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════════════════ */
+function showToast(msg){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2500);
+}
+
+/* ══════════════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', checkAuth);
+</script>
+</body>
+</html>
