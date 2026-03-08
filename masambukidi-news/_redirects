@@ -1,2 +1,8 @@
 # Cloudflare Pages redirects
+# Specific HTML pages must be served directly (not caught by SPA fallback)
+/article.html /article.html 200
+/article-6mars.html /article-6mars.html 200
+/article-vive6mars.html /article-vive6mars.html 200
+/admin.html /admin.html 200
+# Everything else → index.html (SPA fallback)
 /* /index.html 200

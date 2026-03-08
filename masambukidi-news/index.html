@@ -12,9 +12,10 @@
 <meta property="og:description" content="Site officiel de Sa Majesté Masambukidi Samuel I">
 <meta property="og:image" content="sa_majeste_trone_1.jpg">
 <title>ELUCCO — Eglise Lumière du Christ au Congo</title>
+<!-- CACHE-BUST: v8.0-1773005990 -->
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="elucco_logo_officiel.png">
-<link rel="apple-touch-icon" href="elucco_logo_officiel.png">
+<link rel="icon" href="masambukidi_armoiries.png">
+<link rel="apple-touch-icon" href="masambukidi_armoiries.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -516,6 +517,29 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
 .badge-news{background:rgba(201,168,76,0.9);color:var(--dark)}
 .badge-royal{background:linear-gradient(135deg,#2d7d2d,#4caf50);color:white}
 .badge-gallery{background:linear-gradient(135deg,#7d2d7d,#b04cb0);color:white}
+/* Bouton zoom image dans news */
+.img-zoom-btn{
+  position:absolute;top:10px;right:10px;
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(0,0,0,0.55);color:white;font-size:0.85rem;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all 0.2s;z-index:3;
+  border:1px solid rgba(255,255,255,0.2);
+}
+.img-zoom-btn:hover{background:rgba(201,168,76,0.85);color:var(--dark);transform:scale(1.1)}
+/* Bouton partager image */
+.share-img-btn{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:20px;
+  background:rgba(24,119,242,0.12);
+  border:1px solid rgba(24,119,242,0.3);
+  color:#5b9cf6;font-size:0.8rem;
+  transition:all 0.2s;font-family:var(--font-ui);
+}
+.share-img-btn:hover{background:rgba(24,119,242,0.22);transform:scale(1.03)}
+/* Facebook card */
+.social-card.facebook{border-color:rgba(24,119,242,0.2)}
+.social-card.facebook:hover{background:rgba(24,119,242,0.06);border-color:rgba(24,119,242,0.35)}
 .news-play-btn{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   background:rgba(0,0,0,0.3);opacity:0;transition:opacity 0.3s;
@@ -955,13 +979,14 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
 .subscribe-section{
   background:linear-gradient(135deg,rgba(13,26,13,0.9),rgba(10,10,26,0.9));
   border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius-lg);
-  padding:50px 40px;text-align:center;position:relative;overflow:hidden;
+  padding:50px 40px;text-align:center;position:relative;overflow:visible;
   margin:40px 0;
 }
 .subscribe-section::before{
   content:'';position:absolute;top:-50%;left:-50%;
   width:200%;height:200%;
   background:radial-gradient(ellipse at center,rgba(201,168,76,0.03) 0%,transparent 60%);
+  pointer-events:none;
 }
 .sub-title{font-family:var(--font-title);font-size:1.8rem;color:var(--white);margin-bottom:8px}
 .sub-desc{color:rgba(255,255,255,0.55);margin-bottom:28px;font-size:0.95rem;line-height:1.6}
@@ -1272,9 +1297,7 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
 <div id="welcome-splash">
   <div class="splash-ring"></div>
   <div class="splash-ring-2"></div>
-  <img src="elucco_logo_officiel.png" alt="ELUCCO" class="splash-logo">
-  <div class="splash-text">ELUCCO</div>
-  <div class="splash-sub">Eglise Lumière du Christ au Congo</div>
+  <img src="elucco_logo_officiel.png" alt="ELUCCO" class="splash-logo" style="width:90px;height:90px;object-fit:contain;display:block">
   <div class="splash-welcome" id="splash-welcome-text">Bienvenue, Masambukidiste !</div>
   <div class="splash-bar"><div class="splash-bar-fill" id="splash-bar-fill"></div></div>
 </div>
@@ -1302,9 +1325,9 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
 <div id="welcome-modal" style="display:none;position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);align-items:center;justify-content:center;">
   <div style="background:linear-gradient(135deg,#0d1a0d 0%,#0a0a1a 60%,#1a1000 100%);border:1px solid rgba(201,168,76,0.4);border-radius:24px;padding:40px 36px;max-width:480px;width:90%;text-align:center;box-shadow:0 0 60px rgba(201,168,76,0.2),0 20px 80px rgba(0,0,0,0.8);animation:zoomIn 0.4s ease;position:relative">
     <div style="position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 20px rgba(201,168,76,0.5)">✦</div>
-    <img src="elucco_logo_officiel.png" alt="ELUCCO" style="width:70px;height:70px;object-fit:contain;margin:10px auto 16px;filter:drop-shadow(0 0 20px rgba(201,168,76,0.5));display:block">
-    <h2 style="font-family:var(--font-title);color:var(--gold);font-size:1.6rem;letter-spacing:4px;margin-bottom:8px">ELUCCO</h2>
-    <div style="color:rgba(255,255,255,0.5);font-size:0.75rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px">Eglise Lumiere du Christ au Congo</div>
+    <div style="display:flex;align-items:center;justify-content:center;margin:10px auto 20px">
+      <img src="masambukidi_armoiries.png" alt="Armoiries" style="width:80px;height:80px;object-fit:contain;filter:drop-shadow(0 0 20px rgba(201,168,76,0.6))">
+    </div>
     <div style="width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 20px"></div>
     <p id="welcome-modal-greeting" style="color:var(--white);font-size:1.1rem;font-style:italic;line-height:1.7;margin-bottom:10px">Bienvenue, Masambukidiste !</p>
     <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.6;margin-bottom:24px">Vous visitez le site officiel de <strong style="color:var(--gold)">Sa Majeste Masambukidi Samuel I</strong>, Roi Divin du Bassin du Kongo.</p>
@@ -1318,7 +1341,7 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
 
 <!-- INSTALL BANNER -->
 <div id="install-banner">
-  <img src="elucco_logo_officiel.png" alt="ELUCCO" class="install-logo">
+  <img src="masambukidi_armoiries.png" alt="Armoiries" class="install-logo">
   <div class="install-text">
     <div class="install-title">Installer ELUCCO</div>
     <div class="install-desc">Accédez rapidement depuis votre écran d'accueil</div>
@@ -1373,8 +1396,7 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
 <div id="header">
   <nav class="nav-inner">
     <div class="nav-brand">
-      <img src="elucco_logo_officiel.png" alt="ELUCCO" class="nav-logo">
-      <img src="masambukidi_armoiries.png" alt="Armoiries" class="nav-logo-2">
+      <img src="masambukidi_armoiries.png" alt="Armoiries" class="nav-logo">
       <div>
         <div class="nav-title">ELUCCO</div>
         <div class="nav-subtitle">Eglise Lumiere du Christ au Congo</div>
@@ -1415,8 +1437,7 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
   <div class="hero-overlay-2"></div>
   <div class="hero-content">
     <div class="hero-logos">
-      <img src="elucco_logo_officiel.png" alt="ELUCCO" class="hero-logo">
-      <img src="masambukidi_armoiries.png" alt="Armoiries" class="hero-logo-2">
+      <img src="masambukidi_armoiries.png" alt="Armoiries" class="hero-logo">
     </div>
     <div class="hero-eyebrow">Site Officiel &mdash; ELUCCO</div>
     <h1 class="hero-title">
@@ -1425,7 +1446,6 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
     </h1>
     <p class="hero-subtitle">Roi Divin du Bassin du Kongo</p>
     <div class="hero-badges">
-      <span class="hero-badge">Fondateur : Papa Samy · 1958</span>
       <span class="hero-badge">Intronisation : 30 Oct 2025</span>
       <span class="hero-badge">5 Continents</span>
     </div>
@@ -1645,6 +1665,14 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
     <!-- TAB: RESEAUX -->
     <div class="tab-panel" id="tab-reseaux">
       <div class="social-grid">
+        <div class="social-card facebook fade-in" onclick="window.open('https://www.facebook.com/profile.php?id=100062319076168','_blank')">
+          <i class="fab fa-facebook social-icon" style="color:#1877f2"></i>
+          <div class="social-name">Facebook</div>
+          <div class="social-handle">Page Officielle ELUCCO</div>
+          <div class="social-stats">Communaute mondiale</div>
+          <br>
+          <a href="https://www.facebook.com/profile.php?id=100062319076168&name=xhp_nt__fb__action__open_user" target="_blank" class="social-link-btn"><i class="fab fa-facebook"></i> Suivre</a>
+        </div>
         <div class="social-card youtube fade-in" onclick="window.open('https://youtube.com/@masambukidirtmasofficiel2016','_blank')">
           <i class="fab fa-youtube social-icon" style="color:#ff0000"></i>
           <div class="social-name">YouTube</div>
@@ -1733,22 +1761,49 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
   </div>
 
   <!-- SUBSCRIPTION -->
-  <div class="subscribe-section fade-in">
-    <div style="text-align:center;margin-bottom:10px">
-      <span style="font-size:2rem">✉️</span>
+  <div class="subscribe-section">
+    <div style="text-align:center;margin-bottom:16px">
+      <div style="width:56px;height:56px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 4px 20px rgba(201,168,76,0.4)">✉️</div>
     </div>
-    <h2 class="sub-title">Restez Connecte a ELUCCO</h2>
-    <p class="sub-desc">Inscrivez-vous pour recevoir un <strong style="color:var(--gold)">email de bienvenue personnalise</strong>, les actualites, les rappels de culte et les notifications des dates sacrees directement dans votre boite mail.</p>
-    <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;margin-bottom:20px;text-align:center"><i class="fas fa-shield-alt" style="color:var(--gold)"></i> Vos donnees sont protegees. Desinscription possible a tout moment.</p>
-    <form class="sub-form" onsubmit="handleSubscribe(event)">
-      <input type="text" class="sub-input" id="sub-firstname" placeholder="Votre prenom (ex: Jean-Pierre)">
-      <input type="email" class="sub-input" id="sub-email" placeholder="Votre adresse email *" required>
-      <button type="submit" class="sub-btn"><i class="fas fa-paper-plane"></i> Recevoir mon email de bienvenue</button>
-    </form>
-    <div class="sub-status" id="sub-status"></div>
-    <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;text-align:center;margin-top:14px">
-      <i class="fas fa-envelope" style="color:var(--gold)"></i> Apres inscription, vous recevrez : <strong style="color:rgba(255,255,255,0.5)">"Bienvenue a toi, [prenom] Masambukidiste !"</strong> avec les dates sacrees, les horaires de culte et le lien vers le site.
-    </p>
+    <h2 class="sub-title">Alerts &amp; Notifications ELUCCO</h2>
+    <p class="sub-desc">Recevez un <strong style="color:var(--gold)">email de bienvenue personnalisé</strong>, les actualités royales, les rappels de culte et les dates sacrées directement dans votre boîte mail.</p>
+    <div style="max-width:440px;margin:0 auto;position:relative;z-index:10">
+
+      <label style="display:block;color:rgba(255,255,255,0.6);font-size:0.82rem;margin-bottom:6px;text-align:left;padding-left:4px">Votre prénom (facultatif)</label>
+      <input type="text" id="sub-firstname" autocomplete="given-name"
+        style="display:block;width:100%;padding:16px 18px;border-radius:12px;
+               background:rgba(255,255,255,0.1);
+               border:2px solid rgba(201,168,76,0.4);
+               color:#fff;font-size:1rem;font-family:inherit;
+               box-sizing:border-box;margin-bottom:14px;
+               -webkit-text-fill-color:#fff;-webkit-appearance:none;appearance:none;
+               outline:none;position:relative;z-index:10"
+        placeholder="ex: Jean-Pierre">
+
+      <label style="display:block;color:rgba(255,255,255,0.6);font-size:0.82rem;margin-bottom:6px;text-align:left;padding-left:4px">Votre adresse email <span style="color:#f0d060">*</span></label>
+      <input type="email" id="sub-email" autocomplete="email" autocapitalize="none"
+        style="display:block;width:100%;padding:16px 18px;border-radius:12px;
+               background:rgba(255,255,255,0.1);
+               border:2px solid rgba(201,168,76,0.7);
+               color:#fff;font-size:1rem;font-family:inherit;
+               box-sizing:border-box;margin-bottom:18px;
+               -webkit-text-fill-color:#fff;-webkit-appearance:none;appearance:none;
+               outline:none;position:relative;z-index:10"
+        placeholder="votre@email.com">
+
+      <button id="sub-btn" type="button" onclick="handleSubscribeBtn()"
+        style="display:block;width:100%;padding:18px 24px;border-radius:12px;
+               background:linear-gradient(135deg,#c9a84c,#f0d060);
+               color:#0a0a0a;font-weight:700;font-size:1rem;letter-spacing:1px;
+               border:none;cursor:pointer;font-family:inherit;
+               box-shadow:0 4px 20px rgba(201,168,76,0.45);
+               -webkit-appearance:none;appearance:none;
+               touch-action:manipulation;position:relative;z-index:10">
+        <i class="fas fa-paper-plane" style="margin-right:8px"></i>S'inscrire aux alertes
+      </button>
+
+      <div id="sub-status" style="margin-top:16px;font-size:0.9rem;min-height:20px;text-align:center;line-height:1.6"></div>
+    </div>
   </div>
 </div>
 
@@ -1757,11 +1812,12 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
   <div class="footer-grid">
     <div class="footer-brand">
       <div class="footer-logo">
-        <img src="elucco_logo_officiel.png" alt="ELUCCO" class="footer-logo-img">
+        <img src="masambukidi_armoiries.png" alt="Armoiries" class="footer-logo-img">
         <span class="footer-logo-text">ELUCCO</span>
       </div>
       <p class="footer-tagline">Eglise Lumiere du Christ au Congo<br>Sous la guidance de Sa Majeste Masambukidi Samuel I<br>Roi Divin du Bassin du Kongo</p>
       <div class="footer-social-links">
+        <a href="https://www.facebook.com/profile.php?id=100062319076168" target="_blank" class="footer-social-link" style="color:#1877f2;border-color:rgba(24,119,242,0.3)"><i class="fab fa-facebook"></i></a>
         <a href="https://youtube.com/@masambukidirtmasofficiel2016" target="_blank" class="footer-social-link"><i class="fab fa-youtube"></i></a>
         <a href="https://x.com/masambukidi4" target="_blank" class="footer-social-link"><i class="fab fa-x-twitter"></i></a>
         <a href="https://www.tiktok.com/@masambukidiofficielle6" target="_blank" class="footer-social-link"><i class="fab fa-tiktok"></i></a>
@@ -2077,14 +2133,13 @@ function renderNews(){
       type:'actualite',
       badge:'royal',
       title:'6 Mars — La Naissance Royale et Divine de Papa Samuel Nitufuidi Masambukidi',
-      date:'6 Mars 1958 · Kinkole-Miongo, Kinshasa',
+      date:'6 Mars 1958 · Mbengua Ntadi, Kongo Central, RDC',
+      photoDate:'6 Mars 2025 · Kinkole-Miongo, Kinshasa',
       views:'18 200',
-      img:'papa_samy_masambukidi_1_fondateur.jpg',
-      desc:'Depuis le couronnement de Sa Majeste Masambukidi Samuel I le 30 Octobre 2025, la communaute mondiale celebre avec une ferveur renouvelee la naissance de son Pere Fondateur : Samuel Nitufuidi Masambukidi Kulala Kwamakanda, dit Papa Samy. '
-           +'Ne le 6 Mars 1958 a Kinkole-Miongo (Kinshasa, RDC), cet Etre Divin n\'est pas venu sur terre par hasard. '
-           +'Sa venue fut entouree de mysteres prophetiques et de signes celestes, attestant d\'une mission royale et divine unique, tracee de toute eternite pour le salut du Bassin du Kongo et du monde entier. '
-           +'Fondateur de l\'Eglise Lumiere du Christ au Congo (ELUCCO), il a porte un flambeau sacre que perpetue aujourd\'hui Sa Majeste, son successeur divin. '
-           +'Vive le 6 Mars ! Vive Papa Samy Masambukidi !'
+      img:'sa_majeste_roi_benediction_officielle.jpg',
+      desc:'Ce 6 Mars est différent de tous les autres. Depuis l\'intronisation solennelle de Sa Majesté Masambukidi Samuel I le 30 Octobre 2025, la communauté mondiale des Masambukidistes célèbre avec une ferveur renouvelée et un regard nouveau la naissance de son Père Fondateur : Samuel Nitufuidi Masambukidi Kulala Kwamakanda, dit Papa Samy. '
+           +'Né le 6 Mars 1958 à Mbengua Ntadi (Kongo Central, RDC), cet Être Divin n\'est pas venu sur terre par hasard. Sa naissance fut entourée de mystères prophétiques et de signes célestes extraordinaires, attestant d\'une mission royale et divine tracée de toute éternité pour le salut du Bassin du Kongo et du monde entier. '
+           +'La photo que vous contemplez — prise le 6 Mars 2025 à Kinkole-Miongo, Kinshasa.'
     },
     {
       id:'feat_2',
@@ -2125,23 +2180,25 @@ function renderNewsCard(item){
   const watchBtn=item.youtubeId
     ?`<a href="https://www.youtube.com/watch?v=${item.youtubeId}" target="_blank" class="news-watch-btn"><i class="fab fa-youtube"></i> Regarder</a>`
     :'';
+  const artUrl = 'article?id=' + item.id;
   return `
   <div class="news-card fade-in" id="card-${item.id}">
-    <div class="news-thumb-wrap">
-      ${item.youtubeId
-        ?`<img src="${thumbSrc}" class="news-thumb" alt="${item.title}" onerror="this.src='sa_majeste_trone_1.jpg'">`
-        :`<img src="${thumbSrc}" class="news-thumb" alt="${item.title}" onerror="this.src='sa_majeste_trone_1.jpg'">`}
+    <div class="news-thumb-wrap" style="cursor:pointer" onclick="window.location='${artUrl}'">
+      <img src="${thumbSrc}" class="news-thumb" alt="${item.title}" onerror="this.src='sa_majeste_trone_1.jpg'">
       <span class="news-badge ${badgeClass}">${badgeLabel}</span>
-      ${item.youtubeId?`<div class="news-play-btn" onclick="openVideo('${item.youtubeId}')"><i class="fas fa-play-circle"></i></div>`:''}
+      ${item.youtubeId?`<div class="news-play-btn"><i class="fas fa-play-circle"></i></div>`:''}
+      ${!item.youtubeId?`<div class="img-zoom-btn" title="Lire l'article"><i class="fas fa-arrow-right"></i></div>`:''}
     </div>
     <div class="news-body">
       <div class="news-meta">
         <span class="news-date"><i class="fas fa-calendar" style="color:var(--gold);margin-right:3px"></i>${item.date||''}</span>
-        ${item.views?`<span class="news-views"><i class="fas fa-eye"></i>${item.views} vues</span>`:''}
+        ${item.views && item.youtubeId ?`<span class="news-views"><i class="fas fa-eye"></i>${item.views} vues</span>`:''}
       </div>
-      <div class="news-title">${item.title}</div>
+      <div class="news-title" style="cursor:pointer" onclick="window.location='${artUrl}'">${item.title}</div>
       <div class="news-desc" id="desc-${item.id}">${item.desc||''}</div>
-      ${item.desc && item.desc.length>200?`<button class="read-more-btn" onclick="toggleReadMore('${item.id}',this)">Lire la suite <i class='fas fa-chevron-down'></i></button>`:''}
+      <a href="${artUrl}" class="read-more-btn" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none">
+        Lire la suite <i class='fas fa-arrow-right'></i>
+      </a>
       <div class="news-footer">
         <div style="display:flex;gap:8px">
           <button class="like-btn ${liked?'liked':''}" onclick="toggleLike('${item.id}',this)">
@@ -2152,6 +2209,7 @@ function renderNewsCard(item){
           </button>
         </div>
         ${watchBtn}
+        <button class="share-img-btn" onclick="shareArticlePage('${item.id}','${(item.title||'').replace(/'/g,"\\'")}',event)"><i class="fas fa-share-alt"></i> Partager</button>
       </div>
       <div class="comments-section" id="comments-${item.id}">
         <div class="comment-form">
@@ -2165,8 +2223,125 @@ function renderNewsCard(item){
   </div>`;
 }
 
-function toggleReadMore(id,btn){
-  const desc=document.getElementById('desc-'+id);
+/* ═══════════════════════════════════════════════
+   PARTAGE — PARTAGE LA PAGE ARTICLE (avec OG image)
+═══════════════════════════════════════════════ */
+// Map article IDs to their static share pages (with hard-coded OG image meta tags)
+const ARTICLE_SHARE_URLS = {
+  feat_1: 'https://elucco.pages.dev/article-6mars',
+  feat_2: 'https://elucco.pages.dev/article-vive6mars',
+  feat_3: 'https://elucco.pages.dev/article?id=feat_3',
+};
+
+function shareArticlePage(id, title, event){
+  event.stopPropagation();
+  // Utilise l'URL statique avec les balises OG hard-codées pour que Facebook/WhatsApp affiche l'image
+  const articleUrl = ARTICLE_SHARE_URLS[id] || ('https://elucco.pages.dev/article?id=' + id);
+  const shareText  = (title || 'ELUCCO') + ' — ELUCCO Eglise Lumière du Christ au Congo';
+
+  // Web Share API (mobile natif - affiche vraiment l'image sur WhatsApp/Facebook)
+  if(navigator.share){
+    navigator.share({
+      title: title || 'ELUCCO',
+      text:  shareText,
+      url:   articleUrl,
+    }).catch(()=>{});
+    return;
+  }
+  // Fallback desktop : menu avec liens vers les plateformes
+  showShareMenu(articleUrl, title || 'ELUCCO', event);
+}
+
+function shareImage(src, title, event){
+  // Redirige vers shareArticlePage si on connait l'id, sinon fallback
+  event.stopPropagation();
+  const imageUrl = 'https://elucco.pages.dev/' + src;
+  const shareText = title || 'Sa Majeste Masambukidi Samuel I — ELUCCO';
+  if(navigator.share){
+    navigator.share({ title: shareText, text: shareText, url: imageUrl }).catch(()=>{});
+    return;
+  }
+  showShareMenu(imageUrl, shareText, event);
+}
+function openImageFull(src){
+  if(!src) return;
+  // Ouvre l'image seule dans le lightbox ELUCCO
+  const lb=document.getElementById('lightbox');
+  const img=document.getElementById('lightbox-img');
+  if(!lb||!img) return;
+  img.src=src;
+  img.alt='Photo ELUCCO';
+  lb.classList.add('show');
+  document.body.style.overflow='hidden';
+  // Masque les boutons de navigation (pas de galerie ici)
+  lb.querySelectorAll('.lightbox-nav').forEach(b=>b.style.display='none');
+}
+
+function shareImage(src, title, event){
+  event.stopPropagation();
+  const imageUrl = window.location.origin + '/' + src;
+  const shareText = title || 'Sa Majeste Masambukidi Samuel I — ELUCCO';
+  // Utilise Web Share API si disponible (mobile)
+  if(navigator.share){
+    navigator.share({
+      title: shareText,
+      text: shareText + ' — ELUCCO Eglise Lumiere du Christ au Congo',
+      url: imageUrl,
+    }).catch(()=>{});
+    return;
+  }
+  // Fallback : menu de partage personnalisé
+  showShareMenu(imageUrl, shareText, event);
+}
+
+function showShareMenu(url, title, event){
+  // Supprime l'ancien menu s'il existe
+  document.getElementById('share-menu-popup')?.remove();
+  const encodedUrl = encodeURIComponent('https://elucco.pages.dev');
+  const encodedTitle = encodeURIComponent(title);
+  const menu = document.createElement('div');
+  menu.id = 'share-menu-popup';
+  menu.style.cssText = `
+    position:fixed;z-index:9999;
+    background:linear-gradient(135deg,#0d1a0d,#0a0a1a);
+    border:1px solid rgba(201,168,76,0.4);border-radius:16px;
+    padding:16px;min-width:220px;
+    box-shadow:0 8px 40px rgba(0,0,0,0.8);
+    top:${Math.min(event.clientY, window.innerHeight-220)}px;
+    left:${Math.min(event.clientX, window.innerWidth-240)}px;
+    animation:zoomIn 0.2s ease;
+  `;
+  menu.innerHTML = `
+    <div style="color:var(--gold);font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-family:var(--font-ui)">Partager</div>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}" target="_blank" 
+       style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:#5b9cf6;font-size:0.85rem;font-family:var(--font-ui);margin-bottom:6px;background:rgba(24,119,242,0.1);text-decoration:none" 
+       onclick="document.getElementById('share-menu-popup').remove()">
+      <i class="fab fa-facebook" style="font-size:1.1rem"></i> Facebook
+    </a>
+    <a href="https://wa.me/?text=${encodedTitle}%20${encodedUrl}" target="_blank"
+       style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:#25d366;font-size:0.85rem;font-family:var(--font-ui);margin-bottom:6px;background:rgba(37,211,102,0.08);text-decoration:none"
+       onclick="document.getElementById('share-menu-popup').remove()">
+      <i class="fab fa-whatsapp" style="font-size:1.1rem"></i> WhatsApp
+    </a>
+    <button onclick="navigator.clipboard?.writeText('${url}').then(()=>showToast('Lien copie !','success'));document.getElementById('share-menu-popup').remove();"
+       style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;color:rgba(255,255,255,0.7);font-size:0.85rem;font-family:var(--font-ui);width:100%;background:rgba(255,255,255,0.05);border:none;cursor:pointer;text-align:left">
+      <i class="fas fa-copy" style="font-size:1rem"></i> Copier le lien
+    </button>
+    <button onclick="document.getElementById('share-menu-popup').remove()"
+       style="display:flex;align-items:center;justify-content:center;padding:8px;border-radius:8px;color:rgba(255,255,255,0.3);font-size:0.75rem;font-family:var(--font-ui);width:100%;background:none;border:none;cursor:pointer;margin-top:4px">
+      Fermer
+    </button>
+  `;
+  document.body.appendChild(menu);
+  // Ferme si on clique ailleurs
+  setTimeout(()=>{
+    document.addEventListener('click', function handler(e){
+      if(!menu.contains(e.target)){menu.remove();document.removeEventListener('click',handler);}
+    });
+  },100);
+}
+
+function toggleReadMore(id,btn){  const desc=document.getElementById('desc-'+id);
   if(!desc) return;
   if(desc.classList.contains('expanded')){
     desc.classList.remove('expanded');
@@ -2339,6 +2514,8 @@ function closeLightbox(){
   const lb=document.getElementById('lightbox');
   if(lb) lb.classList.remove('show');
   document.body.style.overflow='';
+  // Remet les boutons nav visibles pour la galerie
+  lb?.querySelectorAll('.lightbox-nav').forEach(b=>b.style.display='');
 }
 
 function lightboxNav(dir){
@@ -2429,42 +2606,47 @@ function getDaysUntilFeast(month,day){
 /* ═══════════════════════════════════════════════
    EMAIL SUBSCRIPTION
 ═══════════════════════════════════════════════ */
-async function handleSubscribe(e){
-  e.preventDefault();
-  const email=document.getElementById('sub-email')?.value?.trim();
-  const firstName=document.getElementById('sub-firstname')?.value?.trim();
-  const status=document.getElementById('sub-status');
-  const btn=e.target.querySelector('.sub-btn');
-  if(!email){return;}
-  if(btn){btn.textContent='Envoi...';btn.disabled=true;}
-  if(status){status.textContent='';status.className='sub-status';}
+async function handleSubscribeBtn(){
+  const email = (document.getElementById('sub-email')?.value || '').trim();
+  const firstName = (document.getElementById('sub-firstname')?.value || '').trim();
+  const status = document.getElementById('sub-status');
+  const btn = document.getElementById('sub-btn');
+  if(!email || !email.includes('@')){
+    if(status){ status.textContent='⚠️ Veuillez entrer une adresse email valide.'; status.style.color='#ff9800'; }
+    document.getElementById('sub-email').focus();
+    return;
+  }
+  if(btn){ btn.textContent='Envoi en cours...'; btn.disabled=true; btn.style.opacity='0.7'; }
+  if(status){ status.textContent=''; }
   try{
-    const resp=await fetch(WORKER_URL+'/api/subscribe',{
+    const resp = await fetch(WORKER_URL+'/api/subscribe',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email,firstName:firstName||'Masambukidiste'})
+      body:JSON.stringify({email, firstName: firstName||'Masambukidiste'})
     });
-    const data=await resp.json();
+    const data = await resp.json();
     if(data.success){
       if(status){
-        status.innerHTML='<i class="fas fa-check-circle" style="color:#4caf50;margin-right:6px"></i>Bienvenue '+
-          (firstName||'Masambukidiste')+'! Votre email de bienvenue a ete envoye a '+email+
-          '. Verifiez votre boite mail (et le dossier spam si necessaire).';
-        status.className='sub-status success';
+        status.innerHTML='<span style="color:#4caf50"><i class="fas fa-check-circle"></i> Bienvenue '+(firstName||'Masambukidiste')+'! Vérifiez votre boite mail (et les spams).</span>';
       }
-      showToast('Bienvenue a toi, Masambukidiste ! Email de bienvenue envoye.','success');
+      showToast('✅ Inscrit ! Email de bienvenue envoyé.','success');
       document.getElementById('sub-email').value='';
       if(document.getElementById('sub-firstname')) document.getElementById('sub-firstname').value='';
     } else {
-      if(status){status.textContent='Erreur : '+data.message;status.className='sub-status error';}
-      showToast('Erreur d\'inscription. Reessayez.','error');
+      if(status){ status.innerHTML='<span style="color:#ff6b6b"><i class="fas fa-exclamation-circle"></i> Erreur : '+data.message+'</span>'; }
+      showToast('Erreur d\'inscription. Réessayez.','error');
     }
   } catch(err){
-    if(status){status.textContent='Erreur de connexion. Reessayez plus tard.';status.className='sub-status error';}
-    showToast('Erreur reseau. Reessayez.','error');
+    if(status){ status.innerHTML='<span style="color:#ff6b6b"><i class="fas fa-wifi"></i> Erreur réseau. Vérifiez votre connexion.</span>'; }
+    showToast('Erreur réseau.','error');
   } finally{
-    if(btn){btn.innerHTML='<i class="fas fa-paper-plane"></i> S\'abonner';btn.disabled=false;}
+    if(btn){ btn.innerHTML='<i class="fas fa-paper-plane" style="margin-right:8px"></i>S\'inscrire aux alertes'; btn.disabled=false; btn.style.opacity='1'; }
   }
+}
+
+async function handleSubscribe(e){
+  if(e) e.preventDefault();
+  handleSubscribeBtn();
 }
 
 /* ═══════════════════════════════════════════════
@@ -2612,14 +2794,37 @@ function initObserver(){
 }
 
 /* ═══════════════════════════════════════════════
-   SERVICE WORKER
+   SERVICE WORKER — v10 force clear ancien cache
 ═══════════════════════════════════════════════ */
 function registerSW(){
-  if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('sw.js').then(reg=>{
-      console.log('SW registered');
-    }).catch(console.error);
-  }
+  if(!('serviceWorker' in navigator)) return;
+  // Désinstalle tous les vieux SW d'un coup, sans reload loop
+  navigator.serviceWorker.getRegistrations().then(regs => {
+    const old = regs.filter(r => {
+      const sw = r.active || r.installing || r.waiting;
+      // Si pas encore v10, on le vire
+      return sw && sw.scriptURL && !sw.scriptURL.includes('sw.js?v=10');
+    });
+    if(old.length > 0){
+      Promise.all(old.map(r => r.unregister())).then(() => {
+        // Vide tous les caches
+        caches.keys().then(keys => Promise.all(keys.map(k => caches.delete(k)))).then(() => {
+          // Installe le nouveau SW puis recharge UNE seule fois
+          navigator.serviceWorker.register('sw.js?v=10').then(() => {
+            if(!sessionStorage.getItem('sw_v10_reloaded')){
+              sessionStorage.setItem('sw_v10_reloaded','1');
+              window.location.reload();
+            }
+          });
+        });
+      });
+    } else {
+      // Déjà sur v10, juste enregistrer
+      navigator.serviceWorker.register('sw.js?v=10').then(reg => {
+        reg.update();
+      }).catch(console.error);
+    }
+  });
 }
 
 /* ═══════════════════════════════════════════════
@@ -2660,6 +2865,8 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderVideos();
   renderGallery();
   renderCalendar();
+  // ─── BANNIERE DATE SPECIALE : s'affiche IMMEDIATEMENT sans attendre le splash ───
+  checkMarchBanner();
   setTimeout(initSplash,100);
   setTimeout(initObserver,3500);
   // Hero bg loaded animation

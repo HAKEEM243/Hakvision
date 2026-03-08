@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- Open Graph / Facebook / WhatsApp preview - populated dynamically by JS -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ELUCCO">
+<meta id="og-title" property="og:title" content="ELUCCO — Eglise Lumière du Christ au Congo">
+<meta id="og-description" property="og:description" content="Site officiel de Sa Majesté Masambukidi Samuel I">
+<meta id="og-image" property="og:image" content="https://elucco.pages.dev/sa_majeste_trone_1.jpg">
+<meta id="og-url" property="og:url" content="https://elucco.pages.dev/article">
+<meta name="twitter:card" content="summary_large_image">
+<meta id="tw-title" name="twitter:title" content="ELUCCO">
+<meta id="tw-description" name="twitter:description" content="ELUCCO — Eglise Lumière du Christ au Congo">
+<meta id="tw-image" name="twitter:image" content="https://elucco.pages.dev/sa_majeste_trone_1.jpg">
+<meta id="page-title" name="title" content="ELUCCO">
+<meta name="theme-color" content="#c9a84c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- CACHE-BUST: article-v8.0-1773005990 -->
+<title id="html-title">ELUCCO — Article</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="masambukidi_armoiries.png">
+<link rel="apple-touch-icon" href="masambukidi_armoiries.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --gold:#c9a84c;--gold-light:#f0d060;--gold-dark:#a0802a;
+  --green:#1a4a1a;--green-light:#2d8b2d;
+  --dark:#0a0f0a;--dark2:#0d1a0d;--dark3:#111811;
+  --white:#fff;--text:#e8e8e8;--text-muted:rgba(255,255,255,0.55);
+  --shadow:0 8px 40px rgba(0,0,0,0.6);
+  --radius:16px;--radius-sm:10px;
+  --font-title:'Cinzel',serif;--font-body:'Crimson Text',serif;--font-ui:'Inter',sans-serif;
+  --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--dark);color:var(--text);
+  font-family:var(--font-ui);min-height:100vh;
+  background-image:radial-gradient(ellipse at top left,rgba(45,139,45,0.06) 0%,transparent 50%),
+                   radial-gradient(ellipse at bottom right,rgba(201,168,76,0.06) 0%,transparent 50%);
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ── HEADER ── */
+.art-header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,15,10,0.95);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(201,168,76,0.2);
+  padding:14px 20px;
+  display:flex;align-items:center;gap:14px;
+}
+.art-back{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(201,168,76,0.3);background:transparent;
+  color:var(--gold);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:var(--transition);flex-shrink:0;
+}
+.art-back:hover{background:rgba(201,168,76,0.1);border-color:var(--gold)}
+.art-header-logo{
+  width:32px;height:32px;border-radius:50%;object-fit:contain;
+  border:1px solid rgba(201,168,76,0.3);
+}
+.art-header-title{
+  font-family:var(--font-title);font-size:0.85rem;
+  color:var(--gold);letter-spacing:1px;flex:1;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.art-header-share{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(201,168,76,0.3);background:transparent;
+  color:var(--gold);cursor:pointer;font-size:0.9rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:var(--transition);flex-shrink:0;
+}
+.art-header-share:hover{background:rgba(201,168,76,0.15)}
+
+/* ── HERO IMAGE ── */
+.art-hero{position:relative;width:100%;max-height:520px;overflow:hidden;background:#0d1a0d}
+.art-hero-img{
+  width:100%;object-fit:cover;max-height:520px;
+  display:block;transition:transform 0.6s ease;
+  cursor:pointer;
+}
+.art-hero-img:hover{transform:scale(1.02)}
+.art-hero-overlay{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,0.85));
+  padding:40px 24px 24px;
+}
+.art-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:#0a0a0a;font-size:0.65rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;padding:4px 10px;border-radius:20px;
+  font-family:var(--font-ui);margin-bottom:10px;
+}
+.art-hero-title{
+  font-family:var(--font-title);
+  font-size:clamp(1.1rem,4vw,1.8rem);
+  color:var(--white);line-height:1.3;
+  text-shadow:0 2px 12px rgba(0,0,0,0.8);
+}
+
+/* ── CONTENT ── */
+.art-content{max-width:760px;margin:0 auto;padding:28px 20px 80px}
+.art-meta{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:18px 0;border-bottom:1px solid rgba(201,168,76,0.15);
+  margin-bottom:28px;
+}
+.art-meta-item{
+  display:flex;align-items:center;gap:6px;
+  font-size:0.78rem;color:var(--text-muted);font-family:var(--font-ui);
+}
+.art-meta-item i{color:var(--gold);font-size:0.75rem}
+.art-logo-row{
+  display:flex;align-items:center;gap:14px;
+  padding:20px;margin-bottom:24px;
+  background:rgba(201,168,76,0.05);
+  border:1px solid rgba(201,168,76,0.15);
+  border-radius:var(--radius);
+}
+.art-logos img{width:48px;height:48px;object-fit:contain;border-radius:50%}
+.art-logos{display:flex;gap:10px;align-items:center}
+.art-source{font-family:var(--font-ui);font-size:0.78rem;color:var(--text-muted);line-height:1.5}
+.art-source strong{color:var(--gold);display:block;font-size:0.85rem;margin-bottom:2px}
+
+/* article body text */
+.art-body{font-family:var(--font-body);font-size:1.12rem;line-height:1.85;color:rgba(255,255,255,0.88)}
+.art-body p{margin-bottom:20px}
+.art-body p:first-child::first-letter{
+  float:left;font-family:var(--font-title);font-size:3.5rem;line-height:0.85;
+  color:var(--gold);margin:4px 10px 0 0;text-shadow:0 0 20px rgba(201,168,76,0.4);
+}
+.art-body .art-highlight{
+  display:block;
+  border-left:3px solid var(--gold);
+  padding:14px 18px;margin:24px 0;
+  background:rgba(201,168,76,0.06);border-radius:0 12px 12px 0;
+  font-style:italic;color:var(--gold-light);
+  font-size:1.05rem;
+}
+.art-divider{
+  width:60px;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  margin:28px 0;border-radius:2px;
+}
+
+/* ── ACTIONS BAR ── */
+.art-actions{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(10,15,10,0.97);backdrop-filter:blur(20px);
+  border-top:1px solid rgba(201,168,76,0.2);
+  padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  z-index:100;
+}
+.art-like-btn{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 20px;border-radius:30px;
+  border:1px solid rgba(201,168,76,0.3);background:transparent;
+  color:var(--text-muted);font-family:var(--font-ui);font-size:0.85rem;
+  cursor:pointer;transition:var(--transition);
+}
+.art-like-btn.liked{color:#ff6b8a;border-color:rgba(255,107,138,0.5);background:rgba(255,107,138,0.08)}
+.art-like-btn:hover{background:rgba(255,107,138,0.08);border-color:rgba(255,107,138,0.3)}
+.art-share-row{display:flex;gap:8px}
+.art-share-platform{
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;cursor:pointer;border:none;transition:var(--transition);
+}
+.art-share-platform.fb{background:rgba(24,119,242,0.15);color:#4f8ef7}
+.art-share-platform.fb:hover{background:rgba(24,119,242,0.3)}
+.art-share-platform.wa{background:rgba(37,211,102,0.12);color:#25d366}
+.art-share-platform.wa:hover{background:rgba(37,211,102,0.25)}
+.art-share-platform.copy{background:rgba(201,168,76,0.12);color:var(--gold)}
+.art-share-platform.copy:hover{background:rgba(201,168,76,0.25)}
+
+/* ── COMMENTS ── */
+.art-comments{margin-top:36px}
+.art-comments-title{
+  font-family:var(--font-title);font-size:1rem;color:var(--gold);
+  letter-spacing:1px;margin-bottom:18px;
+  padding-bottom:10px;border-bottom:1px solid rgba(201,168,76,0.15);
+}
+.art-comment-form{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.art-comment-input{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--radius-sm);padding:12px 14px;
+  color:var(--white);font-family:var(--font-ui);font-size:0.88rem;
+  transition:var(--transition);resize:none;
+}
+.art-comment-input:focus{outline:none;border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.05)}
+.art-comment-input::placeholder{color:rgba(255,255,255,0.3)}
+.art-comment-submit{
+  padding:12px 24px;border-radius:30px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:#0a0a0a;font-weight:600;font-family:var(--font-ui);font-size:0.88rem;
+  align-self:flex-end;transition:var(--transition);
+}
+.art-comment-submit:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,168,76,0.3)}
+.art-comment-item{
+  padding:14px;border-radius:var(--radius-sm);
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
+  margin-bottom:10px;
+}
+.art-comment-author{font-size:0.8rem;color:var(--gold);font-weight:600;font-family:var(--font-ui);margin-bottom:5px}
+.art-comment-text{font-size:0.9rem;color:rgba(255,255,255,0.7);line-height:1.55}
+.art-comment-time{font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:6px}
+.art-comment-empty{color:rgba(255,255,255,0.3);font-size:0.85rem;text-align:center;padding:20px}
+
+/* ── RELATED ── */
+.art-back-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 24px;border-radius:30px;
+  border:1px solid rgba(201,168,76,0.3);background:transparent;
+  color:var(--gold);font-family:var(--font-ui);font-size:0.88rem;
+  cursor:pointer;transition:var(--transition);margin-top:20px;
+}
+.art-back-btn:hover{background:rgba(201,168,76,0.1)}
+
+/* ── LIGHTBOX FULL IMAGE ── */
+#art-lightbox{
+  position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,0.97);
+  display:none;align-items:center;justify-content:center;flex-direction:column;
+}
+#art-lightbox.show{display:flex}
+#art-lightbox-img{max-width:98vw;max-height:92vh;object-fit:contain;border-radius:8px}
+#art-lightbox-close{
+  position:absolute;top:16px;right:16px;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,0.1);border:none;
+  color:#fff;font-size:1.3rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+}
+/* ── TOAST ── */
+.art-toast{
+  position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:rgba(45,139,45,0.95);color:#fff;
+  padding:10px 20px;border-radius:30px;font-size:0.85rem;font-family:var(--font-ui);
+  opacity:0;transition:0.3s ease;pointer-events:none;z-index:5000;white-space:nowrap;
+}
+.art-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── YT EMBED ── */
+.art-video-wrap{
+  position:relative;padding-bottom:56.25%;height:0;overflow:hidden;
+  border-radius:var(--radius);margin:24px 0;background:#000;
+}
+.art-video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+
+@media(max-width:480px){
+  .art-hero-overlay{padding:28px 16px 18px}
+  .art-content{padding:20px 16px 80px}
+  .art-body{font-size:1.04rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="art-header">
+  <button class="art-back" onclick="window.history.length>1?window.history.back():window.location='index.html'" title="Retour">
+    <i class="fas fa-arrow-left"></i>
+  </button>
+  <img src="masambukidi_armoiries.png" class="art-header-logo" alt="Armoiries">
+  <span class="art-header-title" id="header-title">ELUCCO</span>
+  <button class="art-header-share" onclick="shareArticle()" title="Partager">
+    <i class="fas fa-share-alt"></i>
+  </button>
+</header>
+
+<!-- HERO -->
+<div class="art-hero" id="art-hero-wrap">
+  <img src="" id="art-main-img" class="art-hero-img" alt="" onclick="openLightbox()">
+  <div class="art-hero-overlay">
+    <div class="art-badge" id="art-badge"><i class="fas fa-crown"></i> Royal</div>
+    <div class="art-hero-title" id="art-hero-title">Chargement…</div>
+  </div>
+</div>
+
+<!-- VIDEO EMBED (for video articles) -->
+<div class="art-video-wrap" id="art-video-wrap" style="display:none">
+  <iframe id="art-video-iframe" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+</div>
+
+<!-- CONTENT -->
+<main class="art-content">
+  <!-- Source / logo row -->
+  <div class="art-logo-row">
+    <div class="art-logos">
+      <img src="masambukidi_armoiries.png" alt="Armoiries" id="logo1" style="width:52px;height:52px;object-fit:contain;border-radius:50%">
+    </div>
+    <div class="art-source">
+      <strong>ELUCCO — Publication Officielle</strong>
+      Eglise Lumière du Christ au Congo · elucco.pages.dev
+    </div>
+  </div>
+
+  <!-- Meta -->
+  <div class="art-meta">
+    <div class="art-meta-item"><i class="fas fa-birthday-cake" style="color:var(--gold)"></i><span id="art-date">—</span></div>
+    <div class="art-meta-item"><i class="fas fa-map-marker-alt" style="color:var(--gold)"></i><span id="art-location" style="display:none"></span></div>
+    <div class="art-meta-item" id="art-photo-date-wrap" style="display:none"><i class="fas fa-camera" style="color:var(--gold)"></i><span id="art-photo-date">—</span></div>
+    <div class="art-meta-item" id="art-views-wrap" style="display:none"><i class="fas fa-eye"></i><span id="art-views">—</span> vues</div>
+  </div>
+
+  <!-- Full text body -->
+  <article class="art-body" id="art-body-text">
+    <p>Chargement de l'article…</p>
+  </article>
+
+  <div class="art-divider"></div>
+
+  <!-- Comments -->
+  <section class="art-comments" id="art-comments-section">
+    <div class="art-comments-title"><i class="fas fa-comments" style="margin-right:8px;color:var(--gold)"></i>Commentaires</div>
+    <div class="art-comment-form">
+      <input type="text" class="art-comment-input" id="cmt-name" placeholder="Votre nom (facultatif)">
+      <textarea class="art-comment-input" id="cmt-text" rows="3" placeholder="Votre commentaire…"></textarea>
+      <button class="art-comment-submit" onclick="submitComment()"><i class="fas fa-paper-plane"></i> Envoyer</button>
+    </div>
+    <div id="cmt-list"></div>
+  </section>
+
+  <button class="art-back-btn" onclick="window.location='index.html'">
+    <i class="fas fa-arrow-left"></i> Retour à l'accueil
+  </button>
+</main>
+
+<!-- BOTTOM ACTIONS -->
+<div class="art-actions">
+  <button class="art-like-btn" id="art-like-btn" onclick="toggleLike()">
+    <i class="fas fa-heart"></i>
+    <span id="art-like-count">0</span> J'aime
+  </button>
+  <div class="art-share-row">
+    <button class="art-share-platform fb" onclick="shareFacebook()" title="Partager sur Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </button>
+    <button class="art-share-platform wa" onclick="shareWhatsapp()" title="Partager sur WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </button>
+    <button class="art-share-platform copy" onclick="copyLink()" title="Copier le lien">
+      <i class="fas fa-link"></i>
+    </button>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="art-lightbox">
+  <button id="art-lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
+  <img id="art-lightbox-img" src="" alt="">
+</div>
+
+<!-- TOAST -->
+<div class="art-toast" id="art-toast"></div>
+
+<script>
+/* ═══════════════════════════════════
+   ARTICLES DATABASE
+═══════════════════════════════════ */
+const BASE_URL = 'https://elucco.pages.dev';
+
+const ARTICLES = {
+  feat_1: {
+    id: 'feat_1',
+    type: 'actualite',
+    badge: 'royal',
+    title: '6 Mars — La Naissance Royale et Divine de Papa Samuel Nitufuidi Masambukidi',
+    date: '6 Mars 1958',
+    location: 'Mbengua Ntadi, Congo DRC',
+    photoDate: '6 Mars 2025 · Kinkole-Miongo, Kinshasa',
+    img: 'sa_majeste_roi_benediction_officielle.jpg',
+    views: null,
+    likes: 0,
+    paragraphs: [
+      "Ce 6 Mars est différent de tous les autres. Depuis l'intronisation solennelle de Sa Majesté Masambukidi Samuel I le 30 Octobre 2025, la communauté mondiale des Masambukidistes célèbre avec une ferveur renouvelée et un regard nouveau la naissance de son Père Fondateur : Samuel Nitufuidi Masambukidi Kulala Kwamakanda, dit Papa Samy.",
+      "Né le 6 Mars 1958 à Mbengua Ntadi (Kinshasa, RDC), cet Être Divin n'est pas venu sur terre par hasard. Sa naissance fut entourée de mystères prophétiques et de signes célestes extraordinaires, attestant d'une mission royale et divine tracée de toute éternité pour le salut du Bassin du Kongo et du monde entier.",
+      "La photo que vous contemplez — prise le 6 Mars 2025 à Kinkole-Miongo, Kinshasa.",
+    ],
+  },
+  feat_2: {
+    id: 'feat_2',
+    type: 'video',
+    badge: 'video',
+    youtubeId: 'inpRzkJT_w8',
+    title: 'Vive le 06 Mars 2026 — Célébration Mondiale',
+    date: '6 Mars 2026',
+    views: '1 600',
+    likes: 89,
+    paragraphs: [
+      "Célébrons ensemble la naissance de notre Père Fondateur divin Papa Samy Masambukidi. Toute la communauté Masambukidiste mondiale est invitée à cette commémoration internationale.",
+      "Ce hymne vibrant rend hommage à Papa Samy Masambukidi, Être Divin né le 6 Mars 1958, dont la mission divine continue de rayonner à travers Sa Majesté Masambukidi Samuel I, son héritier spirituel et royal.",
+      "Que la communauté ELUCCO dans les cinq continents s'élève dans la joie, dans la prière et dans la gratitude pour cette date sacrée entre toutes.",
+    ],
+    highlight: "Vive le 6 Mars ! Vive la communauté Masambukidiste mondiale !",
+  },
+  feat_3: {
+    id: 'feat_3',
+    type: 'video',
+    badge: 'video',
+    youtubeId: '4x-O7A8VgUQ',
+    title: 'Direct : Premier Culte du 01 Mars 2026 — Temple Central de Kinshasa',
+    date: '1 Mars 2026',
+    views: '3 400',
+    likes: 178,
+    paragraphs: [
+      "Retransmission en direct du premier culte du mois de Mars 2026 au Temple Central de Kinshasa, sous la présidence de Sa Majesté Masambukidi Samuel I.",
+      "Ce culte inaugural du mois de Mars marque le début de la période sacrée menant au 6 Mars, date anniversaire de la naissance du Père Fondateur Papa Samy Masambukidi.",
+      "La communauté ELUCCO de Kinshasa et du monde entier est réunie dans la prière, l'adoration et la célébration de la mission divine qui unit tous les Masambukidistes.",
+    ],
+    highlight: "Temple Central de Kinshasa — Avenue Mbandaka n°40, Kimbanseke, Tshangu.",
+  },
+};
+
+/* ═══════════════════════════════════
+   INIT
+═══════════════════════════════════ */
+let currentArticle = null;
+
+function getParam(name){
+  return new URLSearchParams(window.location.search).get(name);
+}
+function getLS(k,d){try{const v=localStorage.getItem(k);return v!==null?JSON.parse(v):d;}catch{return d;}}
+function setLS(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const id = getParam('id') || 'feat_1';
+  const art = ARTICLES[id];
+  if(!art){ document.title='ELUCCO — Article introuvable'; return; }
+  currentArticle = art;
+  renderArticle(art);
+  renderComments(art.id);
+});
+
+function renderArticle(art){
+  // Update page title
+  document.title = art.title + ' — ELUCCO';
+  document.getElementById('html-title').textContent = art.title + ' — ELUCCO';
+  document.getElementById('header-title').textContent = 'ELUCCO';
+
+  // Update OG meta tags dynamically
+  const pageUrl = BASE_URL + '/article?id=' + art.id;
+  const imgUrl  = art.img ? BASE_URL + '/' + art.img : BASE_URL + '/sa_majeste_trone_1.jpg';
+  document.getElementById('og-title').setAttribute('content', art.title);
+  document.getElementById('og-description').setAttribute('content', art.paragraphs[0].substring(0,160));
+  document.getElementById('og-image').setAttribute('content', imgUrl);
+  document.getElementById('og-url').setAttribute('content', pageUrl);
+  document.getElementById('tw-title').setAttribute('content', art.title);
+  document.getElementById('tw-description').setAttribute('content', art.paragraphs[0].substring(0,160));
+  document.getElementById('tw-image').setAttribute('content', imgUrl);
+
+  // Hero
+  document.getElementById('art-hero-title').textContent = art.title;
+  const badge = document.getElementById('art-badge');
+  if(art.badge === 'royal'){
+    badge.innerHTML = '<i class="fas fa-crown"></i> Royal';
+    badge.style.background = 'linear-gradient(135deg,#c9a84c,#a0802a)';
+  } else if(art.badge === 'video'){
+    badge.innerHTML = '<i class="fas fa-play-circle"></i> Vidéo';
+    badge.style.background = 'linear-gradient(135deg,#e53935,#b71c1c)';
+  }
+
+  if(art.youtubeId){
+    // Video article
+    document.getElementById('art-hero-wrap').style.display='none';
+    const vw = document.getElementById('art-video-wrap');
+    vw.style.display='block';
+    document.getElementById('art-video-iframe').src = 'https://www.youtube.com/embed/' + art.youtubeId + '?rel=0&modestbranding=1';
+  } else if(art.img){
+    document.getElementById('art-main-img').src = art.img;
+    document.getElementById('art-main-img').alt = art.title;
+  }
+
+  // Meta
+  document.getElementById('art-date').textContent = art.date || '';
+  if(art.location){
+    const locEl = document.getElementById('art-location');
+    locEl.textContent = art.location;
+    locEl.style.display = 'inline';
+  }
+  if(art.photoDate){
+    document.getElementById('art-photo-date').textContent = art.photoDate;
+    document.getElementById('art-photo-date-wrap').style.display = 'flex';
+  }
+  if(art.views && art.youtubeId){
+    document.getElementById('art-views-wrap').style.display = 'flex';
+    document.getElementById('art-views').textContent = art.views;
+  }
+
+  // Body text
+  let html = '';
+  art.paragraphs.forEach((p, i) => {
+    html += '<p>' + p + '</p>';
+    if(i === 1 && art.highlight){
+      html += '<span class="art-highlight"><i class="fas fa-quote-left" style="margin-right:8px;opacity:0.5"></i>' + art.highlight + '</span>';
+    }
+  });
+  if(art.closing){
+    html += '<p style="text-align:center;margin-top:24px;font-family:var(--font-title);font-size:1rem;color:var(--gold);letter-spacing:1px">' + art.closing + '</p>';
+  }
+  document.getElementById('art-body-text').innerHTML = html;
+
+  // Likes
+  const likes = getLS('likes_' + art.id, art.likes || 0);
+  const liked  = getLS('liked_' + art.id, false);
+  document.getElementById('art-like-count').textContent = likes;
+  if(liked) document.getElementById('art-like-btn').classList.add('liked');
+}
+
+/* ═══════════════════════════════════
+   LIKES
+═══════════════════════════════════ */
+function toggleLike(){
+  if(!currentArticle) return;
+  const id = currentArticle.id;
+  const liked = getLS('liked_' + id, false);
+  let likes   = getLS('likes_'  + id, currentArticle.likes || 0);
+  if(liked){ likes = Math.max(0, likes-1); setLS('liked_'+id,false); }
+  else      { likes++; setLS('liked_'+id,true); }
+  setLS('likes_'+id, likes);
+  document.getElementById('art-like-count').textContent = likes;
+  document.getElementById('art-like-btn').classList.toggle('liked', !liked);
+}
+
+/* ═══════════════════════════════════
+   COMMENTS
+═══════════════════════════════════ */
+function renderComments(id){
+  const list = document.getElementById('cmt-list');
+  const comments = getLS('comments_'+id,[]);
+  if(!comments.length){
+    list.innerHTML = '<div class="art-comment-empty"><i class="fas fa-comment-slash" style="margin-right:6px"></i>Soyez le premier à commenter</div>';
+    return;
+  }
+  list.innerHTML = comments.map(c=>`
+    <div class="art-comment-item">
+      <div class="art-comment-author"><i class="fas fa-user-circle" style="margin-right:5px"></i>${c.author||'Masambukidiste'}</div>
+      <div class="art-comment-text">${c.text}</div>
+      <div class="art-comment-time">${c.time||''}</div>
+    </div>
+  `).join('');
+}
+function submitComment(){
+  if(!currentArticle) return;
+  const name = document.getElementById('cmt-name').value.trim() || 'Masambukidiste';
+  const text = document.getElementById('cmt-text').value.trim();
+  if(!text){ showToast('Veuillez écrire un commentaire'); return; }
+  const id = currentArticle.id;
+  const comments = getLS('comments_'+id,[]);
+  const now = new Date();
+  comments.push({
+    author: name,
+    text: text,
+    time: now.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'})
+  });
+  setLS('comments_'+id, comments);
+  document.getElementById('cmt-name').value='';
+  document.getElementById('cmt-text').value='';
+  renderComments(id);
+  showToast('Commentaire publié ! Gloire à ELUCCO 🙏','success');
+}
+
+/* ═══════════════════════════════════
+   SHARE
+═══════════════════════════════════ */
+function getArticleUrl(){
+  if(!currentArticle) return window.location.href;
+  return BASE_URL + '/article?id=' + currentArticle.id;
+}
+function shareArticle(){
+  const url   = getArticleUrl();
+  const title = currentArticle ? currentArticle.title : 'ELUCCO';
+  const text  = title + ' — ELUCCO Eglise Lumière du Christ au Congo';
+  if(navigator.share){
+    navigator.share({ title, text, url }).catch(()=>{});
+    return;
+  }
+  // Fallback: copy link
+  copyLink();
+}
+function shareFacebook(){
+  const url = encodeURIComponent(getArticleUrl());
+  window.open('https://www.facebook.com/sharer/sharer.php?u='+url,'_blank');
+}
+function shareWhatsapp(){
+  const url   = encodeURIComponent(getArticleUrl());
+  const title = encodeURIComponent((currentArticle?currentArticle.title:'ELUCCO') + ' — ELUCCO');
+  window.open('https://wa.me/?text='+title+'%20'+url,'_blank');
+}
+function copyLink(){
+  const url = getArticleUrl();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(()=>showToast('Lien copié ! 📋','success')).catch(()=>fallbackCopy(url));
+  } else { fallbackCopy(url); }
+}
+function fallbackCopy(url){
+  const ta = document.createElement('textarea');
+  ta.value = url; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); showToast('Lien copié ! 📋','success'); }
+  catch{ showToast('Impossible de copier'); }
+  document.body.removeChild(ta);
+}
+
+/* ═══════════════════════════════════
+   LIGHTBOX
+═══════════════════════════════════ */
+function openLightbox(){
+  const img = document.getElementById('art-main-img');
+  if(!img || !img.src) return;
+  document.getElementById('art-lightbox-img').src = img.src;
+  document.getElementById('art-lightbox').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('art-lightbox').classList.remove('show');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLightbox(); });
+
+/* ═══════════════════════════════════
+   TOAST
+═══════════════════════════════════ */
+function showToast(msg, type='info'){
+  const t = document.getElementById('art-toast');
+  t.textContent = msg;
+  t.style.background = type==='success' ? 'rgba(45,139,45,0.95)' : 'rgba(201,168,76,0.95)';
+  t.style.color = type==='success' ? '#fff' : '#0a0a0a';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2800);
+}
+</script>
+</body>
+</html>
