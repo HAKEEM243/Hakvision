@@ -1,44 +1,52 @@
 #!/bin/bash
-# ============================================
-# SCRIPT DE DÉPLOIEMENT CLOUDFLARE PAGES
-# Site: Masambukidi News
-# ============================================
+# ╔══════════════════════════════════════════════════════╗
+# ║  ELUCCO — Déploiement Cloudflare Pages               ║
+# ║  Projet: elucco → https://elucco.pages.dev           ║
+# ╚══════════════════════════════════════════════════════╝
 
-echo "🚀 Déploiement Masambukidi News sur Cloudflare Pages..."
-echo ""
+set -e
 
-# Vérifier que le token est défini
+PROJECT_NAME="elucco"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+echo "========================================"
+echo "  ELUCCO — Déploiement Cloudflare Pages"
+echo "========================================"
+
+# Check token
 if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
-    echo "❌ CLOUDFLARE_API_TOKEN non défini"
-    echo ""
-    echo "👉 Commande à exécuter :"
-    echo "   export CLOUDFLARE_API_TOKEN='votre_token_ici'"
-    echo ""
-    echo "👉 Pour créer un token :"
-    echo "   https://dash.cloudflare.com/profile/api-tokens"
-    echo "   → Permissions requises: Cloudflare Pages:Edit"
-    exit 1
+  echo ""
+  echo "ERREUR: Variable CLOUDFLARE_API_TOKEN manquante."
+  echo ""
+  echo "Pour obtenir votre token:"
+  echo "  1. Allez sur https://dash.cloudflare.com/profile/api-tokens"
+  echo "  2. Cliquez 'Créer un token'"
+  echo "  3. Utilisez le modèle 'Edit Cloudflare Workers' ou 'Custom token'"
+  echo "     avec permissions: Cloudflare Pages:Edit"
+  echo "  4. Copiez le token et exécutez:"
+  echo "     export CLOUDFLARE_API_TOKEN=votre_token"
+  echo "     ./deploy-cloudflare.sh"
+  echo ""
+  exit 1
 fi
 
-PROJECT_NAME="masambukidi-news"
-DIR="$(cd "$(dirname "$0")" && pwd)"
-
-echo "📁 Dossier: $DIR"
-echo "🌐 Projet: $PROJECT_NAME"
 echo ""
+echo "[1/3] Installation de Wrangler CLI..."
+npm install -g wrangler@latest --quiet 2>/dev/null || true
 
-# Créer le projet si nécessaire
-echo "📋 Vérification du projet Cloudflare Pages..."
-wrangler pages project list 2>/dev/null | grep -q "$PROJECT_NAME" || {
-    echo "✨ Création du projet '$PROJECT_NAME'..."
-    wrangler pages project create "$PROJECT_NAME" --production-branch=main
-}
+echo "[2/3] Vérification du projet Cloudflare Pages..."
+# Try to create project if it doesn't exist
+wrangler pages project create "$PROJECT_NAME" --production-branch main 2>/dev/null || echo "(projet existe déjà)"
 
-# Déployer
-echo "📤 Déploiement en cours..."
-wrangler pages deploy "$DIR" --project-name="$PROJECT_NAME" --branch=main
+echo "[3/3] Déploiement du site ELUCCO..."
+cd "$DIR"
+wrangler pages deploy . \
+  --project-name="$PROJECT_NAME" \
+  --branch="main" \
+  --commit-message="Site ELUCCO v3 - Admin, bannière 6 Mars, emails Brevo"
 
 echo ""
 echo "✅ Déploiement terminé !"
-echo "🌐 Site disponible sur: https://$PROJECT_NAME.pages.dev"
-echo "🔗 Lié à: https://masambukidi-protection.pages.dev"
+echo "   URL: https://elucco.pages.dev"
+echo "   Admin: https://elucco.pages.dev/admin.html"
+echo "========================================"
