@@ -12,7 +12,7 @@
 <meta property="og:description" content="Site officiel de Sa Majesté Masambukidi Samuel I">
 <meta property="og:image" content="sa_majeste_trone_1.jpg">
 <title>ELUCCO — Eglise Lumière du Christ au Congo</title>
-<!-- CACHE-BUST: v8.0-1773005990 -->
+<!-- CACHE-BUST: v9.0-1773088885 -->
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="masambukidi_armoiries.png">
 <link rel="apple-touch-icon" href="masambukidi_armoiries.png">
@@ -1876,6 +1876,7 @@ const FEASTS = [
 ];
 
 const VIDEOS = [
+  {id:'5xGtsTfluII',title:'DIRECT : Culte Solennel du 08 Mars 2026 — Temple Central de la Communaute Masambukidi',date:'8 Mars 2026',views:'2 800',likes:156},
   {id:'inpRzkJT_w8',title:'Vive le 06 Mars 2026 — Celebration de la Naissance de Papa Samy',date:'6 Mars 2026',views:'1 600',likes:89},
   {id:'K49KxWOS4CE',title:'Culte du 01 Mars 2026 au Temple Central de Kinshasa',date:'1 Mars 2026',views:'2 100',likes:112},
   {id:'4x-O7A8VgUQ',title:'Direct : Culte du 01 Mars 2026 — Temple Central',date:'1 Mars 2026',views:'3 400',likes:178},
@@ -1887,6 +1888,7 @@ const VIDEOS = [
 ];
 
 const GALLERY = [
+  {src:'sa_majeste_roi_benediction_officielle.jpg',caption:'Sa Majeste — Benediction Officielle'},
   {src:'sa_majeste_trone_1.jpg',caption:'Sa Majeste sur le trone royal'},
   {src:'sa_majeste_trone_2.jpg',caption:'Sa Majeste — Portrait officiel'},
   {src:'sa_majeste_samuel_6_couronnement.jpg',caption:'Couronnement de Sa Majeste — 30 Oct 2025'},
@@ -1951,7 +1953,7 @@ function initSplash(){
 const DATE_BANNERS = [
   {
     id:'banner-mars6',
-    check:(m,d)=>m===3&&d>=5&&d<=8,
+    check:(m,d)=>m===3&&d>=5&&d<=31,
     html:`<div class="march-hearts">✦ 🌿 ✦</div>
     <div class="march-title">VIVE LE 6 MARS — BONNE FETE A TOUTE LA COMMUNAUTE MASAMBUKIDISTE DANS LE MONDE ENTIER !</div>
     <div class="march-sub">Naissance de Papa Samy Masambukidi — Etre Divin Fondateur d'ELUCCO &middot; 6 Mars 1958</div>`,
@@ -2002,7 +2004,7 @@ function checkMarchBanner(){
   if(matched){
     // Also show the original march banner if it's the march one
     const origBanner=document.getElementById('march-banner');
-    if(origBanner && m===3 && d>=5 && d<=8){
+    if(origBanner && m===3 && d>=5 && d<=31){
       origBanner.classList.add('show');
       createParticles();
     } else {
@@ -2017,7 +2019,7 @@ function checkMarchBanner(){
       else document.body.prepend(bannerEl);
       createParticles();
     }
-  } else if(m===3 && d>=5 && d<=8){
+  } else if(m===3 && d>=5 && d<=31){
     const banner=document.getElementById('march-banner');
     if(banner){banner.classList.add('show');createParticles();}
   }
@@ -2457,7 +2459,6 @@ function renderGallery(){
     <div class="gallery-item" style="position:relative">
       <img src="${item.src}" class="gallery-img" alt="${item.caption}" loading="lazy" onerror="this.parentElement.style.display='none'" onclick="openLightbox(${i})">
       <div class="gallery-overlay" onclick="openLightbox(${i})">
-        <div class="gallery-caption">${item.caption}</div>
       </div>
       <button class="gallery-post-btn" onclick="postGalleryToNews(${i},event)" title="Publier dans les Actualites">
         <i class="fas fa-share-nodes"></i>

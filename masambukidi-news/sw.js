@@ -1,8 +1,8 @@
 /**
- * ELUCCO Service Worker v10
+ * ELUCCO Service Worker v12
  * Cache uniquement les assets statiques — PAS index.html
  */
-const CACHE_NAME = 'elucco-v10';
+const CACHE_NAME = 'elucco-v13';
 const ASSETS = [
   '/manifest.json',
   '/elucco_logo_officiel.png',
