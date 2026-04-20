@@ -123,7 +123,7 @@ if (contactForm) {
 
     const formData = new FormData(contactForm);
     const payload = Object.fromEntries(formData.entries());
-    const fallbackMail = `mailto:arenalse22@gmail.com?subject=Contact%20Hakvision&body=${encodeURIComponent(`Nom : ${payload.nom}\nEmail : ${payload.email}\nObjet : ${payload.objet}\nMessage : ${payload.message}`)}`;
+    const fallbackMail = `mailto:hakeemmerveil@gmail.com?subject=Contact%20Hakvision&body=${encodeURIComponent(`Nom : ${payload.nom}\nEmail : ${payload.email}\nObjet : ${payload.objet}\nMessage : ${payload.message}`)}`;
 
     try {
       const response = await fetch(contactForm.action, {

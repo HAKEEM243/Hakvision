@@ -111,7 +111,7 @@ class PrixFormHandler {
       localStorage.setItem('prix_submissions', JSON.stringify(submissions));
       
       console.log('✅ Candidature sauvegardée:', data);
-      console.log('📧 Envoi via GetForm.io vers: arenalse22@gmail.com');
+      console.log('📧 Envoi via GetForm.io vers: hakeemmerveil@gmail.com');
       console.log('🔄 Redirection automatique après envoi...');
     } catch (error) {
       console.error('Erreur localStorage:', error);
@@ -153,7 +153,7 @@ Date: ${new Date().toLocaleString('fr-FR')}
     `.trim());
     
     // Open default email client
-    window.location.href = `mailto:arenalse22@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:hakeemmerveil@gmail.com?subject=${subject}&body=${body}`;
     
     // Save to localStorage
     const data = { nom, email, prix, livre_titre, message, date: new Date().toISOString() };
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupEmailDirectButton();
   
   console.log('✨ Prix Littéraires - System Ready');
-  console.log('📧 Primary: FormSubmit (hash) → arenalse22@gmail.com');
+  console.log('📧 Primary: FormSubmit (hash) → hakeemmerveil@gmail.com');
   console.log('📧 Secondary: Email Direct Button (fallback)');
   console.log('💾 Local backup: localStorage → prix_submissions');
 });
