@@ -636,6 +636,15 @@
       color: var(--gold); font-size: .74rem; font-weight: 700;
     }
 
+    /* ── RESPONSIVE NOUVELLES SECTIONS ── */
+    @media (max-width: 768px) {
+      #prix-resultats .section-inner > div[style*="grid-template-columns:1fr 1.4fr"],
+      #manuscrit .section-inner > div[style*="grid-template-columns:1fr 1.1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+      }
+    }
+
     /* ── REVEAL ANIMATIONS ── */
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -728,7 +737,7 @@
         <a href="papa-masambukidi.html">Masambukidi</a>
         <a href="press.html">Presse</a>
         <a href="contact.html">Contact</a>
-        <a href="livres.html" class="nav-cta-btn">Nos livres</a>
+        <a href="#manuscrit" class="nav-cta-btn"><i class="fa-solid fa-feather-pointed" style="font-size:.8rem;"></i> Soumettre</a>
       </nav>
     </div>
   </header>
@@ -1096,6 +1105,203 @@
     </div>
   </section>
 
+  <!-- ══════════════ PRIX DIANZENZA 2026 — LAURÉAT ══════════════ -->
+  <section class="section" id="prix-resultats" style="background: linear-gradient(180deg, #05050a 0%, #08060f 50%, #05050a 100%); position:relative; overflow:hidden;">
+    <div style="position:absolute;inset:0; background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(250,204,21,.06) 0%, transparent 65%); pointer-events:none;"></div>
+    <div class="section-inner" style="position:relative;z-index:1;">
+
+      <!-- Badge officiel -->
+      <div style="text-align:center; margin-bottom:56px;">
+        <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(250,204,21,.09); border:1px solid rgba(250,204,21,.28); color:#facc15; padding:9px 22px; border-radius:999px; font-size:.72rem; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:24px;">
+          <i class="fa-solid fa-trophy"></i> Verdict Officiel — Prix Littéraire Dianzenza 2026
+        </div>
+        <h2 class="s-title" style="font-size:clamp(2rem,3.5vw,3.2rem); margin-bottom:14px;">La Maison Hakvision proclame<br><em style="font-style:normal; background:linear-gradient(135deg,#facc15,#fb923c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">son premier Lauréat Officiel</em></h2>
+        <p style="color:#94a3b8; font-size:1.05rem; max-width:560px; margin:0 auto; line-height:1.9;">Après clôture des candidatures le 20 mai 2026 et l'examen de l'ensemble des textes reçus, notre jury a rendu son verdict sur le thème <strong style="color:#e2e8f0;">« Imaginer le futur du Congo »</strong>.</p>
+      </div>
+
+      <!-- Carte lauréat -->
+      <div style="display:grid; grid-template-columns:1fr 1.4fr; gap:64px; align-items:center; max-width:980px; margin:0 auto 56px;">
+
+        <!-- Photo -->
+        <div style="position:relative;">
+          <div style="border-radius:24px; overflow:hidden; border:2px solid rgba(250,204,21,.3); box-shadow:0 40px 100px rgba(0,0,0,.7), 0 0 80px rgba(250,204,21,.12);">
+            <img src="jeancy_lembi_laureat.jpeg" alt="Jeancy Lembi — Lauréat Prix Dianzenza 2026" style="width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top center; display:block;">
+          </div>
+          <!-- Badge flottant -->
+          <div style="position:absolute; bottom:-18px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,#facc15,#f59e0b); color:#0b0b10; padding:10px 24px; border-radius:999px; font-weight:900; font-size:.82rem; letter-spacing:1px; white-space:nowrap; box-shadow:0 8px 32px rgba(250,204,21,.45);">
+            <i class="fa-solid fa-star"></i> LAURÉAT 2026
+          </div>
+        </div>
+
+        <!-- Texte -->
+        <div style="padding-top:12px;">
+          <p style="font-size:.7rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:#facc15; margin-bottom:12px;">Prix Dianzenza · Édition I</p>
+          <h3 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,2.8vw,3rem); font-weight:900; color:#fff; line-height:1.1; margin-bottom:8px;">Jeancy<br>Lembi</h3>
+          <p style="font-size:.9rem; color:#94a3b8; margin-bottom:28px; font-style:italic;">"Imaginer le futur du Congo"</p>
+
+          <div style="background:rgba(250,204,21,.06); border:1px solid rgba(250,204,21,.18); border-radius:16px; padding:24px 26px; margin-bottom:28px;">
+            <p style="color:#cbd5e1; line-height:1.9; font-size:.95rem;">La Maison d'édition Hakvision a le plaisir d'annoncer le verdict officiel du Prix Littéraire Dianzenza 2026. Après l'examen des textes reçus, le jury a désigné <strong style="color:#facc15;">Jeancy Lembi</strong> comme lauréat officiel de cette première édition consacrée au thème « Imaginer le futur du Congo ».</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:20px 22px; margin-bottom:28px;">
+            <p style="color:#94a3b8; font-size:.88rem; line-height:1.8;">Nous adressons nos <strong style="color:#e2e8f0;">sincères félicitations</strong> au gagnant ainsi qu'à tous les participants qui ont partagé leur talent, leur créativité et leur vision de l'avenir. Pour celles et ceux qui n'ont pas été retenus, <strong style="color:#facc15;">le Prix Dianzenza reviendra</strong> avec une nouvelle édition.</p>
+          </div>
+
+          <a class="btn-gold" href="prix-litteraires.html" style="display:inline-flex;">
+            <i class="fa-solid fa-trophy"></i> Voir la page officielle du Prix
+          </a>
+        </div>
+      </div>
+
+      <!-- Bannière félicitations -->
+      <div style="text-align:center; border-top:1px solid rgba(255,255,255,.05); padding-top:44px;">
+        <p style="font-size:.78rem; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:16px;">Prochaine édition à venir</p>
+        <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
+          <a href="prix-litteraires.html" class="btn-outline"><i class="fa-solid fa-feather-pointed"></i> Prix Dianzenza II — S'inscrire</a>
+          <a href="contact.html" class="btn-outline"><i class="fa-solid fa-envelope"></i> Contacter le jury</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ SOUMETTRE UN MANUSCRIT ══════════════ -->
+  <section class="section section-alt" id="manuscrit">
+    <div class="section-inner">
+
+      <div style="display:grid; grid-template-columns:1fr 1.1fr; gap:72px; align-items:start;">
+
+        <!-- Colonne gauche — texte éditorial -->
+        <div>
+          <p class="s-eyebrow">Maison d'édition</p>
+          <h2 class="s-title" style="margin-bottom:18px;">Envoyer votre<br><em style="font-style:normal; background:linear-gradient(135deg,#facc15,#fb923c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Manuscrit</em></h2>
+
+          <p style="color:#94a3b8; font-size:1rem; line-height:1.95; margin-bottom:32px;">À la recherche de nouveaux talents, la Maison Hakvision Éditions serait heureuse de soumettre à l'étude votre texte. Nous sommes particulièrement attentifs aux voix authentiques du continent africain et de sa diaspora.</p>
+
+          <!-- Critères -->
+          <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:36px;">
+            <div style="display:flex; gap:16px; align-items:flex-start;">
+              <div style="width:40px; height:40px; border-radius:10px; background:rgba(250,204,21,.1); border:1px solid rgba(250,204,21,.2); display:grid; place-items:center; flex-shrink:0; color:#facc15;">
+                <i class="fa-solid fa-file-lines"></i>
+              </div>
+              <div>
+                <p style="font-weight:700; color:#e2e8f0; margin-bottom:4px; font-size:.92rem;">Genres acceptés</p>
+                <p style="color:#64748b; font-size:.86rem; line-height:1.7;">Roman, novella, recueil de nouvelles, essai, biographie, poésie, afrofuturisme, littérature jeunesse africaine.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:16px; align-items:flex-start;">
+              <div style="width:40px; height:40px; border-radius:10px; background:rgba(250,204,21,.1); border:1px solid rgba(250,204,21,.2); display:grid; place-items:center; flex-shrink:0; color:#facc15;">
+                <i class="fa-solid fa-file-pdf"></i>
+              </div>
+              <div>
+                <p style="font-weight:700; color:#e2e8f0; margin-bottom:4px; font-size:.92rem;">Formats acceptés</p>
+                <p style="color:#64748b; font-size:.86rem; line-height:1.7;">PDF, DOCX, ODT — 5 Mo maximum. Manuscrit complet ou partiel (minimum 30 pages).</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:16px; align-items:flex-start;">
+              <div style="width:40px; height:40px; border-radius:10px; background:rgba(250,204,21,.1); border:1px solid rgba(250,204,21,.2); display:grid; place-items:center; flex-shrink:0; color:#facc15;">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <div>
+                <p style="font-weight:700; color:#e2e8f0; margin-bottom:4px; font-size:.92rem;">Délai de réponse</p>
+                <p style="color:#64748b; font-size:.86rem; line-height:1.7;">Nous accusons réception sous 48h. Réponse éditoriale sous 30 à 60 jours selon les périodes.</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:16px; align-items:flex-start;">
+              <div style="width:40px; height:40px; border-radius:10px; background:rgba(250,204,21,.1); border:1px solid rgba(250,204,21,.2); display:grid; place-items:center; flex-shrink:0; color:#facc15;">
+                <i class="fa-solid fa-earth-africa"></i>
+              </div>
+              <div>
+                <p style="font-weight:700; color:#e2e8f0; margin-bottom:4px; font-size:.92rem;">Profils recherchés</p>
+                <p style="color:#64748b; font-size:.86rem; line-height:1.7;">Auteurs africains (RDC, Congo-B, diaspora) et francophones porteurs d'une vision originale. Tout niveau d'expérience.</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="background:rgba(250,204,21,.06); border:1px solid rgba(250,204,21,.16); border-radius:14px; padding:18px 20px;">
+            <p style="font-size:.82rem; color:#94a3b8; line-height:1.8;"><i class="fa-solid fa-shield-halved" style="color:#facc15; margin-right:8px;"></i><strong style="color:#e2e8f0;">Confidentialité garantie.</strong> Vos textes ne sont ni publiés ni partagés sans votre accord explicite. La soumission n'engage aucun transfert de droits.</p>
+          </div>
+        </div>
+
+        <!-- Colonne droite — formulaire -->
+        <div style="background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.07); border-radius:24px; padding:40px 36px;">
+          <h3 style="font-family:'Playfair Display',serif; font-size:1.5rem; color:#fff; margin-bottom:6px;">Formulaire de soumission</h3>
+          <p style="color:#64748b; font-size:.85rem; margin-bottom:28px;">Complétez tous les champs et joignez votre manuscrit.</p>
+
+          <form action="https://formsubmit.co/hakeemmerveil@gmail.com" method="POST" enctype="multipart/form-data" style="display:flex; flex-direction:column; gap:18px;">
+            <input type="hidden" name="_subject" value="📖 Nouveau manuscrit reçu — Hakvision Éditions">
+            <input type="hidden" name="_next" value="merci.html">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+              <div>
+                <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Prénom *</label>
+                <input type="text" name="prenom" required placeholder="Votre prénom" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
+              </div>
+              <div>
+                <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Nom *</label>
+                <input type="text" name="nom" required placeholder="Votre nom" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
+              </div>
+            </div>
+
+            <div>
+              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Adresse e-mail *</label>
+              <input type="email" name="email" required placeholder="votre@email.com" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
+            </div>
+
+            <div>
+              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Pays / Ville *</label>
+              <input type="text" name="pays_ville" required placeholder="ex : Kinshasa, RDC" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
+            </div>
+
+            <div>
+              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Titre de l'œuvre *</label>
+              <input type="text" name="titre_oeuvre" required placeholder="Titre de votre manuscrit" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
+            </div>
+
+            <div>
+              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Genre littéraire *</label>
+              <select name="genre" required style="width:100%; background:rgba(15,15,25,.95); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; appearance:none; cursor:pointer; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
+                <option value="" disabled selected>Sélectionner un genre</option>
+                <option value="Roman">Roman</option>
+                <option value="Afrofuturisme">Afrofuturisme</option>
+                <option value="Nouvelles">Recueil de nouvelles</option>
+                <option value="Essai">Essai / Non-fiction</option>
+                <option value="Biographie">Biographie / Mémoires</option>
+                <option value="Poésie">Poésie</option>
+                <option value="Jeunesse">Littérature jeunesse</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Résumé de l'œuvre *</label>
+              <textarea name="resume" required placeholder="Présentez votre œuvre en quelques lignes — intrigue, thème, intention littéraire..." rows="4" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; resize:vertical; font-family:inherit; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'"></textarea>
+            </div>
+
+            <div>
+              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Joindre le manuscrit (PDF, DOCX — 5 Mo max)</label>
+              <div style="background:rgba(255,255,255,.03); border:2px dashed rgba(255,255,255,.1); border-radius:12px; padding:20px; text-align:center; cursor:pointer; transition:border-color .2s; position:relative;" onmouseover="this.style.borderColor='rgba(250,204,21,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
+                <i class="fa-solid fa-cloud-arrow-up" style="font-size:1.8rem; color:#facc15; margin-bottom:8px; display:block;"></i>
+                <p style="color:#94a3b8; font-size:.85rem; margin-bottom:6px;">Glisser-déposer ou cliquer pour sélectionner</p>
+                <p style="color:#64748b; font-size:.75rem;">PDF · DOCX · ODT — 5 Mo maximum</p>
+                <input type="file" name="manuscrit" accept=".pdf,.doc,.docx,.odt" style="position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%;">
+              </div>
+            </div>
+
+            <button type="submit" style="width:100%; background:linear-gradient(135deg,#facc15,#f59e0b); color:#0b0b10; font-weight:800; font-size:1rem; padding:15px 24px; border-radius:13px; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; box-shadow:0 12px 32px rgba(250,204,21,.28); transition:transform .2s, box-shadow .2s; letter-spacing:.2px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 18px 44px rgba(250,204,21,.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 12px 32px rgba(250,204,21,.28)'">
+              <i class="fa-solid fa-paper-plane"></i> Soumettre mon manuscrit
+            </button>
+
+            <p style="text-align:center; font-size:.76rem; color:#475569; line-height:1.7;">En soumettant ce formulaire, vous confirmez être l'auteur(e) de l'œuvre et n'avoir accordé aucun droit exclusif à un tiers. Lecture sous 30 à 60 jours.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ══════════════ FOOTER ══════════════ -->
   <footer class="site-footer">
     <div class="footer-inner">
@@ -1129,6 +1335,7 @@
             <li><a href="prix-litteraires.html">Prix Littéraires</a></li>
             <li><a href="press.html">Presse</a></li>
             <li><a href="okapiplay.html">OkapiPlay</a></li>
+            <li><a href="#manuscrit">Soumettre un manuscrit</a></li>
           </ul>
         </div>
 
