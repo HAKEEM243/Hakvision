@@ -93,9 +93,7 @@
 
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-shared.css">
 
   <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -568,44 +566,23 @@
 </head>
 <body>
 
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div class="topbar-left">
-        <span style="font-size:.75rem;">📅 Hakvision Éditions — Paris &amp; Kinshasa</span>
-      </div>
-      <div class="topbar-socials">
-        <a href="https://www.instagram.com/hakaymrv243_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank" title="Amazon"><i class="fab fa-amazon"></i></a>
-      </div>
-    </div>
-  </div>
-
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="brand">
-        <div class="brand-icon">HV</div>
-        <div class="brand-label">
-          <div class="sub">Merveil Hakeem Dianzenza</div>
-          <div class="name">Hakvision</div>
-        </div>
+  <div class="hv-announcement">Prix Dianzenza 2026 — Lauréat : <strong>Jeancy Lembi</strong> · <a href="prix-litteraires.html">Verdict officiel</a></div>
+  <header class="hv-header">
+    <div class="hv-header-inner">
+      <a href="index.html" class="hv-wordmark">
+        <span class="hv-wordmark-main">Hakvision Éditions</span>
+        <span class="hv-wordmark-sub">Maison d'édition · Paris</span>
       </a>
-
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <i class="fa-solid fa-bars"></i> Menu
-      </button>
-
-      <nav class="main-nav" id="mainNav">
+      <button class="hv-burger" id="hvBurger"><i class="fa-solid fa-bars"></i></button>
+      <nav class="hv-nav" id="hvNav">
         <a href="livres.html">Livres</a>
         <a href="catalogue.html">Catalogue</a>
         <a href="bio.html">Biographie</a>
         <a href="prix-litteraires.html">Prix Littéraires</a>
-        <a href="press.html">Presse</a>
         <a href="papa-masambukidi.html" class="active">Masambukidi</a>
+        <a href="press.html">Presse</a>
         <a href="contact.html">Contact</a>
-        <a href="catalogue.html" class="nav-cta-btn">Voir les livres</a>
+        <a href="index.html#soumettre" class="hv-nav-cta">Soumettre un manuscrit</a>
       </nav>
     </div>
   </header>
@@ -927,31 +904,31 @@
 
   </div><!-- /content-area -->
 
-  <!-- ════════════════ FOOTER ════════════════ -->
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-top">
+  <footer class="hv-footer">
+    <div class="hv-footer-inner">
+      <div class="hv-footer-top">
         <div>
-          <p class="footer-brand-name">Hakvision</p>
-          <p class="footer-brand-sub">Maison d'Édition Afrofuturiste Congolaise</p>
-          <p class="footer-brand-desc">Œuvres littéraires, innovations culturelles et initiatives panafricaines conçues par Merveil Hakeem Dianzenza. De Paris à Kinshasa, une vision pour l'Afrique de demain.</p>
-          <div class="footer-socials">
-            <a class="footer-social-btn" href="https://www.instagram.com/hakaymrv243_" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a class="footer-social-btn" href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a class="footer-social-btn" href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank"><i class="fab fa-amazon"></i></a>
+          <div class="hv-footer-wordmark">Hakvision Éditions</div>
+          <div class="hv-footer-tagline">Maison d'édition · Paris · Kinshasa</div>
+          <p class="hv-footer-about">Œuvres littéraires, innovations culturelles et initiatives panafricaines conçues par Merveil Hakeem Dianzenza.</p>
+          <div class="hv-footer-socials">
+            <a class="hv-footer-social" href="https://www.instagram.com/hakaymrv243_" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a class="hv-footer-social" href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a class="hv-footer-social" href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank"><i class="fab fa-amazon"></i></a>
           </div>
         </div>
         <div>
-          <p class="footer-col-title">Œuvres</p>
-          <ul class="footer-col-links">
-            <li><a href="katiopa.html">KATIØPA</a></li>
-            <li><a href="livres.html">Mes livres</a></li>
+          <div class="hv-footer-col-title">Œuvres</div>
+          <ul class="hv-footer-links">
+            <li><a href="livres.html">Livres</a></li>
             <li><a href="catalogue.html">Catalogue</a></li>
+            <li><a href="katiopa.html">KATIØPA</a></li>
+            <li><a href="papa-masambukidi.html">Papa Masambukidi</a></li>
           </ul>
         </div>
         <div>
-          <p class="footer-col-title">Hakvision</p>
-          <ul class="footer-col-links">
+          <div class="hv-footer-col-title">Hakvision</div>
+          <ul class="hv-footer-links">
             <li><a href="bio.html">Biographie</a></li>
             <li><a href="prix-litteraires.html">Prix Littéraires</a></li>
             <li><a href="press.html">Presse</a></li>
@@ -959,36 +936,31 @@
           </ul>
         </div>
         <div>
-          <p class="footer-col-title">Contact</p>
-          <ul class="footer-col-links">
+          <div class="hv-footer-col-title">Contact</div>
+          <ul class="hv-footer-links">
             <li><a href="contact.html">Nous écrire</a></li>
-            <li><a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a></li>
-            <li><a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">Canal WhatsApp</a></li>
+            <li><a href="mailto:arenalse22@gmail.com">Email direct</a></li>
+            <li><a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">WhatsApp</a></li>
           </ul>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2026 Merveil Hakeem Dianzenza — Hakvision Éditions. Tous droits réservés. <a href="mentions-legales.html" style="color:#64748b; font-size:0.85em;">Mentions légales</a></p>
-        <span class="footer-badge"><i class="fa-solid fa-crown"></i> Afrofuturisme Congolais</span>
+      <div class="hv-footer-bottom">
+        <span class="hv-footer-copy">© 2026 Merveil Hakeem Dianzenza — Hakvision Éditions. Tous droits réservés.</span>
+        <span class="hv-footer-stamp">Hakvision · Paris · Kinshasa</span>
       </div>
     </div>
   </footer>
 
   <script>
-    // Hamburger
-    const hamburger = document.getElementById('hamburger');
-    const mainNav   = document.getElementById('mainNav');
-    if (hamburger && mainNav) {
-      hamburger.addEventListener('click', () => mainNav.classList.toggle('open'));
-      document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !mainNav.contains(e.target))
-          mainNav.classList.remove('open');
+    const hvBurger = document.getElementById('hvBurger');
+    const hvNav = document.getElementById('hvNav');
+    if (hvBurger && hvNav) {
+      hvBurger.addEventListener('click', () => hvNav.classList.toggle('open'));
+      document.addEventListener('click', e => {
+        if (!hvBurger.contains(e.target) && !hvNav.contains(e.target)) hvNav.classList.remove('open');
       });
     }
-    // Reveal
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
+    const obs = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')), { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
 </body>

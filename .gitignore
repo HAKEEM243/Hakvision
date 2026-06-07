@@ -1,0 +1,9 @@
+# Claude Code settings — private, ne pas exposer publiquement
+.claude/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Dossiers Node si jamais utilisés
+node_modules/
