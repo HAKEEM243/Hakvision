@@ -191,15 +191,23 @@
       text-shadow: 0 2px 10px rgba(0,0,0,0.8);
     }
 
+    /* Responsive lauréat */
+    @media (max-width: 900px) {
+      div[style*="grid-template-columns:380px 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+      }
+    }
+
     @media (max-width: 768px) {
       .prix-banner-container {
         max-height: 400px;
       }
-      
+
       .prix-banner-title {
         font-size: 2.5em;
       }
-      
+
       .prix-banner-subtitle {
         font-size: 1.2em;
         letter-spacing: 1px;
@@ -1290,13 +1298,90 @@
     </nav>
   </header>
 
-  <!-- Breaking News Ticker -->
-  <div class="breaking-news">
-    <div class="breaking-label">🟡 OUVERT</div>
+  <!-- Breaking News Ticker — Résultats -->
+  <div class="breaking-news" style="background:linear-gradient(90deg,#1a0a00,#0f0800); border-bottom:2px solid rgba(250,204,21,.3);">
+    <div class="breaking-label" style="background:linear-gradient(135deg,#facc15,#f59e0b); color:#0b0b10;">🏆 RÉSULTATS</div>
     <div class="breaking-content">
-      <span class="breaking-text">Prix Dianzenza 2026 • OUVERTURE 21 AVRIL • 30 jours pour écrire • Récompense 20 USD • Date limite : 20 mai 2026 • Envoyez à hakeemmerveil@gmail.com • Auteurs congolais RDC, Congo-B & diaspora • Rejoignez la communauté</span>
+      <span class="breaking-text">🎉 PRIX DIANZENZA 2026 — LAURÉAT OFFICIEL : JEANCY LEMBI • Thème : "Imaginer le futur du Congo" • Félicitations à tous les participants • Prochaine édition à venir — restez connectés • Hakvision Éditions remercie tous les auteurs</span>
     </div>
   </div>
+
+  <!-- ══ ANNONCE OFFICIELLE LAURÉAT ══ -->
+  <section style="background:linear-gradient(180deg,#08060f 0%,#0d0b18 100%); padding:80px 20px; position:relative; overflow:hidden;">
+    <div style="position:absolute;inset:0; background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(250,204,21,.08) 0%, transparent 60%); pointer-events:none;"></div>
+
+    <div style="max-width:1100px; margin:0 auto; position:relative; z-index:1;">
+
+      <!-- Sceau officiel -->
+      <div style="text-align:center; margin-bottom:52px;">
+        <div style="display:inline-flex; align-items:center; gap:12px; background:rgba(250,204,21,.08); border:1.5px solid rgba(250,204,21,.35); color:#facc15; padding:12px 28px; border-radius:999px; font-size:.78rem; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:28px; box-shadow:0 0 40px rgba(250,204,21,.15);">
+          <i class="fa-solid fa-trophy"></i>
+          Verdict Officiel — Hakvision Éditions
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.9rem,3.5vw,3.4rem); font-weight:900; color:#fff; line-height:1.1; margin-bottom:12px;">La Maison Hakvision proclame officiellement<br>le Lauréat du <span style="background:linear-gradient(135deg,#facc15,#fb923c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Prix Dianzenza 2026</span></h2>
+        <p style="color:#94a3b8; font-size:1rem; max-width:650px; margin:0 auto; line-height:1.9;">Première édition consacrée au thème <strong style="color:#e2e8f0;">« Imaginer le futur du Congo »</strong>. Candidatures closes le 20 mai 2026.</p>
+      </div>
+
+      <!-- Carte lauréat principale -->
+      <div style="display:grid; grid-template-columns:380px 1fr; gap:56px; align-items:center; margin-bottom:56px;">
+
+        <!-- Portrait -->
+        <div style="position:relative; margin:0 auto; width:100%; max-width:380px;">
+          <div style="border-radius:24px; overflow:hidden; border:2px solid rgba(250,204,21,.4); box-shadow:0 48px 120px rgba(0,0,0,.8), 0 0 80px rgba(250,204,21,.2);">
+            <img src="jeancy_lembi_laureat.jpeg" alt="Jeancy Lembi — Lauréat officiel Prix Dianzenza 2026 — Hakvision Éditions" style="width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; display:block;">
+          </div>
+          <div style="position:absolute; bottom:-16px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,#facc15,#f59e0b); color:#0b0b10; padding:11px 28px; border-radius:999px; font-weight:900; font-size:.85rem; letter-spacing:.5px; white-space:nowrap; box-shadow:0 8px 32px rgba(250,204,21,.5);">
+            <i class="fa-solid fa-star"></i>&nbsp; LAURÉAT OFFICIEL 2026
+          </div>
+        </div>
+
+        <!-- Déclaration officielle -->
+        <div>
+          <p style="font-size:.7rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:#facc15; margin-bottom:14px;">Prix Littéraire Dianzenza · Édition I · 2026</p>
+          <h3 style="font-family:'Playfair Display',serif; font-size:clamp(2.4rem,4vw,4rem); font-weight:900; color:#fff; line-height:1.05; margin-bottom:6px;">Jeancy Lembi</h3>
+          <p style="font-size:1rem; color:#94a3b8; font-style:italic; margin-bottom:32px;">"Imaginer le futur du Congo"</p>
+
+          <!-- Proclamation officielle -->
+          <div style="background:rgba(250,204,21,.055); border-left:4px solid #facc15; border-radius:0 16px 16px 0; padding:24px 28px; margin-bottom:24px;">
+            <p style="font-size:.82rem; font-weight:700; color:#facc15; text-transform:uppercase; letter-spacing:2px; margin-bottom:10px;">Déclaration officielle du jury</p>
+            <p style="color:#cbd5e1; line-height:1.95; font-size:.97rem;">« La Maison d'édition Hakvision a le plaisir d'annoncer le verdict officiel du Prix Littéraire Dianzenza 2026. Après la clôture des candidatures le 20 mai 2026 et l'examen des textes reçus, le jury a désigné <strong style="color:#facc15;">Jeancy Lembi</strong> comme lauréat officiel de cette première édition consacrée au thème "Imaginer le futur du Congo". »</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:20px 24px; margin-bottom:28px;">
+            <p style="color:#94a3b8; font-size:.93rem; line-height:1.9;">Nous adressons nos <strong style="color:#e2e8f0;">sincères félicitations</strong> au gagnant ainsi qu'à tous les participants qui ont partagé leur talent et leur vision de l'avenir. Pour celles et ceux qui n'ont pas été retenus, <strong style="color:#facc15;">le Prix Dianzenza reviendra</strong> avec une nouvelle édition et de nouvelles opportunités de faire entendre votre voix.</p>
+          </div>
+
+          <!-- Stats -->
+          <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+            <div style="background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:18px 14px; text-align:center;">
+              <div style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:#facc15; margin-bottom:4px;">I</div>
+              <div style="font-size:.7rem; color:#64748b; text-transform:uppercase; letter-spacing:1px; font-weight:600;">1ère édition</div>
+            </div>
+            <div style="background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:18px 14px; text-align:center;">
+              <div style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:#facc15; margin-bottom:4px;">20$</div>
+              <div style="font-size:.7rem; color:#64748b; text-transform:uppercase; letter-spacing:1px; font-weight:600;">Récompense</div>
+            </div>
+            <div style="background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:18px 14px; text-align:center;">
+              <div style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:#facc15; margin-bottom:4px;">2026</div>
+              <div style="font-size:.7rem; color:#64748b; text-transform:uppercase; letter-spacing:1px; font-weight:600;">Congo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA bas -->
+      <div style="text-align:center; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; padding-top:40px; border-top:1px solid rgba(255,255,255,.06);">
+        <a href="index.html#manuscrit" style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,#facc15,#f59e0b); color:#0b0b10; font-weight:800; font-size:.92rem; padding:13px 24px; border-radius:13px; box-shadow:0 12px 32px rgba(250,204,21,.28); transition:transform .2s; text-decoration:none;">
+          <i class="fa-solid fa-feather-pointed"></i> Préparer l'Édition II
+        </a>
+        <a href="index.html" style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.12); color:#d1d9e6; font-weight:600; font-size:.92rem; padding:13px 24px; border-radius:13px; transition:all .2s; text-decoration:none;">
+          <i class="fa-solid fa-house"></i> Retour à l'accueil
+        </a>
+      </div>
+
+    </div>
+  </section>
 
   <!-- Hero Section -->
   <section class="prix-hero" style="min-height: auto; padding: 80px 20px 80px;">
