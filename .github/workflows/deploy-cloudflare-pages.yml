@@ -35,4 +35,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ steps.account.outputs.id }}
-          command: pages deploy . --project-name=hakvision --commit-dirty=true
+          command: pages deploy . --project-name=editions-hakvision --commit-dirty=true
