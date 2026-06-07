@@ -15,307 +15,275 @@
   <meta property="og:image" content="https://hakvision243.netlify.app/masambukidi_ceremonie_1.jpg">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="style-premium.css">
+  <link rel="stylesheet" href="style-shared.css">
 </head>
-<body class="site-body">
-  <div class="site-shell">
-    <div class="progress-bar" id="progressBar"></div>
-
-    <!-- Breaking News -->
-    <div class="breaking-news">
-      <div class="breaking-news-content">
-        <span class="breaking-label">🔴 BREAKING NEWS</span>
-        <span class="breaking-text">Papa Masambukidi intronisé Roi Divin du Bassin du Congo • KATIØPA disponible • Un Écrivain à Kinshasa • Prix Masambukidi & Dianzenza 2026</span>
-      </div>
+<body>
+  <div class="hv-announcement">Prix Dianzenza 2026 — Lauréat : <strong>Jeancy Lembi</strong> · <a href="prix-litteraires.html">Verdict officiel</a></div>
+  <header class="hv-header">
+    <div class="hv-header-inner">
+      <a href="index.html" class="hv-wordmark">
+        <span class="hv-wordmark-main">Hakvision Éditions</span>
+        <span class="hv-wordmark-sub">Maison d'édition · Paris</span>
+      </a>
+      <button class="hv-burger" id="hvBurger"><i class="fa-solid fa-bars"></i></button>
+      <nav class="hv-nav" id="hvNav">
+        <a href="livres.html">Livres</a>
+        <a href="catalogue.html">Catalogue</a>
+        <a href="bio.html">Biographie</a>
+        <a href="prix-litteraires.html">Prix Littéraires</a>
+        <a href="papa-masambukidi.html">Masambukidi</a>
+        <a href="press.html" class="active">Presse</a>
+        <a href="contact.html">Contact</a>
+        <a href="index.html#soumettre" class="hv-nav-cta">Soumettre un manuscrit</a>
+      </nav>
     </div>
+  </header>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-      <div class="top-bar-content">
-        <div style="display:flex; align-items:center; gap:15px;">
-          <span class="live-badge">● LIVE</span>
-          <span>📅 2026 — Hakvision Editions</span>
-        </div>
-        <div class="social-links-top">
-          <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/hakaymrv243_" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Global Header -->
-    <header class="global-header">
-      <div class="header-inner">
-        <a href="index.html" class="brand-stack" style="text-decoration:none;">
-          <div class="brand-mark">HV</div>
-          <div class="brand-text">
-            <p class="eyebrow">Merveil Hakeem Dianzenza</p>
-            <h1>Hakvision</h1>
+  <main>
+    <!-- Hero -->
+    <section class="page-hero slim">
+      <div class="halo"></div>
+      <div class="hero-grid">
+        <div>
+          <span class="kicker"><i class="fa-solid fa-newspaper"></i> Espace Presse Officiel</span>
+          <h1>Merveil Hakeem Dianzenza — Couverture médiatique</h1>
+          <p class="lead">Actualités, interviews, dossiers de presse, galerie photos et kits médias pour journalistes, organisateurs et partenaires culturels.</p>
+          <div class="hero-meta">
+            <div class="chip"><i class="fa-solid fa-reply-all"></i> Réponse sous 48h</div>
+            <div class="chip"><i class="fa-solid fa-globe"></i> Europe & Afrique</div>
+            <div class="chip"><i class="fa-solid fa-image"></i> Photos HD disponibles</div>
           </div>
-        </a>
-        <button class="nav-toggle" id="navToggle"><i class="fa-solid fa-bars"></i> Menu</button>
-        <nav class="global-nav" id="globalNav">
-          <a href="index.html">Accueil</a>
-          <a href="livres.html">Livres</a>
-          <a href="catalogue.html">Catalogue</a>
-          <a href="bio.html">Biographie</a>
-          <a href="prix-litteraires.html">Prix Littéraires</a>
-          <a href="press.html" class="active">Presse</a>
-          <a href="okapiplay.html">OkapiPlay</a>
-          <a href="contact.html">Contact</a>
-        </nav>
-        <a class="nav-cta" href="index.html#manuscrit"><i class="fa-solid fa-feather-pointed"></i> Soumettre</a>
+          <div class="cta-group" style="margin-top:20px;">
+            <a class="btn primary" href="#press-kit"><i class="fa-solid fa-download"></i> Télécharger le press kit</a>
+            <a class="btn ghost" href="contact.html">Demande d'interview</a>
+          </div>
+        </div>
       </div>
-    </header>
+    </section>
 
-    <main>
-      <!-- Hero -->
-      <section class="page-hero slim">
-        <div class="halo"></div>
-        <div class="hero-grid">
+    <!-- À la une -->
+    <section class="page-section">
+      <div class="site-grid">
+        <div class="section-heading">
           <div>
-            <span class="kicker"><i class="fa-solid fa-newspaper"></i> Espace Presse Officiel</span>
-            <h1>Merveil Hakeem Dianzenza — Couverture médiatique</h1>
-            <p class="lead">Actualités, interviews, dossiers de presse, galerie photos et kits médias pour journalistes, organisateurs et partenaires culturels.</p>
-            <div class="hero-meta">
-              <div class="chip"><i class="fa-solid fa-reply-all"></i> Réponse sous 48h</div>
-              <div class="chip"><i class="fa-solid fa-globe"></i> Europe & Afrique</div>
-              <div class="chip"><i class="fa-solid fa-image"></i> Photos HD disponibles</div>
-            </div>
-            <div class="cta-group" style="margin-top:20px;">
-              <a class="btn primary" href="#press-kit"><i class="fa-solid fa-download"></i> Télécharger le press kit</a>
-              <a class="btn ghost" href="contact.html">Demande d'interview</a>
-            </div>
-          </div>
-          <div class="hero-visual-card">
-            <img src="hakvision_press_banner_v2.jpg" alt="Hakvision Press - Banner avec Okapi, Drapeau Congolais et Couronne Royale" loading="lazy">
-            <p class="media-caption">Hakvision : une maison d'édition afrofuturiste entre Paris et Kinshasa.</p>
+            <p class="eyebrow">À la une</p>
+            <h3>Événements & Actualités</h3>
           </div>
         </div>
-      </section>
 
-      <!-- À la une : Intronisation -->
-      <section class="page-section">
-        <div class="site-grid">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">À la une</p>
-              <h3>Événements & Actualités</h3>
-            </div>
-            <span class="pill" style="background:rgba(231,76,60,0.15); color:#fca5a5; border-color:rgba(231,76,60,0.3);">🔥 Récent</span>
-          </div>
-
-          <div class="media-grid">
-            <!-- Article principal -->
-            <div class="press-card" style="grid-column: 1 / -1;">
-              <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,0.07);">
-                <img src="masambukidi_ceremonie_1.jpg" alt="Cérémonie d'intronisation de Papa Masambukidi" loading="lazy" style="width:100%; height:340px; object-fit:cover; display:block;">
-                <div style="padding:32px; background:rgba(255,255,255,0.03); display:flex; flex-direction:column; justify-content:center; gap:14px;">
-                  <span class="press-tag">Événement Historique</span>
-                  <h3 style="color:#f8fafc; font-size:1.6rem; margin:0; line-height:1.3;">Papa Masambukidi intronisé Roi Divin du Bassin du Congo</h3>
-                  <p style="color:#94a3b8;">Le 30 octobre 2025, Merveil Hakeem Dianzenza était présent à Kinshasa lors de la cérémonie historique d'intronisation de Papa Samuel Masambukidi II. Chroniqueur officiel et biographe, il a témoigné de cet événement spirituel majeur.</p>
-                  <div class="cta-group">
-                    <a class="btn primary" href="papa-masambukidi.html">Lire la page complète</a>
-                    <a class="btn ghost" href="https://www.youtube.com/watch?v=nOCw6mP1LFA" target="_blank"><i class="fab fa-youtube"></i> Vidéo YouTube</a>
-                  </div>
+        <div class="media-grid">
+          <!-- Article principal -->
+          <div class="press-card" style="grid-column: 1 / -1;">
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; overflow:hidden; border:1px solid rgba(255,255,255,.06);">
+              <img src="masambukidi_ceremonie_1.jpg" alt="Cérémonie d'intronisation de Papa Masambukidi" loading="lazy" style="width:100%; height:320px; object-fit:cover; display:block;">
+              <div style="padding:32px; background:rgba(255,255,255,.02); display:flex; flex-direction:column; justify-content:center; gap:14px;">
+                <span class="press-tag">Événement Historique</span>
+                <h3 style="color:#e8e0d0; font-family:'Playfair Display',serif; font-size:1.5rem; margin:0; line-height:1.3;">Papa Masambukidi intronisé Roi Divin du Bassin du Congo</h3>
+                <p style="color:#9a8e7e; font-size:.9rem; font-weight:300; line-height:1.8;">Le 30 octobre 2025, Merveil Hakeem Dianzenza était présent à Kinshasa lors de la cérémonie historique d'intronisation de Papa Samuel Masambukidi II. Chroniqueur officiel et biographe, il a témoigné de cet événement spirituel majeur.</p>
+                <div class="cta-group">
+                  <a class="btn primary" href="papa-masambukidi.html">Lire la page complète</a>
+                  <a class="btn ghost" href="https://www.youtube.com/watch?v=nOCw6mP1LFA" target="_blank"><i class="fab fa-youtube"></i> Vidéo YouTube</a>
                 </div>
               </div>
             </div>
-
-            <!-- Articles secondaires -->
-            <div class="press-card">
-              <img src="masambukidi_ceremonie_2.jpg" alt="Cérémonie Masambukidi 2" loading="lazy">
-              <div class="press-card-body">
-                <span class="press-tag">Littérature</span>
-                <h4>KATIØPA : 634 pages de renaissance afrofuturiste</h4>
-                <p>La saga phare d'Hakvision, disponible sur Payhip depuis août 2025. Un roman-fleuve qui réinvente la mythologie africaine avec intensité spirituelle et vision prophétique.</p>
-                <a class="card-link" href="katiopa.html" style="display:inline-block; margin-top:10px;">Découvrir KATIØPA →</a>
-              </div>
-            </div>
-
-            <div class="press-card">
-              <img src="masambukidi_ceremonie_3.jpg" alt="Cérémonie Masambukidi 3" loading="lazy">
-              <div class="press-card-body">
-                <span class="press-tag">Interview</span>
-                <h4>Jukebox Mind : entretien sur l'afrofuturisme spirituel</h4>
-                <p>Avril 2025 — discussion approfondie sur KATIOPA, les inspirations et la vision panafricaine de Hakvision. Un entretien marquant sur la littérature africaine contemporaine.</p>
-              </div>
-            </div>
-
-            <div class="press-card">
-              <img src="prix-hero-africa-trophies.jpg" alt="Prix Littéraires 2026" loading="lazy">
-              <div class="press-card-body">
-                <span class="press-tag">Prix Littéraires 2026</span>
-                <h4>Prix Masambukidi & Dianzenza — Première édition</h4>
-                <p>Candidatures ouvertes dès janvier 2026. Remise prévue à Kinshasa début mars. Deux prix pour célébrer l'excellence littéraire africaine et afrodescendante.</p>
-                <a class="card-link" href="prix-litteraires.html" style="display:inline-block; margin-top:10px;">Voir les prix →</a>
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Galerie photos cérémonies -->
-      <section class="page-section alt">
-        <div class="site-grid">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Galerie Officielle</p>
-              <h3>Cérémonie d'intronisation — Kinshasa, Oct. 2025</h3>
-            </div>
-          </div>
-          <div class="media-grid">
-            <div class="glow-card">
-              <img src="masambukidi_ceremonie_1.jpg" alt="Cérémonie 1" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
-              <p class="media-caption">Cérémonie d'intronisation de Papa Samuel Masambukidi II, Kinshasa, 30 octobre 2025.</p>
-            </div>
-            <div class="glow-card">
-              <img src="masambukidi_ceremonie_2.jpg" alt="Cérémonie 2" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
-              <p class="media-caption">Moment solennel de la proclamation au sein de la communauté spirituelle.</p>
-            </div>
-            <div class="glow-card">
-              <img src="masambukidi_ceremonie_3.jpg" alt="Cérémonie 3" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
-              <p class="media-caption">La communauté Masambukidi réunie pour célébrer l'événement historique.</p>
-            </div>
-            <div class="glow-card">
-              <img src="merveil_katiopa_1.jpg" alt="Merveil et KATIOPA" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
-              <p class="media-caption">Merveil Hakeem Dianzenza avec son œuvre phare KATIØPA — La Prophétie Noire.</p>
-            </div>
-            <div class="glow-card">
-              <img src="kulala_ntumba_pasco_photo.jpg" alt="Portrait 2" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
-              <p class="media-caption">Portrait lors de la rencontre avec la communauté littéraire à Kinshasa.</p>
-            </div>
-            <div class="glow-card">
-              <img src="merveil_interview_portrait.jpg" alt="Portrait interview" loading="lazy" style="width:100%; border-radius:12px; margin-bottom:10px;">
-              <p class="media-caption">Portrait officiel de Merveil Hakeem Dianzenza — disponible en haute définition pour la presse.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Press Kit -->
-      <section class="page-section" id="press-kit">
-        <div class="site-grid dual-columns">
-          <div class="content-panel">
-            <div class="pill-tag"><i class="fa-solid fa-folder-open"></i> Dossier de presse</div>
-            <h4>Kit Médias Hakvision</h4>
-            <p>Tout ce dont vous avez besoin pour couvrir Merveil Hakeem Dianzenza, ses œuvres et ses initiatives culturelles.</p>
-            <div class="stacked-list" style="margin:16px 0 22px;">
-              <div class="stacked-item"><i class="fa-solid fa-check" style="color:#facc15; margin-right:8px;"></i> Biographie courte et longue (FR)</div>
-              <div class="stacked-item"><i class="fa-solid fa-check" style="color:#facc15; margin-right:8px;"></i> Photos officielles HD (portrait + événements)</div>
-              <div class="stacked-item"><i class="fa-solid fa-check" style="color:#facc15; margin-right:8px;"></i> Couvertures des livres en HD</div>
-              <div class="stacked-item"><i class="fa-solid fa-check" style="color:#facc15; margin-right:8px;"></i> Communiqués de presse PDF</div>
-              <div class="stacked-item"><i class="fa-solid fa-check" style="color:#facc15; margin-right:8px;"></i> Résumés des œuvres publiées</div>
-            </div>
-            <div class="cta-group">
-              <a class="btn primary" href="communique-papa-masambukidi.pdf" target="_blank"><i class="fa-solid fa-file-pdf"></i> Communiqué Papa Masambukidi</a>
-              <a class="btn ghost" href="contact.html"><i class="fas fa-envelope"></i> Demander le kit complet</a>
+          <!-- Articles secondaires -->
+          <div class="press-card">
+            <img src="masambukidi_ceremonie_2.jpg" alt="Cérémonie Masambukidi 2" loading="lazy">
+            <div class="press-card-body">
+              <span class="press-tag">Littérature</span>
+              <h4>KATIØPA : 634 pages de renaissance afrofuturiste</h4>
+              <p>La saga phare d'Hakvision, disponible sur Payhip depuis août 2025. Un roman-fleuve qui réinvente la mythologie africaine avec intensité spirituelle et vision prophétique.</p>
+              <a class="card-link" href="katiopa.html" style="display:inline-block; margin-top:10px;">Découvrir KATIØPA →</a>
             </div>
           </div>
 
-          <div class="content-panel">
-            <div class="pill-tag"><i class="fa-solid fa-address-card"></i> Contact presse</div>
-            <h4>Pour journalistes & organisateurs</h4>
-            <div class="stacked-list" style="margin:14px 0 20px;">
-              <div class="stacked-item"><strong style="color:#facc15;">Email :</strong> <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a></div>
-              <div class="stacked-item"><strong style="color:#facc15;">WhatsApp :</strong> <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">Canal Hakvision</a></div>
-              <div class="stacked-item"><strong style="color:#facc15;">Instagram :</strong> <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a></div>
-              <div class="stacked-item"><strong style="color:#facc15;">Disponibilité :</strong> Réponse sous 48h ouvrées</div>
+          <div class="press-card">
+            <img src="masambukidi_ceremonie_3.jpg" alt="Cérémonie Masambukidi 3" loading="lazy">
+            <div class="press-card-body">
+              <span class="press-tag">Interview</span>
+              <h4>Jukebox Mind : entretien sur l'afrofuturisme spirituel</h4>
+              <p>Avril 2025 — discussion approfondie sur KATIOPA, les inspirations et la vision panafricaine de Hakvision. Un entretien marquant sur la littérature africaine contemporaine.</p>
             </div>
-            <h4 style="margin-top:18px;">Interventions proposées</h4>
-            <ul style="padding-left:18px; color:#94a3b8; display:grid; gap:8px; margin-top:10px;">
-              <li>Salons du livre · Conférences · Masterclasses</li>
-              <li>Plateaux TV/radio afrofuturisme & diaspora</li>
-              <li>Cérémonies Prix Masambukidi & Dianzenza</li>
-              <li>Sessions de dédicaces & clubs de lecture</li>
-            </ul>
           </div>
-        </div>
-      </section>
 
-      <!-- Publications & Communiqués -->
-      <section class="page-section alt">
-        <div class="site-grid">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">Documents officiels</p>
-              <h3>Communiqués & Publications</h3>
+          <div class="press-card">
+            <img src="prix-hero-africa-trophies.jpg" alt="Prix Littéraires 2026" loading="lazy">
+            <div class="press-card-body">
+              <span class="press-tag">Prix Littéraires 2026</span>
+              <h4>Prix Masambukidi & Dianzenza — Première édition</h4>
+              <p>Candidatures ouvertes dès janvier 2026. Remise prévue à Kinshasa début mars. Deux prix pour célébrer l'excellence littéraire africaine et afrodescendante.</p>
+              <a class="card-link" href="prix-litteraires.html" style="display:inline-block; margin-top:10px;">Voir les prix →</a>
             </div>
           </div>
-          <div class="dual-columns">
-            <div class="glow-card">
-              <div class="pill-tag" style="margin-bottom:12px;"><i class="fa-solid fa-file-pdf"></i> Communiqué Officiel</div>
-              <h4 style="color:#facc15;">Papa Masambukidi — Communiqué de Presse</h4>
-              <p>Annonce officielle de l'intronisation de Papa Samuel Masambukidi II en tant que Roi Divin du Bassin du Congo. Document disponible en PDF.</p>
-              <a class="btn primary" href="communique-papa-masambukidi.pdf" target="_blank" style="margin-top:16px; display:inline-flex;"><i class="fa-solid fa-download"></i> Télécharger le PDF</a>
-            </div>
-            <div class="glow-card">
-              <div class="pill-tag" style="margin-bottom:12px;"><i class="fa-solid fa-magazine"></i> Magazine</div>
-              <h4 style="color:#facc15;">Politique Magazine RDC 2023-2024</h4>
-              <p>48 pages d'analyse politique de la RDC contemporaine. Téléchargement gratuit disponible sur Blurb et en PDF direct.</p>
-              <a class="btn primary" href="https://www.blurb.fr/b/12237944-la-politique-en-rdc-est-elle-revoir" target="_blank" style="margin-top:16px; display:inline-flex;"><i class="fa-solid fa-download"></i> Voir sur Blurb (Gratuit)</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Global Footer -->
-    <footer class="global-footer">
-      <div class="footer-inner">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <a href="index.html" class="footer-logo">
-              <div class="brand-mark">HV</div>
-              <h3>Hakvision</h3>
-            </a>
-            <p>Œuvres littéraires, innovations culturelles et initiatives panafricaines conçues par Merveil Hakeem Dianzenza.</p>
-            <div class="footer-socials">
-              <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-              <a href="https://www.instagram.com/hakaymrv243_" target="_blank"><i class="fab fa-instagram"></i></a>
-              <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank"><i class="fab fa-whatsapp"></i></a>
-              <a href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank"><i class="fab fa-amazon"></i></a>
-            </div>
-          </div>
-          <div class="footer-col">
-            <h4>Œuvres</h4>
-            <ul>
-              <li><a href="livres.html">Livres</a></li>
-              <li><a href="catalogue.html">Catalogue complet</a></li>
-              <li><a href="katiopa.html">KATIØPA</a></li>
-              <li><a href="papa-masambukidi.html">Papa Masambukidi</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Hakvision</h4>
-            <ul>
-              <li><a href="bio.html">Biographie</a></li>
-              <li><a href="papa-masambukidi.html">Masambukidi</a>
-          <a href="press.html">Presse</a></li>
-              <li><a href="okapiplay.html">OkapiPlay</a></li>
-              <li><a href="prix-litteraires.html">Prix Littéraires</a></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h4>Contact</h4>
-            <ul>
-              <li><a href="contact.html">Nous écrire</a></li>
-              <li><a href="mailto:arenalse22@gmail.com">Email direct</a></li>
-              <li><a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">WhatsApp</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>© 2026 Merveil Hakeem Dianzenza — Tous droits réservés</p>
-          <span class="footer-badge"><i class="fa-solid fa-star"></i> Hakvision Editions</span>
         </div>
       </div>
-    </footer>
-  </div>
+    </section>
 
-  <script src="hakvision-premium.js"></script>
+    <!-- Galerie photos -->
+    <section class="page-section alt">
+      <div class="site-grid">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Galerie Officielle</p>
+            <h3>Cérémonie d'intronisation — Kinshasa, Oct. 2025</h3>
+          </div>
+        </div>
+        <div class="media-grid">
+          <div class="glow-card">
+            <img src="masambukidi_ceremonie_1.jpg" alt="Cérémonie 1" loading="lazy" style="width:100%; margin-bottom:10px;">
+            <p class="media-caption">Cérémonie d'intronisation de Papa Samuel Masambukidi II, Kinshasa, 30 octobre 2025.</p>
+          </div>
+          <div class="glow-card">
+            <img src="masambukidi_ceremonie_2.jpg" alt="Cérémonie 2" loading="lazy" style="width:100%; margin-bottom:10px;">
+            <p class="media-caption">Moment solennel de la proclamation au sein de la communauté spirituelle.</p>
+          </div>
+          <div class="glow-card">
+            <img src="masambukidi_ceremonie_3.jpg" alt="Cérémonie 3" loading="lazy" style="width:100%; margin-bottom:10px;">
+            <p class="media-caption">La communauté Masambukidi réunie pour célébrer l'événement historique.</p>
+          </div>
+          <div class="glow-card">
+            <img src="merveil_katiopa_1.jpg" alt="Merveil et KATIOPA" loading="lazy" style="width:100%; margin-bottom:10px;">
+            <p class="media-caption">Merveil Hakeem Dianzenza avec son œuvre phare KATIØPA — La Prophétie Noire.</p>
+          </div>
+          <div class="glow-card">
+            <img src="kulala_ntumba_pasco_photo.jpg" alt="Portrait" loading="lazy" style="width:100%; margin-bottom:10px;">
+            <p class="media-caption">Portrait lors de la rencontre avec la communauté littéraire à Kinshasa.</p>
+          </div>
+          <div class="glow-card">
+            <img src="merveil_interview_portrait.jpg" alt="Portrait interview" loading="lazy" style="width:100%; margin-bottom:10px;">
+            <p class="media-caption">Portrait officiel de Merveil Hakeem Dianzenza — disponible en haute définition pour la presse.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Press Kit -->
+    <section class="page-section" id="press-kit">
+      <div class="site-grid dual-columns">
+        <div class="content-panel">
+          <div class="pill-tag"><i class="fa-solid fa-folder-open"></i> Dossier de presse</div>
+          <h4>Kit Médias Hakvision</h4>
+          <p>Tout ce dont vous avez besoin pour couvrir Merveil Hakeem Dianzenza, ses œuvres et ses initiatives culturelles.</p>
+          <div class="stacked-list" style="margin:16px 0 22px;">
+            <div class="stacked-item"><i class="fa-solid fa-check" style="color:#b8952a; margin-right:8px;"></i> Biographie courte et longue (FR)</div>
+            <div class="stacked-item"><i class="fa-solid fa-check" style="color:#b8952a; margin-right:8px;"></i> Photos officielles HD (portrait + événements)</div>
+            <div class="stacked-item"><i class="fa-solid fa-check" style="color:#b8952a; margin-right:8px;"></i> Couvertures des livres en HD</div>
+            <div class="stacked-item"><i class="fa-solid fa-check" style="color:#b8952a; margin-right:8px;"></i> Communiqués de presse PDF</div>
+            <div class="stacked-item"><i class="fa-solid fa-check" style="color:#b8952a; margin-right:8px;"></i> Résumés des œuvres publiées</div>
+          </div>
+          <div class="cta-group">
+            <a class="btn primary" href="communique-papa-masambukidi.pdf" target="_blank"><i class="fa-solid fa-file-pdf"></i> Communiqué Papa Masambukidi</a>
+            <a class="btn ghost" href="contact.html"><i class="fas fa-envelope"></i> Demander le kit complet</a>
+          </div>
+        </div>
+
+        <div class="content-panel">
+          <div class="pill-tag"><i class="fa-solid fa-address-card"></i> Contact presse</div>
+          <h4>Pour journalistes & organisateurs</h4>
+          <div class="stacked-list" style="margin:14px 0 20px;">
+            <div class="stacked-item"><strong>Email :</strong> <a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a></div>
+            <div class="stacked-item"><strong>WhatsApp :</strong> <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">Canal Hakvision</a></div>
+            <div class="stacked-item"><strong>Instagram :</strong> <a href="https://instagram.com/hakaymrv243_" target="_blank">@hakaymrv243_</a></div>
+            <div class="stacked-item"><strong>Disponibilité :</strong> Réponse sous 48h ouvrées</div>
+          </div>
+          <h4 style="margin-top:18px;">Interventions proposées</h4>
+          <ul style="padding-left:18px; color:#9a8e7e; display:grid; gap:8px; margin-top:10px; font-size:.9rem; font-weight:300;">
+            <li>Salons du livre · Conférences · Masterclasses</li>
+            <li>Plateaux TV/radio afrofuturisme & diaspora</li>
+            <li>Cérémonies Prix Masambukidi & Dianzenza</li>
+            <li>Sessions de dédicaces & clubs de lecture</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Communiqués -->
+    <section class="page-section alt">
+      <div class="site-grid">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Documents officiels</p>
+            <h3>Communiqués & Publications</h3>
+          </div>
+        </div>
+        <div class="dual-columns">
+          <div class="glow-card">
+            <div class="pill-tag" style="margin-bottom:12px;"><i class="fa-solid fa-file-pdf"></i> Communiqué Officiel</div>
+            <h4>Papa Masambukidi — Communiqué de Presse</h4>
+            <p>Annonce officielle de l'intronisation de Papa Samuel Masambukidi II en tant que Roi Divin du Bassin du Congo. Document disponible en PDF.</p>
+            <a class="btn primary" href="communique-papa-masambukidi.pdf" target="_blank" style="margin-top:16px;"><i class="fa-solid fa-download"></i> Télécharger le PDF</a>
+          </div>
+          <div class="glow-card">
+            <div class="pill-tag" style="margin-bottom:12px;"><i class="fa-solid fa-book-open"></i> Magazine</div>
+            <h4>Politique Magazine RDC 2023-2024</h4>
+            <p>48 pages d'analyse politique de la RDC contemporaine. Téléchargement gratuit disponible sur Blurb et en PDF direct.</p>
+            <a class="btn primary" href="https://www.blurb.fr/b/12237944-la-politique-en-rdc-est-elle-revoir" target="_blank" style="margin-top:16px;"><i class="fa-solid fa-download"></i> Voir sur Blurb (Gratuit)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="hv-footer">
+    <div class="hv-footer-inner">
+      <div class="hv-footer-top">
+        <div>
+          <div class="hv-footer-wordmark">Hakvision Éditions</div>
+          <div class="hv-footer-tagline">Maison d'édition · Paris · Kinshasa</div>
+          <p class="hv-footer-about">Œuvres littéraires, innovations culturelles et initiatives panafricaines conçues par Merveil Hakeem Dianzenza.</p>
+          <div class="hv-footer-socials">
+            <a class="hv-footer-social" href="https://www.instagram.com/hakaymrv243_" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a class="hv-footer-social" href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a class="hv-footer-social" href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank"><i class="fab fa-amazon"></i></a>
+          </div>
+        </div>
+        <div>
+          <div class="hv-footer-col-title">Œuvres</div>
+          <ul class="hv-footer-links">
+            <li><a href="livres.html">Livres</a></li>
+            <li><a href="catalogue.html">Catalogue complet</a></li>
+            <li><a href="katiopa.html">KATIØPA</a></li>
+            <li><a href="papa-masambukidi.html">Papa Masambukidi</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="hv-footer-col-title">Hakvision</div>
+          <ul class="hv-footer-links">
+            <li><a href="bio.html">Biographie</a></li>
+            <li><a href="prix-litteraires.html">Prix Littéraires</a></li>
+            <li><a href="press.html">Presse</a></li>
+            <li><a href="okapiplay.html">OkapiPlay</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="hv-footer-col-title">Contact</div>
+          <ul class="hv-footer-links">
+            <li><a href="contact.html">Nous écrire</a></li>
+            <li><a href="mailto:arenalse22@gmail.com">Email direct</a></li>
+            <li><a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="hv-footer-bottom">
+        <span class="hv-footer-copy">© 2026 Merveil Hakeem Dianzenza — Hakvision Éditions. Tous droits réservés.</span>
+        <span class="hv-footer-stamp">Hakvision · Paris · Kinshasa</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hvBurger = document.getElementById('hvBurger');
+    const hvNav = document.getElementById('hvNav');
+    if (hvBurger && hvNav) {
+      hvBurger.addEventListener('click', () => hvNav.classList.toggle('open'));
+      document.addEventListener('click', e => {
+        if (!hvBurger.contains(e.target) && !hvNav.contains(e.target)) hvNav.classList.remove('open');
+      });
+    }
+    const obs = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')), { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>
