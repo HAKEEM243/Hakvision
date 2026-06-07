@@ -1228,11 +1228,9 @@
           <h3 style="font-family:'Playfair Display',serif; font-size:1.5rem; color:#fff; margin-bottom:6px;">Formulaire de soumission</h3>
           <p style="color:#64748b; font-size:.85rem; margin-bottom:28px;">Complétez tous les champs et joignez votre manuscrit.</p>
 
-          <form action="https://formsubmit.co/hakeemmerveil@gmail.com" method="POST" enctype="multipart/form-data" style="display:flex; flex-direction:column; gap:18px;">
-            <input type="hidden" name="_subject" value="📖 Nouveau manuscrit reçu — Hakvision Éditions">
-            <input type="hidden" name="_next" value="merci.html">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
+          <form name="manuscrit" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" style="display:flex; flex-direction:column; gap:18px;">
+            <input type="hidden" name="form-name" value="manuscrit">
+            <input type="hidden" name="bot-field" style="display:none">
 
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
               <div>
