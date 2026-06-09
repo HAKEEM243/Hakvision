@@ -90,6 +90,13 @@
   }
   </script>
 
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#b8952a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Hakvision">
+  <link rel="apple-touch-icon" href="katiopa_cover_hq.jpg">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style-shared.css">
@@ -545,5 +552,6 @@
       });
     })();
   </script>
+  <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{});}</script>
 </body>
 </html>
