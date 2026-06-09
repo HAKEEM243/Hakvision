@@ -22,11 +22,49 @@
   <meta name="twitter:image" content="https://hakvision243.netlify.app/katiopa_cover_hq.jpg" />
 
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"Hakvision Éditions",
-   "url":"https://hakvision243.netlify.app","description":"Maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza.",
-   "founder":{"@type":"Person","name":"Merveil Hakeem Dianzenza","url":"https://hakvision243.netlify.app/bio.html",
-   "sameAs":["https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7"]},
-   "address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"}}
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://hakvision243.netlify.app/#website",
+        "name": "Hakvision Éditions",
+        "url": "https://hakvision243.netlify.app",
+        "description": "Maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza — Le Roi de l'Afrofuturisme.",
+        "inLanguage": "fr",
+        "publisher": {"@id": "https://hakvision243.netlify.app/#organization"}
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://hakvision243.netlify.app/#organization",
+        "name": "Hakvision Éditions",
+        "legalName": "Hakvision Éditions",
+        "url": "https://hakvision243.netlify.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://hakvision243.netlify.app/favicon.ico"
+        },
+        "image": "https://hakvision243.netlify.app/katiopa_cover_hq.jpg",
+        "description": "Maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza. Littérature africaine, afrofuturisme, biographies congolaises.",
+        "founder": {
+          "@type": "Person",
+          "@id": "https://hakvision243.netlify.app/bio.html#merveil-hakeem-dianzenza",
+          "name": "Merveil Hakeem Dianzenza",
+          "alternateName": "Le Roi de l'Afrofuturisme",
+          "url": "https://hakvision243.netlify.app/bio.html",
+          "sameAs": ["https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Paris",
+          "addressCountry": "FR"
+        },
+        "areaServed": ["FR", "CD", "CI", "BE", "CH"],
+        "knowsAbout": ["Afrofuturisme", "Littérature africaine", "Édition indépendante", "Congo", "Culture africaine francophone"],
+        "sameAs": ["https://hakvision243.netlify.app"]
+      }
+    ]
+  }
   </script>
 
   <link rel="icon" href="favicon.ico" type="image/x-icon" />

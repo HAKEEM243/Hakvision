@@ -4,57 +4,61 @@
   <!-- Page principale -->
   <url>
     <loc>https://hakvision243.netlify.app/</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Biographie auteur — priorité maximale -->
+  <url>
+    <loc>https://hakvision243.netlify.app/bio.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Prix littéraires — résultats 2026 -->
+  <url>
+    <loc>https://hakvision243.netlify.app/prix-litteraires.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- KATIØPA — livre phare -->
+  <url>
+    <loc>https://hakvision243.netlify.app/katiopa.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
   </url>
 
   <!-- Livres et catalogue -->
   <url>
     <loc>https://hakvision243.netlify.app/livres.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://hakvision243.netlify.app/catalogue.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://hakvision243.netlify.app/katiopa.html</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
 
-  <!-- Prix littéraires -->
-  <url>
-    <loc>https://hakvision243.netlify.app/prix-litteraires.html</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <!-- Auteur et biographie -->
-  <url>
-    <loc>https://hakvision243.netlify.app/bio.html</loc>
-    <lastmod>2026-06-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- Papa Masambukidi -->
   <url>
     <loc>https://hakvision243.netlify.app/papa-masambukidi.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
   </url>
 
   <!-- Presse -->
   <url>
     <loc>https://hakvision243.netlify.app/press.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -62,7 +66,7 @@
   <!-- OkapiPlay -->
   <url>
     <loc>https://hakvision243.netlify.app/okapiplay.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -70,7 +74,7 @@
   <!-- Contact -->
   <url>
     <loc>https://hakvision243.netlify.app/contact.html</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-06-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

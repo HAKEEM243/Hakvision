@@ -6,8 +6,8 @@ Sitemap: https://hakvision243.netlify.app/sitemap.xml
 
 # Pages importantes
 Allow: /index.html
-Allow: /prix-litteraires.html
 Allow: /bio.html
+Allow: /prix-litteraires.html
 Allow: /catalogue.html
 Allow: /livres.html
 Allow: /katiopa.html
