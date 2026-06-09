@@ -1,0 +1,32 @@
+{
+  "name": "Hakvision Éditions",
+  "short_name": "Hakvision",
+  "description": "Maison d'édition afrofuturiste — Merveil Hakeem Dianzenza. KATIØPA, Papa Masambukidi, Prix Dianzenza.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0a0909",
+  "theme_color": "#b8952a",
+  "lang": "fr",
+  "orientation": "portrait-primary",
+  "categories": ["books", "education"],
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "katiopa_cover_hq.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "katiopa_cover_hq.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

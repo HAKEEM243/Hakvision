@@ -18,6 +18,13 @@
   <meta name="twitter:description" content="Découvrez les livres de Merveil Hakeem Dianzenza : KATIØPA (634 pages), Un Écrivain à Kinshasa, Papa Masambukidi." />
   <meta name="twitter:image" content="https://hakvision243.netlify.app/katiopa_cover_hq.jpg" />
   <title>Mes Livres | Merveil Hakeem Dianzenza — Hakvision</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#b8952a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Hakvision">
+  <link rel="apple-touch-icon" href="katiopa_cover_hq.jpg">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style-shared.css">
@@ -203,6 +210,7 @@
             </div>
             <p>Présenté au Salon du Livre Africain le 21 mars 2026 aux côtés de KATIØPA, <em>Un Écrivain à Kinshasa</em> et <em>Papa Masambukidi</em>. Une production littéraire signée Hakvision.</p>
             <div class="book-cta">
+              <a class="btn primary" href="https://www.amazon.fr/L%C5%93il-Kulala-Ntumba-Pasco/dp/B0G1YHFXP7" target="_blank"><i class="fab fa-amazon"></i> Commander sur Amazon</a>
               <a class="btn ghost" href="contact.html"><i class="fa-solid fa-envelope"></i> Nous contacter</a>
             </div>
           </div>
@@ -251,8 +259,8 @@
         </div>
         <div class="feature-grid">
           <div class="glow-card">
-            <img src="diaku_cover_new.jpg" alt="Couverture de DIAKU – L'Antidote Vivant" loading="lazy" style="width:100%; margin-bottom:14px;">
-            <h4>DIAKU : L'Antidote</h4>
+            <img src="diaku_cover.jpg" alt="Couverture de DIAKU — L'Antidote Vivant" loading="lazy" style="width:100%; margin-bottom:14px;">
+            <h4>DIAKU — L'Antidote Vivant</h4>
             <p>Thriller médico-géopolitique. Le Congolais qui unit les Corées pour sauver l'humanité d'un virus apocalyptique.</p>
           </div>
           <div class="glow-card">
@@ -333,5 +341,6 @@
     const obs = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')), { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
+  <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{});}</script>
 </body>
 </html>

@@ -8,6 +8,13 @@
   <meta name="author" content="Merveil Hakeem Dianzenza" />
   <link rel="canonical" href="https://hakvision243.netlify.app/okapiplay.html" />
   <title>OkapiPlay | Vision gaming Hakvision — Merveil Hakeem Dianzenza</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#b8952a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Hakvision">
+  <link rel="apple-touch-icon" href="katiopa_cover_hq.jpg">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style-shared.css">
@@ -205,5 +212,6 @@
     const obs = new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')), { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
+  <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{});}</script>
 </body>
 </html>
