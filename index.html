@@ -3,41 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Hakvision Éditions | Merveil Hakeem Dianzenza — Écrivain Afrofuturiste Congolais</title>
-  <meta name="description" content="Hakvision Éditions — maison d'édition afrofuturiste fondée par Merveil Hakeem Dianzenza, auteur de KATIØPA (634 pages), Un Écrivain à Kinshasa et Papa Masambukidi. Paris & Kinshasa." />
-  <meta name="keywords" content="Merveil Hakeem Dianzenza, Hakvision, écrivain congolais, afrofuturisme, KATIØPA, auteur africain, littérature congolaise, RDC, Kinshasa, roman africain, Papa Masambukidi, Un Écrivain à Kinshasa, maison d'édition" />
+  <title>Hakvision Éditions — Maison d'édition afrofuturiste | Paris · Kinshasa</title>
+  <meta name="description" content="Hakvision Éditions — maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza. Auteur de KATIØPA (634 pages), Un Écrivain à Kinshasa, Papa Masambukidi. Submissions ouvertes." />
+  <meta name="keywords" content="Merveil Hakeem Dianzenza, Hakvision Éditions, maison édition africaine, KATIØPA, afrofuturisme congolais, littérature RDC, Prix Dianzenza, manuscrit, auteur africain" />
   <meta name="author" content="Merveil Hakeem Dianzenza" />
-  <link rel="canonical" href="https://hakvision243.blog/" />
+  <link rel="canonical" href="https://hakvision243.netlify.app/" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://hakvision243.blog/" />
-  <meta property="og:title" content="Hakvision Éditions | Merveil Hakeem Dianzenza" />
-  <meta property="og:description" content="Maison d'édition afrofuturiste congolaise — KATIØPA, Un Écrivain à Kinshasa, Papa Masambukidi." />
-  <meta property="og:image" content="https://hakvision243.blog/katiopa_cover_hq.jpg" />
+  <meta property="og:url" content="https://hakvision243.netlify.app/" />
+  <meta property="og:title" content="Hakvision Éditions | Maison d'édition afrofuturiste — Paris · Kinshasa" />
+  <meta property="og:description" content="Maison d'édition fondée à Paris, enracinée dans la culture congolaise. KATIØPA, Un Écrivain à Kinshasa, Papa Masambukidi." />
+  <meta property="og:image" content="https://hakvision243.netlify.app/katiopa_cover_hq.jpg" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Hakvision Éditions" />
-
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Hakvision Éditions | Merveil Hakeem Dianzenza" />
-  <meta name="twitter:description" content="Maison d'édition afrofuturiste congolaise — KATIØPA, Un Écrivain à Kinshasa, Papa Masambukidi." />
-  <meta name="twitter:image" content="https://hakvision243.blog/katiopa_cover_hq.jpg" />
+  <meta name="twitter:title" content="Hakvision Éditions | Paris · Kinshasa" />
+  <meta name="twitter:description" content="Maison d'édition afrofuturiste. KATIØPA, Un Écrivain à Kinshasa, Papa Masambukidi." />
+  <meta name="twitter:image" content="https://hakvision243.netlify.app/katiopa_cover_hq.jpg" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Hakvision Éditions",
-    "url": "https://hakvision243.blog",
-    "logo": "https://hakvision243.blog/favicon.ico",
-    "description": "Maison d'édition afrofuturiste congolaise fondée par Merveil Hakeem Dianzenza, auteur de KATIØPA, Un Écrivain à Kinshasa et Papa Masambukidi.",
-    "founder": {
-      "@type": "Person",
-      "name": "Merveil Hakeem Dianzenza",
-      "url": "https://hakvision243.blog/bio.html",
-      "sameAs": ["https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7"]
-    },
-    "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://hakvision243.netlify.app/#website",
+        "name": "Hakvision Éditions",
+        "url": "https://hakvision243.netlify.app",
+        "description": "Maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza — Le Roi de l'Afrofuturisme.",
+        "inLanguage": "fr",
+        "publisher": {"@id": "https://hakvision243.netlify.app/#organization"}
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://hakvision243.netlify.app/#organization",
+        "name": "Hakvision Éditions",
+        "legalName": "Hakvision Éditions",
+        "url": "https://hakvision243.netlify.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://hakvision243.netlify.app/favicon.ico"
+        },
+        "image": "https://hakvision243.netlify.app/katiopa_cover_hq.jpg",
+        "description": "Maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza. Littérature africaine, afrofuturisme, biographies congolaises.",
+        "founder": {
+          "@type": "Person",
+          "@id": "https://hakvision243.netlify.app/bio.html#merveil-hakeem-dianzenza",
+          "name": "Merveil Hakeem Dianzenza",
+          "alternateName": "Le Roi de l'Afrofuturisme",
+          "url": "https://hakvision243.netlify.app/bio.html",
+          "sameAs": ["https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Paris",
+          "addressCountry": "FR"
+        },
+        "areaServed": ["FR", "CD", "CI", "BE", "CH"],
+        "knowsAbout": ["Afrofuturisme", "Littérature africaine", "Édition indépendante", "Congo", "Culture africaine francophone"],
+        "sameAs": ["https://hakvision243.netlify.app"]
+      }
+    ]
   }
   </script>
 
@@ -46,690 +72,759 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --gold:   #facc15;
-      --amber:  #f59e0b;
-      --orange: #f97316;
-      --dark:   #05050a;
-      --dark2:  #0a0c18;
-      --text:   #f1f5f9;
-      --muted:  #94a3b8;
-      --subtle: #64748b;
-      --border: rgba(255,255,255,0.07);
-      --border-gold: rgba(250,204,21,0.2);
-      --radius: 20px;
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --font-sans:  'Inter', 'Segoe UI', system-ui, sans-serif;
-      --max-w: 1280px;
+      --ink:         #0a0909;
+      --ink2:        #100e10;
+      --parchment:   #f0e8d6;
+      --gold:        #b8952a;
+      --gold-light:  #d4ad3e;
+      --rule:        rgba(184,149,42,.22);
+      --text:        #e8e0d0;
+      --body:        #9a8e7e;
+      --quiet:       #5a5048;
+      --border:      rgba(255,255,255,.06);
+      --serif:       'Cormorant Garant', Georgia, serif;
+      --display:     'Playfair Display', Georgia, serif;
+      --sans:        'Inter', system-ui, sans-serif;
+      --max:         1200px;
+      --gutter:      clamp(20px, 4vw, 48px);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--font-sans);
-      background: var(--dark);
+      font-family: var(--sans);
+      background: var(--ink);
       color: var(--text);
       overflow-x: hidden;
-      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
     }
 
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
 
-    /* ── TOP BAR ── */
-    .topbar {
-      background: #030308;
-      border-bottom: 1px solid rgba(255,255,255,.04);
-      padding: 7px 0;
+    /* ══════════════════════════════════════
+       ANNOUNCEMENT BAR — discret, élégant
+    ══════════════════════════════════════ */
+    .announcement {
+      background: var(--gold);
+      color: var(--ink);
+      text-align: center;
+      padding: 9px var(--gutter);
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
     }
-    .topbar-inner {
-      max-width: var(--max-w); margin: 0 auto; padding: 0 28px;
-      display: flex; justify-content: space-between; align-items: center;
-      gap: 10px;
+    .announcement a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
-    .topbar-left {
-      display: flex; align-items: center; gap: 16px;
-      font-size: .8rem; color: var(--subtle); font-weight: 500;
-      letter-spacing: .2px;
-    }
-    .topbar-divider { width: 1px; height: 14px; background: rgba(255,255,255,.1); }
-    .topbar-socials { display: flex; gap: 18px; }
-    .topbar-socials a {
-      color: var(--subtle); font-size: .88rem;
-      transition: color .2s;
-    }
-    .topbar-socials a:hover { color: var(--gold); }
 
-    /* ── HEADER ── */
+    /* ══════════════════════════════════════
+       HEADER — institution, pas startup
+    ══════════════════════════════════════ */
     .site-header {
       position: sticky; top: 0; z-index: 900;
-      background: rgba(5,5,10,.94);
+      background: rgba(10,9,9,.97);
       backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--rule);
     }
     .header-inner {
-      max-width: var(--max-w); margin: 0 auto; padding: 0 28px;
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 var(--gutter);
       display: flex; align-items: center;
-      justify-content: space-between; gap: 20px;
-      height: 66px;
-    }
-    .brand { display: flex; align-items: center; gap: 14px; }
-    .brand-icon {
-      width: 40px; height: 40px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--gold), var(--orange));
-      display: grid; place-items: center;
-      font-weight: 900; font-size: .95rem; color: #0b0b10;
-      box-shadow: 0 6px 20px rgba(250,204,21,.3);
-      flex-shrink: 0; letter-spacing: -.5px;
-    }
-    .brand-label { line-height: 1.25; }
-    .brand-label .sub { font-size: .65rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-weight: 600; }
-    .brand-label .name { font-size: 1.18rem; font-weight: 800; color: #fff; letter-spacing: -.4px; }
-
-    .main-nav { display: flex; align-items: center; gap: 2px; }
-    .main-nav a {
-      color: #c4cdd8; font-weight: 500; font-size: .88rem;
-      padding: 7px 11px; border-radius: 9px;
-      transition: all .2s; letter-spacing: .1px;
-    }
-    .main-nav a:hover { background: rgba(255,255,255,.06); color: #fff; }
-
-    .nav-cta-btn {
-      background: linear-gradient(135deg, var(--gold), var(--amber)) !important;
-      color: #0b0b10 !important; font-weight: 800 !important;
-      padding: 8px 16px !important; border-radius: 10px !important;
-      box-shadow: 0 6px 20px rgba(250,204,21,.28) !important;
-      transition: transform .2s !important;
-      font-size: .85rem !important;
-    }
-    .nav-cta-btn:hover { transform: translateY(-1px) !important; }
-
-    .hamburger {
-      display: none; background: none;
-      border: 1px solid rgba(255,255,255,.1);
-      color: #e2e8f0; padding: 7px 12px;
-      border-radius: 9px; cursor: pointer;
-      font-size: .9rem; gap: 6px; align-items: center;
+      justify-content: space-between;
+      height: 72px;
     }
 
-    /* ── BUTTONS ── */
-    .btn-gold {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: linear-gradient(135deg, var(--gold), var(--amber));
-      color: #0b0b10; font-weight: 800; font-size: .92rem;
-      padding: 13px 24px; border-radius: 13px;
-      box-shadow: 0 12px 32px rgba(250,204,21,.25);
-      transition: transform .2s, box-shadow .2s;
+    /* Wordmark */
+    .wordmark {
+      display: flex; flex-direction: column;
+      gap: 1px;
     }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 18px 44px rgba(250,204,21,.38); }
-
-    .btn-outline {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.12);
-      color: #d1d9e6; font-weight: 600; font-size: .92rem;
-      padding: 13px 24px; border-radius: 13px;
-      transition: all .2s;
+    .wordmark-main {
+      font-family: var(--serif);
+      font-size: 1.35rem; font-weight: 600;
+      color: var(--text); letter-spacing: .04em;
+      line-height: 1;
     }
-    .btn-outline:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.2); color: #fff; }
+    .wordmark-sub {
+      font-size: .58rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 3px;
+      color: var(--gold); line-height: 1;
+    }
 
-    /* ── HERO ── */
+    /* Nav */
+    .site-nav { display: flex; align-items: center; gap: 0; }
+    .site-nav a {
+      font-size: .78rem; font-weight: 500; letter-spacing: .3px;
+      color: var(--body); padding: 8px 13px;
+      transition: color .2s;
+    }
+    .site-nav a:hover { color: var(--text); }
+
+    .nav-submit {
+      margin-left: 8px;
+      font-size: .76rem; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--gold) !important;
+      border: 1px solid var(--rule);
+      padding: 7px 16px !important;
+      transition: border-color .2s, color .2s !important;
+    }
+    .nav-submit:hover { border-color: var(--gold) !important; color: var(--gold) !important; }
+
+    .nav-burger {
+      display: none; background: none; border: none;
+      color: var(--text); font-size: 1.1rem; cursor: pointer;
+      padding: 8px;
+    }
+
+    /* ══════════════════════════════════════
+       HERO — La déclaration éditoriale
+    ══════════════════════════════════════ */
     .hero {
-      position: relative; overflow: hidden;
-      min-height: 92vh;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 100px 28px 80px;
-      background:
-        radial-gradient(ellipse 80% 60% at 65% -10%, rgba(250,204,21,.055) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 5% 90%, rgba(249,115,22,.04) 0%, transparent 55%),
-        linear-gradient(165deg, #06060d 0%, #090b18 55%, #050508 100%);
+      min-height: calc(100vh - 72px);
+      display: flex; align-items: center;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
     }
-    .hero::after {
+    .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background-image:
-        repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,.012) 80px),
-        repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,.008) 80px);
-      pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse 70% 60% at 30% 50%, rgba(184,149,42,.04) 0%, transparent 65%);
+      pointer-events: none;
     }
-    .hero-wrap {
+    .hero-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 80px var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 100px;
+      align-items: center;
+      width: 100%;
       position: relative; z-index: 1;
-      max-width: var(--max-w); margin: 0 auto;
-      display: grid; grid-template-columns: 1.2fr 1fr;
-      align-items: center; gap: 72px;
     }
 
-    /* Publisher badge */
-    .publisher-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(250,204,21,.08);
-      border: 1px solid rgba(250,204,21,.22);
-      color: var(--gold); padding: 8px 18px;
-      border-radius: 999px; font-size: .74rem;
-      font-weight: 700; letter-spacing: 2px;
-      text-transform: uppercase; margin-bottom: 28px;
+    /* Left — texte */
+    .hero-text {}
+    .hero-kicker {
+      font-size: .65rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 3.5px;
+      color: var(--gold); margin-bottom: 32px;
+      display: flex; align-items: center; gap: 14px;
     }
-    .publisher-badge-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 8px var(--gold);
-      animation: pulse-dot 2s ease-in-out infinite;
+    .hero-kicker::before {
+      content: ''; width: 40px; height: 1px; background: var(--gold); opacity: .7;
     }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--gold); }
-      50% { opacity: .6; box-shadow: 0 0 16px var(--gold); }
-    }
-
     .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.8rem, 4.5vw + .8rem, 5.6rem);
-      line-height: 1.06; letter-spacing: -.04em;
-      color: #fff; margin-bottom: 10px;
-      font-weight: 900;
+      font-family: var(--serif);
+      font-size: clamp(3.2rem, 5.5vw, 6.8rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.06; letter-spacing: -.01em;
+      color: var(--text);
+      margin-bottom: 8px;
     }
-    .hero-title em {
-      font-style: normal;
-      background: linear-gradient(135deg, #facc15 0%, #fb923c 60%, #f59e0b 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .hero-title strong {
+      font-weight: 600; font-style: normal;
+      color: #fff;
     }
-    .hero-subtitle {
-      font-size: .88rem; color: var(--muted);
-      letter-spacing: 2px; margin-bottom: 22px;
-      text-transform: uppercase; font-weight: 600;
+    .hero-rule {
+      width: 56px; height: 1px;
+      background: var(--gold); opacity: .6;
+      margin: 28px 0;
     }
     .hero-desc {
-      color: #a9bbd4; font-size: 1.04rem;
-      max-width: 540px; margin-bottom: 32px; line-height: 1.9;
-      font-weight: 400;
+      font-size: 1rem; font-weight: 300;
+      color: var(--body); line-height: 1.95;
+      max-width: 480px; margin-bottom: 40px;
     }
+    .hero-desc em { color: var(--text); font-style: normal; font-weight: 400; }
+    .hero-ctas { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
 
-    /* Event notice */
-    .event-notice {
-      display: flex; align-items: flex-start; gap: 14px;
-      background: rgba(250,204,21,.07);
-      border: 1px solid rgba(250,204,21,.22);
-      border-radius: 14px; padding: 16px 20px;
-      margin-bottom: 32px; max-width: 560px;
+    /* Right — livre en vitrine */
+    .hero-book { position: relative; }
+    .hero-book-inner {
+      position: relative;
+      box-shadow: -24px 24px 80px rgba(0,0,0,.8), 4px 4px 0 rgba(184,149,42,.15);
     }
-    .event-icon {
-      width: 36px; height: 36px; border-radius: 9px;
-      background: linear-gradient(135deg, var(--gold), var(--orange));
-      display: grid; place-items: center;
-      color: #0b0b10; font-size: .85rem; flex-shrink: 0;
+    .hero-book-inner img {
+      width: 100%; display: block;
+      aspect-ratio: 2/3; object-fit: cover;
     }
-    .event-label { font-size: .68rem; font-weight: 800; color: var(--gold); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 3px; }
-    .event-text-main { font-size: .9rem; color: #e2e8f0; font-weight: 600; line-height: 1.5; }
+    .hero-book-legend {
+      margin-top: 18px;
+      border-left: 2px solid var(--rule);
+      padding-left: 14px;
+    }
+    .hero-book-title {
+      font-family: var(--display);
+      font-size: .95rem; color: var(--text); margin-bottom: 3px;
+    }
+    .hero-book-meta { font-size: .72rem; color: var(--body); letter-spacing: .5px; }
 
-    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 44px; }
-
-    /* Stats */
-    .hero-stats {
+    /* ══════════════════════════════════════
+       COLOPHON — Les faits, rien que les faits
+    ══════════════════════════════════════ */
+    .colophon {
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      background: var(--ink2);
+    }
+    .colophon-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 var(--gutter);
       display: grid; grid-template-columns: repeat(4, 1fr);
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: 16px; overflow: hidden;
-      background: rgba(255,255,255,.015);
     }
-    .hero-stat {
-      padding: 18px 10px; text-align: center;
-      border-right: 1px solid rgba(255,255,255,.05);
+    .colophon-item {
+      padding: 32px 24px; text-align: center;
+      border-right: 1px solid var(--rule);
     }
-    .hero-stat:last-child { border-right: none; }
-    .hero-stat .num {
-      display: block; font-size: 1.75rem; font-weight: 900;
-      color: var(--gold); line-height: 1; margin-bottom: 5px;
-      font-family: var(--font-serif);
+    .colophon-item:last-child { border-right: none; }
+    .colophon-val {
+      font-family: var(--serif);
+      font-size: 2.2rem; font-weight: 600;
+      color: var(--gold); line-height: 1; margin-bottom: 6px;
     }
-    .hero-stat .lbl { font-size: .68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; font-weight: 600; }
+    .colophon-key {
+      font-size: .64rem; color: var(--quiet);
+      text-transform: uppercase; letter-spacing: 2px; font-weight: 600;
+    }
 
-    /* RIGHT visual */
-    .hero-visual { display: flex; flex-direction: column; gap: 18px; }
-    .portrait-frame {
-      position: relative; border-radius: 22px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,.08);
-      box-shadow: 0 48px 120px rgba(0,0,0,.65);
+    /* ══════════════════════════════════════
+       BUTTONS
+    ══════════════════════════════════════ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--gold);
+      color: var(--ink); font-weight: 600; font-size: .84rem;
+      padding: 13px 28px; letter-spacing: .5px;
+      transition: background .2s;
     }
-    .portrait-frame img {
-      width: 100%; aspect-ratio: 4/5;
-      object-fit: cover; object-position: top center;
-      display: block;
+    .btn-primary:hover { background: var(--gold-light); }
+
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 9px;
+      border: 1px solid var(--rule);
+      color: var(--body); font-weight: 500; font-size: .84rem;
+      padding: 12px 28px; letter-spacing: .3px;
+      transition: border-color .2s, color .2s;
     }
-    .portrait-caption {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(0deg, rgba(5,5,10,.95) 0%, rgba(5,5,10,.6) 60%, transparent 100%);
-      padding: 32px 22px 20px;
-    }
-    .portrait-caption-inner {
+    .btn-ghost:hover { border-color: var(--gold); color: var(--text); }
+
+    /* ══════════════════════════════════════
+       SECTION BASE
+    ══════════════════════════════════════ */
+    .section { padding: 100px var(--gutter); }
+    .section-inner { max-width: var(--max); margin: 0 auto; }
+
+    .section-label {
+      font-size: .62rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 3.5px;
+      color: var(--gold); margin-bottom: 14px;
       display: flex; align-items: center; gap: 12px;
     }
-    .portrait-icon {
-      width: 34px; height: 34px; border-radius: 9px;
-      background: linear-gradient(135deg, var(--gold), var(--orange));
-      display: grid; place-items: center;
-      color: #0b0b10; font-size: .8rem; flex-shrink: 0;
-    }
-    .portrait-name { font-size: .8rem; font-weight: 700; color: #fff; }
-    .portrait-date { font-size: .72rem; color: var(--muted); margin-top: 2px; }
+    .section-label::before { content: ''; width: 28px; height: 1px; background: var(--gold); opacity: .7; }
 
-    .hero-quote {
-      background: rgba(250,204,21,.05);
-      border: 1px solid rgba(250,204,21,.14);
-      border-left: 3px solid var(--gold);
-      border-radius: 0 14px 14px 0;
-      padding: 18px 22px;
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3vw, 3.4rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.15; color: var(--text);
+      letter-spacing: -.01em;
     }
-    .hero-quote p {
-      font-family: var(--font-serif);
-      font-style: italic; color: #c8d8ea;
-      font-size: .98rem; line-height: 1.7; margin-bottom: 8px;
-    }
-    .hero-quote cite { color: var(--gold); font-size: .78rem; font-weight: 700; font-style: normal; }
+    .section-title strong { font-weight: 600; font-style: normal; color: #fff; }
 
-    /* ── SECTION BASE ── */
-    .section { padding: 96px 28px; }
-    .section-inner { max-width: var(--max-w); margin: 0 auto; }
-    .section-alt {
-      background: rgba(255,255,255,.015);
-      border-top: 1px solid rgba(255,255,255,.05);
-      border-bottom: 1px solid rgba(255,255,255,.05);
+    .section-rule {
+      width: 40px; height: 1px;
+      background: var(--gold); opacity: .5;
+      margin: 20px 0 16px;
     }
-
-    .s-eyebrow {
-      font-size: .7rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 2.5px;
-      color: var(--gold); margin-bottom: 10px;
-      display: flex; align-items: center; gap: 10px;
+    .section-lead {
+      color: var(--body); font-size: .95rem; font-weight: 300;
+      line-height: 1.9; max-width: 520px;
     }
-    .s-eyebrow::before {
-      content: ''; display: inline-block;
-      width: 24px; height: 2px;
-      background: var(--gold); border-radius: 2px;
-    }
-    .s-title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.9rem, 2.5vw + .5rem, 2.9rem);
-      line-height: 1.15; color: #fff;
-      letter-spacing: -.025em; margin-bottom: 14px;
-    }
-    .s-lead { color: var(--muted); font-size: 1rem; max-width: 620px; line-height: 1.85; }
 
     .section-head {
       display: flex; align-items: flex-end;
       justify-content: space-between; gap: 24px;
-      flex-wrap: wrap; margin-bottom: 48px;
+      flex-wrap: wrap; margin-bottom: 60px;
     }
 
-    /* ── SALON DU LIVRE (two-col) ── */
-    .salon-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; align-items: center;
+    /* ══════════════════════════════════════
+       CATALOGUE — Les livres
+    ══════════════════════════════════════ */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
     }
-    .salon-photo-wrap {
-      border-radius: 22px; overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 32px 90px rgba(0,0,0,.5);
+    .book-item { display: flex; flex-direction: column; }
+    .book-cover {
+      position: relative; overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      transition: box-shadow .4s, transform .4s;
+    }
+    .book-cover:hover {
+      box-shadow: 0 32px 80px rgba(0,0,0,.7);
+      transform: translateY(-4px);
+    }
+    .book-cover img {
+      width: 100%; display: block;
+      aspect-ratio: 2/3; object-fit: cover;
+      transition: transform .5s;
+    }
+    .book-cover:hover img { transform: scale(1.02); }
+
+    .book-genre {
+      font-size: .62rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2.5px;
+      color: var(--gold); margin-bottom: 8px;
+    }
+    .book-title {
+      font-family: var(--display);
+      font-size: 1.15rem; color: #fff;
+      line-height: 1.3; margin-bottom: 8px;
+    }
+    .book-desc {
+      font-size: .86rem; color: var(--body);
+      line-height: 1.8; font-weight: 300;
+      flex: 1; margin-bottom: 18px;
+    }
+    .book-actions { display: flex; gap: 14px; align-items: center; }
+    .book-buy {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--gold); color: var(--ink);
+      font-size: .78rem; font-weight: 600; padding: 9px 18px;
+      letter-spacing: .3px; transition: background .2s;
+    }
+    .book-buy:hover { background: var(--gold-light); }
+    .book-more {
+      font-size: .78rem; color: var(--body); font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+      transition: color .2s;
+    }
+    .book-more:hover { color: var(--gold); }
+
+    /* ══════════════════════════════════════
+       PORTRAIT — L'auteur
+    ══════════════════════════════════════ */
+    .portrait-section {
+      background: var(--ink2);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .portrait-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 100px var(--gutter);
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .portrait-photo {
       position: relative;
     }
-    .salon-photo-wrap img { width: 100%; display: block; }
-    .salon-photo-label {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(0deg, rgba(5,5,10,.96) 0%, rgba(5,5,10,.65) 70%, transparent 100%);
-      padding: 30px 24px 20px;
+    .portrait-photo img {
+      width: 100%; display: block;
+      aspect-ratio: 3/4; object-fit: cover;
+      object-position: top center;
+      filter: grayscale(15%) brightness(.95);
     }
-    .salon-photo-label p { font-size: .87rem; color: #e2e8f0; font-weight: 600; margin-bottom: 2px; }
-    .salon-photo-label small { font-size: .75rem; color: var(--muted); }
+    .portrait-year {
+      position: absolute; top: -14px; right: -14px;
+      font-family: var(--serif);
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold);
+      background: var(--ink2);
+      padding: 6px 12px;
+      border: 1px solid var(--rule);
+    }
+    .portrait-text {}
+    .portrait-intro {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.45; color: var(--text);
+      margin-bottom: 28px; letter-spacing: -.01em;
+    }
+    .portrait-body {
+      font-size: .95rem; font-weight: 300;
+      color: var(--body); line-height: 2;
+      margin-bottom: 32px;
+    }
+    .portrait-body strong { color: var(--text); font-weight: 500; }
+    .portrait-events {
+      display: flex; flex-direction: column; gap: 12px;
+      border-left: 1px solid var(--rule);
+      padding-left: 20px; margin-bottom: 32px;
+    }
+    .portrait-event {
+      display: flex; gap: 16px; align-items: baseline;
+    }
+    .event-year {
+      font-size: .7rem; font-weight: 600;
+      color: var(--gold); letter-spacing: 1px;
+      flex-shrink: 0; width: 38px;
+    }
+    .event-text {
+      font-size: .88rem; color: var(--body); font-weight: 300; line-height: 1.5;
+    }
 
-    .salon-books { display: flex; flex-direction: column; gap: 12px; margin: 26px 0 32px; }
-    .salon-book-item {
-      display: flex; align-items: center; gap: 14px;
-      background: rgba(255,255,255,.02);
-      border: 1px solid var(--border);
-      border-radius: 13px; padding: 14px 18px;
-      transition: border-color .25s;
+    /* ══════════════════════════════════════
+       PRIX — Discret, classe, officiel
+    ══════════════════════════════════════ */
+    .prix-section {
+      background: var(--ink);
+      border-bottom: 1px solid var(--rule);
     }
-    .salon-book-item:hover { border-color: rgba(250,204,21,.22); }
-    .salon-num {
-      font-family: var(--font-serif);
-      font-size: 1.3rem; font-weight: 900;
-      color: var(--gold); line-height: 1; flex-shrink: 0; width: 28px;
+    .prix-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 100px var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
     }
-    .salon-book-title { font-weight: 700; color: #f1f5f9; font-size: .93rem; }
-    .salon-book-genre { font-size: .76rem; color: var(--muted); margin-top: 2px; }
+    .prix-text {}
+    .prix-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3vw, 3.2rem);
+      font-weight: 300; font-style: italic;
+      color: var(--text); line-height: 1.2;
+      margin-bottom: 6px; letter-spacing: -.01em;
+    }
+    .prix-title strong { font-weight: 600; font-style: normal; color: #fff; }
+    .prix-edition {
+      font-size: .64rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 3px;
+      color: var(--gold); margin-bottom: 24px;
+    }
+    .prix-announcement {
+      font-size: .95rem; font-weight: 300;
+      color: var(--body); line-height: 2;
+      margin-bottom: 28px;
+    }
+    .prix-announcement strong { color: var(--text); font-weight: 500; }
+    .prix-laureate-name {
+      font-family: var(--display);
+      font-size: 2rem; color: #fff;
+      letter-spacing: -.02em; margin-bottom: 4px;
+    }
+    .prix-laureate-theme {
+      font-family: var(--serif);
+      font-style: italic; color: var(--body);
+      font-size: 1rem; margin-bottom: 28px;
+    }
+    .prix-photo-col { position: relative; }
+    .prix-photo-wrap {
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+    }
+    .prix-photo-wrap img {
+      width: 100%; display: block;
+      aspect-ratio: 3/4; object-fit: cover;
+      object-position: top center;
+    }
+    .prix-photo-caption {
+      margin-top: 14px;
+      border-left: 2px solid var(--rule);
+      padding-left: 14px;
+    }
+    .prix-photo-caption .name {
+      font-family: var(--display);
+      font-size: .9rem; color: var(--text); margin-bottom: 2px;
+    }
+    .prix-photo-caption .role {
+      font-size: .68rem; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;
+    }
 
-    /* ── BOOKS GRID ── */
-    .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-
-    .book-card {
-      background: rgba(255,255,255,.02);
-      border: 1px solid var(--border);
-      border-radius: 22px; overflow: hidden;
-      transition: transform .3s, border-color .3s, box-shadow .3s;
-      box-shadow: 0 16px 48px rgba(0,0,0,.2);
-      display: flex; flex-direction: column;
+    /* ══════════════════════════════════════
+       SOUMETTRE — La sélection éditoriale
+    ══════════════════════════════════════ */
+    .submit-section {
+      background: var(--ink2);
+      border-top: 1px solid var(--rule);
     }
-    .book-card:hover {
-      transform: translateY(-7px);
-      border-color: rgba(250,204,21,.25);
-      box-shadow: 0 32px 72px rgba(0,0,0,.38);
+    .submit-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 100px var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
     }
-    .book-card-cover {
-      aspect-ratio: 2/3; overflow: hidden; position: relative;
+    .submit-text {}
+    .submit-intro {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      font-weight: 300; font-style: italic;
+      color: var(--text); line-height: 1.5;
+      margin-bottom: 24px;
     }
-    .book-card-cover img {
-      width: 100%; height: 100%;
-      object-fit: cover; transition: transform .6s;
+    .submit-body {
+      font-size: .95rem; font-weight: 300;
+      color: var(--body); line-height: 2;
+      margin-bottom: 36px;
     }
-    .book-card:hover .book-card-cover img { transform: scale(1.05); }
-    .book-card-badge {
-      position: absolute; top: 14px; left: 14px;
-      background: rgba(5,5,10,.85);
-      border: 1px solid rgba(250,204,21,.28);
-      color: var(--gold); padding: 4px 10px;
-      border-radius: 7px; font-size: .68rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: .5px;
-      backdrop-filter: blur(6px);
+    .submit-body strong { color: var(--text); font-weight: 500; }
+    .submit-conditions {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--rule);
     }
-    .book-card-body {
-      padding: 24px; flex: 1;
-      display: flex; flex-direction: column; gap: 10px;
+    .submit-cond {
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--rule);
     }
-    .book-card-genre {
-      font-size: .7rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold);
-    }
-    .book-card-title {
-      font-family: var(--font-serif);
-      font-size: 1.18rem; color: #fff; line-height: 1.3; margin: 0;
-    }
-    .book-card-desc { color: var(--muted); font-size: .87rem; line-height: 1.75; flex: 1; }
-    .book-card-actions {
-      display: flex; align-items: center;
-      gap: 10px; flex-wrap: wrap; margin-top: 4px;
-    }
-    .book-buy-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: linear-gradient(135deg, var(--gold), var(--amber));
-      color: #0b0b10; font-weight: 800; font-size: .82rem;
-      padding: 9px 16px; border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(250,204,21,.22);
-      transition: transform .2s;
-    }
-    .book-buy-btn:hover { transform: translateY(-1px); }
-    .book-detail-link {
-      display: inline-flex; align-items: center; gap: 5px;
-      color: var(--muted); font-weight: 600; font-size: .82rem;
-      transition: color .2s;
-    }
-    .book-detail-link:hover { color: var(--gold); }
-
-    /* ── ECOSYSTEM CARDS (feature cards with photos) ── */
-    .eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
-
-    .eco-card {
-      position: relative; border-radius: 22px;
-      overflow: hidden; min-height: 320px;
-      background-size: cover; background-position: center;
-      border: 1px solid var(--border);
-      box-shadow: 0 22px 60px rgba(0,0,0,.38);
-      transition: transform .35s, box-shadow .35s;
-    }
-    .eco-card:hover { transform: translateY(-5px); box-shadow: 0 36px 80px rgba(0,0,0,.5); }
-    .eco-card-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(5,5,10,.08) 0%, rgba(5,5,10,.92) 100%);
-    }
-    .eco-card-body {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 28px; z-index: 1;
-      display: flex; flex-direction: column; gap: 8px;
-    }
-    .eco-card-tag {
-      font-size: .68rem; font-weight: 800;
+    .submit-cond:last-child { border-bottom: none; }
+    .submit-cond-key {
+      width: 140px; flex-shrink: 0;
+      padding: 14px 16px;
+      font-size: .67rem; font-weight: 600;
       text-transform: uppercase; letter-spacing: 1.5px;
-      color: rgba(250,204,21,.9);
-      display: flex; align-items: center; gap: 6px;
+      color: var(--gold);
+      border-right: 1px solid var(--rule);
+      background: rgba(184,149,42,.03);
     }
-    .eco-card-title {
-      font-family: var(--font-serif);
-      font-size: 1.35rem; color: #fff; line-height: 1.2; margin: 0;
+    .submit-cond-val {
+      padding: 14px 16px;
+      font-size: .86rem; color: var(--body);
+      font-weight: 300; line-height: 1.6;
     }
-    .eco-card-desc { color: rgba(255,255,255,.7); font-size: .86rem; line-height: 1.65; }
-    .eco-card-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      color: var(--gold); font-weight: 700; font-size: .86rem;
-      margin-top: 4px; transition: gap .2s;
-    }
-    .eco-card-link:hover { gap: 10px; }
 
-    /* ── VISION PILLARS ── */
-    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 10px; }
-    .pillar-card {
-      background: rgba(255,255,255,.02);
-      border: 1px solid var(--border);
-      border-radius: 20px; padding: 32px;
-      transition: border-color .3s, transform .3s;
+    /* Form */
+    .submit-form-wrap {}
+    .form-heading {
+      font-family: var(--display);
+      font-size: 1.3rem; color: var(--text);
+      margin-bottom: 6px;
     }
-    .pillar-card:hover { border-color: rgba(250,204,21,.22); transform: translateY(-4px); }
-    .pillar-icon {
-      width: 52px; height: 52px; border-radius: 14px;
-      background: linear-gradient(135deg, rgba(250,204,21,.12), rgba(249,115,22,.08));
-      border: 1px solid rgba(250,204,21,.18);
-      display: grid; place-items: center;
-      font-size: 1.4rem; margin-bottom: 20px;
+    .form-note-top {
+      font-size: .8rem; color: var(--quiet);
+      margin-bottom: 28px; font-weight: 300;
     }
-    .pillar-card h4 {
-      font-family: var(--font-serif);
-      font-size: 1.1rem; color: #fff; margin-bottom: 10px;
+    .form-group { display: flex; flex-direction: column; gap: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-field label {
+      display: block;
+      font-size: .64rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--body); margin-bottom: 7px;
     }
-    .pillar-card p { color: var(--muted); font-size: .9rem; line-height: 1.8; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.1);
+      color: var(--text);
+      padding: 11px 14px;
+      font-size: .88rem; font-family: var(--sans);
+      font-weight: 300;
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: rgba(184,149,42,.5); }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: var(--quiet); }
+    .form-field select {
+      background: rgba(12,11,14,.9);
+      appearance: none; cursor: pointer;
+    }
+    .form-field textarea { resize: vertical; }
+    .upload-field label {
+      display: block;
+      font-size: .64rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--body); margin-bottom: 7px;
+    }
+    .upload-area {
+      position: relative;
+      border: 1px dashed rgba(184,149,42,.25);
+      padding: 24px; text-align: center;
+      cursor: pointer; transition: border-color .2s;
+    }
+    .upload-area:hover { border-color: rgba(184,149,42,.5); }
+    .upload-area input {
+      position: absolute; inset: 0;
+      opacity: 0; cursor: pointer;
+      width: 100%; height: 100%;
+    }
+    .upload-icon {
+      font-size: 1.4rem; color: var(--gold);
+      opacity: .6; margin-bottom: 8px; display: block;
+    }
+    .upload-text { font-size: .82rem; color: var(--body); font-weight: 300; margin-bottom: 3px; }
+    .upload-hint { font-size: .72rem; color: var(--quiet); }
+    .form-submit {
+      width: 100%; background: var(--gold);
+      color: var(--ink); font-family: var(--sans);
+      font-size: .84rem; font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 15px; border: none; cursor: pointer;
+      transition: background .2s;
+    }
+    .form-submit:hover { background: var(--gold-light); }
+    .form-fine-print {
+      font-size: .72rem; color: var(--quiet);
+      text-align: center; font-weight: 300;
+      line-height: 1.7; margin-top: 6px;
+    }
 
-    /* ── CTA BAND ── */
-    .cta-band {
-      background: linear-gradient(135deg, rgba(250,204,21,.08) 0%, rgba(249,115,22,.05) 50%, rgba(250,204,21,.05) 100%);
-      border: 1px solid rgba(250,204,21,.18);
-      border-radius: 24px; padding: 60px 56px;
-      display: grid; grid-template-columns: 1fr auto;
-      align-items: center; gap: 48px;
-    }
-    .cta-band h3 {
-      font-family: var(--font-serif);
-      font-size: clamp(1.6rem, 2vw + .5rem, 2.4rem);
-      color: #fff; margin-bottom: 12px; line-height: 1.2;
-    }
-    .cta-band p { color: var(--muted); font-size: .97rem; max-width: 520px; line-height: 1.8; }
-    .cta-band-btns { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
-
-    /* ── SPOTLIGHT CARDS ── */
-    .spotlight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .spotlight-card {
-      background: rgba(255,255,255,.02);
-      border: 1px solid var(--border);
-      border-radius: 18px; padding: 28px;
-      display: flex; flex-direction: column; gap: 14px;
-      transition: border-color .3s, transform .3s;
-    }
-    .spotlight-card:hover { border-color: rgba(250,204,21,.2); transform: translateY(-3px); }
-    .spotlight-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(250,204,21,.08);
-      border: 1px solid rgba(250,204,21,.18);
-      color: var(--gold); padding: 5px 12px;
-      border-radius: 999px; font-size: .7rem;
-      font-weight: 800; text-transform: uppercase; letter-spacing: .8px;
-      align-self: flex-start;
-    }
-    .spotlight-card h4 {
-      font-family: var(--font-serif);
-      font-size: 1.08rem; color: #fff; margin: 0;
-    }
-    .spotlight-card p { color: var(--muted); font-size: .87rem; line-height: 1.75; }
-    .spotlight-card a {
-      display: inline-flex; align-items: center; gap: 5px;
-      color: var(--gold); font-weight: 700; font-size: .85rem;
-      margin-top: auto; transition: gap .2s;
-    }
-    .spotlight-card a:hover { gap: 9px; }
-
-    /* ── FOOTER ── */
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
     .site-footer {
-      background: #020205;
-      border-top: 1px solid rgba(250,204,21,.1);
-      padding: 76px 28px 36px;
-      margin-top: 80px;
+      background: #060505;
+      border-top: 1px solid var(--rule);
+      padding: 72px var(--gutter) 36px;
     }
-    .footer-inner { max-width: var(--max-w); margin: 0 auto; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
     .footer-top {
-      display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
-      gap: 52px; margin-bottom: 56px;
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 52px;
     }
-    .footer-brand-name {
-      font-family: var(--font-serif);
-      font-size: 1.7rem; color: var(--gold); margin-bottom: 4px;
+    .footer-brand {}
+    .footer-wordmark {
+      font-family: var(--serif);
+      font-size: 1.6rem; font-weight: 600;
+      color: var(--gold); margin-bottom: 4px;
     }
-    .footer-brand-sub {
-      font-size: .72rem; color: var(--subtle);
-      text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px;
-      font-weight: 600;
-    }
-    .footer-brand-desc {
-      color: var(--subtle); font-size: .9rem;
-      line-height: 1.8; margin-bottom: 24px;
-    }
-    .footer-socials { display: flex; gap: 10px; flex-wrap: wrap; }
-    .footer-social-btn {
-      width: 38px; height: 38px; border-radius: 10px;
-      background: rgba(255,255,255,.035);
-      border: 1px solid var(--border);
-      display: grid; place-items: center;
-      color: var(--subtle); font-size: .9rem;
-      transition: all .25s;
-    }
-    .footer-social-btn:hover { background: var(--gold); color: #0b0b10; border-color: var(--gold); }
-    .footer-col-title {
-      font-size: .7rem; font-weight: 800;
+    .footer-tagline {
+      font-size: .62rem; color: var(--quiet);
       text-transform: uppercase; letter-spacing: 2.5px;
-      color: var(--gold); margin-bottom: 20px;
+      font-weight: 600; margin-bottom: 16px;
     }
-    .footer-col-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
-    .footer-col-links a {
-      color: var(--subtle); font-size: .9rem;
-      transition: color .2s;
+    .footer-about {
+      font-size: .86rem; color: var(--quiet);
+      font-weight: 300; line-height: 1.85;
+      margin-bottom: 22px;
     }
-    .footer-col-links a:hover { color: var(--gold); }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social {
+      width: 34px; height: 34px;
+      border: 1px solid var(--rule);
+      display: grid; place-items: center;
+      color: var(--quiet); font-size: .84rem;
+      transition: all .2s;
+    }
+    .footer-social:hover { border-color: var(--gold); color: var(--gold); }
+
+    .footer-col-title {
+      font-size: .6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 3px;
+      color: var(--gold); margin-bottom: 18px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a {
+      font-size: .86rem; color: var(--quiet);
+      font-weight: 300; transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
     .footer-bottom {
       border-top: 1px solid rgba(255,255,255,.04);
-      padding-top: 28px;
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      padding-top: 24px;
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 16px; flex-wrap: wrap;
     }
-    .footer-bottom p { color: #2a3547; font-size: .84rem; margin: 0; }
-    .footer-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 5px 14px; border-radius: 999px;
-      background: rgba(250,204,21,.06);
-      border: 1px solid rgba(250,204,21,.16);
-      color: var(--gold); font-size: .74rem; font-weight: 700;
+    .footer-copy {
+      font-size: .78rem; color: #2a2530; font-weight: 300;
     }
-
-    /* ── RESPONSIVE NOUVELLES SECTIONS ── */
-    @media (max-width: 768px) {
-      #prix-resultats .section-inner > div[style*="grid-template-columns:1fr 1.4fr"],
-      #manuscrit .section-inner > div[style*="grid-template-columns:1fr 1.1fr"] {
-        grid-template-columns: 1fr !important;
-        gap: 40px !important;
-      }
+    .footer-copy a { color: #3a3040; }
+    .footer-stamp {
+      font-size: .64rem; color: var(--gold);
+      text-transform: uppercase; letter-spacing: 2.5px;
+      font-weight: 600; opacity: .6;
     }
 
-    /* ── REVEAL ANIMATIONS ── */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+    /* ══════════════════════════════════════
+       REVEAL ANIMATIONS
+    ══════════════════════════════════════ */
+    .reveal {
+      opacity: 0; transform: translateY(18px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-d1 { transition-delay: .1s; }
     .reveal-d2 { transition-delay: .2s; }
     .reveal-d3 { transition-delay: .3s; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 920px) {
-      .hamburger { display: inline-flex; }
-      .main-nav {
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .nav-burger { display: block; }
+      .site-nav {
         display: none; position: absolute;
         top: 100%; left: 0; right: 0;
-        background: rgba(5,5,10,.98);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid var(--border);
-        padding: 16px 24px 24px;
-        flex-direction: column; gap: 4px; z-index: 800;
+        background: rgba(10,9,9,.99);
+        border-bottom: 1px solid var(--rule);
+        flex-direction: column; gap: 0;
+        padding: 16px 0 24px;
+        z-index: 800;
       }
-      .main-nav.open { display: flex; }
+      .site-nav.open { display: flex; }
+      .site-nav a { padding: 12px var(--gutter); width: 100%; }
+      .nav-submit { margin: 8px var(--gutter) 0; width: calc(100% - 2 * var(--gutter)); text-align: center; justify-content: center; }
       .site-header { position: relative; }
     }
-    @media (max-width: 1100px) {
-      .hero-wrap { grid-template-columns: 1fr; gap: 48px; }
-      .hero-visual { max-width: 440px; margin: 0 auto; }
-      .eco-grid { grid-template-columns: 1fr 1fr; }
-      .salon-grid { grid-template-columns: 1fr; gap: 40px; }
-      .cta-band { grid-template-columns: 1fr; text-align: center; }
-      .cta-band p { margin: 0 auto; }
-      .cta-band-btns { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+    @media (max-width: 1040px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 60px; }
+      .hero-book { max-width: 320px; margin: 0 auto; }
+      .portrait-inner { grid-template-columns: 1fr; gap: 48px; }
+      .portrait-photo { max-width: 320px; }
+      .prix-inner { grid-template-columns: 1fr; gap: 48px; }
+      .submit-inner { grid-template-columns: 1fr; gap: 56px; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .colophon-inner { grid-template-columns: 1fr 1fr; }
     }
-    @media (max-width: 768px) {
-      .books-grid { grid-template-columns: 1fr; }
-      .eco-grid { grid-template-columns: 1fr; }
-      .pillars-grid { grid-template-columns: 1fr; }
-      .spotlight-grid { grid-template-columns: 1fr; }
-      .hero-stats { grid-template-columns: repeat(2, 1fr); }
-      .hero { padding: 80px 20px 64px; }
-      .section { padding: 64px 20px; }
-      .cta-band { padding: 40px 24px; }
+    @media (max-width: 680px) {
+      .books-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+      .section { padding: 72px var(--gutter); }
+      .form-row { grid-template-columns: 1fr; }
       .footer-top { grid-template-columns: 1fr; }
-      .topbar-left { font-size: .75rem; }
+      .colophon-inner { grid-template-columns: 1fr 1fr; }
+      .colophon-item { padding: 24px 16px; }
     }
-    @media (max-width: 480px) {
-      .hero-title { font-size: 2.5rem; }
-      .hero-stats { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 420px) {
+      .hero-title { font-size: 2.8rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP BAR -->
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div class="topbar-left">
-        <span id="dateDisplay">Hakvision Éditions — Paris &amp; Kinshasa</span>
-        <div class="topbar-divider"></div>
-        <span>Fondée par Merveil Hakeem Dianzenza</span>
-      </div>
-      <div class="topbar-socials">
-        <a href="https://www.instagram.com/hakaymrv243_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank" title="Amazon"><i class="fab fa-amazon"></i></a>
-        <a href="mailto:arenalse22@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
-      </div>
-    </div>
+  <!-- ══ ANNOUNCEMENT BAR ══ -->
+  <div class="announcement">
+    Prix Dianzenza 2026 — Lauréat&nbsp;: <strong>Jeancy Lembi</strong> &nbsp;·&nbsp;
+    <a href="prix-litteraires.html">Voir le verdict officiel</a>
   </div>
 
-  <!-- HEADER -->
+  <!-- ══ HEADER ══ -->
   <header class="site-header">
     <div class="header-inner">
-      <a href="index.html" class="brand">
-        <div class="brand-icon">HV</div>
-        <div class="brand-label">
-          <div class="sub">Merveil Hakeem Dianzenza</div>
-          <div class="name">Hakvision Éditions</div>
-        </div>
+      <a href="index.html" class="wordmark">
+        <span class="wordmark-main">Hakvision Éditions</span>
+        <span class="wordmark-sub">Maison d'édition · Paris</span>
       </a>
 
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <i class="fa-solid fa-bars"></i> Menu
+      <button class="nav-burger" id="navBurger" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
       </button>
 
-      <nav class="main-nav" id="mainNav">
+      <nav class="site-nav" id="siteNav">
         <a href="livres.html">Livres</a>
         <a href="catalogue.html">Catalogue</a>
         <a href="bio.html">Biographie</a>
@@ -737,234 +832,145 @@
         <a href="papa-masambukidi.html">Masambukidi</a>
         <a href="press.html">Presse</a>
         <a href="contact.html">Contact</a>
-        <a href="#manuscrit" class="nav-cta-btn"><i class="fa-solid fa-feather-pointed" style="font-size:.8rem;"></i> Soumettre</a>
+        <a href="#soumettre" class="nav-submit">Soumettre un manuscrit</a>
       </nav>
     </div>
   </header>
 
-  <!-- ══════════════ HERO ══════════════ -->
+  <!-- ══════════════ HÉRO ══════════════ -->
   <section class="hero">
-    <div class="hero-wrap">
+    <div class="hero-inner">
 
-      <!-- LEFT -->
-      <div class="hero-left">
-        <div class="publisher-badge">
-          <div class="publisher-badge-dot"></div>
-          Maison d'Édition Afrofuturiste
-          <span style="opacity:.55; font-weight:500;">· Paris &amp; Kinshasa</span>
-        </div>
+      <div class="hero-text">
+        <p class="hero-kicker reveal">Maison d'édition afrofuturiste &nbsp;·&nbsp; Paris &amp; Kinshasa</p>
 
-        <h1 class="hero-title">
-          La littérature<br>
-          <em>congolaise</em><br>
-          réinventée.
+        <h1 class="hero-title reveal reveal-d1">
+          Nous publions<br>
+          ce que l'<strong>Afrique</strong><br>
+          a besoin<br>d'entendre.
         </h1>
-        <p class="hero-subtitle">Hakvision Éditions — Merveil Hakeem Dianzenza</p>
 
-        <p class="hero-desc">
-          Écrivain franco-congolais, Merveil Hakeem Dianzenza bâtit un univers littéraire où l'afrofuturisme, la spiritualité africaine et la géopolitique se rencontrent. Trois livres publiés. Un continent à réveiller.
+        <div class="hero-rule reveal reveal-d2"></div>
+
+        <p class="hero-desc reveal reveal-d2">
+          Fondée à Paris par <em>Merveil Hakeem Dianzenza</em>, Hakvision Éditions publie des œuvres
+          qui interrogent, révèlent et réinventent le continent africain —
+          de la fiction épique à la biographie, de l'essai à la poésie.
         </p>
 
-        <!-- Salon du Livre event notice -->
-        <div class="event-notice">
-          <div class="event-icon"><i class="fa-solid fa-book-open-reader"></i></div>
-          <div>
-            <p class="event-label">Événement · 21 mars 2026</p>
-            <p class="event-text-main">Invité au Salon du Livre Africain — présentation de 4 œuvres&nbsp;: KATIØPA, Un Écrivain à Kinshasa, Papa Masambukidi &amp; L'Œil de Kulala Ntumba Pasco</p>
-          </div>
-        </div>
-
-        <div class="hero-ctas">
-          <a class="btn-gold" href="livres.html">
-            <i class="fa-solid fa-book-open"></i> Découvrir les livres
+        <div class="hero-ctas reveal reveal-d3">
+          <a class="btn-primary" href="livres.html">
+            <i class="fa-solid fa-book-open" style="font-size:.8rem;"></i> Découvrir le catalogue
           </a>
-          <a class="btn-outline" href="bio.html">
-            <i class="fa-solid fa-user"></i> Biographie
+          <a class="btn-ghost" href="#soumettre">
+            Soumettre un manuscrit
           </a>
-          <a class="btn-outline" href="prix-litteraires.html">
-            <i class="fa-solid fa-trophy"></i> Prix 2026
-          </a>
-        </div>
-
-        <div class="hero-stats">
-          <div class="hero-stat">
-            <span class="num">3</span>
-            <span class="lbl">Livres publiés</span>
-          </div>
-          <div class="hero-stat">
-            <span class="num">634</span>
-            <span class="lbl">Pages · KATIØPA</span>
-          </div>
-          <div class="hero-stat">
-            <span class="num">2026</span>
-            <span class="lbl">Salon africain</span>
-          </div>
-          <div class="hero-stat">
-            <span class="num">2026</span>
-            <span class="lbl">Prix littéraires</span>
-          </div>
         </div>
       </div>
 
-      <!-- RIGHT : Portrait Salon du Livre -->
-      <div class="hero-visual">
-        <div class="portrait-frame">
-          <img src="merveil_salon_livre_africain_2025.jpg"
-               alt="Merveil Hakeem Dianzenza au Salon du Livre Africain — 21 mars 2026, présentant KATIØPA"
+      <div class="hero-book reveal reveal-d1">
+        <div class="hero-book-inner">
+          <img src="katiopa_cover_hq.jpg"
+               alt="KATIØPA — La Prophétie Noire, roman de Merveil Hakeem Dianzenza"
                loading="eager">
-          <div class="portrait-caption">
-            <div class="portrait-caption-inner">
-              <div class="portrait-icon"><i class="fa-solid fa-star"></i></div>
-              <div>
-                <div class="portrait-name">Merveil Hakeem Dianzenza</div>
-                <div class="portrait-date">Salon du Livre Africain · 21 mars 2026</div>
-              </div>
-            </div>
-          </div>
         </div>
-        <div class="hero-quote">
-          <p>« La littérature africaine n'est pas un souvenir — c'est une prophétie. »</p>
-          <cite>— Merveil Hakeem Dianzenza</cite>
+        <div class="hero-book-legend">
+          <p class="hero-book-title">KATIØPA — La Prophétie Noire</p>
+          <p class="hero-book-meta">Roman afrofuturiste · 634 pages · Disponible sur Payhip</p>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ══════════════ SALON DU LIVRE ══════════════ -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="salon-grid">
-
-        <div class="reveal">
-          <div class="salon-photo-wrap">
-            <img src="merveil_salon_livre_africain_2025.jpg"
-                 alt="Merveil Hakeem Dianzenza présente ses œuvres au Salon du Livre Africain, mars 2026"
-                 loading="lazy">
-            <div class="salon-photo-label">
-              <p><i class="fa-solid fa-location-dot" style="color:var(--gold); margin-right:5px;"></i> Salon du Livre Africain — 21 mars 2026</p>
-              <small>Présentation officielle de 4 œuvres · Paris</small>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal reveal-d1">
-          <p class="s-eyebrow">Événement · Mars 2026</p>
-          <h2 class="s-title">Invité au Salon du Livre Africain</h2>
-          <p class="s-lead" style="margin-bottom:24px;">
-            Le 21 mars 2026, Merveil Hakeem Dianzenza était invité au Salon du Livre Africain pour présenter ses œuvres au public parisien. Une reconnaissance importante pour Hakvision et la littérature afrofuturiste congolaise.
-          </p>
-
-          <div class="salon-books">
-            <div class="salon-book-item">
-              <span class="salon-num">01</span>
-              <div>
-                <p class="salon-book-title">KATIØPA — La Prophétie Noire</p>
-                <p class="salon-book-genre">Roman afrofuturiste · 634 pages</p>
-              </div>
-            </div>
-            <div class="salon-book-item">
-              <span class="salon-num">02</span>
-              <div>
-                <p class="salon-book-title">Un Écrivain à Kinshasa</p>
-                <p class="salon-book-genre">Récit autobiographique · 78 pages</p>
-              </div>
-            </div>
-            <div class="salon-book-item">
-              <span class="salon-num">03</span>
-              <div>
-                <p class="salon-book-title">Papa Masambukidi</p>
-                <p class="salon-book-genre">Biographie officielle · 46 pages</p>
-              </div>
-            </div>
-            <div class="salon-book-item">
-              <span class="salon-num">04</span>
-              <div>
-                <p class="salon-book-title">L'Œil de Kulala Ntumba Pasco</p>
-                <p class="salon-book-genre">Production littéraire · Salon du livre</p>
-              </div>
-            </div>
-          </div>
-
-          <a class="btn-gold" href="livres.html">
-            <i class="fa-solid fa-book"></i> Voir tous les livres
-          </a>
-        </div>
-
+  <!-- ══════════════ COLOPHON ══════════════ -->
+  <div class="colophon">
+    <div class="colophon-inner">
+      <div class="colophon-item reveal">
+        <div class="colophon-val">Paris</div>
+        <div class="colophon-key">Siège éditorial</div>
+      </div>
+      <div class="colophon-item reveal reveal-d1">
+        <div class="colophon-val">3</div>
+        <div class="colophon-key">Œuvres publiées</div>
+      </div>
+      <div class="colophon-item reveal reveal-d2">
+        <div class="colophon-val">2026</div>
+        <div class="colophon-key">Prix Dianzenza</div>
+      </div>
+      <div class="colophon-item reveal reveal-d3">
+        <div class="colophon-val">RDC</div>
+        <div class="colophon-key">Ancrage identitaire</div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ══════════════ LIVRES PUBLIÉS ══════════════ -->
-  <section class="section section-alt">
+  <!-- ══════════════ CATALOGUE ══════════════ -->
+  <section class="section" id="catalogue">
     <div class="section-inner">
-      <div class="section-head">
+
+      <div class="section-head reveal">
         <div>
-          <p class="s-eyebrow">Œuvres publiées</p>
-          <h2 class="s-title">Les livres disponibles</h2>
-          <p class="s-lead">Trois livres publiés, disponibles sur Amazon et Payhip — romans, biographies et récits qui redéfinissent la littérature congolaise contemporaine.</p>
+          <p class="section-label">Catalogue</p>
+          <h2 class="section-title">Nos <strong>publications</strong></h2>
+          <div class="section-rule"></div>
+          <p class="section-lead">Trois titres publiés, disponibles sur Amazon et Payhip. Des romans, des biographies et des récits qui redéfinissent la littérature africaine contemporaine.</p>
         </div>
-        <a class="btn-outline" href="catalogue.html" style="flex-shrink:0;">
-          Catalogue complet <i class="fa-solid fa-arrow-right" style="font-size:.8rem;"></i>
+        <a class="btn-ghost" href="catalogue.html" style="flex-shrink:0;">
+          Catalogue complet <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i>
         </a>
       </div>
 
       <div class="books-grid">
 
-        <!-- KATIOPA -->
-        <article class="book-card reveal">
-          <div class="book-card-cover">
-            <img src="katiopa_cover_hq.jpg" alt="Couverture KATIØPA — La Prophétie Noire, roman afrofuturiste de Merveil Hakeem Dianzenza" loading="lazy">
-            <span class="book-card-badge">⭐ Disponible</span>
+        <article class="book-item reveal">
+          <div class="book-cover">
+            <img src="katiopa_cover_hq.jpg" alt="KATIØPA — La Prophétie Noire par Merveil Hakeem Dianzenza" loading="lazy">
           </div>
-          <div class="book-card-body">
-            <p class="book-card-genre">Afrofuturisme · 634 pages</p>
-            <h3 class="book-card-title">KATIØPA — La Prophétie Noire</h3>
-            <p class="book-card-desc">L'odyssée épique de Kwatulendu, enfant-léopard porteur des dons divins, dans une Afrique en guerre contre l'oubli. 634 pages d'intensité rare.</p>
-            <div class="book-card-actions">
-              <a class="book-buy-btn" href="https://payhip.com/b/MuQHP" target="_blank">
-                <i class="fa-solid fa-cart-shopping"></i> Acheter — 10,49€
-              </a>
-              <a class="book-detail-link" href="katiopa.html">Détails <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i></a>
-            </div>
+          <p class="book-genre">Roman afrofuturiste · 634 pages</p>
+          <h3 class="book-title">KATIØPA — La Prophétie Noire</h3>
+          <p class="book-desc">L'odyssée de Kwatulendu dans une Afrique en guerre contre l'oubli. Une épopée spirituelle, géopolitique et mythologique de 634 pages.</p>
+          <div class="book-actions">
+            <a class="book-buy" href="https://payhip.com/b/MuQHP" target="_blank">
+              <i class="fa-solid fa-cart-shopping" style="font-size:.76rem;"></i> Acheter — 10,49€
+            </a>
+            <a class="book-more" href="katiopa.html">
+              Détails <i class="fa-solid fa-arrow-right" style="font-size:.68rem;"></i>
+            </a>
           </div>
         </article>
 
-        <!-- UN ÉCRIVAIN À KINSHASA -->
-        <article class="book-card reveal reveal-d1">
-          <div class="book-card-cover">
-            <img src="un_ecrivain_kinshasa_cover_2.jpg" alt="Couverture Un Écrivain à Kinshasa — Chroniques d'un Retour aux Sources" loading="lazy">
-            <span class="book-card-badge">Disponible</span>
+        <article class="book-item reveal reveal-d1">
+          <div class="book-cover">
+            <img src="un_ecrivain_kinshasa_cover_2.jpg" alt="Un Écrivain à Kinshasa par Merveil Hakeem Dianzenza" loading="lazy">
           </div>
-          <div class="book-card-body">
-            <p class="book-card-genre">Récit autobiographique · 78 pages</p>
-            <h3 class="book-card-title">Un Écrivain à Kinshasa</h3>
-            <p class="book-card-desc">Chroniques intimes d'un retour aux sources entre exil parisien et racines congolaises. Une renaissance identitaire bouleversante.</p>
-            <div class="book-card-actions">
-              <a class="book-buy-btn" href="https://www.amazon.fr/ÉCRIVAIN-KINSHASA-Chroniques-Retour-Sources/dp/B0G395KMWX" target="_blank">
-                <i class="fab fa-amazon"></i> Amazon
-              </a>
-              <a class="book-detail-link" href="livres.html">Détails <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i></a>
-            </div>
+          <p class="book-genre">Récit autobiographique · 78 pages</p>
+          <h3 class="book-title">Un Écrivain à Kinshasa</h3>
+          <p class="book-desc">Chroniques intimes d'un retour aux sources entre exil parisien et racines congolaises. Une renaissance identitaire bouleversante.</p>
+          <div class="book-actions">
+            <a class="book-buy" href="https://www.amazon.fr/ÉCRIVAIN-KINSHASA-Chroniques-Retour-Sources/dp/B0G395KMWX" target="_blank">
+              <i class="fab fa-amazon" style="font-size:.76rem;"></i> Amazon
+            </a>
+            <a class="book-more" href="livres.html">
+              Détails <i class="fa-solid fa-arrow-right" style="font-size:.68rem;"></i>
+            </a>
           </div>
         </article>
 
-        <!-- PAPA MASAMBUKIDI -->
-        <article class="book-card reveal reveal-d2">
-          <div class="book-card-cover">
-            <img src="papa_masambukidi_cover.jpg" alt="Couverture Papa Masambukidi — Héritage, luttes et vision" loading="lazy">
-            <span class="book-card-badge">Disponible</span>
+        <article class="book-item reveal reveal-d2">
+          <div class="book-cover">
+            <img src="papa_masambukidi_cover.jpg" alt="Papa Masambukidi — Biographie officielle par Merveil Hakeem Dianzenza" loading="lazy">
           </div>
-          <div class="book-card-body">
-            <p class="book-card-genre">Biographie officielle · 46 pages</p>
-            <h3 class="book-card-title">Papa Masambukidi</h3>
-            <p class="book-card-desc">La biographie officielle du Roi Divin du Bassin du Kongo — héritage, luttes et vision d'un guide spirituel africain contemporain.</p>
-            <div class="book-card-actions">
-              <a class="book-buy-btn" href="https://www.amazon.fr/dp/B0FVSRSFBY" target="_blank">
-                <i class="fab fa-amazon"></i> Amazon
-              </a>
-              <a class="book-detail-link" href="papa-masambukidi.html">Biographie <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i></a>
-            </div>
+          <p class="book-genre">Biographie officielle · 46 pages</p>
+          <h3 class="book-title">Papa Masambukidi</h3>
+          <p class="book-desc">La biographie officielle du Roi Divin du Bassin du Kongo. Héritage, luttes et vision d'un guide spirituel africain contemporain.</p>
+          <div class="book-actions">
+            <a class="book-buy" href="https://www.amazon.fr/dp/B0FVSRSFBY" target="_blank">
+              <i class="fab fa-amazon" style="font-size:.76rem;"></i> Amazon
+            </a>
+            <a class="book-more" href="papa-masambukidi.html">
+              Détails <i class="fa-solid fa-arrow-right" style="font-size:.68rem;"></i>
+            </a>
           </div>
         </article>
 
@@ -972,193 +978,88 @@
     </div>
   </section>
 
-  <!-- ══════════════ ÉCOSYSTÈME (Feature cards) ══════════════ -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="section-head">
-        <div>
-          <p class="s-eyebrow">L'univers Hakvision</p>
-          <h2 class="s-title">Explorez l'écosystème</h2>
-        </div>
+  <!-- ══════════════ PORTRAIT — L'AUTEUR ══════════════ -->
+  <section class="portrait-section">
+    <div class="portrait-inner">
+
+      <div class="portrait-photo reveal">
+        <img src="merveil_salon_livre_africain_2025.jpg"
+             alt="Merveil Hakeem Dianzenza — fondateur de Hakvision Éditions, Salon du Livre Africain 2026">
+        <div class="portrait-year">Paris, 2026</div>
       </div>
 
-      <div class="eco-grid">
+      <div class="portrait-text">
+        <p class="section-label reveal">Fondateur &amp; Directeur éditorial</p>
+        <p class="portrait-intro reveal reveal-d1">
+          Merveil Hakeem Dianzenza — écrivain, réalisateur, éditeur. Une voix singulière entre Paris et Kinshasa.
+        </p>
+        <div class="section-rule reveal reveal-d1"></div>
+        <p class="portrait-body reveal reveal-d2">
+          Né en <strong>Côte d'Ivoire</strong>, élevé en <strong>France</strong>, Merveil Hakeem Dianzenza a fondé Hakvision Éditions pour donner une tribune mondiale à la littérature africaine contemporaine. Son roman-fleuve <strong>KATIØPA</strong> — 634 pages d'afrofuturisme congolais — est aujourd'hui sa pièce maîtresse, présentée au <strong>Salon du Livre Africain</strong> en mars 2026 à Paris.
+        </p>
 
-        <div class="eco-card reveal" style="background-image: url('masambukidi_roi_divin_trone.jpg');">
-          <div class="eco-card-overlay"></div>
-          <div class="eco-card-body">
-            <p class="eco-card-tag"><i class="fa-solid fa-crown"></i> Biographie officielle</p>
-            <h3 class="eco-card-title">Sa Majesté Masambukidi I</h3>
-            <p class="eco-card-desc">Roi Divin du Bassin du Kongo depuis le 30 octobre 2025 — parcours, couronnement et mission spirituelle.</p>
-            <a class="eco-card-link" href="papa-masambukidi.html">Découvrir <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i></a>
+        <div class="portrait-events reveal reveal-d2">
+          <div class="portrait-event">
+            <span class="event-year">2026</span>
+            <span class="event-text">Salon du Livre Africain, Paris — présentation de 4 œuvres</span>
+          </div>
+          <div class="portrait-event">
+            <span class="event-year">2026</span>
+            <span class="event-text">Création du Prix Dianzenza — 1ère édition</span>
+          </div>
+          <div class="portrait-event">
+            <span class="event-year">2024</span>
+            <span class="event-text">Publication de KATIØPA — La Prophétie Noire (634 pages)</span>
+          </div>
+          <div class="portrait-event">
+            <span class="event-year">2024</span>
+            <span class="event-text">Fondation de Hakvision Éditions, Paris</span>
           </div>
         </div>
 
-        <div class="eco-card reveal reveal-d1" style="background-image: url('prix-hero-africa-trophies.jpg'); background-position: center;">
-          <div class="eco-card-overlay"></div>
-          <div class="eco-card-body">
-            <p class="eco-card-tag"><i class="fa-solid fa-trophy"></i> Prix Littéraires 2026</p>
-            <h3 class="eco-card-title">Prix Masambukidi &amp; Dianzenza</h3>
-            <p class="eco-card-desc">Deux prix pour célébrer l'excellence littéraire africaine. Première édition à Kinshasa en 2026.</p>
-            <a class="eco-card-link" href="prix-litteraires.html">Voir les prix <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i></a>
-          </div>
-        </div>
-
-        <div class="eco-card reveal reveal-d2" style="background-image: url('katiopa_cover_hq.jpg');">
-          <div class="eco-card-overlay"></div>
-          <div class="eco-card-body">
-            <p class="eco-card-tag"><i class="fa-solid fa-book"></i> Saga phare</p>
-            <h3 class="eco-card-title">KATIØPA — L'épopée</h3>
-            <p class="eco-card-desc">634 pages d'afrofuturisme congolais. Un voyage dans une Afrique souveraine et cosmique.</p>
-            <a class="eco-card-link" href="katiopa.html">Plonger dans l'univers <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i></a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════ VISION ══════════════ -->
-  <section class="section section-alt">
-    <div class="section-inner">
-      <div class="section-head">
-        <div>
-          <p class="s-eyebrow">Notre mission</p>
-          <h2 class="s-title">La vision Hakvision</h2>
-          <p class="s-lead">Une maison d'édition qui unit littérature, culture panafricaine et innovation pour construire les récits de l'Afrique de demain.</p>
-        </div>
-      </div>
-
-      <div class="pillars-grid">
-        <div class="pillar-card reveal">
-          <div class="pillar-icon">📚</div>
-          <h4>Littérature de combat</h4>
-          <p>Chaque livre est une arme contre l'oubli. Des œuvres qui révèlent, réveillent et redonnent à l'Afrique son propre récit historique et spirituel.</p>
-        </div>
-        <div class="pillar-card reveal reveal-d1">
-          <div class="pillar-icon">🌍</div>
-          <h4>Panafricanisme vivant</h4>
-          <p>De Paris à Kinshasa, une diaspora unie par la langue, les racines et le désir d'un continent souverain, libre et fier de son identité.</p>
-        </div>
-        <div class="pillar-card reveal reveal-d2">
-          <div class="pillar-icon">🚀</div>
-          <h4>Afrofuturisme congolais</h4>
-          <p>KATIØPA, les Prix Littéraires, OkapiPlay — Hakvision invente les récits et les plateformes culturelles de l'Afrique de demain.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════ CTA BAND ══════════════ -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="cta-band reveal">
-        <div>
-          <p class="s-eyebrow" style="margin-bottom:12px;">Restez connecté</p>
-          <h3>Rejoignez la communauté Hakvision</h3>
-          <p>Avant-premières exclusives, événements à Kinshasa &amp; Paris, actualités et nouveautés — directement dans votre poche.</p>
-        </div>
-        <div class="cta-band-btns">
-          <a class="btn-gold" href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" style="justify-content:center; min-width:200px;">
-            <i class="fab fa-whatsapp"></i> Canal WhatsApp
-          </a>
-          <a class="btn-outline" href="contact.html" style="justify-content:center; min-width:200px;">
-            <i class="fa-solid fa-envelope"></i> Nous contacter
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════ SPOTLIGHT ══════════════ -->
-  <section class="section section-alt">
-    <div class="section-inner">
-      <div class="section-head">
-        <div>
-          <p class="s-eyebrow">Hakvision</p>
-          <h2 class="s-title">En savoir plus</h2>
-        </div>
-      </div>
-
-      <div class="spotlight-grid">
-        <div class="spotlight-card reveal">
-          <span class="spotlight-tag"><i class="fa-solid fa-gamepad"></i> Innovation</span>
-          <h4>OkapiPlay Studio</h4>
-          <p>Une plateforme gaming africaine révolutionnaire basée sur la commande mentale &amp; vocale. Le futur du jeu vidéo africain, imaginé depuis Kinshasa.</p>
-          <a href="okapiplay.html">Explorer OkapiPlay <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i></a>
-        </div>
-
-        <div class="spotlight-card reveal reveal-d1">
-          <span class="spotlight-tag"><i class="fa-solid fa-newspaper"></i> Presse</span>
-          <h4>Espace Presse Officiel</h4>
-          <p>Kits médias, communiqués officiels, galerie photos des événements et dossiers pour journalistes et partenaires culturels.</p>
-          <a href="press.html">Accéder à la presse <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i></a>
-        </div>
-
-        <div class="spotlight-card reveal reveal-d2">
-          <span class="spotlight-tag"><i class="fa-solid fa-user"></i> Auteur</span>
-          <h4>Biographie Officielle</h4>
-          <p>Parcours, inspirations, projets — découvrez l'homme derrière Hakvision : de la Côte d'Ivoire à Paris, jusqu'à Kinshasa.</p>
-          <a href="bio.html">Lire la biographie <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i></a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════ PRIX DIANZENZA 2026 — LAURÉAT ══════════════ -->
-  <section class="section" id="prix-resultats" style="background: linear-gradient(180deg, #05050a 0%, #08060f 50%, #05050a 100%); position:relative; overflow:hidden;">
-    <div style="position:absolute;inset:0; background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(250,204,21,.06) 0%, transparent 65%); pointer-events:none;"></div>
-    <div class="section-inner" style="position:relative;z-index:1;">
-
-      <!-- Badge officiel -->
-      <div style="text-align:center; margin-bottom:56px;">
-        <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(250,204,21,.09); border:1px solid rgba(250,204,21,.28); color:#facc15; padding:9px 22px; border-radius:999px; font-size:.72rem; font-weight:800; letter-spacing:2.5px; text-transform:uppercase; margin-bottom:24px;">
-          <i class="fa-solid fa-trophy"></i> Verdict Officiel — Prix Littéraire Dianzenza 2026
-        </div>
-        <h2 class="s-title" style="font-size:clamp(2rem,3.5vw,3.2rem); margin-bottom:14px;">La Maison Hakvision proclame<br><em style="font-style:normal; background:linear-gradient(135deg,#facc15,#fb923c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">son premier Lauréat Officiel</em></h2>
-        <p style="color:#94a3b8; font-size:1.05rem; max-width:560px; margin:0 auto; line-height:1.9;">Après clôture des candidatures le 20 mai 2026 et l'examen de l'ensemble des textes reçus, notre jury a rendu son verdict sur le thème <strong style="color:#e2e8f0;">« Imaginer le futur du Congo »</strong>.</p>
-      </div>
-
-      <!-- Carte lauréat -->
-      <div style="display:grid; grid-template-columns:1fr 1.4fr; gap:64px; align-items:center; max-width:980px; margin:0 auto 56px;">
-
-        <!-- Photo -->
-        <div style="position:relative;">
-          <div style="border-radius:24px; overflow:hidden; border:2px solid rgba(250,204,21,.3); box-shadow:0 40px 100px rgba(0,0,0,.7), 0 0 80px rgba(250,204,21,.12);">
-            <img src="jeancy_lembi_laureat.jpeg" alt="Jeancy Lembi — Lauréat Prix Dianzenza 2026" style="width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top center; display:block;">
-          </div>
-          <!-- Badge flottant -->
-          <div style="position:absolute; bottom:-18px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,#facc15,#f59e0b); color:#0b0b10; padding:10px 24px; border-radius:999px; font-weight:900; font-size:.82rem; letter-spacing:1px; white-space:nowrap; box-shadow:0 8px 32px rgba(250,204,21,.45);">
-            <i class="fa-solid fa-star"></i> LAURÉAT 2026
-          </div>
-        </div>
-
-        <!-- Texte -->
-        <div style="padding-top:12px;">
-          <p style="font-size:.7rem; font-weight:800; letter-spacing:3px; text-transform:uppercase; color:#facc15; margin-bottom:12px;">Prix Dianzenza · Édition I</p>
-          <h3 style="font-family:'Playfair Display',serif; font-size:clamp(2rem,2.8vw,3rem); font-weight:900; color:#fff; line-height:1.1; margin-bottom:8px;">Jeancy<br>Lembi</h3>
-          <p style="font-size:.9rem; color:#94a3b8; margin-bottom:28px; font-style:italic;">"Imaginer le futur du Congo"</p>
-
-          <div style="background:rgba(250,204,21,.06); border:1px solid rgba(250,204,21,.18); border-radius:16px; padding:24px 26px; margin-bottom:28px;">
-            <p style="color:#cbd5e1; line-height:1.9; font-size:.95rem;">La Maison d'édition Hakvision a le plaisir d'annoncer le verdict officiel du Prix Littéraire Dianzenza 2026. Après l'examen des textes reçus, le jury a désigné <strong style="color:#facc15;">Jeancy Lembi</strong> comme lauréat officiel de cette première édition consacrée au thème « Imaginer le futur du Congo ».</p>
-          </div>
-
-          <div style="background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:20px 22px; margin-bottom:28px;">
-            <p style="color:#94a3b8; font-size:.88rem; line-height:1.8;">Nous adressons nos <strong style="color:#e2e8f0;">sincères félicitations</strong> au gagnant ainsi qu'à tous les participants qui ont partagé leur talent, leur créativité et leur vision de l'avenir. Pour celles et ceux qui n'ont pas été retenus, <strong style="color:#facc15;">le Prix Dianzenza reviendra</strong> avec une nouvelle édition.</p>
-          </div>
-
-          <a class="btn-gold" href="prix-litteraires.html" style="display:inline-flex;">
-            <i class="fa-solid fa-trophy"></i> Voir la page officielle du Prix
+        <div class="reveal reveal-d3">
+          <a class="btn-ghost" href="bio.html">
+            Lire la biographie complète <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i>
           </a>
         </div>
       </div>
 
-      <!-- Bannière félicitations -->
-      <div style="text-align:center; border-top:1px solid rgba(255,255,255,.05); padding-top:44px;">
-        <p style="font-size:.78rem; color:#64748b; text-transform:uppercase; letter-spacing:2px; margin-bottom:16px;">Prochaine édition à venir</p>
-        <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
-          <a href="prix-litteraires.html" class="btn-outline"><i class="fa-solid fa-feather-pointed"></i> Prix Dianzenza II — S'inscrire</a>
-          <a href="contact.html" class="btn-outline"><i class="fa-solid fa-envelope"></i> Contacter le jury</a>
+    </div>
+  </section>
+
+  <!-- ══════════════ PRIX DIANZENZA ══════════════ -->
+  <section class="prix-section" id="prix">
+    <div class="prix-inner">
+
+      <div class="prix-text">
+        <p class="section-label reveal">Prix Dianzenza 2026 · Verdict officiel</p>
+        <h2 class="prix-title reveal reveal-d1">
+          <strong>Jeancy Lembi</strong><br>
+          lauréat de la<br>première édition
+        </h2>
+        <div class="section-rule reveal reveal-d1"></div>
+        <p class="prix-announcement reveal reveal-d2">
+          La Maison Hakvision Éditions a le plaisir d'annoncer le verdict officiel du <strong>Prix Littéraire Dianzenza 2026</strong>. Après examen de l'ensemble des textes reçus, le jury a désigné <strong>Jeancy Lembi</strong> comme lauréat officiel de cette première édition, consacrée au thème « Imaginer le futur du Congo ».
+          <br><br>
+          Nous adressons nos félicitations à tous les participants. Le Prix Dianzenza reviendra avec une prochaine édition.
+        </p>
+        <div class="reveal reveal-d3" style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn-primary" href="prix-litteraires.html">
+            Page officielle du Prix
+          </a>
+          <a class="btn-ghost" href="prix-litteraires.html#inscription">
+            Prochaine édition
+          </a>
+        </div>
+      </div>
+
+      <div class="prix-photo-col reveal reveal-d1">
+        <div class="prix-photo-wrap">
+          <img src="jeancy_lembi_laureat.jpeg" alt="Jeancy Lembi — Lauréat Prix Dianzenza 2026">
+        </div>
+        <div class="prix-photo-caption">
+          <p class="name">Jeancy Lembi</p>
+          <p class="role">Lauréat · Prix Dianzenza 2026</p>
         </div>
       </div>
 
@@ -1166,139 +1067,122 @@
   </section>
 
   <!-- ══════════════ SOUMETTRE UN MANUSCRIT ══════════════ -->
-  <section class="section section-alt" id="manuscrit">
-    <div class="section-inner">
+  <section class="submit-section" id="soumettre">
+    <div class="submit-inner">
 
-      <div style="display:grid; grid-template-columns:1fr 1.1fr; gap:72px; align-items:start;">
+      <div class="submit-text">
+        <p class="section-label reveal">Appel aux auteurs</p>
+        <h2 class="section-title reveal reveal-d1">
+          <strong>Nous lisons</strong><br>
+          chaque manuscrit<br>avec attention.
+        </h2>
+        <div class="section-rule reveal reveal-d1"></div>
+        <p class="submit-intro reveal reveal-d2">
+          Hakvision Éditions est à la recherche de voix nouvelles, authentiques, portées par une vision du continent africain.
+        </p>
+        <p class="submit-body reveal reveal-d2">
+          Nous publions des œuvres qui ont quelque chose à dire — non des œuvres qui cherchent à plaire. Si vous portez un texte qui interroge, qui révèle, qui ouvre un horizon nouveau, <strong>soumettez-le</strong>. Nous vous répondrons.
+        </p>
 
-        <!-- Colonne gauche — texte éditorial -->
-        <div>
-          <p class="s-eyebrow">Maison d'édition</p>
-          <h2 class="s-title" style="margin-bottom:18px;">Envoyer votre<br><em style="font-style:normal; background:linear-gradient(135deg,#facc15,#fb923c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Manuscrit</em></h2>
-
-          <p style="color:#94a3b8; font-size:1rem; line-height:1.95; margin-bottom:32px;">À la recherche de nouveaux talents, la Maison Hakvision Éditions serait heureuse de soumettre à l'étude votre texte. Nous sommes particulièrement attentifs aux voix authentiques du continent africain et de sa diaspora.</p>
-
-          <!-- Critères -->
-          <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:36px;">
-            <div style="display:flex; gap:16px; align-items:flex-start;">
-              <div style="width:40px; height:40px; border-radius:10px; background:rgba(250,204,21,.1); border:1px solid rgba(250,204,21,.2); display:grid; place-items:center; flex-shrink:0; color:#facc15;">
-                <i class="fa-solid fa-file-lines"></i>
-              </div>
-              <div>
-                <p style="font-weight:700; color:#e2e8f0; margin-bottom:4px; font-size:.92rem;">Genres acceptés</p>
-                <p style="color:#64748b; font-size:.86rem; line-height:1.7;">Roman, novella, recueil de nouvelles, essai, biographie, poésie, afrofuturisme, littérature jeunesse africaine.</p>
-              </div>
-            </div>
-            <div style="display:flex; gap:16px; align-items:flex-start;">
-              <div style="width:40px; height:40px; border-radius:10px; background:rgba(250,204,21,.1); border:1px solid rgba(250,204,21,.2); display:grid; place-items:center; flex-shrink:0; color:#facc15;">
-                <i class="fa-solid fa-file-pdf"></i>
-              </div>
-              <div>
-                <p style="font-weight:700; color:#e2e8f0; margin-bottom:4px; font-size:.92rem;">Formats acceptés</p>
-                <p style="color:#64748b; font-size:.86rem; line-height:1.7;">PDF, DOCX, ODT — 5 Mo maximum. Manuscrit complet ou partiel (minimum 30 pages).</p>
-              </div>
-            </div>
-            <div style="display:flex; gap:16px; align-items:flex-start;">
-              <div style="width:40px; height:40px; border-radius:10px; background:rgba(250,204,21,.1); border:1px solid rgba(250,204,21,.2); display:grid; place-items:center; flex-shrink:0; color:#facc15;">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-              </div>
-              <div>
-                <p style="font-weight:700; color:#e2e8f0; margin-bottom:4px; font-size:.92rem;">Délai de réponse</p>
-                <p style="color:#64748b; font-size:.86rem; line-height:1.7;">Nous accusons réception sous 48h. Réponse éditoriale sous 30 à 60 jours selon les périodes.</p>
-              </div>
-            </div>
-            <div style="display:flex; gap:16px; align-items:flex-start;">
-              <div style="width:40px; height:40px; border-radius:10px; background:rgba(250,204,21,.1); border:1px solid rgba(250,204,21,.2); display:grid; place-items:center; flex-shrink:0; color:#facc15;">
-                <i class="fa-solid fa-earth-africa"></i>
-              </div>
-              <div>
-                <p style="font-weight:700; color:#e2e8f0; margin-bottom:4px; font-size:.92rem;">Profils recherchés</p>
-                <p style="color:#64748b; font-size:.86rem; line-height:1.7;">Auteurs africains (RDC, Congo-B, diaspora) et francophones porteurs d'une vision originale. Tout niveau d'expérience.</p>
-              </div>
-            </div>
+        <div class="submit-conditions reveal reveal-d3">
+          <div class="submit-cond">
+            <span class="submit-cond-key">Genres</span>
+            <span class="submit-cond-val">Roman, novella, nouvelles, essai, biographie, poésie, afrofuturisme, littérature jeunesse africaine</span>
           </div>
-
-          <div style="background:rgba(250,204,21,.06); border:1px solid rgba(250,204,21,.16); border-radius:14px; padding:18px 20px;">
-            <p style="font-size:.82rem; color:#94a3b8; line-height:1.8;"><i class="fa-solid fa-shield-halved" style="color:#facc15; margin-right:8px;"></i><strong style="color:#e2e8f0;">Confidentialité garantie.</strong> Vos textes ne sont ni publiés ni partagés sans votre accord explicite. La soumission n'engage aucun transfert de droits.</p>
+          <div class="submit-cond">
+            <span class="submit-cond-key">Format</span>
+            <span class="submit-cond-val">PDF, DOCX, ODT — 5 Mo maximum. Minimum 30 pages.</span>
+          </div>
+          <div class="submit-cond">
+            <span class="submit-cond-key">Profils</span>
+            <span class="submit-cond-val">Auteurs africains (RDC, Congo-B, diaspora) et francophones. Tout niveau d'expérience.</span>
+          </div>
+          <div class="submit-cond">
+            <span class="submit-cond-key">Réponse</span>
+            <span class="submit-cond-val">Accusé de réception sous 48h. Réponse éditoriale sous 30 à 60 jours.</span>
+          </div>
+          <div class="submit-cond">
+            <span class="submit-cond-key">Droits</span>
+            <span class="submit-cond-val">La soumission n'engage aucun transfert de droits. Confidentialité garantie.</span>
           </div>
         </div>
-
-        <!-- Colonne droite — formulaire -->
-        <div style="background:rgba(255,255,255,.025); border:1px solid rgba(255,255,255,.07); border-radius:24px; padding:40px 36px;">
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.5rem; color:#fff; margin-bottom:6px;">Formulaire de soumission</h3>
-          <p style="color:#64748b; font-size:.85rem; margin-bottom:28px;">Complétez tous les champs et joignez votre manuscrit.</p>
-
-          <form action="https://formsubmit.co/hakeemmerveil@gmail.com" method="POST" enctype="multipart/form-data" style="display:flex; flex-direction:column; gap:18px;">
-            <input type="hidden" name="_subject" value="📖 Nouveau manuscrit reçu — Hakvision Éditions">
-            <input type="hidden" name="_next" value="merci.html">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
-              <div>
-                <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Prénom *</label>
-                <input type="text" name="prenom" required placeholder="Votre prénom" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
-              </div>
-              <div>
-                <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Nom *</label>
-                <input type="text" name="nom" required placeholder="Votre nom" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
-              </div>
-            </div>
-
-            <div>
-              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Adresse e-mail *</label>
-              <input type="email" name="email" required placeholder="votre@email.com" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
-            </div>
-
-            <div>
-              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Pays / Ville *</label>
-              <input type="text" name="pays_ville" required placeholder="ex : Kinshasa, RDC" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
-            </div>
-
-            <div>
-              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Titre de l'œuvre *</label>
-              <input type="text" name="titre_oeuvre" required placeholder="Titre de votre manuscrit" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
-            </div>
-
-            <div>
-              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Genre littéraire *</label>
-              <select name="genre" required style="width:100%; background:rgba(15,15,25,.95); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; appearance:none; cursor:pointer; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'">
-                <option value="" disabled selected>Sélectionner un genre</option>
-                <option value="Roman">Roman</option>
-                <option value="Afrofuturisme">Afrofuturisme</option>
-                <option value="Nouvelles">Recueil de nouvelles</option>
-                <option value="Essai">Essai / Non-fiction</option>
-                <option value="Biographie">Biographie / Mémoires</option>
-                <option value="Poésie">Poésie</option>
-                <option value="Jeunesse">Littérature jeunesse</option>
-                <option value="Autre">Autre</option>
-              </select>
-            </div>
-
-            <div>
-              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Résumé de l'œuvre *</label>
-              <textarea name="resume" required placeholder="Présentez votre œuvre en quelques lignes — intrigue, thème, intention littéraire..." rows="4" style="width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1); border-radius:10px; padding:12px 14px; color:#f1f5f9; font-size:.9rem; outline:none; resize:vertical; font-family:inherit; transition:border-color .2s;" onfocus="this.style.borderColor='rgba(250,204,21,.5)'" onblur="this.style.borderColor='rgba(255,255,255,.1)'"></textarea>
-            </div>
-
-            <div>
-              <label style="display:block; font-size:.78rem; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Joindre le manuscrit (PDF, DOCX — 5 Mo max)</label>
-              <div style="background:rgba(255,255,255,.03); border:2px dashed rgba(255,255,255,.1); border-radius:12px; padding:20px; text-align:center; cursor:pointer; transition:border-color .2s; position:relative;" onmouseover="this.style.borderColor='rgba(250,204,21,.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
-                <i class="fa-solid fa-cloud-arrow-up" style="font-size:1.8rem; color:#facc15; margin-bottom:8px; display:block;"></i>
-                <p style="color:#94a3b8; font-size:.85rem; margin-bottom:6px;">Glisser-déposer ou cliquer pour sélectionner</p>
-                <p style="color:#64748b; font-size:.75rem;">PDF · DOCX · ODT — 5 Mo maximum</p>
-                <input type="file" name="manuscrit" accept=".pdf,.doc,.docx,.odt" style="position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%;">
-              </div>
-            </div>
-
-            <button type="submit" style="width:100%; background:linear-gradient(135deg,#facc15,#f59e0b); color:#0b0b10; font-weight:800; font-size:1rem; padding:15px 24px; border-radius:13px; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; box-shadow:0 12px 32px rgba(250,204,21,.28); transition:transform .2s, box-shadow .2s; letter-spacing:.2px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 18px 44px rgba(250,204,21,.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 12px 32px rgba(250,204,21,.28)'">
-              <i class="fa-solid fa-paper-plane"></i> Soumettre mon manuscrit
-            </button>
-
-            <p style="text-align:center; font-size:.76rem; color:#475569; line-height:1.7;">En soumettant ce formulaire, vous confirmez être l'auteur(e) de l'œuvre et n'avoir accordé aucun droit exclusif à un tiers. Lecture sous 30 à 60 jours.</p>
-          </form>
-        </div>
-
       </div>
+
+      <div class="submit-form-wrap reveal reveal-d1">
+        <h3 class="form-heading">Formulaire de soumission</h3>
+        <p class="form-note-top">Tous les champs sont obligatoires sauf le fichier (envoi par e-mail accepté).</p>
+
+        <form action="https://formsubmit.co/arenalse22@gmail.com" method="POST" enctype="multipart/form-data" class="form-group">
+          <input type="hidden" name="_subject" value="Manuscrit reçu — Hakvision Éditions">
+          <input type="hidden" name="_next" value="https://hakvision243.netlify.app/merci.html">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_autoresponse" value="Votre manuscrit a bien été reçu. Nous vous répondrons sous 30 à 60 jours. — Hakvision Éditions">
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+            </div>
+            <div class="form-field">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Adresse e-mail</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.com">
+          </div>
+
+          <div class="form-field">
+            <label for="pays_ville">Pays / Ville</label>
+            <input type="text" id="pays_ville" name="pays_ville" required placeholder="ex : Kinshasa, RDC">
+          </div>
+
+          <div class="form-field">
+            <label for="titre_oeuvre">Titre de l'œuvre</label>
+            <input type="text" id="titre_oeuvre" name="titre_oeuvre" required placeholder="Titre de votre manuscrit">
+          </div>
+
+          <div class="form-field">
+            <label for="genre">Genre littéraire</label>
+            <select id="genre" name="genre" required>
+              <option value="" disabled selected>Sélectionner un genre</option>
+              <option value="Roman">Roman</option>
+              <option value="Afrofuturisme">Afrofuturisme</option>
+              <option value="Nouvelles">Recueil de nouvelles</option>
+              <option value="Essai">Essai / Non-fiction</option>
+              <option value="Biographie">Biographie / Mémoires</option>
+              <option value="Poésie">Poésie</option>
+              <option value="Jeunesse">Littérature jeunesse</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="resume">Présentation de l'œuvre</label>
+            <textarea id="resume" name="resume" required rows="4" placeholder="Intrigue, thème, intention littéraire — 5 à 10 lignes."></textarea>
+          </div>
+
+          <div class="upload-field">
+            <label>Joindre le manuscrit (PDF, DOCX — 5 Mo max)</label>
+            <div class="upload-area">
+              <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+              <p class="upload-text">Cliquer ou glisser-déposer</p>
+              <p class="upload-hint">PDF · DOCX · ODT — 5 Mo maximum</p>
+              <input type="file" name="manuscrit" accept=".pdf,.doc,.docx,.odt">
+            </div>
+          </div>
+
+          <button type="submit" class="form-submit">
+            Soumettre mon manuscrit
+          </button>
+
+          <p class="form-fine-print">En soumettant, vous confirmez être l'auteur(e) de l'œuvre et n'avoir accordé aucun droit exclusif à un tiers.</p>
+        </form>
+      </div>
+
     </div>
   </section>
 
@@ -1306,82 +1190,78 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-top">
-        <div>
-          <p class="footer-brand-name">Hakvision</p>
-          <p class="footer-brand-sub">Maison d'Édition Afrofuturiste Congolaise</p>
-          <p class="footer-brand-desc">Œuvres littéraires, innovations culturelles et initiatives panafricaines conçues par Merveil Hakeem Dianzenza. De Paris à Kinshasa, une vision pour l'Afrique de demain.</p>
+
+        <div class="footer-brand">
+          <p class="footer-wordmark">Hakvision Éditions</p>
+          <p class="footer-tagline">Maison d'édition afrofuturiste · Paris</p>
+          <p class="footer-about">Œuvres littéraires, prix et initiatives culturelles fondées par Merveil Hakeem Dianzenza. De Paris à Kinshasa, pour l'Afrique de demain.</p>
           <div class="footer-socials">
-            <a class="footer-social-btn" href="https://www.instagram.com/hakaymrv243_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a class="footer-social-btn" href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a class="footer-social-btn" href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank" title="Amazon"><i class="fab fa-amazon"></i></a>
-            <a class="footer-social-btn" href="mailto:arenalse22@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a class="footer-social" href="https://www.instagram.com/hakaymrv243_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a class="footer-social" href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a class="footer-social" href="https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7" target="_blank" title="Amazon"><i class="fab fa-amazon"></i></a>
+            <a class="footer-social" href="mailto:arenalse22@gmail.com" title="E-mail"><i class="fa-solid fa-envelope"></i></a>
           </div>
         </div>
 
         <div>
-          <p class="footer-col-title">Œuvres</p>
-          <ul class="footer-col-links">
+          <p class="footer-col-title">Publications</p>
+          <ul class="footer-links">
             <li><a href="katiopa.html">KATIØPA</a></li>
-            <li><a href="livres.html">Nos livres</a></li>
+            <li><a href="livres.html">Tous les livres</a></li>
             <li><a href="catalogue.html">Catalogue</a></li>
             <li><a href="papa-masambukidi.html">Papa Masambukidi</a></li>
           </ul>
         </div>
 
         <div>
-          <p class="footer-col-title">Hakvision</p>
-          <ul class="footer-col-links">
+          <p class="footer-col-title">Maison</p>
+          <ul class="footer-links">
             <li><a href="bio.html">Biographie</a></li>
-            <li><a href="prix-litteraires.html">Prix Littéraires</a></li>
-            <li><a href="press.html">Presse</a></li>
+            <li><a href="prix-litteraires.html">Prix Dianzenza</a></li>
+            <li><a href="press.html">Espace presse</a></li>
             <li><a href="okapiplay.html">OkapiPlay</a></li>
-            <li><a href="#manuscrit">Soumettre un manuscrit</a></li>
+            <li><a href="#soumettre">Soumettre un manuscrit</a></li>
           </ul>
         </div>
 
         <div>
           <p class="footer-col-title">Contact</p>
-          <ul class="footer-col-links">
+          <ul class="footer-links">
             <li><a href="contact.html">Nous écrire</a></li>
             <li><a href="mailto:arenalse22@gmail.com">arenalse22@gmail.com</a></li>
             <li><a href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank">Canal WhatsApp</a></li>
           </ul>
         </div>
+
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Merveil Hakeem Dianzenza — Hakvision Éditions. Tous droits réservés. <a href="mentions-legales.html" style="color:var(--muted); font-size:0.9em;">Mentions légales</a></p>
-        <span class="footer-badge"><i class="fa-solid fa-feather-pointed"></i> Afrofuturisme Congolais</span>
+        <p class="footer-copy">
+          © 2026 Merveil Hakeem Dianzenza — Hakvision Éditions. Tous droits réservés.
+          <a href="mentions-legales.html">Mentions légales</a>
+        </p>
+        <span class="footer-stamp">Afrofuturisme Congolais</span>
       </div>
     </div>
   </footer>
 
   <script>
-    // ── Date dynamique ──
-    const days   = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
-    const months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
-    const now    = new Date();
-    const d      = document.getElementById('dateDisplay');
-    if (d) d.textContent = `${days[now.getDay()]} ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()} — Hakvision Éditions`;
-
-    // ── Hamburger ──
-    const hamburger = document.getElementById('hamburger');
-    const mainNav   = document.getElementById('mainNav');
-    if (hamburger && mainNav) {
-      hamburger.addEventListener('click', () => mainNav.classList.toggle('open'));
-      document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !mainNav.contains(e.target))
-          mainNav.classList.remove('open');
+    // Nav mobile
+    const burger = document.getElementById('navBurger');
+    const nav    = document.getElementById('siteNav');
+    if (burger && nav) {
+      burger.addEventListener('click', () => nav.classList.toggle('open'));
+      document.addEventListener('click', e => {
+        if (!burger.contains(e.target) && !nav.contains(e.target))
+          nav.classList.remove('open');
       });
     }
 
-    // ── Scroll reveal ──
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+    // Scroll reveal
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
   <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{});}</script>
 </body>

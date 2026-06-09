@@ -2,14 +2,18 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://hakvision243.blog/sitemap.xml
+Sitemap: https://hakvision243.netlify.app/sitemap.xml
 
-# Pages importantes à indexer en priorité
-Allow: /prix-litteraires.html
+# Pages importantes
+Allow: /index.html
 Allow: /bio.html
+Allow: /prix-litteraires.html
 Allow: /catalogue.html
 Allow: /livres.html
+Allow: /katiopa.html
+Allow: /papa-masambukidi.html
 Allow: /press.html
+Allow: /okapiplay.html
+Allow: /contact.html
 
-# Crawl-delay pour éviter la surcharge
 Crawl-delay: 1
