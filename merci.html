@@ -109,11 +109,49 @@
       });
     }
   </script>
-  <!-- WhatsApp share button -->
-  <a class="wa-float" id="waFloatBtn" href="#" target="_blank" rel="noopener" aria-label="Partager sur WhatsApp">
-    <i class="fab fa-whatsapp"></i> Partager le site
-  </a>
   <script>!function(){var b=document.getElementById("waFloatBtn");if(b)b.href="https://wa.me/?text="+encodeURIComponent(document.title+" — "+location.href)}()</script>
+  <!-- Universal share button -->
+  <div class="hv-share-fab" id="hvShareFab">
+    <div class="hv-share-menu" id="hvShareMenu">
+      <a class="hv-share-item hv-share-wa" id="hvShareWa" href="#" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      <a class="hv-share-item hv-share-fb" id="hvShareFb" href="#" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+      <a class="hv-share-item hv-share-tw" id="hvShareTw" href="#" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> X / Twitter</a>
+      <a class="hv-share-item hv-share-li" id="hvShareLi" href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+      <button class="hv-share-item hv-share-cp" id="hvShareCopy"><i class="fa-solid fa-link"></i> Copier le lien</button>
+    </div>
+    <button class="hv-share-btn" id="hvShareBtn" aria-label="Partager">
+      <i class="fa-solid fa-share-nodes"></i> Partager
+    </button>
+  </div>
+  <script>
+  !function(){
+    var url=location.href,title=document.title;
+    var fab=document.getElementById('hvShareFab');
+    var btn=document.getElementById('hvShareBtn');
+    var menu=document.getElementById('hvShareMenu');
+    if(!btn)return;
+    var enc=encodeURIComponent;
+    document.getElementById('hvShareWa').href='https://wa.me/?text='+enc(title+' : '+url);
+    document.getElementById('hvShareFb').href='https://www.facebook.com/sharer/sharer.php?u='+enc(url);
+    document.getElementById('hvShareTw').href='https://twitter.com/intent/tweet?text='+enc(title)+'&url='+enc(url);
+    document.getElementById('hvShareLi').href='https://www.linkedin.com/sharing/share-offsite/?url='+enc(url);
+    var cp=document.getElementById('hvShareCopy');
+    cp.addEventListener('click',function(){
+      navigator.clipboard.writeText(url).then(function(){
+        cp.innerHTML='<i class="fa-solid fa-check"></i> Copié !';
+        setTimeout(function(){cp.innerHTML='<i class="fa-solid fa-link"></i> Copier le lien';},2000);
+      }).catch(function(){});
+    });
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      if(navigator.share){navigator.share({title:title,url:url}).catch(function(){});}
+      else{menu.classList.toggle('open');}
+    });
+    document.addEventListener('click',function(e){
+      if(fab&&!fab.contains(e.target))menu.classList.remove('open');
+    });
+  }();
+  </script>
   <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{});}</script>
 </body>
 </html>
