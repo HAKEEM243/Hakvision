@@ -1,4 +1,4 @@
-const CACHE = 'hakvision-v3';
+const CACHE = 'hakvision-v4';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -17,6 +17,11 @@ const PRECACHE = [
   '/oeil-kulala.html',
   '/diaku.html',
   '/un-ecrivain-kinshasa.html',
+  '/congo-martyrs.html',
+  '/politique-magazine.html',
+  '/kamerun-1945.html',
+  '/zikila.html',
+  '/jumeaux-infini.html',
   '/katiopa_cover_hq.jpg',
   '/merveil_photo_officielle.jpg',
   '/oeil_tome2_cover.jpg',
