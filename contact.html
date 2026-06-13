@@ -7,6 +7,19 @@
   <meta name="description" content="Contactez Merveil Hakeem Dianzenza pour des interviews, interventions, partenariats culturels ou commandes. Réponse sous 48h. Europe & Afrique." />
   <meta name="author" content="Merveil Hakeem Dianzenza" />
   <link rel="canonical" href="https://hakvision243.netlify.app/contact.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hakvision243.netlify.app/contact.html" />
+  <meta property="og:title" content="Contact — Merveil Hakeem Dianzenza | Hakvision Éditions" />
+  <meta property="og:description" content="Contactez Merveil Hakeem Dianzenza pour interviews, partenariats culturels ou commandes. Réponse sous 48h." />
+  <meta property="og:image" content="https://hakvision243.netlify.app/merveil_photo_officielle.jpg" />
+  <meta property="og:image:width" content="800" />
+  <meta property="og:image:height" content="1000" />
+  <meta property="og:site_name" content="Hakvision Éditions" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact — Hakvision Éditions" />
+  <meta name="twitter:image" content="https://hakvision243.netlify.app/merveil_photo_officielle.jpg" />
+
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#b8952a">
   <meta name="mobile-web-app-capable" content="yes">
@@ -199,9 +212,10 @@
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
   <!-- WhatsApp share button -->
-  <a class="wa-float" href="https://wa.me/?text=D%C3%A9couvrez%20Hakvision%20%C3%89ditions%20%E2%80%94%20maison%20d%27%C3%A9dition%20afrofuturiste%20fond%C3%A9e%20%C3%A0%20Paris%20%3A%20https%3A%2F%2Fhakvision243.netlify.app" target="_blank" rel="noopener" aria-label="Partager sur WhatsApp">
+  <a class="wa-float" id="waFloatBtn" href="#" target="_blank" rel="noopener" aria-label="Partager sur WhatsApp">
     <i class="fab fa-whatsapp"></i> Partager le site
   </a>
+  <script>!function(){var b=document.getElementById("waFloatBtn");if(b)b.href="https://wa.me/?text="+encodeURIComponent(document.title+" — "+location.href)}()</script>
   <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{});}</script>
 </body>
 </html>

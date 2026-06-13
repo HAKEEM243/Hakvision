@@ -7,6 +7,17 @@
   <meta name="keywords" content="OkapiPlay, Hakvision, jeu africain, innovation, cerveau, immersion, afrofuturisme" />
   <meta name="author" content="Merveil Hakeem Dianzenza" />
   <link rel="canonical" href="https://hakvision243.netlify.app/okapiplay.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hakvision243.netlify.app/okapiplay.html" />
+  <meta property="og:title" content="OkapiPlay — Vision Gaming Africaine | Hakvision Éditions" />
+  <meta property="og:description" content="OkapiPlay : vision ludique et technologique signée Hakvision — immersion totale, culture panafricaine du jeu, afrofuturisme." />
+  <meta property="og:image" content="https://hakvision243.netlify.app/katiopa_cover_hq.jpg" />
+  <meta property="og:site_name" content="Hakvision Éditions" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="OkapiPlay — Hakvision Éditions" />
+  <meta name="twitter:image" content="https://hakvision243.netlify.app/katiopa_cover_hq.jpg" />
+
   <title>OkapiPlay | Vision gaming Hakvision — Merveil Hakeem Dianzenza</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#b8952a">
@@ -213,9 +224,10 @@
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
   <!-- WhatsApp share button -->
-  <a class="wa-float" href="https://wa.me/?text=D%C3%A9couvrez%20Hakvision%20%C3%89ditions%20%E2%80%94%20maison%20d%27%C3%A9dition%20afrofuturiste%20fond%C3%A9e%20%C3%A0%20Paris%20%3A%20https%3A%2F%2Fhakvision243.netlify.app" target="_blank" rel="noopener" aria-label="Partager sur WhatsApp">
+  <a class="wa-float" id="waFloatBtn" href="#" target="_blank" rel="noopener" aria-label="Partager sur WhatsApp">
     <i class="fab fa-whatsapp"></i> Partager le site
   </a>
+  <script>!function(){var b=document.getElementById("waFloatBtn");if(b)b.href="https://wa.me/?text="+encodeURIComponent(document.title+" — "+location.href)}()</script>
   <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{});}</script>
 </body>
 </html>

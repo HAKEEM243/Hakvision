@@ -33,6 +33,15 @@
     <priority>0.95</priority>
   </url>
 
+
+  <!-- L'ŒIL Tome 2 — Kulala Pasco Ntumba -->
+  <url>
+    <loc>https://hakvision243.netlify.app/oeil-tome2.html</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Livres et catalogue -->
   <url>
     <loc>https://hakvision243.netlify.app/livres.html</loc>
