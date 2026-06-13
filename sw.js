@@ -1,4 +1,4 @@
-const CACHE = 'hakvision-v1';
+const CACHE = 'hakvision-v3';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -12,8 +12,15 @@ const PRECACHE = [
   '/press.html',
   '/papa-masambukidi.html',
   '/okapiplay.html',
+  '/merci.html',
+  '/oeil-tome2.html',
+  '/oeil-kulala.html',
+  '/diaku.html',
+  '/un-ecrivain-kinshasa.html',
   '/katiopa_cover_hq.jpg',
   '/merveil_photo_officielle.jpg',
+  '/oeil_tome2_cover.jpg',
+  '/diaku_cover.jpg',
   '/favicon.ico'
 ];
 
@@ -31,18 +38,36 @@ self.addEventListener('activate', e => {
   );
 });
 
+// Network-first pour les HTML, cache-first pour les assets
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
-  e.respondWith(
-    caches.match(e.request).then(cached => {
-      const network = fetch(e.request).then(res => {
+  const url = new URL(e.request.url);
+  const isHTML = url.pathname.endsWith('.html') || url.pathname === '/';
+
+  if (isHTML) {
+    // Network-first : toujours essayer le réseau d'abord pour les pages
+    e.respondWith(
+      fetch(e.request).then(res => {
         if (res.ok) {
           const clone = res.clone();
           caches.open(CACHE).then(c => c.put(e.request, clone));
         }
         return res;
-      });
-      return cached || network;
-    })
-  );
+      }).catch(() => caches.match(e.request))
+    );
+  } else {
+    // Cache-first pour les images et CSS
+    e.respondWith(
+      caches.match(e.request).then(cached => {
+        const network = fetch(e.request).then(res => {
+          if (res.ok) {
+            const clone = res.clone();
+            caches.open(CACHE).then(c => c.put(e.request, clone));
+          }
+          return res;
+        });
+        return cached || network;
+      })
+    );
+  }
 });
