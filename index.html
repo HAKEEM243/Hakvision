@@ -802,6 +802,83 @@
     @media (max-width: 420px) {
       .hero-title { font-size: 2.8rem; }
     }
+
+    /* ══════════════════════════════════════
+       NOUVELLE PARUTION
+    ══════════════════════════════════════ */
+    .nouv-wrap { padding: 0 var(--gutter) 72px; }
+    .nouv-card {
+      max-width: var(--max); margin: 0 auto;
+      background: var(--ink2);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--gold);
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 48px;
+      padding: 40px 48px;
+      position: relative;
+    }
+    .nouv-badge {
+      position: absolute;
+      top: -13px; left: 48px;
+      background: var(--gold); color: var(--ink);
+      font-size: .58rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 3px;
+      padding: 4px 14px;
+    }
+    .nouv-cover img {
+      width: 100%; border-radius: 2px;
+      box-shadow: 0 20px 48px rgba(0,0,0,.5);
+    }
+    .nouv-eyebrow {
+      font-size: .6rem; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+    .nouv-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+      font-weight: 300; font-style: italic;
+      line-height: 1.12; color: var(--text);
+      margin-bottom: 6px;
+    }
+    .nouv-title strong { font-style: normal; font-weight: 600; color: #fff; }
+    .nouv-author {
+      font-size: .76rem; color: var(--body);
+      letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .nouv-body {
+      font-size: .9rem; line-height: 1.9;
+      color: var(--body); margin-bottom: 24px;
+      max-width: 620px;
+    }
+    .nouv-body em { color: var(--text); font-style: italic; }
+    .nouv-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+
+    @media (max-width: 640px) {
+      .nouv-card { grid-template-columns: 1fr; gap: 24px; padding: 32px 24px; }
+      .nouv-cover { max-width: 160px; }
+    }
+
+    /* ══════════════════════════════════════
+       WHATSAPP SHARE BUTTON
+    ══════════════════════════════════════ */
+    .wa-float {
+      position: fixed;
+      bottom: 28px; right: 24px;
+      background: #25D366; color: #fff;
+      border-radius: 50px;
+      padding: 11px 20px;
+      display: flex; align-items: center; gap: 9px;
+      font-size: .72rem; font-weight: 600;
+      letter-spacing: .4px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,.35);
+      z-index: 900;
+      transition: transform .18s, box-shadow .18s;
+    }
+    .wa-float:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,.45); }
+    .wa-float i { font-size: 1rem; }
   </style>
 </head>
 <body>
@@ -883,6 +960,32 @@
     </div>
   </section>
 
+  <!-- ══════════════ NOUVELLE PARUTION ══════════════ -->
+  <div class="nouv-wrap">
+    <div class="nouv-card reveal">
+      <div class="nouv-badge">Nouvelle parution</div>
+      <div class="nouv-cover">
+        <img src="oeil_tome2_cover.jpg" alt="L'ŒIL Tome 2 — Ainsi je vois le monde, de Kulala Pasco Ntumba" loading="lazy">
+      </div>
+      <div class="nouv-content">
+        <p class="nouv-eyebrow">Hakvision Éditions · Parution 2026</p>
+        <h2 class="nouv-title">L'ŒIL — Tome 2<br><strong>Ainsi je vois le monde</strong></h2>
+        <p class="nouv-author">Kulala Pasco Ntumba</p>
+        <p class="nouv-body">
+          Après avoir suscité de nombreuses réflexions, l'auteur poursuit son exploration de la conscience et de la perception. Ce deuxième tome propose une immersion encore plus profonde dans sa vision de l'existence — l'œil, le triangle, la lumière et l'horizon évoquent la connaissance, la quête de sens et l'éveil de la conscience. <em>Une expérience intellectuelle et introspective qui pousse à observer, questionner et comprendre autrement.</em>
+        </p>
+        <div class="nouv-actions">
+          <a class="btn-primary" href="catalogue.html#oeil-tome2">
+            <i class="fa-solid fa-book-open" style="font-size:.76rem;"></i> Découvrir l'œuvre
+          </a>
+          <a class="btn-ghost" href="https://wa.me/?text=Nouvelle%20parution%20chez%20Hakvision%20%C3%89ditions%20%E2%80%94%20L%27%C5%92IL%20Tome%202%20de%20Kulala%20Pasco%20Ntumba%20%3A%20https%3A%2F%2Fhakvision243.netlify.app" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp" style="font-size:.9rem;"></i> Partager cette parution
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ══════════════ COLOPHON ══════════════ -->
   <div class="colophon">
     <div class="colophon-inner">
@@ -891,7 +994,7 @@
         <div class="colophon-key">Siège éditorial</div>
       </div>
       <div class="colophon-item reveal reveal-d1">
-        <div class="colophon-val">3</div>
+        <div class="colophon-val">4</div>
         <div class="colophon-key">Œuvres publiées</div>
       </div>
       <div class="colophon-item reveal reveal-d2">
@@ -914,7 +1017,7 @@
           <p class="section-label">Catalogue</p>
           <h2 class="section-title">Nos <strong>publications</strong></h2>
           <div class="section-rule"></div>
-          <p class="section-lead">Trois titres publiés, disponibles sur Amazon et Payhip. Des romans, des biographies et des récits qui redéfinissent la littérature africaine contemporaine.</p>
+          <p class="section-lead">Quatre titres publiés, disponibles sur Amazon et Payhip. Des romans, des biographies, des essais qui redéfinissent la littérature africaine contemporaine.</p>
         </div>
         <a class="btn-ghost" href="catalogue.html" style="flex-shrink:0;">
           Catalogue complet <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i>
@@ -969,6 +1072,23 @@
               <i class="fab fa-amazon" style="font-size:.76rem;"></i> Amazon
             </a>
             <a class="book-more" href="papa-masambukidi.html">
+              Détails <i class="fa-solid fa-arrow-right" style="font-size:.68rem;"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="book-item reveal reveal-d3">
+          <div class="book-cover">
+            <img src="oeil_tome2_cover.jpg" alt="L'ŒIL Tome 2 — Ainsi je vois le monde, Kulala Pasco Ntumba" loading="lazy">
+          </div>
+          <p class="book-genre">Essai · Conscience & Perception</p>
+          <h3 class="book-title">L'ŒIL — Tome 2 : Ainsi je vois le monde</h3>
+          <p class="book-desc">Une immersion profonde dans la vision du monde de Kulala Pasco Ntumba — conscience, perception, quête de sens et éveil.</p>
+          <div class="book-actions">
+            <a class="book-buy" href="catalogue.html#oeil-tome2">
+              <i class="fa-solid fa-eye" style="font-size:.76rem;"></i> Découvrir
+            </a>
+            <a class="book-more" href="catalogue.html#oeil-tome2">
               Détails <i class="fa-solid fa-arrow-right" style="font-size:.68rem;"></i>
             </a>
           </div>
@@ -1263,6 +1383,11 @@
     }, { threshold: 0.07 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
   </script>
+  <!-- WhatsApp share button -->
+  <a class="wa-float" href="https://wa.me/?text=D%C3%A9couvrez%20Hakvision%20%C3%89ditions%20%E2%80%94%20maison%20d%27%C3%A9dition%20afrofuturiste%20fond%C3%A9e%20%C3%A0%20Paris%20%3A%20https%3A%2F%2Fhakvision243.netlify.app" target="_blank" rel="noopener" aria-label="Partager sur WhatsApp">
+    <i class="fab fa-whatsapp"></i> Partager le site
+  </a>
+
   <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("/sw.js").catch(()=>{});}</script>
 </body>
 </html>

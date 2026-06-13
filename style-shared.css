@@ -874,3 +874,23 @@ img { display: block; max-width: 100%; }
   .book-card-full > img { max-width: 180px; }
   .media-grid, .feature-grid, .book-showcase { grid-template-columns: 1fr; }
 }
+
+/* ══════════════════════════════════════
+   WHATSAPP FLOATING SHARE BUTTON
+══════════════════════════════════════ */
+.wa-float {
+  position: fixed;
+  bottom: 28px; right: 24px;
+  background: #25D366; color: #fff !important;
+  border-radius: 50px;
+  padding: 11px 20px;
+  display: flex; align-items: center; gap: 9px;
+  font-size: .72rem; font-weight: 600;
+  letter-spacing: .4px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(37,211,102,.35);
+  z-index: 900;
+  transition: transform .18s, box-shadow .18s;
+}
+.wa-float:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,.45); }
+.wa-float i { font-size: 1rem; }
