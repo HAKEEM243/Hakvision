@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hakvision Éditions — Maison d'édition afrofuturiste | Paris · Kinshasa</title>
   <meta name="description" content="Hakvision Éditions — maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza. Auteur de KATIØPA (634 pages), Un Écrivain à Kinshasa, Papa Masambukidi. Submissions ouvertes." />
@@ -32,7 +33,15 @@
         "url": "https://hakvision243.netlify.app",
         "description": "Maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza — Le Roi de l'Afrofuturisme.",
         "inLanguage": "fr",
-        "publisher": {"@id": "https://hakvision243.netlify.app/#organization"}
+        "publisher": {"@id": "https://hakvision243.netlify.app/#organization"},
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://hakvision243.netlify.app/catalogue.html?q={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
       },
       {
         "@type": "Organization",
@@ -42,7 +51,9 @@
         "url": "https://hakvision243.netlify.app",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://hakvision243.netlify.app/favicon.ico"
+          "url": "https://hakvision243.netlify.app/katiopa_cover_hq.jpg",
+          "width": 800,
+          "height": 800
         },
         "image": "https://hakvision243.netlify.app/katiopa_cover_hq.jpg",
         "description": "Maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza. Littérature africaine, afrofuturisme, biographies congolaises.",
@@ -52,16 +63,27 @@
           "name": "Merveil Hakeem Dianzenza",
           "alternateName": "Le Roi de l'Afrofuturisme",
           "url": "https://hakvision243.netlify.app/bio.html",
-          "sameAs": ["https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7"]
+          "sameAs": [
+            "https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7",
+            "https://www.instagram.com/hakaymrv243_"
+          ]
         },
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Paris",
           "addressCountry": "FR"
         },
-        "areaServed": ["FR", "CD", "CI", "BE", "CH"],
+        "areaServed": ["FR", "CD", "CI", "BE", "CH", "CM", "TG"],
         "knowsAbout": ["Afrofuturisme", "Littérature africaine", "Édition indépendante", "Congo", "Culture africaine francophone"],
-        "sameAs": ["https://hakvision243.netlify.app"]
+        "sameAs": [
+          "https://www.instagram.com/hakaymrv243_",
+          "https://www.amazon.fr/Merveil-Hakeem-Dianzenza/e/B0FK2YHPP7"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Catalogue Hakvision Éditions",
+          "url": "https://hakvision243.netlify.app/catalogue.html"
+        }
       }
     ]
   }
@@ -69,6 +91,8 @@
 
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <meta name="google-site-verification" content="IZbSWYA8B5I-Yb4ACcQ8ig88aN-e3FgUVseNa8L014A" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

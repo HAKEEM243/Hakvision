@@ -1,118 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- Page principale -->
+  <!-- Accueil — priorité maximale -->
   <url>
     <loc>https://hakvision243.netlify.app/</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/katiopa_cover_hq.jpg</image:loc>
+      <image:title>KATIØPA — La Prophétie Noire, Hakvision Éditions</image:title>
+    </image:image>
   </url>
 
-  <!-- Biographie auteur — priorité maximale -->
+  <!-- Biographie auteur — priorité maximale (Knowledge Panel Google) -->
   <url>
     <loc>https://hakvision243.netlify.app/bio.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-  </url>
-
-  <!-- Prix littéraires — résultats 2026 -->
-  <url>
-    <loc>https://hakvision243.netlify.app/prix-litteraires.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/merveil_photo_officielle.jpg</image:loc>
+      <image:title>Portrait officiel de Merveil Hakeem Dianzenza</image:title>
+    </image:image>
   </url>
 
   <!-- KATIØPA — livre phare -->
   <url>
     <loc>https://hakvision243.netlify.app/katiopa.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/katiopa_cover_hq.jpg</image:loc>
+      <image:title>KATIØPA — La Prophétie Noire, Merveil Hakeem Dianzenza</image:title>
+    </image:image>
+  </url>
+
+  <!-- Prix Dianzenza -->
+  <url>
+    <loc>https://hakvision243.netlify.app/prix-litteraires.html</loc>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
 
+  <!-- Livres & Catalogue -->
+  <url>
+    <loc>https://hakvision243.netlify.app/livres.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
+  <url>
+    <loc>https://hakvision243.netlify.app/catalogue.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.92</priority>
+  </url>
 
-
-  <!-- Pages dédiées par livre -->
+  <!-- DIAKU -->
   <url>
     <loc>https://hakvision243.netlify.app/diaku.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://hakvision243.netlify.app/un-ecrivain-kinshasa.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://hakvision243.netlify.app/oeil-kulala.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/diaku_cover.jpg</image:loc>
+      <image:title>DIAKU — L'Antidote Vivant, Merveil Hakeem Dianzenza</image:title>
+    </image:image>
   </url>
 
   <!-- L'ŒIL Tome 2 — Kulala Pasco Ntumba -->
   <url>
     <loc>https://hakvision243.netlify.app/oeil-tome2.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/oeil_tome2_cover.jpg</image:loc>
+      <image:title>L'ŒIL Tome 2 — Ainsi je vois le monde, Kulala Pasco Ntumba</image:title>
+    </image:image>
   </url>
 
-  <!-- Autres livres dédiés -->
+  <!-- Pages dédiées par livre -->
   <url>
-    <loc>https://hakvision243.netlify.app/congo-martyrs.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <loc>https://hakvision243.netlify.app/un-ecrivain-kinshasa.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/un_ecrivain_kinshasa_cover_2.jpg</image:loc>
+      <image:title>Un Écrivain à Kinshasa — Merveil Hakeem Dianzenza</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://hakvision243.netlify.app/oeil-kulala.html</loc>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://hakvision243.netlify.app/congo-martyrs.html</loc>
+    <lastmod>2026-06-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/congo_martyrs_cover.jpg</image:loc>
+      <image:title>Congo des Martyrs — Merveil Hakeem Dianzenza</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://hakvision243.netlify.app/politique-magazine.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hakvision243.netlify.app/kamerun-1945.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/kamerun_1945_cover.jpg</image:loc>
+      <image:title>KAMERUN 1945 — La Question Interdite, Merveil Hakeem Dianzenza</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://hakvision243.netlify.app/zikila.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://hakvision243.netlify.app/jumeaux-infini.html</loc>
-    <lastmod>2026-06-13</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-  </url>
-
-  <!-- Livres et catalogue -->
-  <url>
-    <loc>https://hakvision243.netlify.app/livres.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://hakvision243.netlify.app/catalogue.html</loc>
-    <lastmod>2026-06-09</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
   </url>
 
   <!-- Papa Masambukidi -->
   <url>
     <loc>https://hakvision243.netlify.app/papa-masambukidi.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -120,7 +151,7 @@
   <!-- Presse -->
   <url>
     <loc>https://hakvision243.netlify.app/press.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -128,7 +159,7 @@
   <!-- OkapiPlay -->
   <url>
     <loc>https://hakvision243.netlify.app/okapiplay.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -136,7 +167,7 @@
   <!-- Contact -->
   <url>
     <loc>https://hakvision243.netlify.app/contact.html</loc>
-    <lastmod>2026-06-09</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

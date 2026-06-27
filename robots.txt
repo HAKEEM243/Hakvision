@@ -4,16 +4,38 @@ Allow: /
 # Sitemap
 Sitemap: https://hakvision243.netlify.app/sitemap.xml
 
-# Pages importantes
+# Pages importantes — livres
 Allow: /index.html
 Allow: /bio.html
-Allow: /prix-litteraires.html
-Allow: /catalogue.html
-Allow: /livres.html
 Allow: /katiopa.html
+Allow: /diaku.html
+Allow: /oeil-tome2.html
+Allow: /oeil-kulala.html
+Allow: /un-ecrivain-kinshasa.html
 Allow: /papa-masambukidi.html
+Allow: /congo-martyrs.html
+Allow: /kamerun-1945.html
+Allow: /zikila.html
+Allow: /jumeaux-infini.html
+Allow: /politique-magazine.html
+
+# Pages navigation
+Allow: /livres.html
+Allow: /catalogue.html
+Allow: /prix-litteraires.html
 Allow: /press.html
 Allow: /okapiplay.html
 Allow: /contact.html
 
-Crawl-delay: 1
+# Médias
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.css
+Allow: /manifest.json
+Allow: /sw.js
+
+# Exclure pages techniques
+Disallow: /prix-litteraires-backup.html
+Disallow: /nouveau-site.html
+Disallow: /google16b193557568efc5.html
