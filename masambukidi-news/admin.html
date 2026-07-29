@@ -139,10 +139,6 @@ textarea.bcast-inp{resize:vertical;min-height:70px;}
     <div class="login-title">Espace Administration</div>
     <div class="login-sub">Connexion réservée aux administrateurs</div>
     <div class="form-group">
-      <label class="form-label" for="l-user">Identifiant</label>
-      <input class="form-ctrl" id="l-user" type="text" placeholder="admin" autocomplete="username">
-    </div>
-    <div class="form-group">
       <label class="form-label" for="l-pass">Mot de passe</label>
       <input class="form-ctrl" id="l-pass" type="password" placeholder="••••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
@@ -276,8 +272,11 @@ textarea.bcast-inp{resize:vertical;min-height:70px;}
 
     <!-- SUBSCRIBERS LIST -->
     <div class="asec">
-      <div class="asec-title"><i class="fa-solid fa-users"></i> Abonnés e-mail (cache local)</div>
-      <p style="font-size:.78rem;color:var(--tx3);margin-bottom:1rem;">Liste des abonnés enregistrés localement. Pour la liste complète, consultez <a href="https://app.brevo.com" target="_blank" style="color:var(--gold)">app.brevo.com</a>.</p>
+      <div class="asec-title" style="justify-content:space-between;">
+        <span><i class="fa-solid fa-users"></i> Abonnés e-mail</span>
+        <button class="btn btn-outline btn-sm" onclick="loadRealSubscribers()"><i class="fa-solid fa-rotate fa-xs"></i> Actualiser</button>
+      </div>
+      <p style="font-size:.78rem;color:var(--tx3);margin-bottom:1rem;">Liste chargée en direct depuis Brevo via le Worker.</p>
       <div style="overflow-x:auto;">
         <table class="stbl">
           <thead><tr><th>#</th><th>E-mail</th><th>Date inscription</th></tr></thead>
@@ -296,14 +295,13 @@ textarea.bcast-inp{resize:vertical;min-height:70px;}
 <script>
 /* ══════════════════════════════════════════════════════
    CONFIG
+   Aucun secret ici : l'authentification et l'envoi d'e-mails
+   passent par le Worker, qui seul détient la clé Brevo et le
+   mot de passe admin (voir elucco-worker/worker.js).
 ══════════════════════════════════════════════════════ */
-const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'masambukidi2024!';
-// API config assembled at runtime
-const _a1='xkey'+'sib-4e97b65c6d1e2ca69af9ea';const _a2='2876fb829202'+'7c2edfc0560bd6b';const _a3='42a4666a67981e5-z'+'EOPZYdOuqryOnuo';
-const BREVO_KEY  = _a1+_a2+_a3;
-const SENDER_EMAIL = 'arenalse22@gmail.com';
-const SENDER_NAME  = 'ELUCCO — Masambukidiste';
+const WORKER_URL = 'https://elucco-email.arenalse22.workers.dev';
+const SESSION_KEY = 'elucco_admin_token';
+let sessionToken = null;
 
 /* ══════════════════════════════════════════════════════
    STORAGE
@@ -317,33 +315,62 @@ function getPosts(){ return DB.get('elucco_posts',[]); }
 function savePosts(p){ DB.set('elucco_posts',p); }
 function getSubs(){ return DB.get('elucco_subs_local',[]); }
 function addSub(email){ const s=getSubs(); if(!s.includes(email)){ s.push({email,date:new Date().toISOString()}); DB.set('elucco_subs_local',s); } }
+function esc(str){ const d=document.createElement('div'); d.textContent=String(str==null?'':str); return d.innerHTML; }
 
 /* ══════════════════════════════════════════════════════
-   AUTH
+   AUTH — le mot de passe est vérifié côté serveur (Worker) ;
+   seul un jeton de session signé, valable 4h, est renvoyé.
 ══════════════════════════════════════════════════════ */
-function doLogin(){
-  const u=document.getElementById('l-user').value.trim();
+async function doLogin(){
   const p=document.getElementById('l-pass').value;
-  if(u===ADMIN_USER&&p===ADMIN_PASS){
-    DB.set('elucco_admin_auth','1');
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('admin-panel').style.display='block';
-    loadAdmin();
-  } else {
-    const err=document.getElementById('login-err');
+  const err=document.getElementById('login-err');
+  const btn=document.querySelector('.login-btn');
+  err.style.display='none';
+  if(!p){ err.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Mot de passe requis.'; err.style.display='block'; return; }
+  btn.disabled=true;
+  try{
+    const r=await fetch(WORKER_URL+'/api/admin/login',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ password:p })
+    });
+    const data=await r.json();
+    if(r.ok && data.success && data.token){
+      sessionToken=data.token;
+      sessionStorage.setItem(SESSION_KEY, data.token);
+      document.getElementById('login-screen').style.display='none';
+      document.getElementById('admin-panel').style.display='block';
+      document.getElementById('l-pass').value='';
+      loadAdmin();
+    } else {
+      err.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Identifiants incorrects';
+      err.style.display='block';
+      setTimeout(()=>err.style.display='none',3000);
+    }
+  } catch(e){
+    err.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Impossible de contacter le serveur.';
     err.style.display='block';
-    setTimeout(()=>err.style.display='none',3000);
+  } finally {
+    btn.disabled=false;
   }
 }
 function doLogout(){
-  DB.set('elucco_admin_auth','0');
+  sessionToken=null;
+  sessionStorage.removeItem(SESSION_KEY);
   document.getElementById('admin-panel').style.display='none';
   document.getElementById('login-screen').style.display='flex';
-  document.getElementById('l-user').value='';
   document.getElementById('l-pass').value='';
 }
+function handleUnauthorized(){
+  doLogout();
+  const err=document.getElementById('login-err');
+  err.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Session expirée, reconnectez-vous.';
+  err.style.display='block';
+}
 function checkAuth(){
-  if(DB.get('elucco_admin_auth')==='1'){
+  const token=sessionStorage.getItem(SESSION_KEY);
+  if(token){
+    sessionToken=token;
     document.getElementById('login-screen').style.display='none';
     document.getElementById('admin-panel').style.display='block';
     loadAdmin();
@@ -359,6 +386,7 @@ function loadAdmin(){
   updateStats();
   renderPosts();
   renderSubs();
+  loadRealSubscribers();
 }
 
 function updateStats(){
@@ -443,7 +471,7 @@ function renderPosts(){
     const srcIcon={'youtube':'fa-youtube','facebook':'fa-facebook-f','web':'fa-globe'}[p.source]||'fa-globe';
     return `<tr>
       <td>${thumb}</td>
-      <td><strong style="font-size:.82rem">${p.title}</strong>${p.badge?`<br><span style="font-size:.65rem;color:var(--gold)">${p.badge}</span>`:''}</td>
+      <td><strong style="font-size:.82rem">${esc(p.title)}</strong>${p.badge?`<br><span style="font-size:.65rem;color:var(--gold)">${esc(p.badge)}</span>`:''}</td>
       <td><span class="pt-src ${srcClass}"><i class="fa-brands ${srcIcon} fa-xs"></i> ${p.source}</span></td>
       <td style="color:var(--tx3)">${p.date||''}</td>
       <td style="color:var(--tx3)">${p.views||'—'}</td>
@@ -466,17 +494,31 @@ function deletePost(id){
 /* ══════════════════════════════════════════════════════
    RENDER SUBSCRIBERS
 ══════════════════════════════════════════════════════ */
-function renderSubs(){
-  const subs=getSubs();
+function renderSubs(list){
+  const subs=list||getSubs();
   const tbody=document.getElementById('subs-tbody');
   const none=document.getElementById('no-subs');
   if(!subs.length){ tbody.innerHTML=''; none.style.display='block'; return; }
   none.style.display='none';
   tbody.innerHTML=subs.map((s,i)=>`<tr>
     <td style="color:var(--tx3)">${i+1}</td>
-    <td>${s.email||s}</td>
+    <td>${esc(s.email||s)}</td>
     <td style="color:var(--tx3)">${s.date?new Date(s.date).toLocaleDateString('fr-FR'):'-'}</td>
   </tr>`).join('');
+}
+
+/* Fetch the real subscriber list from Brevo via the Worker (admin-only) */
+async function loadRealSubscribers(){
+  if(!sessionToken) return;
+  try{
+    const r=await fetch(WORKER_URL+'/api/subscribers',{ headers:{ 'Authorization':'Bearer '+sessionToken } });
+    if(r.status===401){ handleUnauthorized(); return; }
+    const data=await r.json();
+    if(data.success){
+      document.getElementById('st-subs').textContent=data.count;
+      renderSubs(data.subscribers.map(s=>({ email:s.email, date:s.createdAt||null })));
+    }
+  } catch(e){ /* silent: local cache remains as fallback */ }
 }
 
 /* ══════════════════════════════════════════════════════
@@ -510,37 +552,20 @@ async function broadcastEmail(){
 <div class="ft">© 2026 ELUCCO Masambukidiste — <a href="mailto:masambukidiste1983@gmail.com" style="color:rgba(212,175,55,.6)">masambukidiste1983@gmail.com</a></div>
 </div></body></html>`;
   try{
-    // Send to list ID 2 via campaign... but free plan only allows SMTP
-    // So we send individual transactional emails to locally stored subscribers
-    const subs=getSubs();
-    let sentCount=0;
-    if(subs.length===0){
-      // Also try to send to admin email to confirm it works
-      const r=await fetch('https://api.brevo.com/v3/smtp/email',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','api-key':BREVO_KEY},
-        body:JSON.stringify({ sender:{name:SENDER_NAME,email:SENDER_EMAIL}, to:[{email:SENDER_EMAIL,name:'Admin ELUCCO'}], subject, htmlContent })
-      });
-      if(!r.ok) throw new Error((await r.json()).message||'Erreur API');
-      sentCount=1;
-    } else {
-      for(const s of subs){
-        const email=s.email||s;
-        try{
-          const r=await fetch('https://api.brevo.com/v3/smtp/email',{
-            method:'POST',
-            headers:{'Content-Type':'application/json','api-key':BREVO_KEY},
-            body:JSON.stringify({ sender:{name:SENDER_NAME,email:SENDER_EMAIL}, to:[{email,name:'Fidèle ELUCCO'}], subject, htmlContent })
-          });
-          if(r.ok||r.status===201) sentCount++;
-        } catch{}
-        await new Promise(r=>setTimeout(r,100)); // rate limit
-      }
-    }
-    okEl.innerHTML=`<i class="fa-solid fa-check-circle fa-xs"></i> E-mail envoyé à ${sentCount} abonné(s) avec succès !`;
+    // The Worker holds the Brevo key server-side and broadcasts to the
+    // full real subscriber list (not just this browser's local cache).
+    const r=await fetch(WORKER_URL+'/api/broadcast',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+sessionToken},
+      body:JSON.stringify({ subject, htmlContent })
+    });
+    if(r.status===401){ handleUnauthorized(); return; }
+    const data=await r.json();
+    if(!data.success) throw new Error(data.message||'Erreur API');
+    okEl.innerHTML=`<i class="fa-solid fa-check-circle fa-xs"></i> E-mail envoyé à ${data.sent} abonné(s) avec succès !`;
     okEl.style.display='block';
     ['bc-subject','bc-body','bc-link'].forEach(id=>document.getElementById(id).value='');
-    showToast(`${sentCount} e-mail(s) envoyé(s) !`);
+    showToast(`${data.sent} e-mail(s) envoyé(s) !`);
   } catch(e){
     errEl.innerHTML=`<i class="fa-solid fa-circle-xmark fa-xs"></i> Erreur : ${e.message}`;
     errEl.style.display='block';
