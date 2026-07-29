@@ -1,18 +1,24 @@
 /**
  * ELUCCO Cloudflare Worker - Email & Notification Service
- * Handles subscriptions via Brevo API (no CORS issues)
+ * Handles subscriptions via Brevo API (no CORS issues) and protects
+ * admin-only actions (broadcast, subscriber export) behind a signed
+ * session token — no secret ever ships to the browser.
+ *
+ * Required Worker secrets (Cloudflare dashboard → Worker → Settings →
+ * Variables and Secrets, or `wrangler secret put <NAME>`):
+ *   BREVO_KEY       Brevo transactional API key
+ *   ADMIN_PASSWORD  Password for the ELUCCO admin panel
+ *   SESSION_SECRET  Long random string used to sign admin session tokens
+ *                    (e.g. `openssl rand -hex 32`)
+ *
+ * None of these values should ever be committed to source control.
  */
-
-const BREVO_KEY = [
-  'xkeysib-4e97b65c6d1e2ca69af9ea',
-  '2876fb8292027c2edfc0560bd6b',
-  '42a4666a67981e5-zEOPZYdOuqryOnuo'
-].join('');
 
 const SENDER_EMAIL = 'arenalse22@gmail.com';
 const SENDER_NAME = 'ELUCCO — Masambukidiste';
 const SITE_URL = 'https://elucco.pages.dev';
 const LIST_ID = 2;
+const SESSION_TTL_SECONDS = 60 * 60 * 4; // 4h
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -21,11 +27,61 @@ const CORS_HEADERS = {
   'Content-Type': 'application/json',
 };
 
-async function addBrevoContact(email, firstName) {
-  const resp = await fetch('https://api.brevo.com/v3/contacts', {
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), { status, headers: CORS_HEADERS });
+}
+
+/* ── Session tokens: stateless, HMAC-SHA256 signed, short-lived ── */
+async function hmacSign(secret, message) {
+  const key = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  const sig = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(message));
+  return btoa(String.fromCharCode(...new Uint8Array(sig)))
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+}
+
+async function createSessionToken(secret) {
+  const expires = Math.floor(Date.now() / 1000) + SESSION_TTL_SECONDS;
+  const sig = await hmacSign(secret, String(expires));
+  return `${expires}.${sig}`;
+}
+
+async function verifySessionToken(token, secret) {
+  if (!token || typeof token !== 'string') return false;
+  const [expiresStr, sig] = token.split('.');
+  if (!expiresStr || !sig) return false;
+  const expected = await hmacSign(secret, expiresStr);
+  if (expected !== sig) return false;
+  const expires = parseInt(expiresStr, 10);
+  return Number.isFinite(expires) && Date.now() / 1000 < expires;
+}
+
+function timingSafeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string' || a.length !== b.length) return false;
+  let result = 0;
+  for (let i = 0; i < a.length; i++) result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return result === 0;
+}
+
+async function requireAdmin(request, env) {
+  const auth = request.headers.get('Authorization') || '';
+  const token = auth.startsWith('Bearer ') ? auth.slice(7) : '';
+  return verifySessionToken(token, env.SESSION_SECRET);
+}
+
+/* ── Brevo helpers ── */
+async function addBrevoContact(email, firstName, env) {
+  return fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
     headers: {
-      'api-key': BREVO_KEY,
+      'api-key': env.BREVO_KEY,
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     },
@@ -36,10 +92,9 @@ async function addBrevoContact(email, firstName) {
       updateEnabled: true,
     }),
   });
-  return resp;
 }
 
-async function sendWelcomeEmail(email, firstName) {
+async function sendWelcomeEmail(email, firstName, env) {
   const name = firstName || 'Masambukidiste';
   const html = `
 <!DOCTYPE html>
@@ -70,9 +125,9 @@ async function sendWelcomeEmail(email, firstName) {
               Cher(e) Masambukidiste,
             </p>
             <p style="font-size:15px;line-height:1.8;color:#c0c0c0;margin-bottom:20px;">
-              Vous êtes maintenant abonné(e) au site officiel d'<strong style="color:#c9a84c;">ELUCCO</strong> — 
-              Eglise Lumière du Christ au Congo, sous la guidance spirituelle de 
-              <strong style="color:#c9a84c;">Sa Majesté Masambukidi Samuel I</strong>, 
+              Vous êtes maintenant abonné(e) au site officiel d'<strong style="color:#c9a84c;">ELUCCO</strong> —
+              Eglise Lumière du Christ au Congo, sous la guidance spirituelle de
+              <strong style="color:#c9a84c;">Sa Majesté Masambukidi Samuel I</strong>,
               Roi Divin du Bassin du Kongo.
             </p>
             <p style="font-size:15px;line-height:1.8;color:#c0c0c0;margin-bottom:30px;">
@@ -141,7 +196,7 @@ async function sendWelcomeEmail(email, firstName) {
   const resp = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: {
-      'api-key': BREVO_KEY,
+      'api-key': env.BREVO_KEY,
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     },
@@ -156,13 +211,13 @@ async function sendWelcomeEmail(email, firstName) {
   return { status: resp.status, data };
 }
 
-async function sendBroadcastEmail(toList, subject, htmlContent) {
+async function sendBroadcastEmail(toList, subject, htmlContent, env) {
   const results = [];
   for (const contact of toList) {
     const resp = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
-        'api-key': BREVO_KEY,
+        'api-key': env.BREVO_KEY,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -173,13 +228,14 @@ async function sendBroadcastEmail(toList, subject, htmlContent) {
       }),
     });
     results.push({ email: contact.email, status: resp.status });
+    await new Promise((r) => setTimeout(r, 100)); // stay under Brevo rate limits
   }
   return results;
 }
 
-async function getSubscribers() {
-  const resp = await fetch(`https://api.brevo.com/v3/contacts?listId=${LIST_ID}&limit=100`, {
-    headers: { 'api-key': BREVO_KEY, 'Accept': 'application/json' },
+async function getSubscribers(env) {
+  const resp = await fetch(`https://api.brevo.com/v3/contacts?listId=${LIST_ID}&limit=500`, {
+    headers: { 'api-key': env.BREVO_KEY, 'Accept': 'application/json' },
   });
   if (!resp.ok) return [];
   const data = await resp.json();
@@ -188,76 +244,89 @@ async function getSubscribers() {
 
 export default {
   async fetch(request, env) {
-    // Handle preflight
     if (request.method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: CORS_HEADERS });
     }
 
     const url = new URL(request.url);
 
-    // POST /api/subscribe
+    if (!env.BREVO_KEY || !env.ADMIN_PASSWORD || !env.SESSION_SECRET) {
+      return json({ success: false, message: 'Worker mal configuré : secrets manquants (BREVO_KEY / ADMIN_PASSWORD / SESSION_SECRET).' }, 500);
+    }
+
+    // POST /api/subscribe — public
     if (request.method === 'POST' && url.pathname === '/api/subscribe') {
       try {
         const body = await request.json();
         const { email, firstName } = body;
         if (!email || !email.includes('@')) {
-          return new Response(JSON.stringify({ success: false, message: 'Email invalide.' }), { status: 400, headers: CORS_HEADERS });
+          return json({ success: false, message: 'Email invalide.' }, 400);
         }
-        // 1. Add to Brevo contact list
-        await addBrevoContact(email, firstName);
-        // 2. Send welcome email
-        const emailResult = await sendWelcomeEmail(email, firstName);
-        console.log('Welcome email result:', JSON.stringify(emailResult));
-        return new Response(JSON.stringify({
+        await addBrevoContact(email, firstName, env);
+        const emailResult = await sendWelcomeEmail(email, firstName, env);
+        return json({
           success: true,
           message: `Bienvenue ${firstName || ''} ! Un email de bienvenue vous a été envoyé à ${email}.`,
           emailStatus: emailResult.status,
-        }), { status: 200, headers: CORS_HEADERS });
+        });
       } catch (err) {
-        return new Response(JSON.stringify({ success: false, message: 'Erreur serveur: ' + err.message }), { status: 500, headers: CORS_HEADERS });
+        return json({ success: false, message: 'Erreur serveur: ' + err.message }, 500);
       }
     }
 
-    // POST /api/broadcast (admin)
-    if (request.method === 'POST' && url.pathname === '/api/broadcast') {
+    // POST /api/admin/login — issues a short-lived signed session token
+    if (request.method === 'POST' && url.pathname === '/api/admin/login') {
       try {
-        const body = await request.json();
-        const { adminKey, subject, htmlContent, contacts } = body;
-        // Simple auth check
-        if (adminKey !== 'masambukidi2024!') {
-          return new Response(JSON.stringify({ success: false, message: 'Non autorisé.' }), { status: 401, headers: CORS_HEADERS });
+        const { password } = await request.json();
+        if (!timingSafeEqual(String(password || ''), env.ADMIN_PASSWORD)) {
+          return json({ success: false, message: 'Identifiants incorrects.' }, 401);
+        }
+        const token = await createSessionToken(env.SESSION_SECRET);
+        return json({ success: true, token, expiresIn: SESSION_TTL_SECONDS });
+      } catch (err) {
+        return json({ success: false, message: 'Erreur: ' + err.message }, 500);
+      }
+    }
+
+    // POST /api/broadcast — admin only (Authorization: Bearer <token>)
+    if (request.method === 'POST' && url.pathname === '/api/broadcast') {
+      if (!(await requireAdmin(request, env))) {
+        return json({ success: false, message: 'Non autorisé.' }, 401);
+      }
+      try {
+        const { subject, htmlContent, contacts } = await request.json();
+        if (!subject || !htmlContent) {
+          return json({ success: false, message: 'Sujet et contenu requis.' }, 400);
         }
         let toList = contacts;
         if (!toList || toList.length === 0) {
-          // Get from Brevo
-          const subs = await getSubscribers();
-          toList = subs.map(s => ({ email: s.email, name: (s.attributes && s.attributes.FIRSTNAME) || 'Masambukidiste' }));
+          const subs = await getSubscribers(env);
+          toList = subs.map((s) => ({ email: s.email, name: (s.attributes && s.attributes.FIRSTNAME) || 'Masambukidiste' }));
         }
         if (!toList || toList.length === 0) {
-          return new Response(JSON.stringify({ success: false, message: 'Aucun abonné trouvé.' }), { status: 200, headers: CORS_HEADERS });
+          return json({ success: false, message: 'Aucun abonné trouvé.' });
         }
-        const results = await sendBroadcastEmail(toList, subject, htmlContent);
-        return new Response(JSON.stringify({ success: true, sent: results.length, results }), { status: 200, headers: CORS_HEADERS });
+        const results = await sendBroadcastEmail(toList, subject, htmlContent, env);
+        return json({ success: true, sent: results.length, results });
       } catch (err) {
-        return new Response(JSON.stringify({ success: false, message: 'Erreur: ' + err.message }), { status: 500, headers: CORS_HEADERS });
+        return json({ success: false, message: 'Erreur: ' + err.message }, 500);
       }
     }
 
-    // GET /api/subscribers (admin)
+    // GET /api/subscribers — admin only (Authorization: Bearer <token>)
     if (request.method === 'GET' && url.pathname === '/api/subscribers') {
-      const authKey = url.searchParams.get('key');
-      if (authKey !== 'masambukidi2024!') {
-        return new Response(JSON.stringify({ success: false, message: 'Non autorisé.' }), { status: 401, headers: CORS_HEADERS });
+      if (!(await requireAdmin(request, env))) {
+        return json({ success: false, message: 'Non autorisé.' }, 401);
       }
-      const subs = await getSubscribers();
-      return new Response(JSON.stringify({ success: true, count: subs.length, subscribers: subs }), { status: 200, headers: CORS_HEADERS });
+      const subs = await getSubscribers(env);
+      return json({ success: true, count: subs.length, subscribers: subs });
     }
 
     // Health check
     if (url.pathname === '/api/health' || url.pathname === '/') {
-      return new Response(JSON.stringify({ status: 'ok', service: 'ELUCCO Email Worker', version: '2.0' }), { status: 200, headers: CORS_HEADERS });
+      return json({ status: 'ok', service: 'ELUCCO Email Worker', version: '3.0' });
     }
 
-    return new Response(JSON.stringify({ error: 'Route non trouvée' }), { status: 404, headers: CORS_HEADERS });
+    return json({ error: 'Route non trouvée' }, 404);
   },
 };
