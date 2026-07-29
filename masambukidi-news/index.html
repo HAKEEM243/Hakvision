@@ -149,6 +149,8 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
   text-shadow:0 0 20px rgba(201,168,76,0.8);
 }
 .march-sub{color:rgba(255,255,255,0.8);font-size:0.8rem;letter-spacing:2px}
+.banner-close{position:absolute;top:8px;right:14px;cursor:pointer;color:rgba(255,255,255,0.6);font-size:0.85rem;transition:color .2s;z-index:5}
+.banner-close:hover{color:var(--gold)}
 .march-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .march-particle{
   position:absolute;width:6px;height:6px;border-radius:50%;
@@ -215,8 +217,8 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
   padding:12px 24px;
 }
 .nav-brand{display:flex;align-items:center;gap:12px}
-.nav-logo{width:44px;height:44px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(201,168,76,0.5))}
-.nav-logo-2{width:36px;height:36px;object-fit:contain;opacity:0.8}
+.nav-logo{width:44px;height:44px;object-fit:cover;border-radius:50%;border:1.5px solid rgba(201,168,76,0.6);background:var(--dark3);filter:drop-shadow(0 0 8px rgba(201,168,76,0.5))}
+.nav-logo-2{width:36px;height:36px;object-fit:cover;border-radius:50%;border:1.5px solid rgba(201,168,76,0.4);background:var(--dark3);opacity:0.9}
 .nav-title{
   font-family:var(--font-title);font-size:1.4rem;font-weight:900;
   color:var(--gold);letter-spacing:4px;
@@ -233,11 +235,6 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
 .nav-link:hover,.nav-link.active{
   color:var(--gold);background:rgba(201,168,76,0.12);
 }
-.nav-link.admin-btn{
-  background:linear-gradient(135deg,rgba(201,168,76,0.2),rgba(201,168,76,0.1));
-  border:1px solid rgba(201,168,76,0.3);color:var(--gold);
-}
-.nav-link.admin-btn:hover{background:rgba(201,168,76,0.25)}
 .nav-install-btn{
   padding:8px 16px;border-radius:20px;
   background:linear-gradient(135deg,var(--green),var(--green-light));
@@ -310,12 +307,14 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
   margin-bottom:32px;
 }
 .hero-logo{
-  width:70px;height:70px;object-fit:contain;
+  width:70px;height:70px;object-fit:cover;border-radius:50%;
+  border:2px solid rgba(201,168,76,0.7);background:var(--dark3);
   filter:drop-shadow(0 0 20px rgba(201,168,76,0.6));
   animation:float 4s ease-in-out infinite;
 }
 .hero-logo-2{
-  width:56px;height:56px;object-fit:contain;
+  width:56px;height:56px;object-fit:cover;border-radius:50%;
+  border:2px solid rgba(201,168,76,0.5);background:var(--dark3);
   filter:drop-shadow(0 0 15px rgba(201,168,76,0.4));
   animation:float 4s ease-in-out infinite 1s;
 }
@@ -1333,12 +1332,13 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
   <div class="notif-perm-desc">Recevez des rappels pour les jours de culte et les dates sacrées importantes.</div>
   <div class="notif-perm-btns">
     <button class="notif-allow" onclick="requestNotifPermission()">Activer</button>
-    <button class="notif-deny" onclick="document.getElementById('notif-perm-banner').classList.remove('show')">Plus tard</button>
+    <button class="notif-deny" onclick="dismissNotifPrompt()">Plus tard</button>
   </div>
 </div>
 
 <!-- MARCH 6 BANNER -->
 <div id="march-banner">
+  <div class="banner-close" onclick="dismissBanner('march-banner-'+new Date().getFullYear(), this.parentElement)">&#10005;</div>
   <div class="march-particles" id="march-particles"></div>
   <div class="march-hearts" id="march-hearts">💚 💛 💚 💛 💚</div>
   <div class="march-title">VIVE LE 6 MARS — BONNE FETE A TOUTE LA COMMUNAUTE MASAMBUKIDISTE DANS LE MONDE ENTIER !</div>
@@ -1387,7 +1387,6 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
       <a class="nav-link" onclick="showTab('calendrier')">Calendrier</a>
       <a class="nav-link" onclick="showTab('cultes')">Cultes</a>
       <a class="nav-link" onclick="showTab('reseaux')">Reseaux</a>
-      <a class="nav-link admin-btn" href="admin.html"><i class="fas fa-shield-alt"></i> Admin</a>
       <button class="nav-install-btn" id="nav-install-btn" onclick="installApp()"><i class="fas fa-download"></i> Installer</button>
     </div>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -1404,7 +1403,6 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
   <a class="nav-link" onclick="showTab('calendrier');toggleMenu()">Calendrier</a>
   <a class="nav-link" onclick="showTab('cultes');toggleMenu()">Cultes</a>
   <a class="nav-link" onclick="showTab('reseaux');toggleMenu()">Reseaux</a>
-  <a class="nav-link admin-btn" href="admin.html"><i class="fas fa-shield-alt"></i> Admin</a>
   <button class="nav-install-btn show" onclick="installApp()"><i class="fas fa-download"></i> Installer l'application</button>
 </div>
 
@@ -1791,7 +1789,6 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
       <div class="footer-links">
         <a href="mailto:masambukidiste1983@gmail.com" class="footer-link">masambukidiste1983@gmail.com</a>
         <a href="https://masambukidi-protection.pages.dev/" target="_blank" class="footer-link">Site de Protection</a>
-        <a href="admin.html" class="footer-link">Administration</a>
       </div>
     </div>
   </div>
@@ -1939,11 +1936,13 @@ function checkMarchBanner(){
   const now=new Date();
   const m=now.getMonth()+1;
   const d=now.getDate();
+  const year=now.getFullYear();
   // Remove any existing banners first
   document.querySelectorAll('.date-banner-dynamic').forEach(b=>b.remove());
   // Find the matching banner
   const matched=DATE_BANNERS.find(b=>b.check(m,d));
   if(matched){
+    if(isBannerDismissed(matched.id+'-'+year)) return;
     // Also show the original march banner if it's the march one
     const origBanner=document.getElementById('march-banner');
     if(origBanner && m===3 && d>=5 && d<=8){
@@ -1955,16 +1954,28 @@ function checkMarchBanner(){
       bannerEl.className='date-banner-dynamic show';
       bannerEl.id=matched.id;
       bannerEl.style.cssText=`position:relative;${matched.style}padding:16px 20px;text-align:center;overflow:hidden;z-index:200;animation:slideDown 0.6s ease,marchBanner 4s ease infinite;background-size:400% 400%;`;
-      bannerEl.innerHTML=matched.html+'<div class="march-particles" id="dynamic-particles"></div>';
+      bannerEl.innerHTML=matched.html+`<div class="banner-close" onclick="dismissBanner('${matched.id}-${year}', this.parentElement)">&#10005;</div><div class="march-particles" id="dynamic-particles"></div>`;
       const notifBar=document.getElementById('notif-bar');
       if(notifBar) notifBar.parentNode.insertBefore(bannerEl,notifBar);
       else document.body.prepend(bannerEl);
       createParticles();
     }
   } else if(m===3 && d>=5 && d<=8){
+    if(isBannerDismissed('march-banner-'+year)) return;
     const banner=document.getElementById('march-banner');
     if(banner){banner.classList.add('show');createParticles();}
   }
+}
+
+function isBannerDismissed(id){
+  const d=getLS('elucco_dismissed_banners',{});
+  return !!d[id];
+}
+function dismissBanner(id, el){
+  const d=getLS('elucco_dismissed_banners',{});
+  d[id]=true;
+  setLS('elucco_dismissed_banners',d);
+  if(el) el.style.display='none';
 }
 
 function createParticles(){
@@ -2531,15 +2542,22 @@ function installApp(){
 /* ═══════════════════════════════════════════════
    PUSH NOTIFICATIONS
 ═══════════════════════════════════════════════ */
+const NOTIF_SNOOZE_DAYS=14;
 function checkNotifPermission(){
   if(!('Notification' in window)) return;
   const dismissed=getLS('notif_dismissed',false);
   if(dismissed) return;
+  const snoozedUntil=getLS('notif_snoozed_until',0);
+  if(Date.now()<snoozedUntil) return;
   if(Notification.permission==='default'){
     setTimeout(()=>{
       document.getElementById('notif-perm-banner')?.classList.add('show');
     },5000);
   }
+}
+function dismissNotifPrompt(){
+  document.getElementById('notif-perm-banner')?.classList.remove('show');
+  setLS('notif_snoozed_until', Date.now()+NOTIF_SNOOZE_DAYS*86400000);
 }
 
 async function requestNotifPermission(){
