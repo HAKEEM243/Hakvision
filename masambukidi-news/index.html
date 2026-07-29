@@ -158,6 +158,34 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
 }
 
 /* ═══════════════════════════════════════════════
+   KING'S BIRTHDAY COUNTDOWN (rendered inside the
+   July 30 date-banner — see DATE_BANNERS / checkMarchBanner)
+═══════════════════════════════════════════════ */
+.king-crown{font-size:1.8rem;animation:float 2.5s ease-in-out infinite;filter:drop-shadow(0 0 12px rgba(240,208,96,0.7))}
+.king-countdown-msg{
+  font-family:var(--font-title);font-weight:700;color:var(--gold-light);
+  font-size:1.05rem;letter-spacing:1.5px;margin:6px 0 2px;
+  text-shadow:0 0 20px rgba(201,168,76,0.8);
+}
+.king-countdown-sub{color:rgba(255,255,255,0.75);font-size:0.78rem;letter-spacing:1.5px;margin-bottom:12px}
+.king-countdown-clock{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.king-countdown-unit{
+  background:rgba(0,0,0,0.3);border:1px solid rgba(240,208,96,0.4);border-radius:10px;
+  padding:8px 14px;min-width:64px;
+}
+.king-countdown-num{font-family:var(--font-title);font-size:1.5rem;font-weight:900;color:var(--white);line-height:1}
+.king-countdown-label{font-size:0.6rem;letter-spacing:1px;color:rgba(255,255,255,0.6);text-transform:uppercase;margin-top:3px}
+.king-countdown-today{
+  font-family:var(--font-title);font-size:1.3rem;font-weight:900;color:var(--gold-light);
+  letter-spacing:2px;text-shadow:0 0 25px rgba(240,208,96,0.9);
+}
+@media(max-width:480px){
+  .king-countdown-msg{font-size:0.9rem}
+  .king-countdown-unit{min-width:52px;padding:6px 10px}
+  .king-countdown-num{font-size:1.2rem}
+}
+
+/* ═══════════════════════════════════════════════
    NOTIFICATION BAR
 ═══════════════════════════════════════════════ */
 #notif-bar{
@@ -1900,11 +1928,13 @@ const DATE_BANNERS = [
   },
   {
     id:'banner-juillet30',
-    check:(m,d)=>m===7&&d>=28&&d<=31,
-    html:`<div class="march-hearts">👑 ✦ 👑</div>
-    <div class="march-title">VIVE SA MAJESTE ! BONNE FETE D'ANNIVERSAIRE A SA MAJESTE MASAMBUKIDI SAMUEL I !</div>
-    <div class="march-sub">Naissance de Sa Majeste Samuel I — Roi Divin du Bassin du Kongo &middot; 30 Juillet</div>`,
-    style:'background:linear-gradient(270deg,#2a0d0d,#4a1a1a,#7d2d2d,#4a1a1a,#2a0d0d);border-bottom:2px solid #f0d060;border-top:2px solid #f0d060;'
+    check:(m,d)=>m===7&&d>=23&&d<=30,
+    html:`<div class="king-crown">👑</div>
+    <div class="march-title">LONGUE VIE AU GRAND ROI DIVIN, MASAMBUKIDI PREMIER !</div>
+    <div class="march-sub">Anniversaire de Sa Majeste Masambukidi Samuel I — Roi Divin du Bassin du Kongo &middot; 30 Juillet</div>
+    <div class="king-countdown-clock" id="king-countdown-clock"></div>`,
+    style:'background:linear-gradient(270deg,#2a0d0d,#4a1a1a,#7d2d2d,#4a1a1a,#2a0d0d);border-bottom:2px solid #f0d060;border-top:2px solid #f0d060;',
+    onShow:startKingCountdown
   },
   {
     id:'banner-octobre20',
@@ -1959,6 +1989,7 @@ function checkMarchBanner(){
       if(notifBar) notifBar.parentNode.insertBefore(bannerEl,notifBar);
       else document.body.prepend(bannerEl);
       createParticles();
+      if(typeof matched.onShow==='function') matched.onShow();
     }
   } else if(m===3 && d>=5 && d<=8){
     if(isBannerDismissed('march-banner-'+year)) return;
@@ -1976,6 +2007,34 @@ function dismissBanner(id, el){
   d[id]=true;
   setLS('elucco_dismissed_banners',d);
   if(el) el.style.display='none';
+}
+
+let kingCountdownTimer=null;
+function startKingCountdown(){
+  if(kingCountdownTimer) clearInterval(kingCountdownTimer);
+  const now=new Date();
+  const target=new Date(now.getFullYear(),6,30,0,0,0); // 30 Juillet, minuit
+  function tick(){
+    const clockEl=document.getElementById('king-countdown-clock');
+    if(!clockEl){ clearInterval(kingCountdownTimer); return; }
+    const diff=target-new Date();
+    if(diff<=0){
+      clockEl.innerHTML='<div class="king-countdown-today">C\'EST AUJOURD\'HUI ! 🎉</div>';
+      clearInterval(kingCountdownTimer);
+      return;
+    }
+    const days=Math.floor(diff/86400000);
+    const hours=Math.floor((diff%86400000)/3600000);
+    const minutes=Math.floor((diff%3600000)/60000);
+    const seconds=Math.floor((diff%60000)/1000);
+    clockEl.innerHTML=`
+      <div class="king-countdown-unit"><div class="king-countdown-num">${days}</div><div class="king-countdown-label">Jours</div></div>
+      <div class="king-countdown-unit"><div class="king-countdown-num">${String(hours).padStart(2,'0')}</div><div class="king-countdown-label">Heures</div></div>
+      <div class="king-countdown-unit"><div class="king-countdown-num">${String(minutes).padStart(2,'0')}</div><div class="king-countdown-label">Min</div></div>
+      <div class="king-countdown-unit"><div class="king-countdown-num">${String(seconds).padStart(2,'0')}</div><div class="king-countdown-label">Sec</div></div>`;
+  }
+  tick();
+  kingCountdownTimer=setInterval(tick,1000);
 }
 
 function createParticles(){
