@@ -3,16 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="ELUCCO — Eglise Lumière du Christ au Congo. Site officiel de Sa Majesté Masambukidi Ier, Masambukidi roi divin du Bassin du Kongo. Actualités : visite du sénateur Didier Mumengi, livre Roi du Bassin du Kongo.">
-<meta name="keywords" content="Masambukidi roi divin, Sa Majeste Masambukidi Ier, Roi divin du Bassin du Kongo, ELUCCO, Didier Mumengi, Didier Mumengi Masambukidi, Roi du Bassin du Kongo, Simon Kimbangu, Kinshasa">
+<meta name="description" content="ELUCCO — Eglise Lumière du Christ au Congo. Site officiel de Sa Majesté Masambukidi Ier, Masambukidi roi divin du Bassin du Kongo. RDC : Didier Mumengi reçu par Sa Majesté Masambukidi Ier à Kinshasa, 9 août 2026. Livre : Roi du Bassin du Kongo, disponible sur Amazon.">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="author" content="ELUCCO — Eglise Lumière du Christ au Congo">
+<meta name="keywords" content="Masambukidi roi divin, Sa Majeste Masambukidi Ier, Roi divin du Bassin du Kongo, ELUCCO, Didier Mumengi, Didier Mumengi Masambukidi, Roi du Bassin du Kongo, Simon Kimbangu, Kinshasa, RDC, Masambukidi Samuel I, sénateur Mumengi, couronnement 30 octobre 2025, livre roi bassin Kongo, Eglise Lumiere Christ Congo">
 <meta name="theme-color" content="#c9a84c">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ELUCCO">
 <meta property="og:title" content="ELUCCO — Masambukidi roi divin du Bassin du Kongo">
 <meta property="og:description" content="Site officiel de Sa Majesté Masambukidi Ier, roi divin du Bassin du Kongo. Le sénateur Didier Mumengi reçu à Kinshasa le 9 août 2026.">
-<meta property="og:image" content="mumengi_masambukidi_ensemble.jpg">
-<title>ELUCCO — Masambukidi roi divin du Bassin du Kongo</title>
+<meta property="og:image" content="mumengi_masambukidi_new_1.jpg">
+<meta property="og:image:alt" content="Didier Mumengi et Sa Majesté Masambukidi Ier — Kinshasa, 9 août 2026">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RDC : Didier Mumengi reçu par Sa Majesté Masambukidi Ier à Kinshasa">
+<meta name="twitter:description" content="Le sénateur Didier Mumengi accueilli le 9 août 2026 par Sa Majesté Masambukidi Ier, Roi divin du Bassin du Kongo — Kinshasa.">
+<meta name="twitter:image" content="mumengi_masambukidi_new_1.jpg">
+<link rel="canonical" href="https://elucco.pages.dev/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ELUCCO — Masambukidi roi divin du Bassin du Kongo",
+  "url": "https://elucco.pages.dev/",
+  "description": "Site officiel de Sa Majesté Masambukidi Ier, Roi divin du Bassin du Kongo. ELUCCO — Eglise Lumière du Christ au Congo.",
+  "inLanguage": "fr",
+  "about": {
+    "@type": "Person",
+    "name": "Samuel Nitufuidi Masambukidi Kulala Kwamakanda",
+    "alternateName": ["Masambukidi Ier", "Masambukidi roi divin", "Sa Majesté Masambukidi Samuel I"],
+    "jobTitle": "Roi Divin du Bassin du Kongo"
+  }
+}
+<\/script>
+<title>ELUCCO — Masambukidi roi divin du Bassin du Kongo | RDC : Didier Mumengi reçu par Sa Majesté Masambukidi Ier</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="elucco_logo_officiel.png">
 <link rel="apple-touch-icon" href="elucco_logo_officiel.png">
@@ -278,7 +302,7 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
 }
 .hero-bg{
   position:absolute;inset:0;
-  background-image:url('papa_masambukidi_couronne.jpg');
+  background-image:url('masambukidi_trone_officiel.jpg');
   background-size:cover;background-position:center top;
   transform:scale(1.05);
   transition:transform 20s ease;
@@ -925,6 +949,37 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
 ═══════════════════════════════════════════════ */
 .bio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:30px}
 @media(max-width:480px){.bio-grid{grid-template-columns:1fr}}
+
+/* ═══════════════════════════════════════════════
+   MUMENGI & LIVRE SECTIONS RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:900px){
+  .mumengi-grid{grid-template-columns:1fr!important;}
+  .livre-grid{grid-template-columns:1fr!important;gap:36px!important;}
+  .livre-grid>div:first-child{max-width:260px;margin:0 auto;}
+  .mumengi-photos-grid{grid-template-columns:repeat(2,1fr)!important;}
+}
+@media(max-width:580px){
+  .mumengi-photos-grid{grid-template-columns:repeat(2,1fr)!important;}
+  #mumengi-section,#livre-section{padding:50px 0!important;}
+}
+
+/* Global lightbox for direct images */
+#direct-lightbox{
+  position:fixed;inset:0;z-index:3000;
+  background:rgba(0,0,0,0.95);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;
+}
+#direct-lightbox.open{display:flex;}
+#direct-lightbox img{max-width:92vw;max-height:88vh;object-fit:contain;border-radius:10px;}
+#direct-lightbox-close{
+  position:absolute;top:20px;right:24px;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+  color:#fff;font-size:1.2rem;display:grid;place-items:center;cursor:pointer;
+  font-family:sans-serif;line-height:1;
+}
 .bio-card{
   background:var(--card-bg);border:1px solid var(--card-border);
   border-radius:var(--radius-lg);overflow:hidden;
@@ -1372,10 +1427,11 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
     <span class="ticker-item">Sa Majeste Masambukidi I &mdash; Roi Divin du Bassin du Kongo</span>
     <span class="ticker-item">Culte Paris : Dimanche 15h30 &mdash; 47 Bd de la Muette, Garges-les-Gonesse</span>
     <span class="ticker-item">Culte Kinshasa : Dimanche 9h30 | Mercredi &amp; Vendredi 16h00</span>
-    <span class="ticker-item">ELUCCO rayonne sur les 5 continents</span>
+    <span class="ticker-item">🏛 Didier Mumengi recu par Sa Majeste Masambukidi Ier a Kinshasa — 9 Aout 2026</span>
     <span class="ticker-item">Intronisation de Sa Majeste Samuel I &mdash; 30 Octobre 2025</span>
+    <span class="ticker-item">📖 Livre : Roi du Bassin du Kongo — Commander sur Amazon</span>
     <span class="ticker-item">Naissance de Papa Samy Masambukidi &mdash; 6 Mars 1958</span>
-    <span class="ticker-item">Abonnez-vous pour recevoir les actualites ELUCCO</span>
+    <span class="ticker-item">ELUCCO rayonne sur les 5 continents</span>
     <span class="ticker-item">Sa Majeste Masambukidi I &mdash; Roi Divin du Bassin du Kongo</span>
     <span class="ticker-item">Culte Paris : Dimanche 15h30 &mdash; 47 Bd de la Muette, Garges-les-Gonesse</span>
     <span class="ticker-item">ELUCCO rayonne sur les 5 continents</span>
@@ -1432,7 +1488,7 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
     <div class="hero-eyebrow">Site Officiel &mdash; ELUCCO</div>
     <h1 class="hero-title">
       <span class="line1">Sa Majeste</span>
-      <span class="line2">Masambukidi Samuel I</span>
+      <span class="line2">Masambukidi Ier</span>
     </h1>
     <p class="hero-subtitle">Roi Divin du Bassin du Kongo</p>
     <div class="hero-badges">
@@ -1442,7 +1498,7 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
     </div>
     <div class="hero-ctas">
       <button class="btn-primary" onclick="showTab('actualites')"><i class="fas fa-newspaper"></i> Dernieres Actualites</button>
-      <button class="btn-secondary" onclick="showTab('videos')"><i class="fab fa-youtube"></i> Voir les Videos</button>
+      <button class="btn-secondary" onclick="document.getElementById('mumengi-section').scrollIntoView({behavior:'smooth'})"><i class="fas fa-crown"></i> Visite du Senateur</button>
     </div>
   </div>
   <div class="hero-scroll">
@@ -1450,6 +1506,111 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
     <div class="scroll-indicator"><div class="scroll-dot"></div></div>
   </div>
   <div class="hero-wave"></div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+   SECTION EVENEMENT ROYAL — MUMENGI 9 AOUT 2026
+══════════════════════════════════════════════════ -->
+<section id="mumengi-section" style="padding:80px 0;background:linear-gradient(180deg,var(--dark) 0%,rgba(10,10,26,0.97) 50%,var(--dark) 100%);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 24px;">
+
+    <!-- Section Header -->
+    <div style="text-align:center;margin-bottom:60px;" class="fade-in">
+      <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.35);border-radius:50px;padding:8px 22px;margin-bottom:20px;">
+        <i class="fas fa-star" style="color:var(--gold);font-size:0.7rem;"></i>
+        <span style="font-family:var(--font-ui);font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);">Actualite Royale · 9 Aout 2026</span>
+      </div>
+      <h2 style="font-family:var(--font-title);font-size:clamp(1.6rem,4vw,2.8rem);color:var(--white);line-height:1.2;margin-bottom:14px;">RDC : Didier Mumengi recu par<br><span style="background:linear-gradient(135deg,var(--gold),var(--gold-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Sa Majeste Masambukidi Ier</span></h2>
+      <p style="color:rgba(255,255,255,0.55);font-size:1rem;max-width:680px;margin:0 auto;line-height:1.7;">A Kinshasa, dimanche 9 aout 2026 &mdash; une rencontre historique entre le senateur historien et le Roi Divin du Bassin du Kongo</p>
+    </div>
+
+    <!-- Main photo + text layout -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-bottom:60px;" class="fade-in mumengi-grid">
+
+      <!-- Photo principale -->
+      <div style="position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.6);border:1px solid rgba(201,168,76,0.2);">
+        <img src="mumengi_masambukidi_new_1.jpg" alt="Didier Mumengi et Sa Majeste Masambukidi Ier — Kinshasa 9 aout 2026" style="width:100%;display:block;object-fit:cover;">
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(5,5,15,0.95) 0%,transparent 100%);padding:24px 20px 20px;">
+          <span style="font-size:0.75rem;color:var(--gold);font-family:var(--font-ui);letter-spacing:1px;">📍 Kinshasa, RDC — 9 Aout 2026</span>
+        </div>
+      </div>
+
+      <!-- Article text -->
+      <div style="padding:10px 0;">
+        <div style="margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+            <div style="width:3px;height:40px;background:linear-gradient(var(--gold),var(--gold-dark));border-radius:2px;"></div>
+            <p style="font-family:var(--font-body);font-size:1.12rem;color:rgba(255,255,255,0.85);line-height:1.8;font-style:italic;">Le senateur <strong style="color:var(--gold);">Didier Mumengi</strong> s&rsquo;est rendu, dimanche 9 aout 2026, au temple de la communaute Masambukidi a Kinshasa.</p>
+          </div>
+          <p style="font-family:var(--font-body);font-size:1.05rem;color:rgba(255,255,255,0.7);line-height:1.85;margin-bottom:16px;">Il y a ete accueilli par <strong style="color:var(--white);">Sa Majeste Masambukidi Ier, Roi divin du Bassin du Congo.</strong> Prenant la parole devant l&rsquo;assemblee, le senateur a partage une experience qu&rsquo;il decrit comme profondement spirituelle.</p>
+          <p style="font-family:var(--font-body);font-size:1.05rem;color:rgba(255,255,255,0.7);line-height:1.85;margin-bottom:16px;">Il affirme avoir ressenti un appel avant meme de se rendre sur les lieux et a remercie Dieu pour cette rencontre. Didier Mumengi, historien et professeur, a egalement evoque l&rsquo;importance qu&rsquo;il accorde a l&rsquo;avenement de Masambukidi Ier, qu&rsquo;il considere comme porteur d&rsquo;un nouveau souffle pour la RDC.</p>
+          <p style="font-family:var(--font-body);font-size:1.05rem;color:rgba(255,255,255,0.7);line-height:1.85;">Dans son intervention, il a enfin rapproche la figure de <strong style="color:var(--white);">Masambukidi Ier</strong> de celle de <strong style="color:var(--white);">Simon Kimbangu</strong>, estimant que leurs missions spirituelles presentent des similitudes, notamment autour du renouveau et de la purification du Congo.</p>
+        </div>
+        <!-- Share buttons -->
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;">
+          <a href="https://wa.me/?text=RDC+%3A+Didier+Mumengi+recu+par+Sa+Majeste+Masambukidi+Ier+a+Kinshasa+%E2%80%94+https%3A%2F%2Felucco.pages.dev%2F" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:50px;background:rgba(37,211,102,0.15);border:1px solid rgba(37,211,102,0.4);color:#25d366;font-size:0.82rem;font-weight:600;font-family:var(--font-ui);transition:all 0.2s;" onmouseover="this.style.background='rgba(37,211,102,0.25)'" onmouseout="this.style.background='rgba(37,211,102,0.15)'"><i class="fab fa-whatsapp"></i> Partager</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Felucco.pages.dev%2F" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:50px;background:rgba(24,119,242,0.15);border:1px solid rgba(24,119,242,0.4);color:#5c9dff;font-size:0.82rem;font-weight:600;font-family:var(--font-ui);transition:all 0.2s;" onmouseover="this.style.background='rgba(24,119,242,0.25)'" onmouseout="this.style.background='rgba(24,119,242,0.15)'"><i class="fab fa-facebook-f"></i> Facebook</a>
+          <button onclick="navigator.clipboard.writeText('https://elucco.pages.dev/').then(()=>showToast('Lien copie !','success'))" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:50px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.8);font-size:0.82rem;font-weight:600;font-family:var(--font-ui);cursor:pointer;transition:all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.12)'" onmouseout="this.style.background='rgba(255,255,255,0.06)'"><i class="fas fa-link"></i> Copier</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Photo gallery row -->
+    <div style="margin-bottom:24px;" class="fade-in">
+      <div style="font-family:var(--font-ui);font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:10px;"><span style="display:inline-block;width:28px;height:2px;background:var(--gold);border-radius:2px;"></span> Galerie Photos &mdash; 9 Aout 2026</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="mumengi-photos-grid fade-in">
+      <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);aspect-ratio:3/4;cursor:zoom-in;" onclick="openLightboxDirect('mumengi_masambukidi_new_2.jpg')">
+        <img src="mumengi_masambukidi_new_2.jpg" alt="Didier Mumengi et Sa Majeste — Kinshasa 2026" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);aspect-ratio:3/4;cursor:zoom-in;" onclick="openLightboxDirect('mumengi_livre_leve.jpg')">
+        <img src="mumengi_livre_leve.jpg" alt="Didier Mumengi leve le livre Nouvelle Verite — Kinshasa 2026" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);aspect-ratio:3/4;cursor:zoom-in;" onclick="openLightboxDirect('masambukidi_trone_rouge.jpg')">
+        <img src="masambukidi_trone_rouge.jpg" alt="Sa Majeste Masambukidi Ier — Trone rouge" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);aspect-ratio:3/4;cursor:zoom-in;" onclick="openLightboxDirect('masambukidi_trone_portrait.jpg')">
+        <img src="masambukidi_trone_portrait.jpg" alt="Sa Majeste Masambukidi Ier — Portrait royal" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+   SECTION LIVRE — ROI DU BASSIN DU KONGO
+══════════════════════════════════════════════════ -->
+<section id="livre-section" style="padding:80px 0;background:linear-gradient(135deg,rgba(10,8,20,0.98) 0%,rgba(13,13,28,0.99) 100%);">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <div style="display:grid;grid-template-columns:300px 1fr;gap:64px;align-items:center;" class="livre-grid fade-in">
+      <!-- Book cover -->
+      <div style="position:relative;">
+        <div style="border-radius:18px;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,0.7);border:1px solid rgba(201,168,76,0.2);position:relative;">
+          <img src="livre_roi_bassin_kongo_cover.jpg" alt="Couverture livre Roi du Bassin du Kongo — Masambukidi roi divin" style="width:100%;display:block;">
+          <div style="position:absolute;top:16px;right:-8px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--dark);font-weight:900;font-size:0.7rem;letter-spacing:0.5px;text-transform:uppercase;padding:8px 16px;border-radius:999px;box-shadow:0 10px 26px rgba(201,168,76,0.4);transform:rotate(4deg);font-family:var(--font-ui);">Disponible Amazon</div>
+        </div>
+        <div style="position:absolute;top:-20px;left:-20px;width:100px;height:100px;background:radial-gradient(circle,rgba(201,168,76,0.15) 0%,transparent 70%);border-radius:50%;pointer-events:none;"></div>
+      </div>
+      <!-- Text -->
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+          <span style="width:28px;height:2px;background:var(--gold);display:inline-block;border-radius:2px;"></span>
+          <span style="font-family:var(--font-ui);font-size:0.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);">Livre Evenement &mdash; Hakvision Editions, Paris</span>
+        </div>
+        <h2 style="font-family:var(--font-title);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--white);line-height:1.15;margin-bottom:12px;">Roi du Bassin du Kongo</h2>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.5);margin-bottom:28px;font-family:var(--font-ui);">Origine, intronisation et couronnement de Masambukidi I</p>
+        <div style="background:rgba(201,168,76,0.07);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:28px;">
+          <p style="font-family:var(--font-body);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,0.85);line-height:1.8;margin:0;">« Ce que le ciel prepare en silence finit toujours par se reveler au grand jour. »</p>
+        </div>
+        <p style="font-family:var(--font-body);font-size:1.05rem;color:rgba(255,255,255,0.65);line-height:1.85;margin-bottom:16px;">Depuis plusieurs mois, une question traverse les conversations : qui est vraiment ce roi qu&rsquo;on dit couronne le <strong style="color:var(--white);">30 octobre 2025</strong> ?</p>
+        <p style="font-family:var(--font-body);font-size:1.05rem;color:rgba(255,255,255,0.65);line-height:1.85;margin-bottom:16px;">Ce livre ne raconte pas seulement un homme. Il retrace <strong style="color:var(--gold);">trois intronisations</strong>, une lignee que l&rsquo;on croyait eteinte, et un peuple qui attendait sans savoir ce qu&rsquo;il attendait.</p>
+        <p style="font-family:var(--font-body);font-size:1rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:30px;">📖 Decouvrez l&rsquo;histoire complete. Le livre sera bientot disponible a Kinshasa.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;">
+          <a href="https://amzn.eu/d/0d841uLL" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:50px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--dark);font-family:var(--font-ui);font-weight:700;font-size:0.88rem;letter-spacing:1.5px;text-transform:uppercase;box-shadow:0 12px 32px rgba(201,168,76,0.4);transition:all 0.3s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 20px 48px rgba(201,168,76,0.5)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 12px 32px rgba(201,168,76,0.4)'"><i class="fab fa-amazon"></i> Commander sur Amazon</a>
+          <div style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:50px;background:rgba(201,168,76,0.08);border:1.5px solid rgba(201,168,76,0.3);color:var(--gold);font-family:var(--font-ui);font-size:0.85rem;font-weight:600;letter-spacing:1px;"><i class="fas fa-map-marker-alt"></i> Bientot a Kinshasa</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- STATS BAR -->
@@ -1811,6 +1972,12 @@ blockquote::after{content:'"';font-size:3rem;color:var(--gold);line-height:0;ver
   </div>
 </footer>
 
+<!-- DIRECT LIGHTBOX -->
+<div id="direct-lightbox" onclick="if(event.target===this)closeLightboxDirect()">
+  <div id="direct-lightbox-close" onclick="closeLightboxDirect()">&#10005;</div>
+  <img id="direct-lightbox-img" src="" alt="">
+</div>
+
 <!-- FAB -->
 <div id="fab" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
 
@@ -1841,6 +2008,12 @@ const VIDEOS = [
 ];
 
 const GALLERY = [
+  {src:'mumengi_masambukidi_new_1.jpg',caption:'Le senateur Didier Mumengi aux cotes de Sa Majeste Masambukidi Ier — Kinshasa, 9 aout 2026'},
+  {src:'mumengi_masambukidi_new_2.jpg',caption:'Didier Mumengi et Sa Majeste Masambukidi Ier — Visite officielle Kinshasa, 9 aout 2026'},
+  {src:'mumengi_livre_leve.jpg',caption:'Didier Mumengi presente le livre "Nouvelle Verite" aux cotes de Sa Majeste — 9 aout 2026'},
+  {src:'masambukidi_trone_rouge.jpg',caption:'Sa Majeste Masambukidi Ier en meditation sur le trone rouge — Kinshasa'},
+  {src:'masambukidi_trone_portrait.jpg',caption:'Sa Majeste Masambukidi Ier — Portrait officiel sur le trone royal'},
+  {src:'masambukidi_trone_officiel.jpg',caption:'Sa Majeste Masambukidi Ier — Portrait royal officiel 2026'},
   {src:'mumengi_masambukidi_ensemble.jpg',caption:'Le senateur Didier Mumengi aux cotes de Sa Majeste Masambukidi Ier — Kinshasa, 9 aout 2026'},
   {src:'mumengi_masambukidi_ensemble_2.jpg',caption:'Didier Mumengi et Sa Majeste Masambukidi Ier ensemble'},
   {src:'mumengi_masambukidi_livre_leve.jpg',caption:'Didier Mumengi presente le livre Nouvelle Verite aux cotes de Sa Majeste'},
@@ -1877,6 +2050,21 @@ const GALLERY = [
   {src:'masambukidi_ceremonie_2.jpg',caption:'Ceremonie ELUCCO'},
   {src:'masambukidi_ceremonie_3.jpg',caption:'Rassemblement ELUCCO'},
 ];
+
+function openLightboxDirect(src){
+  const lb=document.getElementById('direct-lightbox');
+  const img=document.getElementById('direct-lightbox-img');
+  if(!lb||!img) return;
+  img.src=src;
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightboxDirect(){
+  const lb=document.getElementById('direct-lightbox');
+  if(lb) lb.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeLightboxDirect();});
 
 /* ═══════════════════════════════════════════════
    STORAGE UTILS
@@ -2110,7 +2298,7 @@ function renderNews(){
       title:'RDC : Didier Mumengi recu par Sa Majeste Masambukidi Ier a Kinshasa',
       date:'9 Aout 2026 · Kinshasa',
       views:'6 400',
-      img:'mumengi_masambukidi_ensemble.jpg',
+      img:'mumengi_masambukidi_new_1.jpg',
       share:true,
       desc:'Le senateur Didier Mumengi s\'est rendu, dimanche 9 aout 2026, au temple de la communaute Masambukidi a Kinshasa. Il y a ete accueilli par Sa Majeste Masambukidi Ier, Roi divin du Bassin du Congo. '
            +'Prenant la parole devant l\'assemblee, le senateur a partage une experience qu\'il decrit comme profondement spirituelle. Il affirme avoir ressenti un appel avant meme de se rendre sur les lieux et a remercie Dieu pour cette rencontre. '
@@ -2764,7 +2952,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   if(heroBg){
     const img=new Image();
     img.onload=()=>heroBg.classList.add('loaded');
-    img.src='papa_masambukidi_couronne.jpg';
+    img.src='masambukidi_trone_officiel.jpg';
   }
 });
 </script>
