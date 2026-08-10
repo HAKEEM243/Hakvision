@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="description" content="ELUCCO — Eglise Lumière du Christ au Congo. Site officiel de Sa Majesté Masambukidi Samuel I, Roi Divin du Bassin du Kongo.">
+<meta name="description" content="ELUCCO — Eglise Lumière du Christ au Congo. Site officiel de Sa Majesté Masambukidi Ier, Masambukidi roi divin du Bassin du Kongo. Actualités : visite du sénateur Didier Mumengi, livre Roi du Bassin du Kongo.">
+<meta name="keywords" content="Masambukidi roi divin, Sa Majeste Masambukidi Ier, Roi divin du Bassin du Kongo, ELUCCO, Didier Mumengi, Didier Mumengi Masambukidi, Roi du Bassin du Kongo, Simon Kimbangu, Kinshasa">
 <meta name="theme-color" content="#c9a84c">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ELUCCO">
-<meta property="og:title" content="ELUCCO — Eglise Lumière du Christ au Congo">
-<meta property="og:description" content="Site officiel de Sa Majesté Masambukidi Samuel I">
-<meta property="og:image" content="sa_majeste_trone_1.jpg">
-<title>ELUCCO — Eglise Lumière du Christ au Congo</title>
+<meta property="og:title" content="ELUCCO — Masambukidi roi divin du Bassin du Kongo">
+<meta property="og:description" content="Site officiel de Sa Majesté Masambukidi Ier, roi divin du Bassin du Kongo. Le sénateur Didier Mumengi reçu à Kinshasa le 9 août 2026.">
+<meta property="og:image" content="mumengi_masambukidi_ensemble.jpg">
+<title>ELUCCO — Masambukidi roi divin du Bassin du Kongo</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="elucco_logo_officiel.png">
 <link rel="apple-touch-icon" href="elucco_logo_officiel.png">
@@ -564,6 +565,18 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
   transition:all 0.2s;font-family:var(--font-ui);font-weight:500;
 }
 .news-watch-btn:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(255,0,0,0.4)}
+.news-share-row{display:flex;gap:8px;padding-top:12px;margin-top:12px;border-top:1px solid rgba(255,255,255,0.06)}
+.news-share-btn{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;transition:all 0.2s;
+  border:1px solid rgba(255,255,255,0.1);
+}
+.news-share-btn:hover{transform:translateY(-2px)}
+.news-share-wa{background:rgba(37,211,102,0.12);border-color:rgba(37,211,102,0.3);color:#25d366}
+.news-share-fb{background:rgba(24,119,242,0.12);border-color:rgba(24,119,242,0.3);color:#5c9dff}
+.news-share-ig{background:rgba(225,48,108,0.12);border-color:rgba(225,48,108,0.3);color:#ef5da8}
+.news-share-cp{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7)}
 
 /* ═══════════════════════════════════════════════
    COMMENTS
@@ -1828,6 +1841,12 @@ const VIDEOS = [
 ];
 
 const GALLERY = [
+  {src:'mumengi_masambukidi_ensemble.jpg',caption:'Le senateur Didier Mumengi aux cotes de Sa Majeste Masambukidi Ier — Kinshasa, 9 aout 2026'},
+  {src:'mumengi_masambukidi_ensemble_2.jpg',caption:'Didier Mumengi et Sa Majeste Masambukidi Ier ensemble'},
+  {src:'mumengi_masambukidi_livre_leve.jpg',caption:'Didier Mumengi presente le livre Nouvelle Verite aux cotes de Sa Majeste'},
+  {src:'masambukidi_portrait_trone_1.jpg',caption:'Sa Majeste Masambukidi Ier — Portrait sur le trone'},
+  {src:'masambukidi_portrait_trone_2.jpg',caption:'Sa Majeste Masambukidi Ier en priere sur le trone'},
+  {src:'livre_roi_bassin_kongo_cover.jpg',caption:'Couverture du livre Roi du Bassin du Kongo — Masambukidi roi divin'},
   {src:'sa_majeste_trone_1.jpg',caption:'Sa Majeste sur le trone royal'},
   {src:'sa_majeste_trone_2.jpg',caption:'Sa Majeste — Portrait officiel'},
   {src:'sa_majeste_samuel_6_couronnement.jpg',caption:'Couronnement de Sa Majeste — 30 Oct 2025'},
@@ -2077,12 +2096,42 @@ function renderNews(){
   if(!grid) return;
   const adminPosts=getLS('elucco_posts',[]);
 
-  // ─── SEULS 3 ARTICLES EN ACTUALITES ──────────────────────────────
+  // ─── ARTICLES EN ACTUALITES ──────────────────────────────
+  // feat_mumengi et feat_livre_roi_bassin_kongo : ajoutes en tete (aout 2026)
   // 1. Photo officielle du Roi avec l'article du 6 Mars (depuis le couronnement)
   // 2. Vidéo musicale : Vive le 06 Mars 2026
   // 3. Vidéo : Premier Culte (Direct)
   // Le reste va en Galerie ou Vidéos
   const featuredItems=[
+    {
+      id:'feat_mumengi',
+      type:'actualite',
+      badge:'royal',
+      title:'RDC : Didier Mumengi recu par Sa Majeste Masambukidi Ier a Kinshasa',
+      date:'9 Aout 2026 · Kinshasa',
+      views:'6 400',
+      img:'mumengi_masambukidi_ensemble.jpg',
+      share:true,
+      desc:'Le senateur Didier Mumengi s\'est rendu, dimanche 9 aout 2026, au temple de la communaute Masambukidi a Kinshasa. Il y a ete accueilli par Sa Majeste Masambukidi Ier, Roi divin du Bassin du Congo. '
+           +'Prenant la parole devant l\'assemblee, le senateur a partage une experience qu\'il decrit comme profondement spirituelle. Il affirme avoir ressenti un appel avant meme de se rendre sur les lieux et a remercie Dieu pour cette rencontre. '
+           +'Didier Mumengi, historien et professeur, a egalement evoque l\'importance qu\'il accorde a l\'avenement de Masambukidi Ier, qu\'il considere comme porteur d\'un nouveau souffle pour la RDC. '
+           +'Dans son intervention, il a enfin rapproche la figure de Masambukidi Ier de celle de Simon Kimbangu, estimant que leurs missions spirituelles presentent des similitudes, notamment autour du renouveau et de la purification du Congo.'
+    },
+    {
+      id:'feat_livre_roi_bassin_kongo',
+      type:'livre',
+      badge:'royal',
+      title:'Roi du Bassin du Kongo — le livre evenement sur Masambukidi roi divin',
+      date:'Hakvision Editions · Paris',
+      views:'3 100',
+      img:'livre_roi_bassin_kongo_cover.jpg',
+      share:true,
+      amazonUrl:'https://amzn.eu/d/0d841uLL',
+      desc:'Depuis plusieurs mois, une question traverse les conversations : qui est vraiment ce roi qu\'on dit couronne le 30 octobre 2025 ? La maison d\'edition Hakvision, a Paris, est fiere de vous presenter cet ouvrage exceptionnel. '
+           +'En ce jour d\'anniversaire du Roi Masambukidi Ier, une chose demeure certaine : rien de ce qui s\'est passe cette nuit-la n\'est arrive par hasard. Reconnu par plusieurs comme le roi divin du Bassin du Kongo, il porte une prophetie vieille d\'un siecle qui annoncait deja son nom. '
+           +'Ce livre ne raconte pas seulement un homme. Il retrace trois intronisations, une lignee que l\'on croyait eteinte, et un peuple qui attendait sans savoir ce qu\'il attendait. '
+           +'Ce que le ciel prepare en silence finit toujours par se reveler au grand jour. Decouvrez l\'histoire complete, avec ses zones de lumiere et ses questions qui restent ouvertes. Le livre sera bientot disponible a Kinshasa.'
+    },
     {
       id:'feat_1',
       type:'actualite',
@@ -2135,7 +2184,14 @@ function renderNewsCard(item){
   const badgeLabel=item.badge==='video'?'Video':item.badge==='royal'?'Royal':item.fromGallery?'Galerie':'Actualite';
   const watchBtn=item.youtubeId
     ?`<a href="https://www.youtube.com/watch?v=${item.youtubeId}" target="_blank" class="news-watch-btn"><i class="fab fa-youtube"></i> Regarder</a>`
-    :'';
+    :(item.amazonUrl?`<a href="${item.amazonUrl}" target="_blank" rel="noopener" class="news-watch-btn"><i class="fab fa-amazon"></i> Commander</a>`:'');
+  const shareRow=item.share?`
+      <div class="news-share-row">
+        <a class="news-share-btn news-share-wa" href="https://wa.me/?text=${encodeURIComponent(item.title+' — https://elucco.pages.dev/')}" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+        <a class="news-share-btn news-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://elucco.pages.dev/')}" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+        <button class="news-share-btn news-share-ig" onclick="shareToInstagram('${item.id}')"><i class="fab fa-instagram"></i></button>
+        <button class="news-share-btn news-share-cp" onclick="copyNewsLink('${item.id}',this)"><i class="fas fa-link"></i></button>
+      </div>`:'';
   return `
   <div class="news-card fade-in" id="card-${item.id}">
     <div class="news-thumb-wrap">
@@ -2164,6 +2220,7 @@ function renderNewsCard(item){
         </div>
         ${watchBtn}
       </div>
+      ${shareRow}
       <div class="comments-section" id="comments-${item.id}">
         <div class="comment-form">
           <input type="text" class="comment-input" id="comment-name-${item.id}" placeholder="Votre nom">
@@ -2218,6 +2275,28 @@ function toggleLike(id,btn){
 function toggleComments(id){
   const section=document.getElementById('comments-'+id);
   if(section) section.classList.toggle('show');
+}
+
+function copyNewsLink(id,btn){
+  const url='https://elucco.pages.dev/';
+  navigator.clipboard.writeText(url).then(()=>{
+    showToast('Lien copie !','success');
+    if(btn){
+      const icon=btn.innerHTML;
+      btn.innerHTML='<i class="fas fa-check"></i>';
+      setTimeout(()=>{btn.innerHTML=icon;},2000);
+    }
+  }).catch(()=>{});
+}
+
+function shareToInstagram(id){
+  const url='https://elucco.pages.dev/';
+  navigator.clipboard.writeText(url).then(()=>{
+    showToast('Lien copie ! Collez-le dans votre story ou bio Instagram.','info');
+    window.open('https://www.instagram.com/','_blank');
+  }).catch(()=>{
+    window.open('https://www.instagram.com/','_blank');
+  });
 }
 
 function addComment(id){
