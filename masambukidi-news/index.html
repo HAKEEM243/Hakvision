@@ -471,10 +471,6 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
   background:linear-gradient(135deg,var(--gold),var(--gold-light));
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.section-divider{
-  width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
-  margin:0 auto 16px;
-}
 .section-desc{color:rgba(255,255,255,0.55);font-size:1rem;max-width:600px;margin:0 auto;line-height:1.7}
 
 /* ═══════════════════════════════════════════════
@@ -1705,6 +1701,50 @@ body::before{
   .btn-primary,.btn-secondary{ padding:12px 24px;font-size:0.76rem;letter-spacing:1.4px }
 }
 
+
+/* ═══ ARCHIVE : photo fondateur vieillie, cast bleu -> sepia intentionnel ═══ */
+.bio-img-archive{
+  filter:sepia(0.65) saturate(1.3) contrast(1.05) brightness(0.92) hue-rotate(-8deg);
+}
+.bio-img-wrap:has(.bio-img-archive)::after{
+  content:'Photo d\'archive';
+  position:absolute;bottom:14px;left:16px;z-index:2;
+  font-family:var(--font-ui);font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;
+  color:rgba(247,230,168,0.75);
+  padding:4px 10px;border:1px solid rgba(201,168,76,0.3);border-radius:20px;
+  background:rgba(8,8,16,0.5);backdrop-filter:blur(4px);
+}
+
+/* ═══ CARTES : hairline doré permanent, cohérence "cadre" royal ═══ */
+.culte-card,.social-card,.stat-item{
+  position:relative;
+}
+.culte-card::before,.social-card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;
+  border:1px solid rgba(201,168,76,0.16);pointer-events:none;
+}
+.stats-bar{ border-color:rgba(201,168,76,0.22) }
+
+/* Réseaux : l'accent de marque reste dans l'icône, la carte elle-même reste dorée */
+.social-card{ border-color:rgba(201,168,76,0.16) !important }
+.social-card:hover{
+  border-color:rgba(201,168,76,0.45) !important;
+  background:rgba(201,168,76,0.05);
+  box-shadow:0 16px 44px rgba(0,0,0,0.45),0 0 26px rgba(201,168,76,0.14);
+}
+.youtube .social-link-btn,.twitter .social-link-btn,.tiktok .social-link-btn{
+  transition:all 0.3s var(--ease-royal);
+}
+
+/* Cultes : bordure dorée fine au repos, la bande verte reste l'identité de l'église */
+.culte-card{ border-color:rgba(201,168,76,0.18) }
+
+/* Galerie : cadre plus architectural, moins "app" */
+.gallery-item{ border-radius:8px; border-color:rgba(201,168,76,0.14) }
+
+/* Puces de villes : légèrement plus typées "sceau" */
+.city-chip{ font-variant-numeric:tabular-nums }
+
 </style>
 </head>
 <body>
@@ -1961,10 +2001,10 @@ body::before{
         <img src="mumengi_masambukidi_new_2.jpg" alt="Didier Mumengi et Sa Majesté — Kinshasa 2026" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
       </div>
       <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);aspect-ratio:3/4;cursor:zoom-in;" onclick="openLightboxDirect('mumengi_livre_leve.jpg')">
-        <img src="mumengi_livre_leve.jpg" alt="Didier Mumengi leve le livre Nouvelle Vérité — Kinshasa 2026" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="mumengi_livre_leve.jpg" alt="Didier Mumengi lève le livre Nouvelle Vérité — Kinshasa 2026" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
       </div>
       <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);aspect-ratio:3/4;cursor:zoom-in;" onclick="openLightboxDirect('masambukidi_trone_rouge.jpg')">
-        <img src="masambukidi_trone_rouge.jpg" alt="Sa Majesté Masambukidi Ier — Trone rouge" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="masambukidi_trone_rouge.jpg" alt="Sa Majesté Masambukidi Ier — Trône rouge" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
       </div>
       <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(201,168,76,0.2);aspect-ratio:3/4;cursor:zoom-in;" onclick="openLightboxDirect('masambukidi_trone_portrait.jpg')">
         <img src="masambukidi_trone_portrait.jpg" alt="Sa Majesté Masambukidi Ier — Portrait royal" style="width:100%;height:100%;object-fit:cover;transition:transform 0.4s;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
@@ -1996,14 +2036,14 @@ body::before{
         <h2 style="font-family:var(--font-title);font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--white);line-height:1.15;margin-bottom:12px;">Roi du Bassin du Kongo</h2>
         <p style="font-size:1rem;color:rgba(255,255,255,0.5);margin-bottom:28px;font-family:var(--font-ui);">Origine, intronisation et couronnement de Masambukidi I</p>
         <div style="background:rgba(201,168,76,0.07);border-left:3px solid var(--gold);border-radius:0 12px 12px 0;padding:20px 24px;margin-bottom:28px;">
-          <p style="font-family:var(--font-body);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,0.85);line-height:1.8;margin:0;">« Ce que le ciel prepare en silence finit toujours par se reveler au grand jour. »</p>
+          <p style="font-family:var(--font-body);font-style:italic;font-size:1.1rem;color:rgba(255,255,255,0.85);line-height:1.8;margin:0;">« Ce que le ciel prépare en silence finit toujours par se révéler au grand jour. »</p>
         </div>
         <p style="font-family:var(--font-body);font-size:1.05rem;color:rgba(255,255,255,0.65);line-height:1.85;margin-bottom:16px;">Depuis plusieurs mois, une question traverse les conversations : qui est vraiment ce roi qu&rsquo;on dit couronné le <strong style="color:var(--white);">30 octobre 2025</strong> ?</p>
         <p style="font-family:var(--font-body);font-size:1.05rem;color:rgba(255,255,255,0.65);line-height:1.85;margin-bottom:16px;">Ce livre ne raconte pas seulement un homme. Il retrace <strong style="color:var(--gold);">trois intronisations</strong>, une lignée que l&rsquo;on croyait éteinte, et un peuple qui attendait sans savoir ce qu&rsquo;il attendait.</p>
-        <p style="font-family:var(--font-body);font-size:1rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:30px;">📖 Découvrez l&rsquo;histoire complète. Le livre sera bientot disponible a Kinshasa.</p>
+        <p style="font-family:var(--font-body);font-size:1rem;color:rgba(255,255,255,0.5);line-height:1.7;margin-bottom:30px;">📖 Découvrez l&rsquo;histoire complète. Le livre sera bientôt disponible à Kinshasa.</p>
         <div style="display:flex;flex-wrap:wrap;gap:14px;">
           <a href="https://amzn.eu/d/0d841uLL" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:50px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--dark);font-family:var(--font-ui);font-weight:700;font-size:0.88rem;letter-spacing:1.5px;text-transform:uppercase;box-shadow:0 12px 32px rgba(201,168,76,0.4);transition:all 0.3s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 20px 48px rgba(201,168,76,0.5)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 12px 32px rgba(201,168,76,0.4)'"><i class="fab fa-amazon"></i> Commander sur Amazon</a>
-          <div style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:50px;background:rgba(201,168,76,0.08);border:1.5px solid rgba(201,168,76,0.3);color:var(--gold);font-family:var(--font-ui);font-size:0.85rem;font-weight:600;letter-spacing:1px;"><i class="fas fa-map-marker-alt"></i> Bientot a Kinshasa</div>
+          <div style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:50px;background:rgba(201,168,76,0.08);border:1.5px solid rgba(201,168,76,0.3);color:var(--gold);font-family:var(--font-ui);font-size:0.85rem;font-weight:600;letter-spacing:1px;"><i class="fas fa-map-marker-alt"></i> Bientôt à Kinshasa</div>
         </div>
       </div>
     </div>
@@ -2035,8 +2075,8 @@ body::before{
   <section class="section">
     <div class="section-header fade-in">
       <span class="section-eyebrow">Communauté Masambukidiste</span>
-      <h2 class="section-title">Actualités &amp; <span>Evenements</span></h2>
-      <div class="section-divider"></div>
+      <h2 class="section-title">Actualités &amp; <span>Événements</span></h2>
+      <div class="section-divider" aria-hidden="true"><span class="bar"></span><span class="gem"></span><span class="bar"></span></div>
     </div>
 
     <div class="tabs-nav">
@@ -2066,12 +2106,12 @@ body::before{
     <div class="tab-panel" id="tab-galerie">
       <div class="section-header" style="margin-bottom:30px">
         <span class="section-eyebrow">Galerie Officielle</span>
-        <p style="color:rgba(255,255,255,0.5);font-size:0.9rem">Photos officielles de Sa Majesté et des cérémonies — Cliquez sur une photo pour l'agrandir ou la partager dans les actualites</p>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.9rem">Photos officielles de Sa Majesté et des cérémonies — Cliquez sur une photo pour l'agrandir ou la partager dans les actualités</p>
       </div>
       <!-- Gallery notification -->
       <div id="gallery-notif" style="background:linear-gradient(135deg,rgba(201,168,76,0.15),rgba(201,168,76,0.05));border:1px solid rgba(201,168,76,0.3);border-radius:12px;padding:14px 20px;margin-bottom:24px;align-items:center;gap:12px;animation:fadeInUp 0.4s ease;display:none">
         <i class="fas fa-images" style="color:var(--gold);font-size:1.2rem;flex-shrink:0"></i>
-        <span style="color:rgba(255,255,255,0.8);font-size:0.85rem"><strong style="color:var(--gold)">Nouveau !</strong> Cliquez sur l'icone <i class="fas fa-share-nodes" style="color:var(--gold)"></i> sur chaque photo pour la publier dans les Actualités.</span>
+        <span style="color:rgba(255,255,255,0.8);font-size:0.85rem"><strong style="color:var(--gold)">Nouveau !</strong> Cliquez sur l'icône <i class="fas fa-share-nodes" style="color:var(--gold)"></i> sur chaque photo pour la publier dans les Actualités.</span>
       </div>
       <div class="gallery-masonry" id="gallery-grid"></div>
     </div>
@@ -2164,13 +2204,14 @@ body::before{
         <div class="section-header" style="margin-bottom:30px;text-align:left">
           <span class="section-eyebrow">Implantation Mondiale</span>
           <h3 class="section-title" style="font-size:1.6rem">ELUCCO sur les <span>5 Continents</span></h3>
+          <div class="section-divider" aria-hidden="true" style="margin-top:16px"><span class="bar"></span><span class="gem"></span><span class="bar"></span></div>
         </div>
         <div class="continent-tabs" id="continent-tabs">
           <div class="continent-tab active" onclick="showContinent('afrique')">Afrique</div>
           <div class="continent-tab" onclick="showContinent('europe')">Europe</div>
-          <div class="continent-tab" onclick="showContinent('amerique')">Amerique</div>
+          <div class="continent-tab" onclick="showContinent('amerique')">Amérique</div>
           <div class="continent-tab" onclick="showContinent('asie')">Asie</div>
-          <div class="continent-tab" onclick="showContinent('oceanie')">Oceanie</div>
+          <div class="continent-tab" onclick="showContinent('oceanie')">Océanie</div>
         </div>
         <div class="continent-panel active" id="panel-afrique">
           <div class="cities-grid">
@@ -2253,12 +2294,12 @@ body::before{
     <div class="section-header fade-in">
       <span class="section-eyebrow">Histoire Sacrée</span>
       <h2 class="section-title">Les Guides <span>Spirituels</span></h2>
-      <div class="section-divider"></div>
+      <div class="section-divider" aria-hidden="true"><span class="bar"></span><span class="gem"></span><span class="bar"></span></div>
     </div>
     <div class="bio-grid">
       <div class="bio-card fade-in-left">
         <div class="bio-img-wrap">
-          <img src="papa_samy_masambukidi_1_fondateur.jpg" alt="Papa Samy Masambukidi" class="bio-img">
+          <img src="papa_samy_masambukidi_1_fondateur.jpg" alt="Papa Samy Masambukidi" class="bio-img bio-img-archive">
           <div class="bio-img-overlay"></div>
           <div class="bio-year">1958</div>
         </div>
@@ -2274,7 +2315,7 @@ body::before{
       </div>
       <div class="bio-card fade-in-right">
         <div class="bio-img-wrap">
-          <img src="sa_majeste_trone_1.jpg" alt="Sa Majesté Samuel I" class="bio-img">
+          <img src="sa_majeste_trone_1.jpg" alt="Sa Majesté Samuel I" class="bio-img" style="object-position:center 40%">
           <div class="bio-img-overlay"></div>
           <div class="bio-year">2025</div>
         </div>
@@ -2306,17 +2347,18 @@ body::before{
     <div style="text-align:center;margin-bottom:10px">
       <span style="font-size:2rem">✉️</span>
     </div>
-    <h2 class="sub-title">Restez Connecte a ELUCCO</h2>
-    <p class="sub-desc">Inscrivez-vous pour recevoir un <strong style="color:var(--gold)">email de bienvenue personnalise</strong>, les actualites, les rappels de culte et les notifications des dates sacrées directement dans votre boite mail.</p>
-    <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;margin-bottom:20px;text-align:center"><i class="fas fa-shield-alt" style="color:var(--gold)"></i> Vos données sont protégées. Désinscription possible a tout moment.</p>
+    <h2 class="sub-title">Restez Connecté à ELUCCO</h2>
+    <div class="section-divider" aria-hidden="true" style="margin-top:14px"><span class="bar"></span><span class="gem"></span><span class="bar"></span></div>
+    <p class="sub-desc">Inscrivez-vous pour recevoir un <strong style="color:var(--gold)">email de bienvenue personnalisé</strong>, les actualités, les rappels de culte et les notifications des dates sacrées directement dans votre boîte mail.</p>
+    <p style="color:rgba(255,255,255,0.45);font-size:0.8rem;margin-bottom:20px;text-align:center"><i class="fas fa-shield-alt" style="color:var(--gold)"></i> Vos données sont protégées. Désinscription possible à tout moment.</p>
     <form class="sub-form" onsubmit="handleSubscribe(event)">
-      <input type="text" class="sub-input" id="sub-firstname" placeholder="Votre prenom (ex: Jean-Pierre)">
+      <input type="text" class="sub-input" id="sub-firstname" placeholder="Votre prénom (ex: Jean-Pierre)">
       <input type="email" class="sub-input" id="sub-email" placeholder="Votre adresse email *" required>
       <button type="submit" class="sub-btn"><i class="fas fa-paper-plane"></i> Recevoir mon email de bienvenue</button>
     </form>
     <div class="sub-status" id="sub-status"></div>
     <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;text-align:center;margin-top:14px">
-      <i class="fas fa-envelope" style="color:var(--gold)"></i> Après inscription, vous recevrez : <strong style="color:rgba(255,255,255,0.5)">"Bienvenue a toi, [prenom] Masambukidiste !"</strong> avec les dates sacrées, les horaires de culte et le lien vers le site.
+      <i class="fas fa-envelope" style="color:var(--gold)"></i> Après inscription, vous recevrez : <strong style="color:rgba(255,255,255,0.5)">"Bienvenue à toi, [prénom] Masambukidiste !"</strong> avec les dates sacrées, les horaires de culte et le lien vers le site.
     </p>
   </div>
 </div>
@@ -2365,7 +2407,7 @@ body::before{
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">&copy; 2026 ELUCCO &mdash; Tous droits réservés. Site officiel de Sa Majesté Masambukidi Samuel I.</div>
-    <div class="footer-copy">Concu avec dévotion pour la communauté Masambukidiste mondiale</div>
+    <div class="footer-copy">Conçu avec dévotion pour la communauté Masambukidiste mondiale</div>
   </div>
 </footer>
 
@@ -2387,7 +2429,7 @@ const WORKER_URL = 'https://elucco-email.arenalse22.workers.dev';
 const FEASTS = [
   {month:1,day:11,label:'11 Janvier',name:'Date Sacrée ELUCCO',desc:'Date importante de l\'Église ELUCCO',type:'elucco',color:'#c9a84c'},
   {month:3,day:6,year:1958,label:'6 Mars 1958',name:'Naissance de Papa Samy Masambukidi',desc:'Fondateur divin d\'ELUCCO — Être Divin',type:'naissance',color:'#f0d060'},
-  {month:4,day:28,year:1999,label:'28 Avril 1999',name:'Retour de Papa Samy Masambukidi',desc:'Commemoration du départ vers la Gloire',type:'commemoration',color:'#9a7a2c'},
+  {month:4,day:28,year:1999,label:'28 Avril 1999',name:'Retour de Papa Samy Masambukidi',desc:'Commémoration du départ vers la Gloire',type:'commemoration',color:'#9a7a2c'},
   {month:7,day:30,label:'30 Juillet',name:'Naissance de Sa Majesté Samuel I',desc:'Roi Divin du Bassin du Kongo',type:'naissance',color:'#f0d060'},
   {month:10,day:20,label:'20 Octobre',name:'Date Importante ELUCCO',desc:'Date sacrée de l\'Église',type:'elucco',color:'#c9a84c'},
   {month:10,day:30,label:'30 Octobre',name:'Début de l\'Œuvre Sacerdotale',desc:'Intronisation de Sa Majesté Samuel I — 2025',type:'intronisation',color:'#f0d060'},
@@ -2417,7 +2459,7 @@ const GALLERY = [
   {src:'sa_majeste_samuel_6_couronnement.jpg',caption:'Couronnement de Sa Majesté — 30 Oct 2025'},
   {src:'sa_majeste_predication.jpg',caption:'Prédication de Sa Majesté'},
   {src:'sa_majeste_debout.jpg',caption:'Sa Majesté en habit sacerdotal'},
-  {src:'sa_majeste_baton_leve.jpg',caption:'Bénédiction royale — Le baton leve'},
+  {src:'sa_majeste_baton_leve.jpg',caption:'Bénédiction royale — Le bâton levé'},
   {src:'sa_majeste_benediction.jpg',caption:'Sa Majesté en méditation'},
   {src:'sa_majeste_procession_1.jpg',caption:'Procession royale'},
   {src:'sa_majeste_procession_2.jpg',caption:'Procession — Vue d\'ensemble'},
@@ -2709,10 +2751,10 @@ function renderNews(){
       img:'livre_roi_bassin_kongo_cover.jpg',
       share:true,
       amazonUrl:'https://amzn.eu/d/0d841uLL',
-      desc:'Depuis plusieurs mois, une question traverse les conversations : qui est vraiment ce roi qu\'on dit couronné le 30 octobre 2025 ? La maison d\'edition Hakvision, a Paris, est fière de vous presenter cet ouvrage exceptionnel. '
+      desc:'Depuis plusieurs mois, une question traverse les conversations : qui est vraiment ce roi qu\'on dit couronné le 30 octobre 2025 ? La maison d\'édition Hakvision, à Paris, est fière de vous présenter cet ouvrage exceptionnel. '
            +'En ce jour d\'anniversaire du Roi Masambukidi Ier, une chose demeure certaine : rien de ce qui s\'est passe cette nuit-la n\'est arrive par hasard. Reconnu par plusieurs comme le roi divin du Bassin du Kongo, il porte une prophetie vieille d\'un siecle qui annoncait déjà son nom. '
            +'Ce livre ne raconte pas seulement un homme. Il retrace trois intronisations, une lignée que l\'on croyait éteinte, et un peuple qui attendait sans savoir ce qu\'il attendait. '
-           +'Ce que le ciel prepare en silence finit toujours par se reveler au grand jour. Découvrez l\'histoire complète, avec ses zones de lumière et ses questions qui restent ouvertes. Le livre sera bientot disponible a Kinshasa.'
+           +'Ce que le ciel prépare en silence finit toujours par se révéler au grand jour. Découvrez l\'histoire complète, avec ses zones de lumière et ses questions qui restent ouvertes. Le livre sera bientôt disponible à Kinshasa.'
     },
     {
       id:'feat_1',
@@ -2722,8 +2764,8 @@ function renderNews(){
       date:'6 Mars 1958 · Kinkole-Miongo, Kinshasa',
       views:'18 200',
       img:'papa_samy_masambukidi_1_fondateur.jpg',
-      desc:'Depuis le couronnement de Sa Majesté Masambukidi Samuel I le 30 Octobre 2025, la communauté mondiale celebre avec une ferveur renouvelée la naissance de son Pere Fondateur : Samuel Nitufuidi Masambukidi Kulala Kwamakanda, dit Papa Samy. '
-           +'Ne le 6 Mars 1958 a Kinkole-Miongo (Kinshasa, RDC), cet Être Divin n\'est pas venu sur terre par hasard. '
+      desc:'Depuis le couronnement de Sa Majesté Masambukidi Samuel I le 30 Octobre 2025, la communauté mondiale célèbre avec une ferveur renouvelée la naissance de son Père Fondateur : Samuel Nitufuidi Masambukidi Kulala Kwamakanda, dit Papa Samy. '
+           +'Né le 6 Mars 1958 a Kinkole-Miongo (Kinshasa, RDC), cet Être Divin n\'est pas venu sur terre par hasard. '
            +'Sa venue fut entourée de mysteres prophetiques et de signes célestes, attestant d\'une mission royale et divine unique, tracée de toute éternité pour le salut du Bassin du Kongo et du monde entier. '
            +'Fondateur de l\'Église Lumière du Christ au Congo (ELUCCO), il a porte un flambeau sacre que perpétue aujourd\'hui Sa Majesté, son successeur divin. '
            +'Vive le 6 Mars ! Vive Papa Samy Masambukidi !'
@@ -2736,7 +2778,7 @@ function renderNews(){
       title:'Vive le 06 Mars 2026 — Célébration Mondiale',
       date:'6 Mars 2026',
       views:'1 600',
-      desc:'Celebrons ensemble la naissance de notre Pere Fondateur divin Papa Samy Masambukidi. Toute la communauté Masambukidiste mondiale est invitée a cette commemoration. Vive le 6 Mars !'
+      desc:'Célébrons ensemble la naissance de notre Père Fondateur divin Papa Samy Masambukidi. Toute la communauté Masambukidiste mondiale est invitée à cette commémoration. Vive le 6 Mars !'
     },
     {
       id:'feat_3',
@@ -3124,10 +3166,10 @@ async function handleSubscribe(e){
       if(status){
         status.innerHTML='<i class="fas fa-check-circle" style="color:#4caf50;margin-right:6px"></i>Bienvenue '+
           (firstName||'Masambukidiste')+'! Votre email de bienvenue a été envoye a '+email+
-          '. Verifiez votre boite mail (et le dossier spam si necessaire).';
+          '. Vérifiez votre boîte mail (et le dossier spam si nécessaire).';
         status.className='sub-status success';
       }
-      showToast('Bienvenue a toi, Masambukidiste ! Email de bienvenue envoye.','success');
+      showToast('Bienvenue à toi, Masambukidiste ! Email de bienvenue envoyé.','success');
       document.getElementById('sub-email').value='';
       if(document.getElementById('sub-firstname')) document.getElementById('sub-firstname').value='';
     } else {
