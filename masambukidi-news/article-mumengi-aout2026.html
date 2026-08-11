@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>RDC : Didier Mumengi reçu par Sa Majesté Masambukidi Ier à Kinshasa | ELUCCO</title>
 <meta name="description" content="Le sénateur Didier Mumengi s'est rendu le 9 août 2026 au temple de la communauté Masambukidi à Kinshasa, accueilli par Sa Majesté Masambukidi Ier, Roi divin du Bassin du Congo. Il rapproche sa mission spirituelle de celle de Simon Kimbangu.">
-<meta name="keywords" content="Didier Mumengi, Didier Mumengi Masambukidi, Masambukidi roi divin, Sa Majeste Masambukidi Ier, Roi divin du Bassin du Congo, Roi du Bassin du Kongo, Simon Kimbangu, ELUCCO, Kinshasa, RDC, senateur Mumengi, 9 aout 2026">
-<meta name="author" content="ELUCCO — Eglise Lumière du Christ au Congo">
+<meta name="keywords" content="Didier Mumengi, Didier Mumengi Masambukidi, Masambukidi roi divin, Sa Majesté Masambukidi Ier, Roi divin du Bassin du Congo, Roi du Bassin du Kongo, Simon Kimbangu, ELUCCO, Kinshasa, RDC, sénateur Mumengi, 9 août 2026">
+<meta name="author" content="ELUCCO — Église Lumière du Christ au Congo">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="news_keywords" content="Didier Mumengi, Masambukidi Ier, Roi divin, Bassin du Congo, Simon Kimbangu, Kinshasa">
 <link rel="canonical" href="https://elucco.pages.dev/article-mumengi-aout2026.html">
@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://elucco.pages.dev/mumengi_masambukidi_new_1.jpg">
 <meta property="og:image:alt" content="Le sénateur Didier Mumengi aux côtés de Sa Majesté Masambukidi Ier, Roi divin du Bassin du Congo, à Kinshasa">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:site_name" content="ELUCCO — Eglise Lumière du Christ au Congo">
+<meta property="og:site_name" content="ELUCCO — Église Lumière du Christ au Congo">
 <meta property="article:published_time" content="2026-08-09">
 <meta property="article:section" content="Actualités">
 <meta property="article:tag" content="Masambukidi roi divin">
@@ -38,10 +38,10 @@
   "dateModified": "2026-08-10",
   "inLanguage": "fr",
   "image": ["https://elucco.pages.dev/mumengi_masambukidi_new_1.jpg"],
-  "author": { "@type": "Organization", "name": "ELUCCO — Eglise Lumière du Christ au Congo", "url": "https://elucco.pages.dev/" },
+  "author": { "@type": "Organization", "name": "ELUCCO — Église Lumière du Christ au Congo", "url": "https://elucco.pages.dev/" },
   "publisher": {
     "@type": "Organization",
-    "name": "ELUCCO — Eglise Lumière du Christ au Congo",
+    "name": "ELUCCO — Église Lumière du Christ au Congo",
     "logo": { "@type": "ImageObject", "url": "https://elucco.pages.dev/elucco_logo_officiel.png" }
   },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "https://elucco.pages.dev/article-mumengi-aout2026.html" },
@@ -61,7 +61,7 @@
 <meta name="apple-mobile-web-app-title" content="ELUCCO">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cinzel+Decorative:wght@700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 :root{
@@ -241,6 +241,33 @@ footer{border-top:1px solid rgba(201,168,76,0.15);padding:44px 20px 30px;text-al
   .gal-grid{grid-template-columns:1fr}
   .hdr-title{font-size:1rem}
 }
+
+/* ── Grain + vignette : même matière que la page d'accueil ── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:9998;pointer-events:none;
+  opacity:0.035;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:9997;pointer-events:none;
+  background:radial-gradient(ellipse 120% 100% at 50% 50%,transparent 58%,rgba(0,0,0,0.4) 100%);
+}
+/* Ornement royal sous le titre */
+.royal-ornament{
+  display:flex;align-items:center;justify-content:flex-start;gap:12px;
+  max-width:300px;margin:20px 0 26px;
+}
+.royal-ornament .bar{height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.7))}
+.royal-ornament .bar:last-child{background:linear-gradient(90deg,rgba(201,168,76,0.7),transparent)}
+.royal-ornament .gem{
+  width:8px;height:8px;flex:none;transform:rotate(45deg);
+  background:linear-gradient(135deg,#f7e6a8,var(--gold));
+  box-shadow:0 0 12px rgba(201,168,76,0.8);
+}
+.royal-ornament .gem.sm{width:5px;height:5px;opacity:0.6}
+@media(max-width:900px){ .royal-ornament{margin-left:auto;margin-right:auto;justify-content:center} }
+@media (prefers-reduced-motion:reduce){ *{animation:none !important;scroll-behavior:auto !important} }
+
 </style>
 </head>
 <body>
@@ -251,7 +278,7 @@ footer{border-top:1px solid rgba(201,168,76,0.15);padding:44px 20px 30px;text-al
       <img src="elucco_logo_officiel.png" alt="ELUCCO" class="hdr-logo">
       <div>
         <div class="hdr-title">ELUCCO</div>
-        <div class="hdr-sub">Eglise Lumière du Christ au Congo</div>
+        <div class="hdr-sub">Église Lumière du Christ au Congo</div>
       </div>
     </a>
     <a href="index.html" class="hdr-back"><i class="fas fa-arrow-left"></i> Retour au site</a>
@@ -263,6 +290,7 @@ footer{border-top:1px solid rgba(201,168,76,0.15);padding:44px 20px 30px;text-al
     <nav class="crumb"><a href="index.html">ELUCCO</a> &nbsp;/&nbsp; Actualités &nbsp;/&nbsp; Visite de Didier Mumengi</nav>
     <div class="badge"><i class="fas fa-newspaper" style="font-size:0.65rem"></i> Actualité</div>
     <h1>RDC : Didier Mumengi reçu par Sa Majesté Masambukidi Ier à Kinshasa</h1>
+    <div class="royal-ornament" aria-hidden="true"><span class="bar"></span><span class="gem sm"></span><span class="gem"></span><span class="gem sm"></span><span class="bar"></span></div>
     <div class="meta">
       <span><i class="fas fa-calendar"></i> Dimanche 9 août 2026</span>
       <span><i class="fas fa-location-dot"></i> Temple de la communauté Masambukidi, Kinshasa</span>
@@ -318,7 +346,7 @@ footer{border-top:1px solid rgba(201,168,76,0.15);padding:44px 20px 30px;text-al
 <footer>
   <img src="elucco_logo_officiel.png" alt="ELUCCO" class="f-logo">
   <div class="f-name">ELUCCO</div>
-  <p class="f-tag">Eglise Lumière du Christ au Congo<br>Sous la guidance de Sa Majesté Masambukidi Samuel I<br>Roi Divin du Bassin du Kongo</p>
+  <p class="f-tag">Église Lumière du Christ au Congo<br>Sous la guidance de Sa Majesté Masambukidi Samuel I<br>Roi Divin du Bassin du Kongo</p>
   <div class="f-social">
     <a href="https://youtube.com/@masambukidirtmasofficiel2016" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
     <a href="https://x.com/masambukidi4" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a>
