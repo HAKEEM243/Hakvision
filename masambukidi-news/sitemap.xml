@@ -38,4 +38,52 @@
     </image:image>
   </url>
 
+  <!-- Actualités -->
+  <url>
+    <loc>https://elucco.pages.dev/actualites.html</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Vidéos -->
+  <url>
+    <loc>https://elucco.pages.dev/videos.html</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Galerie -->
+  <url>
+    <loc>https://elucco.pages.dev/galerie.html</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Calendrier -->
+  <url>
+    <loc>https://elucco.pages.dev/calendrier.html</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Cultes -->
+  <url>
+    <loc>https://elucco.pages.dev/cultes.html</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Réseaux -->
+  <url>
+    <loc>https://elucco.pages.dev/reseaux.html</loc>
+    <lastmod>2026-08-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
 </urlset>
