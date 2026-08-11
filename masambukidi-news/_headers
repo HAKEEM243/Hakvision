@@ -2,8 +2,11 @@
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Cache-Control: public, max-age=3600
-  
+  Cache-Control: no-cache, must-revalidate
+
+/sw.js
+  Cache-Control: no-cache, must-revalidate
+
 /*.jpg
   Cache-Control: public, max-age=86400
 
@@ -14,4 +17,4 @@
   Cache-Control: public, max-age=86400
 
 /*.js
-  Cache-Control: public, max-age=86400
+  Cache-Control: no-cache, must-revalidate
