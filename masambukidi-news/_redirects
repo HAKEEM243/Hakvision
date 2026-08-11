@@ -1,5 +1,8 @@
 # Cloudflare Pages redirects
 # Specific HTML pages must be served directly (not caught by SPA fallback)
+/google16b193557568efc5.html /google16b193557568efc5.html 200
+/robots.txt /robots.txt 200
+/sitemap.xml /sitemap.xml 200
 /article.html /article.html 200
 /article-6mars.html /article-6mars.html 200
 /article-vive6mars.html /article-vive6mars.html 200

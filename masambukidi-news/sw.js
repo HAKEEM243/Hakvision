@@ -1,30 +1,29 @@
 /**
- * ELUCCO Service Worker v12
- * Cache uniquement les assets statiques — PAS index.html
+ * ELUCCO Service Worker v16
+ * HTML: network-first | Static assets: cache-first
  */
-const CACHE_NAME = 'elucco-v13';
-const ASSETS = [
+const CACHE_NAME = 'elucco-v30';
+const STATIC_ASSETS = [
   '/manifest.json',
-  '/elucco_logo_officiel.png',
   '/masambukidi_armoiries.png',
+  '/icon-192.png',
+  '/icon-512.png',
   '/papa_masambukidi_couronne.jpg',
-  '/sa_majeste_trone_1.jpg',
-  '/sa_majeste_trone_2.jpg',
 ];
 
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(ASSETS))
+      .then(cache => cache.addAll(STATIC_ASSETS).catch(()=>{}))
       .then(() => self.skipWaiting())
   );
 });
 
 self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(keys => Promise.all(
-      keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
-    )).then(() => self.clients.claim())
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
 
@@ -32,22 +31,20 @@ self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
 
-  // JAMAIS mettre en cache les pages HTML — toujours aller au réseau
+  // ── HTML pages: NETWORK FIRST (always fresh) ──────────────────────────
   if (
     e.request.mode === 'navigate' ||
     url.pathname.endsWith('.html') ||
-    url.pathname === '/' ||
-    url.pathname === '/article' ||
-    url.pathname === '/article-6mars' ||
-    url.pathname === '/article-vive6mars'
+    url.pathname === '/'
   ) {
     e.respondWith(
-      fetch(e.request).catch(() => caches.match('/index.html'))
+      fetch(e.request, {cache:'no-store'})
+        .catch(() => caches.match(e.request).then(r => r || caches.match('/index.html')))
     );
     return;
   }
 
-  // Assets statiques : cache first
+  // ── Static assets: CACHE FIRST ─────────────────────────────────────────
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
@@ -62,22 +59,19 @@ self.addEventListener('fetch', e => {
   );
 });
 
-// Push notifications
 self.addEventListener('push', e => {
   const data = e.data ? e.data.json() : {};
-  const title = data.title || 'ELUCCO';
-  const opts = {
+  e.waitUntil(self.registration.showNotification(data.title || 'ELUCCO', {
     body: data.body || 'Nouvelle notification',
     icon: '/masambukidi_armoiries.png',
     badge: '/masambukidi_armoiries.png',
     vibrate: [200, 100, 200],
     data: { url: data.url || '/' },
-  };
-  e.waitUntil(self.registration.showNotification(title, opts));
+  }));
 });
 
 self.addEventListener('notificationclick', e => {
   e.notification.close();
-  const url = e.notification.data && e.notification.data.url ? e.notification.data.url : '/';
+  const url = e.notification.data?.url || '/';
   e.waitUntil(clients.openWindow(url));
 });

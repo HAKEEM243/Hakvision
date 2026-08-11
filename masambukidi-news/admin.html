@@ -114,6 +114,20 @@ select.fctrl{-webkit-appearance:none;appearance:none;}
 /* Toast */
 .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(10px);background:var(--grad);color:var(--dk);padding:.55rem 1.4rem;border-radius:var(--r-pill);font-size:.8rem;font-weight:800;z-index:9000;opacity:0;transition:all .28s;pointer-events:none;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+/* Upload Gallery/News */
+.upload-zone{border:2px dashed var(--border2);border-radius:var(--r);padding:2rem;text-align:center;cursor:pointer;transition:all .25s;background:rgba(212,175,55,.03);}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--gold);background:rgba(212,175,55,.07);}
+.upload-zone input[type=file]{display:none;}
+.upload-zone-icon{font-size:2rem;color:var(--gold);opacity:.6;margin-bottom:.5rem;}
+.upload-zone-txt{font-size:.82rem;color:var(--tx3);}
+.upload-zone-txt strong{color:var(--gold);}
+.upload-previews{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem;}
+.up-prev-item{position:relative;width:80px;height:80px;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+.up-prev-item img{width:100%;height:100%;object-fit:cover;}
+.up-prev-del{position:absolute;top:2px;right:2px;background:rgba(231,76,60,.85);border:none;border-radius:50%;width:18px;height:18px;font-size:.6rem;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.tab-btns{display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap;}
+.tab-btn-adm{padding:.45rem 1.1rem;border-radius:var(--r-pill);font-size:.78rem;font-weight:700;cursor:pointer;border:1.5px solid var(--border2);background:transparent;color:var(--tx3);transition:all .2s;}
+.tab-btn-adm.active{background:var(--grad);color:var(--dk);border-color:transparent;}
 /* Media preview */
 .yt-prev-wrap{position:relative;height:160px;background:#000;border-radius:var(--r-sm);overflow:hidden;cursor:pointer;}
 .yt-prev-wrap img{width:100%;height:100%;object-fit:cover;opacity:.85;}
@@ -146,7 +160,7 @@ textarea.bcast-inp{resize:vertical;min-height:70px;}
       <label class="form-label" for="l-pass">Mot de passe</label>
       <input class="form-ctrl" id="l-pass" type="password" placeholder="••••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
-    <button class="login-btn" onclick="doLogin()"><i class="fa-solid fa-lock-open fa-sm"></i> Se connecter</button>
+    <button class="login-btn" id="login-btn" onclick="doLogin()"><i class="fa-solid fa-sign-in-alt fa-sm"></i> Se connecter</button>
     <div class="login-err" id="login-err"><i class="fa-solid fa-circle-xmark fa-xs"></i> Identifiants incorrects</div>
     <div class="back-link"><a href="index.html"><i class="fa-solid fa-arrow-left fa-xs"></i> Retour au site</a></div>
   </div>
@@ -232,6 +246,86 @@ textarea.bcast-inp{resize:vertical;min-height:70px;}
       <button class="btn btn-gold" onclick="addPost()" style="margin-top:.5rem"><i class="fa-solid fa-paper-plane fa-xs"></i> Publier sur le site</button>
     </div>
 
+    <!-- UPLOAD GALERIE / ACTUALITÉS / VIDÉO -->
+    <div class="asec">
+      <div class="asec-title"><i class="fa-solid fa-cloud-arrow-up"></i> Ajouter Photo / Vidéo au Site</div>
+      <p style="font-size:.8rem;color:var(--tx3);margin-bottom:1rem;">Ajoutez directement une image dans la <strong style="color:var(--gold)">Galerie</strong> ou dans les <strong style="color:var(--gold)">Actualités</strong>, ou ajoutez une vidéo YouTube.</p>
+
+      <div class="tab-btns">
+        <button class="tab-btn-adm active" onclick="switchUploadTab('galerie',this)"><i class="fa-solid fa-images fa-xs"></i> Galerie</button>
+        <button class="tab-btn-adm" onclick="switchUploadTab('actu',this)"><i class="fa-solid fa-newspaper fa-xs"></i> Actualités</button>
+        <button class="tab-btn-adm" onclick="switchUploadTab('video',this)"><i class="fab fa-youtube fa-xs"></i> Vidéo YouTube</button>
+      </div>
+
+      <!-- TAB GALERIE -->
+      <div id="upload-tab-galerie">
+        <div class="upload-zone" id="upload-dropzone" onclick="document.getElementById('upload-file-input').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
+          <input type="file" id="upload-file-input" accept="image/*" multiple onchange="handleFileSelect(this.files)">
+          <div class="upload-zone-icon"><i class="fa-solid fa-images"></i></div>
+          <div class="upload-zone-txt">Glissez vos photos ici ou <strong>cliquez pour sélectionner</strong><br><span style="font-size:.72rem;opacity:.6">JPG, PNG, WEBP — Max 5 Mo par photo</span></div>
+        </div>
+        <div class="upload-previews" id="upload-previews"></div>
+        <div style="margin-top:1rem">
+          <label class="flbl">Légende (optionnelle)</label>
+          <input class="fctrl" id="gallery-caption-input" type="text" placeholder="ex: Sa Majesté — Culte du 8 Mars 2026">
+        </div>
+        <div class="alert alert-ok" id="gal-ok"><i class="fa-solid fa-check-circle fa-xs"></i> Photo(s) ajoutée(s) à la Galerie !</div>
+        <div class="alert alert-err" id="gal-err"></div>
+        <button class="btn btn-gold" onclick="addToGallery()" style="margin-top:.75rem"><i class="fa-solid fa-plus fa-xs"></i> Ajouter à la Galerie</button>
+      </div>
+
+      <!-- TAB ACTUALITÉS IMAGE -->
+      <div id="upload-tab-actu" style="display:none">
+        <div class="fg fg-full">
+          <label class="flbl">Titre de l'actualité *</label>
+          <input class="fctrl" id="actu-title" type="text" placeholder="ex: Culte du 15 Mars 2026…">
+        </div>
+        <div class="fg fg-full" style="margin-top:.5rem">
+          <label class="flbl">Description *</label>
+          <textarea class="fctrl" id="actu-desc" placeholder="Décrivez l'événement…" style="min-height:80px"></textarea>
+        </div>
+        <div class="fg fg-full" style="margin-top:.5rem">
+          <label class="flbl">Photo de l'article</label>
+          <div class="upload-zone" onclick="document.getElementById('actu-file-input').click()" style="padding:1rem">
+            <input type="file" id="actu-file-input" accept="image/*" onchange="previewActuPhoto(this)">
+            <div style="font-size:.8rem;color:var(--tx3)"><i class="fa-solid fa-image fa-xs"></i> Cliquez pour choisir une photo</div>
+          </div>
+          <div id="actu-photo-prev" style="margin-top:.5rem"></div>
+        </div>
+        <div class="fg" style="margin-top:.5rem">
+          <label class="flbl">Date</label>
+          <input class="fctrl" id="actu-date" type="date">
+        </div>
+        <div class="alert alert-ok" id="actu-ok"><i class="fa-solid fa-check-circle fa-xs"></i> Actualité ajoutée avec succès !</div>
+        <div class="alert alert-err" id="actu-err"></div>
+        <button class="btn btn-gold" onclick="addActuWithPhoto()" style="margin-top:.75rem"><i class="fa-solid fa-paper-plane fa-xs"></i> Publier dans les Actualités</button>
+      </div>
+
+      <!-- TAB VIDÉO -->
+      <div id="upload-tab-video" style="display:none">
+        <div class="fg fg-full">
+          <label class="flbl">ID Vidéo YouTube *</label>
+          <input class="fctrl" id="vid-ytid" type="text" placeholder="ex: 5xGtsTfluII" oninput="previewVidAdmin()">
+        </div>
+        <div id="vid-prev-admin" style="margin-top:.75rem"></div>
+        <div class="fg fg-full" style="margin-top:.75rem">
+          <label class="flbl">Titre de la vidéo *</label>
+          <input class="fctrl" id="vid-title" type="text" placeholder="ex: Culte Solennel du 15 Mars…">
+        </div>
+        <div class="fg fg-full" style="margin-top:.5rem">
+          <label class="flbl">Description *</label>
+          <textarea class="fctrl" id="vid-desc" placeholder="Description de la vidéo…" style="min-height:70px"></textarea>
+        </div>
+        <div class="fg" style="margin-top:.5rem">
+          <label class="flbl">Date</label>
+          <input class="fctrl" id="vid-date" type="date">
+        </div>
+        <div class="alert alert-ok" id="vid-ok"><i class="fa-solid fa-check-circle fa-xs"></i> Vidéo ajoutée aux Actualités !</div>
+        <div class="alert alert-err" id="vid-err"></div>
+        <button class="btn btn-gold" onclick="addVideoAdmin()" style="margin-top:.75rem"><i class="fab fa-youtube fa-xs"></i> Publier la Vidéo</button>
+      </div>
+    </div>
+
     <!-- BROADCAST EMAIL -->
     <div class="asec">
       <div class="asec-title"><i class="fa-solid fa-envelope-open-text"></i> Envoyer un e-mail aux abonnés</div>
@@ -287,6 +381,31 @@ textarea.bcast-inp{resize:vertical;min-height:70px;}
       </div>
     </div>
 
+    <!-- VISITEURS — LOG GÉOLOCALISATION -->
+    <div class="asec">
+      <div class="asec-title"><i class="fa-solid fa-earth-africa"></i> Visiteurs — Localisation en Temps Réel</div>
+      <p style="font-size:.78rem;color:var(--tx3);margin-bottom:1rem;">Données collectées via ipapi.co — jusqu'à 100 dernières visites.</p>
+      <div style="overflow-x:auto;">
+        <table class="stbl" id="geo-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Pays</th>
+              <th>Ville</th>
+              <th>Région</th>
+              <th>IP</th>
+              <th>Fuseau</th>
+              <th>Opérateur</th>
+              <th>Date visite</th>
+            </tr>
+          </thead>
+          <tbody id="geo-tbody"></tbody>
+        </table>
+        <div id="no-geo" style="text-align:center;padding:1.5rem;color:var(--tx3);font-size:.82rem;">Aucune visite enregistrée.</div>
+      </div>
+      <button class="btn btn-red btn-sm" onclick="clearGeoLog()" style="margin-top:.75rem"><i class="fa-solid fa-trash fa-xs"></i> Effacer le journal</button>
+    </div>
+
   </div><!-- /admin-main -->
 </div><!-- /admin-panel -->
 
@@ -297,13 +416,19 @@ textarea.bcast-inp{resize:vertical;min-height:70px;}
 /* ══════════════════════════════════════════════════════
    CONFIG
 ══════════════════════════════════════════════════════ */
-const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'masambukidi2024!';
-// API config assembled at runtime
-const _a1='xkey'+'sib-4e97b65c6d1e2ca69af9ea';const _a2='2876fb829202'+'7c2edfc0560bd6b';const _a3='42a4666a67981e5-z'+'EOPZYdOuqryOnuo';
-const BREVO_KEY  = _a1+_a2+_a3;
-const SENDER_EMAIL = 'arenalse22@gmail.com';
-const SENDER_NAME  = 'ELUCCO — Masambukidiste';
+// ╔══════════════════════════════════════════════════╗
+// ║  SÉCURITÉ : aucun mot de passe en clair ici     ║
+// ║  Authentification via Web Crypto API (SHA-256)  ║
+// ╚══════════════════════════════════════════════════╝
+// ╔══════════════════════════════════════════════════════════════╗
+// ║  SÉCURITÉ : aucun secret côté client                        ║
+// ║  L'authentification se fait UNIQUEMENT via le Worker        ║
+// ║  Le Worker vérifie le mot de passe et renvoie un jeton       ║
+// ╚══════════════════════════════════════════════════════════════╝
+const WORKER_URL = 'https://elucco-email.arenalse22.workers.dev';
+
+// Brute-force protection (côté client, renforcement côté serveur aussi)
+const _loginAttempts = { count: 0, lockedUntil: 0 };
 
 /* ══════════════════════════════════════════════════════
    STORAGE
@@ -321,33 +446,76 @@ function addSub(email){ const s=getSubs(); if(!s.includes(email)){ s.push({email
 /* ══════════════════════════════════════════════════════
    AUTH
 ══════════════════════════════════════════════════════ */
-function doLogin(){
+async function doLogin(){
+  // ── Brute-force protection (côté client) ───────────────
+  const now = Date.now();
+  if(_loginAttempts.lockedUntil > now){
+    const remaining = Math.ceil((_loginAttempts.lockedUntil - now)/1000);
+    const err=document.getElementById('login-err');
+    err.innerHTML = `<i class="fas fa-lock"></i> Trop de tentatives. Réessayez dans ${remaining}s.`;
+    err.style.display='block';
+    return;
+  }
   const u=document.getElementById('l-user').value.trim();
   const p=document.getElementById('l-pass').value;
-  if(u===ADMIN_USER&&p===ADMIN_PASS){
-    DB.set('elucco_admin_auth','1');
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('admin-panel').style.display='block';
-    loadAdmin();
-  } else {
+  const btn=document.getElementById('login-btn');
+  if(btn){ btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Vérification…'; }
+  try{
+    // ── Authentication via Worker (aucun secret dans ce fichier) ──
+    const resp = await fetch(WORKER_URL+'/api/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({username: u, password: p})
+    });
+    const data = await resp.json().catch(()=>({}));
+    if(resp.ok && data.token){
+      _loginAttempts.count = 0;
+      // Store server-issued token with expiry
+      DB.set('elucco_admin_auth', JSON.stringify({token: data.token, expiry: data.expiry || Date.now()+4*3600*1000}));
+      document.getElementById('login-screen').style.display='none';
+      document.getElementById('admin-panel').style.display='block';
+      loadAdmin();
+    } else {
+      _loginAttempts.count++;
+      if(_loginAttempts.count >= 5){
+        _loginAttempts.lockedUntil = Date.now() + 30000;
+        _loginAttempts.count = 0;
+      }
+      const err=document.getElementById('login-err');
+      err.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Identifiant ou mot de passe incorrect.';
+      err.style.display='block';
+      setTimeout(()=>err.style.display='none',3500);
+    }
+  } catch(e){
     const err=document.getElementById('login-err');
+    err.innerHTML = '<i class="fas fa-wifi"></i> Erreur réseau. Vérifiez votre connexion.';
     err.style.display='block';
-    setTimeout(()=>err.style.display='none',3000);
+    setTimeout(()=>err.style.display='none',4000);
+  } finally {
+    if(btn){ btn.disabled=false; btn.innerHTML='<i class="fas fa-sign-in-alt"></i> Se connecter'; }
   }
 }
 function doLogout(){
-  DB.set('elucco_admin_auth','0');
+  DB.set('elucco_admin_auth', null);
   document.getElementById('admin-panel').style.display='none';
   document.getElementById('login-screen').style.display='flex';
   document.getElementById('l-user').value='';
   document.getElementById('l-pass').value='';
 }
 function checkAuth(){
-  if(DB.get('elucco_admin_auth')==='1'){
-    document.getElementById('login-screen').style.display='none';
-    document.getElementById('admin-panel').style.display='block';
-    loadAdmin();
-  }
+  try{
+    const session = DB.get('elucco_admin_auth');
+    if(!session) return;
+    const data = typeof session === 'string' ? JSON.parse(session) : session;
+    if(data && data.token && data.expiry && Date.now() < data.expiry){
+      document.getElementById('login-screen').style.display='none';
+      document.getElementById('admin-panel').style.display='block';
+      loadAdmin();
+    } else {
+      // Session expired - clean up
+      DB.set('elucco_admin_auth', null);
+    }
+  } catch(e){ DB.set('elucco_admin_auth', null); }
 }
 
 /* ══════════════════════════════════════════════════════
@@ -355,10 +523,19 @@ function checkAuth(){
 ══════════════════════════════════════════════════════ */
 function loadAdmin(){
   // Set today as default date
-  const now=new Date(); document.getElementById('p-date').value=now.toISOString().substring(0,10);
+  const now=new Date(); 
+  const todayStr=now.toISOString().substring(0,10);
+  document.getElementById('p-date').value=todayStr;
+  const actuDate=document.getElementById('actu-date');
+  const vidDate=document.getElementById('vid-date');
+  if(actuDate) actuDate.value=todayStr;
+  if(vidDate) vidDate.value=todayStr;
   updateStats();
   renderPosts();
   renderSubs();
+  renderGeoLog();
+  // Sync published posts from Cloudflare KV so all visitors see same content
+  syncPostsFromKV();
 }
 
 function updateStats(){
@@ -392,9 +569,9 @@ function previewMedia(){
 function openYT(id){ window.open(`https://www.youtube.com/watch?v=${id}`,'_blank'); }
 
 /* ══════════════════════════════════════════════════════
-   ADD POST
+   ADD POST — via Worker /api/posts (KV) + localStorage fallback
 ══════════════════════════════════════════════════════ */
-function addPost(){
+async function addPost(){
   const title=document.getElementById('p-title').value.trim();
   const desc=document.getElementById('p-desc').value.trim();
   const src=document.getElementById('p-src').value;
@@ -410,12 +587,26 @@ function addPost(){
   if(!title){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Le titre est obligatoire.'; errEl.style.display='block'; return; }
   if(!desc){  errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> La description est obligatoire.'; errEl.style.display='block'; return; }
   if(!ytId&&!img){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Ajoutez un ID YouTube ou une URL image.'; errEl.style.display='block'; return; }
+  const token=getAuthToken();
   const post={
     id:'admin_'+Date.now(),
-    title, desc, source:src, badge, ytId, img, link, views,
+    title, content:desc, desc, source:src, category:badge||'actualite', badge, youtubeId:ytId, ytId, imageUrl:img, img, link, views,
     date:date||new Date().toISOString().substring(0,10),
     createdAt:new Date().toISOString()
   };
+  // Try Worker KV first
+  if(token){
+    try{
+      const r=await fetch(WORKER_URL+'/api/posts',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+        body:JSON.stringify({title, content:desc, category:badge||'actualite', imageUrl:img, youtubeId:ytId})
+      });
+      const data=await r.json().catch(()=>({}));
+      if(r.ok&&data.success){ post.id=data.post.id; post._kv=true; }
+    } catch{}
+  }
+  // Always save locally too (serves as cache)
   const posts=getPosts(); posts.unshift(post); savePosts(posts);
   // Reset form
   ['p-title','p-desc','p-badge','p-ytid','p-img','p-link','p-views'].forEach(id=>document.getElementById(id).value='');
@@ -423,7 +614,7 @@ function addPost(){
   document.getElementById('p-date').value=new Date().toISOString().substring(0,10);
   document.getElementById('media-preview').innerHTML='';
   okEl.style.display='block'; setTimeout(()=>okEl.style.display='none',4000);
-  renderPosts(); updateStats(); showToast('Publication ajoutée !');
+  renderPosts(); updateStats(); showToast(post._kv?'Publication ajoutée (partagée) !':'Publication ajoutée (local) !');
 }
 
 /* ══════════════════════════════════════════════════════
@@ -457,10 +648,44 @@ function renderPosts(){
   }).join('');
 }
 
-function deletePost(id){
+async function deletePost(id){
   if(!confirm('Supprimer cette publication ?')) return;
+  const token=getAuthToken();
+  // Try Worker KV
+  if(token){
+    try{
+      await fetch(WORKER_URL+'/api/posts/'+id,{
+        method:'DELETE',
+        headers:{'Authorization':'Bearer '+token}
+      });
+    } catch{}
+  }
+  // Remove locally
   const posts=getPosts().filter(p=>p.id!==id); savePosts(posts);
   renderPosts(); updateStats(); showToast('Supprimé !');
+}
+
+/* ══════════════════════════════════════════════════════
+   LOAD POSTS FROM KV (merge with localStorage)
+══════════════════════════════════════════════════════ */
+async function syncPostsFromKV(){
+  const token=getAuthToken();
+  if(!token) return;
+  try{
+    const r=await fetch(WORKER_URL+'/api/posts',{headers:{'Authorization':'Bearer '+token}});
+    if(!r.ok) return;
+    const data=await r.json().catch(()=>({}));
+    if(!data.posts||!data.posts.length) return;
+    // Merge KV posts with local: KV posts take priority (marked _kv)
+    const local=getPosts().filter(p=>!p._kv);
+    const kvPosts=data.posts.map(p=>({...p, _kv:true}));
+    // Deduplicate by id
+    const merged=[...kvPosts];
+    for(const lp of local){ if(!merged.find(p=>p.id===lp.id)) merged.push(lp); }
+    merged.sort((a,b)=>new Date(b.createdAt||b.date||0)-new Date(a.createdAt||a.date||0));
+    savePosts(merged);
+    renderPosts(); updateStats();
+  } catch{}
 }
 
 /* ══════════════════════════════════════════════════════
@@ -480,8 +705,16 @@ function renderSubs(){
 }
 
 /* ══════════════════════════════════════════════════════
-   BROADCAST EMAIL TO LIST #2 VIA BREVO
+   BROADCAST EMAIL — via Worker /api/broadcast
 ══════════════════════════════════════════════════════ */
+function getAuthToken(){
+  try{
+    const raw=DB.get('elucco_admin_auth');
+    const data=typeof raw==='string'?JSON.parse(raw):raw;
+    return (data&&data.token&&data.expiry&&Date.now()<data.expiry)?data.token:null;
+  } catch{ return null; }
+}
+
 async function broadcastEmail(){
   const subject=document.getElementById('bc-subject').value.trim();
   const body=document.getElementById('bc-body').value.trim();
@@ -490,6 +723,8 @@ async function broadcastEmail(){
   const errEl=document.getElementById('bc-err');
   okEl.style.display='none'; errEl.style.display='none';
   if(!subject||!body){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Sujet et message obligatoires.'; errEl.style.display='block'; return; }
+  const token=getAuthToken();
+  if(!token){ errEl.innerHTML='<i class="fa-solid fa-lock fa-xs"></i> Session expirée. Reconnectez-vous.'; errEl.style.display='block'; doLogout(); return; }
   const btnEl=event.target; btnEl.disabled=true; btnEl.textContent='Envoi en cours…';
   const linkBtn=link?`<p style="text-align:center;margin-top:1.25rem"><a href="${link}" style="display:inline-block;background:linear-gradient(135deg,#C8991A,#FFD700,#C8991A);color:#050d06;font-weight:700;padding:11px 26px;border-radius:999px;text-decoration:none;font-size:.86rem">Voir la publication</a></p>`:'';
   const htmlContent=`<!DOCTYPE html>
@@ -507,46 +742,175 @@ async function broadcastEmail(){
 <body><div class="box">
 <div class="hd"><h1>E·L·U·C·CO</h1><p>Eglise Lumière du Christ au Congo — Masambukidiste</p></div>
 <div class="bd"><h2>Nouvelle publication ELUCCO</h2><p>${body}</p>${linkBtn}</div>
-<div class="ft">© 2026 ELUCCO Masambukidiste — <a href="mailto:masambukidiste1983@gmail.com" style="color:rgba(212,175,55,.6)">masambukidiste1983@gmail.com</a></div>
+<div class="ft">© ${new Date().getFullYear()} ELUCCO Masambukidiste — <a href="mailto:masambukidiste1983@gmail.com" style="color:rgba(212,175,55,.6)">masambukidiste1983@gmail.com</a></div>
 </div></body></html>`;
   try{
-    // Send to list ID 2 via campaign... but free plan only allows SMTP
-    // So we send individual transactional emails to locally stored subscribers
-    const subs=getSubs();
-    let sentCount=0;
-    if(subs.length===0){
-      // Also try to send to admin email to confirm it works
-      const r=await fetch('https://api.brevo.com/v3/smtp/email',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','api-key':BREVO_KEY},
-        body:JSON.stringify({ sender:{name:SENDER_NAME,email:SENDER_EMAIL}, to:[{email:SENDER_EMAIL,name:'Admin ELUCCO'}], subject, htmlContent })
-      });
-      if(!r.ok) throw new Error((await r.json()).message||'Erreur API');
-      sentCount=1;
+    const r=await fetch(WORKER_URL+'/api/broadcast',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body:JSON.stringify({subject, htmlContent})
+    });
+    const data=await r.json().catch(()=>({}));
+    if(r.ok&&data.success){
+      okEl.innerHTML=`<i class="fa-solid fa-check-circle fa-xs"></i> E-mail envoyé à ${data.sent||0} abonné(s) avec succès !`;
+      okEl.style.display='block';
+      ['bc-subject','bc-body','bc-link'].forEach(id=>document.getElementById(id).value='');
+      showToast(`${data.sent||0} e-mail(s) envoyé(s) !`);
     } else {
-      for(const s of subs){
-        const email=s.email||s;
-        try{
-          const r=await fetch('https://api.brevo.com/v3/smtp/email',{
-            method:'POST',
-            headers:{'Content-Type':'application/json','api-key':BREVO_KEY},
-            body:JSON.stringify({ sender:{name:SENDER_NAME,email:SENDER_EMAIL}, to:[{email,name:'Fidèle ELUCCO'}], subject, htmlContent })
-          });
-          if(r.ok||r.status===201) sentCount++;
-        } catch{}
-        await new Promise(r=>setTimeout(r,100)); // rate limit
-      }
+      throw new Error(data.message||'Erreur inconnue');
     }
-    okEl.innerHTML=`<i class="fa-solid fa-check-circle fa-xs"></i> E-mail envoyé à ${sentCount} abonné(s) avec succès !`;
-    okEl.style.display='block';
-    ['bc-subject','bc-body','bc-link'].forEach(id=>document.getElementById(id).value='');
-    showToast(`${sentCount} e-mail(s) envoyé(s) !`);
   } catch(e){
     errEl.innerHTML=`<i class="fa-solid fa-circle-xmark fa-xs"></i> Erreur : ${e.message}`;
     errEl.style.display='block';
   } finally{
     btnEl.disabled=false; btnEl.innerHTML='<i class="fa-solid fa-paper-plane fa-xs"></i> Envoyer aux abonnés';
   }
+}
+
+/* ══════════════════════════════════════════════════════
+   UPLOAD GALLERY / ACTU / VIDEO
+══════════════════════════════════════════════════════ */
+
+// Stored files as base64
+let _uploadedFiles = [];
+let _actuPhotoB64 = null;
+
+function switchUploadTab(tab, btn){
+  ['galerie','actu','video'].forEach(t=>{
+    const el=document.getElementById('upload-tab-'+t);
+    if(el) el.style.display=t===tab?'block':'none';
+  });
+  document.querySelectorAll('.tab-btn-adm').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function handleFileSelect(files){
+  for(const file of Array.from(files)){
+    if(file.size>5*1024*1024){ showToast('Photo trop lourde (max 5 Mo)'); continue; }
+    const reader=new FileReader();
+    reader.onload=e=>{
+      _uploadedFiles.push({name:file.name, b64:e.target.result});
+      renderUploadPreviews();
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+function handleDrop(e){
+  e.preventDefault();
+  document.getElementById('upload-dropzone').classList.remove('drag');
+  handleFileSelect(e.dataTransfer.files);
+}
+
+function renderUploadPreviews(){
+  const wrap=document.getElementById('upload-previews');
+  if(!wrap) return;
+  wrap.innerHTML=_uploadedFiles.map((f,i)=>`
+    <div class="up-prev-item">
+      <img src="${f.b64}" alt="${f.name}">
+      <button class="up-prev-del" onclick="removeUpload(${i})"><i class="fa-solid fa-xmark" style="font-size:.55rem"></i></button>
+    </div>`).join('');
+}
+
+function removeUpload(i){
+  _uploadedFiles.splice(i,1);
+  renderUploadPreviews();
+}
+
+function addToGallery(){
+  const okEl=document.getElementById('gal-ok');
+  const errEl=document.getElementById('gal-err');
+  okEl.style.display='none'; errEl.style.display='none';
+  if(_uploadedFiles.length===0){
+    errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Sélectionnez au moins une photo.';
+    errEl.style.display='block'; return;
+  }
+  const caption=document.getElementById('gallery-caption-input').value.trim()||'Sa Majesté Masambukidi Samuel I';
+  // Store custom gallery items in localStorage — index.html reads elucco_custom_gallery
+  const existing=JSON.parse(localStorage.getItem('elucco_custom_gallery')||'[]');
+  const newItems=_uploadedFiles.map(f=>({src:f.b64, caption, fromAdmin:true, id:'gal_'+Date.now()+'_'+Math.random().toString(36).slice(2)}));
+  const updated=[...newItems, ...existing];
+  localStorage.setItem('elucco_custom_gallery', JSON.stringify(updated));
+  _uploadedFiles=[];
+  renderUploadPreviews();
+  document.getElementById('gallery-caption-input').value='';
+  okEl.style.display='block'; setTimeout(()=>okEl.style.display='none',4000);
+  showToast('Photo(s) ajoutée(s) à la Galerie !');
+  updateStats();
+}
+
+function previewActuPhoto(input){
+  if(!input.files[0]) return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    _actuPhotoB64=e.target.result;
+    document.getElementById('actu-photo-prev').innerHTML=`<img src="${e.target.result}" style="max-height:130px;border-radius:8px;border:1px solid var(--border)">`;
+  };
+  reader.readAsDataURL(input.files[0]);
+}
+
+function addActuWithPhoto(){
+  const title=document.getElementById('actu-title').value.trim();
+  const desc=document.getElementById('actu-desc').value.trim();
+  const date=document.getElementById('actu-date').value;
+  const okEl=document.getElementById('actu-ok');
+  const errEl=document.getElementById('actu-err');
+  okEl.style.display='none'; errEl.style.display='none';
+  if(!title){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Titre obligatoire.'; errEl.style.display='block'; return; }
+  if(!desc){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Description obligatoire.'; errEl.style.display='block'; return; }
+  const post={
+    id:'actu_'+Date.now(),
+    type:'actualite', badge:'royal',
+    title, desc,
+    img: _actuPhotoB64||'',
+    date: date||new Date().toISOString().substring(0,10),
+    views:'0', isAdmin:true, fromGallery:false,
+    createdAt:new Date().toISOString()
+  };
+  const posts=getPosts(); posts.unshift(post); savePosts(posts);
+  // Reset
+  document.getElementById('actu-title').value='';
+  document.getElementById('actu-desc').value='';
+  document.getElementById('actu-photo-prev').innerHTML='';
+  _actuPhotoB64=null;
+  okEl.style.display='block'; setTimeout(()=>okEl.style.display='none',4000);
+  renderPosts(); updateStats(); showToast('Actualité publiée !');
+}
+
+function previewVidAdmin(){
+  const id=document.getElementById('vid-ytid').value.trim();
+  const pv=document.getElementById('vid-prev-admin');
+  if(id){
+    pv.innerHTML=`<div class="yt-prev-wrap" onclick="openYT('${id}')"><img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt=""><div class="yt-prev-ov"><div class="yt-prev-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div></div></div>`;
+  } else { pv.innerHTML=''; }
+}
+
+function addVideoAdmin(){
+  const ytId=document.getElementById('vid-ytid').value.trim();
+  const title=document.getElementById('vid-title').value.trim();
+  const desc=document.getElementById('vid-desc').value.trim();
+  const date=document.getElementById('vid-date').value;
+  const okEl=document.getElementById('vid-ok');
+  const errEl=document.getElementById('vid-err');
+  okEl.style.display='none'; errEl.style.display='none';
+  if(!ytId){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> ID YouTube obligatoire.'; errEl.style.display='block'; return; }
+  if(!title){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Titre obligatoire.'; errEl.style.display='block'; return; }
+  if(!desc){ errEl.innerHTML='<i class="fa-solid fa-circle-xmark fa-xs"></i> Description obligatoire.'; errEl.style.display='block'; return; }
+  const post={
+    id:'vid_'+Date.now(),
+    type:'video', badge:'video', source:'youtube',
+    title, desc, ytId,
+    date: date||new Date().toISOString().substring(0,10),
+    views:'0', isAdmin:true,
+    createdAt:new Date().toISOString()
+  };
+  const posts=getPosts(); posts.unshift(post); savePosts(posts);
+  document.getElementById('vid-ytid').value='';
+  document.getElementById('vid-title').value='';
+  document.getElementById('vid-desc').value='';
+  document.getElementById('vid-prev-admin').innerHTML='';
+  okEl.style.display='block'; setTimeout(()=>okEl.style.display='none',4000);
+  renderPosts(); updateStats(); showToast('Vidéo publiée !');
 }
 
 /* ══════════════════════════════════════════════════════
@@ -561,7 +925,42 @@ function showToast(msg){
 /* ══════════════════════════════════════════════════════
    INIT
 ══════════════════════════════════════════════════════ */
-window.addEventListener('DOMContentLoaded', checkAuth);
+function renderGeoLog(){
+  const log=JSON.parse(localStorage.getItem('elucco_visitor_log')||'[]');
+  const tbody=document.getElementById('geo-tbody');
+  const none=document.getElementById('no-geo');
+  if(!tbody) return;
+  if(!log.length){ tbody.innerHTML=''; none.style.display='block'; return; }
+  none.style.display='none';
+  tbody.innerHTML=log.map((v,i)=>{
+    const flagUrl=v.country_code?`https://flagcdn.com/16x12/${v.country_code.toLowerCase()}.png`:'';
+    const flag=flagUrl?`<img src="${flagUrl}" alt="${v.country_code}" style="vertical-align:middle;margin-right:4px;border-radius:2px">`:' 🌍 ';
+    const dt=v.visited_at?new Date(v.visited_at).toLocaleString('fr-FR'):'';
+    return `<tr>
+      <td style="color:var(--tx3)">${i+1}</td>
+      <td>${flag}<strong style="font-size:.8rem">${v.country_name||v.country_code||'—'}</strong></td>
+      <td style="font-size:.8rem">${v.city||'—'}</td>
+      <td style="color:var(--tx3);font-size:.75rem">${v.region||'—'}</td>
+      <td style="color:var(--tx3);font-size:.72rem;font-family:monospace">${v.ip||'—'}</td>
+      <td style="color:var(--tx3);font-size:.72rem">${v.timezone||'—'}</td>
+      <td style="color:var(--tx3);font-size:.72rem">${(v.org||'').substring(0,28)}</td>
+      <td style="color:var(--tx3);font-size:.72rem">${dt}</td>
+    </tr>`;
+  }).join('');
+}
+
+function clearGeoLog(){
+  if(!confirm('Effacer tout le journal des visiteurs ?')) return;
+  localStorage.removeItem('elucco_visitor_log');
+  renderGeoLog();
+  showToast('Journal effacé !');
+}
+
+window.addEventListener('DOMContentLoaded', ()=>{
+  checkAuth();
+  // After auth check, sync posts from KV if already logged in
+  setTimeout(()=>{ const t=getAuthToken(); if(t) syncPostsFromKV(); }, 800);
+});
 </script>
 </body>
 </html>

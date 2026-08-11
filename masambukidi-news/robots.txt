@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /.wrangler/
+
+Sitemap: https://elucco.pages.dev/sitemap.xml

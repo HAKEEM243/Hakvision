@@ -1,23 +1,36 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" prefix="og: https://ogp.me/ns#">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- ═══ SEO — populated dynamically by JS ═══ -->
+<link rel="alternate" hreflang="fr" href="https://elucco.pages.dev/article">
+<link rel="alternate" hreflang="x-default" href="https://elucco.pages.dev/">
+<link id="canonical-link" rel="canonical" href="https://elucco.pages.dev/article">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="author" content="ELUCCO — Église Lumière du Christ au Congo">
+<meta name="google-site-verification" content="google16b193557568efc5">
+<meta id="meta-description" name="description" content="ELUCCO — Église Lumière du Christ au Congo. Articles et actualités de la communauté Masambukidiste mondiale.">
+<meta id="meta-keywords" name="keywords" content="ELUCCO, Masambukidi, Samuel I, Église Lumière du Christ au Congo, culte, actualités">
 <!-- Open Graph / Facebook / WhatsApp preview - populated dynamically by JS -->
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="ELUCCO">
-<meta id="og-title" property="og:title" content="ELUCCO — Eglise Lumière du Christ au Congo">
+<meta property="og:site_name" content="ELUCCO — Église Lumière du Christ au Congo">
+<meta id="og-title" property="og:title" content="ELUCCO — Église Lumière du Christ au Congo">
 <meta id="og-description" property="og:description" content="Site officiel de Sa Majesté Masambukidi Samuel I">
-<meta id="og-image" property="og:image" content="https://elucco.pages.dev/sa_majeste_trone_1.jpg">
+<meta id="og-image" property="og:image" content="https://elucco.pages.dev/sa_majeste_samuel_roi_trone.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta id="og-url" property="og:url" content="https://elucco.pages.dev/article">
+<meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@masambukidirtm">
 <meta id="tw-title" name="twitter:title" content="ELUCCO">
-<meta id="tw-description" name="twitter:description" content="ELUCCO — Eglise Lumière du Christ au Congo">
-<meta id="tw-image" name="twitter:image" content="https://elucco.pages.dev/sa_majeste_trone_1.jpg">
+<meta id="tw-description" name="twitter:description" content="ELUCCO — Église Lumière du Christ au Congo">
+<meta id="tw-image" name="twitter:image" content="https://elucco.pages.dev/sa_majeste_samuel_roi_trone.jpg">
 <meta id="page-title" name="title" content="ELUCCO">
 <meta name="theme-color" content="#c9a84c">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<!-- CACHE-BUST: article-v8.0-1773005990 -->
+<!-- CACHE-BUST: article-v14.6-1775557703 -->
 <title id="html-title">ELUCCO — Article</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="masambukidi_armoiries.png">
@@ -34,7 +47,7 @@
   --white:#fff;--text:#e8e8e8;--text-muted:rgba(255,255,255,0.55);
   --shadow:0 8px 40px rgba(0,0,0,0.6);
   --radius:16px;--radius-sm:10px;
-  --font-title:'Cinzel',serif;--font-body:'Crimson Text',serif;--font-ui:'Inter',sans-serif;
+  --font-title:'Cinzel','Times New Roman',serif;--font-body:'Crimson Text','Georgia',serif;--font-ui:'Inter','Segoe UI',Arial,sans-serif;
   --transition:0.3s cubic-bezier(0.4,0,0.2,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -163,15 +176,6 @@ img{max-width:100%;display:block}
   display:flex;align-items:center;justify-content:space-between;gap:10px;
   z-index:100;
 }
-.art-like-btn{
-  display:flex;align-items:center;gap:8px;
-  padding:10px 20px;border-radius:30px;
-  border:1px solid rgba(201,168,76,0.3);background:transparent;
-  color:var(--text-muted);font-family:var(--font-ui);font-size:0.85rem;
-  cursor:pointer;transition:var(--transition);
-}
-.art-like-btn.liked{color:#ff6b8a;border-color:rgba(255,107,138,0.5);background:rgba(255,107,138,0.08)}
-.art-like-btn:hover{background:rgba(255,107,138,0.08);border-color:rgba(255,107,138,0.3)}
 .art-share-row{display:flex;gap:8px}
 .art-share-platform{
   width:42px;height:42px;border-radius:50%;
@@ -186,38 +190,6 @@ img{max-width:100%;display:block}
 .art-share-platform.copy:hover{background:rgba(201,168,76,0.25)}
 
 /* ── COMMENTS ── */
-.art-comments{margin-top:36px}
-.art-comments-title{
-  font-family:var(--font-title);font-size:1rem;color:var(--gold);
-  letter-spacing:1px;margin-bottom:18px;
-  padding-bottom:10px;border-bottom:1px solid rgba(201,168,76,0.15);
-}
-.art-comment-form{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
-.art-comment-input{
-  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
-  border-radius:var(--radius-sm);padding:12px 14px;
-  color:var(--white);font-family:var(--font-ui);font-size:0.88rem;
-  transition:var(--transition);resize:none;
-}
-.art-comment-input:focus{outline:none;border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.05)}
-.art-comment-input::placeholder{color:rgba(255,255,255,0.3)}
-.art-comment-submit{
-  padding:12px 24px;border-radius:30px;border:none;cursor:pointer;
-  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
-  color:#0a0a0a;font-weight:600;font-family:var(--font-ui);font-size:0.88rem;
-  align-self:flex-end;transition:var(--transition);
-}
-.art-comment-submit:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,168,76,0.3)}
-.art-comment-item{
-  padding:14px;border-radius:var(--radius-sm);
-  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);
-  margin-bottom:10px;
-}
-.art-comment-author{font-size:0.8rem;color:var(--gold);font-weight:600;font-family:var(--font-ui);margin-bottom:5px}
-.art-comment-text{font-size:0.9rem;color:rgba(255,255,255,0.7);line-height:1.55}
-.art-comment-time{font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:6px}
-.art-comment-empty{color:rgba(255,255,255,0.3);font-size:0.85rem;text-align:center;padding:20px}
-
 /* ── RELATED ── */
 .art-back-btn{
   display:inline-flex;align-items:center;gap:8px;
@@ -265,6 +237,39 @@ img{max-width:100%;display:block}
   .art-body{font-size:1.04rem}
 }
 </style>
+
+<!-- ═══ SCHEMA.ORG — NewsArticle / VideoObject (populated by JS) ═══ -->
+<script id="article-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "ELUCCO — Actualité",
+  "image": "https://elucco.pages.dev/sa_majeste_trone_1.jpg",
+  "datePublished": "2026-03-08",
+  "dateModified": "2026-03-18",
+  "author": {"@type":"Organization","name":"ELUCCO — Église Lumière du Christ au Congo"},
+  "publisher": {
+    "@type": "Organization",
+    "name": "ELUCCO — Église Lumière du Christ au Congo",
+    "logo": {"@type":"ImageObject","url":"https://elucco.pages.dev/masambukidi_armoiries.png"}
+  },
+  "description": "Actualité de la communauté ELUCCO — Masambukidiste mondiale.",
+  "url": "https://elucco.pages.dev/article"
+}
+</script>
+<!-- ═══ SCHEMA.ORG — BreadcrumbList ═══ -->
+<script id="breadcrumb-schema" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Accueil","item":"https://elucco.pages.dev/"},
+    {"@type":"ListItem","position":2,"name":"Actualités","item":"https://elucco.pages.dev/#actualites"},
+    {"@type":"ListItem","position":3,"name":"Article","item":"https://elucco.pages.dev/article"}
+  ]
+}
+</script>
+<link rel="canonical" href="https://elucco.pages.dev/article.html">
 </head>
 <body>
 
@@ -273,7 +278,7 @@ img{max-width:100%;display:block}
   <button class="art-back" onclick="window.history.length>1?window.history.back():window.location='index.html'" title="Retour">
     <i class="fas fa-arrow-left"></i>
   </button>
-  <img src="masambukidi_armoiries.png" class="art-header-logo" alt="Armoiries">
+  <img loading="lazy" src="masambukidi_armoiries.png" class="art-header-logo" alt="Armoiries">
   <span class="art-header-title" id="header-title">ELUCCO</span>
   <button class="art-header-share" onclick="shareArticle()" title="Partager">
     <i class="fas fa-share-alt"></i>
@@ -299,7 +304,7 @@ img{max-width:100%;display:block}
   <!-- Source / logo row -->
   <div class="art-logo-row">
     <div class="art-logos">
-      <img src="masambukidi_armoiries.png" alt="Armoiries" id="logo1" style="width:52px;height:52px;object-fit:contain;border-radius:50%">
+      <img loading="lazy" src="masambukidi_armoiries.png" alt="Armoiries" id="logo1" style="width:52px;height:52px;object-fit:contain;border-radius:50%">
     </div>
     <div class="art-source">
       <strong>ELUCCO — Publication Officielle</strong>
@@ -323,16 +328,6 @@ img{max-width:100%;display:block}
   <div class="art-divider"></div>
 
   <!-- Comments -->
-  <section class="art-comments" id="art-comments-section">
-    <div class="art-comments-title"><i class="fas fa-comments" style="margin-right:8px;color:var(--gold)"></i>Commentaires</div>
-    <div class="art-comment-form">
-      <input type="text" class="art-comment-input" id="cmt-name" placeholder="Votre nom (facultatif)">
-      <textarea class="art-comment-input" id="cmt-text" rows="3" placeholder="Votre commentaire…"></textarea>
-      <button class="art-comment-submit" onclick="submitComment()"><i class="fas fa-paper-plane"></i> Envoyer</button>
-    </div>
-    <div id="cmt-list"></div>
-  </section>
-
   <button class="art-back-btn" onclick="window.location='index.html'">
     <i class="fas fa-arrow-left"></i> Retour à l'accueil
   </button>
@@ -340,11 +335,7 @@ img{max-width:100%;display:block}
 
 <!-- BOTTOM ACTIONS -->
 <div class="art-actions">
-  <button class="art-like-btn" id="art-like-btn" onclick="toggleLike()">
-    <i class="fas fa-heart"></i>
-    <span id="art-like-count">0</span> J'aime
-  </button>
-  <div class="art-share-row">
+<div class="art-share-row">
     <button class="art-share-platform fb" onclick="shareFacebook()" title="Partager sur Facebook">
       <i class="fab fa-facebook-f"></i>
     </button>
@@ -360,7 +351,7 @@ img{max-width:100%;display:block}
 <!-- LIGHTBOX -->
 <div id="art-lightbox">
   <button id="art-lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></button>
-  <img id="art-lightbox-img" src="" alt="">
+  <img loading="lazy" id="art-lightbox-img" src="" alt="">
 </div>
 
 <!-- TOAST -->
@@ -379,14 +370,14 @@ const ARTICLES = {
     badge: 'royal',
     title: '6 Mars — La Naissance Royale et Divine de Papa Samuel Nitufuidi Masambukidi',
     date: '6 Mars 1958',
-    location: 'Mbengua Ntadi, Congo DRC',
+    location: 'Mbengua Ntadi, Kongo Central, RDC',
     photoDate: '6 Mars 2025 · Kinkole-Miongo, Kinshasa',
     img: 'sa_majeste_roi_benediction_officielle.jpg',
     views: null,
     likes: 0,
     paragraphs: [
       "Ce 6 Mars est différent de tous les autres. Depuis l'intronisation solennelle de Sa Majesté Masambukidi Samuel I le 30 Octobre 2025, la communauté mondiale des Masambukidistes célèbre avec une ferveur renouvelée et un regard nouveau la naissance de son Père Fondateur : Samuel Nitufuidi Masambukidi Kulala Kwamakanda, dit Papa Samy.",
-      "Né le 6 Mars 1958 à Mbengua Ntadi (Kinshasa, RDC), cet Être Divin n'est pas venu sur terre par hasard. Sa naissance fut entourée de mystères prophétiques et de signes célestes extraordinaires, attestant d'une mission royale et divine tracée de toute éternité pour le salut du Bassin du Kongo et du monde entier.",
+      "Né le 6 Mars 1958 à Mbengua Ntadi (Kongo Central, RDC), cet Être Divin n'est pas venu sur terre par hasard. Sa naissance fut entourée de mystères prophétiques et de signes célestes extraordinaires, attestant d'une mission royale et divine tracée de toute éternité pour le salut du Bassin du Kongo et du monde entier.",
       "La photo que vous contemplez — prise le 6 Mars 2025 à Kinkole-Miongo, Kinshasa.",
     ],
   },
@@ -422,6 +413,25 @@ const ARTICLES = {
     ],
     highlight: "Temple Central de Kinshasa — Avenue Mbandaka n°40, Kimbanseke, Tshangu.",
   },
+  feat_4: {
+    id: 'feat_4',
+    type: 'actualite',
+    badge: 'royal',
+    title: 'Culte Solennel du 8 Mars 2026 — Temple Central Masambukidi',
+    date: '8 Mars 2026',
+    location: 'Temple Central — Avenue Mbandaka n°40, Kimbanseke, Tshangu, Kinshasa',
+    views: '5 200',
+    likes: 0,
+    img: 'sa_majeste_culte_8mars_4.jpg',
+    paragraphs: [
+      "Un moment de ferveur, de communion et de reconnaissance. La communauté s'est rassemblée pour célébrer avec dignité et spiritualité, dans la lumière de nos traditions et de notre foi.",
+      "Sa Majesté Masambukidi Samuel I a présidé ce culte solennel avec grâce et puissance divine, rappelant à chacun la grandeur de l'héritage Masambukidiste.",
+      "Ce culte du 8 Mars 2026 restera gravé dans les mémoires comme un moment de grâce collective, où la communauté ELUCCO a démontré sa foi profonde et son attachement indéfectible à la vision divine de Papa Samy Masambukidi, Fondateur de l'Église Lumière du Christ au Congo.",
+      "Que la lumière MASAMBUKIDI continue de guider chaque pas, chaque prière, chaque souffle de la communauté mondiale des Masambukidistes.",
+    ],
+    highlight: "Temple Central — Avenue Mbandaka n°40, Kimbanseke, Tshangu, Kinshasa, RDC.",
+    closing: "Vive Sa Majesté Masambukidi Samuel I — Roi Divin du Bassin du Kongo",
+  },
 };
 
 /* ═══════════════════════════════════
@@ -437,11 +447,38 @@ function setLS(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
 
 window.addEventListener('DOMContentLoaded', () => {
   const id = getParam('id') || 'feat_1';
-  const art = ARTICLES[id];
-  if(!art){ document.title='ELUCCO — Article introuvable'; return; }
+  let art = ARTICLES[id];
+  // If not in static dict, look in localStorage admin posts
+  if(!art){
+    const adminPosts = getLS('elucco_posts', []);
+    const found = adminPosts.find(p => p.id === id);
+    if(found){
+      // Normalise admin post to article format
+      art = {
+        id: found.id,
+        type: found.type || 'actualite',
+        badge: found.badge || 'royal',
+        title: found.title || 'Article ELUCCO',
+        date: found.date || '',
+        location: '',
+        views: found.views || '',
+        likes: found.likes || 0,
+        img: found.img || found.image || '',
+        youtubeId: found.ytId || found.youtubeId || '',
+        paragraphs: found.desc ? [found.desc] : ['Article de la communauté ELUCCO.'],
+        highlight: '',
+        closing: '',
+      };
+    }
+  }
+  if(!art){
+    document.title='ELUCCO — Article introuvable';
+    document.getElementById('art-hero-title').textContent = 'Article introuvable';
+    document.getElementById('art-body-text').innerHTML = '<p style="color:rgba(255,255,255,0.5);text-align:center;padding:40px 0">Cet article n\'existe pas ou a été supprimé.</p>';
+    return;
+  }
   currentArticle = art;
   renderArticle(art);
-  renderComments(art.id);
 });
 
 function renderArticle(art){
@@ -452,7 +489,7 @@ function renderArticle(art){
 
   // Update OG meta tags dynamically
   const pageUrl = BASE_URL + '/article?id=' + art.id;
-  const imgUrl  = art.img ? BASE_URL + '/' + art.img : BASE_URL + '/sa_majeste_trone_1.jpg';
+  const imgUrl  = art.img ? (art.img.startsWith('data:') ? art.img : BASE_URL + '/' + art.img) : BASE_URL + '/sa_majeste_trone_1.jpg';
   document.getElementById('og-title').setAttribute('content', art.title);
   document.getElementById('og-description').setAttribute('content', art.paragraphs[0].substring(0,160));
   document.getElementById('og-image').setAttribute('content', imgUrl);
@@ -460,6 +497,59 @@ function renderArticle(art){
   document.getElementById('tw-title').setAttribute('content', art.title);
   document.getElementById('tw-description').setAttribute('content', art.paragraphs[0].substring(0,160));
   document.getElementById('tw-image').setAttribute('content', imgUrl);
+
+  // ─── SEO: Update canonical link ───
+  const canonicalEl = document.getElementById('canonical-link');
+  if(canonicalEl) canonicalEl.setAttribute('href', pageUrl);
+  
+  // ─── SEO: Update description & keywords meta ───
+  const metaDesc = document.getElementById('meta-description');
+  if(metaDesc) metaDesc.setAttribute('content', art.paragraphs[0].substring(0,160));
+  const metaKw = document.getElementById('meta-keywords');
+  if(metaKw) metaKw.setAttribute('content', 'ELUCCO, Masambukidi, ' + art.title + ', Église Lumière du Christ au Congo, Kinshasa, RDC');
+
+  // ─── SEO: Update JSON-LD schema dynamically ───
+  const schemaEl = document.getElementById('article-schema');
+  if(schemaEl){
+    const schemaType = art.youtubeId ? 'VideoObject' : 'NewsArticle';
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": schemaType,
+      "headline": art.title,
+      "name": art.title,
+      "image": imgUrl,
+      "datePublished": art.date || "2026-03-08",
+      "dateModified": "2026-03-18",
+      "author": {"@type":"Organization","name":"ELUCCO — Église Lumière du Christ au Congo"},
+      "publisher": {
+        "@type":"Organization",
+        "name":"ELUCCO — Église Lumière du Christ au Congo",
+        "logo":{"@type":"ImageObject","url":"https://elucco.pages.dev/masambukidi_armoiries.png"}
+      },
+      "description": art.paragraphs[0].substring(0,160),
+      "url": pageUrl
+    };
+    if(art.youtubeId){
+      schemaData.embedUrl = 'https://www.youtube.com/embed/' + art.youtubeId;
+      schemaData.thumbnailUrl = 'https://i.ytimg.com/vi/' + art.youtubeId + '/hqdefault.jpg';
+      schemaData.uploadDate = art.date || "2026-03-08";
+    }
+    schemaEl.textContent = JSON.stringify(schemaData, null, 2);
+  }
+  // ─── SEO: Update BreadcrumbList ───
+  const bcEl = document.getElementById('breadcrumb-schema');
+  if(bcEl){
+    const bc = {
+      "@context":"https://schema.org",
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Accueil","item":"https://elucco.pages.dev/"},
+        {"@type":"ListItem","position":2,"name":"Actualités","item":"https://elucco.pages.dev/#actualites"},
+        {"@type":"ListItem","position":3,"name":art.title,"item":pageUrl}
+      ]
+    };
+    bcEl.textContent = JSON.stringify(bc, null, 2);
+  }
 
   // Hero
   document.getElementById('art-hero-title').textContent = art.title;
@@ -479,7 +569,7 @@ function renderArticle(art){
     vw.style.display='block';
     document.getElementById('art-video-iframe').src = 'https://www.youtube.com/embed/' + art.youtubeId + '?rel=0&modestbranding=1';
   } else if(art.img){
-    document.getElementById('art-main-img').src = art.img;
+    document.getElementById('art-main-img').src = art.img.startsWith('data:') ? art.img : art.img;
     document.getElementById('art-main-img').alt = art.title;
   }
 
@@ -515,62 +605,9 @@ function renderArticle(art){
   // Likes
   const likes = getLS('likes_' + art.id, art.likes || 0);
   const liked  = getLS('liked_' + art.id, false);
-  document.getElementById('art-like-count').textContent = likes;
-  if(liked) document.getElementById('art-like-btn').classList.add('liked');
 }
 
-/* ═══════════════════════════════════
-   LIKES
-═══════════════════════════════════ */
-function toggleLike(){
-  if(!currentArticle) return;
-  const id = currentArticle.id;
-  const liked = getLS('liked_' + id, false);
-  let likes   = getLS('likes_'  + id, currentArticle.likes || 0);
-  if(liked){ likes = Math.max(0, likes-1); setLS('liked_'+id,false); }
-  else      { likes++; setLS('liked_'+id,true); }
-  setLS('likes_'+id, likes);
-  document.getElementById('art-like-count').textContent = likes;
-  document.getElementById('art-like-btn').classList.toggle('liked', !liked);
-}
 
-/* ═══════════════════════════════════
-   COMMENTS
-═══════════════════════════════════ */
-function renderComments(id){
-  const list = document.getElementById('cmt-list');
-  const comments = getLS('comments_'+id,[]);
-  if(!comments.length){
-    list.innerHTML = '<div class="art-comment-empty"><i class="fas fa-comment-slash" style="margin-right:6px"></i>Soyez le premier à commenter</div>';
-    return;
-  }
-  list.innerHTML = comments.map(c=>`
-    <div class="art-comment-item">
-      <div class="art-comment-author"><i class="fas fa-user-circle" style="margin-right:5px"></i>${c.author||'Masambukidiste'}</div>
-      <div class="art-comment-text">${c.text}</div>
-      <div class="art-comment-time">${c.time||''}</div>
-    </div>
-  `).join('');
-}
-function submitComment(){
-  if(!currentArticle) return;
-  const name = document.getElementById('cmt-name').value.trim() || 'Masambukidiste';
-  const text = document.getElementById('cmt-text').value.trim();
-  if(!text){ showToast('Veuillez écrire un commentaire'); return; }
-  const id = currentArticle.id;
-  const comments = getLS('comments_'+id,[]);
-  const now = new Date();
-  comments.push({
-    author: name,
-    text: text,
-    time: now.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'})
-  });
-  setLS('comments_'+id, comments);
-  document.getElementById('cmt-name').value='';
-  document.getElementById('cmt-text').value='';
-  renderComments(id);
-  showToast('Commentaire publié ! Gloire à ELUCCO 🙏','success');
-}
 
 /* ═══════════════════════════════════
    SHARE
