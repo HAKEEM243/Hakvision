@@ -589,6 +589,13 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
   transition:all 0.2s;font-family:var(--font-ui);font-weight:500;
 }
 .news-watch-btn:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(255,0,0,0.4)}
+.news-read-btn{
+  padding:6px 16px;border-radius:20px;font-size:0.75rem;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:var(--dark);display:flex;align-items:center;gap:5px;
+  transition:all 0.2s;font-family:var(--font-ui);font-weight:600;
+}
+.news-read-btn:hover{transform:scale(1.05);box-shadow:0 4px 15px rgba(201,168,76,0.45)}
 .news-share-row{display:flex;gap:8px;padding-top:12px;margin-top:12px;border-top:1px solid rgba(255,255,255,0.06)}
 .news-share-btn{
   width:34px;height:34px;border-radius:50%;
@@ -2014,11 +2021,6 @@ const GALLERY = [
   {src:'masambukidi_trone_rouge.jpg',caption:'Sa Majeste Masambukidi Ier en meditation sur le trone rouge — Kinshasa'},
   {src:'masambukidi_trone_portrait.jpg',caption:'Sa Majeste Masambukidi Ier — Portrait officiel sur le trone royal'},
   {src:'masambukidi_trone_officiel.jpg',caption:'Sa Majeste Masambukidi Ier — Portrait royal officiel 2026'},
-  {src:'mumengi_masambukidi_ensemble.jpg',caption:'Le senateur Didier Mumengi aux cotes de Sa Majeste Masambukidi Ier — Kinshasa, 9 aout 2026'},
-  {src:'mumengi_masambukidi_ensemble_2.jpg',caption:'Didier Mumengi et Sa Majeste Masambukidi Ier ensemble'},
-  {src:'mumengi_masambukidi_livre_leve.jpg',caption:'Didier Mumengi presente le livre Nouvelle Verite aux cotes de Sa Majeste'},
-  {src:'masambukidi_portrait_trone_1.jpg',caption:'Sa Majeste Masambukidi Ier — Portrait sur le trone'},
-  {src:'masambukidi_portrait_trone_2.jpg',caption:'Sa Majeste Masambukidi Ier en priere sur le trone'},
   {src:'livre_roi_bassin_kongo_cover.jpg',caption:'Couverture du livre Roi du Bassin du Kongo — Masambukidi roi divin'},
   {src:'sa_majeste_trone_1.jpg',caption:'Sa Majeste sur le trone royal'},
   {src:'sa_majeste_trone_2.jpg',caption:'Sa Majeste — Portrait officiel'},
@@ -2294,6 +2296,7 @@ function renderNews(){
     {
       id:'feat_mumengi',
       type:'actualite',
+      articleUrl:'article-mumengi-aout2026.html',
       badge:'royal',
       title:'RDC : Didier Mumengi recu par Sa Majeste Masambukidi Ier a Kinshasa',
       date:'9 Aout 2026 · Kinshasa',
@@ -2308,6 +2311,7 @@ function renderNews(){
     {
       id:'feat_livre_roi_bassin_kongo',
       type:'livre',
+      articleUrl:'article-livre-roi-bassin-kongo.html',
       badge:'royal',
       title:'Roi du Bassin du Kongo — le livre evenement sur Masambukidi roi divin',
       date:'Hakvision Editions · Paris',
@@ -2373,6 +2377,9 @@ function renderNewsCard(item){
   const watchBtn=item.youtubeId
     ?`<a href="https://www.youtube.com/watch?v=${item.youtubeId}" target="_blank" class="news-watch-btn"><i class="fab fa-youtube"></i> Regarder</a>`
     :(item.amazonUrl?`<a href="${item.amazonUrl}" target="_blank" rel="noopener" class="news-watch-btn"><i class="fab fa-amazon"></i> Commander</a>`:'');
+  const readBtn=item.articleUrl
+    ?`<a href="${item.articleUrl}" class="news-read-btn"><i class="fas fa-book-open"></i> Lire l'article</a>`
+    :'';
   const shareRow=item.share?`
       <div class="news-share-row">
         <a class="news-share-btn news-share-wa" href="https://wa.me/?text=${encodeURIComponent(item.title+' — https://elucco.pages.dev/')}" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
@@ -2406,7 +2413,7 @@ function renderNewsCard(item){
             <i class="fas fa-comment"></i><span>${comments.length}</span>
           </button>
         </div>
-        ${watchBtn}
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${readBtn}${watchBtn}</div>
       </div>
       ${shareRow}
       <div class="comments-section" id="comments-${item.id}">

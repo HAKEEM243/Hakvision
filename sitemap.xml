@@ -143,33 +143,9 @@
   <!-- Papa Masambukidi -->
   <url>
     <loc>https://hakvision243.netlify.app/papa-masambukidi.html</loc>
-    <lastmod>2026-08-10</lastmod>
+    <lastmod>2026-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-  </url>
-
-  <!-- Actualité — Didier Mumengi reçu par Sa Majesté Masambukidi Ier -->
-  <url>
-    <loc>https://hakvision243.netlify.app/article-mumengi-aout2026.html</loc>
-    <lastmod>2026-08-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://hakvision243.netlify.app/mumengi_masambukidi_ensemble.jpg</image:loc>
-      <image:title>Didier Mumengi reçu par Sa Majesté Masambukidi Ier — Kinshasa, 9 août 2026</image:title>
-    </image:image>
-  </url>
-
-  <!-- Livre — Roi du Bassin du Kongo -->
-  <url>
-    <loc>https://hakvision243.netlify.app/article-livre-roi-bassin-kongo.html</loc>
-    <lastmod>2026-08-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-    <image:image>
-      <image:loc>https://hakvision243.netlify.app/livre_roi_bassin_kongo_cover.jpg</image:loc>
-      <image:title>Roi du Bassin du Kongo — Origine, intronisation et couronnement de Masambukidi I</image:title>
-    </image:image>
   </url>
 
   <!-- Presse -->
