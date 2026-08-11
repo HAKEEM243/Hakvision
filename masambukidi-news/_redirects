@@ -1,2 +1,4 @@
-# Cloudflare Pages redirects
-/* /index.html 200
+# Pas de règle catch-all ici.
+# L'ancienne règle "/* /index.html 200" servait quand ELUCCO était une page unique.
+# Le site a maintenant de vraies pages (article-*.html) et Cloudflare la refuse
+# désormais : "Infinite loop detected in this rule".
