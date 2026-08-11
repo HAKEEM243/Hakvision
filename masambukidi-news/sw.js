@@ -1,22 +1,18 @@
 /**
- * ELUCCO Service Worker v2.0
- * PWA + Push Notifications + Offline Cache
+ * ELUCCO Service Worker v3.0
+ * PWA + Push Notifications — réseau prioritaire pour les pages,
+ * cache pour les seuls actifs statiques (images, logos).
  */
-const CACHE_NAME = 'elucco-v2';
-const ASSETS = [
-  '/',
-  '/index.html',
+const CACHE_NAME = 'elucco-v3';
+const STATIC_ASSETS = [
   '/manifest.json',
   '/elucco_logo_officiel.png',
   '/masambukidi_armoiries.png',
-  '/papa_masambukidi_couronne.jpg',
-  '/sa_majeste_trone_1.jpg',
-  '/sa_majeste_trone_2.jpg',
 ];
 
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS)).then(() => self.skipWaiting())
   );
 });
 
@@ -30,16 +26,39 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  const url = new URL(e.request.url);
+  if (url.origin !== self.location.origin) return;
+
+  // Pages HTML (navigation) et JS/CSS : toujours le réseau d'abord,
+  // pour que chaque déploiement soit visible immédiatement. Le cache
+  // ne sert que si le réseau est indisponible (mode hors-ligne).
+  const isNavigation = e.request.mode === 'navigate' || e.request.destination === 'document';
+  const isCode = e.request.destination === 'script' || e.request.destination === 'style';
+  if (isNavigation || isCode) {
+    e.respondWith(
+      fetch(e.request).then(resp => {
+        if (resp && resp.status === 200) {
+          const clone = resp.clone();
+          caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+        }
+        return resp;
+      }).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Images et autres actifs statiques : cache d'abord (rapide),
+  // mise à jour du cache en arrière-plan.
   e.respondWith(
     caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request).then(resp => {
+      const network = fetch(e.request).then(resp => {
         if (resp && resp.status === 200 && resp.type === 'basic') {
           const clone = resp.clone();
           caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
         }
         return resp;
       }).catch(() => cached);
+      return cached || network;
     })
   );
 });
