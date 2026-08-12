@@ -1,0 +1,1390 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chef d'État</title>
+<meta name="description" content="Simulateur de chef d'État : dirigez n'importe quel pays du monde — économie, diplomatie, armée, ressources, institutions — avec un mode éditeur en bac à sable.">
+<meta name="theme-color" content="#0b1220">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%230b1220'/%3E%3Ccircle cx='50' cy='50' r='46' fill='none' stroke='%23c9a227' stroke-width='4'/%3E%3Ctext x='50' y='66' font-size='54' text-anchor='middle' fill='%23c9a227' font-family='Georgia,serif'%3E%E2%98%85%3C/text%3E%3C/svg%3E">
+<style>
+/* ============================================================
+   TOKENS — palette "salle de commandement d'État", thème sombre
+   assumé (voir design plan) : encre navy, parchemin, laiton.
+   ============================================================ */
+:root{
+  --ink:#0a1120;
+  --ink-2:#0e1729;
+  --surface:#121b30;
+  --surface-2:#1a2540;
+  --surface-3:#22304f;
+  --border:#2a3a5c;
+  --border-soft:#1e2c48;
+  --parchment:#eee6d3;
+  --parchment-dim:#c9c2ab;
+  --muted:#8d97ac;
+  --muted-2:#69748c;
+  --brass:#d3ac3a;
+  --brass-soft:#8a7326;
+  --brass-dim:#5c4f22;
+  --seal-red:#c1503a;
+  --seal-red-soft:#3a201c;
+  --good:#4f9d6e;
+  --good-soft:#183327;
+  --warn:#d9822b;
+  --warn-soft:#3a2712;
+  --info:#5b8fc9;
+  --shadow: 0 10px 30px -12px rgba(0,0,0,.6);
+  --radius: 10px;
+  --radius-lg: 16px;
+  --font-display: "Iowan Old Style","Palatino Linotype","Book Antiqua",Georgia,"Times New Roman",serif;
+  --font-body: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --font-mono: ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(211,172,58,.08), transparent 60%),
+    radial-gradient(900px 500px at 110% 10%, rgba(91,143,201,.07), transparent 55%),
+    var(--ink);
+  color:var(--parchment);
+  font-family:var(--font-body);
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--brass-dim);color:var(--parchment);}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;text-wrap:balance;margin:0 0 .35em;color:var(--parchment);}
+p{margin:0 0 .6em;color:var(--muted);line-height:1.5;}
+a{color:var(--brass);}
+button, select, input, textarea{font-family:inherit;font-size:14px;color:var(--parchment);}
+.num{font-variant-numeric:tabular-nums;font-family:var(--font-mono);}
+button{cursor:pointer;}
+button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid var(--brass); outline-offset:2px;
+}
+@media (prefers-reduced-motion: reduce){ *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+
+/* Scrollbars, subtle */
+::-webkit-scrollbar{height:10px;width:10px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--surface-3);border-radius:8px;}
+
+/* ============================================================
+   LAYOUT SHELL
+   ============================================================ */
+#app{min-height:100vh;display:flex;flex-direction:column;}
+
+.topbar{
+  display:flex;align-items:center;gap:14px;
+  padding:12px 18px;border-bottom:1px solid var(--border-soft);
+  background:linear-gradient(180deg, var(--ink-2), var(--ink));
+  position:sticky;top:0;z-index:20;
+}
+.seal{
+  width:34px;height:34px;border-radius:50%;flex:none;
+  background:radial-gradient(circle at 32% 28%, #f3d878, var(--brass) 45%, var(--brass-soft) 78%, var(--brass-dim) 100%);
+  border:1px solid var(--brass-dim);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink);font-family:var(--font-display);font-weight:700;font-size:16px;
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.4), 0 2px 6px rgba(0,0,0,.4);
+}
+.brand{display:flex;flex-direction:column;line-height:1.1;}
+.brand b{font-family:var(--font-display);font-size:16px;letter-spacing:.02em;}
+.brand span{font-size:11px;color:var(--muted-2);text-transform:uppercase;letter-spacing:.09em;}
+
+.topbar .country-chip{
+  display:flex;align-items:center;gap:8px;margin-left:8px;
+  padding:5px 12px 5px 8px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);
+  font-size:13px;
+}
+.topbar .country-chip .flag{font-size:18px;}
+.ticker{display:flex;gap:18px;margin-left:auto;align-items:center;}
+.ticker .t-item{display:flex;flex-direction:column;align-items:flex-end;line-height:1.15;}
+.ticker .t-item .l{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted-2);}
+.ticker .t-item .v{font-size:13px;font-weight:600;}
+.pos{color:var(--good);} .neg{color:var(--seal-red);} .warn{color:var(--warn);}
+.icon-btn{
+  background:var(--surface-2);border:1px solid var(--border);color:var(--parchment);
+  border-radius:8px;padding:7px 10px;font-size:12px;display:flex;align-items:center;gap:6px;
+}
+.icon-btn:hover{background:var(--surface-3);}
+.icon-btn.on{background:var(--brass-dim);border-color:var(--brass-soft);color:var(--parchment);}
+
+.shell{display:flex;flex:1;min-height:0;}
+.sidenav{
+  width:220px;flex:none;border-right:1px solid var(--border-soft);
+  background:var(--ink-2);padding:14px 10px;display:flex;flex-direction:column;gap:2px;
+}
+.sidenav button{
+  all:unset;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;
+  color:var(--muted);font-size:13.5px;cursor:pointer;
+}
+.sidenav button .ic{width:20px;text-align:center;font-size:15px;}
+.sidenav button:hover{background:var(--surface-2);color:var(--parchment);}
+.sidenav button.active{background:var(--surface-2);color:var(--parchment);box-shadow:inset 3px 0 0 var(--brass);}
+.sidenav .divider{height:1px;background:var(--border-soft);margin:10px 4px;}
+
+main.view{flex:1;min-width:0;padding:22px 26px 90px;overflow-y:auto;}
+.view h1{font-size:22px;}
+.view .subtitle{margin-top:-6px;margin-bottom:18px;font-size:13px;color:var(--muted-2);}
+
+/* Bottom tab bar for mobile */
+.bottomnav{display:none;}
+
+@media (max-width: 860px){
+  .sidenav{display:none;}
+  .ticker{display:none;}
+  main.view{padding:16px 14px 84px;}
+  .bottomnav{
+    display:flex;position:fixed;bottom:0;left:0;right:0;z-index:30;
+    background:var(--ink-2);border-top:1px solid var(--border-soft);
+    overflow-x:auto;padding:6px 4px calc(6px + env(safe-area-inset-bottom));gap:2px;
+  }
+  .bottomnav button{
+    all:unset;flex:none;display:flex;flex-direction:column;align-items:center;gap:2px;
+    padding:6px 12px;border-radius:8px;color:var(--muted);font-size:10px;min-width:58px;text-align:center;
+  }
+  .bottomnav button .ic{font-size:17px;}
+  .bottomnav button.active{color:var(--brass);}
+}
+
+/* ============================================================
+   COMPONENTS
+   ============================================================ */
+.grid{display:grid;gap:14px;}
+.grid.kpis{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
+.grid.cols2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr));}
+.card{
+  background:linear-gradient(180deg, var(--surface), var(--surface) 60%, var(--surface-2));
+  border:1px solid var(--border-soft);border-radius:var(--radius-lg);
+  padding:16px 18px;box-shadow:var(--shadow);
+}
+.card h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:12px;font-family:var(--font-body);font-weight:600;}
+.kpi .label{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted-2);margin-bottom:6px;}
+.kpi .value{font-family:var(--font-display);font-size:24px;font-variant-numeric:tabular-nums;}
+.kpi .delta{font-size:11.5px;margin-top:4px;}
+
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--border-soft);}
+.row:last-child{border-bottom:none;}
+.row .rl{color:var(--muted);font-size:13px;}
+.row .rv{font-weight:600;font-size:13.5px;}
+
+.btn{
+  background:var(--surface-3);border:1px solid var(--border);color:var(--parchment);
+  padding:9px 15px;border-radius:8px;font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:7px;
+}
+.btn:hover{border-color:var(--brass-soft);}
+.btn.primary{background:linear-gradient(180deg,#e2bd53,var(--brass));color:#231a04;border-color:var(--brass-soft);}
+.btn.primary:hover{filter:brightness(1.06);}
+.btn.danger{background:var(--seal-red-soft);border-color:var(--seal-red);color:#ffd9cf;}
+.btn.ghost{background:transparent;}
+.btn.sm{padding:6px 11px;font-size:12px;}
+.btn:disabled{opacity:.45;cursor:not-allowed;}
+.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+
+.pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.02em;}
+.pill.good{background:var(--good-soft);color:#8fe0ac;}
+.pill.warn{background:var(--warn-soft);color:#f0b169;}
+.pill.bad{background:var(--seal-red-soft);color:#ff9c88;}
+.pill.info{background:#152640;color:#8fbaf0;}
+.pill.neutral{background:var(--surface-3);color:var(--muted);}
+
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;}
+.field label{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;}
+.field .hint{font-size:11px;color:var(--muted-2);}
+input[type=text], input[type=number], select, textarea{
+  background:var(--ink-2);border:1px solid var(--border);border-radius:7px;padding:8px 10px;width:100%;
+}
+textarea{resize:vertical;min-height:60px;}
+input[type=range]{width:100%;accent-color:var(--brass);}
+.slider-row{display:flex;align-items:center;gap:10px;}
+.slider-row .sv{width:44px;text-align:right;font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--brass);}
+
+.bar{height:8px;border-radius:5px;background:var(--surface-3);overflow:hidden;}
+.bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--brass-soft),var(--brass));}
+.bar.good > i{background:linear-gradient(90deg,#2f6b46,var(--good));}
+.bar.bad > i{background:linear-gradient(90deg,#7a2c1e,var(--seal-red));}
+
+.search{position:relative;margin-bottom:14px;}
+.search input{padding-left:30px;}
+.search::before{content:"⌕";position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted-2);}
+
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted-2);padding:8px 10px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);}
+td{padding:8px 10px;border-bottom:1px solid var(--border-soft);vertical-align:middle;}
+tr:hover td{background:var(--surface-2);}
+.table-wrap{max-height:60vh;overflow:auto;border:1px solid var(--border-soft);border-radius:var(--radius-lg);}
+
+.log{display:flex;flex-direction:column-reverse;gap:8px;max-height:280px;overflow-y:auto;}
+.log .entry{font-size:12.5px;color:var(--muted);padding:8px 10px;background:var(--surface-2);border-left:2px solid var(--brass-soft);border-radius:0 6px 6px 0;}
+.log .entry .tag{color:var(--parchment-dim);}
+.log .entry time{display:block;font-size:10px;color:var(--muted-2);margin-top:2px;}
+
+.tabs-inline{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.tabs-inline button{
+  all:unset;padding:7px 13px;border-radius:8px;font-size:12.5px;color:var(--muted);background:var(--surface-2);border:1px solid var(--border-soft);cursor:pointer;
+}
+.tabs-inline button.active{background:var(--brass-dim);color:var(--parchment);border-color:var(--brass-soft);}
+
+.city-card{border:1px solid var(--border-soft);border-radius:10px;padding:12px;background:var(--surface-2);}
+.city-card h4{font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.infra-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;font-size:12px;}
+.infra-grid .ig{display:flex;justify-content:space-between;background:var(--ink-2);padding:6px 8px;border-radius:6px;}
+
+.editor-banner{
+  background:var(--seal-red-soft);border:1px solid var(--seal-red);color:#ffcabf;
+  padding:10px 14px;border-radius:10px;font-size:12.5px;margin-bottom:16px;display:flex;gap:10px;align-items:center;
+}
+
+.empty{text-align:center;padding:40px 20px;color:var(--muted-2);}
+
+/* ---------- Country select screen ---------- */
+.select-screen{width:100%;max-width:1080px;margin:0 auto;padding:40px 20px 70px;}
+.select-hero{text-align:center;margin-bottom:30px;}
+.select-hero .seal-big{
+  width:76px;height:76px;border-radius:50%;margin:0 auto 16px;
+  background:radial-gradient(circle at 32% 28%, #f6e19a, var(--brass) 45%, var(--brass-soft) 78%, var(--brass-dim) 100%);
+  border:2px solid var(--brass-dim); display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:34px;color:var(--ink);
+  box-shadow: inset 0 2px 4px rgba(255,255,255,.45), 0 6px 20px rgba(0,0,0,.5);
+}
+.select-hero h1{font-size:30px;}
+.select-hero p{max-width:520px;margin:0 auto;}
+.continent-group{margin-bottom:22px;}
+.continent-group h3{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted-2);margin:0 0 10px 2px;}
+.country-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;}
+.country-card{
+  background:var(--surface);border:1px solid var(--border-soft);border-radius:10px;padding:12px;text-align:left;
+  display:flex;flex-direction:column;gap:6px;
+}
+.country-card:hover{border-color:var(--brass-soft);background:var(--surface-2);}
+.country-card .cflag{font-size:26px;}
+.country-card .cname{font-weight:600;font-size:13.5px;}
+.country-card .cmeta{font-size:11px;color:var(--muted-2);}
+.resume-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  background:var(--surface);border:1px solid var(--brass-soft);border-radius:12px;padding:14px 18px;margin-bottom:26px;
+}
+
+.toast-wrap{position:fixed;bottom:16px;right:16px;z-index:50;display:flex;flex-direction:column;gap:8px;max-width:320px;}
+.toast{background:var(--surface-3);border:1px solid var(--brass-soft);border-radius:10px;padding:10px 14px;font-size:12.5px;box-shadow:var(--shadow);animation:toastin .25s ease-out;}
+@keyframes toastin{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+
+@media (max-width:600px){
+  .topbar{padding:10px 12px;gap:8px;flex-wrap:wrap;row-gap:8px;}
+  .brand span{display:none;}
+  .country-chip{margin-left:0;}
+  .icon-btn{padding:6px 9px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toasts" class="toast-wrap"></div>
+<script>
+const COUNTRIES_DATA = [{"id":"af-afghanistan","iso2":"AF","name":"Afghanistan","capital":"Kabul","continent":"Asie","pop":37172386,"area":652090,"gdp":14.9,"landlocked":true},{"id":"za-afrique-du-sud","iso2":"ZA","name":"Afrique du Sud","capital":"Pretoria","continent":"Afrique","pop":57779622,"area":1221037,"gdp":358.2,"landlocked":false},{"id":"al-albanie","iso2":"AL","name":"Albanie","capital":"Tirana","continent":"Europe","pop":2866376,"area":28748,"gdp":8.6,"landlocked":false},{"id":"dz-algerie","iso2":"DZ","name":"Algérie","capital":"Alger","continent":"Afrique","pop":42228429,"area":2381741,"gdp":223.8,"landlocked":false},{"id":"de-allemagne","iso2":"DE","name":"Allemagne","capital":"Berlin","continent":"Europe","pop":82905782,"area":357022,"gdp":4228.2,"landlocked":false},{"id":"ad-andorre","iso2":"AD","name":"Andorre","capital":"Andorra la Vella","continent":"Europe","pop":77006,"area":468,"gdp":2.0,"landlocked":true},{"id":"ao-angola","iso2":"AO","name":"Angola","capital":"Luanda","continent":"Afrique","pop":30809762,"area":1246700,"gdp":89.3,"landlocked":false},{"id":"ag-antigua-et-barbuda","iso2":"AG","name":"Antigua-et-Barbuda","capital":"Saint John's","continent":"Amérique du Nord","pop":96286,"area":442,"gdp":0.9,"landlocked":false},{"id":"sa-arabie-saoudite","iso2":"SA","name":"Arabie Saoudite","capital":"Riyadh","continent":"Asie","pop":33699947,"area":2149690,"gdp":1078.4,"landlocked":false},{"id":"ar-argentine","iso2":"AR","name":"Argentine","capital":"Buenos Aires","continent":"Amérique du Sud","pop":44494502,"area":2780400,"gdp":578.4,"landlocked":false},{"id":"am-armenie","iso2":"AM","name":"Arménie","capital":"Yerevan","continent":"Asie","pop":2951776,"area":29800,"gdp":23.6,"landlocked":true},{"id":"au-australie","iso2":"AU","name":"Australie","capital":"Canberra","continent":"Océanie","pop":24982688,"area":7741220,"gdp":1623.9,"landlocked":false},{"id":"at-autriche","iso2":"AT","name":"Autriche","capital":"Wien","continent":"Europe","pop":8840521,"area":83859,"gdp":468.5,"landlocked":true},{"id":"az-azerbaidjan","iso2":"AZ","name":"Azerbaïdjan","capital":"Baku","continent":"Asie","pop":9939800,"area":86600,"gdp":71.6,"landlocked":true},{"id":"bs-bahamas","iso2":"BS","name":"Bahamas","capital":"Nassau","continent":"Amérique du Nord","pop":385640,"area":13878,"gdp":3.5,"landlocked":false},{"id":"bh-bahrein","iso2":"BH","name":"Bahreïn","capital":"al-Manama","continent":"Asie","pop":1569439,"area":694,"gdp":47.1,"landlocked":false},{"id":"bd-bangladesh","iso2":"BD","name":"Bangladesh","capital":"Dhaka","continent":"Asie","pop":161356039,"area":143998,"gdp":419.5,"landlocked":false},{"id":"bb-barbade","iso2":"BB","name":"Barbade","capital":"Bridgetown","continent":"Amérique du Nord","pop":286641,"area":430,"gdp":2.6,"landlocked":false},{"id":"be-belgique","iso2":"BE","name":"Belgique","capital":"Bruxelles [Brussel]","continent":"Europe","pop":11433256,"area":30518,"gdp":606.0,"landlocked":false},{"id":"bz-belize","iso2":"BZ","name":"Belize","capital":"Belmopan","continent":"Amérique du Nord","pop":383071,"area":22696,"gdp":2.3,"landlocked":false},{"id":"bt-bhoutan","iso2":"BT","name":"Bhoutan","capital":"Thimphu","continent":"Asie","pop":754394,"area":47000,"gdp":1.7,"landlocked":true},{"id":"mm-birmanie","iso2":"MM","name":"Birmanie","capital":"Rangoon (Yangon)","continent":"Asie","pop":53708395,"area":676578,"gdp":64.5,"landlocked":false},{"id":"by-bielorussie","iso2":"BY","name":"Biélorussie","capital":"Minsk","continent":"Europe","pop":9483499,"area":207600,"gdp":74.0,"landlocked":true},{"id":"bo-bolivie","iso2":"BO","name":"Bolivie","capital":"La Paz","continent":"Amérique du Sud","pop":11353142,"area":1098581,"gdp":40.9,"landlocked":true},{"id":"ba-bosnie-herzegovine","iso2":"BA","name":"Bosnie-Herzégovine","capital":"Sarajevo","continent":"Europe","pop":3323929,"area":51197,"gdp":10.0,"landlocked":false},{"id":"bw-botswana","iso2":"BW","name":"Botswana","capital":"Gaborone","continent":"Afrique","pop":2254126,"area":581730,"gdp":16.5,"landlocked":true},{"id":"bn-brunei","iso2":"BN","name":"Brunei","capital":"Bandar Seri Begawan","continent":"Asie","pop":428962,"area":5765,"gdp":2.4,"landlocked":false},{"id":"br-bresil","iso2":"BR","name":"Brésil","capital":"Brasília","continent":"Amérique du Sud","pop":209469333,"area":8547403,"gdp":2094.7,"landlocked":false},{"id":"bg-bulgarie","iso2":"BG","name":"Bulgarie","capital":"Sofia","continent":"Europe","pop":7025037,"area":110994,"gdp":98.4,"landlocked":false},{"id":"bf-burkina-faso","iso2":"BF","name":"Burkina Faso","capital":"Ouagadougou","continent":"Afrique","pop":19751535,"area":274000,"gdp":16.8,"landlocked":true},{"id":"bi-burundi","iso2":"BI","name":"Burundi","capital":"Bujumbura","continent":"Afrique","pop":11175378,"area":27834,"gdp":13.4,"landlocked":true},{"id":"bj-benin","iso2":"BJ","name":"Bénin","capital":"Porto-Novo","continent":"Afrique","pop":11485048,"area":112622,"gdp":19.5,"landlocked":false},{"id":"kh-cambodge","iso2":"KH","name":"Cambodge","capital":"Phnom Penh","continent":"Asie","pop":16249798,"area":181035,"gdp":29.2,"landlocked":false},{"id":"cm-cameroun","iso2":"CM","name":"Cameroun","capital":"Yaounde","continent":"Afrique","pop":25216237,"area":475442,"gdp":42.9,"landlocked":false},{"id":"ca-canada","iso2":"CA","name":"Canada","capital":"Ottawa","continent":"Amérique du Nord","pop":37057765,"area":9970610,"gdp":1964.1,"landlocked":false},{"id":"cl-chili","iso2":"CL","name":"Chili","capital":"Santiago de Chile","continent":"Amérique du Sud","pop":18729160,"area":756626,"gdp":299.7,"landlocked":false},{"id":"cn-chine","iso2":"CN","name":"Chine","capital":"Peking","continent":"Asie","pop":1392730000,"area":9572900,"gdp":17409.1,"landlocked":false},{"id":"cy-chypre","iso2":"CY","name":"Chypre","capital":"Nicosia","continent":"Asie","pop":1189265,"area":9251,"gdp":38.1,"landlocked":false},{"id":"va-cite-du-vatican","iso2":"VA","name":"Cité du Vatican","capital":"Cité du Vatican","continent":"Europe","pop":825,"area":1,"gdp":0.05,"landlocked":true},{"id":"co-colombie","iso2":"CO","name":"Colombie","capital":"Bogota","continent":"Amérique du Sud","pop":49648685,"area":1138914,"gdp":327.7,"landlocked":false},{"id":"km-comores","iso2":"KM","name":"Comores","capital":"Moroni","continent":"Afrique","pop":832322,"area":1862,"gdp":1.0,"landlocked":false},{"id":"kp-coree-du-nord","iso2":"KP","name":"Corée du Nord","capital":"Pyongyang","continent":"Asie","pop":25549819,"area":120538,"gdp":17.9,"landlocked":false},{"id":"kr-coree-du-sud","iso2":"KR","name":"Corée du Sud","capital":"Seoul","continent":"Asie","pop":51606633,"area":99434,"gdp":1703.0,"landlocked":false},{"id":"cr-costa-rica","iso2":"CR","name":"Costa Rica","capital":"San José","continent":"Amérique du Nord","pop":4999441,"area":51100,"gdp":67.5,"landlocked":false},{"id":"hr-croatie","iso2":"HR","name":"Croatie","capital":"Zagreb","continent":"Europe","pop":4087843,"area":56538,"gdp":77.7,"landlocked":false},{"id":"cu-cuba","iso2":"CU","name":"Cuba","capital":"La Habana","continent":"Amérique du Nord","pop":11338138,"area":110861,"gdp":107.7,"landlocked":false},{"id":"ci-cote-d-ivoire","iso2":"CI","name":"Côte d'Ivoire","capital":"Yamoussoukro","continent":"Afrique","pop":25069229,"area":322463,"gdp":67.7,"landlocked":false},{"id":"dk-danemark","iso2":"DK","name":"Danemark","capital":"Copenhagen","continent":"Europe","pop":5793636,"area":43094,"gdp":394.0,"landlocked":false},{"id":"dj-djibouti","iso2":"DJ","name":"Djibouti","capital":"Djibouti","continent":"Afrique","pop":958920,"area":23200,"gdp":1.2,"landlocked":false},{"id":"dm-dominique","iso2":"DM","name":"Dominique","capital":"Roseau","continent":"Amérique du Nord","pop":71625,"area":751,"gdp":0.6,"landlocked":false},{"id":"es-espagne","iso2":"ES","name":"Espagne","capital":"Madrid","continent":"Europe","pop":46796540,"area":505992,"gdp":1497.5,"landlocked":false},{"id":"ee-estonie","iso2":"EE","name":"Estonie","capital":"Tallinn","continent":"Europe","pop":1321977,"area":45227,"gdp":38.3,"landlocked":false},{"id":"sz-eswatini","iso2":"SZ","name":"Eswatini","capital":"Mbabane","continent":"Afrique","pop":1136191,"area":17364,"gdp":6.2,"landlocked":true},{"id":"fj-fidji","iso2":"FJ","name":"Fidji","capital":"Suva","continent":"Océanie","pop":883483,"area":18274,"gdp":2.7,"landlocked":false},{"id":"fi-finlande","iso2":"FI","name":"Finlande","capital":"Helsinki [Helsingfors]","continent":"Europe","pop":5515525,"area":338145,"gdp":292.3,"landlocked":false},{"id":"fr-france","iso2":"FR","name":"France","capital":"Paris","continent":"Europe","pop":66977107,"area":551500,"gdp":2947.0,"landlocked":false},{"id":"ga-gabon","iso2":"GA","name":"Gabon","capital":"Libreville","continent":"Afrique","pop":2119275,"area":267668,"gdp":18.0,"landlocked":false},{"id":"gm-gambie","iso2":"GM","name":"Gambie","capital":"Banjul","continent":"Afrique","pop":2280102,"area":11295,"gdp":3.9,"landlocked":false},{"id":"gh-ghana","iso2":"GH","name":"Ghana","capital":"Accra","continent":"Afrique","pop":29767108,"area":238533,"gdp":71.4,"landlocked":false},{"id":"gd-grenade","iso2":"GD","name":"Grenade","capital":"Saint George's","continent":"Amérique du Nord","pop":111454,"area":344,"gdp":1.0,"landlocked":false},{"id":"gr-grece","iso2":"GR","name":"Grèce","capital":"Athenai","continent":"Europe","pop":10731726,"area":131626,"gdp":236.1,"landlocked":false},{"id":"gt-guatemala","iso2":"GT","name":"Guatemala","capital":"Ciudad de Guatemala","continent":"Amérique du Nord","pop":17247807,"area":108889,"gdp":94.9,"landlocked":false},{"id":"gn-guinee","iso2":"GN","name":"Guinée","capital":"Conakry","continent":"Afrique","pop":12414318,"area":245857,"gdp":21.1,"landlocked":false},{"id":"gq-guinee-equatoriale","iso2":"GQ","name":"Guinée équatoriale","capital":"Malabo","continent":"Afrique","pop":1308974,"area":28051,"gdp":8.5,"landlocked":false},{"id":"gw-guinee-bissau","iso2":"GW","name":"Guinée-Bissau","capital":"Bissau","continent":"Afrique","pop":1874309,"area":36125,"gdp":3.2,"landlocked":false},{"id":"gy-guyana","iso2":"GY","name":"Guyana","capital":"Georgetown","continent":"Amérique du Sud","pop":779004,"area":214969,"gdp":7.0,"landlocked":false},{"id":"ge-georgie","iso2":"GE","name":"Géorgie","capital":"Tbilisi","continent":"Asie","pop":3726549,"area":69700,"gdp":27.9,"landlocked":false},{"id":"ht-haiti","iso2":"HT","name":"Haïti","capital":"Port-au-Prince","continent":"Amérique du Nord","pop":11123176,"area":27750,"gdp":100.1,"landlocked":false},{"id":"hn-honduras","iso2":"HN","name":"Honduras","capital":"Tegucigalpa","continent":"Amérique du Nord","pop":9587522,"area":112088,"gdp":28.8,"landlocked":false},{"id":"hu-hongrie","iso2":"HU","name":"Hongrie","capital":"Budapest","continent":"Europe","pop":9775564,"area":93030,"gdp":185.7,"landlocked":true},{"id":"in-inde","iso2":"IN","name":"Inde","capital":"New Delhi","continent":"Asie","pop":1352617328,"area":3287263,"gdp":3516.8,"landlocked":false},{"id":"id-indonesie","iso2":"ID","name":"Indonésie","capital":"Jakarta","continent":"Asie","pop":267663435,"area":1904569,"gdp":1311.6,"landlocked":false},{"id":"iq-irak","iso2":"IQ","name":"Irak","capital":"Baghdad","continent":"Asie","pop":38433600,"area":438317,"gdp":226.8,"landlocked":false},{"id":"ir-iran","iso2":"IR","name":"Iran","capital":"Tehran","continent":"Asie","pop":81800269,"area":1648195,"gdp":368.1,"landlocked":false},{"id":"ie-irlande","iso2":"IE","name":"Irlande","capital":"Dublin","continent":"Europe","pop":4867309,"area":70273,"gdp":501.3,"landlocked":false},{"id":"is-islande","iso2":"IS","name":"Islande","capital":"Reykjavík","continent":"Europe","pop":352721,"area":103000,"gdp":26.5,"landlocked":false},{"id":"il-israel","iso2":"IL","name":"Israël","capital":"Jerusalem","continent":"Asie","pop":8882800,"area":21056,"gdp":479.7,"landlocked":false},{"id":"it-italie","iso2":"IT","name":"Italie","capital":"Roma","continent":"Europe","pop":60421760,"area":301316,"gdp":2296.0,"landlocked":false},{"id":"jm-jamaique","iso2":"JM","name":"Jamaïque","capital":"Kingston","continent":"Amérique du Nord","pop":2934855,"area":10990,"gdp":17.9,"landlocked":false},{"id":"jp-japon","iso2":"JP","name":"Japon","capital":"Tokyo","continent":"Asie","pop":126529100,"area":377829,"gdp":4276.7,"landlocked":false},{"id":"jo-jordanie","iso2":"JO","name":"Jordanie","capital":"Amman","continent":"Asie","pop":9956011,"area":88946,"gdp":44.8,"landlocked":false},{"id":"kz-kazakhstan","iso2":"KZ","name":"Kazakhstan","capital":"Astana","continent":"Asie","pop":18272430,"area":2724900,"gdp":219.3,"landlocked":true},{"id":"ke-kenya","iso2":"KE","name":"Kenya","capital":"Nairobi","continent":"Afrique","pop":51393010,"area":580367,"gdp":107.9,"landlocked":false},{"id":"kg-kirghizistan","iso2":"KG","name":"Kirghizistan","capital":"Bishkek","continent":"Asie","pop":6322800,"area":199900,"gdp":8.9,"landlocked":true},{"id":"ki-kiribati","iso2":"KI","name":"Kiribati","capital":"Bairiki","continent":"Océanie","pop":115847,"area":726,"gdp":0.4,"landlocked":false},{"id":"kw-koweit","iso2":"KW","name":"Koweït","capital":"Kuwait","continent":"Asie","pop":4137309,"area":17818,"gdp":136.5,"landlocked":false},{"id":"la-laos","iso2":"LA","name":"Laos","capital":"Vientiane","continent":"Asie","pop":7061507,"area":236800,"gdp":14.1,"landlocked":true},{"id":"ls-lesotho","iso2":"LS","name":"Lesotho","capital":"Maseru","continent":"Afrique","pop":2108132,"area":30355,"gdp":11.6,"landlocked":true},{"id":"lv-lettonie","iso2":"LV","name":"Lettonie","capital":"Riga","continent":"Europe","pop":1927174,"area":64589,"gdp":42.4,"landlocked":false},{"id":"lb-liban","iso2":"LB","name":"Liban","capital":"Beirut","continent":"Asie","pop":6848925,"area":10400,"gdp":27.4,"landlocked":false},{"id":"lr-liberia","iso2":"LR","name":"Liberia","capital":"Monrovia","continent":"Afrique","pop":4818977,"area":111369,"gdp":8.2,"landlocked":false},{"id":"ly-libye","iso2":"LY","name":"Libye","capital":"Tripoli","continent":"Afrique","pop":6678567,"area":1759540,"gdp":40.1,"landlocked":false},{"id":"li-liechtenstein","iso2":"LI","name":"Liechtenstein","capital":"Vaduz","continent":"Europe","pop":37910,"area":160,"gdp":1.8,"landlocked":true},{"id":"lt-lituanie","iso2":"LT","name":"Lituanie","capital":"Vilnius","continent":"Europe","pop":2801543,"area":65301,"gdp":72.8,"landlocked":false},{"id":"lu-luxembourg","iso2":"LU","name":"Luxembourg","capital":"Luxembourg [Luxemburg/L","continent":"Europe","pop":607950,"area":2586,"gdp":76.0,"landlocked":true},{"id":"mk-macedoine-du-nord","iso2":"MK","name":"Macédoine du Nord","capital":"Skopje","continent":"Europe","pop":2084367,"area":25713,"gdp":6.3,"landlocked":true},{"id":"mg-madagascar","iso2":"MG","name":"Madagascar","capital":"Antananarivo","continent":"Afrique","pop":26262368,"area":587041,"gdp":14.4,"landlocked":false},{"id":"my-malaisie","iso2":"MY","name":"Malaisie","capital":"Kuala Lumpur","continent":"Asie","pop":31528585,"area":329758,"gdp":378.3,"landlocked":false},{"id":"mw-malawi","iso2":"MW","name":"Malawi","capital":"Lilongwe","continent":"Afrique","pop":18143315,"area":118484,"gdp":21.8,"landlocked":true},{"id":"mv-maldives","iso2":"MV","name":"Maldives","capital":"Male","continent":"Asie","pop":515696,"area":298,"gdp":1.1,"landlocked":false},{"id":"ml-mali","iso2":"ML","name":"Mali","capital":"Bamako","continent":"Afrique","pop":19077690,"area":1240192,"gdp":17.2,"landlocked":true},{"id":"mt-malte","iso2":"MT","name":"Malte","capital":"Valletta","continent":"Europe","pop":484630,"area":316,"gdp":16.0,"landlocked":false},{"id":"ma-maroc","iso2":"MA","name":"Maroc","capital":"Rabat","continent":"Afrique","pop":36029138,"area":446550,"gdp":136.9,"landlocked":false},{"id":"mr-mauritanie","iso2":"MR","name":"Mauritanie","capital":"Nouakchott","continent":"Afrique","pop":4403319,"area":1025520,"gdp":7.5,"landlocked":false},{"id":"mx-mexique","iso2":"MX","name":"Mexique","capital":"Ciudad de M","continent":"Amérique du Nord","pop":126190788,"area":1958201,"gdp":1640.5,"landlocked":false},{"id":"fm-micronesie","iso2":"FM","name":"Micronésie","capital":"Palikir","continent":"Océanie","pop":112640,"area":702,"gdp":0.4,"landlocked":false},{"id":"md-moldavie","iso2":"MD","name":"Moldavie","capital":"Chisinau","continent":"Europe","pop":2706049,"area":33851,"gdp":37.9,"landlocked":true},{"id":"mc-monaco","iso2":"MC","name":"Monaco","capital":"Monaco-Ville","continent":"Europe","pop":38682,"area":1,"gdp":1.9,"landlocked":false},{"id":"mn-mongolie","iso2":"MN","name":"Mongolie","capital":"Ulan Bator","continent":"Asie","pop":3170208,"area":1566500,"gdp":16.8,"landlocked":true},{"id":"me-montenegro","iso2":"ME","name":"Monténégro","capital":"Podgorica","continent":"Europe","pop":631219,"area":13812,"gdp":1.9,"landlocked":false},{"id":"mz-mozambique","iso2":"MZ","name":"Mozambique","capital":"Maputo","continent":"Afrique","pop":29495962,"area":801590,"gdp":16.2,"landlocked":false},{"id":"na-namibie","iso2":"NA","name":"Namibie","capital":"Windhoek","continent":"Afrique","pop":2448255,"area":824292,"gdp":12.0,"landlocked":false},{"id":"nr-nauru","iso2":"NR","name":"Nauru","capital":"Yaren","continent":"Océanie","pop":12704,"area":21,"gdp":0.05,"landlocked":false},{"id":"ni-nicaragua","iso2":"NI","name":"Nicaragua","capital":"Managua","continent":"Amérique du Nord","pop":6465513,"area":130000,"gdp":15.5,"landlocked":false},{"id":"ne-niger","iso2":"NE","name":"Niger","capital":"Niamey","continent":"Afrique","pop":22442948,"area":1267000,"gdp":14.6,"landlocked":true},{"id":"ng-nigeria","iso2":"NG","name":"Nigéria","capital":"Abuja","continent":"Afrique","pop":195874740,"area":923768,"gdp":411.3,"landlocked":false},{"id":"no-norvege","iso2":"NO","name":"Norvège","capital":"Oslo","continent":"Europe","pop":5311916,"area":323877,"gdp":472.8,"landlocked":false},{"id":"nz-nouvelle-zelande","iso2":"NZ","name":"Nouvelle-Zélande","capital":"Wellington","continent":"Océanie","pop":4841000,"area":270534,"gdp":232.4,"landlocked":false},{"id":"np-nepal","iso2":"NP","name":"Népal","capital":"Kathmandu","continent":"Asie","pop":28087871,"area":147181,"gdp":39.3,"landlocked":true},{"id":"om-oman","iso2":"OM","name":"Oman","capital":"Masqat","continent":"Asie","pop":4829483,"area":309500,"gdp":101.4,"landlocked":false},{"id":"ug-ouganda","iso2":"UG","name":"Ouganda","capital":"Kampala","continent":"Afrique","pop":42723139,"area":241038,"gdp":42.7,"landlocked":true},{"id":"uz-ouzbekistan","iso2":"UZ","name":"Ouzbékistan","capital":"Toskent","continent":"Asie","pop":32955400,"area":447400,"gdp":82.4,"landlocked":true},{"id":"pk-pakistan","iso2":"PK","name":"Pakistan","capital":"Islamabad","continent":"Asie","pop":212215030,"area":796095,"gdp":339.5,"landlocked":false},{"id":"pw-palaos-palau","iso2":"PW","name":"Palaos (Palau)","capital":"Koror","continent":"Océanie","pop":17907,"area":459,"gdp":0.1,"landlocked":false},{"id":"ps-palestine","iso2":"PS","name":"Palestine","capital":"Gaza","continent":"Asie","pop":4569087,"area":6257,"gdp":68.5,"landlocked":false},{"id":"pa-panama","iso2":"PA","name":"Panama","capital":"Ciudad de Panamá","continent":"Amérique du Nord","pop":4176873,"area":75517,"gdp":71.0,"landlocked":false},{"id":"pg-papouasie-nouvelle-guinee","iso2":"PG","name":"Papouasie-Nouvelle-Guinée","capital":"Port Moresby","continent":"Océanie","pop":8606316,"area":462840,"gdp":25.8,"landlocked":false},{"id":"py-paraguay","iso2":"PY","name":"Paraguay","capital":"Asunción","continent":"Amérique du Sud","pop":6956071,"area":406752,"gdp":43.8,"landlocked":true},{"id":"nl-pays-bas","iso2":"NL","name":"Pays-Bas","capital":"Amsterdam","continent":"Europe","pop":17231624,"area":41526,"gdp":1051.1,"landlocked":false},{"id":"ph-philippines","iso2":"PH","name":"Philippines","capital":"Manila","continent":"Asie","pop":106651922,"area":300000,"gdp":394.6,"landlocked":false},{"id":"pl-pologne","iso2":"PL","name":"Pologne","capital":"Warszawa","continent":"Europe","pop":37974750,"area":323250,"gdp":835.4,"landlocked":false},{"id":"pt-portugal","iso2":"PT","name":"Portugal","capital":"Lisboa","continent":"Europe","pop":10283822,"area":91982,"gdp":277.7,"landlocked":false},{"id":"pe-perou","iso2":"PE","name":"Pérou","capital":"Lima","continent":"Amérique du Sud","pop":31989256,"area":1285216,"gdp":230.3,"landlocked":false},{"id":"qa-qatar","iso2":"QA","name":"Qatar","capital":"Doha","continent":"Asie","pop":2781677,"area":11000,"gdp":230.9,"landlocked":false},{"id":"ro-roumanie","iso2":"RO","name":"Roumanie","capital":"Bucuresti","continent":"Europe","pop":19466145,"area":238391,"gdp":311.5,"landlocked":false},{"id":"gb-royaume-uni","iso2":"GB","name":"Royaume-Uni","capital":"London","continent":"Europe","pop":66460344,"area":242900,"gdp":3057.2,"landlocked":false},{"id":"ru-russie","iso2":"RU","name":"Russie","capital":"Moscow","continent":"Europe","pop":144478050,"area":17075400,"gdp":1878.2,"landlocked":false},{"id":"rw-rwanda","iso2":"RW","name":"Rwanda","capital":"Kigali","continent":"Afrique","pop":12301939,"area":26338,"gdp":12.3,"landlocked":true},{"id":"cf-republique-centrafricaine","iso2":"CF","name":"République centrafricaine","capital":"Bangui","continent":"Afrique","pop":4666377,"area":622984,"gdp":8.4,"landlocked":true},{"id":"do-republique-dominicaine","iso2":"DO","name":"République dominicaine","capital":"Santo Domingo de Guzm","continent":"Amérique du Nord","pop":10627165,"area":48511,"gdp":111.6,"landlocked":false},{"id":"cg-republique-du-congo","iso2":"CG","name":"République du Congo","capital":"Brazzaville","continent":"Afrique","pop":5244363,"area":342000,"gdp":11.5,"landlocked":false},{"id":"cd-republique-democratique-du-congo","iso2":"CD","name":"République démocratique du Congo","capital":"Kinshasa","continent":"Afrique","pop":84068091,"area":2344858,"gdp":54.6,"landlocked":false},{"id":"kn-saint-christophe-et-nieves","iso2":"KN","name":"Saint-Christophe-et-Niévès","capital":"Basseterre","continent":"Amérique du Nord","pop":52441,"area":261,"gdp":0.5,"landlocked":false},{"id":"sm-saint-marin","iso2":"SM","name":"Saint-Marin","capital":"San Marino","continent":"Europe","pop":33785,"area":61,"gdp":0.9,"landlocked":true},{"id":"vc-saint-vincent-et-les-grenadines","iso2":"VC","name":"Saint-Vincent-et-les-Grenadines","capital":"Kingstown","continent":"Amérique du Nord","pop":110210,"area":388,"gdp":1.0,"landlocked":false},{"id":"lc-sainte-lucie","iso2":"LC","name":"Sainte-Lucie","capital":"Castries","continent":"Amérique du Nord","pop":181889,"area":622,"gdp":1.6,"landlocked":false},{"id":"sv-salvador","iso2":"SV","name":"Salvador","capital":"San Salvador","continent":"Amérique du Nord","pop":6420744,"area":21041,"gdp":31.5,"landlocked":false},{"id":"ws-samoa","iso2":"WS","name":"Samoa","capital":"Apia","continent":"Océanie","pop":196130,"area":2831,"gdp":0.9,"landlocked":false},{"id":"rs-serbie","iso2":"RS","name":"Serbie","capital":"Belgrade","continent":"Europe","pop":6963764,"area":88361,"gdp":73.1,"landlocked":true},{"id":"sc-seychelles","iso2":"SC","name":"Seychelles","capital":"Victoria","continent":"Afrique","pop":96762,"area":455,"gdp":0.1,"landlocked":false},{"id":"sl-sierra-leone","iso2":"SL","name":"Sierra Leone","capital":"Freetown","continent":"Afrique","pop":7650154,"area":71740,"gdp":13.0,"landlocked":false},{"id":"sg-singapour","iso2":"SG","name":"Singapour","capital":"Singapore","continent":"Asie","pop":5638676,"area":618,"gdp":473.6,"landlocked":false},{"id":"sk-slovaquie","iso2":"SK","name":"Slovaquie","capital":"Bratislava","continent":"Europe","pop":5446771,"area":49012,"gdp":114.4,"landlocked":true},{"id":"si-slovenie","iso2":"SI","name":"Slovénie","capital":"Ljubljana","continent":"Europe","pop":2073894,"area":20256,"gdp":62.2,"landlocked":false},{"id":"so-somalie","iso2":"SO","name":"Somalie","capital":"Mogadishu","continent":"Afrique","pop":15008154,"area":637657,"gdp":7.5,"landlocked":false},{"id":"sd-soudan","iso2":"SD","name":"Soudan","capital":"Khartum","continent":"Afrique","pop":41801533,"area":1886068,"gdp":29.3,"landlocked":false},{"id":"ss-soudan-du-sud","iso2":"SS","name":"Soudan du Sud","capital":"Juba","continent":"Afrique","pop":10975920,"area":619745,"gdp":4.4,"landlocked":true},{"id":"lk-sri-lanka","iso2":"LK","name":"Sri Lanka","capital":"Colombo, Sri Jayawardenepura Kotte","continent":"Asie","pop":21670000,"area":65610,"gdp":82.3,"landlocked":false},{"id":"ch-suisse","iso2":"CH","name":"Suisse","capital":"Bern","continent":"Europe","pop":8513227,"area":41284,"gdp":851.3,"landlocked":true},{"id":"sr-surinam","iso2":"SR","name":"Surinam","capital":"Paramaribo","continent":"Amérique du Sud","pop":575991,"area":163265,"gdp":5.2,"landlocked":false},{"id":"se-suede","iso2":"SE","name":"Suède","capital":"Stockholm","continent":"Europe","pop":10175214,"area":449964,"gdp":569.8,"landlocked":false},{"id":"sy-syrie","iso2":"SY","name":"Syrie","capital":"Damascus","continent":"Asie","pop":16906283,"area":185180,"gdp":15.2,"landlocked":false},{"id":"st-sao-tome-et-principe","iso2":"ST","name":"São Tomé et Príncipe","capital":"São Tomé","continent":"Afrique","pop":211028,"area":964,"gdp":0.4,"landlocked":false},{"id":"sn-senegal","iso2":"SN","name":"Sénégal","capital":"Dakar","continent":"Afrique","pop":15854360,"area":196722,"gdp":27.0,"landlocked":false},{"id":"tj-tadjikistan","iso2":"TJ","name":"Tadjikistan","capital":"Dushanbe","continent":"Asie","pop":9100837,"area":143100,"gdp":10.0,"landlocked":true},{"id":"tz-tanzanie","iso2":"TZ","name":"Tanzanie","capital":"Dodoma","continent":"Afrique","pop":56318348,"area":883749,"gdp":67.6,"landlocked":false},{"id":"td-tchad","iso2":"TD","name":"Tchad","capital":"N'Djamena","continent":"Afrique","pop":15477751,"area":1284000,"gdp":10.8,"landlocked":true},{"id":"cz-tchequie","iso2":"CZ","name":"Tchéquie","capital":"Praha","continent":"Europe","pop":10629928,"area":78866,"gdp":318.9,"landlocked":true},{"id":"th-thailande","iso2":"TH","name":"Thaïlande","capital":"Bangkok","continent":"Asie","pop":69428524,"area":513115,"gdp":499.9,"landlocked":false},{"id":"tl-timor-oriental","iso2":"TL","name":"Timor oriental","capital":"Dili","continent":"Asie","pop":1267972,"area":14874,"gdp":7.0,"landlocked":false},{"id":"tg-togo","iso2":"TG","name":"Togo","capital":"Lomé","continent":"Afrique","pop":7889094,"area":56785,"gdp":13.4,"landlocked":false},{"id":"to-tonga","iso2":"TO","name":"Tonga","capital":"Nuku'alofa","continent":"Océanie","pop":103197,"area":650,"gdp":0.5,"landlocked":false},{"id":"tt-trinite-et-tobago","iso2":"TT","name":"Trinité-et-Tobago","capital":"Port-of-Spain","continent":"Amérique du Nord","pop":1389858,"area":5130,"gdp":25.0,"landlocked":false},{"id":"tn-tunisie","iso2":"TN","name":"Tunisie","capital":"Tunis","continent":"Afrique","pop":11565204,"area":163610,"gdp":46.3,"landlocked":false},{"id":"tm-turkmenistan","iso2":"TM","name":"Turkménistan","capital":"Ashgabat","continent":"Asie","pop":5850908,"area":488100,"gdp":49.7,"landlocked":true},{"id":"tr-turquie","iso2":"TR","name":"Turquie","capital":"Ankara","continent":"Asie","pop":82319724,"area":774815,"gdp":1234.8,"landlocked":false},{"id":"tv-tuvalu","iso2":"TV","name":"Tuvalu","capital":"Funafuti","continent":"Océanie","pop":11508,"area":26,"gdp":0.1,"landlocked":false},{"id":"ua-ukraine","iso2":"UA","name":"Ukraine","capital":"Kyiv","continent":"Europe","pop":44622516,"area":603700,"gdp":214.2,"landlocked":false},{"id":"uy-uruguay","iso2":"UY","name":"Uruguay","capital":"Montevideo","continent":"Amérique du Sud","pop":3449299,"area":175016,"gdp":62.1,"landlocked":false},{"id":"vu-vanuatu","iso2":"VU","name":"Vanuatu","capital":"Port-Vila","continent":"Océanie","pop":292680,"area":12189,"gdp":0.9,"landlocked":false},{"id":"ve-venezuela","iso2":"VE","name":"Venezuela","capital":"Caracas","continent":"Amérique du Sud","pop":28870195,"area":912050,"gdp":106.8,"landlocked":false},{"id":"vn-viet-nam","iso2":"VN","name":"Viêt Nam","capital":"Hanoi","continent":"Asie","pop":95540395,"area":331689,"gdp":410.8,"landlocked":false},{"id":"ye-yemen","iso2":"YE","name":"Yémen","capital":"Sanaa","continent":"Asie","pop":28498687,"area":527968,"gdp":19.9,"landlocked":false},{"id":"zm-zambie","iso2":"ZM","name":"Zambie","capital":"Lusaka","continent":"Afrique","pop":17351822,"area":752618,"gdp":24.3,"landlocked":true},{"id":"zw-zimbabwe","iso2":"ZW","name":"Zimbabwe","capital":"Harare","continent":"Afrique","pop":14439018,"area":390757,"gdp":24.5,"landlocked":true},{"id":"eg-egypte","iso2":"EG","name":"Égypte","capital":"Cairo","continent":"Afrique","pop":98423595,"area":1001449,"gdp":374.0,"landlocked":false},{"id":"ae-emirats-arabes-unis","iso2":"AE","name":"Émirats arabes unis","capital":"Abu Dhabi","continent":"Asie","pop":9630959,"area":83600,"gdp":510.4,"landlocked":false},{"id":"ec-equateur","iso2":"EC","name":"Équateur","capital":"Quito","continent":"Amérique du Sud","pop":17084357,"area":283561,"gdp":105.9,"landlocked":false},{"id":"er-erythree","iso2":"ER","name":"Érythrée","capital":"Asmara","continent":"Afrique","pop":6213972,"area":117600,"gdp":7.5,"landlocked":false},{"id":"us-etats-unis","iso2":"US","name":"États-Unis","capital":"Washington","continent":"Amérique du Nord","pop":326687501,"area":9363520,"gdp":26788.4,"landlocked":false},{"id":"et-ethiopie","iso2":"ET","name":"Éthiopie","capital":"Addis Abeba","continent":"Afrique","pop":109224559,"area":1104300,"gdp":120.1,"landlocked":true},{"id":"mu-ile-maurice","iso2":"MU","name":"Île Maurice","capital":"Port-Louis","continent":"Afrique","pop":1265303,"area":2040,"gdp":1.5,"landlocked":false},{"id":"mh-iles-marshall","iso2":"MH","name":"Îles Marshall","capital":"Dalap-Uliga-Darrit","continent":"Océanie","pop":58413,"area":181,"gdp":0.2,"landlocked":false},{"id":"sb-iles-salomon","iso2":"SB","name":"Îles Salomon","capital":"Honiara","continent":"Océanie","pop":652858,"area":28896,"gdp":2.0,"landlocked":false},{"id":"cv-iles-du-cap-vert","iso2":"CV","name":"Îles du Cap-Vert","capital":"Praia","continent":"Afrique","pop":555987,"area":4033,"gdp":0.9,"landlocked":false}];
+</script>
+<script>
+'use strict';
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+function mulberry32(seed){
+  let a = seed >>> 0;
+  return function(){
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function hashCode(str){
+  let h = 0;
+  for(let i=0;i<str.length;i++){ h = (Math.imul(31,h) + str.charCodeAt(i)) | 0; }
+  return h;
+}
+function rngFor(id){ return mulberry32(hashCode(id)); }
+function rand(rng,min,max){ return min + rng()*(max-min); }
+function randInt(rng,min,max){ return Math.floor(rand(rng,min,max+1)); }
+function pick(rng,arr){ return arr[Math.floor(rng()*arr.length)]; }
+function pickN(rng,arr,n){
+  const pool = arr.slice(); const out=[];
+  n = Math.min(n, pool.length);
+  for(let i=0;i<n;i++){ const idx = Math.floor(rng()*pool.length); out.push(pool.splice(idx,1)[0]); }
+  return out;
+}
+function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
+function round1(v){ return Math.round(v*10)/10; }
+function fmtNum(n){
+  n = Number(n)||0;
+  const s = n<0 ? '-' : '';
+  n = Math.abs(n);
+  if(n>=1e9) return s+round1(n/1e9)+' Md';
+  if(n>=1e6) return s+round1(n/1e6)+' M';
+  if(n>=1e3) return s+round1(n/1e3)+' k';
+  return s+Math.round(n);
+}
+function fmtMoney(n){ return fmtNum(n)+' $'; }
+function fmtPct(n){ return round1(Number(n)||0)+' %'; }
+function flagEmoji(iso2){
+  if(!iso2 || iso2.length!==2) return '\u{1F3F3}\u{FE0F}';
+  return String.fromCodePoint(...[...iso2.toUpperCase()].map(c=>127397+c.charCodeAt(0)));
+}
+function uid(prefix){ return prefix+'_'+Math.random().toString(36).slice(2,9); }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function getPath(obj,path){ return path.split('.').reduce((o,k)=> (o==null?o:o[k]), obj); }
+function setPath(obj,path,value){
+  const parts = path.split('.'); let o=obj;
+  for(let i=0;i<parts.length-1;i++) o = o[parts[i]];
+  o[parts[parts.length-1]] = value;
+}
+function randSeed(){ return Math.floor(Math.random()*2147483647); }
+
+/* ============================================================
+   STATIC DATA
+   ============================================================ */
+const COUNTRY_INDEX = {};
+COUNTRIES_DATA.forEach(c=>COUNTRY_INDEX[c.id]=c);
+const DRC_ID = (COUNTRIES_DATA.find(c=>c.iso2==='CD')||{}).id;
+
+const DRC_CITIES = [
+  {name:"Kinshasa", pop:15000000, coastal:true, capital:true},
+  {name:"Lubumbashi", pop:2500000, coastal:false},
+  {name:"Mbuji-Mayi", pop:2500000, coastal:false},
+  {name:"Kananga", pop:1500000, coastal:false},
+  {name:"Kisangani", pop:1200000, coastal:true},
+  {name:"Butembo", pop:900000, coastal:false},
+  {name:"Bukavu", pop:1000000, coastal:true},
+  {name:"Goma", pop:1000000, coastal:true},
+  {name:"Kolwezi", pop:600000, coastal:false},
+  {name:"Tshikapa", pop:600000, coastal:false},
+  {name:"Likasi", pop:500000, coastal:false},
+  {name:"Matadi", pop:400000, coastal:true},
+  {name:"Kikwit", pop:400000, coastal:false},
+  {name:"Uvira", pop:300000, coastal:true},
+  {name:"Beni", pop:300000, coastal:false},
+  {name:"Boma", pop:300000, coastal:true},
+];
+
+const RESOURCE_POOL = [
+  {type:'petrole', name:'Pétrole', price:70},
+  {type:'gaz', name:'Gaz naturel', price:40},
+  {type:'or', name:'Or', price:60},
+  {type:'diamant', name:'Diamants', price:90},
+  {type:'cuivre', name:'Cuivre', price:8},
+  {type:'cobalt', name:'Cobalt', price:35},
+  {type:'coltan', name:'Coltan', price:50},
+  {type:'fer', name:'Minerai de fer', price:5},
+  {type:'charbon', name:'Charbon', price:6},
+  {type:'bois', name:'Bois', price:4},
+  {type:'agriculture', name:'Terres agricoles', price:3},
+  {type:'peche', name:'Ressources halieutiques', price:5},
+  {type:'uranium', name:'Uranium', price:80},
+  {type:'lithium', name:'Lithium', price:65},
+  {type:'etain', name:'Étain', price:20},
+];
+const DRC_RESOURCE_TYPES = ['cuivre','cobalt','diamant','or','coltan','bois','petrole','etain'];
+
+const REGIMES = ['République','Monarchie constitutionnelle','Monarchie','Fédération','Théocratie','Régime militaire'];
+const IMMIGRATION_POLICIES = [
+  {id:'ouverte', label:'Frontières ouvertes'},
+  {id:'quotas', label:'Quotas & visas'},
+  {id:'fermee', label:'Frontières fermées'},
+];
+const COMPANY_SECTORS = ['Énergie','Agriculture','Télécommunications','Banque','Mines','Transport','Technologie','Tourisme','Industrie','Bâtiment'];
+const MINISTRIES = [
+  {key:'interieur', label:'Intérieur'},
+  {key:'defense', label:'Défense'},
+  {key:'economie', label:'Économie & Finances'},
+  {key:'sante', label:'Santé'},
+  {key:'education', label:'Éducation'},
+  {key:'affairesEtrangeres', label:'Affaires étrangères'},
+];
+const INFRA_TYPES = [
+  {key:'roads', label:'Réseau routier', cost:5e6, step:8, requiresCoastal:false},
+  {key:'highways', label:'Autoroute', cost:6e7, step:1, requiresCoastal:false},
+  {key:'airports', label:'Aéroport', cost:2.2e8, step:1, requiresCoastal:false},
+  {key:'ports', label:'Port', cost:3.2e8, step:1, requiresCoastal:true},
+];
+const DIPLO_ACTIONS = [
+  {id:'alliance', label:'Alliance'},
+  {id:'commerce', label:'Accord commercial'},
+  {id:'aide', label:'Envoyer une aide'},
+  {id:'sanctions', label:'Sanctions'},
+  {id:'guerre', label:'Déclarer la guerre'},
+  {id:'paix', label:'Rétablir la paix'},
+];
+const TABS = [
+  {id:'dashboard', label:'Tableau de bord'},
+  {id:'economy', label:'Économie'},
+  {id:'resources', label:'Ressources'},
+  {id:'diplomacy', label:'Diplomatie'},
+  {id:'social', label:'Social'},
+  {id:'security', label:'Sécurité'},
+  {id:'infra', label:'Infrastructures'},
+  {id:'government', label:'Institutions'},
+  {id:'editor', label:'Éditeur'},
+];
+const EVENTS = [
+  {msg:c=>`Une sécheresse frappe ${c.name} : l'agriculture souffre.`, fx:(c,rng)=>{c.economy.growth-=rand(rng,.4,1.4); c.economy.approval-=rand(rng,1,4);}},
+  {msg:c=>`De nouveaux gisements sont découverts sur le territoire national.`, fx:(c,rng)=>{ discoverResource(c,rng); }},
+  {msg:c=>`Un scandale de corruption éclabousse le gouvernement.`, fx:(c,rng)=>{c.economy.approval-=rand(rng,3,8);}},
+  {msg:c=>`Un boom économique inattendu stimule la croissance.`, fx:(c,rng)=>{c.economy.growth+=rand(rng,.8,2.2); c.economy.approval+=rand(rng,1,4);}},
+  {msg:c=>`Une épidémie localisée met le système de santé à l'épreuve.`, fx:(c,rng)=>{c.social.healthIndex-=rand(rng,2,7); c.economy.approval-=rand(rng,1,3);}},
+  {msg:c=>`Des investisseurs étrangers annoncent des projets majeurs.`, fx:(c,rng)=>{c.budget.treasury += c.gdp*1e9*rand(rng,.004,.014);}},
+  {msg:c=>`Des manifestations sociales éclatent dans la capitale.`, fx:(c,rng)=>{c.economy.approval-=rand(rng,2,5); c.police.crimeIndex+=rand(rng,1,4);}},
+  {msg:c=>`Un accord commercial est salué par la presse internationale.`, fx:(c,rng)=>{c.economy.approval+=rand(rng,1,3);}},
+  {msg:c=>`Une catastrophe naturelle endommage des infrastructures locales.`, fx:(c,rng)=>{ damageInfra(c,rng); c.economy.approval-=rand(rng,2,5);}},
+  {msg:c=>`Une récolte exceptionnelle fait baisser les prix.`, fx:(c,rng)=>{c.economy.inflation-=rand(rng,.3,1); c.economy.approval+=rand(rng,.5,1.5);}},
+  {msg:c=>`Une cyberattaque perturbe des services publics.`, fx:(c,rng)=>{c.economy.approval-=rand(rng,1,3); c.police.crimeIndex+=rand(rng,1,3);}},
+  {msg:c=>`Un prix international distingue les avancées du pays.`, fx:(c,rng)=>{c.economy.approval+=rand(rng,1,3);}},
+];
+const GAME_START = new Date(Date.UTC(2026,8,1));
+const MONTHS_FR = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+function turnDateLabel(turn){
+  const d = new Date(GAME_START); d.setUTCMonth(d.getUTCMonth()+turn);
+  return `${MONTHS_FR[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+}
+
+/* ============================================================
+   COUNTRY GENERATION
+   ============================================================ */
+function makeCity(idBase, name, pop, coastal, isCapital, rng){
+  return {
+    id: idBase+'-'+uid('c'),
+    name, population: Math.round(pop), coastal: !!coastal, isCapital: !!isCapital,
+    infra: { roads: randInt(rng,15,55), highways: randInt(rng,0,3), airports: isCapital?1:(coastal? randInt(rng,0,1):0), ports: (coastal && rng()>.5)?1:0 },
+  };
+}
+function generateResources(base, rng){
+  if(base.id === DRC_ID){
+    return DRC_RESOURCE_TYPES.map(type=>{
+      const def = RESOURCE_POOL.find(r=>r.type===type);
+      return { id: uid('res'), type, name: def.name, amount: randInt(rng,4000,20000), price: def.price, exploited:true };
+    });
+  }
+  const n = randInt(rng,2,4);
+  const chosen = pickN(rng, RESOURCE_POOL, n);
+  return chosen.map(def=>({ id: uid('res'), type: def.type, name: def.name, amount: randInt(rng,500,8000), price: def.price, exploited:true }));
+}
+function generateCompanies(base, rng){
+  const n = randInt(rng,2,4);
+  const sectors = pickN(rng, COMPANY_SECTORS, n);
+  return sectors.map(sector=>({
+    id: uid('co'), name: sector+' '+pick(rng,['Group','National','Holding','& Associés','Corp']),
+    sector, ownership: rng()>.5?'public':'privée', value: Math.round(rand(rng, base.gdp*1e6*0.5, base.gdp*1e6*3)),
+  }));
+}
+function deriveCountry(id){
+  const base = COUNTRY_INDEX[id];
+  const rng = rngFor(id);
+  let cities;
+  if(id === DRC_ID){
+    cities = DRC_CITIES.map(c=>makeCity(id,c.name,c.pop,c.coastal,c.capital,rng));
+  } else {
+    cities = [ makeCity(id, base.capital, base.pop*rand(rng,.08,.22), !base.landlocked, true, rng) ];
+  }
+  const capitalCity = cities.find(c=>c.isCapital) || cities[0];
+  const treasuryBase = base.gdp*1e9*rand(rng,.04,.10);
+  return {
+    id: base.id, iso2: base.iso2, name: base.name, continent: base.continent,
+    population: base.pop, area: base.area, gdp: base.gdp, landlocked: !!base.landlocked,
+    regime: 'République',
+    anthem: { name: `Hymne national`, desc: `Chant patriotique de ${base.name}.` },
+    government: { pm: 'Poste vacant', ministers: Object.fromEntries(MINISTRIES.map(m=>[m.key,'Poste vacant'])) },
+    mandate: { turnsElapsed: 0, length: 48, term: 1 },
+    capitalCityId: capitalCity.id,
+    cities,
+    budget: {
+      treasury: Math.round(treasuryBase),
+      taxIncome: randInt(rng,18,32), taxCorporate: randInt(rng,15,30),
+      spending: { sante: randInt(rng,30,60), education: randInt(rng,30,60), defense: randInt(rng,20,50), police: randInt(rng,20,50), social: randInt(rng,30,60), infra: randInt(rng,20,55) },
+    },
+    economy: {
+      growth: round1(rand(rng,-1,4)), unemployment: round1(rand(rng,3,22)),
+      inflation: round1(rand(rng,1,12)), approval: round1(rand(rng,38,64)),
+    },
+    resources: generateResources(base, rng),
+    military: { troops: Math.round(base.pop*rand(rng,.0015,.006)), arms: randInt(rng,15,70) },
+    police: { officers: Math.round(base.pop*rand(rng,.001,.004)), equipment: randInt(rng,15,70), crimeIndex: round1(rand(rng,10,60)) },
+    social: {
+      immigration: pick(rng,['ouverte','quotas','fermee']), visaQuota: randInt(rng,5,80)*1000,
+      pensionLevel: randInt(rng,30,65), unemploymentBenefit: randInt(rng,20,60),
+      healthIndex: round1(rand(rng,35,80)), educationIndex: round1(rand(rng,35,80)),
+    },
+    companies: generateCompanies(base, rng),
+    log: [ {msg:`Prise de fonction à la tête de ${base.name}.`, turn:0} ],
+  };
+}
+
+/* ============================================================
+   STATE & PERSISTENCE
+   ============================================================ */
+const SAVE_KEY = 'president-sim-save-v1';
+let state = null;
+
+function newGame(countryId){
+  state = {
+    screen: 'game', activeTab: 'dashboard', editMode: false, editorTargetId: countryId,
+    player: { countryId, turn: 0 }, countries: {}, relations: {}, contracts: [], diploFilter: '',
+    startedAt: Date.now(),
+  };
+  COUNTRIES_DATA.forEach(c=> state.countries[c.id] = deriveCountry(c.id));
+  saveGame();
+}
+function saveGame(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(state)); }catch(e){} }
+function loadGame(){
+  try{
+    const raw = localStorage.getItem(SAVE_KEY);
+    if(!raw) return false;
+    state = JSON.parse(raw);
+    if(!state.diploFilter) state.diploFilter = '';
+    return true;
+  }catch(e){ return false; }
+}
+function hasSave(){ try{ return !!localStorage.getItem(SAVE_KEY); }catch(e){ return false; } }
+function resetGame(){
+  if(!confirm('Recommencer une nouvelle partie ? La partie en cours sera perdue (pensez à l’exporter avant).')) return;
+  try{ localStorage.removeItem(SAVE_KEY); }catch(e){}
+  state = { screen:'select' };
+  render();
+}
+function exportSave(){
+  const blob = new Blob([JSON.stringify(state)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `sauvegarde-${slugifyName(countryName(state.player.countryId))}-tour${state.player.turn}.json`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 2000);
+  toast('Sauvegarde exportée.');
+}
+function slugifyName(s){ return String(s).toLowerCase().normalize('NFKD').replace(/[^\w]+/g,'-'); }
+function importSaveFile(file){
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    try{
+      const parsed = JSON.parse(reader.result);
+      if(!parsed || !parsed.player || !parsed.countries) throw new Error('invalid');
+      state = parsed; saveGame(); render(); toast('Sauvegarde importée.');
+    }catch(e){ toast('Fichier de sauvegarde invalide.'); }
+  };
+  reader.readAsText(file);
+}
+function getCountryQuiet(id){ return state.countries[id]; }
+function playerState(){ return state.countries[state.player.countryId]; }
+function countryName(id){
+  if(state && state.countries && state.countries[id]) return state.countries[id].name;
+  return (COUNTRY_INDEX[id]||{}).name || id;
+}
+function cityById(c,id){ return c.cities.find(x=>x.id===id) || c.cities[0]; }
+
+/* ============================================================
+   SIMULATION ENGINE
+   ============================================================ */
+function avgRelationScore(id){
+  const keys = Object.keys(state.relations).filter(k=>k.split('|').includes(id));
+  if(!keys.length) return 50;
+  return keys.reduce((a,k)=>a+state.relations[k].score,0)/keys.length;
+}
+function totalInfraCount(c){
+  return c.cities.reduce((a,city)=> a + Math.round(city.infra.roads/20) + city.infra.highways + city.infra.airports + city.infra.ports, 0);
+}
+function discoverResource(c, rng){
+  if(rng() < 0.5 && c.resources.length){
+    const r = pick(rng, c.resources);
+    r.amount = Math.round(r.amount * rand(rng,1.15,1.4));
+  } else {
+    const existingTypes = c.resources.map(r=>r.type);
+    const options = RESOURCE_POOL.filter(r=>!existingTypes.includes(r.type));
+    if(options.length){
+      const def = pick(rng, options);
+      c.resources.push({ id: uid('res'), type: def.type, name: def.name, amount: randInt(rng,1000,6000), price: def.price, exploited:true });
+    } else if(c.resources.length){
+      const r = pick(rng, c.resources);
+      r.amount = Math.round(r.amount * 1.1);
+    }
+  }
+}
+function damageInfra(c, rng){
+  const city = pick(rng, c.cities);
+  city.infra.roads = clamp(city.infra.roads - randInt(rng,5,15), 0, 100);
+}
+function pushLog(msg, c){
+  c = c || playerState();
+  c.log.push({ msg, turn: state.player.turn });
+  if(c.log.length > 60) c.log.shift();
+}
+function simulateCountry(c, isPlayer, turn){
+  const rng = mulberry32((hashCode(c.id) ^ (turn*2654435761)) >>> 0);
+  const avgTax = (c.budget.taxIncome + c.budget.taxCorporate)/2;
+  const revenue = c.gdp*1e9/12*0.26*(avgTax/50);
+  const sectors=['sante','education','defense','police','social','infra'];
+  const avgSpend = sectors.reduce((a,s)=>a+c.budget.spending[s],0)/sectors.length;
+  const spending = c.gdp*1e9/12*0.26*(avgSpend/50);
+  const resourceIncome = c.resources.reduce((a,r)=> a + (r.exploited ? r.amount*r.price*0.02 : 0), 0);
+  const companyIncome = c.companies.reduce((a,co)=> a + (co.ownership==='public' ? co.value*0.02 : 0), 0);
+  const infraMaint = totalInfraCount(c) * 400000;
+  if(isPlayer){
+    c.budget.treasury += revenue - spending + resourceIncome + companyIncome - infraMaint;
+  }
+  let gd = 0;
+  gd += (c.budget.spending.infra-50)/450;
+  gd += (c.social.educationIndex-50)/900;
+  gd += (avgRelationScore(c.id)-50)/1800;
+  gd += rand(rng,-1,1)*0.35;
+  c.economy.growth = round1(clamp(c.economy.growth*0.85 + gd, -9, 13));
+  c.gdp = Math.max(0.05, c.gdp * (1 + c.economy.growth/100/12));
+  let ud = -c.economy.growth*0.06 - (c.budget.spending.social-50)/60 + rand(rng,-.4,.4);
+  c.economy.unemployment = round1(clamp(c.economy.unemployment+ud, 1, 45));
+  let idl = rand(rng,-.35,.35) + (c.budget.treasury<0 ? 0.4 : 0);
+  c.economy.inflation = round1(clamp(c.economy.inflation+idl, -2, 70));
+  let cd = -(c.budget.spending.police-50)*0.025 + (c.economy.unemployment-10)*0.045 + rand(rng,-.6,.6);
+  c.police.crimeIndex = round1(clamp(c.police.crimeIndex+cd, 0, 100));
+  c.social.healthIndex = round1(clamp(c.social.healthIndex + ((c.budget.spending.sante-50)/40) + rand(rng,-.3,.3), 0, 100));
+  c.social.educationIndex = round1(clamp(c.social.educationIndex + ((c.budget.spending.education-50)/40) + rand(rng,-.3,.3), 0, 100));
+  let ad = 0;
+  ad -= (c.economy.unemployment-10)*0.13;
+  ad -= Math.max(0,c.economy.inflation-5)*0.09;
+  ad += (c.social.healthIndex-50)*0.045;
+  ad += (c.social.educationIndex-50)*0.045;
+  ad -= (c.police.crimeIndex-30)*0.045;
+  ad += c.economy.growth*0.28;
+  ad += (c.budget.treasury>=0?0.25:-0.5);
+  ad += rand(rng,-1.3,1.3);
+  c.economy.approval = round1(clamp(c.economy.approval+ad, 0, 100));
+  let gr = 0.0014;
+  if(c.social.immigration==='ouverte') gr += 0.0009;
+  if(c.social.immigration==='fermee') gr -= 0.0003;
+  c.population = Math.max(1000, Math.round(c.population*(1+gr)));
+  if(isPlayer && rng() < 0.22){
+    const ev = pick(rng, EVENTS);
+    ev.fx(c, rng);
+    pushLog(ev.msg(c), c);
+  }
+  if(isPlayer){
+    c.mandate.turnsElapsed++;
+    if(c.mandate.turnsElapsed >= c.mandate.length){
+      c.mandate.turnsElapsed = 0; c.mandate.term++;
+      if(c.economy.approval >= 38){
+        c.economy.approval = clamp(c.economy.approval+3,0,100);
+        pushLog(`Fin de mandat : la population reconduit votre gouvernement pour un nouveau mandat.`, c);
+      } else {
+        c.economy.approval = clamp(c.economy.approval+12,0,100);
+        c.police.crimeIndex = clamp(c.police.crimeIndex+6,0,100);
+        pushLog(`Fin de mandat mouvementée : des contestations éclatent, mais vous restez en fonction pour un nouveau mandat.`, c);
+      }
+    }
+  }
+}
+function processContracts(){
+  state.contracts = state.contracts.filter(ct=>{
+    const involvesPlayer = ct.a === state.player.countryId || ct.b === state.player.countryId;
+    if(involvesPlayer) playerState().budget.treasury += ct.income;
+    ct.turnsLeft--;
+    if(ct.turnsLeft <= 0){
+      if(involvesPlayer) pushLog(`Le contrat avec ${countryName(ct.a===state.player.countryId?ct.b:ct.a)} est arrivé à son terme.`);
+      return false;
+    }
+    return true;
+  });
+}
+function advanceTurn(){
+  state.player.turn++;
+  const p = playerState();
+  simulateCountry(p, true, state.player.turn);
+  Object.values(state.countries).forEach(c=>{ if(c.id!==p.id) simulateCountry(c,false,state.player.turn); });
+  processContracts();
+  saveGame();
+  render();
+}
+
+/* ============================================================
+   ACTIONS — Diplomacy
+   ============================================================ */
+function relKey(a,b){ return [a,b].sort().join('|'); }
+function getRelation(a,b){ return state.relations[relKey(a,b)] || {score:50, status:'paix'}; }
+function setRelation(a,b,patch){
+  const k = relKey(a,b);
+  state.relations[k] = Object.assign({score:50,status:'paix'}, state.relations[k], patch);
+}
+function addContract(a,b){
+  const income = Math.round((getCountryQuiet(a).gdp + getCountryQuiet(b).gdp) * 1e9 * 0.00004);
+  state.contracts.push({ id: uid('ct'), a, b, income, turnsLeft: randInt(mulberry32(randSeed()), 12, 30) });
+}
+function diploAction(otherId, action){
+  const player = state.player.countryId;
+  const rel = getRelation(player, otherId);
+  let score = rel.score, status = rel.status;
+  const oName = countryName(otherId);
+  let msg = '';
+  if(action==='alliance'){
+    if(status==='guerre'){ msg = `Impossible de proposer une alliance : vous êtes en guerre avec ${oName}.`; }
+    else if(score < 55){ msg = `${oName} refuse l'alliance : les relations sont trop tendues (score requis : 55).`; }
+    else { status='alliance'; score=clamp(score+12,0,100); msg = `Alliance conclue avec ${oName}.`; }
+  } else if(action==='commerce'){
+    if(status==='guerre'){ msg = `Impossible de commercer avec un pays en guerre.`; }
+    else { if(status==='paix') status='accord commercial'; score=clamp(score+6,0,100);
+      addContract(player, otherId); msg = `Accord commercial signé avec ${oName}.`; }
+  } else if(action==='aide'){
+    const cost = playerState().gdp*1e9*0.003;
+    if(playerState().budget.treasury < cost){ msg = `Trésor insuffisant pour envoyer une aide (${fmtMoney(cost)} nécessaires).`; }
+    else { playerState().budget.treasury -= cost; score=clamp(score+15,0,100); msg = `Aide de ${fmtMoney(cost)} envoyée à ${oName}.`; }
+  } else if(action==='sanctions'){
+    status='sanctions'; score=clamp(score-15,0,100); msg = `Sanctions économiques imposées à ${oName}.`;
+  } else if(action==='guerre'){
+    status='guerre'; score=clamp(score-45,0,100); playerState().economy.approval=clamp(playerState().economy.approval-4,0,100);
+    msg = `Déclaration de guerre à ${oName} !`;
+  } else if(action==='paix'){
+    status='paix'; score=clamp(score+8,0,100); msg = `Retour à la paix avec ${oName}.`;
+  }
+  setRelation(player, otherId, {score, status});
+  pushLog(msg);
+  saveGame();
+  refreshDiplomacyTable();
+  refreshTicker();
+}
+function setDiploFilter(v){
+  state.diploFilter = v;
+  refreshDiplomacyTable();
+}
+function refreshDiplomacyTable(){
+  const tbody = document.getElementById('diploTbody');
+  if(!tbody) return;
+  tbody.innerHTML = diplomacyRows();
+}
+
+/* ============================================================
+   ACTIONS — Economy
+   ============================================================ */
+function setTax(field, value){ playerState().budget[field] = clamp(Math.round(value),0,80); saveGame(); render(); }
+function setSpending(field, value){ playerState().budget.spending[field] = clamp(Math.round(value),0,100); saveGame(); render(); }
+function toggleExploit(resId){
+  const r = playerState().resources.find(x=>x.id===resId);
+  r.exploited = !r.exploited; saveGame(); render();
+}
+function prospect(){
+  const c = playerState();
+  const cost = c.gdp*1e9*0.002;
+  if(c.budget.treasury<cost){ toast('Trésor insuffisant pour une campagne de prospection.'); return; }
+  c.budget.treasury -= cost;
+  discoverResource(c, mulberry32(randSeed()));
+  pushLog(`Une campagne de prospection est lancée sur le territoire.`, c);
+  saveGame(); render();
+}
+function foundCompany(name, sector, ownership){
+  const c = playerState();
+  const cost = c.gdp*1e6*2;
+  if(c.budget.treasury<cost){ toast('Trésor insuffisant pour fonder cette entreprise.'); return; }
+  c.budget.treasury -= cost;
+  c.companies.push({ id: uid('co'), name: (name||'').trim()||`${sector} Nationale`, sector, ownership, value: Math.round(cost) });
+  pushLog(`Fondation de l'entreprise « ${(name||'').trim()||sector} ».`, c);
+  saveGame(); render();
+}
+
+/* ============================================================
+   ACTIONS — Infrastructure / Government / Security / Social
+   ============================================================ */
+function buildInfra(cityId, typeKey){
+  const c = playerState();
+  const city = c.cities.find(x=>x.id===cityId);
+  const type = INFRA_TYPES.find(t=>t.key===typeKey);
+  if(type.requiresCoastal && !city.coastal){ toast(`${city.name} n'a pas d'accès maritime ou fluvial : port impossible.`); return; }
+  if(type.key==='roads' && city.infra.roads>=100){ toast('Réseau routier déjà au maximum.'); return; }
+  if(c.budget.treasury < type.cost){ toast(`Trésor insuffisant (${fmtMoney(type.cost)} nécessaires).`); return; }
+  c.budget.treasury -= type.cost;
+  if(type.key==='roads') city.infra.roads = clamp(city.infra.roads+type.step,0,100);
+  else city.infra[type.key] += type.step;
+  c.economy.approval = clamp(c.economy.approval+0.6,0,100);
+  pushLog(`${type.label} amélioré à ${city.name}.`, c);
+  saveGame(); render();
+}
+function setRegime(regime){
+  const c = playerState();
+  c.regime = regime;
+  c.economy.approval = clamp(c.economy.approval + rand(mulberry32(randSeed()),-3,3), 0, 100);
+  pushLog(`Changement de régime politique : ${regime}.`, c);
+  saveGame(); render();
+}
+function setCabinet(pm, ministers){
+  const c = playerState();
+  c.government.pm = (pm||'').trim() || 'Poste vacant';
+  MINISTRIES.forEach(m=>{ c.government.ministers[m.key] = (ministers[m.key]||'').trim() || 'Poste vacant'; });
+  pushLog(`Le gouvernement est renouvelé.`, c);
+  saveGame(); render();
+}
+function setAnthem(name, desc){
+  const c = playerState();
+  c.anthem = { name: (name||'').trim() || c.anthem.name, desc: (desc||'').trim() || c.anthem.desc };
+  pushLog(`Nouvel hymne national adopté : « ${c.anthem.name} ».`, c);
+  saveGame(); render();
+}
+function setCapital(cityId){
+  const c = playerState();
+  c.cities.forEach(x=>x.isCapital = (x.id===cityId));
+  c.capitalCityId = cityId;
+  pushLog(`${cityById(c,cityId).name} devient la nouvelle capitale.`, c);
+  saveGame(); render();
+}
+function recruit(kind){
+  const c = playerState();
+  if(kind==='police'){
+    const cost = 8000*200;
+    if(c.budget.treasury<cost){ toast('Trésor insuffisant.'); return; }
+    c.budget.treasury -= cost; c.police.officers += 200;
+    pushLog('200 policiers supplémentaires recrutés.', c);
+  } else {
+    const cost = 15000*300;
+    if(c.budget.treasury<cost){ toast('Trésor insuffisant.'); return; }
+    c.budget.treasury -= cost; c.military.troops += 300;
+    pushLog('300 soldats supplémentaires enrôlés.', c);
+  }
+  saveGame(); render();
+}
+function modernize(kind){
+  const c = playerState();
+  const cost = c.gdp*1e9*0.006;
+  if(c.budget.treasury<cost){ toast('Trésor insuffisant.'); return; }
+  c.budget.treasury -= cost;
+  if(kind==='police') c.police.equipment = clamp(c.police.equipment+8,0,100);
+  else c.military.arms = clamp(c.military.arms+8,0,100);
+  pushLog(kind==='police' ? "Modernisation de l'équipement policier." : "Modernisation de l'arsenal militaire.", c);
+  saveGame(); render();
+}
+function setImmigration(policy){ playerState().social.immigration = policy; saveGame(); render(); }
+function setVisaQuota(v){ playerState().social.visaQuota = clamp(Math.round(v),0,2000000); saveGame(); render(); }
+function setSocialLevel(field, v){ playerState().social[field] = clamp(Math.round(v),0,100); saveGame(); render(); }
+
+/* ============================================================
+   ACTIONS — Editor (god mode)
+   ============================================================ */
+function toggleEditMode(){
+  state.editMode = !state.editMode;
+  if(state.editMode && !state.editorTargetId) state.editorTargetId = state.player.countryId;
+  saveGame(); render();
+}
+function setEditorTarget(id){ state.editorTargetId = id; saveGame(); render(); }
+function editField(countryId, path, value, type){
+  const c = getCountryQuiet(countryId);
+  setPath(c, path, type==='number' ? (parseFloat(value)||0) : value);
+  saveGame(); render();
+}
+function editAddResource(countryId, type, amount){
+  const c = getCountryQuiet(countryId);
+  const def = RESOURCE_POOL.find(r=>r.type===type) || RESOURCE_POOL[0];
+  c.resources.push({ id: uid('res'), type: def.type, name: def.name, amount: Math.round(amount)||1000, price: def.price, exploited:true });
+  saveGame(); render();
+}
+function editAddCompany(countryId, name, sector, ownership, value){
+  const c = getCountryQuiet(countryId);
+  c.companies.push({ id: uid('co'), name: (name||'').trim()||sector, sector, ownership, value: Math.round(value)||1e6 });
+  saveGame(); render();
+}
+function editAddCity(countryId, name, pop, coastal){
+  const c = getCountryQuiet(countryId);
+  c.cities.push(makeCity(countryId, (name||'Nouvelle ville').trim(), Math.round(pop)||10000, !!coastal, false, mulberry32(randSeed())));
+  saveGame(); render();
+}
+
+/* ============================================================
+   UI HELPERS
+   ============================================================ */
+function toast(msg){
+  const wrap = document.getElementById('toasts');
+  if(!wrap) return;
+  const el = document.createElement('div');
+  el.className='toast'; el.textContent = msg;
+  wrap.appendChild(el);
+  setTimeout(()=> el.remove(), 3600);
+}
+function sliderRow(label, value, min, max, onChangeExpr, unit){
+  return `<div class="field"><label>${label}</label>
+    <div class="slider-row">
+      <input type="range" min="${min}" max="${max}" value="${value}" oninput="this.nextElementSibling.textContent=this.value+'${unit}'" onchange="${onChangeExpr}">
+      <span class="sv">${value}${unit}</span>
+    </div></div>`;
+}
+function editNumber(countryId, path, label){
+  const v = getPath(getCountryQuiet(countryId), path);
+  return `<div class="field"><label>${label}</label><input type="number" value="${v}" onchange="editField('${countryId}','${path}',this.value,'number')"></div>`;
+}
+function editText(countryId, path, label){
+  const v = getPath(getCountryQuiet(countryId), path);
+  return `<div class="field"><label>${label}</label><input type="text" value="${escapeHtml(v)}" onchange="editField('${countryId}','${path}',this.value,'text')"></div>`;
+}
+function editSelect(countryId, path, label, options){
+  const v = getPath(getCountryQuiet(countryId), path);
+  return `<div class="field"><label>${label}</label><select onchange="editField('${countryId}','${path}',this.value,'text')">${options.map(o=>`<option ${o===v?'selected':''}>${escapeHtml(o)}</option>`).join('')}</select></div>`;
+}
+function statusPill(status){
+  const map = { paix:['neutral','Paix'], alliance:['good','Alliance'], 'accord commercial':['info','Accord commercial'], sanctions:['warn','Sanctions'], guerre:['bad','Guerre'] };
+  const pair = map[status] || ['neutral', status];
+  return `<span class="pill ${pair[0]}">${pair[1]}</span>`;
+}
+function activeContracts(){ return state.contracts.filter(ct=>ct.a===state.player.countryId||ct.b===state.player.countryId); }
+function tabGlyph(id){
+  return {dashboard:'◆',economy:'$',resources:'⛏',diplomacy:'✦',social:'♥',security:'⛨',infra:'⌂',government:'⚖',editor:'✎'}[id]||'•';
+}
+
+/* ============================================================
+   RENDERING — screens
+   ============================================================ */
+function render(){
+  const app = document.getElementById('app');
+  if(!state || state.screen==='select'){
+    app.innerHTML = renderSelectScreen();
+    return;
+  }
+  app.innerHTML = renderShell();
+}
+function renderSelectScreen(){
+  const groups = {};
+  COUNTRIES_DATA.forEach(c=>{ (groups[c.continent] = groups[c.continent]||[]).push(c); });
+  const order = ['Afrique','Amérique du Nord','Amérique du Sud','Asie','Europe','Océanie'];
+  let resumeHtml = '';
+  if(hasSave()){
+    resumeHtml = `<div class="resume-bar">
+      <div><b>Une partie est en cours.</b><div style="color:var(--muted);font-size:12px;margin-top:2px;">Reprenez où vous en étiez, ou choisissez un nouveau pays ci-dessous pour recommencer.</div></div>
+      <button class="btn primary" onclick="resumeGame()">Reprendre la partie</button>
+    </div>`;
+  }
+  const groupsHtml = order.filter(o=>groups[o]).map(cont=>{
+    const cards = groups[cont].slice().sort((a,b)=>a.name.localeCompare(b.name)).map(c=>`
+      <button class="country-card" onclick="confirmStart('${c.id}')">
+        <div class="cflag">${flagEmoji(c.iso2)}</div>
+        <div class="cname">${escapeHtml(c.name)}</div>
+        <div class="cmeta">${escapeHtml(c.capital)} · ${fmtNum(c.pop)} hab.</div>
+      </button>`).join('');
+    return `<div class="continent-group"><h3>${cont} (${groups[cont].length})</h3><div class="country-grid">${cards}</div></div>`;
+  }).join('');
+  return `<div class="select-screen">
+    <div class="select-hero">
+      <div class="seal-big">★</div>
+      <h1>Chef d'État</h1>
+      <p>Choisissez l'un des 195 pays du monde et prenez la tête de son gouvernement : économie, diplomatie, armée, ressources, institutions. Un mode Éditeur permet de tout façonner librement, en bac à sable.</p>
+    </div>
+    ${resumeHtml}
+    ${groupsHtml}
+  </div>`;
+}
+function confirmStart(id){
+  if(hasSave()){
+    if(!confirm(`Démarrer une nouvelle partie à la tête de ${(COUNTRY_INDEX[id]||{}).name||id} effacera la sauvegarde existante. Continuer ?`)) return;
+  }
+  newGame(id);
+  render();
+}
+function resumeGame(){ loadGame(); render(); }
+
+function renderShell(){
+  const p = playerState();
+  return `
+  <div class="topbar">
+    <div class="seal">★</div>
+    <div class="brand"><b>Chef d'État</b><span>Simulateur géopolitique</span></div>
+    <div class="country-chip"><span class="flag">${flagEmoji(p.iso2)}</span><span>${escapeHtml(p.name)}</span></div>
+    <div class="ticker" id="ticker">${tickerHtml(p)}</div>
+    <button class="icon-btn ${state.editMode?'on':''}" onclick="toggleEditMode()">${state.editMode?'✓ Éditeur actif':'Mode Éditeur'}</button>
+    <button class="icon-btn" onclick="exportSave()">Exporter</button>
+    <label class="icon-btn" style="position:relative;overflow:hidden;">Importer<input type="file" accept="application/json" onchange="importSaveFile(this.files[0])" style="position:absolute;inset:0;opacity:0;cursor:pointer;"></label>
+    <button class="icon-btn" onclick="resetGame()">Nouvelle partie</button>
+  </div>
+  <div class="shell">
+    <nav class="sidenav">
+      ${TABS.map(t=>`<button class="${state.activeTab===t.id?'active':''}" onclick="setTab('${t.id}')"><span class="ic">${tabGlyph(t.id)}</span>${t.label}</button>`).join('')}
+    </nav>
+    <main class="view" id="mainView">${renderTab()}</main>
+  </div>
+  <nav class="bottomnav">
+    ${TABS.map(t=>`<button class="${state.activeTab===t.id?'active':''}" onclick="setTab('${t.id}')"><span class="ic">${tabGlyph(t.id)}</span>${t.label}</button>`).join('')}
+  </nav>`;
+}
+function tickerHtml(p){
+  const treasuryClass = p.budget.treasury>=0 ? 'pos':'neg';
+  const approvalClass = p.economy.approval>=50?'pos':(p.economy.approval>=30?'warn':'neg');
+  return `
+    <div class="t-item"><span class="l">Date</span><span class="v">${turnDateLabel(state.player.turn)}</span></div>
+    <div class="t-item"><span class="l">Trésor</span><span class="v num ${treasuryClass}">${fmtMoney(p.budget.treasury)}</span></div>
+    <div class="t-item"><span class="l">Popularité</span><span class="v num ${approvalClass}">${fmtPct(p.economy.approval)}</span></div>`;
+}
+function refreshTicker(){
+  const el = document.getElementById('ticker');
+  if(el) el.innerHTML = tickerHtml(playerState());
+}
+function setTab(t){ state.activeTab = t; render(); }
+function renderTab(){
+  switch(state.activeTab){
+    case 'dashboard': return renderDashboard();
+    case 'economy': return renderEconomy();
+    case 'resources': return renderResources();
+    case 'diplomacy': return renderDiplomacy();
+    case 'social': return renderSocial();
+    case 'security': return renderSecurity();
+    case 'infra': return renderInfra();
+    case 'government': return renderGovernment();
+    case 'editor': return renderEditor();
+    default: return '';
+  }
+}
+
+/* ---- Dashboard ---- */
+function renderDashboard(){
+  const c = playerState();
+  const mandatePct = Math.round(c.mandate.turnsElapsed / c.mandate.length * 100);
+  const kpis = [
+    {label:'Trésor public', value: fmtMoney(c.budget.treasury), cls: c.budget.treasury>=0?'pos':'neg'},
+    {label:'Croissance du PIB', value: fmtPct(c.economy.growth), cls: c.economy.growth>=0?'pos':'neg'},
+    {label:'Chômage', value: fmtPct(c.economy.unemployment), cls: c.economy.unemployment<12?'pos':(c.economy.unemployment<22?'warn':'neg')},
+    {label:'Inflation', value: fmtPct(c.economy.inflation), cls: c.economy.inflation<6?'pos':(c.economy.inflation<15?'warn':'neg')},
+    {label:'Popularité', value: fmtPct(c.economy.approval), cls: c.economy.approval>=50?'pos':(c.economy.approval>=30?'warn':'neg')},
+    {label:'Population', value: fmtNum(c.population), cls:''},
+  ];
+  return `
+  <h1>Tableau de bord — ${escapeHtml(c.name)}</h1>
+  <div class="subtitle">${escapeHtml(c.regime)} · Capitale : ${escapeHtml(cityById(c,c.capitalCityId).name)} · ${turnDateLabel(state.player.turn)} · Mandat n°${c.mandate.term}</div>
+  <div class="grid kpis" style="margin-bottom:14px;">
+    ${kpis.map(k=>`<div class="card kpi"><div class="label">${k.label}</div><div class="value num ${k.cls}">${k.value}</div></div>`).join('')}
+  </div>
+  <div class="grid cols2">
+    <div class="card">
+      <h3>Mandat présidentiel</h3>
+      <div class="row"><span class="rl">Progression du mandat en cours</span><span class="rv">${mandatePct}%</span></div>
+      <div class="bar"><i style="width:${mandatePct}%"></i></div>
+      <div class="btn-row"><button class="btn primary" onclick="advanceTurn()">Avancer d'un mois ▸</button></div>
+    </div>
+    <div class="card">
+      <h3>Journal du gouvernement</h3>
+      <div class="log">${renderLog(c)}</div>
+    </div>
+  </div>`;
+}
+function renderLog(c){
+  if(!c.log.length) return `<div class="empty">Aucun événement pour l'instant.</div>`;
+  return c.log.slice(-25).map(l=>`<div class="entry">${escapeHtml(l.msg)}<time>${turnDateLabel(l.turn)}</time></div>`).join('');
+}
+
+/* ---- Economy ---- */
+function renderEconomy(){
+  const c = playerState();
+  const sectors = [
+    {key:'sante', label:'Santé'}, {key:'education', label:'Éducation'}, {key:'defense', label:'Défense'},
+    {key:'police', label:'Police'}, {key:'social', label:'Protection sociale'}, {key:'infra', label:'Infrastructures'},
+  ];
+  const contracts = activeContracts();
+  return `
+  <h1>Économie</h1>
+  <div class="subtitle">Fiscalité, budget de l'État, entreprises et contrats internationaux.</div>
+  <div class="grid cols2">
+    <div class="card">
+      <h3>Fiscalité</h3>
+      ${sliderRow('Impôt sur le revenu', c.budget.taxIncome, 0, 70, "setTax('taxIncome',this.value)", '%')}
+      ${sliderRow('Impôt sur les sociétés', c.budget.taxCorporate, 0, 70, "setTax('taxCorporate',this.value)", '%')}
+      <p class="hint">PIB actuel : <b class="num" style="color:var(--parchment)">${fmtMoney(c.gdp*1e9)}</b></p>
+    </div>
+    <div class="card">
+      <h3>Effort de dépenses par secteur</h3>
+      ${sectors.map(s=>sliderRow(s.label, c.budget.spending[s.key], 0, 100, `setSpending('${s.key}',this.value)`, '%')).join('')}
+    </div>
+  </div>
+  <div class="grid cols2" style="margin-top:14px;">
+    <div class="card">
+      <h3>Entreprises (${c.companies.length})</h3>
+      ${c.companies.length? c.companies.map(co=>`
+        <div class="row"><span class="rl">${escapeHtml(co.name)} <span class="pill ${co.ownership==='public'?'info':'neutral'}">${co.ownership}</span></span><span class="rv num">${fmtMoney(co.value)}</span></div>
+      `).join('') : '<div class="empty">Aucune entreprise fondée.</div>'}
+      <div class="field" style="margin-top:12px;"><label>Fonder une entreprise</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <input type="text" id="coNameInput" placeholder="Nom (optionnel)" style="flex:2;min-width:140px;">
+          <select id="coSectorInput" style="flex:1;min-width:130px;">${COMPANY_SECTORS.map(s=>`<option>${s}</option>`).join('')}</select>
+          <select id="coOwnInput" style="flex:1;min-width:100px;"><option value="privée">Privée</option><option value="public">Publique</option></select>
+        </div>
+      </div>
+      <div class="btn-row"><button class="btn" onclick="foundCompany(document.getElementById('coNameInput').value, document.getElementById('coSectorInput').value, document.getElementById('coOwnInput').value)">Fonder (≈ ${fmtMoney(c.gdp*1e6*2)})</button></div>
+    </div>
+    <div class="card">
+      <h3>Contrats en cours (${contracts.length})</h3>
+      ${contracts.length ? contracts.map(ct=>`
+        <div class="row"><span class="rl">${escapeHtml(countryName(ct.a===c.id?ct.b:ct.a))}</span><span class="rv num pos">+${fmtMoney(ct.income)}/mois · ${ct.turnsLeft} mois</span></div>
+      `).join('') : '<div class="empty">Aucun contrat actif. Proposez un accord commercial depuis l’onglet Diplomatie.</div>'}
+    </div>
+  </div>`;
+}
+
+/* ---- Resources ---- */
+function renderResources(){
+  const c = playerState();
+  return `
+  <h1>Ressources naturelles</h1>
+  <div class="subtitle">${escapeHtml(c.name)} exploite ${c.resources.filter(r=>r.exploited).length} ressource(s) sur ${c.resources.length}.</div>
+  <div class="grid cols2">
+    ${c.resources.map(r=>`
+      <div class="card">
+        <h3>${escapeHtml(r.name)}</h3>
+        <div class="row"><span class="rl">Réserves estimées</span><span class="rv num">${fmtNum(r.amount)} unités</span></div>
+        <div class="row"><span class="rl">Cours mondial</span><span class="rv num">${r.price} $ / unité</span></div>
+        <div class="row"><span class="rl">Statut</span><span class="rv"><span class="pill ${r.exploited?'good':'neutral'}">${r.exploited?'Exploitée':'En réserve'}</span></span></div>
+        <div class="btn-row"><button class="btn sm" onclick="toggleExploit('${r.id}')">${r.exploited?"Suspendre l'exploitation":"Lancer l'exploitation"}</button></div>
+      </div>`).join('')}
+  </div>
+  <div class="card" style="margin-top:14px;">
+    <h3>Prospection</h3>
+    <p>Financez une campagne de prospection pour découvrir de nouveaux gisements ou étendre les réserves existantes.</p>
+    <div class="btn-row"><button class="btn primary" onclick="prospect()">Lancer une prospection (${fmtMoney(c.gdp*1e9*0.002)})</button></div>
+  </div>`;
+}
+
+/* ---- Diplomacy ---- */
+function diplomacyRows(){
+  const player = state.player.countryId;
+  const q = (state.diploFilter||'').toLowerCase();
+  const others = COUNTRIES_DATA.filter(c=>c.id!==player && c.name.toLowerCase().includes(q));
+  if(!others.length) return '<tr><td colspan="4" class="empty">Aucun pays trouvé.</td></tr>';
+  return others.map(o=>{
+    const rel = getRelation(player,o.id);
+    return `<tr>
+      <td>${flagEmoji(o.iso2)} ${escapeHtml(o.name)}</td>
+      <td>${statusPill(rel.status)}</td>
+      <td class="num">${Math.round(rel.score)}/100</td>
+      <td><div class="btn-row" style="margin:0;">
+        ${DIPLO_ACTIONS.map(a=>`<button class="btn sm" onclick="diploAction('${o.id}','${a.id}')">${a.label}</button>`).join('')}
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+function renderDiplomacy(){
+  return `
+  <h1>Diplomatie</h1>
+  <div class="subtitle">Relations avec les ${COUNTRIES_DATA.length-1} autres nations du monde.</div>
+  <div class="search"><input type="text" id="diploSearch" placeholder="Rechercher un pays…" value="${escapeHtml(state.diploFilter||'')}" oninput="setDiploFilter(this.value)"></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Pays</th><th>Statut</th><th>Score</th><th>Actions</th></tr></thead>
+    <tbody id="diploTbody">${diplomacyRows()}</tbody>
+  </table></div>`;
+}
+
+/* ---- Social ---- */
+function renderSocial(){
+  const c = playerState();
+  return `
+  <h1>Politique sociale</h1>
+  <div class="subtitle">Immigration, sécurité sociale et santé publique.</div>
+  <div class="grid cols2">
+    <div class="card">
+      <h3>Immigration &amp; visas</h3>
+      <div class="field"><label>Politique migratoire</label>
+        <select onchange="setImmigration(this.value)">
+          ${IMMIGRATION_POLICIES.map(p=>`<option value="${p.id}" ${c.social.immigration===p.id?'selected':''}>${p.label}</option>`).join('')}
+        </select>
+      </div>
+      ${c.social.immigration==='quotas' ? `<div class="field"><label>Quota annuel de visas</label>
+        <input type="number" value="${c.social.visaQuota}" step="1000" onchange="setVisaQuota(this.value)"></div>` : ''}
+      <p class="hint">La politique migratoire influence la croissance démographique et la popularité.</p>
+    </div>
+    <div class="card">
+      <h3>Sécurité sociale &amp; santé</h3>
+      ${sliderRow('Niveau des pensions', c.social.pensionLevel, 0, 100, "setSocialLevel('pensionLevel',this.value)", '%')}
+      ${sliderRow('Allocations chômage', c.social.unemploymentBenefit, 0, 100, "setSocialLevel('unemploymentBenefit',this.value)", '%')}
+      <div class="row"><span class="rl">Indice de santé publique</span><span class="rv">${fmtPct(c.social.healthIndex)}</span></div>
+      <div class="bar good"><i style="width:${c.social.healthIndex}%"></i></div>
+      <div class="row" style="margin-top:8px;"><span class="rl">Indice d'éducation</span><span class="rv">${fmtPct(c.social.educationIndex)}</span></div>
+      <div class="bar good"><i style="width:${c.social.educationIndex}%"></i></div>
+      <p class="hint" style="margin-top:8px;">Le budget Santé/Éducation se règle dans l'onglet Économie.</p>
+    </div>
+  </div>`;
+}
+
+/* ---- Security ---- */
+function renderSecurity(){
+  const c = playerState();
+  return `
+  <h1>Sécurité &amp; Défense</h1>
+  <div class="grid cols2">
+    <div class="card">
+      <h3>Police nationale</h3>
+      <div class="row"><span class="rl">Effectifs</span><span class="rv num">${fmtNum(c.police.officers)} agents</span></div>
+      <div class="row"><span class="rl">Équipement</span><span class="rv">${fmtPct(c.police.equipment)}</span></div>
+      <div class="bar"><i style="width:${c.police.equipment}%"></i></div>
+      <div class="row" style="margin-top:8px;"><span class="rl">Indice de criminalité</span><span class="rv">${fmtPct(c.police.crimeIndex)}</span></div>
+      <div class="bar bad"><i style="width:${c.police.crimeIndex}%"></i></div>
+      <div class="btn-row">
+        <button class="btn sm" onclick="recruit('police')">Recruter 200 policiers</button>
+        <button class="btn sm" onclick="modernize('police')">Moderniser l'équipement</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Forces armées</h3>
+      <div class="row"><span class="rl">Effectifs</span><span class="rv num">${fmtNum(c.military.troops)} soldats</span></div>
+      <div class="row"><span class="rl">Niveau d'armement</span><span class="rv">${fmtPct(c.military.arms)}</span></div>
+      <div class="bar"><i style="width:${c.military.arms}%"></i></div>
+      <div class="btn-row">
+        <button class="btn sm" onclick="recruit('military')">Enrôler 300 soldats</button>
+        <button class="btn sm" onclick="modernize('military')">Moderniser l'arsenal</button>
+      </div>
+    </div>
+  </div>
+  <p class="hint" style="margin-top:14px;">Les budgets Police et Défense se règlent dans l'onglet Économie (effort de dépenses).</p>`;
+}
+
+/* ---- Infrastructure ---- */
+function renderInfra(){
+  const c = playerState();
+  return `
+  <h1>Infrastructures</h1>
+  <div class="subtitle">${c.cities.length} ville${c.cities.length>1?'s':''} suivie${c.cities.length>1?'s':''}${c.id===DRC_ID?' — cartographie détaillée de la RD Congo':''}.</div>
+  <div class="grid cols2">
+    ${c.cities.map(city=>`
+      <div class="city-card">
+        <h4>${escapeHtml(city.name)} ${city.isCapital?'<span class="pill info">Capitale</span>':''}</h4>
+        <div class="row"><span class="rl">Population</span><span class="rv num">${fmtNum(city.population)}</span></div>
+        <div class="infra-grid" style="margin-top:8px;">
+          <div class="ig"><span>Routes</span><b class="num">${city.infra.roads}/100</b></div>
+          <div class="ig"><span>Autoroutes</span><b class="num">${city.infra.highways}</b></div>
+          <div class="ig"><span>Aéroports</span><b class="num">${city.infra.airports}</b></div>
+          <div class="ig"><span>Ports</span><b class="num">${city.infra.ports}${city.coastal?'':' (n/d)'}</b></div>
+        </div>
+        <div class="btn-row">
+          ${INFRA_TYPES.map(t=>`<button class="btn sm" ${t.requiresCoastal&&!city.coastal?'disabled':''} onclick="buildInfra('${city.id}','${t.key}')" title="${fmtMoney(t.cost)}">+ ${t.label}</button>`).join('')}
+        </div>
+      </div>`).join('')}
+  </div>`;
+}
+
+/* ---- Government ---- */
+function renderGovernment(){
+  const c = playerState();
+  return `
+  <h1>Gouvernement &amp; Institutions</h1>
+  <div class="grid cols2">
+    <div class="card">
+      <h3>Régime politique</h3>
+      <div class="field"><label>Forme du régime</label>
+        <select onchange="setRegime(this.value)">
+          ${REGIMES.map(r=>`<option ${c.regime===r?'selected':''}>${r}</option>`).join('')}
+        </select>
+      </div>
+      <div class="field"><label>Capitale</label>
+        <select onchange="setCapital(this.value)">
+          ${c.cities.map(ci=>`<option value="${ci.id}" ${c.capitalCityId===ci.id?'selected':''}>${escapeHtml(ci.name)}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Hymne national</h3>
+      <div class="field"><label>Nom</label><input type="text" id="anthemName" value="${escapeHtml(c.anthem.name)}"></div>
+      <div class="field"><label>Description</label><textarea id="anthemDesc">${escapeHtml(c.anthem.desc)}</textarea></div>
+      <div class="btn-row"><button class="btn" onclick="setAnthem(document.getElementById('anthemName').value, document.getElementById('anthemDesc').value)">Adopter cet hymne</button></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:14px;">
+    <h3>Cabinet ministériel</h3>
+    <div class="grid cols2">
+      <div class="field"><label>Premier ministre</label><input type="text" id="pmInput" value="${escapeHtml(c.government.pm)}"></div>
+      ${MINISTRIES.map(m=>`<div class="field"><label>${m.label}</label><input type="text" id="min_${m.key}" value="${escapeHtml(c.government.ministers[m.key])}"></div>`).join('')}
+    </div>
+    <div class="btn-row"><button class="btn primary" onclick="submitCabinet()">Nommer le gouvernement</button></div>
+  </div>`;
+}
+function submitCabinet(){
+  const pm = document.getElementById('pmInput').value;
+  const ministers = {};
+  MINISTRIES.forEach(m=> ministers[m.key] = document.getElementById('min_'+m.key).value);
+  setCabinet(pm, ministers);
+}
+
+/* ---- Editor (god mode) ---- */
+function renderEditor(){
+  if(!state.editMode){
+    return `<h1>Éditeur</h1>
+    <div class="card"><p>Le mode Éditeur permet de modifier librement n'importe quel champ de n'importe quel pays du monde (bac à sable) : population, économie, budget, indices sociaux, sécurité, et de créer des ressources, entreprises ou villes.</p>
+    <div class="btn-row"><button class="btn primary" onclick="toggleEditMode()">Activer le mode Éditeur</button></div></div>`;
+  }
+  const targetId = state.editorTargetId || state.player.countryId;
+  return `
+  <h1>Éditeur — Mode bac à sable</h1>
+  <div class="editor-banner">Toute valeur ci-dessous est modifiable et prend effet immédiatement. Cela peut déséquilibrer la partie : à utiliser en connaissance de cause.</div>
+  <div class="field" style="max-width:420px;"><label>Pays à modifier</label>
+    <select onchange="setEditorTarget(this.value)">
+      ${COUNTRIES_DATA.slice().sort((a,b)=>a.name.localeCompare(b.name)).map(cc=>`<option value="${cc.id}" ${targetId===cc.id?'selected':''}>${flagEmoji(cc.iso2)} ${escapeHtml(cc.name)}</option>`).join('')}
+    </select>
+  </div>
+  <div class="grid cols2" style="margin-top:14px;">
+    <div class="card"><h3>Identité &amp; régime</h3>
+      ${editText(targetId,'name','Nom du pays')}
+      ${editSelect(targetId,'regime','Régime', REGIMES)}
+    </div>
+    <div class="card"><h3>Démographie &amp; richesse</h3>
+      ${editNumber(targetId,'population','Population')}
+      ${editNumber(targetId,'gdp','PIB (Md $)')}
+      ${editNumber(targetId,'budget.treasury','Trésor public ($)')}
+    </div>
+    <div class="card"><h3>Fiscalité &amp; dépenses</h3>
+      ${editNumber(targetId,'budget.taxIncome','Impôt revenu (%)')}
+      ${editNumber(targetId,'budget.taxCorporate','Impôt société (%)')}
+      ${editNumber(targetId,'budget.spending.sante','Dépense santé (%)')}
+      ${editNumber(targetId,'budget.spending.education','Dépense éducation (%)')}
+      ${editNumber(targetId,'budget.spending.defense','Dépense défense (%)')}
+      ${editNumber(targetId,'budget.spending.police','Dépense police (%)')}
+      ${editNumber(targetId,'budget.spending.social','Dépense sociale (%)')}
+      ${editNumber(targetId,'budget.spending.infra','Dépense infrastructures (%)')}
+    </div>
+    <div class="card"><h3>Indicateurs économiques</h3>
+      ${editNumber(targetId,'economy.growth','Croissance (%)')}
+      ${editNumber(targetId,'economy.unemployment','Chômage (%)')}
+      ${editNumber(targetId,'economy.inflation','Inflation (%)')}
+      ${editNumber(targetId,'economy.approval','Popularité (%)')}
+    </div>
+    <div class="card"><h3>Social</h3>
+      ${editSelect(targetId,'social.immigration','Politique migratoire', IMMIGRATION_POLICIES.map(p=>p.id))}
+      ${editNumber(targetId,'social.healthIndex','Indice santé')}
+      ${editNumber(targetId,'social.educationIndex','Indice éducation')}
+      ${editNumber(targetId,'social.pensionLevel','Pensions (%)')}
+      ${editNumber(targetId,'social.unemploymentBenefit','Allocations chômage (%)')}
+    </div>
+    <div class="card"><h3>Sécurité</h3>
+      ${editNumber(targetId,'police.officers','Effectifs policiers')}
+      ${editNumber(targetId,'police.equipment','Équipement policier (%)')}
+      ${editNumber(targetId,'police.crimeIndex','Criminalité (%)')}
+      ${editNumber(targetId,'military.troops','Effectifs militaires')}
+      ${editNumber(targetId,'military.arms','Niveau armement (%)')}
+    </div>
+  </div>
+  <div class="grid cols2" style="margin-top:14px;">
+    <div class="card"><h3>Créer une ressource</h3>
+      <div class="field"><label>Type</label><select id="newResType">${RESOURCE_POOL.map(r=>`<option value="${r.type}">${r.name}</option>`).join('')}</select></div>
+      <div class="field"><label>Quantité</label><input type="number" id="newResAmount" value="5000"></div>
+      <div class="btn-row"><button class="btn" onclick="editAddResource('${targetId}', document.getElementById('newResType').value, document.getElementById('newResAmount').value)">Ajouter la ressource</button></div>
+    </div>
+    <div class="card"><h3>Créer une entreprise</h3>
+      <div class="field"><label>Nom</label><input type="text" id="newCoName" value="Nouvelle entreprise"></div>
+      <div class="field"><label>Secteur</label><select id="newCoSector">${COMPANY_SECTORS.map(s=>`<option>${s}</option>`).join('')}</select></div>
+      <div class="field"><label>Propriété</label><select id="newCoOwn"><option value="public">Publique</option><option value="privée">Privée</option></select></div>
+      <div class="field"><label>Valeur ($)</label><input type="number" id="newCoValue" value="10000000"></div>
+      <div class="btn-row"><button class="btn" onclick="editAddCompany('${targetId}', document.getElementById('newCoName').value, document.getElementById('newCoSector').value, document.getElementById('newCoOwn').value, document.getElementById('newCoValue').value)">Ajouter l'entreprise</button></div>
+    </div>
+    <div class="card"><h3>Créer une ville</h3>
+      <div class="field"><label>Nom</label><input type="text" id="newCityName" value="Nouvelle ville"></div>
+      <div class="field"><label>Population</label><input type="number" id="newCityPop" value="50000"></div>
+      <div class="field"><label style="display:flex;align-items:center;gap:6px;text-transform:none;font-size:13px;color:var(--parchment);"><input type="checkbox" id="newCityCoastal" style="width:auto;"> Accès maritime / fluvial (nécessaire pour les ports)</label></div>
+      <div class="btn-row"><button class="btn" onclick="editAddCity('${targetId}', document.getElementById('newCityName').value, document.getElementById('newCityPop').value, document.getElementById('newCityCoastal').checked)">Ajouter la ville</button></div>
+    </div>
+  </div>`;
+}
+
+/* ============================================================
+   BOOT
+   ============================================================ */
+function boot(){
+  if(loadGame()){ render(); }
+  else { state = { screen: 'select' }; render(); }
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  }
+}
+boot();
+
+</script>
+</body>
+</html>
