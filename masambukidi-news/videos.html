@@ -604,6 +604,11 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
 .news-share-fb{background:rgba(24,119,242,0.12);border-color:rgba(24,119,242,0.3);color:#5c9dff}
 .news-share-ig{background:rgba(225,48,108,0.12);border-color:rgba(225,48,108,0.3);color:#ef5da8}
 .news-share-cp{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7)}
+.news-cpreview{margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:7px}
+.news-cpreview:empty{display:none;margin:0;padding:0;border:none}
+.cpreview-item{font-size:0.83rem;line-height:1.5;color:rgba(255,255,255,0.62)}
+.cpreview-author{color:var(--gold-light);font-family:var(--font-ui);font-weight:600;font-size:0.78rem;margin-right:6px}
+.cpreview-more{font-family:var(--font-ui);font-size:0.75rem;color:var(--gold);align-self:flex-start;padding:0;font-weight:600;letter-spacing:0.3px}
 
 /* ═══════════════════════════════════════════════
    COMMENTS
@@ -2016,7 +2021,7 @@ body::before{
   <div class="footer-bottom">
     <div class="footer-copy">&copy; 2026 ELUCCO &mdash; Tous droits réservés. Site officiel de Sa Majesté Masambukidi Samuel I.</div>
     <div class="footer-copy">Conçu avec dévotion pour la communauté Masambukidiste mondiale</div>
-    <div class="footer-build">Mise à jour du site : 14 août 2026 (v3) — notifications de la communauté</div>
+    <div class="footer-build">Mise à jour du site : 14 août 2026 (v4) — commentaires visibles sur l’accueil</div>
   </div>
 </footer>
 
@@ -2457,7 +2462,7 @@ function renderNewsCard(item){
       </div>
       <div class="news-title">${item.title}</div>
       <div class="news-desc" id="desc-${item.id}">${item.desc||''}</div>
-      ${item.desc && item.desc.length>200?`<button class="read-more-btn" onclick="toggleReadMore('${item.id}',this)">Lire la suite <i class='fas fa-chevron-down'></i></button>`:''}
+      ${(!item.articleUrl && item.desc && item.desc.length>200)?`<button class="read-more-btn" onclick="toggleReadMore('${item.id}',this)">Lire la suite <i class='fas fa-chevron-down'></i></button>`:''}
       <div class="news-footer">
         <div style="display:flex;gap:8px">
           <button class="like-btn" id="likebtn-${item.id}" onclick="toggleLike('${item.id}',this)">
@@ -2470,6 +2475,7 @@ function renderNewsCard(item){
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${readBtn}${watchBtn}</div>
       </div>
       ${shareRow}
+      <div class="news-cpreview" id="cpreview-${item.id}"></div>
       <div class="comments-section" id="comments-${item.id}">
         <div class="comment-form">
           <input type="text" class="comment-input" id="comment-name-${item.id}" placeholder="Votre nom" maxlength="60">
@@ -2517,8 +2523,22 @@ async function syncCardStats(ids){
       if(lEl) lEl.textContent=s.likes;
       const btn=document.getElementById('likebtn-'+id);
       if(btn) btn.classList.toggle('liked',!!s.liked);
+      const cEl=document.getElementById('ccount-'+id);
+      if(cEl) cEl.textContent=s.comments||0;
+      renderCommentPreview(id,s.latest||[],s.comments||0);
     });
   }catch(e){}
+}
+
+/* Apercu des derniers commentaires directement sur la carte d'accueil. */
+function renderCommentPreview(id,latest,total){
+  const box=document.getElementById('cpreview-'+id);
+  if(!box) return;
+  if(!latest.length){ box.innerHTML=''; return; }
+  const label=total>latest.length?`Voir les ${total} commentaires`:'Repondre';
+  box.innerHTML=latest.map(c=>`
+    <div class="cpreview-item"><span class="cpreview-author">${c.author}</span><span class="cpreview-text">${c.text}</span></div>`).join('')
+    +`<button class="cpreview-more" onclick="toggleComments('${id}')">${label}</button>`;
 }
 
 function observeCardViews(){
@@ -2643,6 +2663,7 @@ async function addComment(id){
     if(nameEl) nameEl.value='';
     textEl.value='';
     await loadComments(id);
+    syncCardStats([id]);
     showToast('Commentaire ajoute !','success');
   }catch(e){
     showToast('Connexion impossible, reessayez.','error');
