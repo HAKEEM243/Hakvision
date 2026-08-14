@@ -1,4 +1,5 @@
-import { voterHash, jsonResponse, isValidArticleId, escapeHtml } from '../_utils.js';
+import { voterHash, jsonResponse, isValidArticleId, escapeHtml, articleMeta } from '../_utils.js';
+import { broadcast } from '../_push.js';
 
 export async function onRequestGet(context) {
   const { request, env } = context;
@@ -48,6 +49,15 @@ export async function onRequestPost(context) {
   await env.DB.prepare(
     'INSERT INTO comments (article_id, author, text, created_at, voter_hash) VALUES (?, ?, ?, ?, ?)'
   ).bind(id, author, text, nowIso, voter).run();
+
+  // Notification a toute la communaute, sans retarder la reponse.
+  const meta = articleMeta(id);
+  context.waitUntil(broadcast(env, {
+    title: `${author} a commente`,
+    body: `« ${text.slice(0, 90)}${text.length > 90 ? '…' : ''} » — sur ${meta.title}`,
+    url: meta.url,
+    tag: 'comment-' + id,
+  }, voter));
 
   return jsonResponse({
     author: escapeHtml(author),

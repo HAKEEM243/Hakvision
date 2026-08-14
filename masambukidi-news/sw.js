@@ -3,7 +3,7 @@
  * PWA + Push Notifications — réseau prioritaire pour les pages,
  * cache pour les seuls actifs statiques (images, logos).
  */
-const CACHE_NAME = 'elucco-v3';
+const CACHE_NAME = 'elucco-v4';
 const STATIC_ASSETS = [
   '/manifest.json',
   '/elucco_logo_officiel.png',
@@ -65,14 +65,18 @@ self.addEventListener('fetch', e => {
 
 // Push notification handler
 self.addEventListener('push', e => {
-  const data = e.data ? e.data.json() : {};
+  let data = {};
+  try { data = e.data ? e.data.json() : {}; } catch (err) { data = {}; }
   const title = data.title || 'ELUCCO';
   const opts = {
-    body: data.body || 'Nouvelle notification',
+    body: data.body || 'Nouvelle activite sur le site',
     icon: '/elucco_logo_officiel.png',
     badge: '/elucco_logo_officiel.png',
     vibrate: [200, 100, 200],
     data: { url: data.url || '/' },
+    // Un meme article regroupe ses notifications au lieu de les empiler.
+    tag: data.tag || 'elucco',
+    renotify: true,
     actions: [{ action: 'open', title: 'Ouvrir', icon: '/elucco_logo_officiel.png' }],
   };
   e.waitUntil(self.registration.showNotification(title, opts));
@@ -81,7 +85,18 @@ self.addEventListener('push', e => {
 self.addEventListener('notificationclick', e => {
   e.notification.close();
   const url = e.notification.data && e.notification.data.url ? e.notification.data.url : '/';
-  e.waitUntil(clients.openWindow(url));
+  // Si le site est deja ouvert, on y navigue au lieu d'ouvrir un nouvel onglet.
+  e.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
+      for (const client of list) {
+        if ('focus' in client) {
+          if ('navigate' in client) client.navigate(url).catch(() => {});
+          return client.focus();
+        }
+      }
+      return self.clients.openWindow(url);
+    })
+  );
 });
 
 // Background sync for scheduled notifications

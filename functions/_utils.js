@@ -24,3 +24,27 @@ export function todayStr() {
 export function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
+
+/** Titre court et lien de destination pour les notifications. */
+const ARTICLE_META = {
+  feat_eclipse: { title: 'la ceremonie du 12 aout', url: '/article-eclipse-aout2026.html' },
+  feat_mumengi: { title: 'la visite de Didier Mumengi', url: '/article-mumengi-aout2026.html' },
+  feat_livre_roi_bassin_kongo: { title: 'le livre Roi du Bassin du Kongo', url: '/article-livre-roi-bassin-kongo.html' },
+  feat_1: { title: 'l’article du 6 Mars', url: '/actualites.html' },
+};
+
+export function articleMeta(id) {
+  return ARTICLE_META[id] || { title: 'une publication', url: '/actualites.html' };
+}
+
+/** Nom deja utilise par ce visiteur dans un commentaire, sinon un libelle neutre. */
+export async function knownName(env, voter) {
+  try {
+    const row = await env.DB.prepare(
+      'SELECT author FROM comments WHERE voter_hash = ? ORDER BY id DESC LIMIT 1'
+    ).bind(voter).first();
+    return (row && row.author) || 'Un fidele';
+  } catch {
+    return 'Un fidele';
+  }
+}

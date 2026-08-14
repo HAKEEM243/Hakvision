@@ -2020,7 +2020,7 @@ body::before{
   <div class="footer-bottom">
     <div class="footer-copy">&copy; 2026 ELUCCO &mdash; Tous droits réservés. Site officiel de Sa Majesté Masambukidi Samuel I.</div>
     <div class="footer-copy">Conçu avec dévotion pour la communauté Masambukidiste mondiale</div>
-    <div class="footer-build">Mise à jour du site : 14 août 2026 (v2) — vues, likes et commentaires actifs</div>
+    <div class="footer-build">Mise à jour du site : 14 août 2026 (v3) — notifications de la communauté</div>
   </div>
 </footer>
 
@@ -2987,10 +2987,13 @@ async function requestNotifPermission(){
     showToast('Notifications activées !','success');
     setLS('notif_dismissed',true);
     scheduleLocalNotifications();
+    const pushOk=await subscribeToPush();
     if('serviceWorker' in navigator){
-      const reg=await navigator.serviceWorker.ready;
+      await navigator.serviceWorker.ready;
       new Notification('ELUCCO — Notifications activées',{
-        body:'Vous recevrez des rappels pour les cultes et les dates sacrées.',
+        body: pushOk
+          ? 'Vous serez prévenu des nouveaux commentaires et j\'aime de la communauté.'
+          : 'Vous recevrez des rappels pour les cultes et les dates sacrées.',
         icon:'elucco_logo_officiel.png'
       });
     }
@@ -3055,8 +3058,49 @@ function registerSW(){
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('sw.js').then(reg=>{
       console.log('SW registered');
+      // Si l'autorisation a deja ete donnee, on (re)synchronise l'abonnement.
+      if(window.Notification && Notification.permission==='granted') subscribeToPush();
     }).catch(console.error);
   }
+}
+
+/* ═══════════════════════════════════════════════
+   NOTIFICATIONS PUSH — commentaires et j'aime
+   Chaque visiteur qui accepte les notifications est
+   prevenu quand quelqu'un commente ou aime.
+═══════════════════════════════════════════════ */
+function urlB64ToUint8Array(base64String){
+  const padding='='.repeat((4-base64String.length%4)%4);
+  const base64=(base64String+padding).replace(/-/g,'+').replace(/_/g,'/');
+  const raw=atob(base64);
+  const out=new Uint8Array(raw.length);
+  for(let i=0;i<raw.length;i++) out[i]=raw.charCodeAt(i);
+  return out;
+}
+
+async function subscribeToPush(){
+  if(!('serviceWorker' in navigator)||!('PushManager' in window)) return false;
+  if(!window.Notification||Notification.permission!=='granted') return false;
+  try{
+    const reg=await navigator.serviceWorker.ready;
+    const keyRes=await fetch('/api/push-subscribe');
+    if(!keyRes.ok) return false;
+    const {publicKey}=await keyRes.json();
+    if(!publicKey) return false;
+    let sub=await reg.pushManager.getSubscription();
+    if(!sub){
+      sub=await reg.pushManager.subscribe({
+        userVisibleOnly:true,
+        applicationServerKey:urlB64ToUint8Array(publicKey)
+      });
+    }
+    const save=await fetch('/api/push-subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(sub.toJSON())
+    });
+    return save.ok;
+  }catch(e){ return false; }
 }
 
 /* ═══════════════════════════════════════════════

@@ -1,4 +1,5 @@
-import { voterHash, jsonResponse, isValidArticleId } from '../_utils.js';
+import { voterHash, jsonResponse, isValidArticleId, articleMeta, knownName } from '../_utils.js';
+import { broadcast } from '../_push.js';
 
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -28,5 +29,18 @@ export async function onRequestPost(context) {
   }
 
   const row = await env.DB.prepare('SELECT count FROM likes WHERE article_id = ?').bind(id).first();
+
+  // On ne notifie qu'a l'ajout d'un j'aime, jamais au retrait.
+  if (liked) {
+    const meta = articleMeta(id);
+    const name = await knownName(env, voter);
+    context.waitUntil(broadcast(env, {
+      title: `${name} a aime`,
+      body: `${name} a aime ${meta.title}.`,
+      url: meta.url,
+      tag: 'like-' + id,
+    }, voter));
+  }
+
   return jsonResponse({ likes: (row && row.count) || 0, liked });
 }
