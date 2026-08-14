@@ -1,6 +1,14 @@
 [build]
   publish = "."
 
+# Le dossier functions/ appartient au site ELUCCO (Cloudflare Pages).
+# Il ne doit pas etre servi comme fichier statique par Netlify.
+[[redirects]]
+  from = "/functions/*"
+  to = "/index.html"
+  status = 404
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
