@@ -1,0 +1,17 @@
+name: Notification priere du culte
+
+on:
+  schedule:
+    # Toutes les 15 minutes. L'heure exacte du culte est verifiee cote
+    # serveur (functions/_culte.js) : un passage hors fenetre ne fait
+    # rien. Aucun secret necessaire, aucun risque de doublon.
+    - cron: '*/15 * * * *'
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verifie l'heure de culte et notifie si besoin
+        run: |
+          curl -sS -o /dev/null -w "HTTP %{http_code}\n" "https://elucco.pages.dev/api/notify-culte"
