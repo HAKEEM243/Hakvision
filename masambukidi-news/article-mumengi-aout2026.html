@@ -268,6 +268,33 @@ body::before{
 @media(max-width:900px){ .royal-ornament{margin-left:auto;margin-right:auto;justify-content:center} }
 @media (prefers-reduced-motion:reduce){ *{animation:none !important;scroll-behavior:auto !important} }
 
+
+/* ── Engagement : vues / j'aime / commentaires reels (API /api/*) ── */
+.engage{max-width:720px;margin:0 auto 56px;padding:0 20px}
+.eng-stats{display:flex;gap:14px;align-items:center;margin-bottom:22px;font-family:var(--font-ui);font-size:0.85rem;color:rgba(255,255,255,0.5)}
+.eng-stats i{color:var(--gold);margin-right:5px}
+.eng-like{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:50px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);color:rgba(255,255,255,0.65);font-family:var(--font-ui);font-size:0.85rem;font-weight:600;transition:all 0.2s}
+.eng-like:hover,.eng-like.liked{background:rgba(255,50,50,0.15);border-color:rgba(255,50,50,0.35);color:#ff6b6b}
+.eng-comments{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);padding:26px 24px}
+.eng-comment-form{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+.eng-comment-form input,.eng-comment-form textarea{
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:10px;
+  padding:12px 15px;color:var(--white);font-family:var(--font-ui);font-size:0.9rem;resize:vertical;
+}
+.eng-comment-form input::placeholder,.eng-comment-form textarea::placeholder{color:rgba(255,255,255,0.32)}
+.eng-comment-form button{
+  align-self:flex-end;padding:10px 24px;border-radius:50px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-light));
+  color:var(--dark);font-family:var(--font-ui);font-weight:700;font-size:0.82rem;
+  box-shadow:0 4px 18px rgba(201,168,76,0.3);transition:transform 0.2s;
+}
+.eng-comment-form button:hover{transform:translateY(-1px)}
+.eng-comment-form button:disabled{opacity:0.55;cursor:default;transform:none}
+.eng-comment-item{padding:14px 0;border-top:1px solid rgba(255,255,255,0.07)}
+.eng-comment-item:first-child{border-top:none;padding-top:0}
+.eng-comment-author{font-family:var(--font-ui);font-weight:600;color:var(--gold-light);font-size:0.85rem;margin-bottom:4px}
+.eng-comment-text{font-size:0.95rem;color:var(--off-white);line-height:1.65}
+.eng-comment-time{font-family:var(--font-ui);font-size:0.7rem;color:rgba(255,255,255,0.32);margin-top:6px}
 </style>
 </head>
 <body>
@@ -322,6 +349,24 @@ body::before{
   <button class="sbtn s-ig" id="sIg"><i class="fab fa-instagram"></i> Instagram</button>
   <button class="sbtn s-cp" id="sCp"><i class="fas fa-link"></i> Copier le lien</button>
 </div>
+
+<section class="engage">
+  <div class="eng-stats">
+    <span><i class="fas fa-eye"></i> <span id="eng-views-n">–</span> vues</span>
+    <button class="eng-like" id="eng-like-btn"><i class="fas fa-heart"></i> <span id="eng-likes-n">0</span> J'aime</button>
+  </div>
+  <div class="eng-comments">
+    <p class="eyebrow" style="margin-bottom:16px">Commentaires</p>
+    <div class="eng-comment-form">
+      <input type="text" id="eng-name" placeholder="Votre nom" maxlength="60">
+      <textarea id="eng-text" placeholder="Votre commentaire..." maxlength="600" rows="2"></textarea>
+      <button id="eng-submit">Publier</button>
+    </div>
+    <div class="eng-comment-list" id="eng-comment-list">
+      <div style="color:rgba(255,255,255,0.3);font-size:0.85rem">Chargement des commentaires…</div>
+    </div>
+  </div>
+</section>
 
 <section class="gal">
   <p class="eyebrow">Galerie</p>
@@ -404,6 +449,74 @@ body::before{
     if(e.key === 'Escape') close();
     if(e.key === 'ArrowLeft') show(idx - 1);
     if(e.key === 'ArrowRight') show(idx + 1);
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var ARTICLE_ID = 'feat_mumengi';
+  var likeBtn = document.getElementById('eng-like-btn');
+  var likesN = document.getElementById('eng-likes-n');
+  var viewsN = document.getElementById('eng-views-n');
+  var list = document.getElementById('eng-comment-list');
+  var nameEl = document.getElementById('eng-name');
+  var textEl = document.getElementById('eng-text');
+  var submitBtn = document.getElementById('eng-submit');
+
+  fetch('/api/stats?ids=' + ARTICLE_ID).then(function(r){ return r.json(); }).then(function(data){
+    var s = data[ARTICLE_ID];
+    if(!s) return;
+    if(likesN) likesN.textContent = s.likes;
+    if(likeBtn) likeBtn.classList.toggle('liked', !!s.liked);
+  }).catch(function(){});
+
+  fetch('/api/view', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ id: ARTICLE_ID }) })
+    .then(function(r){ return r.json(); })
+    .then(function(data){ if(viewsN) viewsN.textContent = data.views; })
+    .catch(function(){});
+
+  function loadComments(){
+    fetch('/api/comments?id=' + ARTICLE_ID).then(function(r){ return r.json(); }).then(function(comments){
+      if(!list) return;
+      list.innerHTML = comments.length ? comments.map(function(c){
+        var d = new Date(c.created_at);
+        var time = d.toLocaleDateString('fr-FR') + ' ' + d.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+        return '<div class="eng-comment-item"><div class="eng-comment-author">' + c.author + '</div><div class="eng-comment-text">' + c.text + '</div><div class="eng-comment-time">' + time + '</div></div>';
+      }).join('') : '<div style="color:rgba(255,255,255,0.3);font-size:0.85rem">Soyez le premier a commenter.</div>';
+    }).catch(function(){
+      if(list) list.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:0.85rem">Impossible de charger les commentaires.</div>';
+    });
+  }
+  loadComments();
+
+  if(likeBtn) likeBtn.addEventListener('click', function(){
+    likeBtn.disabled = true;
+    fetch('/api/like', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ id: ARTICLE_ID }) })
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        likeBtn.classList.toggle('liked', data.liked);
+        if(likesN) likesN.textContent = data.likes;
+      })
+      .catch(function(){})
+      .finally(function(){ likeBtn.disabled = false; });
+  });
+
+  if(submitBtn) submitBtn.addEventListener('click', function(){
+    if(!textEl || !textEl.value.trim()) return;
+    submitBtn.disabled = true;
+    fetch('/api/comments', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ id: ARTICLE_ID, author: (nameEl ? nameEl.value.trim() : ''), text: textEl.value.trim() })
+    }).then(function(r){
+      if(r.status === 429) throw new Error('rate_limited');
+      if(!r.ok) throw new Error('failed');
+      return r.json();
+    }).then(function(){
+      if(nameEl) nameEl.value = '';
+      textEl.value = '';
+      loadComments();
+    }).catch(function(){}).finally(function(){ submitBtn.disabled = false; });
   });
 })();
 </script>

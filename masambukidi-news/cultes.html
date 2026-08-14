@@ -687,6 +687,7 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
   font-size:0.72rem;color:rgba(255,255,255,0.4);font-family:var(--font-ui);
 }
 .video-meta-item{display:flex;align-items:center;gap:4px}
+.video-meta-item.liked{color:#ff6b6b;font-weight:700}
 
 /* ═══════════════════════════════════════════════
    VIDEO MODAL
@@ -2141,14 +2142,14 @@ const FEASTS = [
 ];
 
 const VIDEOS = [
-  {id:'inpRzkJT_w8',title:'Vive le 06 Mars 2026 — Célébration de la Naissance de Papa Samy',date:'6 Mars 2026',views:'1 600',likes:89},
-  {id:'K49KxWOS4CE',title:'Culte du 01 Mars 2026 au Temple Central de Kinshasa',date:'1 Mars 2026',views:'2 100',likes:112},
-  {id:'4x-O7A8VgUQ',title:'Direct : Culte du 01 Mars 2026 — Temple Central',date:'1 Mars 2026',views:'3 400',likes:178},
-  {id:'kKZs_4PdJX8',title:'Enseignement du 01 Février 2026 avec Sa Majesté',date:'1 Février 2026',views:'5 300',likes:245},
-  {id:'0FPaNunCb5g',title:'Message Royal de Sa Majesté Masambukidi Samuel I',date:'27 Février 2026',views:'4 200',likes:198},
-  {id:'ln-PIfsBddM',title:'Célébration de l\'Intronisation — 30 Octobre 2025',date:'31 Octobre 2025',views:'8 900',likes:423},
-  {id:'fRET76mg5Z8',title:'Cérémonie Royale — Procession de Sa Majesté',date:'25 Mars 2025',views:'6 700',likes:312},
-  {id:'ztcKv-6T2wE',title:'Culte du Nouvel An 2025 — ELUCCO en Direct',date:'1 Janvier 2025',views:'7 600',likes:389},
+  {id:'inpRzkJT_w8',title:'Vive le 06 Mars 2026 — Célébration de la Naissance de Papa Samy',date:'6 Mars 2026'},
+  {id:'K49KxWOS4CE',title:'Culte du 01 Mars 2026 au Temple Central de Kinshasa',date:'1 Mars 2026'},
+  {id:'4x-O7A8VgUQ',title:'Direct : Culte du 01 Mars 2026 — Temple Central',date:'1 Mars 2026'},
+  {id:'kKZs_4PdJX8',title:'Enseignement du 01 Février 2026 avec Sa Majesté',date:'1 Février 2026'},
+  {id:'0FPaNunCb5g',title:'Message Royal de Sa Majesté Masambukidi Samuel I',date:'27 Février 2026'},
+  {id:'ln-PIfsBddM',title:'Célébration de l\'Intronisation — 30 Octobre 2025',date:'31 Octobre 2025'},
+  {id:'fRET76mg5Z8',title:'Cérémonie Royale — Procession de Sa Majesté',date:'25 Mars 2025'},
+  {id:'ztcKv-6T2wE',title:'Culte du Nouvel An 2025 — ELUCCO en Direct',date:'1 Janvier 2025'},
 ];
 
 const GALLERY = [
@@ -2442,7 +2443,6 @@ function renderNews(){
       badge:'royal',
       title:'RDC : Sa Majesté Masambukidi Ier en cérémonie de prière à Kinshasa lors de l\'éclipse solaire',
       date:'12 Août 2026 · Kinshasa',
-      views:'4 200',
       img:'sa_majeste_eclipse_allee.jpg',
       share:true,
       desc:'Kinshasa a été le théâtre, ce mercredi 12 août 2026, d\'un événement présenté comme particulier autour de Sa Majesté Masambukidi Ier. Vêtu de sa tenue de Ntumua, le souverain a pris part à une cérémonie organisée à 16 heures, dans un contexte marqué par une éclipse solaire. '
@@ -2457,7 +2457,6 @@ function renderNews(){
       badge:'royal',
       title:'RDC : Didier Mumengi reçu par Sa Majesté Masambukidi Ier à Kinshasa',
       date:'9 Août 2026 · Kinshasa',
-      views:'6 400',
       img:'mumengi_masambukidi_new_1.jpg',
       share:true,
       desc:'Le sénateur Didier Mumengi s\'est rendu, dimanche 9 août 2026, au temple de la communauté Masambukidi à Kinshasa. Il y a été accueilli par Sa Majesté Masambukidi Ier, Roi divin du Bassin du Congo. '
@@ -2472,7 +2471,6 @@ function renderNews(){
       badge:'royal',
       title:'Roi du Bassin du Kongo — le livre événement sur Masambukidi roi divin',
       date:'Hakvision Éditions · Paris',
-      views:'3 100',
       img:'livre_roi_bassin_kongo_cover.jpg',
       share:true,
       amazonUrl:'https://amzn.eu/d/0d841uLL',
@@ -2487,7 +2485,6 @@ function renderNews(){
       badge:'royal',
       title:'6 Mars — La Naissance Royale et Divine de Papa Samuel Nitufuidi Masambukidi',
       date:'6 Mars 1958 · Kinkole-Miongo, Kinshasa',
-      views:'18 200',
       img:'papa_samy_masambukidi_1_fondateur.jpg',
       desc:'Depuis le couronnement de Sa Majesté Masambukidi Samuel I le 30 Octobre 2025, la communauté mondiale célèbre avec une ferveur renouvelée la naissance de son Père Fondateur : Samuel Nitufuidi Masambukidi Kulala Kwamakanda, dit Papa Samy. '
            +'Né le 6 Mars 1958 a Kinkole-Miongo (Kinshasa, RDC), cet Être Divin n\'est pas venu sur terre par hasard. '
@@ -2502,7 +2499,6 @@ function renderNews(){
       youtubeId:'inpRzkJT_w8',
       title:'Vive le 06 Mars 2026 — Célébration Mondiale',
       date:'6 Mars 2026',
-      views:'1 600',
       desc:'Célébrons ensemble la naissance de notre Père Fondateur divin Papa Samy Masambukidi. Toute la communauté Masambukidiste mondiale est invitée à cette commémoration. Vive le 6 Mars !'
     },
     {
@@ -2512,7 +2508,6 @@ function renderNews(){
       youtubeId:'4x-O7A8VgUQ',
       title:'Direct : Premier Culte du 01 Mars 2026 — Temple Central de Kinshasa',
       date:'1 Mars 2026',
-      views:'3 400',
       desc:'Retransmission en direct du premier culte du mois de Mars 2026 au Temple Central de Kinshasa, sous la présidence de Sa Majesté Masambukidi Samuel I.'
     },
   ];
@@ -2522,12 +2517,11 @@ function renderNews(){
   const limit=grid.dataset.limit?parseInt(grid.dataset.limit,10):null;
   const items=limit?allItems.slice(0,limit):allItems;
   grid.innerHTML=items.map(item=>renderNewsCard(item)).join('');
+  syncCardStats(items.map(i=>i.id));
+  observeCardViews();
 }
 
 function renderNewsCard(item){
-  const likes=getLS('likes_'+item.id,item.likes||0);
-  const comments=getLS('comments_'+item.id,[]);
-  const liked=getLS('liked_'+item.id,false);
   const thumbSrc=item.youtubeId
     ?`https://img.youtube.com/vi/${item.youtubeId}/hqdefault.jpg`
     :(item.img||item.image||'sa_majeste_trone_1.jpg');
@@ -2547,29 +2541,27 @@ function renderNewsCard(item){
         <button class="news-share-btn news-share-cp" onclick="copyNewsLink('${item.id}',this)"><i class="fas fa-link"></i></button>
       </div>`:'';
   return `
-  <div class="news-card fade-in" id="card-${item.id}">
+  <div class="news-card fade-in" id="card-${item.id}" data-id="${item.id}">
     <div class="news-thumb-wrap">
-      ${item.youtubeId
-        ?`<img src="${thumbSrc}" class="news-thumb" alt="${item.title}" onerror="this.src='sa_majeste_trone_1.jpg'">`
-        :`<img src="${thumbSrc}" class="news-thumb" alt="${item.title}" onerror="this.src='sa_majeste_trone_1.jpg'">`}
+      <img src="${thumbSrc}" class="news-thumb" alt="${item.title}" onerror="this.src='sa_majeste_trone_1.jpg'">
       <span class="news-badge ${badgeClass}">${badgeLabel}</span>
       ${item.youtubeId?`<div class="news-play-btn" onclick="openVideo('${item.youtubeId}')"><i class="fas fa-play-circle"></i></div>`:''}
     </div>
     <div class="news-body">
       <div class="news-meta">
         <span class="news-date"><i class="fas fa-calendar" style="color:var(--gold);margin-right:3px"></i>${item.date||''}</span>
-        ${item.views?`<span class="news-views"><i class="fas fa-eye"></i>${item.views} vues</span>`:''}
+        <span class="news-views" id="views-${item.id}"><i class="fas fa-eye"></i> <span class="views-n">–</span> vues</span>
       </div>
       <div class="news-title">${item.title}</div>
       <div class="news-desc" id="desc-${item.id}">${item.desc||''}</div>
       ${item.desc && item.desc.length>200?`<button class="read-more-btn" onclick="toggleReadMore('${item.id}',this)">Lire la suite <i class='fas fa-chevron-down'></i></button>`:''}
       <div class="news-footer">
         <div style="display:flex;gap:8px">
-          <button class="like-btn ${liked?'liked':''}" onclick="toggleLike('${item.id}',this)">
-            <i class="fas fa-heart"></i><span id="likes-${item.id}">${likes}</span>
+          <button class="like-btn" id="likebtn-${item.id}" onclick="toggleLike('${item.id}',this)">
+            <i class="fas fa-heart"></i><span id="likes-${item.id}">0</span>
           </button>
           <button class="comment-btn" onclick="toggleComments('${item.id}')">
-            <i class="fas fa-comment"></i><span>${comments.length}</span>
+            <i class="fas fa-comment"></i><span id="ccount-${item.id}">0</span>
           </button>
         </div>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${readBtn}${watchBtn}</div>
@@ -2577,11 +2569,13 @@ function renderNewsCard(item){
       ${shareRow}
       <div class="comments-section" id="comments-${item.id}">
         <div class="comment-form">
-          <input type="text" class="comment-input" id="comment-name-${item.id}" placeholder="Votre nom">
-          <input type="text" class="comment-input" id="comment-text-${item.id}" placeholder="Votre commentaire...">
+          <input type="text" class="comment-input" id="comment-name-${item.id}" placeholder="Votre nom" maxlength="60">
+          <input type="text" class="comment-input" id="comment-text-${item.id}" placeholder="Votre commentaire..." maxlength="600">
           <button class="comment-submit" onclick="addComment('${item.id}')">Envoyer</button>
         </div>
-        <div class="comment-list" id="comment-list-${item.id}">${renderComments(item.id)}</div>
+        <div class="comment-list" id="comment-list-${item.id}">
+          <div style="color:rgba(255,255,255,0.3);font-size:0.8rem;text-align:center;padding:8px">Chargement des commentaires…</div>
+        </div>
       </div>
     </div>
   </div>`;
@@ -2599,36 +2593,109 @@ function toggleReadMore(id,btn){
   }
 }
 
-function renderComments(id){  const comments=getLS('comments_'+id,[]);
-  if(!comments.length) return '<div style="color:rgba(255,255,255,0.3);font-size:0.8rem;text-align:center;padding:8px">Soyez le premier a commenter</div>';
-  return comments.map(c=>`
-    <div class="comment-item">
-      <div class="comment-author">${c.author||'Masambukidiste'}</div>
-      <div class="comment-text">${c.text}</div>
-      <div class="comment-time">${c.time||''}</div>
-    </div>`).join('');
+/* ═══════════════════════════════════════════════
+   ENGAGEMENT (vues / likes / commentaires)
+   Reel, partage entre tous les visiteurs via l'API
+   /api/* (Cloudflare Pages Functions + D1) — pas de
+   faux chiffres : tout vient de la base commune.
+═══════════════════════════════════════════════ */
+async function syncCardStats(ids){
+  if(!ids.length) return;
+  try{
+    const res=await fetch('/api/stats?ids='+encodeURIComponent(ids.join(',')));
+    if(!res.ok) return;
+    const data=await res.json();
+    ids.forEach(id=>{
+      const s=data[id];
+      if(!s) return;
+      const vEl=document.querySelector('#views-'+id+' .views-n');
+      if(vEl) vEl.textContent=s.views;
+      const lEl=document.getElementById('likes-'+id);
+      if(lEl) lEl.textContent=s.likes;
+      const btn=document.getElementById('likebtn-'+id);
+      if(btn) btn.classList.toggle('liked',!!s.liked);
+    });
+  }catch(e){}
 }
 
-function toggleLike(id,btn){
-  const liked=getLS('liked_'+id,false);
-  const likes=getLS('likes_'+id,0);
-  if(liked){
-    setLS('liked_'+id,false);
-    setLS('likes_'+id,Math.max(0,likes-1));
-    btn.classList.remove('liked');
-    document.getElementById('likes-'+id).textContent=Math.max(0,likes-1);
-  } else {
-    setLS('liked_'+id,true);
-    setLS('likes_'+id,likes+1);
-    btn.classList.add('liked');
-    document.getElementById('likes-'+id).textContent=likes+1;
-    showToast('Vous aimez cet article !','success');
+function observeCardViews(){
+  if(!('IntersectionObserver' in window)) return;
+  const seen=getLS('seen_cards_session',[]);
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      const id=entry.target.dataset.id;
+      if(!id||seen.includes(id)) return;
+      seen.push(id);
+      setLS('seen_cards_session',seen);
+      obs.unobserve(entry.target);
+      trackView(id);
+    });
+  },{threshold:0.6});
+  document.querySelectorAll('.news-card,.video-card').forEach(card=>obs.observe(card));
+}
+
+async function trackView(id){
+  try{
+    const res=await fetch('/api/view',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});
+    if(!res.ok) return;
+    const data=await res.json();
+    const vEl=document.querySelector('#views-'+id+' .views-n');
+    if(vEl) vEl.textContent=data.views;
+  }catch(e){}
+}
+
+async function toggleLike(id,btn){
+  if(btn.disabled) return;
+  btn.disabled=true;
+  try{
+    const res=await fetch('/api/like',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});
+    if(!res.ok) throw new Error('like_failed');
+    const data=await res.json();
+    btn.classList.toggle('liked',data.liked);
+    const span=document.getElementById('likes-'+id);
+    if(span) span.textContent=data.likes;
+    if(data.liked) showToast('Vous aimez cet article !','success');
+  }catch(e){
+    showToast('Connexion impossible, reessayez.','error');
+  }finally{
+    btn.disabled=false;
   }
 }
 
 function toggleComments(id){
   const section=document.getElementById('comments-'+id);
-  if(section) section.classList.toggle('show');
+  if(!section) return;
+  const opening=!section.classList.contains('show');
+  section.classList.toggle('show');
+  if(opening && !section.dataset.loaded){
+    section.dataset.loaded='1';
+    loadComments(id);
+  }
+}
+
+async function loadComments(id){
+  const list=document.getElementById('comment-list-'+id);
+  if(!list) return;
+  try{
+    const res=await fetch('/api/comments?id='+encodeURIComponent(id));
+    if(!res.ok) throw new Error('load_failed');
+    const comments=await res.json();
+    const countEl=document.getElementById('ccount-'+id);
+    if(countEl) countEl.textContent=comments.length;
+    list.innerHTML=comments.length?comments.map(c=>{
+      const d=new Date(c.created_at);
+      const time=d.toLocaleDateString('fr-FR')+' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+      return `
+      <div class="comment-item">
+        <div class="comment-author">${c.author}</div>
+        <div class="comment-text">${c.text}</div>
+        <div class="comment-time">${time}</div>
+      </div>`;
+    }).join(''):'<div style="color:rgba(255,255,255,0.3);font-size:0.8rem;text-align:center;padding:8px">Soyez le premier a commenter</div>';
+  }catch(e){
+    list.innerHTML='<div style="color:rgba(255,255,255,0.3);font-size:0.8rem;text-align:center;padding:8px">Impossible de charger les commentaires.</div>';
+  }
 }
 
 function copyNewsLink(id,btn){
@@ -2653,22 +2720,32 @@ function shareToInstagram(id){
   });
 }
 
-function addComment(id){
+async function addComment(id){
   const nameEl=document.getElementById('comment-name-'+id);
   const textEl=document.getElementById('comment-text-'+id);
   if(!textEl||!textEl.value.trim()) return;
-  const comments=getLS('comments_'+id,[]);
-  const now=new Date();
-  comments.push({
-    author:nameEl?.value.trim()||'Masambukidiste',
-    text:textEl.value.trim(),
-    time:now.toLocaleDateString('fr-FR')+' '+now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})
-  });
-  setLS('comments_'+id,comments);
-  if(nameEl) nameEl.value='';
-  textEl.value='';
-  document.getElementById('comment-list-'+id).innerHTML=renderComments(id);
-  showToast('Commentaire ajoute !','success');
+  const btn=document.querySelector('#comments-'+id+' .comment-submit');
+  if(btn) btn.disabled=true;
+  try{
+    const res=await fetch('/api/comments',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({id,author:nameEl?nameEl.value.trim():'',text:textEl.value.trim()})
+    });
+    if(res.status===429){
+      showToast('Merci de patienter quelques secondes avant de reposter.','info');
+      return;
+    }
+    if(!res.ok) throw new Error('comment_failed');
+    if(nameEl) nameEl.value='';
+    textEl.value='';
+    await loadComments(id);
+    showToast('Commentaire ajoute !','success');
+  }catch(e){
+    showToast('Connexion impossible, reessayez.','error');
+  }finally{
+    if(btn) btn.disabled=false;
+  }
 }
 
 /* ═══════════════════════════════════════════════
@@ -2678,7 +2755,7 @@ function renderVideos(){
   const grid=document.getElementById('videos-grid');
   if(!grid) return;
   grid.innerHTML=VIDEOS.map(v=>`
-    <div class="video-card" onclick="openVideo('${v.id}')">
+    <div class="video-card" data-id="${v.id}" id="card-${v.id}" onclick="openVideo('${v.id}')">
       <div class="video-thumb-wrap">
         <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" class="video-thumb" alt="${v.title}" onerror="this.src='sa_majeste_trone_1.jpg'">
         <div class="video-overlay">
@@ -2689,11 +2766,13 @@ function renderVideos(){
         <div class="video-title">${v.title}</div>
         <div class="video-meta">
           <span class="video-meta-item"><i class="fas fa-calendar"></i>${v.date}</span>
-          <span class="video-meta-item"><i class="fas fa-eye"></i>${v.views} vues</span>
-          <span class="video-meta-item"><i class="fas fa-heart" style="color:#ff6b6b"></i>${v.likes}</span>
+          <span class="video-meta-item" id="views-${v.id}"><i class="fas fa-eye"></i> <span class="views-n">–</span> vues</span>
+          <button class="video-meta-item" id="likebtn-${v.id}" onclick="event.stopPropagation();toggleLike('${v.id}',this)" style="background:none;border:none;cursor:pointer;font-family:inherit;padding:0"><i class="fas fa-heart" style="color:#ff6b6b"></i> <span id="likes-${v.id}">0</span></button>
         </div>
       </div>
     </div>`).join('');
+  syncCardStats(VIDEOS.map(v=>v.id));
+  observeCardViews();
 }
 
 function openVideo(id){
