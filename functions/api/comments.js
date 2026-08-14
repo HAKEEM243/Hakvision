@@ -7,15 +7,33 @@ export async function onRequestGet(context) {
   const id = url.searchParams.get('id');
   if (!isValidArticleId(id)) return jsonResponse({ error: 'bad_request' }, 400);
 
-  const res = await env.DB.prepare(
-    'SELECT author, text, created_at FROM comments WHERE article_id = ? ORDER BY id ASC LIMIT 500'
-  ).bind(id).all();
+  // Pagination : on charge par tranches, du plus recent au plus ancien,
+  // pour que le dernier commentaire soit toujours visible en premier
+  // et que le nombre total de commentaires ne limite jamais l'affichage.
+  const limit = Math.min(Math.max(parseInt(url.searchParams.get('limit') || '30', 10) || 30, 1), 100);
+  const offset = Math.max(parseInt(url.searchParams.get('offset') || '0', 10) || 0, 0);
 
-  return jsonResponse((res.results || []).map(r => ({
+  const totalRow = await env.DB.prepare(
+    'SELECT COUNT(*) AS n FROM comments WHERE article_id = ?'
+  ).bind(id).first();
+  const total = (totalRow && totalRow.n) || 0;
+
+  const res = await env.DB.prepare(
+    'SELECT author, text, created_at FROM comments WHERE article_id = ? ORDER BY id DESC LIMIT ? OFFSET ?'
+  ).bind(id, limit, offset).all();
+
+  const comments = (res.results || []).map(r => ({
     author: escapeHtml(r.author),
     text: escapeHtml(r.text),
     created_at: r.created_at,
-  })));
+  }));
+
+  return jsonResponse({
+    total,
+    offset,
+    comments,
+    hasMore: offset + comments.length < total,
+  });
 }
 
 export async function onRequestPost(context) {

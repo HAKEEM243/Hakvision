@@ -636,7 +636,9 @@ input,textarea,select{font-family:var(--font-ui);outline:none}
   transition:all 0.2s;white-space:nowrap;
 }
 .comment-submit:hover{transform:scale(1.05)}
-.comment-list{display:flex;flex-direction:column;gap:10px;max-height:300px;overflow-y:auto}
+.comment-list{display:flex;flex-direction:column;gap:10px}
+.comment-more-btn{margin-top:4px;padding:9px 16px;border-radius:25px;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.28);color:var(--gold);font-family:var(--font-ui);font-size:0.78rem;font-weight:600;align-self:center;transition:all 0.2s}
+.comment-more-btn:hover{background:rgba(201,168,76,0.2)}
 .comment-item{
   background:rgba(255,255,255,0.04);border-radius:12px;
   padding:10px 14px;
@@ -2050,7 +2052,7 @@ body::before{
   <div class="footer-bottom">
     <div class="footer-copy">&copy; 2026 ELUCCO &mdash; Tous droits réservés. Site officiel de Sa Majesté Masambukidi Samuel I.</div>
     <div class="footer-copy">Conçu avec dévotion pour la communauté Masambukidiste mondiale</div>
-    <div class="footer-build">Mise à jour du site : 14 août 2026 (v4) — commentaires visibles sur l’accueil</div>
+    <div class="footer-build">Mise à jour du site : 14 août 2026 (v5) — tous les commentaires visibles</div>
   </div>
 </footer>
 
@@ -2626,27 +2628,43 @@ function toggleComments(id){
   }
 }
 
-async function loadComments(id){
-  const list=document.getElementById('comment-list-'+id);
-  if(!list) return;
-  try{
-    const res=await fetch('/api/comments?id='+encodeURIComponent(id));
-    if(!res.ok) throw new Error('load_failed');
-    const comments=await res.json();
-    const countEl=document.getElementById('ccount-'+id);
-    if(countEl) countEl.textContent=comments.length;
-    list.innerHTML=comments.length?comments.map(c=>{
-      const d=new Date(c.created_at);
-      const time=d.toLocaleDateString('fr-FR')+' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
-      return `
+function commentItemHtml(c){
+  const d=new Date(c.created_at);
+  const time=d.toLocaleDateString('fr-FR')+' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  return `
       <div class="comment-item">
         <div class="comment-author">${c.author}</div>
         <div class="comment-text">${c.text}</div>
         <div class="comment-time">${time}</div>
       </div>`;
-    }).join(''):'<div style="color:rgba(255,255,255,0.3);font-size:0.8rem;text-align:center;padding:8px">Soyez le premier a commenter</div>';
+}
+
+async function loadComments(id,append){
+  const list=document.getElementById('comment-list-'+id);
+  if(!list) return;
+  const offset=append?parseInt(list.dataset.offset||'0',10):0;
+  try{
+    const res=await fetch('/api/comments?id='+encodeURIComponent(id)+'&offset='+offset+'&limit=30');
+    if(!res.ok) throw new Error('load_failed');
+    const data=await res.json();
+    const countEl=document.getElementById('ccount-'+id);
+    if(countEl) countEl.textContent=data.total;
+    const oldBtn=list.querySelector('.comment-more-btn');
+    if(oldBtn) oldBtn.remove();
+    const html=data.comments.map(commentItemHtml).join('');
+    if(append){
+      list.insertAdjacentHTML('beforeend',html);
+    } else {
+      list.innerHTML=html||'<div style="color:rgba(255,255,255,0.3);font-size:0.8rem;text-align:center;padding:8px">Soyez le premier a commenter</div>';
+    }
+    const shown=offset+data.comments.length;
+    list.dataset.offset=String(shown);
+    if(data.hasMore){
+      list.insertAdjacentHTML('beforeend',
+        `<button class="comment-more-btn" onclick="loadComments('${id}',true)">Voir plus de commentaires (${data.total-shown} restants)</button>`);
+    }
   }catch(e){
-    list.innerHTML='<div style="color:rgba(255,255,255,0.3);font-size:0.8rem;text-align:center;padding:8px">Impossible de charger les commentaires.</div>';
+    if(!append) list.innerHTML='<div style="color:rgba(255,255,255,0.3);font-size:0.8rem;text-align:center;padding:8px">Impossible de charger les commentaires.</div>';
   }
 }
 
