@@ -14,6 +14,18 @@
     </image:image>
   </url>
 
+  <!-- Actualité — Cérémonie de prière lors de l'éclipse solaire -->
+  <url>
+    <loc>https://elucco.pages.dev/article-eclipse-aout2026.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://elucco.pages.dev/sa_majeste_eclipse_allee.jpg</image:loc>
+      <image:title>Sa Majesté Masambukidi Ier en cérémonie de prière — Kinshasa, 12 août 2026</image:title>
+    </image:image>
+  </url>
+
   <!-- Actualité — Didier Mumengi reçu par Sa Majesté Masambukidi Ier -->
   <url>
     <loc>https://elucco.pages.dev/article-mumengi-aout2026.html</loc>

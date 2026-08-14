@@ -2059,6 +2059,11 @@ const VIDEOS = [
 ];
 
 const GALLERY = [
+  {src:'sa_majeste_eclipse_trone_aout2026.jpg',caption:'Sa Majesté Masambukidi Ier, tenue de Ntumua — avant la cérémonie du 12 août 2026'},
+  {src:'sa_majeste_eclipse_allee.jpg',caption:'Sa Majesté Masambukidi Ier traverse l\'assemblée — Kinshasa, 12 août 2026'},
+  {src:'sa_majeste_eclipse_discours_sepia.jpg',caption:'Sa Majesté Masambukidi Ier s\'adresse aux fidèles — 12 août 2026'},
+  {src:'sa_majeste_eclipse_discours_hologramme.jpg',caption:'Sa Majesté Masambukidi Ier prend la parole — Cérémonie du 12 août 2026'},
+  {src:'sa_majeste_eclipse_marche.jpg',caption:'Sa Majesté Masambukidi Ier, bâton à la main — 12 août 2026'},
   {src:'mumengi_masambukidi_new_1.jpg',caption:'Le sénateur Didier Mumengi aux côtés de Sa Majesté Masambukidi Ier — Kinshasa, 9 août 2026'},
   {src:'mumengi_masambukidi_new_2.jpg',caption:'Didier Mumengi et Sa Majesté Masambukidi Ier — Visite officielle Kinshasa, 9 août 2026'},
   {src:'mumengi_livre_leve.jpg',caption:'Didier Mumengi présente le livre "Nouvelle Vérité" aux côtés de Sa Majesté — 9 août 2026'},
@@ -2337,6 +2342,21 @@ function renderNews(){
   // 3. Vidéo : Premier Culte (Direct)
   // Le reste va en Galerie ou Vidéos
   const featuredItems=[
+    {
+      id:'feat_eclipse',
+      type:'actualite',
+      articleUrl:'article-eclipse-aout2026.html',
+      badge:'royal',
+      title:'RDC : Sa Majesté Masambukidi Ier en cérémonie de prière à Kinshasa lors de l\'éclipse solaire',
+      date:'12 Août 2026 · Kinshasa',
+      views:'4 200',
+      img:'sa_majeste_eclipse_allee.jpg',
+      share:true,
+      desc:'Kinshasa a été le théâtre, ce mercredi 12 août 2026, d\'un événement présenté comme particulier autour de Sa Majesté Masambukidi Ier. Vêtu de sa tenue de Ntumua, le souverain a pris part à une cérémonie organisée à 16 heures, dans un contexte marqué par une éclipse solaire. '
+           +'Selon les informations rapportées, ce rassemblement était consacré à la concentration, à la méditation et aux prières en faveur de la nation. Plusieurs rites et cérémonies auraient également eu lieu au même moment. '
+           +'La proximité entre cette rencontre et le phénomène céleste observé ce jour-là alimente naturellement les interrogations. Était-ce une simple coïncidence ou cette date avait-elle été choisie pour une raison particulière ? Difficile, à ce stade, d\'en tirer une conclusion. '
+           +'Pour les personnes présentes, cette journée pourrait toutefois prendre une dimension symbolique. Seul le temps permettra de déterminer si les événements annoncés ou attendus autour de cette cérémonie auront une portée particulière pour la suite.'
+    },
     {
       id:'feat_mumengi',
       type:'actualite',
