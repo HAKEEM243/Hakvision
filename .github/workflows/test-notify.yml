@@ -1,0 +1,12 @@
+name: Test notification (manuel)
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Envoie une notification de test a tous les abonnes
+        run: |
+          curl -sS -o /dev/null -w "HTTP %{http_code}\n" "https://elucco.pages.dev/api/test-notify"
