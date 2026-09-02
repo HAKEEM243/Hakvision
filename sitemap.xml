@@ -38,6 +38,18 @@
     </image:image>
   </url>
 
+  <!-- La Suture — nouveauté -->
+  <url>
+    <loc>https://hakvision243.netlify.app/la-suture.html</loc>
+    <lastmod>2026-07-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/la_suture_cover.jpg</image:loc>
+      <image:title>La Suture, Merveil Hakeem Dianzenza</image:title>
+    </image:image>
+  </url>
+
   <!-- Prix Dianzenza -->
   <url>
     <loc>https://hakvision243.netlify.app/prix-litteraires.html</loc>
