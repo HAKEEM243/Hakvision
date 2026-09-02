@@ -1,22 +1,18 @@
 /**
- * ELUCCO Service Worker v2.0
- * PWA + Push Notifications + Offline Cache
+ * ELUCCO Service Worker v3.0
+ * PWA + Push Notifications — réseau prioritaire pour les pages,
+ * cache pour les seuls actifs statiques (images, logos).
  */
-const CACHE_NAME = 'elucco-v2';
-const ASSETS = [
-  '/',
-  '/index.html',
+const CACHE_NAME = 'elucco-v4';
+const STATIC_ASSETS = [
   '/manifest.json',
   '/elucco_logo_officiel.png',
   '/masambukidi_armoiries.png',
-  '/papa_masambukidi_couronne.jpg',
-  '/sa_majeste_trone_1.jpg',
-  '/sa_majeste_trone_2.jpg',
 ];
 
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS)).then(() => self.skipWaiting())
   );
 });
 
@@ -30,30 +26,57 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  const url = new URL(e.request.url);
+  if (url.origin !== self.location.origin) return;
+
+  // Pages HTML (navigation) et JS/CSS : toujours le réseau d'abord,
+  // pour que chaque déploiement soit visible immédiatement. Le cache
+  // ne sert que si le réseau est indisponible (mode hors-ligne).
+  const isNavigation = e.request.mode === 'navigate' || e.request.destination === 'document';
+  const isCode = e.request.destination === 'script' || e.request.destination === 'style';
+  if (isNavigation || isCode) {
+    e.respondWith(
+      fetch(e.request).then(resp => {
+        if (resp && resp.status === 200) {
+          const clone = resp.clone();
+          caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+        }
+        return resp;
+      }).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Images et autres actifs statiques : cache d'abord (rapide),
+  // mise à jour du cache en arrière-plan.
   e.respondWith(
     caches.match(e.request).then(cached => {
-      if (cached) return cached;
-      return fetch(e.request).then(resp => {
+      const network = fetch(e.request).then(resp => {
         if (resp && resp.status === 200 && resp.type === 'basic') {
           const clone = resp.clone();
           caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
         }
         return resp;
       }).catch(() => cached);
+      return cached || network;
     })
   );
 });
 
 // Push notification handler
 self.addEventListener('push', e => {
-  const data = e.data ? e.data.json() : {};
+  let data = {};
+  try { data = e.data ? e.data.json() : {}; } catch (err) { data = {}; }
   const title = data.title || 'ELUCCO';
   const opts = {
-    body: data.body || 'Nouvelle notification',
+    body: data.body || 'Nouvelle activite sur le site',
     icon: '/elucco_logo_officiel.png',
     badge: '/elucco_logo_officiel.png',
     vibrate: [200, 100, 200],
     data: { url: data.url || '/' },
+    // Un meme article regroupe ses notifications au lieu de les empiler.
+    tag: data.tag || 'elucco',
+    renotify: true,
     actions: [{ action: 'open', title: 'Ouvrir', icon: '/elucco_logo_officiel.png' }],
   };
   e.waitUntil(self.registration.showNotification(title, opts));
@@ -62,7 +85,18 @@ self.addEventListener('push', e => {
 self.addEventListener('notificationclick', e => {
   e.notification.close();
   const url = e.notification.data && e.notification.data.url ? e.notification.data.url : '/';
-  e.waitUntil(clients.openWindow(url));
+  // Si le site est deja ouvert, on y navigue au lieu d'ouvrir un nouvel onglet.
+  e.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
+      for (const client of list) {
+        if ('focus' in client) {
+          if ('navigate' in client) client.navigate(url).catch(() => {});
+          return client.focus();
+        }
+      }
+      return self.clients.openWindow(url);
+    })
+  );
 });
 
 // Background sync for scheduled notifications

@@ -7,3 +7,7 @@ Thumbs.db
 
 # Dossiers Node si jamais utilisés
 node_modules/
+
+# Wrangler (tests locaux Cloudflare Pages Functions / D1)
+.wrangler/
+wrangler.toml
