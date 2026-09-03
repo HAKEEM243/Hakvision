@@ -938,12 +938,12 @@ img { display: block; max-width: 100%; }
    CINÉMATIQUE — Effets visuels premium v2026
 ================================================================ */
 
-/* ── Grain de film ── */
+/* ── Grain de film — très subtil ── */
 body::after {
   content: '';
   position: fixed; inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity: .03;
+  opacity: .012;
   pointer-events: none;
   z-index: 9998;
   mix-blend-mode: overlay;
@@ -966,17 +966,6 @@ body { animation: cine-open .7s ease forwards; }
 .reveal-d1 { transition-delay: .12s; }
 .reveal-d2 { transition-delay: .24s; }
 .reveal-d3 { transition-delay: .36s; }
-
-/* ── Vignette globale — atmosphère de salle de cinéma ── */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background: radial-gradient(ellipse 100% 100% at 50% 50%,
-    transparent 60%,
-    rgba(0,0,0,.35) 100%);
-  pointer-events: none;
-  z-index: 9997;
-}
 
 /* ── Citation cinématographique plein fond ── */
 .cine-quote {
@@ -1037,19 +1026,17 @@ body::before {
   border: none; margin: 0;
 }
 
-/* ── Couvertures de livres — effet 3D au survol ── */
-.book-cover, .hero-book-inner, .hero-visual-card {
-  transition: transform .45s cubic-bezier(.34,1.2,.64,1), box-shadow .45s ease;
+/* ── Couvertures de livres — survol sobre, sans rotation ── */
+.book-cover, .hero-visual-card {
+  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease;
   will-change: transform;
-  transform-style: preserve-3d;
 }
 .book-cover:hover {
-  transform: perspective(600px) rotateY(-4deg) rotateX(2deg) translateY(-6px) !important;
-  box-shadow: 20px 32px 80px rgba(0,0,0,.75), -4px 4px 0 rgba(184,149,42,.12) !important;
+  transform: translateY(-6px);
+  box-shadow: 0 32px 70px rgba(0,0,0,.6);
 }
-.hero-book-inner:hover {
-  transform: perspective(800px) rotateY(-6deg) rotateX(2deg) translateY(-8px);
-  box-shadow: 30px 40px 100px rgba(0,0,0,.85), 4px 4px 0 rgba(184,149,42,.15);
+.hero-visual-card:hover {
+  transform: translateY(-4px);
 }
 
 /* ── Boutons — shine cinématique ── */
@@ -1069,16 +1056,12 @@ body::before {
 .btn.ghost { transition: border-color .25s, color .25s, transform .2s; }
 .btn.ghost:hover { transform: translateY(-1px); }
 
-/* ── Traitement photo cinématique ── */
-.portrait-photo img,
-.hero-visual-card img,
-.book-card-full > img,
-.book-cover img {
-  filter: contrast(1.06) saturate(.82) brightness(.94);
+/* ── Traitement photo — légère profondeur, sans dénaturer les couleurs ── */
+.portrait-photo img {
+  filter: contrast(1.04) brightness(.97);
   transition: filter .5s ease;
 }
-.portrait-photo:hover img,
-.hero-visual-card:hover img { filter: contrast(1) saturate(1) brightness(1); }
+.portrait-photo:hover img { filter: contrast(1) brightness(1); }
 
 /* ── Barre de lumière dorée sur les sections hero ── */
 .page-hero {
@@ -1135,25 +1118,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   will-change: transform;
 }
 
-/* ── Texte watermark en arrière-plan (utilisé via JS) ── */
-.hero-bg-text {
-  position: absolute;
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: clamp(80px, 18vw, 220px);
-  color: rgba(255,255,255,.02);
-  user-select: none;
-  pointer-events: none;
-  white-space: nowrap;
-  letter-spacing: -.03em;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 0;
-}
-
 /* ── Responsive ── */
 @media (max-width: 680px) {
   .cine-quote { padding: 80px var(--gutter); }
   .cine-quote-text { font-size: clamp(1.2rem, 5vw, 1.8rem); }
-  body::before { display: none; }
 }
