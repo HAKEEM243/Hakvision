@@ -215,15 +215,23 @@
     .hero {
       min-height: calc(100vh - 72px);
       display: flex; align-items: center;
-      background: var(--ink);
+      background: linear-gradient(170deg, #070606 0%, #0d0b0d 50%, #090808 100%);
       position: relative;
       overflow: hidden;
     }
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 30% 50%, rgba(184,149,42,.04) 0%, transparent 65%);
+      background:
+        radial-gradient(ellipse 60% 80% at 15% 60%, rgba(184,149,42,.055) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 85% 30%, rgba(184,149,42,.03) 0%, transparent 55%);
       pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,149,42,.35), transparent);
     }
     .hero-inner {
       max-width: var(--max); margin: 0 auto;
@@ -249,15 +257,16 @@
     }
     .hero-title {
       font-family: var(--serif);
-      font-size: clamp(3.2rem, 5.5vw, 6.8rem);
+      font-size: clamp(3.6rem, 6.5vw, 8rem);
       font-weight: 300; font-style: italic;
-      line-height: 1.06; letter-spacing: -.01em;
+      line-height: 1.02; letter-spacing: -.02em;
       color: var(--text);
       margin-bottom: 8px;
     }
     .hero-title strong {
-      font-weight: 600; font-style: normal;
+      font-weight: 700; font-style: normal;
       color: #fff;
+      text-shadow: 0 0 80px rgba(184,149,42,.15);
     }
     .hero-rule {
       width: 56px; height: 1px;
@@ -441,9 +450,9 @@
        PORTRAIT — L'auteur
     ══════════════════════════════════════ */
     .portrait-section {
-      background: var(--ink2);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
+      background: linear-gradient(180deg, #0c0a0c 0%, #0f0e0f 100%);
+      border-top: 1px solid rgba(184,149,42,.12);
+      border-bottom: 1px solid rgba(184,149,42,.12);
     }
     .portrait-inner {
       max-width: var(--max); margin: 0 auto;
@@ -833,14 +842,20 @@
     .nouv-wrap { padding: 0 var(--gutter) 72px; }
     .nouv-card {
       max-width: var(--max); margin: 0 auto;
-      background: var(--ink2);
-      border: 1px solid var(--rule);
+      background: linear-gradient(135deg, #0f0d0f 0%, #140f14 50%, #0f0d0f 100%);
+      border: 1px solid rgba(184,149,42,.2);
       border-left: 3px solid var(--gold);
       display: grid;
       grid-template-columns: 180px 1fr;
       gap: 48px;
       padding: 40px 48px;
       position: relative;
+      box-shadow: 0 0 80px rgba(184,149,42,.04), 0 24px 60px rgba(0,0,0,.5);
+      transition: box-shadow .4s, transform .4s;
+    }
+    .nouv-card:hover {
+      box-shadow: 0 0 100px rgba(184,149,42,.07), 0 32px 80px rgba(0,0,0,.6);
+      transform: translateY(-2px);
     }
     .nouv-badge {
       position: absolute;
@@ -908,6 +923,9 @@
 </head>
 <body>
 
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
   <!-- ══ ANNOUNCEMENT BAR ══ -->
   <div class="announcement">
     Prix Dianzenza 2026 — Lauréat&nbsp;: <strong>Jeancy Lembi</strong> &nbsp;·&nbsp;
@@ -940,11 +958,17 @@
   </header>
 
   <!-- ══════════════ HÉRO ══════════════ -->
-  <section class="hero">
+  <section class="hero" id="hero">
+    <!-- Watermark cinématique -->
+    <div class="hero-bg-text" aria-hidden="true">HAKVISION</div>
+
     <div class="hero-inner">
 
       <div class="hero-text">
-        <p class="hero-kicker reveal">Maison d'édition afrofuturiste &nbsp;·&nbsp; Paris</p>
+        <p class="hero-kicker reveal">
+          <span style="display:inline-block; width:32px; height:1px; background:var(--gold); opacity:.8; vertical-align:middle; margin-right:10px;"></span>
+          Maison d'édition afrofuturiste &nbsp;·&nbsp; Paris
+        </p>
 
         <h1 class="hero-title reveal reveal-d1">
           Nous publions<br>
@@ -955,35 +979,57 @@
         <div class="hero-rule reveal reveal-d2"></div>
 
         <p class="hero-desc reveal reveal-d2">
-          Fondée à Paris par <em>Merveil Hakeem Dianzenza</em>, Hakvision Éditions publie des œuvres
-          qui interrogent, révèlent et réinventent le continent africain —
-          de la fiction épique à la biographie, de l'essai à la poésie.
+          Fondée à Paris par <em>Merveil Hakeem Dianzenza</em> — Le Roi de l'Afrofuturisme —
+          Hakvision Éditions publie des œuvres qui interrogent, révèlent et réinventent le continent africain.
+          De la fiction épique à la biographie, de l'essai à la poésie.
         </p>
 
         <div class="hero-ctas reveal reveal-d3">
           <a class="btn-primary" href="livres.html">
             <i class="fa-solid fa-book-open" style="font-size:.8rem;"></i> Découvrir le catalogue
           </a>
+          <a class="btn-ghost" href="bio.html">
+            <i class="fa-solid fa-user-pen" style="font-size:.8rem;"></i> L'auteur
+          </a>
           <a class="btn-ghost" href="#soumettre">
             Soumettre un manuscrit
           </a>
         </div>
+
+        <!-- Mini catalogue badges -->
+        <div class="reveal reveal-d3" style="margin-top:32px; display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="la-suture.html" style="display:inline-flex; align-items:center; gap:6px; font-size:.65rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,149,42,.3); padding:5px 12px; transition:border-color .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(184,149,42,.3)'">
+            <i class="fa-solid fa-star" style="font-size:.6rem;"></i> La Suture — Nouveau
+          </a>
+          <a href="katiopa.html" style="display:inline-flex; align-items:center; gap:6px; font-size:.65rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--body); border:1px solid rgba(255,255,255,.06); padding:5px 12px; transition:border-color .2s, color .2s;" onmouseover="this.style.borderColor='rgba(184,149,42,.3)'; this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(255,255,255,.06)'; this.style.color='var(--body)'">KATIØPA — 634 pages</a>
+          <a href="prix-litteraires.html" style="display:inline-flex; align-items:center; gap:6px; font-size:.65rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--body); border:1px solid rgba(255,255,255,.06); padding:5px 12px; transition:border-color .2s, color .2s;" onmouseover="this.style.borderColor='rgba(184,149,42,.3)'; this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(255,255,255,.06)'; this.style.color='var(--body)'">Prix Dianzenza 2026</a>
+        </div>
       </div>
 
-      <div class="hero-book reveal reveal-d1">
-        <div class="hero-book-inner">
-          <img src="katiopa_cover_hq.jpg"
-               alt="KATIØPA — La Prophétie Noire, roman de Merveil Hakeem Dianzenza"
+      <!-- Double cover — La Suture + KATIOPA -->
+      <div class="hero-book reveal reveal-d1" style="position:relative;">
+        <!-- La Suture — premier plan -->
+        <div class="hero-book-inner" style="position:relative; z-index:2;">
+          <img src="la_suture_cover.jpg"
+               alt="La Suture — Merveil Hakeem Dianzenza, nouvelle parution"
                loading="eager">
         </div>
-        <div class="hero-book-legend">
-          <p class="hero-book-title">KATIØPA — La Prophétie Noire</p>
-          <p class="hero-book-meta">Roman afrofuturiste · 634 pages · Disponible sur Payhip</p>
+        <!-- KATIOPA — arrière plan décalé -->
+        <div style="position:absolute; bottom:-16px; right:-18px; width:38%; opacity:.55; z-index:1;
+                    box-shadow:-12px 12px 40px rgba(0,0,0,.7); transform:rotate(3deg);">
+          <img src="katiopa_cover_hq.jpg" alt="KATIØPA" loading="eager" style="width:100%; display:block;">
+        </div>
+        <div class="hero-book-legend" style="margin-top:8px; position:relative; z-index:3;">
+          <p class="hero-book-title">La Suture — <span style="color:var(--gold); font-size:.8em;">Nouveau roman</span></p>
+          <p class="hero-book-meta">Merveil Hakeem Dianzenza · Hakvision Éditions · Amazon</p>
         </div>
       </div>
 
     </div>
   </section>
+
+  <!-- Diviseur cinématique -->
+  <hr class="cine-divider">
 
   <!-- ══════════════ NOUVELLE PARUTION ══════════════ -->
   <div class="nouv-wrap">
@@ -1030,6 +1076,19 @@
         <div class="colophon-val">RDC</div>
         <div class="colophon-key">Ancrage identitaire</div>
       </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ CITATION CINÉMATIQUE ══════════════ -->
+  <div class="cine-quote">
+    <div class="cine-quote-inner reveal">
+      <span class="cine-quote-line"></span>
+      <p class="cine-quote-text">
+        « Nous ne sommes pas les descendants d'esclaves.<br>
+        Nous sommes les héritiers de <strong>royaumes oubliés</strong>.<br>
+        Et il est temps que le monde s'en souvienne. »
+      </p>
+      <p class="cine-quote-author">Merveil Hakeem Dianzenza — Le Roi de l'Afrofuturisme</p>
     </div>
   </div>
 
@@ -1424,6 +1483,63 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.07 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── Cursor spotlight ──
+    (function(){
+      var glow = document.getElementById('cursorGlow');
+      if(!glow) return;
+      document.addEventListener('mousemove', function(e){
+        glow.style.left = e.clientX + 'px';
+        glow.style.top  = e.clientY + 'px';
+      });
+    })();
+
+    // ── Compteurs animés sur les colophon vals ──
+    (function(){
+      function animCount(el, target, dur){
+        var start = null;
+        var isNum = !isNaN(parseInt(target));
+        if(!isNum) return;
+        var from = 0, to = parseInt(target);
+        function step(ts){
+          if(!start) start = ts;
+          var prog = Math.min((ts - start) / dur, 1);
+          var ease = 1 - Math.pow(1 - prog, 3);
+          el.textContent = Math.round(from + (to - from) * ease);
+          if(prog < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+      }
+      var counters = document.querySelectorAll('.colophon-val, .stat-number');
+      var countObs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            var el = e.target;
+            var orig = el.textContent.trim();
+            animCount(el, orig, 1400);
+            countObs.unobserve(el);
+          }
+        });
+      }, {threshold: .5});
+      counters.forEach(function(c){ countObs.observe(c); });
+    })();
+
+    // ── 3D tilt sur les couvertures ──
+    (function(){
+      document.querySelectorAll('.book-cover, .hero-book-inner').forEach(function(cover){
+        cover.addEventListener('mousemove', function(e){
+          var rect = cover.getBoundingClientRect();
+          var x = (e.clientX - rect.left) / rect.width  - .5;
+          var y = (e.clientY - rect.top)  / rect.height - .5;
+          var ry =  x * 10, rx = -y * 8;
+          cover.style.transform = 'perspective(700px) rotateY('+ry+'deg) rotateX('+rx+'deg) translateY(-6px)';
+        });
+        cover.addEventListener('mouseleave', function(){
+          cover.style.transform = '';
+        });
+      });
+    })();
   </script>
   <script>!function(){var b=document.getElementById("waFloatBtn");if(b)b.href="https://wa.me/?text="+encodeURIComponent(document.title+" — "+location.href)}()</script>
   <!-- Universal share button -->
