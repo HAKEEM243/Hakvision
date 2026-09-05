@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hakvision Éditions — Maison d'édition afrofuturiste | Paris · Abidjan</title>
+  <title>Hakvision Éditions — Maison d'édition afrofuturiste | Paris</title>
   <meta name="description" content="Hakvision Éditions — maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza. Auteur de KATIØPA (634 pages), Un Écrivain à Kinshasa, Papa Masambukidi. Submissions ouvertes." />
   <meta name="keywords" content="Merveil Hakeem Dianzenza, Hakvision Éditions, maison édition africaine, KATIØPA, afrofuturisme congolais, littérature RDC, Prix Dianzenza, manuscrit, auteur africain" />
   <meta name="author" content="Merveil Hakeem Dianzenza" />
@@ -12,13 +12,13 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://hakvision243.netlify.app/" />
-  <meta property="og:title" content="Hakvision Éditions | Maison d'édition afrofuturiste — Paris · Abidjan" />
+  <meta property="og:title" content="Hakvision Éditions | Maison d'édition afrofuturiste — Paris" />
   <meta property="og:description" content="Maison d'édition fondée à Paris, enracinée dans la culture congolaise. KATIØPA, Un Écrivain à Kinshasa, Papa Masambukidi." />
   <meta property="og:image" content="https://hakvision243.netlify.app/katiopa_cover_hq.jpg" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Hakvision Éditions" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Hakvision Éditions | Paris · Abidjan" />
+  <meta name="twitter:title" content="Hakvision Éditions | Paris" />
   <meta name="twitter:description" content="Maison d'édition afrofuturiste. KATIØPA, Un Écrivain à Kinshasa, Papa Masambukidi." />
   <meta name="twitter:image" content="https://hakvision243.netlify.app/katiopa_cover_hq.jpg" />
 
@@ -214,84 +214,122 @@
     ══════════════════════════════════════ */
     .hero {
       min-height: calc(100vh - 72px);
-      display: flex; align-items: center;
-      background: var(--ink);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      background: #050404;
       position: relative;
       overflow: hidden;
+      padding: 64px var(--gutter) 56px;
     }
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 30% 50%, rgba(184,149,42,.04) 0%, transparent 65%);
+      background: radial-gradient(ellipse 55% 65% at 50% 38%, rgba(184,149,42,.05) 0%, transparent 62%);
       pointer-events: none;
     }
-    .hero-inner {
-      max-width: var(--max); margin: 0 auto;
-      padding: 80px var(--gutter);
-      display: grid;
-      grid-template-columns: 1fr 380px;
-      gap: 100px;
-      align-items: center;
-      width: 100%;
-      position: relative; z-index: 1;
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(184,149,42,.35), transparent);
     }
 
-    /* Left — texte */
-    .hero-text {}
-    .hero-kicker {
-      font-size: .65rem; font-weight: 600;
+    .hero-top {
+      position: relative; z-index: 1;
+      font-size: .68rem; font-weight: 600;
       text-transform: uppercase; letter-spacing: 3.5px;
-      color: var(--gold); margin-bottom: 32px;
-      display: flex; align-items: center; gap: 14px;
+      color: var(--gold);
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+      margin-bottom: 28px;
     }
-    .hero-kicker::before {
-      content: ''; width: 40px; height: 1px; background: var(--gold); opacity: .7;
-    }
-    .hero-title {
+    .hero-top-rule { width: 32px; height: 1px; background: var(--gold); opacity: .6; }
+
+    .hero-word {
+      position: relative; z-index: 1;
       font-family: var(--serif);
-      font-size: clamp(3.2rem, 5.5vw, 6.8rem);
-      font-weight: 300; font-style: italic;
-      line-height: 1.06; letter-spacing: -.01em;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .hero-title strong {
+      font-size: clamp(4.2rem, 11vw, 9.5rem);
       font-weight: 600; font-style: normal;
+      letter-spacing: -.02em;
+      line-height: .95;
       color: #fff;
+      margin-bottom: 28px;
     }
-    .hero-rule {
-      width: 56px; height: 1px;
-      background: var(--gold); opacity: .6;
-      margin: 28px 0;
+
+    .hero-tags {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      gap: 10px; flex-wrap: wrap;
+      margin-bottom: 44px;
     }
+    .hero-tags span {
+      font-size: .66rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--body);
+      border: 1px solid rgba(255,255,255,.09);
+      padding: 6px 15px;
+      border-radius: 20px;
+    }
+
+    /* Éventail de couvertures */
+    .book-fan {
+      position: relative; z-index: 1;
+      display: flex; align-items: flex-end; justify-content: center;
+      perspective: 1600px;
+      height: clamp(220px, 32vw, 340px);
+      margin-bottom: 40px;
+      width: 100%;
+    }
+    .book-fan-item {
+      position: relative;
+      display: block;
+      width: clamp(88px, 10vw, 148px);
+      aspect-ratio: 2/3;
+      margin: 0 clamp(-20px, -1.6vw, -14px);
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 24px 50px rgba(0,0,0,.55);
+      transform-style: preserve-3d;
+      transform-origin: bottom center;
+      transform: rotateY(calc(var(--fx) * 11deg)) translateY(calc(var(--fx) * var(--fx) * 7px)) translateZ(calc(var(--fx) * var(--fx) * -14px));
+      transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .4s ease;
+      z-index: calc(10 - (var(--fx) * var(--fx)));
+    }
+    .book-fan-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .book-fan-center {
+      width: clamp(110px, 13vw, 190px);
+      z-index: 10;
+      box-shadow: 0 32px 70px rgba(0,0,0,.7), 0 0 60px rgba(184,149,42,.1);
+    }
+    .book-fan:hover .book-fan-item {
+      transform: rotateY(calc(var(--fx) * 15deg)) translateY(calc(var(--fx) * var(--fx) * 4px)) translateX(calc(var(--fx) * 14px));
+    }
+    .book-fan-item:hover {
+      z-index: 20 !important;
+      box-shadow: 0 36px 80px rgba(0,0,0,.75), 0 0 50px rgba(184,149,42,.12);
+    }
+    .book-fan-badge {
+      position: absolute; top: 8px; left: 8px;
+      background: var(--gold); color: var(--ink);
+      font-size: .55rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      padding: 3px 9px; border-radius: 3px;
+    }
+
     .hero-desc {
+      position: relative; z-index: 1;
       font-size: 1rem; font-weight: 300;
-      color: var(--body); line-height: 1.95;
-      max-width: 480px; margin-bottom: 40px;
+      color: var(--body); line-height: 1.9;
+      max-width: 560px; margin: 0 auto 36px;
     }
     .hero-desc em { color: var(--text); font-style: normal; font-weight: 400; }
-    .hero-ctas { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+    .hero-ctas {
+      position: relative; z-index: 1;
+      display: flex; gap: 16px; align-items: center; justify-content: center; flex-wrap: wrap;
+    }
 
-    /* Right — livre en vitrine */
-    .hero-book { position: relative; }
-    .hero-book-inner {
-      position: relative;
-      box-shadow: -24px 24px 80px rgba(0,0,0,.8), 4px 4px 0 rgba(184,149,42,.15);
+    @media (max-width: 640px) {
+      .book-fan-item { margin: 0 -16px; }
     }
-    .hero-book-inner img {
-      width: 100%; display: block;
-      aspect-ratio: 2/3; object-fit: cover;
-    }
-    .hero-book-legend {
-      margin-top: 18px;
-      border-left: 2px solid var(--rule);
-      padding-left: 14px;
-    }
-    .hero-book-title {
-      font-family: var(--display);
-      font-size: .95rem; color: var(--text); margin-bottom: 3px;
-    }
-    .hero-book-meta { font-size: .72rem; color: var(--body); letter-spacing: .5px; }
 
     /* ══════════════════════════════════════
        COLOPHON — Les faits, rien que les faits
@@ -441,9 +479,9 @@
        PORTRAIT — L'auteur
     ══════════════════════════════════════ */
     .portrait-section {
-      background: var(--ink2);
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
+      background: linear-gradient(180deg, #0c0a0c 0%, #0f0e0f 100%);
+      border-top: 1px solid rgba(184,149,42,.12);
+      border-bottom: 1px solid rgba(184,149,42,.12);
     }
     .portrait-inner {
       max-width: var(--max); margin: 0 auto;
@@ -806,8 +844,6 @@
       .site-header { position: relative; }
     }
     @media (max-width: 1040px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 60px; }
-      .hero-book { max-width: 320px; margin: 0 auto; }
       .portrait-inner { grid-template-columns: 1fr; gap: 48px; }
       .portrait-photo { max-width: 320px; }
       .prix-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -823,24 +859,26 @@
       .colophon-inner { grid-template-columns: 1fr 1fr; }
       .colophon-item { padding: 24px 16px; }
     }
-    @media (max-width: 420px) {
-      .hero-title { font-size: 2.8rem; }
-    }
-
     /* ══════════════════════════════════════
        NOUVELLE PARUTION
     ══════════════════════════════════════ */
     .nouv-wrap { padding: 0 var(--gutter) 72px; }
     .nouv-card {
       max-width: var(--max); margin: 0 auto;
-      background: var(--ink2);
-      border: 1px solid var(--rule);
+      background: linear-gradient(135deg, #0f0d0f 0%, #140f14 50%, #0f0d0f 100%);
+      border: 1px solid rgba(184,149,42,.2);
       border-left: 3px solid var(--gold);
       display: grid;
       grid-template-columns: 180px 1fr;
       gap: 48px;
       padding: 40px 48px;
       position: relative;
+      box-shadow: 0 0 80px rgba(184,149,42,.04), 0 24px 60px rgba(0,0,0,.5);
+      transition: box-shadow .4s, transform .4s;
+    }
+    .nouv-card:hover {
+      box-shadow: 0 0 100px rgba(184,149,42,.07), 0 32px 80px rgba(0,0,0,.6);
+      transform: translateY(-2px);
     }
     .nouv-badge {
       position: absolute;
@@ -908,6 +946,9 @@
 </head>
 <body>
 
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
   <!-- ══ ANNOUNCEMENT BAR ══ -->
   <div class="announcement">
     Prix Dianzenza 2026 — Lauréat&nbsp;: <strong>Jeancy Lembi</strong> &nbsp;·&nbsp;
@@ -940,76 +981,63 @@
   </header>
 
   <!-- ══════════════ HÉRO ══════════════ -->
-  <section class="hero">
-    <div class="hero-inner">
+  <section class="hero" id="hero">
+    <div class="hero-top reveal">
+      <span class="hero-top-rule"></span>
+      Maison d'édition afrofuturiste &nbsp;·&nbsp; Paris
+      <span class="hero-top-rule"></span>
+    </div>
 
-      <div class="hero-text">
-        <p class="hero-kicker reveal">Maison d'édition afrofuturiste &nbsp;·&nbsp; Paris &amp; Abidjan</p>
+    <h1 class="hero-word reveal reveal-d1">Hakvision</h1>
 
-        <h1 class="hero-title reveal reveal-d1">
-          Nous publions<br>
-          ce que l'<strong>Afrique</strong><br>
-          a besoin<br>d'entendre.
-        </h1>
+    <div class="hero-tags reveal reveal-d2">
+      <span>Afrofuturisme</span>
+      <span>Roman</span>
+      <span>Biographie</span>
+      <span>Récit</span>
+      <span>Essai</span>
+    </div>
 
-        <div class="hero-rule reveal reveal-d2"></div>
+    <!-- Éventail de couvertures -->
+    <div class="book-fan reveal reveal-d2">
+      <a class="book-fan-item" style="--fx:-2" href="papa-masambukidi.html">
+        <img src="papa_masambukidi_cover.jpg" alt="Papa Masambukidi" loading="eager">
+      </a>
+      <a class="book-fan-item" style="--fx:-1" href="un-ecrivain-kinshasa.html">
+        <img src="un_ecrivain_kinshasa_cover_2.jpg" alt="Un Écrivain à Kinshasa" loading="eager">
+      </a>
+      <a class="book-fan-item book-fan-center" style="--fx:0" href="la-suture.html">
+        <img src="la_suture_cover.jpg" alt="La Suture — nouveau roman de Merveil Hakeem Dianzenza" loading="eager">
+        <span class="book-fan-badge">Nouveau</span>
+      </a>
+      <a class="book-fan-item" style="--fx:1" href="katiopa.html">
+        <img src="katiopa_cover_hq.jpg" alt="KATIØPA — La Prophétie Noire" loading="eager">
+      </a>
+      <a class="book-fan-item" style="--fx:2" href="diaku.html">
+        <img src="diaku_cover.jpg" alt="DIAKU — L'Antidote Vivant" loading="eager">
+      </a>
+    </div>
 
-        <p class="hero-desc reveal reveal-d2">
-          Fondée à Paris par <em>Merveil Hakeem Dianzenza</em>, Hakvision Éditions publie des œuvres
-          qui interrogent, révèlent et réinventent le continent africain —
-          de la fiction épique à la biographie, de l'essai à la poésie.
-        </p>
+    <p class="hero-desc reveal reveal-d3">
+      Fondée à Paris par <em>Merveil Hakeem Dianzenza</em> — Le Roi de l'Afrofuturisme — Hakvision Éditions
+      publie des œuvres qui interrogent, révèlent et réinventent le continent africain.
+    </p>
 
-        <div class="hero-ctas reveal reveal-d3">
-          <a class="btn-primary" href="livres.html">
-            <i class="fa-solid fa-book-open" style="font-size:.8rem;"></i> Découvrir le catalogue
-          </a>
-          <a class="btn-ghost" href="#soumettre">
-            Soumettre un manuscrit
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-book reveal reveal-d1">
-        <div class="hero-book-inner">
-          <img src="katiopa_cover_hq.jpg"
-               alt="KATIØPA — La Prophétie Noire, roman de Merveil Hakeem Dianzenza"
-               loading="eager">
-        </div>
-        <div class="hero-book-legend">
-          <p class="hero-book-title">KATIØPA — La Prophétie Noire</p>
-          <p class="hero-book-meta">Roman afrofuturiste · 634 pages · Disponible sur Payhip</p>
-        </div>
-      </div>
-
+    <div class="hero-ctas reveal reveal-d3">
+      <a class="btn-primary" href="livres.html">
+        <i class="fa-solid fa-book-open" style="font-size:.8rem;"></i> Découvrir le catalogue
+      </a>
+      <a class="btn-ghost" href="la-suture.html">
+        La Suture — nouveau roman
+      </a>
+      <a class="btn-ghost" href="#soumettre">
+        Soumettre un manuscrit
+      </a>
     </div>
   </section>
 
-  <!-- ══════════════ NOUVELLE PARUTION ══════════════ -->
-  <div class="nouv-wrap">
-    <div class="nouv-card reveal">
-      <div class="nouv-badge">Nouvelle parution</div>
-      <div class="nouv-cover">
-        <img src="oeil_tome2_cover.jpg" alt="L'ŒIL Tome 2 — Ainsi je vois le monde, de Kulala Pasco Ntumba" loading="lazy">
-      </div>
-      <div class="nouv-content">
-        <p class="nouv-eyebrow">Hakvision Éditions · Parution 2026</p>
-        <h2 class="nouv-title">L'ŒIL — Tome 2<br><strong>Ainsi je vois le monde</strong></h2>
-        <p class="nouv-author">Kulala Pasco Ntumba</p>
-        <p class="nouv-body">
-          Après avoir suscité de nombreuses réflexions, l'auteur poursuit son exploration de la conscience et de la perception. Ce deuxième tome propose une immersion encore plus profonde dans sa vision de l'existence — l'œil, le triangle, la lumière et l'horizon évoquent la connaissance, la quête de sens et l'éveil de la conscience. <em>Une expérience intellectuelle et introspective qui pousse à observer, questionner et comprendre autrement.</em>
-        </p>
-        <div class="nouv-actions">
-          <a class="btn-primary" href="oeil-tome2.html">
-            <i class="fa-solid fa-book-open" style="font-size:.76rem;"></i> Découvrir l'œuvre
-          </a>
-          <a class="btn-ghost" href="https://wa.me/?text=Nouvelle%20parution%20chez%20Hakvision%20%C3%89ditions%20%E2%80%94%20L%27%C5%92IL%20Tome%202%20de%20Kulala%20Pasco%20Ntumba%20%3A%20https%3A%2F%2Fhakvision243.netlify.app" target="_blank" rel="noopener">
-            <i class="fab fa-whatsapp" style="font-size:.9rem;"></i> Partager cette parution
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Diviseur cinématique -->
+  <hr class="cine-divider">
 
   <!-- ══════════════ COLOPHON ══════════════ -->
   <div class="colophon">
@@ -1019,7 +1047,7 @@
         <div class="colophon-key">Siège éditorial</div>
       </div>
       <div class="colophon-item reveal reveal-d1">
-        <div class="colophon-val">4</div>
+        <div class="colophon-val">6</div>
         <div class="colophon-key">Œuvres publiées</div>
       </div>
       <div class="colophon-item reveal reveal-d2">
@@ -1033,6 +1061,19 @@
     </div>
   </div>
 
+  <!-- ══════════════ CITATION CINÉMATIQUE ══════════════ -->
+  <div class="cine-quote">
+    <div class="cine-quote-inner reveal">
+      <span class="cine-quote-line"></span>
+      <p class="cine-quote-text">
+        « Nous ne sommes pas les descendants d'esclaves.<br>
+        Nous sommes les héritiers de <strong>royaumes oubliés</strong>.<br>
+        Et il est temps que le monde s'en souvienne. »
+      </p>
+      <p class="cine-quote-author">Merveil Hakeem Dianzenza — Le Roi de l'Afrofuturisme</p>
+    </div>
+  </div>
+
   <!-- ══════════════ CATALOGUE ══════════════ -->
   <section class="section" id="catalogue">
     <div class="section-inner">
@@ -1042,7 +1083,7 @@
           <p class="section-label">Catalogue</p>
           <h2 class="section-title">Nos <strong>publications</strong></h2>
           <div class="section-rule"></div>
-          <p class="section-lead">Quatre titres publiés, disponibles sur Amazon et Payhip. Des romans, des biographies, des essais qui redéfinissent la littérature africaine contemporaine.</p>
+          <p class="section-lead">Six titres publiés, disponibles sur Amazon et Payhip. Des romans, des biographies, des essais qui redéfinissent la littérature africaine contemporaine.</p>
         </div>
         <a class="btn-ghost" href="catalogue.html" style="flex-shrink:0;">
           Catalogue complet <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i>
@@ -1052,6 +1093,23 @@
       <div class="books-grid">
 
         <article class="book-item reveal">
+          <div class="book-cover">
+            <img src="la_suture_cover.jpg" alt="La Suture par Merveil Hakeem Dianzenza" loading="lazy">
+          </div>
+          <p class="book-genre">Roman · Nouveauté</p>
+          <h3 class="book-title">La Suture</h3>
+          <p class="book-desc">Elle a traversé quatre pays, l'excision, le viol et la guerre. À la fin, son corps n'était plus qu'une suture.</p>
+          <div class="book-actions">
+            <a class="book-buy" href="https://www.amazon.fr/Suture-M-Merveil-Hakeem-Dianzenza/dp/B0HH8VR7R7" target="_blank">
+              <i class="fab fa-amazon" style="font-size:.76rem;"></i> Amazon
+            </a>
+            <a class="book-more" href="la-suture.html">
+              Détails <i class="fa-solid fa-arrow-right" style="font-size:.68rem;"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="book-item reveal reveal-d1">
           <div class="book-cover">
             <img src="katiopa_cover_hq.jpg" alt="KATIØPA — La Prophétie Noire par Merveil Hakeem Dianzenza" loading="lazy">
           </div>
@@ -1068,7 +1126,7 @@
           </div>
         </article>
 
-        <article class="book-item reveal reveal-d1">
+        <article class="book-item reveal reveal-d2">
           <div class="book-cover">
             <img src="un_ecrivain_kinshasa_cover_2.jpg" alt="Un Écrivain à Kinshasa par Merveil Hakeem Dianzenza" loading="lazy">
           </div>
@@ -1085,7 +1143,7 @@
           </div>
         </article>
 
-        <article class="book-item reveal reveal-d2">
+        <article class="book-item reveal reveal-d3">
           <div class="book-cover">
             <img src="papa_masambukidi_cover.jpg" alt="Papa Masambukidi — Biographie officielle par Merveil Hakeem Dianzenza" loading="lazy">
           </div>
@@ -1136,11 +1194,11 @@
       <div class="portrait-text">
         <p class="section-label reveal">Fondateur &amp; Directeur éditorial</p>
         <p class="portrait-intro reveal reveal-d1">
-          Merveil Hakeem Dianzenza — écrivain, réalisateur, éditeur. Une voix singulière entre Paris et Abidjan.
+          Merveil Hakeem Dianzenza — écrivain, réalisateur, éditeur. Une voix singulière ancrée à Paris.
         </p>
         <div class="section-rule reveal reveal-d1"></div>
         <p class="portrait-body reveal reveal-d2">
-          Né en <strong>Côte d'Ivoire</strong>, élevé en <strong>France</strong>, Merveil Hakeem Dianzenza a fondé Hakvision Éditions pour donner une tribune mondiale à la littérature africaine contemporaine. Son roman-fleuve <strong>KATIØPA</strong> — 634 pages d'afrofuturisme congolais — est aujourd'hui sa pièce maîtresse, présentée au <strong>Salon du Livre Africain</strong> en mars 2026 à Paris.
+          Né en dehors du pays, élevé en <strong>France</strong>, Merveil Hakeem Dianzenza a fondé Hakvision Éditions pour donner une tribune mondiale à la littérature africaine contemporaine. Son roman-fleuve <strong>KATIØPA</strong> — 634 pages d'afrofuturisme congolais — est aujourd'hui sa pièce maîtresse, présentée au <strong>Salon du Livre Africain</strong> en mars 2026 à Paris.
         </p>
 
         <div class="portrait-events reveal reveal-d2">
@@ -1339,7 +1397,7 @@
         <div class="footer-brand">
           <p class="footer-wordmark">Hakvision Éditions</p>
           <p class="footer-tagline">Maison d'édition afrofuturiste · Paris</p>
-          <p class="footer-about">Œuvres littéraires, prix et initiatives culturelles fondées par Merveil Hakeem Dianzenza. De Paris à Abidjan, pour l'Afrique de demain.</p>
+          <p class="footer-about">Œuvres littéraires, prix et initiatives culturelles fondées par Merveil Hakeem Dianzenza. De Paris au Congo, pour l'Afrique de demain.</p>
           <div class="footer-socials">
             <a class="footer-social" href="https://www.instagram.com/hakaymrv243_" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a class="footer-social" href="https://whatsapp.com/channel/0029VbAcPGiKbYMMh7zlNR43" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
@@ -1407,6 +1465,47 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.07 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── Cursor spotlight ──
+    (function(){
+      var glow = document.getElementById('cursorGlow');
+      if(!glow) return;
+      document.addEventListener('mousemove', function(e){
+        glow.style.left = e.clientX + 'px';
+        glow.style.top  = e.clientY + 'px';
+      });
+    })();
+
+    // ── Compteurs animés sur les colophon vals ──
+    (function(){
+      function animCount(el, target, dur){
+        var start = null;
+        var isNum = !isNaN(parseInt(target));
+        if(!isNum) return;
+        var from = 0, to = parseInt(target);
+        function step(ts){
+          if(!start) start = ts;
+          var prog = Math.min((ts - start) / dur, 1);
+          var ease = 1 - Math.pow(1 - prog, 3);
+          el.textContent = Math.round(from + (to - from) * ease);
+          if(prog < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        }
+        requestAnimationFrame(step);
+      }
+      var counters = document.querySelectorAll('.colophon-val, .stat-number');
+      var countObs = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){
+            var el = e.target;
+            var orig = el.textContent.trim();
+            animCount(el, orig, 1400);
+            countObs.unobserve(el);
+          }
+        });
+      }, {threshold: .5});
+      counters.forEach(function(c){ countObs.observe(c); });
+    })();
   </script>
   <script>!function(){var b=document.getElementById("waFloatBtn");if(b)b.href="https://wa.me/?text="+encodeURIComponent(document.title+" — "+location.href)}()</script>
   <!-- Universal share button -->

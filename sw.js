@@ -1,4 +1,4 @@
-const CACHE = 'hakvision-v4';
+const CACHE = 'hakvision-v5';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -6,6 +6,7 @@ const PRECACHE = [
   '/bio.html',
   '/livres.html',
   '/catalogue.html',
+  '/la-suture.html',
   '/katiopa.html',
   '/prix-litteraires.html',
   '/contact.html',
