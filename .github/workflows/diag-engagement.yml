@@ -27,3 +27,16 @@ jobs:
           echo "--- /api/comments pour eclipse (reference) ---"
           curl -sS "https://elucco.pages.dev/api/comments?id=feat_eclipse&limit=3"
           echo
+          echo "--- Contenu HTML servi en production : script d'engagement (article tooro) ---"
+          curl -sSL "https://elucco.pages.dev/article-condoleances-tooro-sept2026.html" | grep -n "ARTICLE_ID\|eng-submit\|eng-text\|eng-name\|eng-comment-list\|eng-like-btn" || echo "(aucune correspondance trouvee)"
+          echo
+          echo "--- Test POST direct sur /api/comments pour tooro (diagnostic serveur) ---"
+          curl -sS -D - -o /tmp/post_body.json -X POST -H "Content-Type: application/json" \
+            -d "{\"id\":\"feat_condoleances_tooro\",\"author\":\"Diag CI\",\"text\":\"Test diagnostic automatise $(date -u +%s)\"}" \
+            "https://elucco.pages.dev/api/comments"
+          echo
+          cat /tmp/post_body.json
+          echo
+          echo "--- Relecture immediate de /api/comments pour tooro apres le POST direct ---"
+          curl -sS "https://elucco.pages.dev/api/comments?id=feat_condoleances_tooro&limit=5"
+          echo
