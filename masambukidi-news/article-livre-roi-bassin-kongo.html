@@ -241,6 +241,7 @@ body::before{
 }
 .eng-comment-form button:hover{transform:translateY(-1px)}
 .eng-comment-form button:disabled{opacity:0.55;cursor:default;transform:none}
+.eng-comment-msg{display:none;font-family:var(--font-ui);font-size:0.78rem;color:#e0a15c;margin-top:-4px}
 .eng-comment-item{padding:14px 0;border-top:1px solid rgba(255,255,255,0.07)}
 .eng-comment-item:first-child{border-top:none;padding-top:0}
 .eng-comment-author{font-family:var(--font-ui);font-weight:600;color:var(--gold-light);font-size:0.85rem;margin-bottom:4px}
@@ -330,6 +331,7 @@ body::before{
       <input type="text" id="eng-name" placeholder="Votre nom" maxlength="60">
       <textarea id="eng-text" placeholder="Votre commentaire..." maxlength="600" rows="2"></textarea>
       <button id="eng-submit">Publier</button>
+      <div class="eng-comment-msg" id="eng-comment-msg"></div>
     </div>
     <div class="eng-comment-list" id="eng-comment-list">
       <div style="color:rgba(255,255,255,0.3);font-size:0.85rem">Chargement des commentaires…</div>
@@ -393,6 +395,7 @@ body::before{
   var nameEl = document.getElementById('eng-name');
   var textEl = document.getElementById('eng-text');
   var submitBtn = document.getElementById('eng-submit');
+  var msgEl = document.getElementById('eng-comment-msg');
 
   fetch('/api/stats?ids=' + ARTICLE_ID).then(function(r){ return r.json(); }).then(function(data){
     var s = data[ARTICLE_ID];
@@ -465,8 +468,16 @@ body::before{
     }).then(function(){
       if(nameEl) nameEl.value = '';
       textEl.value = '';
+      if(msgEl){ msgEl.textContent = ''; msgEl.style.display = 'none'; }
       loadComments(false);
-    }).catch(function(){}).finally(function(){ submitBtn.disabled = false; });
+    }).catch(function(err){
+      if(msgEl){
+        msgEl.textContent = (err && err.message === 'rate_limited')
+          ? 'Merci de patienter quelques secondes avant de publier un autre commentaire.'
+          : 'Impossible d\'envoyer le commentaire, reessayez.';
+        msgEl.style.display = 'block';
+      }
+    }).finally(function(){ submitBtn.disabled = false; });
   });
 })();
 </script>

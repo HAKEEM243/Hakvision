@@ -31,6 +31,7 @@ const ARTICLE_META = {
   feat_mumengi: { title: 'la visite de Didier Mumengi', url: '/article-mumengi-aout2026.html' },
   feat_livre_roi_bassin_kongo: { title: 'le livre Roi du Bassin du Kongo', url: '/article-livre-roi-bassin-kongo.html' },
   feat_1: { title: 'l’article du 6 Mars', url: '/actualites.html' },
+  feat_condoleances_tooro: { title: 'le communiqué royal pour le Royaume de Tooro', url: '/article-condoleances-tooro-sept2026.html' },
 };
 
 export function articleMeta(id) {
