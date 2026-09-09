@@ -1,0 +1,23 @@
+name: Diagnostic engagement (temporaire, lecture seule)
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Etat actuel en production pour tooro vs eclipse (reference qui marche)
+        run: |
+          echo "--- HTTP code brut de la page article ---"
+          curl -sS -o /dev/null -w "HTTP %{http_code}\n" "https://elucco.pages.dev/article-condoleances-tooro-sept2026.html"
+          echo
+          echo "--- /api/stats pour tooro et eclipse ---"
+          curl -sS "https://elucco.pages.dev/api/stats?ids=feat_condoleances_tooro,feat_eclipse"
+          echo
+          echo "--- /api/comments pour tooro ---"
+          curl -sS "https://elucco.pages.dev/api/comments?id=feat_condoleances_tooro&limit=10"
+          echo
+          echo "--- /api/comments pour eclipse (reference) ---"
+          curl -sS "https://elucco.pages.dev/api/comments?id=feat_eclipse&limit=3"
+          echo
