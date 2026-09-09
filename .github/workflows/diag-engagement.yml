@@ -1,0 +1,18 @@
+name: Diagnostic engagement (temporaire, lecture seule)
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Etat actuel des commentaires sur tous les articles
+        run: |
+          echo "--- /api/stats pour tous les articles ---"
+          curl -sS "https://elucco.pages.dev/api/stats?ids=feat_condoleances_tooro,feat_eclipse,feat_mumengi,feat_livre_roi_bassin_kongo,feat_1"
+          echo
+          echo
+          echo "--- /api/comments COMPLET pour tooro (jusqu'a 50) ---"
+          curl -sS "https://elucco.pages.dev/api/comments?id=feat_condoleances_tooro&limit=50"
+          echo
