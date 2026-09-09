@@ -37,7 +37,7 @@
   "datePublished": "2026-09-09",
   "dateModified": "2026-09-09",
   "inLanguage": "fr",
-  "image": ["https://elucco.pages.dev/sa_majeste_trone_bleu_or.jpg"],
+  "image": ["https://elucco.pages.dev/sa_majeste_trone_bleu_or.jpg", "https://elucco.pages.dev/sa_majeste_trone_blanc_or.jpg"],
   "author": { "@type": "Organization", "name": "ELUCCO — Église Lumière du Christ au Congo", "url": "https://elucco.pages.dev/" },
   "publisher": {
     "@type": "Organization",
@@ -139,6 +139,28 @@ h1{
 }
 .hero-photo img{width:100%;max-height:620px;object-fit:cover;object-position:top center}
 .hero-cap{max-width:860px;margin:14px auto 0;padding:0 20px 56px;font-size:0.85rem;font-style:italic;color:rgba(255,255,255,0.4)}
+
+/* DUO PORTRAITS — deux portraits royaux cote a cote */
+.hero-duo{
+  max-width:860px;margin:0 auto 56px;padding:0 20px;
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+}
+.hero-duo-item{
+  border-radius:var(--radius-lg);overflow:hidden;
+  border:1px solid var(--card-border);
+  box-shadow:0 20px 60px rgba(0,0,0,0.55);
+  background:var(--dark2);
+}
+.hero-duo-item img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;cursor:zoom-in}
+.hero-duo-cap{padding:14px 10px;text-align:center;border-top:1px solid rgba(201,168,76,0.18)}
+.hero-duo-name{font-family:var(--font-title);font-weight:700;font-size:0.92rem;color:var(--gold-light);letter-spacing:0.8px;text-transform:uppercase}
+.hero-duo-role{font-family:var(--font-body);font-style:italic;font-size:0.82rem;color:rgba(255,255,255,0.5);margin-top:4px}
+@media(max-width:520px){
+  .hero-duo{gap:8px}
+  .hero-duo-cap{padding:10px 6px}
+  .hero-duo-name{font-size:0.72rem;letter-spacing:0.4px}
+  .hero-duo-role{font-size:0.7rem;margin-top:2px}
+}
 
 /* ARTICLE */
 .article{max-width:720px;margin:0 auto;padding:0 20px 36px}
@@ -329,10 +351,22 @@ body::before{
   </div>
 </section>
 
-<div class="hero-photo">
-  <img src="sa_majeste_trone_bleu_or.jpg" alt="Sa Majesté Masambukidi Ier, Roi du Bassin du Kongo, en tenue royale bleue et or sur son trône" loading="eager">
+<div class="hero-duo">
+  <div class="hero-duo-item">
+    <img src="sa_majeste_trone_blanc_or.jpg" alt="Sa Majesté Masambukidi Ier, Roi du Bassin du Kongo, en tenue sacerdotale blanche et or" loading="eager">
+    <div class="hero-duo-cap">
+      <div class="hero-duo-name">Sa Majesté Masambukidi Ier</div>
+      <div class="hero-duo-role">Roi du Bassin du Kongo</div>
+    </div>
+  </div>
+  <div class="hero-duo-item">
+    <img src="sa_majeste_trone_bleu_or.jpg" alt="Sa Majesté Masambukidi Ier, Roi du Bassin du Kongo, en tenue royale bleue et or sur son trône" loading="eager">
+    <div class="hero-duo-cap">
+      <div class="hero-duo-name">Sa Majesté Masambukidi Ier</div>
+      <div class="hero-duo-role">Sur le Trône du Bassin du Kongo</div>
+    </div>
+  </div>
 </div>
-<p class="hero-cap">Sa Majesté Masambukidi Ier, Roi du Bassin du Kongo, sur le Trône du Kongo.</p>
 
 <article class="article">
   <p style="font-family:var(--font-ui);font-size:0.85rem;letter-spacing:1px;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:8px">Au Royaume de Tooro et au Peuple d'Ouganda</p>
@@ -385,10 +419,9 @@ body::before{
 </section>
 
 <section class="gal">
-  <p class="eyebrow">Galerie</p>
-  <h2>Sa Majesté Masambukidi Ier</h2>
-  <div class="gal-grid" id="galGrid">
-    <div class="gal-item"><img src="sa_majeste_trone_blanc_or.jpg" alt="Sa Majesté Masambukidi Ier, Roi du Bassin du Kongo, en tenue sacerdotale blanche et or" loading="lazy"></div>
+  <p class="eyebrow">Armoiries</p>
+  <h2>Trône du Bassin du Kongo</h2>
+  <div class="gal-grid" id="galGrid" style="grid-template-columns:minmax(160px,240px);justify-content:center">
     <div class="gal-item"><img src="armoiries_bassin_kongo.jpg" alt="Armoiries royales du Trône du Bassin du Kongo" loading="lazy"></div>
   </div>
 </section>
@@ -446,7 +479,7 @@ body::before{
 })();
 
 (function(){
-  var imgs = Array.prototype.slice.call(document.querySelectorAll('#galGrid img'));
+  var imgs = Array.prototype.slice.call(document.querySelectorAll('.hero-duo-item img, #galGrid img'));
   var lb = document.getElementById('lb'), lbImg = document.getElementById('lbImg'), idx = 0;
   function show(i){ idx = (i + imgs.length) % imgs.length; lbImg.src = imgs[idx].src; lbImg.alt = imgs[idx].alt; }
   imgs.forEach(function(im, i){
