@@ -26,6 +26,18 @@
     </image:image>
   </url>
 
+  <!-- Royal Communiqué — Condolences to the Kingdom of Tooro (English) -->
+  <url>
+    <loc>https://elucco.pages.dev/article-condoleances-tooro-sept2026-en.html</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://elucco.pages.dev/sa_majeste_trone_blanc_or.jpg</image:loc>
+      <image:title>His Majesty Masambukidi I extends condolences to the Kingdom of Tooro</image:title>
+    </image:image>
+  </url>
+
   <!-- Actualité — Cérémonie de prière lors de l'éclipse solaire -->
   <url>
     <loc>https://elucco.pages.dev/article-eclipse-aout2026.html</loc>
