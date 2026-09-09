@@ -40,3 +40,9 @@ jobs:
           echo "--- Relecture immediate de /api/comments pour tooro apres le POST direct ---"
           curl -sS "https://elucco.pages.dev/api/comments?id=feat_condoleances_tooro&limit=5"
           echo
+          echo "--- Nettoyage : suppression du/des commentaire(s) de diagnostic ---"
+          curl -sS -X POST "https://elucco.pages.dev/api/_diag-cleanup"
+          echo
+          echo "--- Relecture apres nettoyage (doit revenir a l'etat initial) ---"
+          curl -sS "https://elucco.pages.dev/api/comments?id=feat_condoleances_tooro&limit=5"
+          echo
