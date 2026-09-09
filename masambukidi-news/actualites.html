@@ -2023,7 +2023,7 @@ body::before{
   <div class="footer-bottom">
     <div class="footer-copy">&copy; 2026 ELUCCO &mdash; Tous droits réservés. Site officiel de Sa Majesté Masambukidi Samuel I.</div>
     <div class="footer-copy">Conçu avec dévotion pour la communauté Masambukidiste mondiale</div>
-    <div class="footer-build">Mise à jour du site : 17 août 2026 — nouvelles photos dans la galerie</div>
+    <div class="footer-build">Mise à jour du site : 9 septembre 2026 — communiqué royal (Tooro)</div>
   </div>
 </footer>
 
@@ -2063,6 +2063,9 @@ const VIDEOS = [
 ];
 
 const GALLERY = [
+  {src:'sa_majeste_trone_bleu_or.jpg',caption:'Sa Majesté Masambukidi Ier, Roi du Bassin du Kongo, en tenue royale bleue et or'},
+  {src:'sa_majeste_trone_blanc_or.jpg',caption:'Sa Majesté Masambukidi Ier en tenue sacerdotale blanche et or'},
+  {src:'armoiries_bassin_kongo.jpg',caption:'Armoiries royales du Trône du Bassin du Kongo'},
   {src:'sa_majeste_culte_linge_1.jpg',caption:''},
   {src:'sa_majeste_culte_discours_1.jpg',caption:''},
   {src:'sa_majeste_culte_linge_2.jpg',caption:''},
@@ -2350,6 +2353,20 @@ function renderNews(){
   // 3. Vidéo : Premier Culte (Direct)
   // Le reste va en Galerie ou Vidéos
   const featuredItems=[
+    {
+      id:'feat_condoleances_tooro',
+      type:'actualite',
+      articleUrl:'article-condoleances-tooro-sept2026.html',
+      badge:'royal',
+      title:'Communiqué royal : Sa Majesté Masambukidi Ier adresse ses condoléances au Royaume de Tooro',
+      date:'9 Septembre 2026',
+      img:'sa_majeste_trone_bleu_or.jpg',
+      share:true,
+      desc:'Le Trône du Bassin du Kongo a appris avec une vive émotion et un profond recueillement le rappel à Dieu de Sa Majesté l\'Omukama Oyo Nyimba Kabamba Iguru Rukidi IV, Roi du Royaume de Tooro. En ce jour d\'affliction qui frappe le cœur même de notre continent, le Trône du Kongo s\'incline avec un profond respect fraternel devant la mémoire d\'un souverain dont le rayonnement a dépassé les frontières. '
+           +'L\'histoire retiendra à jamais que l\'Omukama Oyo fut intronisé le 12 septembre 1995, à l\'âge de trois ans, portant dès l\'aube de sa vie le poids sacré d\'une couronne confiée par ses ancêtres, faisant de lui l\'un des plus jeunes monarques de l\'histoire universelle. '
+           +'En ces heures sombres, le Trône du Bassin du Kongo adresse à Sa Majesté la Reine Mère Omugo Best Kemigisa, à la Maison Royale du Royaume de Tooro, ainsi qu\'au vaillant peuple ougandais, ses condoléances les plus sincères. L\'Afrique tout entière partage votre deuil. '
+           +'Que le Tout-Puissant accueille l\'âme royale de l\'Omukama Oyo dans Son infinie miséricorde. Que son héritage inestimable continue d\'inspirer le Royaume de Tooro et de rayonner sur notre terre africaine.'
+    },
     {
       id:'feat_eclipse',
       type:'actualite',
