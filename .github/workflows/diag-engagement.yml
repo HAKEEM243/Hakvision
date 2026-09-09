@@ -9,8 +9,14 @@ jobs:
     steps:
       - name: Etat actuel en production pour tooro vs eclipse (reference qui marche)
         run: |
-          echo "--- HTTP code brut de la page article ---"
-          curl -sS -o /dev/null -w "HTTP %{http_code}\n" "https://elucco.pages.dev/article-condoleances-tooro-sept2026.html"
+          echo "--- En-tetes bruts de la page article (sans suivre la redirection) ---"
+          curl -sS -D - -o /dev/null "https://elucco.pages.dev/article-condoleances-tooro-sept2026.html"
+          echo
+          echo "--- Meme test sur l'article eclipse (reference) ---"
+          curl -sS -D - -o /dev/null "https://elucco.pages.dev/article-eclipse-aout2026.html"
+          echo
+          echo "--- HTTP code en suivant la redirection ---"
+          curl -sSL -o /dev/null -w "HTTP final %{http_code}, url finale: %{url_effective}\n" "https://elucco.pages.dev/article-condoleances-tooro-sept2026.html"
           echo
           echo "--- /api/stats pour tooro et eclipse ---"
           curl -sS "https://elucco.pages.dev/api/stats?ids=feat_condoleances_tooro,feat_eclipse"
