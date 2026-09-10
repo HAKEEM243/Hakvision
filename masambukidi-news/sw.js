@@ -3,7 +3,7 @@
  * PWA + Push Notifications — réseau prioritaire pour les pages,
  * cache pour les seuls actifs statiques (images, logos).
  */
-const CACHE_NAME = 'elucco-v4';
+const CACHE_NAME = 'elucco-v5';
 const STATIC_ASSETS = [
   '/manifest.json',
   '/elucco_logo_officiel.png',
@@ -28,6 +28,13 @@ self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
   if (url.origin !== self.location.origin) return;
+
+  // API dynamique (vues/likes/commentaires) : jamais de cache, toujours
+  // une reponse fraiche du serveur. Sans ca, le cache-d'abord prevu pour
+  // les images ci-dessous s'appliquait aussi a /api/*, et le navigateur
+  // pouvait continuer d'afficher une ancienne reponse (ex: un commentaire
+  // deja supprime cote serveur) au lieu de la donnee reelle.
+  if (url.pathname.startsWith('/api/')) return;
 
   // Pages HTML (navigation) et JS/CSS : toujours le réseau d'abord,
   // pour que chaque déploiement soit visible immédiatement. Le cache
