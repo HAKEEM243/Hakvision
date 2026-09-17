@@ -225,9 +225,54 @@
       height: 220px;
       object-fit: cover;
       display: block;
+      cursor: zoom-in;
       transition: transform .4s ease;
     }
     .sefa-photo-item:hover img { transform: scale(1.03); }
+
+    /* Lightbox */
+    .hv-lightbox {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(5,4,4,.94);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      cursor: zoom-out;
+    }
+    .hv-lightbox.open { display: flex; }
+    .hv-lightbox img {
+      max-width: 92vw;
+      max-height: 88vh;
+      display: block;
+      border-radius: 4px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.7);
+      cursor: default;
+    }
+    .hv-lightbox-caption {
+      position: absolute;
+      bottom: 24px; left: 0; right: 0;
+      text-align: center;
+      color: #e8e0d0;
+      font-size: .85rem;
+      font-weight: 300;
+      padding: 0 20px;
+    }
+    .hv-lightbox-close {
+      position: absolute;
+      top: 18px; right: 22px;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2);
+      color: #e8e0d0;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .hv-lightbox-close:hover { background: rgba(255,255,255,.16); }
     .sefa-photo-caption {
       position: absolute;
       bottom: 0;
@@ -798,6 +843,37 @@
       </div>
     </div>
   </footer>
+
+  <!-- Lightbox photos -->
+  <div class="hv-lightbox" id="hvLightbox">
+    <button class="hv-lightbox-close" id="hvLightboxClose" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+    <img id="hvLightboxImg" src="" alt="">
+    <p class="hv-lightbox-caption" id="hvLightboxCaption"></p>
+  </div>
+
+  <script>
+    const hvLightbox = document.getElementById('hvLightbox');
+    const hvLightboxImg = document.getElementById('hvLightboxImg');
+    const hvLightboxCaption = document.getElementById('hvLightboxCaption');
+    const hvLightboxClose = document.getElementById('hvLightboxClose');
+    function openLightbox(img) {
+      hvLightboxImg.src = img.getAttribute('src');
+      hvLightboxImg.alt = img.getAttribute('alt') || '';
+      const caption = img.closest('.sefa-photo-item')?.querySelector('.sefa-photo-caption');
+      hvLightboxCaption.textContent = caption ? caption.textContent : '';
+      hvLightbox.classList.add('open');
+    }
+    function closeLightbox() {
+      hvLightbox.classList.remove('open');
+      hvLightboxImg.src = '';
+    }
+    document.querySelectorAll('.sefa-photo-item img').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img));
+    });
+    hvLightboxClose.addEventListener('click', closeLightbox);
+    hvLightbox.addEventListener('click', e => { if (e.target === hvLightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
 
   <script>
     const hvBurger = document.getElementById('hvBurger');
