@@ -51,6 +51,14 @@
   color: var(--gold-light);
   font-weight: 300;
 }
+.hero-signature {
+  color: var(--gold-light);
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 2.3vw, 1.75rem);
+  font-style: italic;
+  line-height: 1.35;
+  margin: -10px 0 18px;
+}
 .hero-desc {
   max-width: 590px;
   margin: 0 0 28px;
