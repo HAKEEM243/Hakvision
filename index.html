@@ -5,7 +5,7 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hakvision Éditions · Maison d'édition afrofuturiste | Paris</title>
-  <meta name="description" content="Hakvision Éditions, maison d'édition afrofuturiste fondée à Paris par Merveil Hakeem Dianzenza. Auteur de KATIØPA (634 pages), Un Écrivain à Kinshasa, Papa Masambukidi. Submissions ouvertes." />
+  <meta name="description" content="Hakvision Éditions publie romans, récits, biographies et essais nourris par les imaginaires africains. Découvrez les livres et soumettez un manuscrit." />
   <meta name="keywords" content="Merveil Hakeem Dianzenza, Hakvision Éditions, maison édition africaine, KATIØPA, afrofuturisme congolais, littérature RDC, Prix Dianzenza, manuscrit, auteur africain" />
   <meta name="author" content="Merveil Hakeem Dianzenza" />
   <link rel="canonical" href="https://hakvision243.netlify.app/" />
@@ -946,6 +946,7 @@
     .wa-float i { font-size: 1rem; }
 
   </style>
+  <link rel="stylesheet" href="site-polish.css">
 </head>
 <body>
 
@@ -966,7 +967,7 @@
         <span class="wordmark-sub">Maison d'édition · Paris</span>
       </a>
 
-      <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <button class="nav-burger" id="navBurger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="siteNav">
         <i class="fa-solid fa-bars"></i>
       </button>
 
@@ -985,57 +986,48 @@
 
   <!-- ══════════════ HÉRO ══════════════ -->
   <section class="hero" id="hero">
-    <div class="hero-top reveal">
-      <span class="hero-top-rule"></span>
-      Maison d'édition afrofuturiste &nbsp;·&nbsp; Paris
-      <span class="hero-top-rule"></span>
-    </div>
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <p class="hero-top reveal">
+          <span class="hero-top-rule"></span>
+          Maison d'édition afrofuturiste · Paris
+        </p>
+        <h1 class="hero-word reveal reveal-d1">Des récits<br><em>qui ouvrent des mondes.</em></h1>
+        <p class="hero-desc reveal reveal-d2">
+          Hakvision Éditions publie des romans, récits, biographies et essais qui interrogent l'histoire, les identités et les futurs africains. Fondée à Paris par <em>Merveil Hakeem Dianzenza</em>.
+        </p>
+        <div class="hero-tags reveal reveal-d2" aria-label="Genres publiés">
+          <span>Afrofuturisme</span>
+          <span>Romans</span>
+          <span>Biographies</span>
+          <span>Essais</span>
+        </div>
+        <div class="hero-ctas reveal reveal-d3">
+          <a class="btn-primary" href="catalogue.html">
+            <i class="fa-solid fa-book-open" style="font-size:.8rem;" aria-hidden="true"></i> Explorer le catalogue
+          </a>
+          <a class="btn-ghost" href="#soumettre">Proposer un manuscrit</a>
+        </div>
+      </div>
 
-    <h1 class="hero-word reveal reveal-d1">Hakvision</h1>
-
-    <div class="hero-tags reveal reveal-d2">
-      <span>Afrofuturisme</span>
-      <span>Roman</span>
-      <span>Biographie</span>
-      <span>Récit</span>
-      <span>Essai</span>
-    </div>
-
-    <!-- Éventail de couvertures -->
-    <div class="book-fan reveal reveal-d2">
-      <a class="book-fan-item" style="--fx:-2" href="papa-masambukidi.html">
-        <img src="papa_masambukidi_cover.jpg" alt="Papa Masambukidi" loading="eager">
-      </a>
-      <a class="book-fan-item" style="--fx:-1" href="un-ecrivain-kinshasa.html">
-        <img src="un_ecrivain_kinshasa_cover_2.jpg" alt="Un Écrivain à Kinshasa" loading="eager">
-      </a>
-      <a class="book-fan-item book-fan-center" style="--fx:0" href="la-suture.html">
-        <img src="la_suture_cover.jpg" alt="La Suture, nouveau roman de Merveil Hakeem Dianzenza" loading="eager">
-        <span class="book-fan-badge">Nouveau</span>
-      </a>
-      <a class="book-fan-item" style="--fx:1" href="katiopa.html">
-        <img src="katiopa_cover_hq.jpg" alt="KATIØPA : La Prophétie Noire" loading="eager">
-      </a>
-      <a class="book-fan-item" style="--fx:2" href="diaku.html">
-        <img src="diaku_cover.jpg" alt="DIAKU : L'Antidote Vivant" loading="eager">
-      </a>
-    </div>
-
-    <p class="hero-desc reveal reveal-d3">
-      Fondée à Paris par <em>Merveil Hakeem Dianzenza</em>, Le Roi de l'Afrofuturisme, Hakvision Éditions
-      publie des œuvres qui interrogent, révèlent et réinventent le continent africain.
-    </p>
-
-    <div class="hero-ctas reveal reveal-d3">
-      <a class="btn-primary" href="livres.html">
-        <i class="fa-solid fa-book-open" style="font-size:.8rem;"></i> Découvrir le catalogue
-      </a>
-      <a class="btn-ghost" href="la-suture.html">
-        La Suture, nouveau roman
-      </a>
-      <a class="btn-ghost" href="#soumettre">
-        Soumettre un manuscrit
-      </a>
+      <aside class="hero-feature reveal reveal-d2" aria-label="À la une : La Suture">
+        <a class="feature-cover" href="la-suture.html" aria-label="Découvrir La Suture">
+          <img src="la_suture_cover.jpg" alt="Couverture du roman La Suture" fetchpriority="high">
+        </a>
+        <div class="feature-copy">
+          <p class="feature-eyebrow">À la une · Roman</p>
+          <h2 class="feature-title">La Suture</h2>
+          <p class="feature-author">Merveil Hakeem Dianzenza</p>
+          <p class="feature-description">Un roman sur la violence faite aux femmes en temps de conflit et sur ce qui, malgré tout, refuse de céder.</p>
+          <a class="feature-link" href="la-suture.html">Découvrir le livre <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="feature-shelf" aria-label="Autres œuvres">
+          <a href="katiopa.html" aria-label="KATIØPA : La Prophétie Noire"><img src="katiopa_cover_hq.jpg" alt="" loading="lazy"></a>
+          <a href="un-ecrivain-kinshasa.html" aria-label="Un Écrivain à Kinshasa"><img src="un_ecrivain_kinshasa_cover_2.jpg" alt="" loading="lazy"></a>
+          <a href="papa-masambukidi.html" aria-label="Papa Masambukidi"><img src="papa_masambukidi_cover.jpg" alt="" loading="lazy"></a>
+          <span>Parcourir les œuvres Hakvision</span>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -1049,17 +1041,17 @@
         <div class="colophon-val">Paris</div>
         <div class="colophon-key">Siège éditorial</div>
       </div>
-      <div class="colophon-item reveal reveal-d1">
-        <div class="colophon-val">6</div>
-        <div class="colophon-key">Œuvres publiées</div>
+        <div class="colophon-item reveal reveal-d1">
+        <div class="colophon-val">Romans &amp; récits</div>
+        <div class="colophon-key">Littérature contemporaine</div>
       </div>
       <div class="colophon-item reveal reveal-d2">
-        <div class="colophon-val">2026</div>
-        <div class="colophon-key">Prix Dianzenza</div>
+        <div class="colophon-val">Dianzenza</div>
+        <div class="colophon-key">Prix littéraire</div>
       </div>
       <div class="colophon-item reveal reveal-d3">
-        <div class="colophon-val">RDC</div>
-        <div class="colophon-key">Ancrage identitaire</div>
+        <div class="colophon-val">Congo</div>
+        <div class="colophon-key">Ancrage culturel</div>
       </div>
     </div>
   </div>
@@ -1086,7 +1078,7 @@
           <p class="section-label">Catalogue</p>
           <h2 class="section-title">Nos <strong>publications</strong></h2>
           <div class="section-rule"></div>
-          <p class="section-lead">Six titres publiés, disponibles sur Amazon et Payhip. Des romans, des biographies, des essais qui redéfinissent la littérature africaine contemporaine.</p>
+          <p class="section-lead">Romans, récits, biographies et essais qui font dialoguer mémoire, identités et imaginaires africains contemporains.</p>
         </div>
         <a class="btn-ghost" href="catalogue.html" style="flex-shrink:0;">
           Catalogue complet <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i>
@@ -1456,10 +1448,18 @@
     const burger = document.getElementById('navBurger');
     const nav    = document.getElementById('siteNav');
     if (burger && nav) {
-      burger.addEventListener('click', () => nav.classList.toggle('open'));
+      const setMenuOpen = open => {
+        nav.classList.toggle('open', open);
+        burger.setAttribute('aria-expanded', String(open));
+        burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      };
+      burger.addEventListener('click', () => setMenuOpen(!nav.classList.contains('open')));
+      nav.addEventListener('click', e => {
+        if (e.target.closest('a')) setMenuOpen(false);
+      });
       document.addEventListener('click', e => {
         if (!burger.contains(e.target) && !nav.contains(e.target))
-          nav.classList.remove('open');
+          setMenuOpen(false);
       });
     }
 
