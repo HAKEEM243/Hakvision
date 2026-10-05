@@ -472,6 +472,8 @@ tr.clk{cursor:pointer}tr.clk:hover td{background:#ffffff08}
 .face.big{width:64px;height:76px;border-radius:12px}
 .stars{color:var(--gold);letter-spacing:1px;font-size:15px}
 .nav .wrap{grid-template-columns:repeat(auto-fit,minmax(0,1fr))}
+.rate{min-width:40px;text-align:center;padding:4px 6px;border-radius:8px;background:#ffffff14;font-family:"DM Mono",monospace}.rate.hi{background:#5ed08b33;color:#8ff0b0}.rate.lo{background:#e45b4f33;color:#ff9b90}
+.crow.small2>.pname,.crow.small2>.tclub{min-width:0;overflow:hidden}.crow.small2 .pname b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}.crow.small2 .pname>span{min-width:0}
 </style>
 <div id="app"></div>
 <div id="match" class="match" hidden></div>
@@ -6403,7 +6405,7 @@ function swapXI(k){const C=S.coach;const X=C[XK()];if(!C.sel){if(X.some(x=>x.k==
 function startCoachMatch(simulate){
   const fx=S.pending;if(!fx)return;const C=S.coach;C.subs=0;
   const xi=xiPlayers();const f=FORMS[C.formation];
-  const usStr=xiStrength(xi)+(C.morale-55)/20+(fx.isHome?1.5:0);
+  const usStr=xiStrength(xi)+(C.morale-55)/20+(fx.isHome?1.5:0)+trainMods().s;
   const oppStr=fx.opp.str+(fx.isHome||fx.neutral?0:1.5);
   const natM=["Q","T","F"].includes(fx.kind);const osq=natM?natSquad(fx.opp.id):clubSquad(fx.opp.id);const oppNames=osq.filter(p=>p.pos!=="GB").slice(0,14).map(p=>p.name);
   M={fx,coach:true,simulate,usStr,oppStr,enter:0,onPitch:false,min:0,us:0,them:0,feed:[],moments:[],teamGoals:[],oppGoals:[],added:RI(1,4),phase:"pre",rating:6,me:{g:0,a:0,key:0},
@@ -6414,7 +6416,7 @@ function startCoachMatch(simulate){
   matchEl.hidden=false;document.body.style.overflow="hidden";renderMatch();
 }
 function coachRates(){const C=S.coach;const f=FORMS[C.formation],mt=MENT[C.ment];const fat=M.min>60?avg(M.xi.map(p=>fitOf(p)))/100:1;
-  const d=M.usStr*(.96+.04*fat)-M.oppStr;return {lu:clamp(1.3*Math.pow(1.062,d),.15,3.2)*f.a*mt.a,lt:clamp(1.15*Math.pow(1.062,-d),.15,3.2)*f.d*mt.d};}
+  const d=M.usStr*(.96+.04*fat)-M.oppStr;const tm=trainMods();return {lu:clamp(1.3*Math.pow(1.062,d),.15,3.2)*f.a*mt.a*tm.a,lt:clamp(1.15*Math.pow(1.062,-d),.15,3.2)*f.d*mt.d*tm.d};}
 function coachRecalc(from){const {lu,lt}=coachRates();const rest=(90-from)/90;M.teamGoals=M.teamGoals.filter(m=>m<=from);M.oppGoals=M.oppGoals.filter(m=>m<=from);
   const used=new Set([...M.teamGoals,...M.oppGoals]);M.teamGoals.push(...pickMinutes(poisson(lu*rest),used,from+1,90));M.oppGoals.push(...pickMinutes(poisson(lt*rest),used,from+1,90));}
 function coachTeamGoal(ui){
@@ -6446,7 +6448,7 @@ function coachRenderPre(){
     <h2 class="h2" style="margin:6px 0 4px">${esc(fx.us.short)} <em>face à</em> ${esc(fx.opp.short)}</h2><p class="muted small" style="margin-bottom:12px">${fmtDate(fx.day)} · ${esc(fx.venue||"")}</p>
     <div class="ratings"><div><b>${Math.round(M.usStr)}</b><small>TON ONZE</small></div><div><b>${S.coach.formation}</b><small>SYSTÈME</small></div><div><b>${Math.round(M.oppStr)}</b><small>ADVERSAIRE</small></div></div></div>
     <div class="card"><span class="eyebrow">Ton onze de départ</span><div class="xi">${xi.map(p=>`<span>${esc(last(p.name))}<small>${p.ovr}</small></span>`).join("")}</div></div>
-    <div class="card"><span class="eyebrow">État d'esprit</span><div class="chips" style="margin-top:8px">${Object.entries(MENT).filter(([k])=>k!=="all").map(([k,m])=>`<button data-m="ment:${k}" class="${S.coach.ment===k?"on":""}">${m.n}</button>`).join("")}</div></div>`;
+    <div class="card"><span class="eyebrow">État d'esprit</span><div class="chips" style="margin-top:8px">${Object.entries(MENT).filter(([k])=>k!=="all").map(([k,m])=>`<button data-m="ment:${k}" class="${S.coach.ment===k?"on":""}">${m.n}</button>`).join("")}</div></div>${talkHtml(false)}`;
   setCtrl(`<button class="btn" data-m="quit">Retour</button><button class="btn gold" data-m="kick">Coup d'envoi</button>`);
 }
 function coachRenderHT(){
@@ -6454,7 +6456,7 @@ function coachRenderHT(){
     <div class="ratings"><div><b>${M.st.sh[0]}–${M.st.sh[1]}</b><small>TIRS</small></div><div><b>${M.st.on[0]}–${M.st.on[1]}</b><small>CADRÉS</small></div><div><b>${S.coach.subs}/5</b><small>CHANGEMENTS</small></div></div>
     <p class="small" style="margin-top:12px">Change l'état d'esprit ou fais entrer des joueurs frais avant la reprise.</p>
     <div class="mentrow" style="margin-top:10px">${Object.entries(MENT).map(([k,m])=>`<button class="btn sm ${S.coach.ment===k?"gold":""}" data-m="ment:${k}">${m.n}</button>`).join("")}</div>
-    <button class="btn block" style="margin-top:10px" data-m="subs">🔁 Faire un changement</button></div>`;
+    <button class="btn block" style="margin-top:10px" data-m="subs">🔁 Faire un changement</button></div>${talkHtml(true)}`;
   setCtrl(`<button class="btn gold" data-m="resume2">Seconde période</button>`);
 }
 function coachRenderFT(){
@@ -6463,12 +6465,12 @@ function coachRenderFT(){
     ${M.pensTxt?`<p class="gen" style="margin-bottom:8px">Tirs au but : ${M.pensTxt}</p>`:""}
     <h2 class="h2">${won?"Victoire":M.us===M.them&&M.pensWin==null?"Match nul":"Défaite"} <em>${M.fx.isHome?"contre":"face à"}</em> ${esc(M.fx.opp.short)}</h2>
     ${scorers.length?`<p class="small" style="margin-top:10px">⚽ ${esc(scorers.join(", "))}</p>`:""}</div>
-    <div class="card"><span class="eyebrow">Le film du match</span><div class="feed" style="margin-top:8px">${M.feed.slice(0,14).map(feedHtml).join("")}</div></div>`;
+    ${ratingsHtml()}<div class="card"><span class="eyebrow">Le film du match</span><div class="feed" style="margin-top:8px">${M.feed.slice(0,14).map(feedHtml).join("")}</div></div>`;
   setCtrl(`<button class="btn gold" data-m="done">Continuer</button>`);
   if(won&&M.fx.final&&!M.cele){M.cele=true;confetti();sfx("goal");}
 }
 function coachFinish(){
-  const fx=M.fx;const res={us:M.us,them:M.them,pensWin:M.pensWin==null?null:M.pensWin};const topK=Object.entries(M.goalsBy).sort((x,y)=>y[1]-x[1])[0];M_LASTXI=topK?([...M.xi].find(p=>pkey(p)===topK[0])||{}).name:(M.xi[9]||M.xi[0]).name;const xi=M.xi,used=M.used,gb=M.goalsBy,ab=M.assBy;closeMatch();
+  const fx=M.fx;const res={us:M.us,them:M.them,pensWin:M.pensWin==null?null:M.pensWin};const topK=Object.entries(M.goalsBy).sort((x,y)=>y[1]-x[1])[0];M_LASTXI=topK?([...M.xi].find(p=>pkey(p)===topK[0])||{}).name:(M.xi[9]||M.xi[0]).name;const xi=M.xi,used=M.used,gb=M.goalsBy,ab=M.assBy;const RT=computeRatings();closeMatch();
   const me=S.me,C=S.coach;const natM=["Q","T","F"].includes(fx.kind);const hg=fx.h===fx.us.id?res.us:res.them,ag=fx.h===fx.us.id?res.them:res.us;
   playDay(fx.day,{key:fx.key,hg,ag,pw:res.pensWin,me:fx.us.id});
   recordTeamResult(fx,{...res,played:false,rating:null,g:0,a:0});
@@ -6476,7 +6478,7 @@ function coachFinish(){
   /* stats des joueurs */
   const all=[...xi];used.forEach(k=>{const p=mySquad().find(x=>pkey(x)===k);if(p&&!all.some(x=>pkey(x)===k))all.push(p);});
   all.forEach(p=>{const k=pkey(p);const g=gb[k]||0,a=ab[k]||0;C.fit[k]=Math.max(30,fitOf(p)-RI(13,19));
-    if(p.pid!=null&&!natM){const st=S.w.ps[p.pid]||(S.w.ps[p.pid]=[0,0,0,0]);const r=clamp(6.3+(p.ovr-fx.us.str)/14+R(-.6,.7)+g*.9+a*.5+(won?.3:lost?-.3:0),4,10);st[0]++;st[1]+=g;st[2]+=a;st[3]+=r;
+    if(p.pid!=null&&!natM){const st=S.w.ps[p.pid]||(S.w.ps[p.pid]=[0,0,0,0]);const r=RT[k]||6.5;st[0]++;st[1]+=g;st[2]+=a;st[3]+=r;
       if(fx.kind==="L"){const m=S.w.mo[p.pid]||(S.w.mo[p.pid]=[0,0,0,0]);m[0]++;m[1]+=r;m[2]+=g;m[3]+=a;}}
     if(Math.random()<.025){C.inj[k]=RI(7,35);addMsg("Blessure",`${p.name} est blessé : environ ${Math.ceil(C.inj[k]/7)} semaine(s) d'absence.`,"club");}});
   me.car[won?"w":lost?"l":"d"]++;me.car.apps++;
@@ -6522,7 +6524,7 @@ function fireCoach(reason){const me=S.me;const c=me.club;addMsg("Tu es limogé",
   me.history.unshift({year:seasonLbl(S.w.year),club:TEAMS[c].name+" (limogé)",apps:me.results.length,g:0,a:0,avg:"–",caps:0,ovr:0});me.club=null;S.pending=null;S.pendingSel=null;me.happy=clamp(me.happy-15,0,100);me.rep=clamp(me.rep-5,0,100);STOP=true;}
 function coachAfterDay(d){
   const me=S.me,C=S.coach;const [m,dd]=mdOf(d);const Y=S.w.year;
-  if(dow(d)===1){weekly(d);if(C.nat){me.money+=C.nwage||0;me.car.earned+=C.nwage||0;}}
+  if(dow(d)===1){weekly(d);if(me.club)trainWeekly();if(C.nat){me.money+=C.nwage||0;me.car.earned+=C.nwage||0;}}
   if(!C.nat&&me.rep>=18&&((m===7&&dd===5)||(m===11&&dd===25)||(m===3&&dd===10))&&Math.random()<.55)natJobOffer();
   if(C.nat){const conf=NATIONS[C.nat].conf;const t=S.w.intl.tours.find(t=>t.built&&(t.conf===conf||t.conf==="ALL"));if(t&&!t.teams.includes(C.nat)&&C.natEval!==S.w.year){C.natEval=S.w.year;fireNat(`${NATIONS[C.nat].name} n'est pas qualifié pour la ${t.name}.`);}
     if(C.nat&&(C.nconf||60)<=10)fireNat("Les résultats de la sélection sont trop mauvais.");}
@@ -6538,7 +6540,7 @@ function coachAfterDay(d){
     if((m===12||m===5)&&dd===10&&me.rep>=30&&Math.random()<.35)coachJobOffer(tStr(me.club)+2);
   }else if(dd%6===0&&Math.random()<.5)coachJobOffer(50);
   if(me.club){const lg=S.w.lg[teamLeague(me.club)];if(lg&&lg.done&&!lg.awarded){lg.awarded=true;leagueAwards(teamLeague(me.club));}}
-  if(m===8&&dd===15)aiTransfers(20);if(m===1&&dd===25)aiTransfers(12);if(m===8&&dd===25)freeAgentsMove();
+  if(m===8&&dd===15)aiTransfers(20);if(m===1&&dd===25)aiTransfers(12);if(m===8&&dd===25)freeAgentsMove();if(m===3&&dd===15)youthIntake();
   if(me.club&&((m===1&&dd===5)||(m===4&&dd===1))){const exp=myReal().filter(p=>ctrOf(p).until<=Y+1);if(exp.length)addMsg("Contrats qui se terminent",`${exp.length} joueur(s) partiront libres en juin si tu ne prolonges pas : ${exp.slice(0,8).map(p=>p.name).join(", ")}${exp.length>8?"…":""}. Va dans Mercato → Mon effectif.`,"club");}
   const snap=S.w.snap;
   if(snap&&m===10&&dd===27)ceremony("Ballon d'Or",snap.bdo,"ballon_dor",0,null,0,30);
@@ -6588,7 +6590,7 @@ function coachMatchCard(){const fx=S.pending;
     ${nx?`<p class="small" style="margin:8px 0 12px">Prochain match : <b>${fmtDate(nx.d)}</b> · ${esc(nx.label)} · ${nx.h?esc(nx.nat?NATIONS[nx.h===natCode()?nx.a:nx.h].name:TEAMS[nx.h===S.me.club?nx.a:nx.h].name):esc(nx.tbd||"")}</p>`:`<p class="small" style="margin:8px 0 12px">${S.me.club?"Pas de match prévu.":"Attends les offres de clubs."}</p>`}
     <button class="btn gold block" data-act="advance">Avancer jusqu'au prochain événement ⏩</button></div>`;}
 function viewCoachHome(){const me=S.me;const inj=me.club?mySquad().filter(p=>injOf(p)):[];
-  return `<section class="view">${S.press?pressCard():""}${eventCard()}${coachActionMsgs()}${coachMatchCard()}${coachHero()}
+  return `<section class="view">${S.press?pressCard():""}${eventCard()}${coachActionMsgs()}${coachMatchCard()}${coachHero()}${me.club?trainCard():""}
   ${inj.length?`<div class="card"><span class="eyebrow">Infirmerie</span><div class="news" style="margin-top:8px">${inj.map(p=>`<div><span>🩹</span><p>${esc(p.name)} · ${Math.ceil(injOf(p)/7)} sem.</p></div>`).join("")}</div></div>`:""}
   ${me.social.length?`<div class="card"><span class="eyebrow">Les supporters</span><div class="social">${me.social.slice(0,4).map(p=>`<div class="post"><b>${esc(p.h)}</b><p>${esc(p.t)}</p><small>♥ ${p.l}</small></div>`).join("")}</div></div>`:""}
   <div class="card"><span class="eyebrow">Ton actualité</span><div class="news" style="margin-top:10px">${me.news.slice(0,6).map(n=>`<div><span>${fmtDate(n.d,false)}</span><p>${esc(n.t)}</p></div>`).join("")}</div></div></section>`;}
@@ -6596,6 +6598,7 @@ function coachActionMsgs(){const act=S.inbox.filter(m=>!m.done&&m.data);if(!act.
   return `<div class="card evt"><span class="eyebrow">À traiter</span>${act.slice(0,4).map(m=>`<div class="msgrow"><div><b>${esc(m.title)}</b><small>${esc(m.text)}</small></div><div style="display:grid;gap:4px">${msgButtons(m)}</div></div>`).join("")}</div>`;}
 function msgButtons(m){
   if(m.kind==="bid")return `<button class="btn sm gold" data-bid="${m.id}:yes">Vendre</button><button class="btn sm" data-bid="${m.id}:counter">+20 %</button><button class="btn sm" data-bid="${m.id}:no">Refuser</button>`;
+  if(m.kind==="youth")return `<button class="btn sm gold" data-youth="1">Voir les jeunes</button>`;
   if(m.kind==="njob")return `<button class="btn sm gold" data-njob="${m.id}">Accepter</button><button class="btn sm" data-decline="${m.id}">Refuser</button>`;
   if(m.kind==="job")return `<button class="btn sm gold" data-job="${m.id}">Accepter</button><button class="btn sm" data-decline="${m.id}">Refuser</button>`;
   if(m.kind==="crenew")return `<button class="btn sm gold" data-crenew="${m.id}">Prolonger</button><button class="btn sm" data-decline="${m.id}">Refuser</button>`;
@@ -6860,6 +6863,52 @@ function coachEditorCards(){const me=S.me;const mine=me.club?clubReal(me.club).s
 function cpAction(a){const [k,v]=a.split(":");const n=document.getElementById("cpName");if(n)CP.name=n.value;
   if(k==="pos")CP.pos=v;if(k==="age")CP.age=clamp(CP.age+ +v,15,38);if(k==="ovr")CP.ovr=clamp(CP.ovr+ +v,40,95);if(k==="dest")CP.dest=v;const y=window.scrollY;render();window.scrollTo(0,y);}
 
+/* =================== FONCTIONS « FOOTBALL MANAGER » POUR LE COACH =================== */
+function computeRatings(){if(M.rt)return M.rt;const won=M.us>M.them||M.pensWin===true,lost=M.us<M.them||M.pensWin===false;const rt={};
+  const all=[...M.xi];M.used.forEach(k=>{const p=mySquad().find(x=>pkey(x)===k);if(p&&!all.some(x=>pkey(x)===k))all.push(p);});
+  all.forEach(p=>{const k=pkey(p);const g=M.goalsBy[k]||0,a=M.assBy[k]||0;const def=["GB","DC","LAT"].includes(p.pos);
+    rt[k]=Math.round(clamp(6.4+(p.ovr-M.oppStr)/22+R(-.7,.8)+g*.95+a*.55+(won?.3:lost?-.3:0)+(def?(M.them===0?.6:-M.them*.18):0),4,10)*10)/10;});
+  return M.rt=rt;}
+function ratingsHtml(){const rt=computeRatings();const rows=Object.entries(rt).map(([k,r])=>{const p=[...M.xi,...mySquad()].find(x=>pkey(x)===k);return p?{p,r,g:M.goalsBy[k]||0,a:M.assBy[k]||0}:null;}).filter(Boolean).sort((a,b)=>b.r-a.r);
+  return `<div class="card"><span class="eyebrow">Notes des joueurs</span><div class="calx">${rows.map((x,i)=>`<div class="crow small2"><span class="pname">${facePlayer(x.p.name,x.p.pid!=null?PL[x.p.pid].nat:"")}<span><b>${esc(x.p.name)}${i===0?" ⭐ Homme du match":""}</b><br><small class="muted">${esc(POS[x.p.pos].name)}${x.g?` · ⚽×${x.g}`:""}${x.a?` · 🅰️×${x.a}`:""}</small></span></span><b class="rate ${x.r>=7.5?"hi":x.r<6?"lo":""}">${x.r.toFixed(1)}</b></div>`).join("")}</div></div>`;}
+const TALKS_PRE=[["demand","Exiger la victoire"],["nopress","Pas de pression"],["motiv","Motiver le groupe"],["calm","Rester concentrés"]];
+const TALKS_HT=[["praise","Féliciter"],["shake","Secouer le groupe"],["calm","Rester calmes"],["believe","On peut le faire !"]];
+function teamTalk(k,ht){if(M.talked&&M.talked[ht?1:0])return;M.talked=M.talked||[];M.talked[ht?1:0]=true;const C=S.coach;
+  const fav=M.usStr-M.oppStr;const diff=M.us-M.them;let d=0,txt="";
+  if(!ht){if(k==="demand"){d=fav>2?4:fav<-3?-4:1;}if(k==="nopress"){d=fav<-2?4:fav>3?-2:1;}if(k==="motiv"){d=R(0,4)|0;}if(k==="calm"){d=1;}}
+  else{if(k==="praise"){d=diff>0?3:diff<0?-3:0;}if(k==="shake"){d=diff<0?(Math.random()<.65?4:-3):diff>0?-3:1;}if(k==="calm"){d=diff>0?2:1;}if(k==="believe"){d=diff<0?3:diff===0?2:0;}}
+  C.morale=clamp(C.morale+d,20,95);M.usStr+=d*.18;coachRecalc(M.min);
+  txt=d>=3?"Les joueurs sont gonflés à bloc ! 🔥":d>=1?"Les joueurs semblent réceptifs.":d===0?"Peu de réaction dans le vestiaire.":"Les joueurs paraissent nerveux… 😬";
+  say(`Causerie : « ${(ht?TALKS_HT:TALKS_PRE).find(x=>x[0]===k)[1]} ». ${txt}`,"key");toast(txt);if(ht)coachRenderHT();else coachRenderPre();}
+function talkHtml(ht){const done=M.talked&&M.talked[ht?1:0];return `<div class="card"><span class="eyebrow">${ht?"Causerie de la mi-temps":"Causerie d'avant-match"}</span>${done?`<p class="small" style="margin-top:6px">${esc((M.feed.find(f=>f.t.startsWith("Causerie"))||{}).t||"Causerie faite.")}</p>`:`<div class="mentrow" style="margin-top:8px">${(ht?TALKS_HT:TALKS_PRE).map(([k,l])=>`<button class="btn sm" data-m="talk:${k}:${ht?1:0}">${l}</button>`).join("")}</div>`}</div>`;}
+/* entraînement */
+const TRAIN={phys:["Physique","Récupération +, forme des joueurs"],tact:["Tactique","+ cohésion en match"],att:["Attaque","Plus de buts marqués"],def:["Défense","Moins de buts encaissés"],youth:["Jeunes","Les moins de 22 ans progressent plus vite"]};
+function trainWeekly(){const C=S.coach;const t=C.train||"tact";
+  if(t==="phys")Object.keys(C.fit).forEach(k=>C.fit[k]=Math.min(100,C.fit[k]+8));
+  if(t==="youth"&&S.me.club)clubReal(S.me.club).forEach(p=>{if(pAge(p)<=21&&Math.random()<.22){S.w.po[p.id]=Math.min(95,pOvr(p)+1);}});
+  if(t==="youth")Object.keys(SQC).forEach(k=>delete SQC[k]);}
+function trainMods(){const t=S.coach.train||"tact";return {s:t==="tact"?.6:0,a:t==="att"?1.08:1,d:t==="def"?.92:1};}
+function trainCard(){const C=S.coach;const t=C.train||"tact";return `<div class="card"><span class="eyebrow">Entraînement de la semaine</span><div class="chips" style="margin-top:8px">${Object.entries(TRAIN).map(([k,[l]])=>`<button data-train2="${k}" class="${t===k?"on":""}">${l}</button>`).join("")}</div><p class="muted small" style="margin-top:6px">${esc(TRAIN[t][1])}</p></div>`;}
+/* centre de formation */
+function youthIntake(){const me=S.me;if(!me.club)return;const c=TEAMS[me.club];const pool=poolOfCountry(c.country);const base=tStr(me.club)-24;
+  const kids=Array.from({length:RI(3,5)},()=>{const pos=pick(["GB","DC","DC","LAT","MDC","MC","MOC","AIL","AIL","BU","BU"]);const o=clamp(Math.round(base+R(-4,8)),40,75);return {name:genName(pool),pos,ovr:o,age:RI(15,17),pot:clamp(o+RI(8,24),50,94),nat:c.country};});
+  S.coach.yth=kids;addMsg("Nouvelle génération du centre de formation",`Ton centre de formation présente ${kids.length} jeunes talents. Le meilleur potentiel : ${kids.slice().sort((a,b)=>b.pot-a.pot)[0].name}.`,"youth",{y:1});STOP=true;}
+function youthView(){const k=S.coach.yth||[];const st=v=>"★".repeat(Math.round(clamp((v-45)/10,1,5)));
+  openModal(`<span class="eyebrow">Centre de formation · ${esc(TEAMS[S.me.club].name)}</span><h2 class="h2">Nouvelle <em>génération</em></h2>
+    <div class="calx" style="margin-top:10px">${k.map((y,i)=>`<div class="crow small2"><span class="pname">${faceImg(faceIdx(y.name,poolOfCountry(y.nat)),"sm")}<span><b>${esc(y.name)}</b><br><small class="muted">${esc(POS[y.pos].name)} · ${y.age} ans · GEN ${y.ovr} · potentiel <span class="stars">${st(y.pot)}</span></small></span></span>${y.signed?'<span class="status on">Signé</span>':`<button class="btn sm gold" data-ysign="${i}">Signer</button>`}</div>`).join("")||'<p class="muted small">Aucun jeune pour le moment.</p>'}</div>
+    <button class="btn block" style="margin-top:12px" data-close>Fermer</button>`);}
+function signYouth(i){const y=S.coach.yth[i];if(!y||y.signed)return;y.signed=true;const id=PL.length;const c={id,name:y.name,pos:y.pos,ovr:y.ovr,by:S.w.year-y.age,nat:NATIONS[y.nat]?y.nat:"fra"};S.w.custom=S.w.custom||[];S.w.custom.push(c);PL.push({...c,team0:null,custom:true});
+  S.w.po[id]=y.ovr;S.w.pc[id]=S.me.club;S.w.ctr=S.w.ctr||{};S.w.ctr[id]={wage:Math.round(youthWage(S.me.club)/10)*10,until:S.w.year+3};S.w.ypot=S.w.ypot||{};S.w.ypot[id]=y.pot;refreshSquads();addNews(`${y.name} (${y.age} ans) signe son premier contrat avec ${TEAMS[S.me.club].name}.`);save();youthView();render();}
+/* événements du vestiaire */
+Object.assign(EVENTS,{
+  cPlaytime:{tag:"Vestiaire",valid:()=>isCoach()&&!!S.me.club,make:()=>{const b=benchPlayers().filter(p=>p.pid!=null&&p.ovr>=tStr(S.me.club)-6);return b.length?{p:pick(b).name}:null;},title:d=>`${d.p} veut plus de temps de jeu`,text:d=>`${d.p} frappe à la porte de ton bureau : « Coach, je mérite de jouer plus. Sinon, je préfère partir. »`,
+    choices:d=>[{l:"Lui promettre plus de minutes",h:"Moral +, il faudra tenir parole",f(){S.coach.morale=clamp(S.coach.morale+3,20,95);return `${d.p} repart motivé. Il attend des actes.`;}},{l:"« Montre-le à l'entraînement »",h:"Neutre",f(){return `${d.p} accepte, mais reste frustré.`;}},{l:"Le mettre sur la liste des transferts",h:"Moral −2",f(){const p=PL.find(x=>x.name===d.p);if(p){S.coach.listed=S.coach.listed||{};S.coach.listed[p.id]=1;}S.coach.morale=clamp(S.coach.morale-2,20,95);return `${d.p} est placé sur la liste des transferts.`;}}]},
+  cContract:{tag:"Vestiaire",valid:()=>isCoach()&&!!S.me.club,make:()=>{const r=clubReal(S.me.club).filter(p=>{const c=ctrOf(p);return c.until<=S.w.year+2&&pOvr(p)>=tStr(S.me.club)-2;});return r.length?{p:pick(r).id}:null;},title:d=>`L'agent de ${PL[d.p].name} t'appelle`,text:d=>`${PL[d.p].name} veut une revalorisation de contrat. Son agent menace d'écouter les offres.`,
+    choices:d=>[{l:"Ouvrir les négociations",h:"Négociation de contrat",f(){setTimeout(()=>playerNegotiation(d.p,{renew:true}),50);return `Tu reçois l'agent de ${PL[d.p].name}.`;}},{l:"Refuser pour l'instant",h:"Moral −3",f(){S.coach.morale=clamp(S.coach.morale-3,20,95);return `${PL[d.p].name} est contrarié.`;}}]},
+  cCaptain:{tag:"Vestiaire",valid:()=>isCoach()&&!!S.me.club,make:()=>({p:xiPlayers().slice().sort((a,b)=>b.ovr-a.ovr)[0].name}),title:()=>"Le vestiaire se divise",text:d=>`Deux clans se forment dans le vestiaire. ${d.p}, le leader du groupe, te demande d'intervenir.`,
+    choices:d=>[{l:"Réunion d'équipe",h:"Moral +4",f(){S.coach.morale=clamp(S.coach.morale+4,20,95);return "La réunion apaise les tensions.";}},{l:"Laisser les cadres régler ça",h:"Risqué",f(){const ok=Math.random()<.5;S.coach.morale=clamp(S.coach.morale+(ok?3:-5),20,95);return ok?`${d.p} reprend le groupe en main.`:"Les tensions empirent.";}}]},
+});
+
 /* =================== CONFÉRENCES DE PRESSE GÉNÉRÉES =================== */
 const OUTLETS={fra:["L'Équipe","RMC Sport","Foot Mercato","Le Parisien","Canal+"],eng:["BBC Sport","Sky Sports","The Athletic","The Guardian"],esp:["Marca","AS","Mundo Deportivo"],ita:["La Gazzetta dello Sport","Corriere dello Sport","Sky Italia"],ger:["Kicker","Bild","Sport1"],
   cod:["Radio Okapi","Top Congo FM","Foot RDC","Le Phare"],mar:["Le360 Sport","Al Mountakhab","Hespress Sport"],egy:["Al Ahram","FilGoal","KingFut"],rsa:["Kick Off","SuperSport","Soccer Laduma"],
@@ -7078,6 +7127,7 @@ matchEl.addEventListener("click",ev=>{
   if(a==="quit"){closeMatch();return;}
   if(a==="kick"&&M.coach){M.phase="live";renderMatch();sfx("whistle");say(`Coup d'envoi ! ${M.fx.us.short} en ${S.coach.formation}, état d'esprit ${MENT[S.coach.ment].n.toLowerCase()}.`);resume();return;}
   if(a.startsWith("ment:")){coachSetMent(a.slice(5));return;}
+  if(a.startsWith("talk:")){const [,k,h]=a.split(":");teamTalk(k,h==="1");return;}
   if(a==="subs"){coachSubs();return;}
   if(a==="kick"){M.phase="live";renderMatch();sfx("whistle");say(M.onPitch?`Coup d'envoi ! ${S.me.name} est titulaire.`:`Coup d'envoi. ${S.me.name} commence sur le banc.`);resume();return;}
   if(a==="speed"){M.fast=!M.fast;b.textContent=M.fast?"Vitesse ×1":"Accélérer ×3";return;}
@@ -7922,7 +7972,7 @@ function viewMercato(){
   </section>`;
 }
 /* ----- MESSAGES ----- */
-const MSG_IC={njob:"🌍",bid:"💰",job:"📋",crenew:"✍️",offer:"💼",renew:"✍️",promo:"⭐",transfer:"🔁",intl:"🌍",award:"🏅",club:"🏟️",info:"ℹ️"};
+const MSG_IC={youth:"🌱",njob:"🌍",bid:"💰",job:"📋",crenew:"✍️",offer:"💼",renew:"✍️",promo:"⭐",transfer:"🔁",intl:"🌍",award:"🏅",club:"🏟️",info:"ℹ️"};
 function viewInbox(){
   return `<section class="view"><div class="card"><div class="between"><span class="eyebrow">Messages</span><button class="btn sm" data-act="readall">Tout marquer lu</button></div>
     <div class="inbox">${S.inbox.map(m=>`<div class="msg ${m.read?"":"unread"} ${!m.done&&m.data?"todo":""}"><span class="ic">${MSG_IC[m.kind]||"✉️"}</span><div><small>${fmtDate(m.d,false)}</small><b>${esc(m.title)}</b><p>${esc(m.text)}</p>
@@ -8045,6 +8095,9 @@ document.addEventListener("click",e=>{
   if(d.mkg!=null){MKF.g=d.mkg;render();return;}
   if(d.pcard){openPlayerCard(+d.pcard);return;}
   if(d.cp){cpAction(d.cp);return;}
+  if(d.train2){S.coach.train=d.train2;save();render();return;}
+  if(d.youth){const mm=S.inbox.find(x=>x.kind==="youth"&&!x.done);if(mm){mm.done=true;mm.read=true;}youthView();return;}
+  if(d.ysign!=null){signYouth(+d.ysign);return;}
   if(d.boost){const [id,v]=d.boost.split(":");boostPlayer(+id,+v);return;}
   if(d.act==="cpcreate"){createPlayer();return;}
   if(d.call!=null){toggleCall(d.call);return;}
