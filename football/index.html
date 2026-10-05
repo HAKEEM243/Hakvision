@@ -6430,7 +6430,7 @@ function startCoachMatch(simulate){
   M={fx,coach:true,simulate,usStr,oppStr,enter:0,onPitch:false,min:0,us:0,them:0,feed:[],moments:[],teamGoals:[],oppGoals:[],added:RI(1,4),phase:"pre",rating:6,me:{g:0,a:0,key:0},
     mates:xi.filter(p=>p.pos!=="GB").map(p=>p.name),oppNames,xi:xi.map(p=>({...p})),used:[],goalsBy:{},assBy:{},
     st:{sh:[0,0],on:[0,0],poss:[0,0]},pf:0,subOut:null,subCheck:999,ht:false,paused:true,timer:null,fast:false};
-  coachRecalc(0);
+  coachRecalc(0);M.cmom=simulate?[]:pickMinutes(RI(1,2),new Set([...M.teamGoals,...M.oppGoals]),18,84);
   if(simulate){for(let m=1;m<=90+M.added;m++){M.min=m;stepMinute(m,false);}M.min=90+M.added;if(fx.ko&&M.us===M.them)resolvePens(null);M.phase="ft";}
   matchEl.hidden=false;document.body.style.overflow="hidden";renderMatch();
 }
@@ -6928,6 +6928,26 @@ Object.assign(EVENTS,{
   cCaptain:{tag:"Vestiaire",valid:()=>isCoach()&&!!S.me.club,make:()=>({p:xiPlayers().slice().sort((a,b)=>b.ovr-a.ovr)[0].name}),title:()=>"Le vestiaire se divise",text:d=>`Deux clans se forment dans le vestiaire. ${d.p}, le leader du groupe, te demande d'intervenir.`,
     choices:d=>[{l:"Réunion d'équipe",h:"Moral +4",f(){S.coach.morale=clamp(S.coach.morale+4,20,95);return "La réunion apaise les tensions.";}},{l:"Laisser les cadres régler ça",h:"Risqué",f(){const ok=Math.random()<.5;S.coach.morale=clamp(S.coach.morale+(ok?3:-5),20,95);return ok?`${d.p} reprend le groupe en main.`:"Les tensions empirent.";}}]},
 });
+/* ----- décisions du coach pendant le match ----- */
+let CM=null;
+function openCoachMoment(){if(!M)return;const kinds=["penalty","redOpp","injury","pressure","tactic","lead"];let k=pick(kinds);if(k==="lead"&&M.us<=M.them)k="pressure";
+  const xi=M.xi.filter(p=>p.pos!=="GB");const takers=[...xi].sort((a,b)=>(GOAL_W[b.pos]||.5)*b.ovr-(GOAL_W[a.pos]||.5)*a.ovr).slice(0,3);const victim=pick(xi);const O=M.fx.opp.short,U=M.fx.us.short;
+  const D={penalty:{t:`PENALTY POUR ${U} !`,d:"La faute est sifflée dans la surface. Qui tire ?",o:takers.map(p=>[`${p.name} (GEN ${p.ovr})`,p])},
+    redOpp:{t:`CARTON ROUGE POUR ${O} !`,d:`${last(pick(M.oppNames||[O]))} est expulsé. L'adversaire est à 10.`,o:[["Passer à l'offensive","off"],["Garder le même plan","keep"]]},
+    injury:{t:`${victim.name.toUpperCase()} EST BLESSÉ`,d:"Le kiné fait signe : il ne peut pas continuer.",o:[["Faire entrer un remplaçant","sub"]],victim},
+    pressure:{t:`${O} POUSSE FORT`,d:"Ton équipe recule et subit. Que fais-tu ?",o:[["Défendre bas et serrer les lignes","def"],["Lancer les contre-attaques","counter"],["Faire un changement","sub"]]},
+    tactic:{t:`${O} CHANGE DE SYSTÈME`,d:"L'adversaire passe à trois défenseurs centraux et attaque par les ailes.",o:[["Adapter ton milieu","adapt"],["Garder ton système","keep"],["Presser plus haut","press"]]},
+    lead:{t:"TU MÈNES AU SCORE",d:`${U} mène ${M.us}-${M.them}. Comment gérer la fin de match ?`,o:[["Gérer et garder le ballon","manage"],["Tuer le match, chercher le but","kill"],["Fermer la boutique","def"]]}}[k];
+  CM={k,...D};document.getElementById("mInner").innerHTML=`<div class="card evt cmom"><span class="eyebrow">Décision du coach · ${M.min}'</span><h2 class="h2">${esc(D.t)}</h2><p class="small" style="margin:8px 0 12px">${esc(D.d)}</p>
+    <div class="evc">${D.o.map((o,i)=>`<button data-m="cm:${i}"><b>${esc(o[0])}</b></button>`).join("")}</div></div>`;setCtrl(`<span class="info">À toi de décider…</span>`);sfx("whistle");}
+function coachMomentChoose(i){if(!CM||!M)return;const c=CM;CM=null;const opt=c.o[i][1];let msg="";const C=S.coach;
+  if(c.k==="penalty"){const p=opt;const ok=Math.random()<clamp(.66+(p.ovr-72)/90,.5,.9);M.st.sh[0]++;if(ok){M.us++;M.st.on[0]++;M.goalsBy[pkey(p)]=(M.goalsBy[pkey(p)]||0)+1;say(`BUT ! ${p.name} transforme le penalty !`,"goal");sfx("goal");if(M.lp)M.lp.reset=true;flashGoal("us");updateSB();msg=`${p.name} ne tremble pas !`;}else{say(`${p.name} rate son penalty !`);sfx("ooh");msg="Raté… le gardien a deviné.";}}
+  if(c.k==="redOpp"){M.oppStr-=opt==="off"?3:4;if(opt==="off")C.ment="off";msg=opt==="off"?"Tes joueurs se ruent à l'attaque !":"Ton équipe garde son calme.";say(`Carton rouge pour ${M.fx.opp.short} ! ${msg}`,"key");}
+  if(c.k==="injury"){C.inj[pkey(c.victim)]=RI(7,28);say(`${c.victim.name} sort sur blessure.`,"key");msg="Choisis son remplaçant.";}
+  if(c.k==="pressure"){if(opt==="def"){C.ment="def";msg="Le bloc descend, ça tient.";}if(opt==="counter"){M.usStr+=.8;msg="Les contres deviennent dangereux !";}say(`Consigne : ${c.o[i][0].toLowerCase()}.`,"key");}
+  if(c.k==="tactic"){if(opt==="adapt"){M.usStr+=1.2;msg="Bonne lecture du jeu, ton équipe reprend le contrôle.";}if(opt==="keep"){M.usStr-=.4;msg="L'adversaire trouve des espaces sur les ailes.";}if(opt==="press"){M.usStr+=.6;C.fit&&M.xi.forEach(p=>C.fit[pkey(p)]=Math.max(30,fitOf(p)-4));msg="Le pressing étouffe l'adversaire, mais fatigue tes joueurs.";}say(`Ajustement tactique : ${c.o[i][0].toLowerCase()}.`,"key");}
+  if(c.k==="lead"){if(opt==="manage"){C.ment="bal";M.usStr+=.4;}if(opt==="kill")C.ment="off";if(opt==="def")C.ment="def";msg=`Consigne : ${c.o[i][0].toLowerCase()}.`;say(msg,"key");}
+  coachRecalc(M.min);toast(msg);renderLive();if(c.k==="injury"||opt==="sub"){setTimeout(()=>coachSubs(),200);}else resume();}
 
 /* =================== CONFÉRENCES DE PRESSE GÉNÉRÉES =================== */
 const OUTLETS={fra:["L'Équipe","RMC Sport","Foot Mercato","Le Parisien","Canal+"],eng:["BBC Sport","Sky Sports","The Athletic","The Guardian"],esp:["Marca","AS","Mundo Deportivo"],ita:["La Gazzetta dello Sport","Corriere dello Sport","Sky Italia"],ger:["Kicker","Bild","Sport1"],
@@ -7147,6 +7167,7 @@ matchEl.addEventListener("click",ev=>{
   if(a==="quit"){closeMatch();return;}
   if(a==="kick"&&M.coach){M.phase="live";renderMatch();atmoIntro();crowdStart();sfx("whistle");say(`Coup d'envoi ! ${M.fx.us.short} en ${S.coach.formation}, état d'esprit ${MENT[S.coach.ment].n.toLowerCase()}.`);resume();return;}
   if(a.startsWith("ment:")){coachSetMent(a.slice(5));return;}
+  if(a.startsWith("cm:")){coachMomentChoose(+a.slice(3));return;}
   if(a.startsWith("talk:")){const [,k,h]=a.split(":");teamTalk(k,h==="1");return;}
   if(a==="subs"){coachSubs();return;}
   if(a==="kick"){M.phase="live";renderMatch();atmoIntro();crowdStart();sfx("whistle");say(M.onPitch?`Coup d'envoi ! ${S.me.name} est titulaire.`:`Coup d'envoi. ${S.me.name} commence sur le banc.`);resume();return;}
@@ -7161,6 +7182,7 @@ function tick(){
   if(!M||M.paused)return;M.min++;const m=M.min;
   if(!M.onPitch&&M.enter&&m===M.enter&&M.subOut==null){M.onPitch=true;say(`Entrée en jeu de ${S.me.name} !`,"key");}
   updateSB();
+  if(M.coach&&M.cmom&&M.cmom.includes(m)){M.cmom=M.cmom.filter(x=>x!==m);pause();M.timer=setTimeout(openCoachMoment,M.fast?200:600);return;}
   const ev=stepMinute(m,true);
   if(ev==="moment"){pause();say(`Temps fort ! Le ballon arrive dans les pieds de ${S.me.name}…`,"key");M.timer=setTimeout(pickMoment,M.fast?250:700);return;}
   if(ev==="pen"){pause();sfx("whistle");say(`Faute dans la surface sur ${S.me.name} ! PENALTY !`,"key");M.timer=setTimeout(openPenalty,M.fast?250:900);return;}
