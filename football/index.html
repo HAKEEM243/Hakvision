@@ -591,6 +591,59 @@ body{background:
 .stadium.tv .gbanner{top:52%}
 #cine canvas{position:absolute;inset:0;width:100%!important;height:100%!important;display:block}
 .stadium.tv .gbanner{top:auto;bottom:7%;padding:4px 20px;border-width:2px}.stadium.tv .gbanner b{font-size:24px}
+/* ===== accueil coach FM mobile ===== */
+.fmhome{gap:12px}
+.fmcard{position:relative;padding:14px 14px 14px 16px;background:linear-gradient(160deg,#171c2a,#0d1018);box-shadow:inset 3px 0 0 var(--gold);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.fmban{position:relative;overflow:hidden;background:linear-gradient(120deg,var(--k1),#0b0e16 78%);padding:0;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%)}
+.fmban:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,#ffffff0a 0 2px,transparent 2px 10px),linear-gradient(180deg,transparent 40%,#000a)}
+.fmban:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--k2)}
+.fmban-top{position:relative;display:flex;align-items:center;gap:12px;padding:16px 16px 10px}
+.fmban-top .crest{width:64px;height:64px;flex:none;filter:drop-shadow(0 4px 10px #0009)}
+.fmnoclub{font-size:44px}
+.fmban-t{min-width:0;flex:1}.fmban-t small{font:600 11px var(--font-mono);letter-spacing:.14em;text-transform:uppercase;color:#fffc}
+.fmban-t h2{margin:2px 0 4px;font:italic 900 28px/.95 var(--font-display);text-transform:uppercase;color:#fff;overflow-wrap:anywhere}
+.fmban-m{display:flex;align-items:center;gap:6px;font:600 12px var(--font-mono);color:#fffd}
+.fmban-r{text-align:right;color:#fff}.fmban-r b{font:italic 900 40px/1 var(--font-display)}.fmban-r sup{font-size:16px}.fmban-r small{display:block;font:600 11px var(--font-mono);opacity:.8}
+.fmban-bar{position:relative;display:flex;justify-content:space-between;gap:8px;padding:8px 16px 12px;font:600 11.5px var(--font-mono);color:#fffd;background:#0006}
+.fmban-bar .ok{color:#7ff0b0}.fmban-bar .mid{color:#ffd23f}.fmban-bar .bad{color:#ff8d95}
+.fmvs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;text-align:center;margin:12px 0}
+.fmvs>div:not(.fmvs-m){display:grid;justify-items:center;gap:6px}.fmvs b{font:italic 800 17px var(--font-display);text-transform:uppercase}
+.fmvs .crest{width:58px;height:58px}
+.fmvs-m{display:grid;gap:2px;font:600 11px var(--font-mono);color:var(--muted)}.fmvs-m em{font:italic 900 30px var(--font-display);color:var(--gold);font-style:italic}.fmvs-m small{font-size:10px;max-width:120px}
+.fmcmp{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px}.fmcmp span{display:grid;text-align:center}.fmcmp small{font:600 9.5px var(--font-mono);color:var(--muted);text-transform:uppercase}.fmcmp b{font:italic 900 22px var(--font-display);color:#fff}
+.fmbar{height:8px;background:#ff3b4866;overflow:hidden;transform:skewX(-20deg)}.fmbar i{display:block;height:100%;background:var(--gold)}
+.fmmini{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font:600 11.5px var(--font-mono);color:#cfd5e6;gap:8px}
+.fmform{display:inline-flex;gap:3px;vertical-align:middle}.fmform i{width:18px;height:18px;display:grid;place-items:center;font:800 10px var(--font-mono);font-style:normal;color:#06070b;background:#ffffff22;clip-path:polygon(3px 0,100% 0,calc(100% - 3px) 100%,0 100%)}
+.fmform i.V{background:#3ddc84}.fmform i.N{background:#c9cdd8}.fmform i.D{background:#ff4d5a}
+.fmnx{margin:8px 0 6px;font-size:15px}.fmnx small{color:var(--muted)}
+.fmgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.fmtile{position:relative;display:grid;justify-items:start;align-content:space-between;gap:2px;min-height:96px;padding:12px 10px 10px;border:0;text-align:left;color:var(--text);background:linear-gradient(160deg,#1a2030,#0e1119);clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);box-shadow:inset 0 -3px 0 #ffffff10}
+.fmtile:active{transform:scale(.97);background:#232b40}
+.fmtile .fmico{position:relative;color:var(--gold);margin-bottom:6px}
+.fmtile b{font:italic 800 15px/1 var(--font-display);text-transform:uppercase;color:#fff;letter-spacing:.02em}
+.fmtile small{font:500 10.5px var(--font-mono);color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.fmbadge{position:absolute;top:-6px;left:22px;min-width:17px;height:17px;padding:0 4px;display:grid;place-items:center;background:var(--red);color:#fff;font:800 10px var(--font-mono);font-style:normal;border-radius:9px}
+.fmtbl{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}.fmtbl th{font:600 10px var(--font-mono);color:var(--muted);text-align:center;padding:2px 4px}.fmtbl th:nth-child(2){text-align:left}
+.fmtbl td{padding:7px 4px;text-align:center;border-top:1px solid #ffffff0d}.fmtbl td:nth-child(2){text-align:left;white-space:nowrap}.fmtbl td .crest{width:18px;height:18px;vertical-align:middle}
+.fmtbl tr.me td{background:#ffd23f1c;color:#fff;font-weight:700}
+.fmmsg{display:flex;gap:10px;width:100%;padding:9px 0;border:0;border-top:1px solid #ffffff0d;background:none;text-align:left;color:var(--text)}
+.fmmsg i{flex:none;width:8px;height:8px;margin-top:6px;border-radius:50%;background:transparent}.fmmsg.un i{background:var(--gold)}
+.fmmsg span{display:grid;gap:2px;min-width:0}.fmmsg b{font-size:13.5px;color:#fff}.fmmsg small{color:var(--muted);font-size:12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fmkp{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid #ffffff0d}.fmkp b{flex:1;font-size:13.5px;font-weight:600;color:#fff}
+.fmpos{width:34px;text-align:center;padding:3px 0;font:700 10px var(--font-mono);background:#2f8bff33;color:#8cc0ff}
+.fmovr{min-width:30px;text-align:center;padding:3px 4px;font:800 13px var(--font-mono);background:var(--gold);color:#120d00;clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%)}
+.fmkp em{font-style:normal;font-size:11px;color:#ff9aa1}
+.fmopt{display:grid;gap:2px;width:100%;text-align:left;margin-bottom:8px;padding:12px 14px;border:0;background:#ffffff0c;color:#fff;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%)}
+.fmopt b{font:italic 800 17px var(--font-display);text-transform:uppercase}.fmopt small{color:var(--muted);font-size:12px}.fmopt.on{background:var(--gold);color:#120d00}.fmopt.on small{color:#120d00b0}
+.fmcont{position:fixed;left:0;right:0;bottom:calc(58px + env(safe-area-inset-bottom,0px));z-index:29;padding:0 12px;pointer-events:none}
+.fmgo{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;max-width:560px;margin:0 auto;padding:12px 18px;border:0;color:#120d00;background:linear-gradient(100deg,#ffe066,#ffb800);box-shadow:0 8px 24px #000b;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.fmgo span{font:italic 900 22px/1 var(--font-display);text-transform:uppercase;letter-spacing:.04em}.fmgo small{font:600 11px var(--font-mono);opacity:.75}
+.fmgo.play{background:linear-gradient(100deg,#7ff0b0,#2fc46c)}
+.fmhome{grid-template-columns:minmax(0,1fr)}.fmhome>*{min-width:0}
+.fmgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.fmtile{min-width:0}.fmtile b{overflow:hidden;text-overflow:ellipsis;max-width:100%;font-size:14px}
+.fmban-bar{flex-wrap:wrap}.fmban-t{min-width:0}
+.fmhome .msgrow{flex-wrap:wrap}
+.fmtile b{font-size:12.5px;letter-spacing:0;text-overflow:clip}
 </style>
 <div id="app"></div>
 <div id="match" class="match" hidden></div>
@@ -6708,11 +6761,6 @@ function coachMatchCard(){const fx=S.pending;
   return `<div class="card"><span class="eyebrow">Aujourd'hui · ${fmtDate(Math.max(0,S.day))}</span>
     ${nx?`<p class="small" style="margin:8px 0 12px">Prochain match : <b>${fmtDate(nx.d)}</b> · ${esc(nx.label)} · ${nx.h?esc(nx.nat?NATIONS[nx.h===natCode()?nx.a:nx.h].name:TEAMS[nx.h===S.me.club?nx.a:nx.h].name):esc(nx.tbd||"")}</p>`:`<p class="small" style="margin:8px 0 12px">${S.me.club?"Pas de match prévu.":"Attends les offres de clubs."}</p>`}
     <button class="btn gold block" data-act="advance">Avancer jusqu'au prochain événement ⏩</button></div>`;}
-function viewCoachHome(){const me=S.me;const inj=me.club?mySquad().filter(p=>injOf(p)):[];
-  return `<section class="view">${S.press?pressCard():""}${eventCard()}${coachActionMsgs()}${coachMatchCard()}${coachHero()}${me.club?trainCard():""}
-  ${inj.length?`<div class="card"><span class="eyebrow">Infirmerie</span><div class="news" style="margin-top:8px">${inj.map(p=>`<div><span>🩹</span><p>${esc(p.name)} · ${Math.ceil(injOf(p)/7)} sem.</p></div>`).join("")}</div></div>`:""}
-  ${me.social.length?`<div class="card"><span class="eyebrow">Les supporters</span><div class="social">${me.social.slice(0,4).map(p=>`<div class="post"><b>${esc(p.h)}</b><p>${esc(p.t)}</p><small>♥ ${p.l}</small></div>`).join("")}</div></div>`:""}
-  <div class="card"><span class="eyebrow">Ton actualité</span><div class="news" style="margin-top:10px">${me.news.slice(0,6).map(n=>`<div><span>${fmtDate(n.d,false)}</span><p>${esc(n.t)}</p></div>`).join("")}</div></div></section>`;}
 function coachActionMsgs(){const act=S.inbox.filter(m=>!m.done&&m.data);if(!act.length)return "";
   return `<div class="card evt"><span class="eyebrow">À traiter</span>${act.slice(0,4).map(m=>`<div class="msgrow"><div><b>${esc(m.title)}</b><small>${esc(m.text)}</small></div><div style="display:grid;gap:4px">${msgButtons(m)}</div></div>`).join("")}</div>`;}
 function msgButtons(m){
@@ -6758,6 +6806,92 @@ function tacticPitch(xi){const pos=slotPos(S.coach.formation);const C=S.coach;
   return `<div class="card tpitch"><div class="tp"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><g stroke="#ffffff40" stroke-width=".5" fill="none"><rect x="2" y="2" width="96" height="96"/><line x1="2" y1="50" x2="98" y2="50"/><circle cx="50" cy="50" r="9"/><rect x="25" y="2" width="50" height="14"/><rect x="25" y="84" width="50" height="14"/></g></svg>
     ${xi.map((p,i)=>{const s=pos[i]||{x:50,y:50};const k=pkey(p);const oop=POS[p.pos].grp!==p.g;return `<button class="tok ${C.sel===k?"sel":""} ${oop?"oop":""}" style="left:${s.x}%;top:${s.y}%" data-xsel="${k}"><i>${p.ovr}</i><span>${esc(last(p.name))}</span><b style="width:${fitOf(p)}%"></b></button>`;}).join("")}</div>
     <p class="muted" style="font-size:11.5px;margin-top:8px">Touche un joueur sur le terrain puis un autre (ou un remplaçant plus bas) pour les échanger.</p></div>`;}
+
+/* =================== ACCUEIL COACH « FM MOBILE » =================== */
+const FMI={
+  inbox:'<path d="M3 6h18v12H3z M3 7l9 7 9-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  squad:'<circle cx="9" cy="8" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="9" r="2.4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 14c3 0 5 2 5 5" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+  tactic:'<rect x="3" y="4" width="18" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 4v16" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="7" cy="9" r="1" fill="currentColor"/><circle cx="7" cy="15" r="1" fill="currentColor"/><circle cx="17" cy="9" r="1" fill="currentColor"/><circle cx="17" cy="15" r="1" fill="currentColor"/>',
+  train:'<path d="M4 20l5-5M7 10l7-7 3 3-7 7zM14 14l3 3 3-3-3-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  market:'<path d="M7 7h13l-2 8H8zM7 7L6 3H3M9 20h.01M17 20h.01" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+  cal:'<rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>',
+  league:'<path d="M7 4h10v5a5 5 0 01-10 0zM7 6H4v2a3 3 0 003 3M17 6h3v2a3 3 0 01-3 3M12 14v4M8 20h8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>',
+  fin:'<circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14.5 9.2c-.6-.8-1.5-1.2-2.6-1.2-1.4 0-2.4.7-2.4 1.8 0 2.7 5.2 1.3 5.2 4 0 1.1-1.1 1.9-2.6 1.9-1.200 0-2.200-.5-2.800-1.400M12 6.500v1.500M12 16v1.500" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>',
+  youth:'<path d="M12 21V11M12 11c0-4 3-6 7-6 0 4-3 6-7 6zM12 14c0-3-2-5-6-5 0 3 2 5 6 5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>',
+  board:'<rect x="4" y="8" width="16" height="11" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 8V6a1.5 1.5 0 011.5-1.5h3A1.5 1.5 0 0115 6v2M4 13h16" fill="none" stroke="currentColor" stroke-width="1.8"/>',
+  nat:'<path d="M5 21V4M5 5h13l-3 4 3 4H5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>',
+  scout:'<circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15 15l5.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+};
+const fmIco=k=>`<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">${FMI[k]}</svg>`;
+function fmForm(){return S.me.results.filter(r=>["L","U","C","X","IC"].includes(r.kind)||true).slice(-5).map(r=>r.us>r.them||r.pw===true?"V":r.us===r.them&&r.pw==null?"N":"D");}
+function fmFormHtml(arr){const a=arr.slice();while(a.length<5)a.unshift("-");return `<span class="fmform">${a.map(k=>`<i class="${k}">${k==="-"?"":k}</i>`).join("")}</span>`;}
+function fmClubTable(){const c=S.me.club;if(!c)return null;const lid=teamLeague(c);if(!lid||!S.w.lg[lid])return null;const lg=S.w.lg[lid];const grp=lg.groups.find(g=>g.includes(c))||lg.groups.flat();const ids=rankIds(grp,lg.tbl,tStr);return {lid,lg,ids,pos:ids.indexOf(c)+1};}
+function fmTile(k,label,sub,ico,o={}){return `<button class="fmtile ${o.cls||""}" ${o.attr||`data-fm="${k}"`}><span class="fmico">${fmIco(ico)}${o.badge?`<i class="fmbadge">${o.badge}</i>`:""}</span><b>${label}</b><small>${sub}</small></button>`;}
+function fmBanner(){const me=S.me,C=S.coach;const t=me.club?TEAMS[me.club]:null;const tb=fmClubTable();
+  const col=t?(KIT_COL(t)||["#2f8bff","#ffd23f"]):["#2f8bff","#ffd23f"];
+  return `<div class="fmban" style="--k1:${col[0]};--k2:${col[1]}">
+    <div class="fmban-top">${me.club?crest(me.club,"lg"):`<span class="fmnoclub">⚽</span>`}<div class="fmban-t"><small>${me.club?esc(LG[teamLeague(me.club)]?LG[teamLeague(me.club)].n:""):"Sans club"}</small><h2>${me.club?esc(t.name):"Sans club"}</h2>
+      <span class="fmban-m"><span class="avatar" style="width:26px;height:26px">${myAvatar()}</span> ${esc(me.name)}</span></div>
+      <div class="fmban-r">${tb?`<b>${tb.pos}<sup>${tb.pos===1?"er":"e"}</sup></b><small>${tb.lg.tbl[me.club][6]} pts</small>`:""}</div></div>
+    ${me.club?`<div class="fmban-bar"><span>${fmtDate(Math.max(0,S.day))}</span><span>💰 ${money(C.budget)}</span><span class="${C.conf>=50?"ok":C.conf>=25?"mid":"bad"}">Direction ${Math.round(C.conf)}</span></div>`:`<div class="fmban-bar"><span>${fmtDate(Math.max(0,S.day))}</span><span>Libre</span></div>`}</div>`;}
+const KIT_COL=t=>t&&t.color?[t.color,t.accent||"#fff"]:null;
+function fmNextCard(){const fx=S.pending;const C=S.coach;
+  if(fx){const home=fx.isHome||fx.neutral?fx.us:fx.opp,away=fx.isHome||fx.neutral?fx.opp:fx.us;const xi=xiPlayers();const mine=Math.round(xiStrength(xi)),opp=fx.opp.str;const tot=mine+opp;
+    return `<div class="fmcard fmnext"><div class="between">${compBadge(fx)}<span class="eyebrow">${esc(fx.stage)}</span></div>
+    <div class="fmvs"><div>${crest(home,"lg")}<b>${esc(home.short)}</b></div><div class="fmvs-m"><span>${fmtDate(fx.day,false)}</span><em>VS</em><small>${esc(fx.venue)}</small></div><div>${crest(away,"lg")}<b>${esc(away.short)}</b></div></div>
+    <div class="fmcmp"><span><small>Ta force</small><b>${mine}</b></span><div class="fmbar"><i style="width:${Math.round(mine/tot*100)}%"></i></div><span><small>Adversaire</small><b>${opp}</b></span></div>
+    <div class="fmmini"><span>Forme ${fmFormHtml(fmForm())}</span><span>${C.formation} · ${MENT[C.ment].n}</span></div>
+    <div class="row" style="margin-top:12px"><button class="btn" style="flex:1" data-fm="squad">📋 Compo</button><button class="btn" style="flex:1" data-act="csim">Simuler</button></div></div>`;}
+  const nx=upcoming()[0];
+  return `<div class="fmcard fmnext"><span class="eyebrow">Prochain match</span>${nx?`<p class="fmnx"><b>${fmtDate(nx.d)}</b><br><small>${esc(nx.label)} · ${nx.h?esc(nx.nat?NATIONS[nx.h===natCode()?nx.a:nx.h].name:TEAMS[nx.h===S.me.club?nx.a:nx.h].name):esc(nx.tbd||"")}</small></p><div class="fmmini"><span>Forme ${fmFormHtml(fmForm())}</span></div>`:`<p class="small" style="margin:8px 0">${S.me.club?"Pas de match prévu.":"Attends les offres de clubs dans ta boîte de réception."}</p>`}</div>`;}
+function fmTiles(){const me=S.me,C=S.coach;const unread=S.inbox.filter(m=>!m.read).length;const act=S.inbox.filter(m=>!m.done&&m.data).length;
+  const inj=me.club?mySquad().filter(p=>injOf(p)).length:0;const tb=fmClubTable();const nx=upcoming()[0];
+  const tr=TRAIN[C.train||"tact"][0];const off=S.inbox.filter(m=>!m.done&&m.kind==="bid").length;
+  const t=[fmTile("inbox","Réception",act?act+" à traiter":"Messages","inbox",{badge:unread||""})];
+  if(me.club){t.push(fmTile("squad","Effectif",inj?inj+" blessé"+(inj>1?"s":""):"Tous aptes","squad",{badge:inj||""}),fmTile("tactic","Tactique",C.formation,"tactic"),
+    fmTile("train","Entraînement",tr,"train"),fmTile("market","Transferts",money(C.budget),"market",{badge:off||""}),fmTile("agenda","Calendrier",nx?fmtDate(nx.d,false):"–","cal"),
+    fmTile("league","Compétition",tb?tb.pos+"e · "+tb.lg.tbl[me.club][6]+" pts":"–","league"),fmTile("fin","Finances",money(C.budget),"fin"),
+    `<button class="fmtile" data-youth="1"><span class="fmico">${fmIco("youth")}${C.yth&&C.yth.length?`<i class="fmbadge">${C.yth.length}</i>`:""}</span><b>Jeunes</b><small>${C.yth&&C.yth.length?C.yth.length+" à signer":"Académie"}</small></button>`,
+    fmTile("board","Direction",Math.round(C.conf)+"/100","board"));}
+  if(C.nat)t.push(fmTile("nat","Sélection",NATIONS[C.nat].flag+" "+Math.round(C.nconf||60),"nat"));
+  t.push(fmTile("world","Monde","Ligues · coupes","scout"));
+  return `<div class="fmgrid">${t.join("")}</div>`;}
+function fmMiniTable(){const tb=fmClubTable();if(!tb)return "";const {ids,lg}=tb;const me=S.me.club;const i=ids.indexOf(me);const a=clamp(i-2,0,Math.max(0,ids.length-5));const rows=ids.slice(a,a+5);
+  return `<div class="fmcard"><div class="between"><span class="eyebrow">Classement</span><button class="btn sm" data-fm="league">Complet ›</button></div><table class="fmtbl"><tr><th></th><th>Club</th><th>J</th><th>Diff</th><th>Pts</th></tr>${rows.map(id=>{const r=lg.tbl[id];return `<tr class="${id===me?"me":""}"><td>${ids.indexOf(id)+1}</td><td>${crest(id,"sm")} ${esc(TEAMS[id].short)}</td><td>${r[0]}</td><td>${r[4]-r[5]>0?"+":""}${r[4]-r[5]}</td><td><b>${r[6]}</b></td></tr>`;}).join("")}</table></div>`;}
+function fmInboxPrev(){const l=S.inbox.slice(0,3);if(!l.length)return "";return `<div class="fmcard"><div class="between"><span class="eyebrow">Boîte de réception</span><button class="btn sm" data-fm="inbox">Tout ›</button></div>${l.map(m=>`<button class="fmmsg ${m.read?"":"un"}" data-fm="inbox"><i></i><span><b>${esc(m.title)}</b><small>${esc(m.text)}</small></span></button>`).join("")}</div>`;}
+function fmKeyPlayers(){if(!S.me.club)return "";const sq=mySquad().slice().sort((a,b)=>b.ovr-a.ovr).slice(0,5);if(!sq.length)return "";
+  return `<div class="fmcard"><div class="between"><span class="eyebrow">Joueurs clés</span><button class="btn sm" data-fm="squad">Effectif ›</button></div>${sq.map(p=>`<div class="fmkp"><span class="fmpos">${esc(p.pos)}</span><b>${esc(p.name)}</b><span class="fmovr">${Math.round(p.ovr)}</span>${injOf(p)?`<em>🩹 ${Math.ceil(injOf(p)/7)} sem.</em>`:""}</div>`).join("")}</div>`;}
+function fmContinueBar(){if(!S||!isCoach()||TAB!=="home"||(M&&true))return "";const fx=S.pending;
+  if(fx)return `<div class="fmcont"><button class="fmgo play" data-act="cplay"><span>▶ Diriger le match</span><small>${esc(fx.opp.short)} · ${fmtDate(fx.day,false)}</small></button></div>`;
+  return `<div class="fmcont"><button class="fmgo" data-act="advance"><span>Continuer</span><small>Jusqu'au prochain événement</small></button></div>`;}
+function viewCoachHome(){const me=S.me;
+  return `<section class="view fmhome">${S.press?pressCard():""}${eventCard()}${coachActionMsgs()}${fmBanner()}${fmNextCard()}${fmTiles()}${fmMiniTable()}${fmKeyPlayers()}${fmInboxPrev()}
+  ${me.social.length?`<div class="fmcard"><span class="eyebrow">Les supporters</span><div class="social" style="margin-top:8px">${me.social.slice(0,3).map(p=>`<div class="post"><b>${esc(p.h)}</b><p>${esc(p.t)}</p><small>♥ ${p.l}</small></div>`).join("")}</div></div>`:""}
+  <div class="fmcard"><span class="eyebrow">Actualité du club</span><div class="news" style="margin-top:10px">${me.news.slice(0,5).map(n=>`<div><span>${fmtDate(n.d,false)}</span><p>${esc(n.t)}</p></div>`).join("")}</div></div><div style="height:74px"></div></section>`;}
+function fmTrainModal(){const C=S.coach;const t=C.train||"tact";openModal(`<span class="eyebrow">Entraînement de la semaine</span><h2 class="h2" style="margin:6px 0 12px">Programme <em>d'équipe</em></h2>
+  ${Object.entries(TRAIN).map(([k,[l,d]])=>`<button class="fmopt ${t===k?"on":""}" data-fm="tr:${k}"><b>${l}</b><small>${esc(d)}</small></button>`).join("")}<button class="btn block" style="margin-top:12px" data-close>Fermer</button>`);}
+function fmFinModal(){const C=S.coach;ensureBudgets();const wb=wageBill();const pct=Math.round(wb/C.wageBudget*100);
+  openModal(`<span class="eyebrow">Finances du club</span><h2 class="h2" style="margin:6px 0 12px">${esc(TEAMS[S.me.club].name)}</h2>
+  <div class="fin"><div><span>Budget transferts</span><b>${money(C.budget)}</b></div><div><span>Masse salariale</span><b>${money(wb)}/sem.</b></div><div><span>Plafond salarial</span><b>${money(C.wageBudget)}/sem.</b></div><div><span>Utilisation</span><b>${pct} %</b></div></div>
+  ${meter("Masse salariale vs plafond",pct,pct>95?"bad":"")}<p class="small muted" style="margin-top:10px">Les ventes alimentent le budget transferts. Dépasser le plafond salarial plombe la confiance de la direction.</p>
+  <button class="btn gold block" style="margin-top:12px" data-fm="market">Aller au mercato</button><button class="btn block" style="margin-top:8px" data-close>Fermer</button>`);}
+function fmBoardModal(){const C=S.coach,me=S.me;openModal(`<span class="eyebrow">Direction · ${esc(TEAMS[me.club].name)}</span><h2 class="h2" style="margin:6px 0 12px">Ta <em>mission</em></h2>
+  <div class="fin"><div><span>Objectif de saison</span><b>${esc(C.obj.txt)}</b></div><div><span>Contrat</span><b>${me.contract?"jusqu'en "+(me.contract.until||"–"):"–"}</b></div><div><span>Salaire</span><b>${money(me.contract?me.contract.wage:0)}/sem.</b></div><div><span>Moral du vestiaire</span><b>${Math.round(C.morale)}/100</b></div></div>
+  ${meter("Confiance de la direction",C.conf,C.conf<25?"bad":"")}<p class="small muted" style="margin-top:10px">${C.conf<25?"Attention : la direction envisage de te licencier.":C.conf<50?"La direction attend des résultats rapidement.":"La direction est satisfaite de ton travail."}</p>
+  <button class="btn block" style="margin-top:12px" data-close>Fermer</button>`);}
+function fmAction(a){
+  if(a==="inbox"){TAB="inbox";render();window.scrollTo(0,0);return;}
+  if(a==="squad"||a==="tactic"){TAB="team";render();window.scrollTo(0,0);if(a==="tactic")setTimeout(()=>{const e=document.querySelector("[data-form]");if(e)e.scrollIntoView({block:"center"});},60);return;}
+  if(a==="market"){closeModal();TAB="market";render();window.scrollTo(0,0);return;}
+  if(a==="agenda"){TAB="agenda";render();window.scrollTo(0,0);return;}
+  if(a==="world"){TAB="world";render();window.scrollTo(0,0);return;}
+  if(a==="league"){const l=S.me.club?teamLeague(S.me.club):null;if(l&&VISIBLE.has(l))WLG=l;WT="lg";TAB="world";render();window.scrollTo(0,0);return;}
+  if(a==="nat"){S.coach.view="nat";TAB="team";save();render();window.scrollTo(0,0);return;}
+  if(a==="train"){fmTrainModal();return;}
+  if(a==="fin"){fmFinModal();return;}
+  if(a==="board"){fmBoardModal();return;}
+  if(a.startsWith("tr:")){S.coach.train=a.slice(3);save();closeModal();render();toast("Entraînement : "+TRAIN[S.coach.train][0]);return;}
+}
 
 /* =================== MERCATO DE L'ENTRAÎNEUR (style Football Manager) =================== */
 let MKT="buy",MKF={g:"",age:0,lg:"",budget:true,q:""};
@@ -8156,7 +8290,7 @@ function render(){
   <main><div class="wrap">${(views[TAB]||viewHome)()}</div></main>
   <nav class="nav"><div class="wrap">
     ${(coach?[["home","Accueil"],["team","Équipe"],["market","Mercato"],["agenda","Agenda"],["world","Monde"],["life","Vie"]]:[["home","Accueil"],["player","Joueur"],["agenda","Agenda"],["world","Monde"],["life","Vie"]]).map(([k,l])=>`<button data-tab="${k}" class="${TAB===k||(["editor","mercato"].includes(TAB)&&k==="player")||(coach&&["player","editor","ncall"].includes(TAB)&&k==="team")?"on":""}" aria-label="${l}">${ICONS[k==="team"?"player":k]}<span>${l}</span>${k==="home"&&(S.event||S.press||S.pending)&&TAB!=="home"?'<i class="badge"></i>':""}${!coach&&k==="player"&&me.pts>=3&&TAB!=="player"?'<i class="badge" style="background:var(--gold)"></i>':""}</button>`).join("")}
-  </div></nav>`;
+  </div></nav>${fmContinueBar()}`;
   if(S.ceres&&S.ceres.length&&!CERE&&!M)setTimeout(showCeremony,300);
 }
 
@@ -8597,6 +8731,7 @@ document.addEventListener("click",e=>{
   if(d.mkg!=null){MKF.g=d.mkg;render();return;}
   if(d.pcard){openPlayerCard(+d.pcard);return;}
   if(d.cp){cpAction(d.cp);return;}
+  if(d.fm){fmAction(d.fm);return;}
   if(d.train2){S.coach.train=d.train2;save();render();return;}
   if(d.youth){const mm=S.inbox.find(x=>x.kind==="youth"&&!x.done);if(mm){mm.done=true;mm.read=true;}youthView();return;}
   if(d.ysign!=null){signYouth(+d.ysign);return;}
