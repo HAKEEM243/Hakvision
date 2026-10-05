@@ -5265,7 +5265,7 @@ const pAge=p=>S.w.year-p.by;
 const pActive=p=>!S.w.ret[p.id];
 function rebuildIndex(){
   BYCLUB={};BYNAT={};
-  PL.forEach(p=>{if(!pActive(p))return;const c=pClub(p);if(c)(BYCLUB[c]=BYCLUB[c]||[]).push(p);(BYNAT[p.nat]=BYNAT[p.nat]||[]).push(p);});
+  PL.forEach(p=>{if(!pActive(p))return;const c=pClub(p);if(c)(BYCLUB[c]=BYCLUB[c]||[]).push(p);const pn=(S.w.pnat&&S.w.pnat[p.id])||p.nat;(BYNAT[pn]=BYNAT[pn]||[]).push(p);});
   Object.values(BYCLUB).forEach(a=>a.sort((x,y)=>pOvr(y)-pOvr(x)));Object.values(BYNAT).forEach(a=>a.sort((x,y)=>pOvr(y)-pOvr(x)));
 }
 function clubReal(id){if(!BYCLUB)rebuildIndex();return BYCLUB[id]||[];}
@@ -5634,6 +5634,7 @@ function clubSquad(id,youth){
   return SQC[key]=list.sort((a,b)=>b.ovr-a.ovr);
 }
 function natSquad(c,u20){
+  if(!u20&&S.mode==="coach"&&S.coach&&S.coach.nat===c&&S.coach.ncall&&S.coach.ncall.length)return calledSquad();
   const key="n:"+c+":"+S.w.year+(u20?":u":"");if(SQC[key])return SQC[key];
   let list;
   if(u20){const need={};Object.entries(SQUAD_SHAPE).forEach(([g,n])=>need[g]=n);list=fillers(key,NATIONS[c].pool,nStr(c)-12,need);}
@@ -6605,7 +6606,7 @@ function viewTeam(){
   const nm=ctxNat();const toggle=me.club&&C.nat&&!S.pending?`<div class="chips"><button data-tv="club" class="${!nm?"on":""}">${esc(TEAMS[me.club].short)}</button><button data-tv="nat" class="${nm?"on":""}">${NATIONS[C.nat].flag} ${esc(NATIONS[C.nat].name)}</button></div>`:"";
   const xi=xiPlayers();const bench=benchPlayers();const nat=p=>p.pid!=null?PL[p.pid].nat:nm?C.nat:TEAMS[me.club].country;
   const row=(p,inXI)=>{const k=pkey(p);const oop=inXI&&POS[p.pos].grp!==p.g;return `<button class="prow ${C.sel===k?"sel":""} ${injOf(p)?"inj":""}" data-xsel="${k}" ${injOf(p)?"disabled":""}><span class="pname">${facePlayer(p.name,nat(p))}<span><b>${esc(p.name)}</b><small>${esc(POS[p.pos].name)}${oop?` · ⚠️ joue ${GRP_NAME[p.g].toLowerCase()}`:""}${injOf(p)?" · blessé":""}${p.pid!=null?"":" · formé au club"}</small></span></span><span class="fitb"><i style="width:${fitOf(p)}%"></i></span><b class="gen">${p.ovr}</b></button>`;};
-  return `<section class="view">${toggle}${tacticPitch(xi)}
+  return `<section class="view">${toggle}${nm?`<div class="card"><div class="between"><span class="small">${NATIONS[C.nat].flag} <b>${C.ncall?C.ncall.length:0}</b> convoqués</span><button class="btn sm gold" data-tab="ncall">📋 Liste des convoqués</button></div></div>`:""}${tacticPitch(xi)}
   <div class="card"><span class="eyebrow">${nm?"Sélection · "+esc(NATIONS[C.nat].name)+" · ":""}Système de jeu</span><div class="chips" style="margin-top:8px">${FORM_ORDER.map(f=>`<button data-form="${f}" class="${C.formation===f?"on":""}">${f}</button>`).join("")}</div>
     <span class="eyebrow" style="display:block;margin-top:12px">État d'esprit</span><div class="chips" style="margin-top:8px">${Object.entries(MENT).filter(([k])=>k!=="all").map(([k,m])=>`<button data-ment="${k}" class="${C.ment===k?"on":""}">${m.n}</button>`).join("")}</div>
     <div class="between" style="margin-top:12px"><span class="small">Force du onze : <b style="color:var(--gold)">${Math.round(xiStrength(xi))}</b> · moral ${Math.round(C.morale)}</span><button class="btn sm" data-act="autoxi">Compo auto</button></div></div>
@@ -6799,6 +6800,42 @@ function viewMarket(){
     <div class="kv" style="margin-top:10px"><div><b>${money(C.budget)}</b><small>Budget transferts</small></div><div><b>${money(wageBill())}</b><small>Salaires / sem.</small></div><div><b>${myReal().length}</b><small>Joueurs</small></div></div></div>
     <div class="chips">${tabs.map(([k,l])=>`<button data-mkt="${k}" class="${MKT===k?"on":""}">${l}</button>`).join("")}</div>${body}</section>`;
 }
+
+/* =================== SÉLECTIONNEUR : LISTE DES CONVOQUÉS =================== */
+const pNat=p=>(S.w.pnat&&S.w.pnat[p.id])||p.nat;
+let NSF="";
+function calledSquad(){const C=S.coach;return C.ncall.map(e=>e.pid!=null?(PL[e.pid]&&pActive(PL[e.pid])?{name:PL[e.pid].name,pos:PL[e.pid].pos,ovr:pOvr(PL[e.pid]),pid:e.pid}:null):{...e}).filter(Boolean).sort((a,b)=>b.ovr-a.ovr);}
+function natPool(c){const real=natReal(c).map(p=>({name:p.name,pos:p.pos,ovr:pOvr(p),pid:p.id,age:pAge(p),club:pClub(p)}));
+  const gen=[...(SQC["n:"+c+":"+S.w.year]||natSquadBase(c)).filter(p=>p.gen),...natSquadBase(c,true).slice(0,10).map(p=>({...p,young:true}))].map(p=>({...p,age:p.young?18+hashStr(p.name)%3:22+hashStr(p.name)%10,club:null}));
+  return [...real,...gen];}
+function natSquadBase(c,u20){const C=S.coach;const keep=C.ncall;C.ncall=null;const l=natSquad(c,u20);C.ncall=keep;return l;}
+function binationals(c){const pool=POOLS[NATIONS[c].pool];if(!pool)return [];const lastN=new Set(pool[1]);
+  return PL.filter(p=>pActive(p)&&pNat(p)!==c&&NATIONS[pNat(p)]&&NATIONS[pNat(p)].pool!==NATIONS[c].pool&&lastN.has(p.name.split(" ").slice(-1)[0])&&pAge(p)<=30&&pOvr(p)>=nStr(c)-14)
+    .slice(0,20).map(p=>({name:p.name,pos:p.pos,ovr:pOvr(p),pid:p.id,age:pAge(p),club:pClub(p),from:pNat(p)}));}
+function autoCall(){const C=S.coach;const pool=natPool(C.nat).sort((a,b)=>b.ovr-a.ovr);const need={GB:3,DC:5,LAT:4,MIL:6,AIL:4,BU:4};const out=[];
+  pool.forEach(p=>{const g=POS[p.pos].grp;if(need[g]>0&&out.length<26){need[g]--;out.push(p);}});C.ncall=out.map(p=>p.pid!=null?{pid:p.pid}:{name:p.name,pos:p.pos,ovr:p.ovr,gen:true});C.nxi=null;Object.keys(SQC).forEach(k=>{if(k.startsWith("n:"))delete SQC[k];});}
+function toggleCall(k){const C=S.coach;if(!C.ncall)autoCall();const isPid=/^\d+$/.test(k);const i=C.ncall.findIndex(e=>isPid?e.pid===+k:e.name===k);
+  if(i>=0)C.ncall.splice(i,1);else{if(C.ncall.length>=26){toast("26 joueurs maximum. Retire quelqu'un d'abord.");return;}
+    if(isPid)C.ncall.push({pid:+k});else{const p=natPool(C.nat).find(x=>x.name===k);if(p)C.ncall.push({name:p.name,pos:p.pos,ovr:p.ovr,gen:true});}}
+  C.nxi=null;save();const y=window.scrollY;render();window.scrollTo(0,y);}
+function persuade(pid){const C=S.coach;const p=PL[pid];const from=pNat(p);C.persW=C.persW||{};if(C.persW[pid]===wk()){toast("Tu l'as déjà contacté cette semaine.");return;}C.persW[pid]=wk();
+  const main=pOvr(p)>=natThreshold(from)+1;const ch=clamp((main?.18:.62)+(nStr(C.nat)-nStr(from))/80+S.me.rep/400,.05,.9);
+  if(Math.random()<ch){S.w.pnat=S.w.pnat||{};S.w.pnat[pid]=C.nat;BYNAT=null;rebuildIndex();Object.keys(SQC).forEach(k=>{if(k.startsWith("n:"))delete SQC[k];});
+    addMsg(`${p.name} choisit ${NATIONS[C.nat].name} !`,`Après tes échanges, ${p.name} (${esc(NATIONS[from].name)}) accepte de représenter ${NATIONS[C.nat].name}. Il est désormais sélectionnable.`,"intl");addWorldNews(`${p.name} change de nationalité sportive et rejoint ${NATIONS[C.nat].name}.`,"intl");toast(`${p.name} accepte de jouer pour ${NATIONS[C.nat].name} !`);confetti([NATIONS[C.nat].color,NATIONS[C.nat].accent]);}
+  else{addMsg(`${p.name} hésite`,main?`${p.name} est un cadre de ${NATIONS[from].name} et ne veut pas changer.`:`${p.name} préfère attendre un appel de ${NATIONS[from].name}. Retente plus tard.`,"intl");toast("Il refuse pour l'instant.");}
+  save();render();}
+function viewNatCall(){
+  const C=S.coach;if(!C.nat)return `<section class="view"><div class="card"><p class="muted small">Tu n'es pas sélectionneur.</p></div></section>`;if(!C.ncall)autoCall();
+  const called=new Set(C.ncall.map(e=>e.pid!=null?"p"+e.pid:"g"+e.name));const pool=natPool(C.nat).filter(p=>!NSF||POS[p.pos].grp===NSF).sort((a,b)=>b.ovr-a.ovr);const bi=binationals(C.nat);
+  const row=(p,btn)=>`<div class="crow small2"><span class="pname">${facePlayer(p.name,p.pid!=null?pNat(PL[p.pid]):C.nat)}<span><b>${esc(p.name)}</b><br><small class="muted">${esc(POS[p.pos].name)} · ${p.age||"?"} ans · ${p.club?esc(TEAMS[p.club].short):p.young?"Espoir U20":"Championnat local"}${p.from?" · "+NATIONS[p.from].flag+" "+esc(NATIONS[p.from].name):""}</small></span></span><span style="display:flex;gap:6px;align-items:center"><b class="gen">${p.ovr}</b>${btn}</span></div>`;
+  const k=p=>p.pid!=null?String(p.pid):p.name;
+  return `<section class="view"><div class="card"><div class="between"><h2 class="h2">${NATIONS[C.nat].flag} Liste <em>des convoqués</em></h2><button class="btn sm" data-tab="team">← Équipe</button></div>
+    <p class="small" style="margin-top:6px">${C.ncall.length}/26 joueurs convoqués. Ils seront les seuls disponibles pour les matchs de la sélection.</p>
+    <button class="btn sm" style="margin-top:8px" data-act="autocall">Liste automatique (les meilleurs)</button></div>
+  <div class="chips">${[["","Tous"],["GB","GB"],["DC","DC"],["LAT","Lat."],["MIL","Milieux"],["AIL","Ailiers"],["BU","Att."]].map(([x,l])=>`<button data-nsf="${x}" class="${NSF===x?"on":""}">${l}</button>`).join("")}</div>
+  <div class="card"><span class="eyebrow">Joueurs sélectionnables</span><div class="calx">${pool.slice(0,60).map(p=>row(p,`<button class="btn sm ${called.has(p.pid!=null?"p"+p.pid:"g"+p.name)?"gold":""}" data-call="${esc(k(p))}">${called.has(p.pid!=null?"p"+p.pid:"g"+p.name)?"✓ Convoqué":"Convoquer"}</button>`)).join("")}</div></div>
+  ${bi.length?`<div class="card"><span class="eyebrow">Binationaux à convaincre</span><p class="muted small" style="margin:6px 0">Ces joueurs ont des origines liées à ${esc(NATIONS[C.nat].name)}. Un joueur qui n'est pas titulaire dans son autre sélection acceptera plus facilement.</p><div class="calx">${bi.map(p=>row(p,`<button class="btn sm gold" data-persuade="${p.pid}">Convaincre</button>`)).join("")}</div></div>`:""}
+  </section>`;}
 
 /* =================== CONFÉRENCES DE PRESSE GÉNÉRÉES =================== */
 const OUTLETS={fra:["L'Équipe","RMC Sport","Foot Mercato","Le Parisien","Canal+"],eng:["BBC Sport","Sky Sports","The Athletic","The Guardian"],esp:["Marca","AS","Mundo Deportivo"],ita:["La Gazzetta dello Sport","Corriere dello Sport","Sky Italia"],ger:["Kicker","Bild","Sport1"],
@@ -7533,7 +7570,7 @@ function render(){
   if(!S){renderIntro();return;}
   if(S.me.retired){renderLegacy();return;}
   const me=S.me;const unread=S.inbox.filter(m=>!m.read).length;
-  const coach=isCoach();const views=coach?{home:viewCoachHome,player:viewCoachProfile,team:viewTeam,market:viewMarket,agenda:viewAgenda,world:viewWorld,life:viewLife,inbox:viewInbox,editor:viewEditor}:{home:viewHome,player:viewPlayer,agenda:viewAgenda,world:viewWorld,life:viewLife,inbox:viewInbox,editor:viewEditor,mercato:viewMercato};
+  const coach=isCoach();const views=coach?{ncall:viewNatCall,home:viewCoachHome,player:viewCoachProfile,team:viewTeam,market:viewMarket,agenda:viewAgenda,world:viewWorld,life:viewLife,inbox:viewInbox,editor:viewEditor}:{home:viewHome,player:viewPlayer,agenda:viewAgenda,world:viewWorld,life:viewLife,inbox:viewInbox,editor:viewEditor,mercato:viewMercato};
   app.innerHTML=`
   <header class="top"><div class="wrap">
     <button class="avatar" data-tab="player" style="width:40px;height:40px;border-radius:10px;padding:0;border:0" aria-label="Mon joueur">${myAvatar()}</button>
@@ -7543,7 +7580,7 @@ function render(){
   </div></header>
   <main><div class="wrap">${(views[TAB]||viewHome)()}</div></main>
   <nav class="nav"><div class="wrap">
-    ${(coach?[["home","Accueil"],["team","Équipe"],["market","Mercato"],["agenda","Agenda"],["world","Monde"],["life","Vie"]]:[["home","Accueil"],["player","Joueur"],["agenda","Agenda"],["world","Monde"],["life","Vie"]]).map(([k,l])=>`<button data-tab="${k}" class="${TAB===k||(["editor","mercato"].includes(TAB)&&k==="player")||(coach&&["player","editor"].includes(TAB)&&k==="team")?"on":""}" aria-label="${l}">${ICONS[k==="team"?"player":k]}<span>${l}</span>${k==="home"&&(S.event||S.press||S.pending)&&TAB!=="home"?'<i class="badge"></i>':""}${!coach&&k==="player"&&me.pts>=3&&TAB!=="player"?'<i class="badge" style="background:var(--gold)"></i>':""}</button>`).join("")}
+    ${(coach?[["home","Accueil"],["team","Équipe"],["market","Mercato"],["agenda","Agenda"],["world","Monde"],["life","Vie"]]:[["home","Accueil"],["player","Joueur"],["agenda","Agenda"],["world","Monde"],["life","Vie"]]).map(([k,l])=>`<button data-tab="${k}" class="${TAB===k||(["editor","mercato"].includes(TAB)&&k==="player")||(coach&&["player","editor","ncall"].includes(TAB)&&k==="team")?"on":""}" aria-label="${l}">${ICONS[k==="team"?"player":k]}<span>${l}</span>${k==="home"&&(S.event||S.press||S.pending)&&TAB!=="home"?'<i class="badge"></i>':""}${!coach&&k==="player"&&me.pts>=3&&TAB!=="player"?'<i class="badge" style="background:var(--gold)"></i>':""}</button>`).join("")}
   </div></nav>`;
   if(S.ceres&&S.ceres.length&&!CERE&&!M)setTimeout(showCeremony,300);
 }
@@ -7983,6 +8020,10 @@ document.addEventListener("click",e=>{
   if(d.xsel){swapXI(d.xsel);save();const y=window.scrollY;render();window.scrollTo(0,y);return;}
   if(d.mkg!=null){MKF.g=d.mkg;render();return;}
   if(d.pcard){openPlayerCard(+d.pcard);return;}
+  if(d.call!=null){toggleCall(d.call);return;}
+  if(d.persuade){persuade(+d.persuade);return;}
+  if(d.nsf!=null){NSF=d.nsf;render();return;}
+  if(d.act==="autocall"){autoCall();save();render();return;}
   if(d.pc){pcAction(d.pc);return;}
   if(d.mkt){MKT=d.mkt;render();return;}
   if(d.mka!=null){MKF.age=+d.mka;render();return;}
