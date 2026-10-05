@@ -6837,6 +6837,29 @@ function viewNatCall(){
   ${bi.length?`<div class="card"><span class="eyebrow">Binationaux à convaincre</span><p class="muted small" style="margin:6px 0">Ces joueurs ont des origines liées à ${esc(NATIONS[C.nat].name)}. Un joueur qui n'est pas titulaire dans son autre sélection acceptera plus facilement.</p><div class="calx">${bi.map(p=>row(p,`<button class="btn sm gold" data-persuade="${p.pid}">Convaincre</button>`)).join("")}</div></div>`:""}
   </section>`;}
 
+/* =================== ÉDITEUR DU COACH : JOUEURS CRÉÉS =================== */
+let CP={name:"",nat:"cod",pos:"BU",age:17,ovr:65,dest:"club"};
+function ensureCustom(){if(!S||!S.w)return;(S.w.custom||[]).forEach(c=>{while(PL.length<c.id){const id=PL.length;PL.push({id,name:"—",pos:"MC",ovr:40,by:1990,nat:"fra",team0:null});S.w.ret[id]=1;}PL[c.id]={id:c.id,name:c.name,pos:c.pos,ovr:c.ovr,by:c.by,nat:c.nat,team0:null,custom:true};});BYCLUB=null;BYNAT=null;}
+function createPlayer(){const nm=(document.getElementById("cpName")||{}).value;const name=(nm||"").trim();if(!name){toast("Donne un nom à ton joueur.");return;}
+  const id=PL.length;const c={id,name,pos:CP.pos,ovr:CP.ovr,by:S.w.year-CP.age,nat:CP.nat};S.w.custom=S.w.custom||[];S.w.custom.push(c);PL.push({...c,team0:null,custom:true});
+  S.w.po[id]=CP.ovr;const dest=CP.dest==="club"&&S.me.club?S.me.club:null;S.w.pc[id]=dest;if(dest){S.w.ctr=S.w.ctr||{};S.w.ctr[id]={wage:Math.round(wageFor(CP.ovr,dest)*.8/10)*10,until:S.w.year+4};}
+  refreshSquads();addNews(`${name} (${CP.age} ans, ${POS[CP.pos].name}) ${dest?"rejoint "+TEAMS[dest].name:"arrive sur le marché des joueurs libres"}.`);toast(`${name} est créé !`);CP.name="";save();const y=window.scrollY;render();window.scrollTo(0,y);}
+function boostPlayer(pid,d){const p=PL[pid];S.w.po[pid]=clamp(pOvr(p)+d,35,99);if(p.custom){const c=S.w.custom.find(x=>x.id===pid);if(c)c.ovr=S.w.po[pid];}refreshSquads();save();const y=window.scrollY;render();window.scrollTo(0,y);}
+function coachEditorCards(){const me=S.me;const mine=me.club?clubReal(me.club).slice().sort((a,b)=>pOvr(b)-pOvr(a)):[];
+  const natOpts=CONF_ORDER.map(cf=>`<optgroup label="${CONFS[cf]}">${Object.values(NATIONS).filter(n=>n.conf===cf&&!BANNED_NATIONS.has(n.code)).sort((a,b)=>a.name.localeCompare(b.name)).map(n=>`<option value="${n.code}" ${CP.nat===n.code?"selected":""}>${n.flag} ${esc(n.name)}</option>`).join("")}</optgroup>`).join("");
+  return `<div class="card"><span class="eyebrow">Créer un joueur</span>
+    <div class="field" style="margin-top:8px"><label for="cpName">Nom</label><input id="cpName" maxlength="28" placeholder="Ex. Junior Kabeya" value="${esc(CP.name)}"></div>
+    <div class="field"><label for="cpNat">Nationalité</label><select id="cpNat">${natOpts}</select></div>
+    <div class="field"><label>Poste</label><div class="chips">${Object.entries(POS).map(([k,p])=>`<button data-cp="pos:${k}" class="${CP.pos===k?"on":""}">${p.name}</button>`).join("")}</div></div>
+    <div class="negrow"><span><b>Âge</b></span><span></span><span class="negask"><button data-cp="age:-1">−</button><b>${CP.age} ans</b><button data-cp="age:1">+</button></span></div>
+    <div class="negrow"><span><b>Niveau (GEN)</b></span><span></span><span class="negask"><button data-cp="ovr:-5">−5</button><b>${CP.ovr}</b><button data-cp="ovr:5">+5</button></span></div>
+    <div class="chips" style="margin-top:8px"><button data-cp="dest:club" class="${CP.dest==="club"?"on":""}">Dans mon club</button><button data-cp="dest:free" class="${CP.dest==="free"?"on":""}">Joueur libre</button></div>
+    <button class="btn gold block" style="margin-top:10px" data-act="cpcreate">➕ Créer le joueur</button>
+    <p class="muted" style="font-size:11.5px;margin-top:6px">Ton joueur vit toute sa carrière : il progresse, vieillit, peut être transféré, appelé en sélection et nominé au Ballon d'Or.</p></div>
+  <div class="card"><span class="eyebrow">Améliorer mes joueurs</span><div class="calx">${mine.map(p=>`<div class="crow small2"><span class="pname">${facePlayer(p.name,p.nat)}<span><b>${esc(p.name)}${p.custom?" ✏️":""}</b><br><small class="muted">${esc(POS[p.pos].name)} · ${pAge(p)} ans</small></span></span><span class="edpm"><button data-boost="${p.id}:-1">−</button><b class="gen">${pOvr(p)}</b><button data-boost="${p.id}:1">+</button><button data-boost="${p.id}:5">+5</button></span></div>`).join("")||'<p class="muted small">Pas de club.</p>'}</div></div>`;}
+function cpAction(a){const [k,v]=a.split(":");const n=document.getElementById("cpName");if(n)CP.name=n.value;
+  if(k==="pos")CP.pos=v;if(k==="age")CP.age=clamp(CP.age+ +v,15,38);if(k==="ovr")CP.ovr=clamp(CP.ovr+ +v,40,95);if(k==="dest")CP.dest=v;const y=window.scrollY;render();window.scrollTo(0,y);}
+
 /* =================== CONFÉRENCES DE PRESSE GÉNÉRÉES =================== */
 const OUTLETS={fra:["L'Équipe","RMC Sport","Foot Mercato","Le Parisien","Canal+"],eng:["BBC Sport","Sky Sports","The Athletic","The Guardian"],esp:["Marca","AS","Mundo Deportivo"],ita:["La Gazzetta dello Sport","Corriere dello Sport","Sky Italia"],ger:["Kicker","Bild","Sport1"],
   cod:["Radio Okapi","Top Congo FM","Foot RDC","Le Phare"],mar:["Le360 Sport","Al Mountakhab","Hespress Sport"],egy:["Al Ahram","FilGoal","KingFut"],rsa:["Kick Off","SuperSport","Soccer Laduma"],
@@ -7709,6 +7732,7 @@ function viewEditor(){
     ${isCoach()?"":`<div class="field"><label>Poste</label><div class="chips">${Object.entries(UPOS).map(([k,p])=>`<button data-ed="pos" data-v="${k}" class="${me.pos===k?"on":""}">${p.name}</button>`).join("")}</div></div>
     <div class="field"><label>Pied fort</label><div class="chips">${["Droit","Gauche"].map(f=>`<button data-ed="foot" data-v="${f}" class="${me.foot===f?"on":""}">${f}</button>`).join("")}</div></div>`}
     <button class="btn gold block" data-ed="ident">Enregistrer le nom</button></div>
+  ${isCoach()?coachEditorCards():""}
   ${isCoach()?`<div class="card"><span class="eyebrow">Coups de pouce</span><div class="train" style="margin-top:10px"><button data-ed="budget"><b>+10 M€ de budget</b><small>Pour recruter</small></button><button data-ed="cash"><b>+100 k€</b><small>Argent perso</small></button><button data-ed="board"><b>Direction ravie</b><small>Confiance 90</small></button><button data-ed="rep"><b>+10 réputation</b><small>Plus d'offres de clubs</small></button></div></div>`:`<div class="card"><span class="eyebrow">Progression libre · GEN ${ovrMe()}</span>
     <div class="attrs" style="margin-top:10px">${keys.map(k=>`<div class="attr2 ${(w[k]||0)>=.15?"key":""}"><span>${ATTRS[k]}</span><span class="bar"><i style="width:${me.at[k]}%"></i></span><b>${me.at[k]}</b><span class="edpm"><button data-ed="dn" data-v="${k}" ${me.at[k]<=30?"disabled":""} aria-label="Baisser">−</button><button data-ed="up" data-v="${k}" ${me.at[k]>=99?"disabled":""} aria-label="Monter">+</button><button data-ed="up5" data-v="${k}" ${me.at[k]>=99?"disabled":""} aria-label="Monter de 5">+5</button></span></div>`).join("")}</div>
     <div class="train" style="margin-top:12px"><button data-ed="pts"><b>+10 points</b><small>Points de progression</small></button><button data-ed="cash"><b>+100 k€</b><small>Argent</small></button><button data-ed="fit"><b>Forme au max</b><small>Énergie et bonheur 100</small></button><button data-ed="heal"><b>Soigner</b><small>Fin de blessure</small></button><button data-ed="rep"><b>+10 réputation</b><small>Plus d'offres</small></button><button data-ed="coach"><b>Coach conquis</b><small>Relation coach 90</small></button></div></div>`}
@@ -8020,6 +8044,9 @@ document.addEventListener("click",e=>{
   if(d.xsel){swapXI(d.xsel);save();const y=window.scrollY;render();window.scrollTo(0,y);return;}
   if(d.mkg!=null){MKF.g=d.mkg;render();return;}
   if(d.pcard){openPlayerCard(+d.pcard);return;}
+  if(d.cp){cpAction(d.cp);return;}
+  if(d.boost){const [id,v]=d.boost.split(":");boostPlayer(+id,+v);return;}
+  if(d.act==="cpcreate"){createPlayer();return;}
   if(d.call!=null){toggleCall(d.call);return;}
   if(d.persuade){persuade(+d.persuade);return;}
   if(d.nsf!=null){NSF=d.nsf;render();return;}
@@ -8053,6 +8080,7 @@ document.addEventListener("change",e=>{
   if(e.target.id==="cnat"&&INTRO){INTRO.cnat=e.target.value;return;}
   if(e.target.id==="wlg"){WLG=e.target.value;render();return;}
   if(e.target.id==="selfLg"){SELFLG=e.target.value;render();return;}
+  if(e.target.id==="cpNat"){CP.nat=e.target.value;return;}
   if(e.target.id==="mklg"){MKF.lg=e.target.value;render();return;}
   if(e.target.id==="mkq"){MKF.q=e.target.value;render();return;}
 });
@@ -8085,7 +8113,7 @@ function drawCere(){
 function top0col(c){const t=c.top[0].club&&TEAMS[c.top[0].club];return t?[t.color,t.accent,"#eac65b"]:undefined;}
 
 introDefaults();
-S=load();if(S&&(!S.w||S.v!==4))S=null;
+S=load();if(S&&(!S.w||S.v!==4))S=null;if(S)ensureCustom();
 render();
 </script>
 
