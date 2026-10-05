@@ -485,6 +485,13 @@ tr.clk{cursor:pointer}tr.clk:hover td{background:#ffffff08}
 .tvintro small{color:#ff4d40;font:800 11px "DM Mono",monospace;letter-spacing:.15em}.tvintro b{font:800 18px var(--font-display,sans-serif);color:#fff}.tvintro span{font-size:12px;opacity:.85}
 @keyframes tvin{0%{opacity:0;transform:translateX(-30px)}10%{opacity:1;transform:none}88%{opacity:1}100%{opacity:0}}
 .atmo .atrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;text-align:center}.atmo .atrow span{display:grid;gap:2px;padding:8px;border-radius:10px;background:#ffffff08;font-size:22px}.atmo .atrow b{font-size:14px}.atmo .atrow small{font-size:11px;opacity:.7}
+.trophy-cere{position:relative;display:grid;gap:12px;justify-items:center;text-align:center;padding:10px 0;overflow:hidden}
+.trophy-cere .rays{position:absolute;inset:-50%;pointer-events:none;background:repeating-conic-gradient(from 0deg,var(--tc) 0 8deg,transparent 8deg 20deg);opacity:.16;animation:spin 18s linear infinite;z-index:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.trophy-cere .cup{font-size:96px;filter:drop-shadow(0 8px 24px #eac65b88);transition:transform .8s cubic-bezier(.2,1.6,.4,1)}
+.trophy-cere .cup.lift{transform:translateY(-14px) scale(1.25) rotate(-6deg);animation:shine 1.6s ease-in-out infinite alternate}
+@keyframes shine{from{filter:drop-shadow(0 8px 24px #eac65b88)}to{filter:drop-shadow(0 0 40px #ffe58a)}}
+.trophy-cere>*:not(.rays){position:relative;z-index:1}
 </style>
 <div id="app"></div>
 <div id="match" class="match" hidden></div>
@@ -5818,6 +5825,7 @@ function afterDay(d){
   /* transferts IA */
   if(m===8&&dd===15)aiTransfers(20);if(m===1&&dd===25)aiTransfers(12);
   /* fin de saison */
+  trophyWatch();
   if(d===ROLLOVER(Y))rollover();
 }
 function weekly(d){
@@ -6556,6 +6564,7 @@ function coachAfterDay(d){
   const snap=S.w.snap;
   if(snap&&m===10&&dd===27)ceremony("Ballon d'Or",snap.bdo,"ballon_dor",0,null,0,30);
   if(snap&&m===12&&dd===14)ceremony("Golden Boy",snap.gb,"golden_boy",0,null,0,10);
+  trophyWatch();
   if(d===ROLLOVER(Y))coachRollover();
 }
 function coachRollover(){
@@ -7606,6 +7615,25 @@ const CHANTS=["Allez {U} ! Allez !","On est chez nous !","Olé, olé, olé !","{
 function richFill(){const a=M.atmo||{};const pool=a.kind&&RICH_WX[a.kind]&&Math.random()<.18?RICH_WX[a.kind]:RICH;const U=M.fx.us.short,O=M.fx.opp.short;
   return pick(pool).replace(/\{chant\}/g,pick(CHANTS).replace(/\{U\}/g,U)).replace(/\{U\}/g,U).replace(/\{O\}/g,O).replace(/\{p\}/g,last(pick(M.mates.length?M.mates:[U]))).replace(/\{o\}/g,last(pick(M.oppNames&&M.oppNames.length?M.oppNames:[O]))).replace(/\{ref\}/g,a.ref||"");}
 
+function crowdBurst(){const ac=audio();if(!ac)return;try{const s=noiseSrc(ac,4);const f=ac.createBiquadFilter();f.type="bandpass";f.frequency.value=700;f.Q.value=.4;const g=ac.createGain();const t=ac.currentTime;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.5,t+.3);g.gain.exponentialRampToValueAtTime(.001,t+4);s.connect(f);f.connect(g);g.connect(ac.destination);s.start();}catch(e){}}
+
+/* =================== CÉLÉBRATION DES TROPHÉES =================== */
+function trophyName(t,club){const lid=teamLeague(club);return t==="league"?(LG[lid]?LG[lid].n:"Championnat"):t==="cup"?((S.w.cups[TEAMS[club].country]||{}).name||"Coupe nationale"):t==="IC"?"Coupe intercontinentale FIFA":(CONT_DEF[t]?CONT_DEF[t].name:t);}
+function trophyWatch(){
+  const me=S.me;S.trSeen=S.trSeen||{};
+  if(me.club&&!me.youth){const k=S.w.year+":"+me.club;const tr=S.w.troph[me.club]||[];for(let i=S.trSeen[k]||0;i<tr.length;i++)queueCere({kind:"trophy",name:trophyName(tr[i],me.club),team:me.club,big:["UCL","LIB","CAFCL","AFCCL","CCC","IC"].includes(tr[i])});S.trSeen[k]=tr.length;}
+  const nat=S.mode==="coach"?S.coach.nat:me.nat;if(nat){const k="n"+S.w.year+":"+nat;const tr=S.w.ntroph[nat]||[];const inIt=S.mode==="coach"||(me.call&&me.call.tour)||(me.tourRs&&me.tourRs.length);
+    for(let i=S.trSeen[k]||0;i<tr.length;i++)if(inIt){const t=S.w.intl.tours.find(x=>x.id===tr[i]);queueCere({kind:"trophy",name:t?t.name:tr[i],nat,big:true});}S.trSeen[k]=tr.length;}
+}
+function drawTrophyCere(c,step){const t=c.team?TEAMS[c.team]:null;const col=t?t.color:NATIONS[c.nat].color,acc=t?t.accent:NATIONS[c.nat].accent;const nm=t?t.name:NATIONS[c.nat].name;
+  return `<div class="trophy-cere" style="--tc:${col};--ta:${acc}"><div class="rays"></div>
+    <span class="eyebrow">${step?"CHAMPIONS !":"Le moment est arrivé"}</span>
+    <div class="cup ${step?"lift":""}">${c.big?"🏆":"🏆"}</div>
+    <h2 class="ceret">${esc(c.name)}</h2>
+    <div class="cerechamp">${crest(c.team||c.nat,"lg")}<span><small>${step?"Vainqueur":"Finale remportée par"}</small><b>${esc(nm)}</b></span></div>
+    ${step?`<p class="small" style="margin-top:6px">${S.mode==="coach"?`Ton équipe entre dans l'histoire, coach ${esc(S.me.name.split(" ").slice(-1)[0])} !`:`${esc(S.me.name)} soulève le trophée avec ses coéquipiers !`} 🎉</p>`:""}
+    <button class="btn gold block" id="cereNext">${step?"Continuer":"🏆 Soulever le trophée"}</button></div>`;}
+
 /* =================== SAUVEGARDE =================== */
 const SAVE_KEY="hakvision-pro-v4";
 function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(S));}catch(e){}}
@@ -8239,6 +8267,7 @@ function showCeremony(){
 }
 function drawCere(){
   const {c,step}=CERE;let body="";
+  if(c.kind==="trophy"){openModal(drawTrophyCere(c,step));modal.classList.add("cerem");document.getElementById("cereNext").onclick=()=>{if(CERE.step<1){CERE.step=1;const t=c.team?TEAMS[c.team]:NATIONS[c.nat];for(let i=0;i<3;i++)setTimeout(()=>confetti([t.color,t.accent,"#eac65b"]),i*600);sfx("goal");crowdBurst();drawCere();return;}S.ceres.shift();CERE=null;modal.classList.remove("cerem");closeModal();save();if(S.ceres.length)showCeremony();};return;}
   if(c.kind==="rank"){const top=c.top;const n=top.length;const shownFrom=step===0?Math.max(3,n):step===1?2:step===2?1:0;
     body=`<div class="cerebox"><span class="eyebrow">${esc(CERE_VENUE[c.key]||"Gala")}</span><h2 class="ceret">${esc(c.name)}</h2>
       <div class="cerelist">${top.map((x,i)=>i>=shownFrom?cereRow(x,i+1,i===0?"win":""):`<div class="cerow hid"><span class="rk">${i+1}</span><span class="cn"><b>?</b></span></div>`).join("")}</div>
