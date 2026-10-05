@@ -6233,18 +6233,6 @@ const PRESS={
   final:{q:"Tu viens de jouer une finale. Que ressens-tu ?",a:[{t:"Ce trophée, c'est pour mon pays et mon quartier.",fx:{fans:6,family:4,rep:2},r:"Message repris partout. Ton quartier est en fête."},{t:"On en veut encore plus.",fx:{coach:3,rep:1},r:"La faim de victoire plaît."},{t:"Je ne réalise pas encore.",fx:{fans:3},r:"Moment sincère, très apprécié."}]},
   rumor:{q:"On parle d'un départ cet été. Tu confirmes ?",a:[{t:"Je suis bien ici.",fx:{fans:5,coach:2},r:"Les supporters sont rassurés."},{t:"Mon agent étudie les offres.",fx:{fans:-6,rep:1,listed:true},r:"Les supporters sifflent, les recruteurs prennent note."},{t:"Je ne parle pas de ça.",fx:{},r:"Silence radio."}]},
 };
-function maybePress(fx,m){
-  let key=null;const won=m.us>m.them||m.pensWin===true,lost=m.us<m.them||m.pensWin===false;
-  if(fx.final&&m.played)key="final";else if(["Q","T"].includes(fx.kind)&&m.played&&Math.random()<.6)key="nat";
-  else if(m.played&&m.rating<=5.4&&Math.random()<.7)key="bad";else if(m.g>0&&Math.random()<.45)key="goal";
-  else if(fx.ko&&won)key="win";else if(lost&&Math.random()<.3)key="loss";else if(won&&Math.random()<.2)key="win";
-  else if(isWindow(fx.day)&&S.me.rep>=30&&Math.random()<.25)key="rumor";
-  if(key&&m.played)S.press={key};
-}
-function answerPress(i){const P=PRESS[S.press.key];const a=P.a[i];const me=S.me;const f=a.fx;
-  ["fans","coach","team","family"].forEach(k=>{if(f[k])me.rel[k]=clamp(me.rel[k]+f[k],0,100);});if(f.rep)me.rep=clamp(me.rep+f.rep,0,100);if(f.listed)me.listed=true;
-  addNews(`Conférence de presse : « ${a.t} » ${a.r}`);S.press=null;closeModal();save();render();toast(a.r);}
-
 /* =================== RÉSEAUX SOCIAUX =================== */
 function fanPosts(fx,m){
   const me=S.me;const us=fx.us;const tag="#"+us.short.replace(/\s/g,"");const nm=me.name.split(" ")[0];const won=m.us>m.them||m.pensWin===true,lost=m.us<m.them||m.pensWin===false;
@@ -6479,7 +6467,7 @@ function coachRenderFT(){
   if(won&&M.fx.final&&!M.cele){M.cele=true;confetti();sfx("goal");}
 }
 function coachFinish(){
-  const fx=M.fx;const res={us:M.us,them:M.them,pensWin:M.pensWin==null?null:M.pensWin};const xi=M.xi,used=M.used,gb=M.goalsBy,ab=M.assBy;closeMatch();
+  const fx=M.fx;const res={us:M.us,them:M.them,pensWin:M.pensWin==null?null:M.pensWin};const topK=Object.entries(M.goalsBy).sort((x,y)=>y[1]-x[1])[0];M_LASTXI=topK?([...M.xi].find(p=>pkey(p)===topK[0])||{}).name:(M.xi[9]||M.xi[0]).name;const xi=M.xi,used=M.used,gb=M.goalsBy,ab=M.assBy;closeMatch();
   const me=S.me,C=S.coach;const natM=["Q","T","F"].includes(fx.kind);const hg=fx.h===fx.us.id?res.us:res.them,ag=fx.h===fx.us.id?res.them:res.us;
   playDay(fx.day,{key:fx.key,hg,ag,pw:res.pensWin,me:fx.us.id});
   recordTeamResult(fx,{...res,played:false,rating:null,g:0,a:0});
@@ -6507,10 +6495,9 @@ const COACH_PRESS={
   c_loss:{q:"Défaite. Votre poste est-il menacé ?",a:[{t:"J'assume, je suis le premier responsable.",fx:{coach:4,team:3},r:"La direction apprécie ton honnêteté."},{t:"Certains joueurs n'ont pas été au niveau.",fx:{team:-8,coach:-1},r:"Le vestiaire n'a pas aimé être pointé du doigt."},{t:"L'arbitrage nous a coûté le match.",fx:{fans:3,rep:-1},r:"Les supporters te suivent, la fédération beaucoup moins."}]},
   c_big:{q:"Grand match ce soir. Un message pour vos supporters ?",a:[{t:"On a écrit l'histoire ensemble.",fx:{fans:6,rep:1},r:"Message repris partout."},{t:"On en veut encore plus.",fx:{coach:3,rep:1},r:"La faim de victoire plaît à la direction."},{t:"Je pense déjà au prochain match.",fx:{coach:2},r:"Réponse froide mais pro."}]},
 };
-Object.assign(PRESS,COACH_PRESS);
+
 function coachPress(fx,res){const won=res.us>res.them||res.pensWin===true,lost=res.us<res.them||res.pensWin===false;let key=null;
-  if(fx.final||(fx.ko&&won&&Math.random()<.5))key="c_big";else if(lost&&Math.random()<.55)key="c_loss";else if(won&&Math.random()<.35)key="c_win";
-  if(key)S.press={key};
+  pressAfterMatch(fx,{...res,played:true,rating:7,g:0},"coach");
   const tag="#"+fx.us.short.replace(/\s/g,"");const nm=S.me.name.split(" ").slice(-1)[0];const h=()=>"@"+pick(["ultras_","kop_","tribune_","fan_"])+slug(fx.us.short).replace(/-/g,"")+RI(1,99);
   addSocial([{h:h(),t:won?pick([`Coach ${nm} on t'aime ❤️ ${tag}`,`Quelle équipe ce soir !! ${tag}`,`Le plan de jeu de ${nm} est parfait 👏`]):lost?pick([`${nm} dehors !! 😡 ${tag}`,`Je comprends pas les choix du coach…`,`On mérite mieux que ça ${tag}`]):`Match nul, frustrant. ${tag}`,l:RI(30,3000)}]);}
 
@@ -6813,6 +6800,79 @@ function viewMarket(){
     <div class="chips">${tabs.map(([k,l])=>`<button data-mkt="${k}" class="${MKT===k?"on":""}">${l}</button>`).join("")}</div>${body}</section>`;
 }
 
+/* =================== CONFÉRENCES DE PRESSE GÉNÉRÉES =================== */
+const OUTLETS={fra:["L'Équipe","RMC Sport","Foot Mercato","Le Parisien","Canal+"],eng:["BBC Sport","Sky Sports","The Athletic","The Guardian"],esp:["Marca","AS","Mundo Deportivo"],ita:["La Gazzetta dello Sport","Corriere dello Sport","Sky Italia"],ger:["Kicker","Bild","Sport1"],
+  cod:["Radio Okapi","Top Congo FM","Foot RDC","Le Phare"],mar:["Le360 Sport","Al Mountakhab","Hespress Sport"],egy:["Al Ahram","FilGoal","KingFut"],rsa:["Kick Off","SuperSport","Soccer Laduma"],
+  ksa:["Arriyadiyah","Al Riyadh","SSC"],jpn:["Sports Nippon","Football Channel"],prk:["Rodong Sinmun","KCTV Sport"],aus:["Fox Sports AU","KEEPUP"],bra:["Globo Esporte","Lance!","ESPN Brasil"],arg:["Olé","TyC Sports","La Nación"],
+  mex:["Récord","ESPN Deportes","Mediotiempo"],usa:["ESPN FC","MLS Soccer","The Athletic"],_:["beIN Sports","ESPN","Africa Top Sports","Goal"]};
+const JOURNOS=["Pierre","Samuel","Aïcha","Diego","Hannah","Moussa","Laura","Kofi","Giulia","Tom","Yasmine","Hugo","Fatou","Marco","Grâce","Junior","Sofia","Karim"];
+const fill=(s,v)=>s.replace(/\{(\w+)\}/g,(_,k)=>v[k]!=null?v[k]:"");
+const PQ={
+  winBig:["{opp} n'a jamais existé ce soir. C'est votre meilleur match de la saison ?","{score}, c'est une démonstration. Qu'est-ce qui a fait la différence face à {opp} ?","Les supporters chantent votre nom. Que ressentez-vous après ce {score} ?"],
+  win:["Victoire {score} contre {opp}. Était-ce aussi facile qu'il y paraissait ?","Trois points précieux. Où se situe {team} aujourd'hui ?","Vous avez souffert par moments face à {opp}. Comment l'expliquez-vous ?"],
+  draw:["Un nul {score} face à {opp}. Frustration ou bon point ?","{team} a manqué de tranchant aujourd'hui. Pourquoi ?","Ce match nul vous coûte-t-il des points dans la course ?"],
+  loss:["Défaite {score} contre {opp}. Qui est responsable ?","{team} a semblé à court d'idées. Que s'est-il passé ?","Cette défaite remet-elle en cause vos ambitions ?","Les supporters ont sifflé à la fin. Les comprenez-vous ?"],
+  goal:["Votre {goals} aujourd'hui : à qui le dédiez-vous ?","Vous en êtes à {seasonGoals} buts cette saison. Jusqu'où pouvez-vous aller ?","Ce but face à {opp}, c'est le plus beau de votre carrière ?"],
+  bad:["Une note de {rating} aujourd'hui. Vous êtes passé à côté ?","On vous a peu vu dans ce match. Un problème physique ?","Le coach semblait agacé par votre prestation. Vous le comprenez ?"],
+  bench:["Encore remplaçant aujourd'hui. Votre patience a-t-elle des limites ?","Avez-vous parlé avec le coach de votre temps de jeu ?"],
+  final:["Vous venez de vivre une finale de {comp}. Que retenez-vous ?","Ce trophée, c'est le plus beau moment de votre carrière ?","Une finale, ça se gagne avec la tête ou avec le cœur ?"],
+  nat:["Que représente ce maillot de {nation} pour vous ?","Le pays entier vous regarde. Ressentez-vous la pression ?","Pensez-vous pouvoir aller loin avec {nation} ?"],
+  rumor:["On vous annonce du côté de {rumor}. Vous confirmez ?","Votre agent a été aperçu avec les dirigeants de {rumor}. Une explication ?","Avez-vous la tête à {team} ou déjà ailleurs ?"],
+  contract:["Votre contrat se termine bientôt. Allez-vous prolonger ?","Les discussions pour votre prolongation avancent-elles ?"],
+  rival:["Le derby/choc contre {opp}, c'est un match à part pour vous ?"],
+  streak:["{streak} victoires de suite : rien ne semble pouvoir arrêter {team} ?","{streak} matchs sans victoire : la crise est-elle là ?"],
+  coachBoard:["La direction vous fait-elle toujours confiance après ce résultat ?","Votre poste est-il menacé si {team} continue comme ça ?"],
+  coachTact:["Pourquoi avoir choisi le {formation} aujourd'hui ?","Vos changements ont-ils changé le match ?","Votre équipe a joué en {ment}. C'était le bon choix face à {opp} ?"],
+  coachPlayer:["{star} a été décisif. Est-il le meilleur joueur de votre effectif ?","Que dites-vous à {star} après ce match ?"],
+  coachMercato:["Allez-vous recruter pendant le mercato ?","Un joueur de votre effectif pourrait-il partir cet été ?"],
+  life:["On vous a vu en ville avec {partner}. Votre vie privée vous aide-t-elle sur le terrain ?","Votre famille était au stade aujourd'hui. Ça change quelque chose ?"],
+};
+const PA={
+  humble:{t:["On a travaillé dur toute la semaine, c'est le groupe qui gagne.","Je dois rester humble et continuer à travailler.","Le mérite revient à toute l'équipe et au staff.","On garde les pieds sur terre, rien n'est fait."],fx:{coach:3,team:3},r:["Réponse humble, appréciée par le vestiaire.","Le staff salue ta maturité.","Une réponse pro qui plaît en interne."]},
+  bold:{t:["On joue pour gagner tous les titres, point final.","Je suis là pour être le meilleur, et je le prouverai.","Personne ne peut nous arrêter cette saison.","Je n'ai peur de personne."],fx:{fans:5,rep:1,team:-2},r:["Les supporters adorent ton ambition !","Ta déclaration fait le buzz sur les réseaux.","Titre en une du journal : « Il ne doute de rien »."]},
+  fans:{t:["Merci aux supporters, ils ont été incroyables.","Ce résultat, c'est pour les gens qui nous soutiennent.","Je pense à mon quartier et à ma famille ce soir."],fx:{fans:6,family:2},r:["Les tribunes chantent ton nom.","Ta réponse émeut les supporters.","Message partagé des milliers de fois."]},
+  critical:{t:["Certains n'étaient pas au niveau aujourd'hui.","L'arbitrage nous a coûté ce match, c'est inacceptable.","Il y a des choses qui doivent changer en interne."],fx:{team:-6,coach:-4,fans:3},r:["Le vestiaire n'a pas apprécié.","La polémique enfle dans les médias.","La fédération pourrait se pencher sur tes propos."]},
+  deflect:{t:["Je ne parle pas de ça, on verra.","Pas de commentaire, je me concentre sur le prochain match.","Question suivante, s'il vous plaît."],fx:{fans:-2,coach:1},r:["Réponse froide, les journalistes restent sur leur faim.","Tu esquives habilement.","Silence radio, la presse spécule."]},
+  joke:{t:["Demandez à ma mère, c'est elle la vraie star !","Si je continue comme ça, je vais demander une augmentation…","Je dédie ce but à mon coiffeur !"],fx:{fans:4,rep:1},r:["Éclat de rire dans la salle de presse.","Ta blague devient virale.","Les journalistes adorent ta bonne humeur."]},
+  loyal:{t:["Je suis heureux ici, je ne pense qu'à ce club.","Mon avenir, c'est ici. Je veux gagner avec ce club.","Je n'ai aucune envie de partir."],fx:{fans:6,coach:3},r:["Les supporters sont rassurés.","Le club apprécie ta fidélité.","Ta déclaration d'amour au club fait plaisir."]},
+  open:{t:["Mon agent étudie toutes les options.","Je ne ferme aucune porte.","On verra ce qui est le mieux pour ma carrière."],fx:{fans:-6,rep:1,listed:true},r:["Les supporters sifflent, les recruteurs prennent note.","La rumeur s'emballe.","Plusieurs clubs se renseignent après ta déclaration."]},
+  tactic:{t:["C'était le bon plan, les joueurs l'ont parfaitement appliqué.","On s'est adaptés à l'adversaire, c'est le football moderne.","Je ferais les mêmes choix demain."],fx:{coach:3,rep:1},r:["Les consultants saluent ta lecture du jeu.","La presse loue ton sens tactique.","Ta conférence est décortiquée par les experts."]},
+};
+const TOPIC_ANS={winBig:["humble","bold","fans","joke"],win:["humble","bold","fans","tactic"],draw:["humble","critical","deflect","tactic"],loss:["humble","critical","deflect","fans"],goal:["fans","humble","joke","bold"],bad:["humble","critical","deflect"],bench:["humble","critical","open"],
+  final:["fans","bold","humble"],nat:["fans","bold","humble"],rumor:["loyal","open","deflect"],contract:["loyal","open","deflect"],rival:["bold","humble","fans"],streak:["humble","bold","deflect"],
+  coachBoard:["humble","bold","critical"],coachTact:["tactic","humble","bold"],coachPlayer:["humble","bold","fans"],coachMercato:["deflect","open","loyal"],life:["deflect","joke","fans"]};
+function pressAfterMatch(fx,m,mode){
+  const me=S.me;const coach=mode==="coach";const won=m.us>m.them||m.pensWin===true,lost=m.us<m.them||m.pensWin===false;
+  if(!coach&&!m.played&&Math.random()<.7)return;if(Math.random()<(fx.final||fx.kind==="T"?0:.35))return;
+  const team=fx.us.short;const country=fx.us.kind==="club"?TEAMS[fx.us.id].country:fx.us.id;
+  const res=me.results.slice(-6);let streak=0;for(let i=res.length-1;i>=0;i--){const w=res[i].us>res[i].them;if(w)streak++;else break;}let bad=0;for(let i=res.length-1;i>=0;i--){if(res[i].us<=res[i].them)bad++;else break;}
+  const rumorC=Object.keys(me.interest||{})[0];const xi=coach&&M_LASTXI?M_LASTXI:null;
+  const v={opp:fx.opp.short,team,score:`${m.us}-${m.them}`,goals:m.g>1?m.g+" buts":"but",seasonGoals:me.ss.g,rating:m.rating?m.rating.toFixed(1):"",comp:fx.label,nation:NATIONS[me.nat]?NATIONS[me.nat].name:"",rumor:rumorC?TEAMS[rumorC].name:"un grand club",
+    streak:streak>=3?streak:bad,formation:coach?S.coach.formation:"",ment:coach?MENT[S.coach.ment].n.toLowerCase():"",star:xi?xi:"ton meilleur joueur",partner:me.partner?me.partner.name.split(" ")[0]:"ta compagne"};
+  const topics=[];
+  if(fx.final)topics.push("final");
+  if(won&&m.us-m.them>=3)topics.push("winBig");else if(won)topics.push("win");else if(lost)topics.push("loss");else topics.push("draw");
+  if(!coach){if(m.g>0)topics.push("goal");if(m.played&&m.rating<=5.6)topics.push("bad");if(!m.played)topics.push("bench");if(["Q","T","F","Y","U20"].includes(fx.kind))topics.push("nat");
+    if(isWindow(fx.day)&&rumorC&&me.rep>=25)topics.push("rumor");if(me.contract&&me.contract.until<=S.w.year+1&&!me.youth)topics.push("contract");if(me.partner&&me.rep>=30&&Math.random()<.3)topics.push("life");}
+  else{topics.push("coachTact");if(lost&&S.coach.conf<45)topics.push("coachBoard");if(won)topics.push("coachPlayer");if(isWindow(fx.day))topics.push("coachMercato");}
+  if(streak>=3||bad>=3)topics.push("streak");
+  const pickT=[...new Set(topics)];const chosen=[pickT[0],...shuffle(pickT.slice(1))].slice(0,Math.min(3,pickT.length));
+  const outs=OUTLETS[country]||OUTLETS._;
+  const qs=chosen.map(tp=>{let q=pick(PQ[tp]);if(tp==="streak")q=PQ.streak[streak>=3?0:1];const ans=shuffle(TOPIC_ANS[tp]).slice(0,3).map(k=>{const A=PA[k];return {k,t:pick(A.t),r:pick(A.r)};});
+    return {j:pick(JOURNOS),o:pick(outs),q:fill(q,v),ans};});
+  S.press={qs,i:0,title:fx.final?"Conférence d'après-finale":coach?"Conférence de presse du coach":"Zone mixte"};
+}
+let M_LASTXI=null;
+function pressCard(){const P=S.press;if(!P||!P.qs){S.press=null;return "";}const Q=P.qs[P.i];
+  return `<div class="card evt press"><div class="between"><span class="eyebrow">🎙️ ${esc(P.title)}</span><span class="gen">Question ${P.i+1}/${P.qs.length}</span></div>
+  <p class="small" style="margin-top:8px;opacity:.8"><b>${esc(Q.j)}</b> · ${esc(Q.o)}</p><h2 class="h2" style="margin-top:4px">« ${esc(Q.q)} »</h2>
+  <div class="evc">${Q.ans.map((a,i)=>`<button data-press="${i}"><b>${esc(a.t)}</b><small>${({humble:"Humble",bold:"Ambitieux",fans:"Émotion",critical:"Critique",deflect:"Esquiver",joke:"Humour",loyal:"Fidèle",open:"Ouvert au départ",tactic:"Tactique"})[a.k]}</small></button>`).join("")}</div></div>`;}
+function answerPress(i){const P=S.press;if(!P||!P.qs)return;const a=P.qs[P.i].ans[i];const me=S.me;const f=PA[a.k].fx;
+  ["fans","coach","team","family"].forEach(k=>{if(f[k])me.rel[k]=clamp(me.rel[k]+f[k],0,100);});if(f.rep)me.rep=clamp(me.rep+f.rep,0,100);if(f.listed&&!isCoach())me.listed=true;
+  if(isCoach()){if(f.coach)S.coach.conf=clamp(S.coach.conf+f.coach/2,0,100);if(f.team)S.coach.morale=clamp(S.coach.morale+f.team/2,20,95);}
+  addNews(`Presse (${P.qs[P.i].o}) : « ${a.t} » ${a.r}`);if(Math.random()<.5)addSocial([{h:"@"+slug(P.qs[P.i].o).replace(/-/g,"").slice(0,14),t:`« ${a.t} » — ${S.me.name}`,l:RI(100,9000)}]);
+  P.i++;if(P.i>=P.qs.length)S.press=null;save();render();toast(a.r);}
+
 /* =================== MATCH ENGINE (player career) =================== */
 let M=null,MO=null,GV=null;
 const matchEl=document.getElementById("match");
@@ -7023,7 +7083,7 @@ function applyMyMatch(fx,m){
     if(Math.random()<.02+(me.energy<30?.07:0)){me.inj=RI(1,4);addNews(`${me.name} se blesse : ${me.inj} semaine(s) d'absence.`);addMsg("Blessure",`Le staff médical annonce ${me.inj} semaine(s) d'absence.`,"club");}
   }else{me.happy=clamp(me.happy-2,0,100);}
   S.day=fx.day;S.pending=null;S.pendingSel=null;
-  maybePress(fx,m);fanPosts(fx,m);
+  pressAfterMatch(fx,m,"player");fanPosts(fx,m);
   afterDay(fx.day);save();TAB="home";render();window.scrollTo(0,0);
   if(m.played)toast(`Note ${m.rating.toFixed(1)} · ${m.g} but(s), ${m.a} passe(s) D. · +${gain} pt${bonus?` · prime ${money(bonus)}`:""}`);
 }
@@ -7499,9 +7559,6 @@ function heroCard(){
   </div></div>
   <div class="bars">${meter("Énergie",me.energy)}${meter("Bonheur",me.happy)}</div></div>`;
 }
-function pressCard(){const P=PRESS[S.press.key];return `<div class="card evt"><div class="between"><span class="eyebrow">Conférence de presse</span><span class="gen">🎙️ Les journalistes t'attendent</span></div>
-  <h2 class="h2">« ${esc(P.q)} »</h2><div class="evc">${P.a.map((a,i)=>`<button data-press="${i}"><b>${esc(a.t)}</b></button>`).join("")}</div>
-  <p class="muted" style="font-size:11.5px;margin-top:8px">Ta réponse peut plaire ou déplaire aux supporters, au coach et au vestiaire.</p></div>`;}
 function eventCard(){
   const ev=S.event;if(!ev)return "";const E=EVENTS[ev.kind];
   if(!E||(E.valid&&!E.valid(ev.d))){S.event=null;return "";}
