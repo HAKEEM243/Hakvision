@@ -1,0 +1,26 @@
+{
+ "name": "Hak Vision Football Life Pro",
+ "short_name": "Hak Vision Foot",
+ "description": "Carrière de footballeur ou d'entraîneur.",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "background_color": "#061415",
+ "theme_color": "#0b1d1c",
+ "lang": "fr",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any maskable"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any maskable"
+  }
+ ]
+}
