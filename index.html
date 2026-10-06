@@ -416,6 +416,88 @@
       line-height: 1.9; max-width: 520px;
     }
 
+    /* ══════════════════════════════════════
+       SEFA TOGO & TERRAIN · Engagement humanitaire
+    ══════════════════════════════════════ */
+    .sefa-home-section {
+      background: var(--ink2);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+    .sefa-home-header {
+      display: flex; align-items: center; gap: 24px;
+      margin-bottom: 44px; flex-wrap: wrap;
+    }
+    .sefa-home-logo {
+      width: 76px; height: 76px;
+      object-fit: contain; border-radius: 50%;
+      border: 2px solid rgba(184,149,42,.3);
+      background: #fff; padding: 5px; flex-shrink: 0;
+    }
+    .sefa-home-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px; margin-top: 8px;
+    }
+    .sefa-home-photo {
+      position: relative; overflow: hidden;
+      border-radius: 4px; cursor: zoom-in;
+      box-shadow: 0 16px 40px rgba(0,0,0,.4);
+    }
+    .sefa-home-photo img {
+      width: 100%; height: 230px; object-fit: cover;
+      display: block; transition: transform .45s ease;
+    }
+    .sefa-home-photo:hover img { transform: scale(1.04); }
+    .sefa-home-photo-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.82));
+      color: var(--text); font-size: .76rem; font-weight: 300;
+      padding: 22px 14px 12px;
+    }
+    .sefa-home-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .64rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(184,149,42,.3);
+      padding: 4px 10px; border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 960px) {
+      .sefa-home-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .sefa-home-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Lightbox */
+    .hv-lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(5,4,4,.94); z-index: 2000;
+      align-items: center; justify-content: center;
+      padding: 40px 20px; cursor: zoom-out;
+    }
+    .hv-lightbox.open { display: flex; }
+    .hv-lightbox img {
+      max-width: 92vw; max-height: 88vh; display: block;
+      border-radius: 4px; box-shadow: 0 30px 90px rgba(0,0,0,.7);
+      cursor: default;
+    }
+    .hv-lightbox-caption {
+      position: absolute; bottom: 24px; left: 0; right: 0;
+      text-align: center; color: #e8e0d0;
+      font-size: .85rem; font-weight: 300; padding: 0 20px;
+    }
+    .hv-lightbox-close {
+      position: absolute; top: 18px; right: 22px;
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.2);
+      color: #e8e0d0; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background .2s;
+    }
+    .hv-lightbox-close:hover { background: rgba(255,255,255,.16); }
+
     .section-head {
       display: flex; align-items: flex-end;
       justify-content: space-between; gap: 24px;
@@ -1272,6 +1354,76 @@
     </div>
   </section>
 
+  <!-- ══════════════ SEFA TOGO & TERRAIN ══════════════ -->
+  <section class="section sefa-home-section" id="engagement">
+    <div class="section-inner">
+
+      <div class="sefa-home-header reveal">
+        <img src="sefa_togo_logo.jpg" alt="Logo SEFA Togo" class="sefa-home-logo" loading="lazy">
+        <div>
+          <p class="section-label">Engagement humanitaire</p>
+          <h2 class="section-title">SEFA Togo <strong>&amp; actions de terrain</strong></h2>
+        </div>
+      </div>
+
+      <p class="section-lead reveal reveal-d1" style="max-width:720px; margin-bottom:36px;">
+        SEFA Togo est une association humanitaire implantée au Togo, menant des actions de solidarité et de développement culturel en Afrique de l'Ouest : distribution de fournitures scolaires, ateliers éducatifs, soutien aux communautés locales. Merveil Hakeem Dianzenza en est le superviseur. Ses missions de terrain s'étendent aussi à la République Démocratique du Congo, avec des ateliers littéraires et culturels auprès des jeunes congolais à Kinshasa.
+      </p>
+
+      <div class="sefa-home-grid reveal reveal-d2">
+        <div class="sefa-home-photo">
+          <img src="sefa_togo_1.jpg" alt="SEFA Togo, distribution de fournitures scolaires" loading="lazy">
+          <div class="sefa-home-photo-caption">
+            <span class="sefa-home-tag">SEFA Togo</span><br>
+            Distribution de fournitures scolaires aux enfants
+          </div>
+        </div>
+        <div class="sefa-home-photo">
+          <img src="sefa_togo_3.jpg" alt="SEFA Togo, Palais Royal Gilgal, enfants avec fournitures" loading="lazy">
+          <div class="sefa-home-photo-caption">
+            <span class="sefa-home-tag">SEFA Togo</span><br>
+            Au Palais Royal Gilgal, enfants avec leurs fournitures
+          </div>
+        </div>
+        <div class="sefa-home-photo">
+          <img src="sefa_togo_4.jpg" alt="SEFA Togo, mission humanitaire, équipe et enfants" loading="lazy">
+          <div class="sefa-home-photo-caption">
+            <span class="sefa-home-tag">SEFA Togo</span><br>
+            L'équipe SEFA Togo sur le terrain avec les enfants
+          </div>
+        </div>
+        <div class="sefa-home-photo">
+          <img src="kinshasa_ecoles_1.jpg" alt="Merveil Hakeem Dianzenza avec des élèves à Kinshasa" loading="lazy">
+          <div class="sefa-home-photo-caption">
+            <span class="sefa-home-tag">Kinshasa</span><br>
+            Rencontre avec les élèves d'une école de Kinshasa
+          </div>
+        </div>
+        <div class="sefa-home-photo">
+          <img src="kinshasa_ecoles_2.jpg" alt="Merveil Hakeem Dianzenza avec des élèves à Kinshasa" loading="lazy">
+          <div class="sefa-home-photo-caption">
+            <span class="sefa-home-tag">Kinshasa</span><br>
+            Atelier littéraire et culturel avec les jeunes congolais
+          </div>
+        </div>
+        <div class="sefa-home-photo">
+          <img src="sefa_togo_2.jpg" alt="SEFA Togo, remise de kit scolaire" loading="lazy">
+          <div class="sefa-home-photo-caption">
+            <span class="sefa-home-tag">SEFA Togo</span><br>
+            Remise individuelle de kits scolaires
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-d3" style="margin-top:32px;">
+        <a class="btn-ghost" href="bio.html#sefa-togo">
+          En savoir plus sur SEFA Togo <i class="fa-solid fa-arrow-right" style="font-size:.72rem;"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ══════════════ SOUMETTRE UN MANUSCRIT ══════════════ -->
   <section class="submit-section" id="soumettre">
     <div class="submit-inner">
@@ -1423,6 +1575,7 @@
           <p class="footer-col-title">Maison</p>
           <ul class="footer-links">
             <li><a href="bio.html">Biographie</a></li>
+            <li><a href="#engagement">SEFA Togo</a></li>
             <li><a href="prix-litteraires.html">Prix Dianzenza</a></li>
             <li><a href="press.html">Espace presse</a></li>
             <li><a href="okapiplay.html">OkapiPlay</a></li>
@@ -1450,6 +1603,37 @@
       </div>
     </div>
   </footer>
+
+  <!-- Lightbox photos SEFA Togo / Kinshasa -->
+  <div class="hv-lightbox" id="hvLightbox">
+    <button class="hv-lightbox-close" id="hvLightboxClose" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+    <img id="hvLightboxImg" src="" alt="">
+    <p class="hv-lightbox-caption" id="hvLightboxCaption"></p>
+  </div>
+  <script>
+  !function(){
+    var lb = document.getElementById('hvLightbox');
+    var lbImg = document.getElementById('hvLightboxImg');
+    var lbCaption = document.getElementById('hvLightboxCaption');
+    var lbClose = document.getElementById('hvLightboxClose');
+    if(!lb) return;
+    function openLightbox(img){
+      lbImg.src = img.getAttribute('src');
+      lbImg.alt = img.getAttribute('alt') || '';
+      var cap = img.closest('.sefa-home-photo');
+      cap = cap ? cap.querySelector('.sefa-home-photo-caption') : null;
+      lbCaption.textContent = cap ? cap.textContent.trim() : '';
+      lb.classList.add('open');
+    }
+    function closeLightbox(){ lb.classList.remove('open'); lbImg.src=''; }
+    document.querySelectorAll('.sefa-home-photo img').forEach(function(img){
+      img.addEventListener('click', function(){ openLightbox(img); });
+    });
+    lbClose.addEventListener('click', closeLightbox);
+    lb.addEventListener('click', function(e){ if(e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLightbox(); });
+  }();
+  </script>
 
   <script>
     // Nav mobile
