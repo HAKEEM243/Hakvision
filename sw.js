@@ -1,4 +1,4 @@
-const CACHE = 'hakvision-v6';
+const CACHE = 'hakvision-v7';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -16,6 +16,7 @@ const PRECACHE = [
   '/merci.html',
   '/oeil-tome2.html',
   '/le-porteur-de-lumiere.html',
+  '/comprendre-theorie-musique.html',
   '/oeil-kulala.html',
   '/diaku.html',
   '/un-ecrivain-kinshasa.html',

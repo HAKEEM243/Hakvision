@@ -108,6 +108,18 @@
     </image:image>
   </url>
 
+  <!-- Comprendre la Théorie de la Musique — Kulala Ntumba Pasco -->
+  <url>
+    <loc>https://hakvision243.netlify.app/comprendre-theorie-musique.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/theorie_musique_cover.jpg</image:loc>
+      <image:title>Comprendre la Théorie de la Musique, Kulala Ntumba Pasco</image:title>
+    </image:image>
+  </url>
+
   <!-- Pages dédiées par livre -->
   <url>
     <loc>https://hakvision243.netlify.app/un-ecrivain-kinshasa.html</loc>
