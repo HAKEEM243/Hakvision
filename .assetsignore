@@ -1,0 +1,22 @@
+# Fichiers et dossiers qui n'appartiennent pas au site Hakvision Éditions
+# et ne doivent pas être publiés comme assets statiques.
+
+.git
+.github
+.wrangler
+node_modules
+
+# Site ELUCCO (déployé séparément sur son propre projet Cloudflare)
+elucco-worker
+functions
+masambukidi-news
+
+# Configuration Netlify (site migré sur Cloudflare)
+netlify.toml
+_headers
+_redirects
+
+# Divers
+README-SEO.md
+wrangler.toml
+.assetsignore
