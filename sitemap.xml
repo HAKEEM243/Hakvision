@@ -96,6 +96,18 @@
     </image:image>
   </url>
 
+  <!-- Le Porteur de Lumière — Kulala Ntumba Pasco -->
+  <url>
+    <loc>https://hakvision243.netlify.app/le-porteur-de-lumiere.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://hakvision243.netlify.app/porteur_lumiere_cover.jpg</image:loc>
+      <image:title>Le Porteur de Lumière, Kulala Ntumba Pasco</image:title>
+    </image:image>
+  </url>
+
   <!-- Pages dédiées par livre -->
   <url>
     <loc>https://hakvision243.netlify.app/un-ecrivain-kinshasa.html</loc>
