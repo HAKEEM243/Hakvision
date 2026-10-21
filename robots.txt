@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://hakvision243.netlify.app/sitemap.xml
+Sitemap: https://maisoneditionhakvision.arenalse22.workers.dev/sitemap.xml
 
 # Pages importantes — livres
 Allow: /index.html
