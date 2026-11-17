@@ -69,41 +69,32 @@
 
     .kp-band {
       position: relative;
-      background: linear-gradient(135deg, #0057c7 0%, #00327a 100%);
-      padding: 34px var(--gutter) 30px;
-      border-bottom: 4px solid #f7d618;
+      overflow: hidden;
+      background: #0061d8;
+      padding: 40px var(--gutter) 36px;
+    }
+    .kp-band-diag-yellow {
+      position: absolute; left: -10%; width: 130%; height: 48px; top: 58%;
+      background: #f7d618; transform: translateY(-50%) rotate(-9deg); z-index: 1;
+    }
+    .kp-band-diag-red {
+      position: absolute; left: -10%; width: 130%; height: 28px; top: 58%;
+      background: #ce1021; transform: translateY(-50%) rotate(-9deg); z-index: 1;
     }
     .kp-band-inner {
+      position: relative; z-index: 2;
       max-width: var(--max); margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between; gap: 28px;
-    }
-    .kp-flag-badge {
-      flex-shrink: 0;
-      width: clamp(64px, 7vw, 92px); height: clamp(44px, 4.8vw, 62px);
-      position: relative; overflow: hidden;
-      background: #007fff;
-      border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.25), inset 0 0 0 1px rgba(255,255,255,.25);
-    }
-    .kp-flag-badge .diag-yellow {
-      position: absolute; left: -22%; width: 144%; height: 20%; top: 50%;
-      background: #f7d618; transform: translateY(-50%) rotate(-32deg);
-    }
-    .kp-flag-badge .diag-red {
-      position: absolute; left: -22%; width: 144%; height: 11%; top: 50%;
-      background: #ce1021; transform: translateY(-50%) rotate(-32deg);
-    }
-    .kp-flag-badge .star {
-      position: absolute; top: 12%; left: 14%; color: #f7d618; font-size: clamp(11px, 1.4vw, 15px);
     }
     .kp-masthead-name {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: clamp(30px, 4.5vw, 50px); font-weight: 800; letter-spacing: .5px; color: #fff;
+      text-shadow: 0 1px 0 #00327a, 0 2px 4px rgba(0,0,0,.5), 0 0 16px rgba(0,0,0,.35);
     }
     .kp-masthead-tag {
       font-family: Arial, sans-serif;
-      font-size: clamp(11px, 1.4vw, 14px); font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
-      color: #cfe0ff; margin-top: 8px;
+      font-size: clamp(14px, 1.8vw, 20px); font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #fff; margin-top: 10px;
+      text-shadow: 0 1px 0 #00327a, 0 1px 5px rgba(0,0,0,.6);
     }
 
     .kp-article { max-width: var(--max); margin: 0 auto; padding: 44px var(--gutter) 0; font-family: Georgia, 'Times New Roman', serif; }
@@ -177,16 +168,11 @@
 
   <main>
     <div class="kp-band">
+      <div class="kp-band-diag-yellow"></div>
+      <div class="kp-band-diag-red"></div>
       <div class="kp-band-inner">
-        <div>
-          <div class="kp-masthead-name">Kongolia Magazine</div>
-          <div class="kp-masthead-tag">Littérature &amp; Engagement Africain</div>
-        </div>
-        <div class="kp-flag-badge" title="République Démocratique du Congo">
-          <div class="diag-yellow"></div>
-          <div class="diag-red"></div>
-          <i class="fa-solid fa-star star"></i>
-        </div>
+        <div class="kp-masthead-name">Kongolia Magazine</div>
+        <div class="kp-masthead-tag">Littérature &amp; Engagement Africain</div>
       </div>
     </div>
 
