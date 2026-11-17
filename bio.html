@@ -230,6 +230,40 @@
     }
     .sefa-photo-item:hover img { transform: scale(1.03); }
 
+    .sefa-video-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+    }
+    @media (max-width: 900px) {
+      .sefa-video-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .sefa-video-grid { grid-template-columns: 1fr; }
+    }
+    .sefa-video-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(184,149,42,.2);
+      background: #000;
+    }
+    .sefa-video-item video {
+      width: 100%;
+      aspect-ratio: 9/16;
+      display: block;
+      object-fit: cover;
+      background: #000;
+    }
+    .sefa-video-caption {
+      padding: 10px 12px;
+      font-size: .8rem;
+      color: #9a8e7e;
+      font-weight: 300;
+      border-top: 1px solid rgba(184,149,42,.15);
+    }
+
     /* Lightbox */
     .hv-lightbox {
       display: none;
@@ -517,6 +551,37 @@
           <div class="sefa-photo-item">
             <img src="sefa_togo_4.jpg" alt="SEFA Togo, mission humanitaire, équipe et enfants" loading="lazy">
             <div class="sefa-photo-caption">L'équipe SEFA Togo sur le terrain avec les enfants bénéficiaires</div>
+          </div>
+        </div>
+
+        <!-- Vidéos SEFA Togo -->
+        <p class="eyebrow" style="margin-top:36px;">Témoignages en vidéo</p>
+        <h4 style="font-family:var(--serif); font-weight:300; font-style:italic; color:#e8e0d0; font-size:1.3rem; margin:6px 0 4px;">La rentrée scolaire des enfants de SEFA Togo</h4>
+        <p style="color:#9a8e7e; font-size:.92rem; font-weight:300; max-width:680px; margin-bottom:8px;">Grâce au soutien de Merveil Hakeem Dianzenza, les enfants de l'orphelinat ont reçu cahiers, fournitures scolaires, nourriture et vêtements pour leur rentrée des classes. Voici leurs messages de remerciement.</p>
+        <div class="sefa-video-grid">
+          <div class="sefa-video-item">
+            <video controls preload="none" poster="sefa_togo_video_1_poster.jpg" playsinline>
+              <source src="sefa_togo_video_1.mp4" type="video/mp4">
+            </video>
+            <div class="sefa-video-caption">Les enfants remercient pour leur rentrée scolaire</div>
+          </div>
+          <div class="sefa-video-item">
+            <video controls preload="none" poster="sefa_togo_video_2_poster.jpg" playsinline>
+              <source src="sefa_togo_video_2.mp4" type="video/mp4">
+            </video>
+            <div class="sefa-video-caption">Merci pour les cahiers et fournitures offerts</div>
+          </div>
+          <div class="sefa-video-item">
+            <video controls preload="none" poster="sefa_togo_video_3_poster.jpg" playsinline>
+              <source src="sefa_togo_video_3.mp4" type="video/mp4">
+            </video>
+            <div class="sefa-video-caption">Un message de gratitude des enfants soutenus au Togo</div>
+          </div>
+          <div class="sefa-video-item">
+            <video controls preload="none" poster="sefa_togo_video_4_poster.jpg" playsinline>
+              <source src="sefa_togo_video_4.mp4" type="video/mp4">
+            </video>
+            <div class="sefa-video-caption">La joie des enfants pour la nourriture et les vêtements reçus</div>
           </div>
         </div>
       </div>
