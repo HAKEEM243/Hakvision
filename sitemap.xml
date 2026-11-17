@@ -120,6 +120,18 @@
     </image:image>
   </url>
 
+  <!-- Portrait de presse — Kulala Ntumba Pasco -->
+  <url>
+    <loc>https://maisoneditionhakvision.arenalse22.workers.dev/portrait-kulala-ntumba-pasco.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+    <image:image>
+      <image:loc>https://maisoneditionhakvision.arenalse22.workers.dev/kulala_ntumba_pasco_portrait.jpg</image:loc>
+      <image:title>Kulala Ntumba Pasco, écrivain, philosophe et violoncelliste</image:title>
+    </image:image>
+  </url>
+
   <!-- Pages dédiées par livre -->
   <url>
     <loc>https://maisoneditionhakvision.arenalse22.workers.dev/un-ecrivain-kinshasa.html</loc>
