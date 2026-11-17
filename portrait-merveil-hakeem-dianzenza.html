@@ -70,19 +70,36 @@
     .kp-band {
       position: relative;
       background: linear-gradient(135deg, #0057c7 0%, #00327a 100%);
-      padding: 40px var(--gutter) 26px;
+      padding: 34px var(--gutter) 30px;
+      border-bottom: 4px solid #f7d618;
     }
-    .kp-band-inner { max-width: var(--max); margin: 0 auto; }
-    .kp-band-flagline {
-      position: absolute; left: 0; right: 0; bottom: 0; height: 9px;
-      background: repeating-linear-gradient(90deg, #ce1021 0 60px, #f7d618 60px 68px, #0057c7 68px 128px, #f7d618 128px 136px);
+    .kp-band-inner {
+      max-width: var(--max); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 28px;
+    }
+    .kp-flag-badge {
+      flex-shrink: 0;
+      width: clamp(64px, 7vw, 92px); height: clamp(44px, 4.8vw, 62px);
+      position: relative; overflow: hidden;
+      background: #007fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25), inset 0 0 0 1px rgba(255,255,255,.25);
+    }
+    .kp-flag-badge .diag-yellow {
+      position: absolute; left: -22%; width: 144%; height: 20%; top: 50%;
+      background: #f7d618; transform: translateY(-50%) rotate(-32deg);
+    }
+    .kp-flag-badge .diag-red {
+      position: absolute; left: -22%; width: 144%; height: 11%; top: 50%;
+      background: #ce1021; transform: translateY(-50%) rotate(-32deg);
+    }
+    .kp-flag-badge .star {
+      position: absolute; top: 12%; left: 14%; color: #f7d618; font-size: clamp(11px, 1.4vw, 15px);
     }
     .kp-masthead-name {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: clamp(30px, 4.5vw, 50px); font-weight: 800; letter-spacing: .5px; color: #fff;
-      display: flex; align-items: center; gap: 12px;
     }
-    .kp-masthead-name .star { color: #f7d618; font-size: .7em; }
     .kp-masthead-tag {
       font-family: Arial, sans-serif;
       font-size: clamp(11px, 1.4vw, 14px); font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
@@ -161,10 +178,16 @@
   <main>
     <div class="kp-band">
       <div class="kp-band-inner">
-        <div class="kp-masthead-name"><span class="star"><i class="fa-solid fa-star"></i></span> Kongolia Magazine</div>
-        <div class="kp-masthead-tag">Littérature &amp; Engagement Africain</div>
+        <div>
+          <div class="kp-masthead-name">Kongolia Magazine</div>
+          <div class="kp-masthead-tag">Littérature &amp; Engagement Africain</div>
+        </div>
+        <div class="kp-flag-badge" title="République Démocratique du Congo">
+          <div class="diag-yellow"></div>
+          <div class="diag-red"></div>
+          <i class="fa-solid fa-star star"></i>
+        </div>
       </div>
-      <div class="kp-band-flagline"></div>
     </div>
 
     <div class="kp-article">
