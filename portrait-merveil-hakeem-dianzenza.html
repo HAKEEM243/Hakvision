@@ -30,7 +30,7 @@
       {
         "@type": "Article",
         "headline": "Merveil Hakeem Dianzenza, l'éditeur qui va à la rencontre des enfants d'Afrique",
-        "author": {"@type": "Person", "name": "Brice Mboyavanga"},
+        "author": {"@type": "Person", "name": "Brice Mbiyavanga"},
         "about": {"@type": "Person", "name": "Merveil Hakeem Dianzenza"},
         "publisher": {"@type": "Organization", "name": "Hakvision Éditions", "url": "https://maisoneditionhakvision.arenalse22.workers.dev"},
         "image": "https://maisoneditionhakvision.arenalse22.workers.dev/merveil_headshot_press.jpg",
@@ -52,7 +52,7 @@
   </script>
 
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#007fff">
+  <meta name="theme-color" content="#0057c7">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -65,78 +65,74 @@
   <link rel="stylesheet" href="style-shared.css">
 
   <style>
-    /* ══ Page presse · thème clair, drapeau RDC ══ */
     .kp-page { background: #fdfcf8; color: #262626; }
 
-    .kp-flagband {
+    .kp-band {
       position: relative;
-      min-height: 190px;
-      background: #007fff;
-      overflow: hidden;
-      display: flex; align-items: flex-start;
+      background: linear-gradient(135deg, #0057c7 0%, #00327a 100%);
+      padding: 40px var(--gutter) 26px;
     }
-    .kp-stripe {
-      position: absolute;
-      left: -10%; top: 68%;
-      width: 140%; height: 46px;
-      background: #ce1021;
-      transform: translateY(-50%) rotate(-11deg);
-      box-shadow: 0 -16px 0 #f7d618, 0 16px 0 #f7d618;
-    }
-    .kp-star { position: absolute; top: 22px; left: 5%; font-size: clamp(26px, 4vw, 40px); color: #f7d618; line-height: 1; z-index: 2; }
-    .kp-masthead {
-      position: relative; z-index: 2;
-      padding: 26px var(--gutter) 24px;
-      max-width: var(--max); margin: 0 auto; width: 100%;
-      padding-left: calc(var(--gutter) + 46px);
+    .kp-band-inner { max-width: var(--max); margin: 0 auto; }
+    .kp-band-flagline {
+      position: absolute; left: 0; right: 0; bottom: 0; height: 9px;
+      background: repeating-linear-gradient(90deg, #ce1021 0 60px, #f7d618 60px 68px, #0057c7 68px 128px, #f7d618 128px 136px);
     }
     .kp-masthead-name {
       font-family: Georgia, 'Times New Roman', serif;
-      font-size: clamp(28px, 4.5vw, 46px); font-weight: 800; letter-spacing: 1px;
-      color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,.35);
+      font-size: clamp(30px, 4.5vw, 50px); font-weight: 800; letter-spacing: .5px; color: #fff;
+      display: flex; align-items: center; gap: 12px;
     }
+    .kp-masthead-name .star { color: #f7d618; font-size: .7em; }
     .kp-masthead-tag {
-      font-size: clamp(10px, 1.4vw, 14px); font-weight: 700; letter-spacing: 2.5px;
-      text-transform: uppercase; color: #f7d618; margin-top: 6px;
-      text-shadow: 0 1px 6px rgba(0,0,0,.3);
+      font-family: Arial, sans-serif;
+      font-size: clamp(11px, 1.4vw, 14px); font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: #cfe0ff; margin-top: 8px;
     }
 
-    .kp-article { max-width: var(--max); margin: 0 auto; padding: 48px var(--gutter) 0; font-family: Georgia, 'Times New Roman', serif; }
+    .kp-article { max-width: var(--max); margin: 0 auto; padding: 44px var(--gutter) 0; font-family: Georgia, 'Times New Roman', serif; }
     .kp-kicker {
       font-family: Arial, sans-serif;
-      font-size: 13px; font-weight: 700; letter-spacing: 3px;
-      text-transform: uppercase; color: #ce1021; margin-bottom: 14px;
+      font-size: 14px; font-weight: 700; letter-spacing: 3.5px;
+      text-transform: uppercase; color: #ce1021; margin-bottom: 16px;
     }
     .kp-h1 {
-      font-size: clamp(28px, 4vw, 46px); font-weight: 700; line-height: 1.15; color: #141414;
-      margin-bottom: 30px; letter-spacing: -.4px;
+      font-size: clamp(30px, 4.2vw, 50px); font-weight: 700; line-height: 1.12; color: #141414;
+      margin-bottom: 36px; letter-spacing: -.4px; max-width: 980px;
     }
-    .kp-cols {
-      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px;
-      font-size: 17px; line-height: 1.64; color: #262626; text-align: justify;
+
+    .kp-hero-row { display: grid; grid-template-columns: 400px 1fr; gap: 48px; align-items: start; margin-bottom: 40px; }
+    .kp-hero-row img { width: 100%; display: block; border: 1px solid #e3e0d8; }
+    .kp-caption { font-family: Arial, sans-serif; font-size: 13px; color: #555; margin-top: 8px; font-style: italic; }
+    .kp-lead { font-size: clamp(19px, 2vw, 24px); line-height: 1.5; color: #1a1a1a; font-style: italic; margin-bottom: 20px; }
+    .kp-lead strong { font-weight: 700; font-style: normal; }
+
+    .kp-body { font-size: 18px; line-height: 1.7; color: #262626; max-width: 980px; }
+    .kp-body p { margin-bottom: 18px; }
+    .kp-body strong { color: #141414; }
+
+    .kp-engage-row {
+      display: grid; grid-template-columns: 1fr 400px; gap: 48px; align-items: start;
+      margin-top: 36px; padding-top: 36px; border-top: 2px solid #ece8dd;
     }
-    .kp-cols p { margin-bottom: 16px; }
-    .kp-photo { margin-bottom: 18px; }
-    .kp-photo img { width: 100%; display: block; border: 1px solid #e3e0d8; }
-    .kp-caption { font-family: Arial, sans-serif; font-size: 12.5px; color: #555; margin-top: 6px; font-style: italic; }
-    .kp-subhead { font-weight: 700; font-size: 21px; margin: 6px 0 12px; color: #141414; line-height: 1.25; }
+    .kp-subhead { font-weight: 700; font-size: clamp(22px, 2.6vw, 28px); margin-bottom: 16px; color: #141414; line-height: 1.2; }
+    .kp-engage-row img { width: 100%; display: block; border: 1px solid #e3e0d8; }
+
     .kp-pull {
-      font-style: italic; font-size: 21px; color: #ce1021; line-height: 1.45;
-      border-left: 4px solid #f7d618; padding-left: 18px; margin: 22px 0;
+      font-style: italic; font-size: clamp(20px, 2.2vw, 26px); color: #ce1021; line-height: 1.4;
+      border-left: 5px solid #f7d618; padding-left: 22px; margin: 32px 0 0; max-width: 900px;
     }
-    .kp-byline { font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; color: #1a1a1a; text-align: right; margin-top: 14px; }
+    .kp-byline { font-family: Arial, sans-serif; font-size: 16px; font-weight: 700; color: #1a1a1a; margin-top: 16px; }
+
     .kp-footer-bar {
-      max-width: var(--max); margin: 36px auto 0; padding: 18px var(--gutter);
+      max-width: var(--max); margin: 44px auto 0; padding: 22px var(--gutter);
       border-top: 3px solid #141414;
       display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
       font-family: Arial, sans-serif;
     }
-    .kp-footer-issue { font-size: 13px; color: #444; letter-spacing: .5px; font-weight: 700; }
+    .kp-footer-issue { font-size: 14px; color: #333; letter-spacing: .5px; font-weight: 700; }
 
     @media (max-width: 860px) {
-      .kp-cols { grid-template-columns: 1fr; }
-      .kp-masthead { padding-left: var(--gutter); }
-      .kp-star { display: none; }
+      .kp-hero-row, .kp-engage-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -163,45 +159,45 @@
   </header>
 
   <main>
-    <!-- Bandeau drapeau RDC -->
-    <div class="kp-flagband">
-      <div class="kp-stripe"></div>
-      <span class="kp-star"><i class="fa-solid fa-star"></i></span>
-      <div class="kp-masthead">
-        <div class="kp-masthead-name">Kongolia Magazine</div>
+    <div class="kp-band">
+      <div class="kp-band-inner">
+        <div class="kp-masthead-name"><span class="star"><i class="fa-solid fa-star"></i></span> Kongolia Magazine</div>
         <div class="kp-masthead-tag">Littérature &amp; Engagement Africain</div>
       </div>
+      <div class="kp-band-flagline"></div>
     </div>
 
-    <!-- Article -->
     <div class="kp-article">
       <p class="kp-kicker">Portrait</p>
       <h1 class="kp-h1">Merveil Hakeem Dianzenza, l'éditeur qui va à la rencontre des enfants d'Afrique</h1>
 
-      <div class="kp-cols">
+      <div class="kp-hero-row">
         <div>
-          <p>C'est une figure singulière qui s'impose depuis Paris sur la scène littéraire africaine. Merveil Hakeem Dianzenza, écrivain et fondateur de la maison d'édition Hakvision Éditions, s'est taillé une place à part, surnommé « Le Roi de l'Afrofuturisme ».</p>
-          <p>Il signe une œuvre déjà dense : le roman-fleuve <strong>KATIØPA</strong> (finaliste du Prix Zamenga 2025), <strong>DIAKU</strong>, préfacé par le Dr Denis Mukwege, Prix Nobel de la Paix, <strong>Un Écrivain à Kinshasa</strong>, la biographie de <strong>Papa Masambukidi</strong> et son dernier roman, <strong>La Suture</strong>.</p>
-          <p>En 2026, il fonde le <strong>Prix Dianzenza</strong>, consacrant Jeancy Lembi pour sa première édition, et est invité à l'Assemblée Nationale française pour un colloque sur la paix entre la République Démocratique du Congo et le Rwanda.</p>
+          <img src="merveil_headshot_press.jpg" alt="Merveil Hakeem Dianzenza, fondateur d'Hakvision Éditions" loading="eager">
+          <p class="kp-caption">Merveil Hakeem Dianzenza, fondateur d'Hakvision Éditions.</p>
         </div>
-
         <div>
-          <div class="kp-photo">
-            <img src="merveil_headshot_press.jpg" alt="Merveil Hakeem Dianzenza, fondateur d'Hakvision Éditions" loading="eager">
-            <p class="kp-caption">Merveil Hakeem Dianzenza, fondateur d'Hakvision Éditions.</p>
+          <p class="kp-lead">C'est une figure singulière qui s'impose depuis Paris sur la scène littéraire africaine. Merveil Hakeem Dianzenza, écrivain et fondateur de la maison d'édition <strong>Hakvision Éditions</strong>, s'est taillé une place à part, surnommé « <strong>Le Roi de l'Afrofuturisme</strong> ».</p>
+          <div class="kp-body">
+            <p>Il signe une œuvre déjà dense : le roman-fleuve <strong>KATIØPA</strong> (finaliste du Prix Zamenga 2025), <strong>DIAKU</strong>, préfacé par le Dr Denis Mukwege, Prix Nobel de la Paix, <strong>Un Écrivain à Kinshasa</strong>, la biographie de <strong>Papa Masambukidi</strong> et son dernier roman, <strong>La Suture</strong>.</p>
+            <p>En 2026, il fonde le <strong>Prix Dianzenza</strong>, consacrant Jeancy Lembi pour sa première édition, et est invité à l'Assemblée Nationale française pour un colloque sur la paix entre la République Démocratique du Congo et le Rwanda.</p>
           </div>
-          <p class="kp-subhead">Sur le terrain, en République Démocratique du Congo et au Togo</p>
-          <p>Mais c'est sur le terrain que Merveil Hakeem Dianzenza affirme peut-être le plus sa conviction. Superviseur de l'association humanitaire <strong>SEFA Togo</strong>, il multiplie les actions concrètes en Afrique de l'Ouest : distribution de fournitures scolaires, ateliers éducatifs, soutien aux communautés les plus vulnérables.</p>
         </div>
+      </div>
 
+      <div class="kp-engage-row">
         <div>
-          <p>En octobre 2025, il mène une première mission à Kinshasa et Matadi, où il organise des ateliers littéraires et culturels auprès des jeunes congolais. Un an plus tard, du <strong>23 octobre au 16 novembre 2026</strong>, il repart sur le terrain pour soutenir deux orphelinats, à Kinshasa et au Togo : cahiers, fournitures scolaires, nourriture et vêtements offerts aux enfants pour leur rentrée des classes.</p>
-          <div class="kp-photo">
-            <img src="sefa_togo_1.jpg" alt="Distribution de fournitures scolaires, SEFA Togo" loading="lazy">
-            <p class="kp-caption">Distribution de fournitures scolaires aux enfants, SEFA Togo.</p>
+          <h2 class="kp-subhead">Sur le terrain, en République Démocratique du Congo et au Togo</h2>
+          <div class="kp-body">
+            <p>Mais c'est sur le terrain que Merveil Hakeem Dianzenza affirme peut-être le plus sa conviction. Superviseur de l'association humanitaire <strong>SEFA Togo</strong>, il multiplie les actions concrètes en Afrique de l'Ouest : distribution de fournitures scolaires, ateliers éducatifs, soutien aux communautés les plus vulnérables.</p>
+            <p>En octobre 2025, il mène une première mission à Kinshasa et Matadi, où il organise des ateliers littéraires et culturels auprès des jeunes congolais. Un an plus tard, du <strong>23 octobre au 16 novembre 2026</strong>, il repart sur le terrain pour soutenir deux orphelinats, à Kinshasa et au Togo : cahiers, fournitures scolaires, nourriture et vêtements offerts aux enfants pour leur rentrée des classes.</p>
           </div>
           <p class="kp-pull">« Littérature et engagement humanitaire ne s'opposent pas : ils se complètent. »</p>
-          <p class="kp-byline">Brice Mboyavanga</p>
+          <p class="kp-byline">Brice Mbiyavanga</p>
+        </div>
+        <div>
+          <img src="sefa_togo_1.jpg" alt="Distribution de fournitures scolaires, SEFA Togo" loading="lazy">
+          <p class="kp-caption">Distribution de fournitures scolaires aux enfants, SEFA Togo.</p>
         </div>
       </div>
     </div>
@@ -211,7 +207,6 @@
       <span class="kp-footer-issue">17 Novembre 2026</span>
     </div>
 
-    <!-- CTA retour presse -->
     <section class="page-section alt" style="text-align:center;">
       <div class="site-grid">
         <p class="eyebrow">Espace presse</p>
@@ -247,7 +242,6 @@
     var nav = document.getElementById('hvNav');
     if(burger && nav) burger.addEventListener('click', function(){ nav.classList.toggle('open'); });
   </script>
-  <!-- Universal share button -->
   <div class="hv-share-fab" id="hvShareFab">
     <div class="hv-share-menu" id="hvShareMenu">
       <a class="hv-share-item hv-share-wa" id="hvShareWa" href="#" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
