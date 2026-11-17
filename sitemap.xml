@@ -208,4 +208,16 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Portrait de presse — Merveil Hakeem Dianzenza -->
+  <url>
+    <loc>https://maisoneditionhakvision.arenalse22.workers.dev/portrait-merveil-hakeem-dianzenza.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://maisoneditionhakvision.arenalse22.workers.dev/merveil_headshot_press.jpg</image:loc>
+      <image:title>Merveil Hakeem Dianzenza, fondateur d'Hakvision Éditions</image:title>
+    </image:image>
+  </url>
+
 </urlset>

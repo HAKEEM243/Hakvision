@@ -5,23 +5,23 @@
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portrait : Merveil Hakeem Dianzenza, Le Roi de l'Afrofuturisme | Hakvision Éditions</title>
-  <meta name="description" content="Portrait de Merveil Hakeem Dianzenza : fondateur et directeur éditorial d'Hakvision Éditions, écrivain, superviseur de l'association humanitaire SEFA Togo, engagé auprès des enfants au Congo et au Togo.">
-  <meta name="keywords" content="Merveil Hakeem Dianzenza, portrait, fondateur, Hakvision Éditions, SEFA Togo, humanitaire, Le Roi de l'Afrofuturisme, Kinshasa">
+  <meta name="description" content="Portrait de Merveil Hakeem Dianzenza : fondateur et directeur éditorial d'Hakvision Éditions, écrivain, superviseur de l'association humanitaire SEFA Togo, engagé auprès des enfants en République Démocratique du Congo et au Togo.">
+  <meta name="keywords" content="Merveil Hakeem Dianzenza, portrait, fondateur, Hakvision Éditions, SEFA Togo, humanitaire, Le Roi de l'Afrofuturisme, Kinshasa, République Démocratique du Congo">
   <meta name="author" content="Hakvision Éditions">
   <link rel="canonical" href="https://maisoneditionhakvision.arenalse22.workers.dev/portrait-merveil-hakeem-dianzenza.html">
 
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://maisoneditionhakvision.arenalse22.workers.dev/portrait-merveil-hakeem-dianzenza.html">
-  <meta property="og:title" content="Portrait : Merveil Hakeem Dianzenza, Le Roi de l'Afrofuturisme">
+  <meta property="og:title" content="Portrait : Merveil Hakeem Dianzenza, l'éditeur qui va à la rencontre des enfants d'Afrique">
   <meta property="og:description" content="Fondateur d'Hakvision Éditions, écrivain, superviseur de SEFA Togo : portrait d'un homme de lettres engagé auprès de la jeunesse africaine.">
-  <meta property="og:image" content="https://maisoneditionhakvision.arenalse22.workers.dev/merveil_press_portrait_costume.jpg">
+  <meta property="og:image" content="https://maisoneditionhakvision.arenalse22.workers.dev/merveil_headshot_press.jpg">
   <meta property="og:site_name" content="Hakvision Éditions">
   <meta property="og:locale" content="fr_FR">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Portrait : Merveil Hakeem Dianzenza">
-  <meta name="twitter:description" content="Fondateur d'Hakvision Éditions, écrivain, superviseur de SEFA Togo, engagé auprès des enfants au Congo et au Togo.">
-  <meta name="twitter:image" content="https://maisoneditionhakvision.arenalse22.workers.dev/merveil_press_portrait_costume.jpg">
+  <meta name="twitter:description" content="Fondateur d'Hakvision Éditions, écrivain, superviseur de SEFA Togo, engagé auprès des enfants en RDC et au Togo.">
+  <meta name="twitter:image" content="https://maisoneditionhakvision.arenalse22.workers.dev/merveil_headshot_press.jpg">
 
   <script type="application/ld+json">
   {
@@ -29,13 +29,14 @@
     "@graph": [
       {
         "@type": "Article",
-        "headline": "Merveil Hakeem Dianzenza : la plume et l'engagement, portrait du Roi de l'Afrofuturisme",
-        "author": {"@type": "Organization", "name": "Hakvision Éditions"},
+        "headline": "Merveil Hakeem Dianzenza, l'éditeur qui va à la rencontre des enfants d'Afrique",
+        "author": {"@type": "Person", "name": "Brice Mboyavanga"},
         "about": {"@type": "Person", "name": "Merveil Hakeem Dianzenza"},
         "publisher": {"@type": "Organization", "name": "Hakvision Éditions", "url": "https://maisoneditionhakvision.arenalse22.workers.dev"},
-        "image": "https://maisoneditionhakvision.arenalse22.workers.dev/merveil_press_portrait_costume.jpg",
+        "image": "https://maisoneditionhakvision.arenalse22.workers.dev/merveil_headshot_press.jpg",
         "datePublished": "2026-11-17",
         "inLanguage": "fr",
+        "contentLocation": {"@type": "Place", "name": "Kinshasa, République Démocratique du Congo"},
         "mainEntityOfPage": "https://maisoneditionhakvision.arenalse22.workers.dev/portrait-merveil-hakeem-dianzenza.html"
       },
       {
@@ -51,7 +52,7 @@
   </script>
 
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#b8952a">
+  <meta name="theme-color" content="#007fff">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -64,125 +65,82 @@
   <link rel="stylesheet" href="style-shared.css">
 
   <style>
-    /* ══ Hero plein cadre avec portrait ══ */
-    .mp-hero {
-      background: linear-gradient(135deg, #0f0e0e 0%, #1a1818 60%, #0f0e0e 100%);
-      border-bottom: 1px solid rgba(184,149,42,.2);
-      padding: 56px var(--gutter) 0;
+    /* ══ Page presse · thème clair, drapeau RDC ══ */
+    .kp-page { background: #fdfcf8; color: #262626; }
+
+    .kp-flagband {
+      position: relative;
+      min-height: 190px;
+      background: #007fff;
       overflow: hidden;
+      display: flex; align-items: flex-start;
     }
-    .mp-hero-inner {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 380px;
-      gap: 48px; align-items: end;
+    .kp-stripe {
+      position: absolute;
+      left: -10%; top: 68%;
+      width: 140%; height: 46px;
+      background: #ce1021;
+      transform: translateY(-50%) rotate(-11deg);
+      box-shadow: 0 -16px 0 #f7d618, 0 16px 0 #f7d618;
     }
-    .mp-hero-text { padding-bottom: 56px; }
-    .mp-dateline {
-      font-size: .68rem; font-weight: 600; letter-spacing: .18em;
-      text-transform: uppercase; color: #b8952a; margin-bottom: 18px;
-      display: flex; align-items: center; gap: 10px;
+    .kp-star { position: absolute; top: 22px; left: 5%; font-size: clamp(26px, 4vw, 40px); color: #f7d618; line-height: 1; z-index: 2; }
+    .kp-masthead {
+      position: relative; z-index: 2;
+      padding: 26px var(--gutter) 24px;
+      max-width: var(--max); margin: 0 auto; width: 100%;
+      padding-left: calc(var(--gutter) + 46px);
     }
-    .mp-dateline::before { content:''; width: 28px; height: 1px; background: #b8952a; opacity:.7; }
-    .mp-headline {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 4.2vw, 3.6rem);
-      font-weight: 300; font-style: italic;
-      line-height: 1.12; color: #e8e0d0;
-      margin-bottom: 18px;
+    .kp-masthead-name {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(28px, 4.5vw, 46px); font-weight: 800; letter-spacing: 1px;
+      color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,.35);
     }
-    .mp-headline strong { font-weight: 700; font-style: normal; color: #fff; }
-    .mp-deck {
-      font-size: 1rem; color: #9a8e7e; font-weight: 300;
-      line-height: 1.85; max-width: 560px; margin-bottom: 20px;
+    .kp-masthead-tag {
+      font-size: clamp(10px, 1.4vw, 14px); font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: #f7d618; margin-top: 6px;
+      text-shadow: 0 1px 6px rgba(0,0,0,.3);
     }
-    .mp-badges { display: flex; gap: 10px; flex-wrap: wrap; }
-    .mp-badge {
-      font-size: .68rem; font-weight: 600; letter-spacing: .06em;
-      text-transform: uppercase; color: #b8952a;
-      border: 1px solid rgba(184,149,42,.35);
-      padding: 6px 14px; border-radius: 20px;
+
+    .kp-article { max-width: var(--max); margin: 0 auto; padding: 48px var(--gutter) 0; font-family: Georgia, 'Times New Roman', serif; }
+    .kp-kicker {
+      font-family: Arial, sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: #ce1021; margin-bottom: 14px;
     }
-    .mp-hero-photo { position: relative; }
-    .mp-hero-photo img {
-      width: 100%; display: block;
-      max-height: 560px; object-fit: cover; object-position: top center;
-      border-radius: 4px 4px 0 0;
-      box-shadow: -20px -20px 0 rgba(184,149,42,.12);
+    .kp-h1 {
+      font-size: clamp(28px, 4vw, 46px); font-weight: 700; line-height: 1.15; color: #141414;
+      margin-bottom: 30px; letter-spacing: -.4px;
     }
+    .kp-cols {
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px;
+      font-size: 17px; line-height: 1.64; color: #262626; text-align: justify;
+    }
+    .kp-cols p { margin-bottom: 16px; }
+    .kp-photo { margin-bottom: 18px; }
+    .kp-photo img { width: 100%; display: block; border: 1px solid #e3e0d8; }
+    .kp-caption { font-family: Arial, sans-serif; font-size: 12.5px; color: #555; margin-top: 6px; font-style: italic; }
+    .kp-subhead { font-weight: 700; font-size: 21px; margin: 6px 0 12px; color: #141414; line-height: 1.25; }
+    .kp-pull {
+      font-style: italic; font-size: 21px; color: #ce1021; line-height: 1.45;
+      border-left: 4px solid #f7d618; padding-left: 18px; margin: 22px 0;
+    }
+    .kp-byline { font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; color: #1a1a1a; text-align: right; margin-top: 14px; }
+    .kp-footer-bar {
+      max-width: var(--max); margin: 36px auto 0; padding: 18px var(--gutter);
+      border-top: 3px solid #141414;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+      font-family: Arial, sans-serif;
+    }
+    .kp-footer-issue { font-size: 13px; color: #444; letter-spacing: .5px; font-weight: 700; }
+
     @media (max-width: 860px) {
-      .mp-hero-inner { grid-template-columns: 1fr; }
-      .mp-hero-text { padding-bottom: 24px; }
-      .mp-hero-photo img { max-height: 420px; border-radius: 4px; }
+      .kp-cols { grid-template-columns: 1fr; }
+      .kp-masthead { padding-left: var(--gutter); }
+      .kp-star { display: none; }
     }
-
-    /* ══ Corps d'article ══ */
-    .mp-body-wrap { padding: 72px var(--gutter); }
-    .mp-grid {
-      max-width: 1020px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 300px;
-      gap: 56px; align-items: start;
-    }
-    .mp-text { font-size: 1rem; color: #c9beae; font-weight: 300; line-height: 2; }
-    .mp-text p { margin-bottom: 22px; }
-    .mp-text p:first-of-type::first-letter {
-      font-family: var(--serif); font-size: 4.2rem; font-weight: 700;
-      color: #b8952a; float: left; line-height: .78; margin: 6px 10px 0 0;
-    }
-    .mp-text h3 {
-      font-family: var(--serif); font-style: italic; font-weight: 400;
-      color: #e8e0d0; font-size: 1.3rem; margin: 36px 0 14px;
-    }
-    .mp-text strong { color: #e8e0d0; font-weight: 500; }
-    .mp-pullquote {
-      font-family: var(--serif); font-style: italic;
-      font-size: 1.35rem; color: #e8e0d0; line-height: 1.5;
-      border-top: 1px solid rgba(184,149,42,.25);
-      border-bottom: 1px solid rgba(184,149,42,.25);
-      padding: 24px 0; margin: 32px 0;
-    }
-    .mp-sidebar-box {
-      border: 1px solid rgba(184,149,42,.25);
-      border-radius: 6px; padding: 22px; margin-top: 20px;
-      background: rgba(184,149,42,.04);
-    }
-    .mp-sidebar-box h5 {
-      font-size: .62rem; font-weight: 700; letter-spacing: .14em;
-      text-transform: uppercase; color: #b8952a; margin-bottom: 12px;
-    }
-    .mp-sidebar-box ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .mp-sidebar-box li a {
-      font-size: .86rem; color: #c9beae; font-weight: 300;
-      display: flex; justify-content: space-between; gap: 8px;
-    }
-    .mp-sidebar-box li a:hover { color: #e8e0d0; }
-    .mp-sidebar-box li span { color: #6a6055; font-size: .7rem; white-space: nowrap; }
-
-    /* ══ Galerie enfants ══ */
-    .mp-children-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 14px; margin-top: 24px;
-    }
-    @media (max-width: 760px) { .mp-children-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 480px) { .mp-children-grid { grid-template-columns: 1fr; } }
-    .mp-child-photo { position: relative; border-radius: 8px; overflow: hidden; border: 1px solid rgba(184,149,42,.2); }
-    .mp-child-photo img { width: 100%; height: 210px; object-fit: cover; display: block; }
-    .mp-child-caption {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,.82));
-      color: #e8e0d0; font-size: .76rem; font-weight: 300;
-      padding: 22px 12px 10px;
-    }
-    .mp-child-tag {
-      display: inline-block; font-size: .58rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      color: #0f0e0e; background: #b8952a;
-      padding: 2px 8px; border-radius: 3px; margin-bottom: 4px;
-    }
-
-    @media (max-width: 860px) { .mp-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
-<body>
+<body class="kp-page">
   <div class="hv-announcement">Portrait de presse · <strong>Merveil Hakeem Dianzenza</strong> · <a href="press.html">Tout l'espace presse</a></div>
   <header class="hv-header">
     <div class="hv-header-inner">
@@ -205,112 +163,56 @@
   </header>
 
   <main>
-    <!-- En-tête avec portrait -->
-    <section class="mp-hero">
-      <div class="mp-hero-inner">
-        <div class="mp-hero-text">
-          <p class="mp-dateline"><i class="fa-solid fa-newspaper"></i> Portrait · Presse · Paris, novembre 2026</p>
-          <h1 class="mp-headline">Merveil Hakeem Dianzenza, la plume et <strong>l'engagement</strong></h1>
-          <p class="mp-deck">Fondateur et directeur éditorial d'Hakvision Éditions, écrivain surnommé « Le Roi de l'Afrofuturisme », superviseur de l'association humanitaire SEFA Togo : portrait d'un homme de lettres qui place la jeunesse africaine au cœur de son œuvre comme de son engagement de terrain.</p>
-          <div class="mp-badges">
-            <span class="mp-badge"><i class="fa-solid fa-building-columns"></i> Fondateur Hakvision Éditions</span>
-            <span class="mp-badge"><i class="fa-solid fa-feather-pointed"></i> Écrivain</span>
-            <span class="mp-badge"><i class="fa-solid fa-hands-holding-heart"></i> Superviseur SEFA Togo</span>
-          </div>
+    <!-- Bandeau drapeau RDC -->
+    <div class="kp-flagband">
+      <div class="kp-stripe"></div>
+      <span class="kp-star"><i class="fa-solid fa-star"></i></span>
+      <div class="kp-masthead">
+        <div class="kp-masthead-name">Kongolia Magazine</div>
+        <div class="kp-masthead-tag">Littérature &amp; Engagement Africain</div>
+      </div>
+    </div>
+
+    <!-- Article -->
+    <div class="kp-article">
+      <p class="kp-kicker">Portrait</p>
+      <h1 class="kp-h1">Merveil Hakeem Dianzenza, l'éditeur qui va à la rencontre des enfants d'Afrique</h1>
+
+      <div class="kp-cols">
+        <div>
+          <p>C'est une figure singulière qui s'impose depuis Paris sur la scène littéraire africaine. Merveil Hakeem Dianzenza, écrivain et fondateur de la maison d'édition Hakvision Éditions, s'est taillé une place à part, surnommé « Le Roi de l'Afrofuturisme ».</p>
+          <p>Il signe une œuvre déjà dense : le roman-fleuve <strong>KATIØPA</strong> (finaliste du Prix Zamenga 2025), <strong>DIAKU</strong>, préfacé par le Dr Denis Mukwege, Prix Nobel de la Paix, <strong>Un Écrivain à Kinshasa</strong>, la biographie de <strong>Papa Masambukidi</strong> et son dernier roman, <strong>La Suture</strong>.</p>
+          <p>En 2026, il fonde le <strong>Prix Dianzenza</strong>, consacrant Jeancy Lembi pour sa première édition, et est invité à l'Assemblée Nationale française pour un colloque sur la paix entre la République Démocratique du Congo et le Rwanda.</p>
         </div>
-        <div class="mp-hero-photo">
-          <img src="merveil_press_portrait_costume.jpg" alt="Merveil Hakeem Dianzenza, fondateur et directeur éditorial d'Hakvision Éditions" loading="eager">
+
+        <div>
+          <div class="kp-photo">
+            <img src="merveil_headshot_press.jpg" alt="Merveil Hakeem Dianzenza, fondateur d'Hakvision Éditions" loading="eager">
+            <p class="kp-caption">Merveil Hakeem Dianzenza, fondateur d'Hakvision Éditions.</p>
+          </div>
+          <p class="kp-subhead">Sur le terrain, en République Démocratique du Congo et au Togo</p>
+          <p>Mais c'est sur le terrain que Merveil Hakeem Dianzenza affirme peut-être le plus sa conviction. Superviseur de l'association humanitaire <strong>SEFA Togo</strong>, il multiplie les actions concrètes en Afrique de l'Ouest : distribution de fournitures scolaires, ateliers éducatifs, soutien aux communautés les plus vulnérables.</p>
+        </div>
+
+        <div>
+          <p>En octobre 2025, il mène une première mission à Kinshasa et Matadi, où il organise des ateliers littéraires et culturels auprès des jeunes congolais. Un an plus tard, du <strong>23 octobre au 16 novembre 2026</strong>, il repart sur le terrain pour soutenir deux orphelinats, à Kinshasa et au Togo : cahiers, fournitures scolaires, nourriture et vêtements offerts aux enfants pour leur rentrée des classes.</p>
+          <div class="kp-photo">
+            <img src="sefa_togo_1.jpg" alt="Distribution de fournitures scolaires, SEFA Togo" loading="lazy">
+            <p class="kp-caption">Distribution de fournitures scolaires aux enfants, SEFA Togo.</p>
+          </div>
+          <p class="kp-pull">« Littérature et engagement humanitaire ne s'opposent pas : ils se complètent. »</p>
+          <p class="kp-byline">Brice Mboyavanga</p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Corps de l'article -->
-    <section class="mp-body-wrap">
-      <div class="mp-grid">
-
-        <div class="mp-text">
-          <p>Fondateur et directeur éditorial d'Hakvision Éditions, Merveil Hakeem Dianzenza s'impose comme une figure singulière de la littérature africaine contemporaine. Écrivain, réalisateur et éditeur, il est surnommé « Le Roi de l'Afrofuturisme », un titre qui résume une œuvre où se croisent mythologie congolaise, mémoire historique et imaginaire spéculatif.</p>
-
-          <p>Licencié en Histoire de l'INALCO (option swahili) et ancien archiviste à l'Assemblée Nationale, il nourrit son écriture d'une rigueur documentaire rare. Son roman-fleuve <strong>KATIØPA : La Prophétie Noire</strong>, 634 pages d'afrofuturisme congolais finaliste du Prix Zamenga 2025, en est la pièce maîtresse, présentée au Salon du Livre Africain de Paris en mars 2026 aux côtés de trois autres de ses ouvrages. Sa bibliographie compte également <strong>DIAKU : L'Antidote Vivant</strong>, préfacé par le Dr Denis Mukwege, Prix Nobel de la Paix 2018, <strong>Un Écrivain à Kinshasa</strong>, récit autobiographique, <strong>La Suture</strong>, son dernier roman, ainsi que la biographie officielle de <strong>Papa Masambukidi</strong>, Roi Divin du Bassin du Congo, dont il est le chargé de protocole.</p>
-
-          <h3>Fondateur du Prix Dianzenza</h3>
-          <p>En 2026, il fonde le Prix Dianzenza, prix littéraire dédié aux auteurs africains et afrodescendants francophones. Sa première édition, consacrée au thème « Imaginer le futur du Congo », consacre Jeancy Lembi comme lauréat officiel. Son engagement intellectuel l'a également conduit à l'Assemblée Nationale française, où il a été invité à un colloque sur la paix entre la RDC et le Rwanda, présidé par la députée Maud Petit.</p>
-
-          <blockquote class="mp-pullquote">
-            « Nous ne sommes pas les descendants d'esclaves. Nous sommes les héritiers de royaumes oubliés. Et il est temps que le monde s'en souvienne. »
-          </blockquote>
-
-          <h3>Sur le terrain, au Congo et au Togo</h3>
-          <p>Parallèlement à son travail d'écriture et d'édition, Merveil Hakeem Dianzenza supervise <strong>SEFA Togo</strong>, association humanitaire engagée dans des actions de solidarité et de développement culturel en Afrique de l'Ouest : distribution de fournitures scolaires, ateliers éducatifs, soutien aux communautés locales. Il collabore également avec <strong>Utopia56</strong> pour des maraudes et de la logistique humanitaire en France.</p>
-
-          <p>En octobre 2025, il mène une mission à Kinshasa et à Matadi, organisant des ateliers littéraires et culturels auprès des jeunes congolais. Un an plus tard, du <strong>23 octobre au 16 novembre 2026</strong>, il retourne sur le terrain pour soutenir deux orphelinats, à Kinshasa et au Togo : cahiers, fournitures scolaires, nourriture et vêtements pour la rentrée des classes des enfants. Pour lui, la littérature et l'humanitaire ne s'opposent pas : ils se complètent, l'un comme l'autre au service de la même conviction, celle d'une Afrique qui se raconte et se construit elle-même.</p>
-        </div>
-
-        <aside>
-          <div class="mp-sidebar-box">
-            <h5><i class="fa-solid fa-book"></i> Bibliographie</h5>
-            <ul>
-              <li><a href="katiopa.html"><span>KATIØPA : La Prophétie Noire</span><span>2024</span></a></li>
-              <li><a href="diaku.html"><span>DIAKU : L'Antidote Vivant</span><span>2026</span></a></li>
-              <li><a href="un-ecrivain-kinshasa.html"><span>Un Écrivain à Kinshasa</span><span>Nov. 2025</span></a></li>
-              <li><a href="papa-masambukidi.html"><span>Papa Masambukidi</span><span>Oct. 2025</span></a></li>
-              <li><a href="la-suture.html"><span>La Suture</span><span>2026</span></a></li>
-            </ul>
-          </div>
-          <div class="mp-sidebar-box">
-            <h5><i class="fa-solid fa-hands-holding-heart"></i> Engagement</h5>
-            <ul>
-              <li><a href="bio.html#sefa-togo"><span>SEFA Togo</span><span>Superviseur</span></a></li>
-              <li><a href="prix-litteraires.html"><span>Prix Dianzenza</span><span>Fondateur</span></a></li>
-              <li><a href="bio.html#mission-kinshasa"><span>Mission Kinshasa</span><span>2025 & 2026</span></a></li>
-            </ul>
-          </div>
-        </aside>
-
-      </div>
-    </section>
-
-    <!-- Galerie enfants -->
-    <section class="page-section alt">
-      <div class="site-grid">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Sur le terrain</p>
-            <h3>Les enfants de Kinshasa et du Togo</h3>
-          </div>
-        </div>
-        <p style="color:#9a8e7e; font-weight:300; max-width:700px; margin-bottom:28px;">Au Congo comme au Togo, Merveil Hakeem Dianzenza va à la rencontre des enfants : ateliers littéraires, distribution de fournitures scolaires, soutien aux orphelinats. Des images du terrain, là où les mots rencontrent les actes.</p>
-        <div class="mp-children-grid">
-          <div class="mp-child-photo">
-            <img src="kinshasa_ecoles_1.jpg" alt="Merveil Hakeem Dianzenza avec des élèves à Kinshasa" loading="lazy">
-            <div class="mp-child-caption"><span class="mp-child-tag">Kinshasa</span><br>Rencontre avec les élèves d'une école de Kinshasa</div>
-          </div>
-          <div class="mp-child-photo">
-            <img src="kinshasa_ecoles_2.jpg" alt="Merveil Hakeem Dianzenza avec des élèves à Kinshasa" loading="lazy">
-            <div class="mp-child-caption"><span class="mp-child-tag">Kinshasa</span><br>Atelier littéraire et culturel avec les jeunes congolais</div>
-          </div>
-          <div class="mp-child-photo">
-            <img src="sefa_togo_1.jpg" alt="SEFA Togo, distribution de fournitures scolaires" loading="lazy">
-            <div class="mp-child-caption"><span class="mp-child-tag">Togo</span><br>Distribution de fournitures scolaires aux enfants</div>
-          </div>
-          <div class="mp-child-photo">
-            <img src="sefa_togo_3.jpg" alt="SEFA Togo, Palais Royal Gilgal, enfants avec fournitures" loading="lazy">
-            <div class="mp-child-caption"><span class="mp-child-tag">Togo</span><br>Au Palais Royal Gilgal, enfants avec leurs fournitures</div>
-          </div>
-          <div class="mp-child-photo">
-            <img src="sefa_togo_4.jpg" alt="SEFA Togo, mission humanitaire, équipe et enfants" loading="lazy">
-            <div class="mp-child-caption"><span class="mp-child-tag">Togo</span><br>L'équipe SEFA Togo sur le terrain avec les enfants</div>
-          </div>
-          <div class="mp-child-photo">
-            <img src="sefa_togo_2.jpg" alt="SEFA Togo, remise de kit scolaire" loading="lazy">
-            <div class="mp-child-caption"><span class="mp-child-tag">Togo</span><br>Remise individuelle de kits scolaires</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="kp-footer-bar">
+      <span class="kp-footer-issue">Kinshasa, République Démocratique du Congo</span>
+      <span class="kp-footer-issue">17 Novembre 2026</span>
+    </div>
 
     <!-- CTA retour presse -->
-    <section class="page-section" style="text-align:center;">
+    <section class="page-section alt" style="text-align:center;">
       <div class="site-grid">
         <p class="eyebrow">Espace presse</p>
         <h2 style="font-family:var(--serif); font-weight:300; font-style:italic; font-size:clamp(1.4rem,2.5vw,2rem); margin:12px 0 28px;">Plus d'actualités Hakvision Éditions</h2>
